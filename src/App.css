@@ -1,0 +1,105 @@
+:root {
+  --gray: #646464;
+  --gray-dark: #323232;
+  --gray-dark2: #8e8e93;
+  --gray-dark3: #69696f;
+  --gray-light: #f2f2f6;
+  --gray-light2: #e7e7ed;
+  --gray-light3: #b3b3b3;
+  --gray-light4: #a8b1a7;
+  --gray-light5: #b3b4b8;
+  --gray-light6: #e3e3e7;
+  --gray-light7: #dcdcdc;
+  --gray-light8: #ebeff3;
+  --gray-light9: #f5f5f5;
+  --gray-light10: #f9f9fa;
+  --gray-blue: #263238;
+
+  --pink: #fce0f1;
+  --pink-dark: #d754a3;
+
+  --white: #fff;
+  --white-light: #ffffffad;
+
+  --black: #11100e;
+
+  --purple: #553ea0;
+  --purple-light: #f1e3f3;
+
+  --blue: #4072c2;
+  --blue-dark: #2458ab;
+  --blue-light: #eaf5fc;
+
+  --green: #32cd32;
+  --green-secondary: #33a01e;
+  --green-dark: #1d7b1e;
+  --green-dark2: #4dbd38;
+  --green-dark3: #064f07;
+  --green-light: #6acc1533;
+  --green-light2: #1d7b1e4d;
+  --green-light3: #4dbd381a;
+  --green-light4: #d4edda;
+  --green-light5: rgba(77, 189, 56, 0.1);
+  --green-light6: #ebf9e2;
+
+  --red: #d12c2c;
+  --red-dark: #9f1616;
+  --red-light: rgba(209, 44, 44, 0.1);
+
+  --orange: #6b4806;
+  --orange-light: #ffebcd;
+
+  --teal: #194c9e;
+  --teal-light: #e0fbfc;
+
+  --voilet: #553ea0;
+
+  --popUpBaseBackground: rgba(17, 16, 14, 0.6);
+}
+
+.rdw-option-wrapper {
+  border: none !important;
+}
+.rdw-editor-wrapper {
+  height: 100%;
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.rdw-editor-main {
+  width: 100%;
+  flex: 1;
+}
+.rdw-editor-toolbar {
+  border: none;
+  height: 52px;
+  margin-bottom: 0px;
+  width: 100%;
+  border: none !important;
+  border-bottom: 1px solid var(--gray-light8) !important;
+  border-top-left-radius: 12px !important;
+  border-top-right-radius: 12px !important;
+  background-color: transparent;
+}
+.rdw-option-active {
+  border: none;
+  outline: none;
+  background-color: var(--gray-light);
+  box-shadow: none;
+}
+.editor-toolbar2 {
+  border-bottom: 1px solid var(--gray-light8);
+}
+.rdw-option-active:hover {
+  box-shadow: none;
+}
+.public-DraftEditor-content{
+  font-family: 'Inter';
+}
+.css-tlfecz-indicatorContainer {
+  display: none !important;
+}
+.css-1wy0on6 {
+  display: none !important;
+}

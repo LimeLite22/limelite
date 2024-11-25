@@ -1,0 +1,196 @@
+.headerContainer {
+  width: 100%;
+  position: sticky;
+  top: -33px;
+  left: 0;
+  z-index: 11;
+}
+.notification {
+  position: relative;
+  min-height: 33px;
+  width: 100%;
+  background-color: var(--purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  text-align: center;
+
+  font-family: "Poppins";
+  font-weight: 400;
+  font-weight: 500;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  &_text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 33px;
+  }
+  @media screen and (max-width: 640px) {
+    height: 33px;
+    padding: 0px 2px;
+    min-height: unset;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 13px;
+  }
+
+  @media screen and (max-width: 370px) {
+    height: 41px;
+    padding: 4px 2px;
+  }
+}
+.closeIcon {
+  position: absolute;
+  right: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.header {
+  width: 100%;
+  min-height: 62px;
+  background-color: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 48px;
+  padding-right: 24px;
+  &_isUser {
+    justify-content: space-between;
+  }
+  &_burgerButton {
+    display: none;
+    @media screen and (max-width: 768px) {
+      margin-left: 8px;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &_logo {
+    background-image: url(../../../../assets/images/Header/HeaderLogo.svg);
+    width: 184px;
+    height: 46px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+  }
+  &_user {
+    display: flex;
+    align-items: center;
+    &_logo {
+      width: 31px;
+      height: 31px;
+      background-image: url(../../../../assets/images/Header/HeaderMobLogo.svg);
+      margin-right: 53px;
+    }
+    &_logoOpenedSideBar {
+      background-image: url(../../../../assets/images/Header/HeaderLogo.svg);
+      width: 184px;
+      height: 46px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100% 100%;
+      margin-right: 53px;
+      @media screen and (max-width: 768px) {
+        width: 31px;
+        height: 31px;
+        background-image: url(../../../../assets/images/Header/HeaderMobLogo.svg);
+        margin-right: 53px;
+      }
+    }
+    &_searchContainer {
+      position: relative;
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+    }
+    &_search {
+      display: flex;
+      width: 456px;
+      padding: 8px 16px;
+      padding-left: 44px;
+      align-items: center;
+      border-radius: 40px;
+      background: var(--gray-dark);
+      outline: none;
+      border: none;
+      color: var(--gray-light3);
+      font-family: "Poppins";
+      font-weight: 400;
+      font-size: 18px;
+      position: relative;
+      &_icon {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      @media screen and (max-width: 1024px) {
+        width: 90%;
+        max-width: 256px;
+      }
+    }
+  }
+  &_profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &_content {
+      display: flex;
+      align-items: flex-end;
+      flex-direction: column;
+      &_name {
+        color: var(--white);
+        font-family: Inter;
+        font-weight: 400;
+        font-size: 22px;
+        @media screen and (max-width: 768px) {
+          font-size: 14px;
+        }
+      }
+      &_text {
+        color: var(--gray-light3);
+        font-family: Inter;
+        font-weight: 400;
+        font-size: 14px;
+        white-space: nowrap;
+        @media screen and (max-width: 768px) {
+          display: none;
+        }
+      }
+    }
+    &_image {
+      width: 36px;
+      height: 36px;
+      margin-left: 20px;
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    min-height: 56px;
+    padding-right: 33px;
+    padding-left: 33px;
+    &_logo {
+      width: 31px;
+      height: 31px;
+      background-image: url(../../../../assets/images/Header/HeaderMobLogo.svg);
+    }
+  }
+  @media screen and (max-width: 640px) {
+    min-height: 48px;
+    padding-right: 16px;
+    padding-left: 22px;
+    &_logo {
+      width: 31px;
+      height: 31px;
+      background-image: url(../../../../assets/images/Header/HeaderMobLogo.svg);
+    }
+  }
+}

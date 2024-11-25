@@ -1,0 +1,161 @@
+@keyframes slideUp {
+    from {
+        right: -268px;
+    }
+    to {
+        right: 0;
+    }
+}
+
+.sideBar {
+    width: 102px;
+    height: 100%;
+    border-right: 1px solid var(--gray-light4);
+    background: var(--white);
+    padding: 24px 21px;
+    transition-duration: 0.3s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    @media screen and (max-width: 768px) {
+        position: absolute;
+        right: 0;
+        top: 0;
+        animation: slideUp 0.3s forwards;
+    }
+    &_opened {
+        width: 280px;
+        padding: 24px;
+        align-items: flex-start;
+        @media screen and (max-width: 768px) {
+            width: 268px;
+        }
+    }
+
+    &_navItems {
+        position: sticky;
+        top: 85px;
+        width: 100%;
+        @media screen and (max-width: 768px) {
+            top: 21px;
+        }
+    }
+    &_navItemContainer {
+        position: relative;
+        &_switchArrow {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            right: -35px;
+            background-image: url(../../assets/images/SideBar/Arrow.svg);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            border-radius: 50%;
+            transition-duration: 0.3s;
+            cursor: pointer;
+            @media screen and (max-width: 768px) {
+                display: none;
+            }
+            &_opened {
+                transform: translateY(-50%) rotate(180deg);
+            }
+        }
+    }
+    &_navItem {
+        width: 44px;
+        height: 36px;
+        border-radius: 6px;
+        margin-bottom: 6px;
+        border: none;
+        outline: none;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        background: var(--white);
+        transition-duration: 0.3s;
+        color: var(--gray-dark);
+        font-family: "Poppins";
+  font-weight: 400;
+        font-size: 18px;
+        overflow: hidden;
+        white-space: nowrap;
+        margin-left: 8px;
+        position: relative;
+        &_sideBarSwitchButton {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: -50px;
+            transition-duration: 0.3s;
+            width: 24px;
+            height: 24px;
+            background-image: url(../../assets/images/SideBar/Arrow.svg);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            border-radius: 50%;
+            transition-duration: 0.3s;
+            cursor: pointer;
+            &_opened {
+                transform: translateY(-50%) rotate(180deg);
+            }
+        }
+        img {
+            margin-left: 12px;
+            margin-right: 13px;
+            position: relative;
+        }
+        &_notificationContainer {
+            position: relative;
+        }
+        &_notification {
+            position: absolute;
+            top: 0;
+            right: 10px;
+            width: 12px;
+            height: 12px;
+            background-color: var(--red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-family: "Cairo";
+  font-weight: 700;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 100%;
+        }
+        &_selected {
+            background-color: var(--green);
+            color: var(--white);
+        }
+        &_opened {
+            width: 100%;
+            margin-left: 0px;
+        }
+    }
+    @media screen and (max-width: 768px) {
+        &_navItem {
+                font-family: "Poppins";
+  font-weight: 400;
+  font-weight: 500;
+        }
+    }
+    @media screen and (min-width: 768px) {
+        &_navItem:hover {
+            background: rgba(42, 123, 54, 0.1);
+            color: var(--green-dark);
+        }
+    }
+
+    &_divider {
+        width: 100%;
+        height: 24px;
+        border-bottom: 1px solid var(--gray-light3);
+        margin-bottom: 8px;
+    }
+}
