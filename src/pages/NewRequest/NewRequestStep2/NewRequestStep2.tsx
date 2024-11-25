@@ -1,4 +1,3 @@
-import { useWhyDidYouUpdate } from "ahooks";
 import {
   ArrowGray,
   ArrowGray3,
@@ -30,9 +29,6 @@ const NewRequestStep2 = () => {
   const option = selectedRequest?.option;
   const price = useCalculateFinalPrice();
   const width = useWindowWidth();
-  useWhyDidYouUpdate("useWhyDidYouUpdateComponent", {
-    option,
-  });
 
   const handleNextDisabled = () => {
     let isDisabled = false;
