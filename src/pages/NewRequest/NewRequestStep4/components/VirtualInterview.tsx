@@ -57,7 +57,7 @@ const VirtualInterview = ({ isExpanded, setIsExpanded }: IHomeRentalProps) => {
           alt="CheckBox"
         />
         <div className={styles.box_title}>
-          LimeLite virtual interview
+          A proffessional interview
           <div className={styles.box_title_addOn}>Add-on</div>
         </div>
         <div className={styles.box_title2}>

@@ -83,7 +83,7 @@ const QuestionsAuthorBox = () => {
   return (
     <div ref={containerRef} tabIndex={-1} onBlur={handleBlur}>
           <div className={styles.box_question_header_text}>
-            Who will write the interview questions?*
+            Who will conduct the interview(s)?
           </div>
           <LearnMorePopUp smallMargin />
       <QuestionsOnLocationInput

@@ -12,7 +12,7 @@ const ScriptPersons = () => {
 
     return (
         <div >
-            <div className={styles.box_question_header_text}>How many people will deliver this script?*</div>
+            <div className={styles.box_question_header_text}>Who will deliver this script on camera?</div>
             {persons.map((person, index) => (
                 <ScriptPerson key={index} person={person} index={index} />
             ))}
