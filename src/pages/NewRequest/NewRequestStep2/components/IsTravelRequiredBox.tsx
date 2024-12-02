@@ -19,7 +19,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import {
   selectRequestInfo,
-  setIsTravelRequiredSelection,
+  updateDraftField,
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 import LearnMorePopUp from "./LearnMorePopUp";
@@ -75,7 +75,12 @@ const IsTravelRequired = () => {
     } else {
       setIsExpanded(false);
     }
-    dispatch(setIsTravelRequiredSelection(selection));
+    dispatch(
+      updateDraftField({
+        path: "travel.selection",
+        value: selection,
+      })
+    );
   };
   const handleZoneCode = () => {
     setIsError(false);

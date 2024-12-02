@@ -1,7 +1,8 @@
 import { Add2} from "assets/images";
+import { IPerson } from "interfaces/interfaces";
 import { useDispatch, useSelector } from "react-redux";
 import { generateUniqueId } from "utils/generateId";
-import { selectRequestInfo, setPersons } from "../../../../redux/requests/reducer";
+import { selectRequestInfo, updateDraftField } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 import ScriptPerson from "./ScriptPerson";
 
@@ -9,6 +10,14 @@ import ScriptPerson from "./ScriptPerson";
 const ScriptPersons = () => {
     const persons = useSelector(selectRequestInfo)?.scriptSettings?.persons || [];
     const dispatch = useDispatch();
+    const handleUpdateField = (path: string, value:IPerson[] ) => {
+        dispatch(
+          updateDraftField({
+            path,
+            value,
+          })
+        );
+      };
 
     return (
         <div >
@@ -17,8 +26,8 @@ const ScriptPersons = () => {
                 <ScriptPerson key={index} person={person} index={index} />
             ))}
             <div className={styles.persons_add} onClick={() => {
-                dispatch(setPersons([...persons, { id: generateUniqueId(), name: '', title: '' }]))
-            }}><img src={Add2} /> Add person</div>
+                handleUpdateField(`scriptSettings.persons`, [...persons, { id: generateUniqueId(), name: '', title: '' }])
+            }}><img src={Add2} alt="" /> Add person</div>
         </div>
     )
 }

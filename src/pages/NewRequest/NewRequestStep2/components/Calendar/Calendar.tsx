@@ -14,8 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,
-  setAlternateDate,
-  setPrefferredDate,
+  updateDraftField,
 } from "../../../../../redux/requests/reducer";
 import "./Calendar.scss";
 
@@ -124,15 +123,23 @@ const Calendar = ({ onClose, isPreferredDate, isOpened }: ICalendarProps) => {
     }
     return false;
   };
+  const handleUpdateField = (path: string, value: Date) => {
+    dispatch(
+      updateDraftField({
+        path,
+        value,
+      })
+    );
+  };
   const handleRequest = () => {
     if (!currentDate) {
       showCalendarError(2000);
       return;
     }
     if (isPreferredDate) {
-      dispatch(setPrefferredDate(currentDate as Date));
+      handleUpdateField("preferredDate.date", currentDate as Date);
     } else {
-      dispatch(setAlternateDate(currentDate as Date));
+      handleUpdateField("alternateDate.date", currentDate as Date);
     }
     onClose();
   };

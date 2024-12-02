@@ -1,8 +1,7 @@
 import { Remove } from "assets/images";
-import { IPerson } from "interfaces/interfaces";
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectRequestInfo, updateDraftField, updatePerson } from "../../../../redux/requests/reducer";
+import { selectRequestInfo, updateDraftField } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 interface IProps {
     person: {
@@ -38,7 +37,6 @@ const InterviewPerson = ({ person, index }: IProps) => {
         );
     }
     const handleBlur = (event: React.FocusEvent<HTMLDivElement>) => {
-        // Перевіряємо, чи relatedTarget є дочірнім для containerRef
         if (
             containerRef.current &&
             containerRef.current.contains(event.relatedTarget as Node)
@@ -53,7 +51,7 @@ const InterviewPerson = ({ person, index }: IProps) => {
         <div ref={containerRef} key={index} className={styles.persons_item} tabIndex={0} onBlur={handleBlur} >
             <div className={styles.persons_title}><span>Person # {index + 1}</span> {index > 0 && <img onClick={() => {
                 handleDeletePerson(person.id);
-            }} src={Remove}
+            }} src={Remove} alt=""
             />}</div>
             <input
                 className={styles.persons_item_input} type="text" value={person.name} onChange={(e) => {

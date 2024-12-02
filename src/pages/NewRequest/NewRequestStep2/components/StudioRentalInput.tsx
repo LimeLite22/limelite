@@ -10,7 +10,7 @@ import {
 import useWindowWidth from "hooks/useWindowWidth";
 import { IStudioRentalProps } from "interfaces/interfaces";
 import { STUDIO_RENTAL } from "pages/NewRequest/consts";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
@@ -21,7 +21,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import {
   selectRequestInfo,
-  setLocationType,
+  updateDraftField,
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 
@@ -45,7 +45,12 @@ const StudioRental = ({ isExpanded, setIsExpanded }: IStudioRentalProps) => {
     ${type === STUDIO_RENTAL ? styles.box_selected : ""} 
     ${isExpanded ? styles.box_expanded : ""}`}
       onClick={() => {
-        dispatch(setLocationType(STUDIO_RENTAL));
+        dispatch(
+          updateDraftField({
+            path: "location.type",
+            value: STUDIO_RENTAL,
+          })
+        );
         !isExpanded && setIsExpanded(true);
       }}
       style={{ backgroundColor: "transparent" }}

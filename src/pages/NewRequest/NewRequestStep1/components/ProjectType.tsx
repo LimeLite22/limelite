@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,
-  setProjectType,
+  updateDraftField,
 } from "../../../../redux/requests/reducer";
 import styles from "../NewRequestStep1.module.scss";
 
@@ -73,7 +73,12 @@ const ProjectType: FC<IProps> = ({ isError, setIsError }) => {
               className={styles.typeDropdown__item}
               key={index}
               onClick={() => {
-                dispatch(setProjectType(option));
+                dispatch(
+                  updateDraftField({
+                    path: "projectType",
+                    value:  option,
+                  })
+                );
                 setIsError(false);
                 setOpened(false);
               }}

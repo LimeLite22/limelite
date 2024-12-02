@@ -16,7 +16,7 @@ import { generateUniqueId } from "utils/generateId";
 
 import {
   selectDrafts,
-  setSelectedRequest,
+  updateDraftField,
 } from "../../../../redux/requests/reducer";
 import styles from "../NewRequestStart.module.scss";
 import DraftItem from "./DraftItem";
@@ -64,7 +64,12 @@ const Drafts = () => {
             {drafts.map((draft, index) => {
 
               return <SwiperSlide onClick={() => {
-                dispatch(setSelectedRequest(draft.id));
+                dispatch(
+                  updateDraftField({
+                    path: "selectedRequest",
+                    value: draft.id,
+                  })
+                );
                 navigate("/newRequest/step1");
               }}>
                 <DraftItem draft={draft} index={index} key={generateUniqueId()} />

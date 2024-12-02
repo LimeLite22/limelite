@@ -92,7 +92,7 @@ const VirtualQuestionsInput = ({ isExpanded, setIsExpanded, isError }: IAddressP
                 +$695
               </span>
             </div>
-            <div>
+            <div className={styles.box_content_info_text}>
               If you want a unique, unintrusive location for your LimeLite
               shoot, a one-day Home Rental is the way to go. We'll manage
               everything from scouting, booking, and deposits to contracts,

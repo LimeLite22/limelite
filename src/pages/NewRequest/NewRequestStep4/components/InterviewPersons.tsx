@@ -2,7 +2,7 @@ import { Add2} from "assets/images";
 import { IPerson } from "interfaces/interfaces";
 import { useDispatch, useSelector } from "react-redux";
 import { generateUniqueId } from "utils/generateId";
-import { selectRequestInfo, setPersons, updateDraftField } from "../../../../redux/requests/reducer";
+import { selectRequestInfo,updateDraftField } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 import InterviewPerson from "./InterviewPerson";
 
@@ -27,7 +27,7 @@ const InterviewPersons = () => {
             ))}
             <div className={styles.persons_add} onClick={() => {
                 handleUpdateField("interviewSettings.persons", [...persons, { id: generateUniqueId(), name: '', title: '' }])
-            }}><img src={Add2} /> Add person</div>
+            }}><img src={Add2} alt="" /> Add person</div>
         </div>
     )
 }

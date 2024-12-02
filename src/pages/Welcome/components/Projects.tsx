@@ -1,7 +1,6 @@
 import { NewRequestIcon } from "assets/images";
 import useWindowWidth from "hooks/useWindowWidth";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import {
 	A11y,
@@ -21,7 +20,6 @@ const Projects = () => {
 	const width = useWindowWidth();
 	const requestWidth = width - 32;
 	const isTablet = width < 1024;
-	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const ChangeSlide = ({ position }: { position: number }) => {

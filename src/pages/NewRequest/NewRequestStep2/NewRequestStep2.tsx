@@ -26,7 +26,6 @@ const NewRequestStep2 = () => {
   const selectedRequest = useSelector(selectRequestInfo);
   const [isNextDisabled, setIsNextDisabled] = useState(false);
   const [showBottomMessage, setShowBottomMessage] = useState(false);
-  const option = selectedRequest?.option;
   const price = useCalculateFinalPrice();
   const width = useWindowWidth();
 

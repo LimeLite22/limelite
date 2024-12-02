@@ -1,4 +1,3 @@
-import useWindowWidth from "hooks/useWindowWidth";
 import { OWN_ADDRESS } from "pages/NewRequest/consts";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
@@ -25,7 +24,6 @@ const Location = () => {
   const [isHomeExpanded, setIsHomeExpanded] = useState(false);
   const [isAddressExpanded, setIsAddressExpanded] = useState(false);
   const [isError, setIsError] = useState(false);
-  const windowWidth = useWindowWidth();
   const handleBlur = (event: React.FocusEvent<HTMLDivElement>) => {
     if (
       containerRef.current &&

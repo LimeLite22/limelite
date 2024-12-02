@@ -44,6 +44,7 @@ const OwnQuestions = ({
     ${isExpanded ? styles.box_expanded : ""}`}
         onClick={() => {
             handleUpdateField("interviewSettings.questionsAuthor", QUESTIONS_AUTHOR_CLIENT);
+            setIsExpanded(true);
         }}
     >
         <div
@@ -77,26 +78,27 @@ const OwnQuestions = ({
             <div className={styles.box_text}>
                 Please paste your script below
             </div>
-
-            <textarea className={styles.textarea}
-                style={{
-                    resize: "none",
-                    border: isError.text ? "1px solid var(--red-dark)" : ""
-                }}
-                placeholder={`Paste any details or web page URL' s with background information here...`}
-                value={text}
-                onChange={(e) => {
-                    handleUpdateField(`interviewSettings.questionsAuthorOwnSettings.text`, e.target.value);
-                }}
-            >
-            </textarea>
-            {(isError.text) && (
-                <div
-                    className={styles.box_addressContainer_input_errorText}
+            <div className={styles.textareaContainer}>
+                <textarea className={styles.textarea}
+                    style={{
+                        resize: "none",
+                        border: isError.text ? "1px solid var(--red-dark)" : ""
+                    }}
+                    placeholder={`Paste any details or web page URL' s with background information here...`}
+                    value={text}
+                    onChange={(e) => {
+                        handleUpdateField(`interviewSettings.questionsAuthorOwnSettings.text`, e.target.value);
+                    }}
                 >
-                    Please complete the fields before proceeding
-                </div>
-            )}
+                </textarea>
+                {(isError.text) && (
+                    <div
+                        className={styles.box_addressContainer_input_errorText}
+                    >
+                        Please complete the fields before proceeding
+                    </div>
+                )}
+            </div>
 
         </div>
         <img

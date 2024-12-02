@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,
-  setProjectName,
+  updateDraftField,
 } from "../../../../redux/requests/reducer";
 import styles from "../NewRequestStep1.module.scss";
 
@@ -35,7 +35,12 @@ const ProjectNameBox = ({ isError, setIsError }: IProps) => {
         value={projectName}
         onChange={(e) => {
           setIsError(false);
-          dispatch(setProjectName(e.target.value));
+          dispatch(
+            updateDraftField({
+              path: "projectName",
+              value: e.target.value,
+            })
+          );
         }}
         className={styles.nR_inputContainer_input}
         placeholder="Please provide the project name..."

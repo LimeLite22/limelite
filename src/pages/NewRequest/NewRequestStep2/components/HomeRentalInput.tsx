@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,
-  setLocationType,
+  updateDraftField,
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 
@@ -28,7 +28,12 @@ const HomeRental = ({ isExpanded, setIsExpanded }: IHomeRentalProps) => {
        ${type === HOME_RENTAL ? styles.box_selected : ""} 
        ${isExpanded ? styles.box_expanded : ""}`}
       onClick={() => {
-        dispatch(setLocationType(HOME_RENTAL));
+        dispatch(
+          updateDraftField({
+            path: "location.type",
+            value: HOME_RENTAL,
+          })
+        );
         !isExpanded && setIsExpanded(true);
       }}
       tabIndex={0}
@@ -70,7 +75,7 @@ const HomeRental = ({ isExpanded, setIsExpanded }: IHomeRentalProps) => {
                 +$695
               </span>
             </div>
-            <div>
+            <div className={styles.box_content_info_text}>
               If you want a unique, unintrusive location for your LimeLite
               shoot, a one-day Home Rental is the way to go. We'll manage
               everything from scouting, booking, and deposits to contracts,

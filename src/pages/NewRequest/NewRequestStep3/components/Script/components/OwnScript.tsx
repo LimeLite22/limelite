@@ -2,7 +2,7 @@ import { AltCheckBox, CheckBoxSelected, Expand, StatusApproved, StatusProgress, 
 import { OWN_SCRIPT } from "interfaces/interfaces";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectRequestInfo, setIsScriptRequired, setOwnScriptText } from "../../../../../../redux/requests/reducer";
+import { selectRequestInfo, updateDraftField } from "../../../../../../redux/requests/reducer";
 
 import styles from "../../../../NewRequest.module.scss";
 interface IProps {
@@ -21,14 +21,23 @@ const OwnScript = ({
     const text = selectedRequest?.scriptSettings?.ownText;
     const dispatch = useDispatch();
     const [wordCount, setWordCount] = useState(0);
+    const handleUpdateField = (path: string, value: typeof OWN_SCRIPT | string) => {
+        dispatch(
+          updateDraftField({
+            path,
+            value,
+          })
+        );
+      };
 
     const handleSelect = () => {
-        dispatch(setIsScriptRequired(OWN_SCRIPT))
+        handleUpdateField("scriptSettings.scriptWriter", OWN_SCRIPT);
+        setIsExpanded(true);
     }
     const handleExpand = (e: any) => {
         e.stopPropagation();
         e.preventDefault();
-        dispatch(setIsScriptRequired(OWN_SCRIPT))
+        handleUpdateField("scriptSettings.scriptWriter", OWN_SCRIPT)
         setIsExpanded(!isExpanded);
     }
 
@@ -90,7 +99,7 @@ const OwnScript = ({
                 placeholder={`Paste any details or web page URL' s with background information here...`}
                 value={text}
                 onChange={(e) => {
-                    dispatch(setOwnScriptText(e.target.value));
+                    handleUpdateField("scriptSettings.ownText", e.target.value)
                 }}
             >
             </textarea>

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,
-  setApproach,
+  updateDraftField,
 } from "../../../../redux/requests/reducer";
 import styles from "../NewRequestStep1.module.scss";
 
@@ -31,7 +31,12 @@ const ProjectNarrationBox = ({ isError, setIsError }: IProps) => {
     let list = [...(approachList || [])];
     if (item === "None") {
       setIsError(false);
-      dispatch(setApproach(["None"]));
+      dispatch(
+        updateDraftField({
+          path: "approachList",
+          value: ["None"],
+        })
+      );
       return;
     }
     if (list?.length === 2 && !list?.includes(item)) {
@@ -47,7 +52,13 @@ const ProjectNarrationBox = ({ isError, setIsError }: IProps) => {
 
       list = list.filter((i) => i !== "None");
       setIsError(false);
-      dispatch(setApproach(list));
+      dispatch(
+        updateDraftField({
+          path: "approachList",
+          value: list,
+        })
+      );
+
     }
   };
 

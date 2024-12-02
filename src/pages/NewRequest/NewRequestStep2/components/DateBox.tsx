@@ -1,14 +1,12 @@
 import { Add, CalendarIcon2, Close, Note, Valid } from "assets/images";
 import { format } from "date-fns";
-import { DEFAULT } from "interfaces/interfaces";
+import { DEFAULT, TimeValue } from "interfaces/interfaces";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,
-  setAlternateTime,
-  setIsAlternate,
-  setPrefferredTime,
+  updateDraftField,
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 import Calendar from "./Calendar/Calendar";
@@ -43,14 +41,23 @@ const Date = () => {
     isValid();
   }, [preferredDate, alternateDate, isAlternate]);
   const dispatch = useDispatch();
+  const handleUpdateField = (path: string, value: boolean | typeof DEFAULT | TimeValue) => {
+    dispatch(
+      updateDraftField({
+        path,
+        value,
+      })
+    );
+  };
 
   const openAlternative = () => {
-    dispatch(setIsAlternate((true)));
+    handleUpdateField("isAlternate", true);
   };
   const closeAlternative = () => {
-    dispatch(setIsAlternate((false)));
+    handleUpdateField("isAlternate", false);
+    handleUpdateField("alternateDate.date", DEFAULT);
+    handleUpdateField("alternateDate.time", DEFAULT);
   };
-  const span1 = window.innerHeight * 1;
   const handleClose = () => {
     setIsPopUpOpen(false);
   };
@@ -97,7 +104,9 @@ const Date = () => {
             <p>Time</p>
             <TimeSelector
               time={preferredDate?.time || DEFAULT}
-              selectTime={(time) => dispatch(setPrefferredTime(time))}
+              selectTime={(time) => {
+                handleUpdateField("preferredDate.time", time);
+              }}
               isError={isPTError}
             />
           </div>
@@ -139,7 +148,9 @@ const Date = () => {
                 <p>Time</p>
                 <TimeSelector
                   time={alternateDate?.time || DEFAULT}
-                  selectTime={(time) => dispatch(setAlternateTime(time))}
+                  selectTime={(time) => {
+                    handleUpdateField("alternateDate.time", time);
+                  }}
                   isError={isPTError}
                 />
               </div>

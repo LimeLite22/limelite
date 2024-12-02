@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,
-  setTargetAudience,
+  updateDraftField,
 } from "../../../../redux/requests/reducer";
 import styles from "../NewRequestStep1.module.scss";
 
@@ -35,7 +35,12 @@ const TargetAudienceBox = ({ isError, setIsError }: IProps) => {
         value={targetAudience}
         onChange={(e) => {
           setIsError(false);
-          dispatch(setTargetAudience(e.target.value));
+          dispatch(
+            updateDraftField({
+              path: "targetAudience",
+              value: e.target.value,
+            })
+          );
         }}
         className={styles.nR_inputContainer_input}
         type="text"

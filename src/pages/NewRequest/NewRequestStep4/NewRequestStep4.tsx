@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import { selectRequestInfo } from "../../../redux/requests/reducer";
 import styles from "../NewRequest.module.scss";
 import FormFooter from "../components/FormFooter";
-import { DEFAULT, QUESTIONS_AUTHOR_CLIENT, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTIONS_ON_LOCATION, QUESTIONS_VIRTUALLY, VIRTUAL_INTERVIEW } from "interfaces/interfaces";
+import { DEFAULT, QUESTIONS_AUTHOR_CLIENT, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTIONS_ON_LOCATION, QUESTIONS_VIRTUALLY } from "interfaces/interfaces";
 import { useEffect, useState } from "react";
 import StepsNavigation from "../components/StepsNavigation";
 import { useCalculateFinalPrice } from "utils/priceCalculator";

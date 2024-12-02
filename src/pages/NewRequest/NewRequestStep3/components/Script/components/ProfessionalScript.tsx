@@ -1,9 +1,8 @@
 import { AltCheckBox, CheckBoxSelected, Expand } from "assets/images";
-import useWindowWidth from "hooks/useWindowWidth";
 import { PROFESSIONAL_SCRIPT } from "interfaces/interfaces";
 import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
 import { useDispatch, useSelector } from "react-redux";
-import { selectRequestInfo, setIsScriptRequired, setProfScriptText, setScriptEmail, setScriptName, setScriptPhone } from "../../../../../../redux/requests/reducer";
+import { selectRequestInfo,updateDraftField } from "../../../../../../redux/requests/reducer";
 import styles from "../../../../NewRequest.module.scss";
 interface IProps {
     isExpanded: boolean;
@@ -22,16 +21,23 @@ const ProffessionalScript = ({ isExpanded, setIsExpanded, isError }: IProps) => 
     const email = selectedRequest?.scriptSettings?.email;
     const phone = selectedRequest?.scriptSettings?.phone;
     const text = selectedRequest?.scriptSettings?.profText;
-    const width = useWindowWidth();
 
     const dispatch = useDispatch();
+    const handleUpdateField = (path: string, value: typeof PROFESSIONAL_SCRIPT | string) => {
+        dispatch(
+          updateDraftField({
+            path,
+            value,
+          })
+        );
+      };
 
     const handleSelect = () => {
-        dispatch(setIsScriptRequired(PROFESSIONAL_SCRIPT))
+        handleUpdateField("scriptSettings.scriptWriter", PROFESSIONAL_SCRIPT)
         setIsExpanded(true);
     }
     const handleExpand = (e: any) => {
-        dispatch(setIsScriptRequired(PROFESSIONAL_SCRIPT))
+        handleUpdateField("scriptSettings.scriptWriter", PROFESSIONAL_SCRIPT)
         setIsExpanded(!isExpanded);
         e.stopPropagation();
         e.preventDefault();
@@ -96,7 +102,7 @@ const ProffessionalScript = ({ isExpanded, setIsExpanded, isError }: IProps) => 
                 <input
                     value={name}
                     onChange={(e) => {
-                        dispatch(setScriptName(e.target.value));
+                        handleUpdateField("scriptSettings.name", e.target.value);
                     }}
                     placeholder="Write a full name"
                     type="name"
@@ -125,7 +131,7 @@ const ProffessionalScript = ({ isExpanded, setIsExpanded, isError }: IProps) => 
                 `}
                         value={phone}
                         onChange={(e) => {
-                            dispatch(setScriptPhone(Number(e.target.value)));
+                            handleUpdateField("scriptSettings.phone", e.target.value);
                         }}
                         placeholder="+1 123 456 7890"
                         name="phone"
@@ -151,7 +157,8 @@ const ProffessionalScript = ({ isExpanded, setIsExpanded, isError }: IProps) => 
             `}
                         value={email}
                         onChange={(e) => {
-                            dispatch(setScriptEmail(e.target.value));
+                            handleUpdateField("scriptSettings.email", e.target.value);
+
                         }}
                         placeholder="example@email.com"
                         name="email"
@@ -167,16 +174,6 @@ const ProffessionalScript = ({ isExpanded, setIsExpanded, isError }: IProps) => 
                         </div>
                     )}
                 </div>
-                {/* {((isError.phone && !phoneRegex.test(String(phone))) || (isError.email && !emailRegex.test(String(email)))) && (
-                    <div
-                        className={styles.box_addressContainer_input_errorText}
-                    >
-                        {!phoneRegex.test(String(phone)) && phone !== '' && phone !== 0 && width > 768 && 'Invalid phone number'}
-                        {!phoneRegex.test(String(phone)) && (phone === '' || phone === 0) && width > 768 && 'Please complete number before proceeding'}
-                        {!emailRegex.test(String(email)) && email === '' && width > 768 && 'Please complete email before proceeding'}
-                        {!emailRegex.test(String(email)) && email !== '' && width > 768 && 'Invalid email address'}
-                    </div>
-                )} */}
             </div>
 
             <div className={styles.box_addressContainer_text}>
@@ -190,7 +187,7 @@ const ProffessionalScript = ({ isExpanded, setIsExpanded, isError }: IProps) => 
                     placeholder={`Paste any details or web page URL' s with background information here...`}
                     value={text}
                     onChange={(e) => {
-                        dispatch(setProfScriptText(e.target.value));
+                        handleUpdateField("scriptSettings.profText", e.target.value);
                     }}
                 >
 

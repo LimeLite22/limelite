@@ -1,12 +1,12 @@
 import { CheckBoxSelectedType2, CheckBoxType2 } from "assets/images";
 import { optionsList } from "pages/NewRequest/consts";
-import { type FC, useState } from "react";
+import { type FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { generateUniqueId } from "utils/generateId";
 
 import {
   selectRequestInfo,
-  setRequestType,
+  updateDraftField,
 } from "../../../../redux/requests/reducer";
 import styles from "../NewRequestStep1.module.scss";
 
@@ -34,7 +34,12 @@ const RequestType: FC = () => {
               key={generateUniqueId()}
               className={styles.requestTypeContainer_item}
               onClick={() => {
-                dispatch(setRequestType(option));
+                dispatch(
+                  updateDraftField({
+                      path: "option",
+                      value: option,
+                  })
+              );
               }}
             >
               <img src={requestType?.value === option.value ? CheckBoxSelectedType2 : CheckBoxType2} />{option.value}

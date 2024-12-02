@@ -1,11 +1,11 @@
 import { GrayArrow } from "assets/images";
 import { options } from "pages/NewRequest/consts";
-import { type FC, useEffect, useState } from "react";
+import { type FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,
-  setIsTravelRequiredZone,
+  updateDraftField,
 } from "../../../../../redux/requests/reducer";
 import "./Zone.scss";
 
@@ -57,12 +57,15 @@ const ZoneSelector: FC<IProps> = ({ onChange, isError }) => {
               key={index}
               onClick={() => {
                 onChange({ name: option?.name, value: option?.value });
-                dispatch(
-                  setIsTravelRequiredZone({
-                    name: option?.name,
-                    value: option?.value,
-                  }),
-                );
+                  dispatch(
+                    updateDraftField({
+                      path: "travel.zoneCode",
+                      value:{
+                        name: option?.name,
+                        value: option?.value
+                      },
+                    })
+                  );
                 setOpened(false);
               }}
             >

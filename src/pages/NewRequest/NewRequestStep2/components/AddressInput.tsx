@@ -13,12 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,
-  setLocationCity,
-  setLocationCompany,
-  setLocationState,
-  setLocationStreet,
-  setLocationType,
-  setLocationZip,
+  updateDraftField,
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 
@@ -37,7 +32,6 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
 
   const containerRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
-  const windowWidth = useWindowWidth();
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const width = useWindowWidth();
   const handleBlur = (event: React.FocusEvent<HTMLDivElement>) => {
@@ -50,10 +44,17 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
     }
     setIsExpanded(false);
   };
+  const handleUpdateField = (path: string, value: string | number) => {
+    dispatch(
+      updateDraftField({
+        path,
+        value,
+      })
+    );
+  };
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    dispatch(setLocationStreet(value));
-
+    handleUpdateField("location.street", value);
     if (value?.length > 1) {
       try {
         const response = await axios.get<{ suggestions: Suggestion[] }>(
@@ -83,7 +84,8 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
       ${isExpanded ? styles.box_expanded : ""}
       `}
       onClick={() => {
-        dispatch(setLocationType(OWN_ADDRESS));
+        handleUpdateField("location.type", OWN_ADDRESS);
+
         !isExpanded && setIsExpanded(true);
       }}
       tabIndex={0}
@@ -113,7 +115,9 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
           </div>
           <input
             value={company}
-            onChange={(e) => dispatch(setLocationCompany(e.target.value))}
+            onChange={(e) => {
+              handleUpdateField("location.company", e.target.value);
+            }}
             placeholder="Enter company name"
             type="company"
             className={`
@@ -157,10 +161,10 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
                     className={styles.box_addressContainer_suggestion}
                     key={index}
                     onClick={() => {
-                      dispatch(setLocationStreet(suggestion.street_line));
-                      dispatch(setLocationCity(suggestion.city));
-                      dispatch(setLocationState(suggestion.state));
-                      dispatch(setLocationZip(suggestion.zipcode));
+                      handleUpdateField("location.street", suggestion.street_line);
+                      handleUpdateField("location.city", suggestion.city);
+                      handleUpdateField("location.state", suggestion.state);
+                      handleUpdateField("location.zipcode", suggestion.zipcode);
                       setSuggestions([]);
                     }}
                   >
@@ -202,7 +206,7 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
                     `}
               value={city}
               onChange={(e) => {
-                dispatch(setLocationCity(e.target?.value));
+                handleUpdateField("location.city", e.target?.value)
               }}
               placeholder="Enter city"
               name="city"
@@ -220,7 +224,7 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
                 `}
               value={state}
               onChange={(e) => {
-                dispatch(setLocationState(e.target?.value));
+                handleUpdateField("location.state", e.target?.value)
               }}
               placeholder="Enter state"
               name="state"
@@ -238,7 +242,7 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
             `}
               value={zip}
               onChange={(e) => {
-                dispatch(setLocationZip(e.target?.value));
+                handleUpdateField("location.zipcode", e.target?.value)
               }}
               placeholder="Enter zip"
               name="zip"
@@ -266,7 +270,7 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
       {isError && width < 768 &&
         (city?.trim() === "" || state?.trim() === "" || zip?.trim() === "" || street?.trim() === "" || company?.trim() === "") && (
           <div
-            style={{left:'8px', bottom:'10px'}}
+            style={{ left: '8px', bottom: '10px' }}
             className={styles.box_addressContainer_input_errorText}
           >
             Kindly complete the fields before moving to the next step

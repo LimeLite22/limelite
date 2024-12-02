@@ -9,18 +9,19 @@ import LearnMorePopUp from "./LearnMorePopUp";
 import QuestionsOnLocationInput from "./QuestionsOnLocationInput";
 import VirtualQuestionsInput from "./VirtualQuestionsInput";
 import VirtualInterview from "./VirtualInterview";
-import { DEFAULT, QUESTIONS_ON_LOCATION, QUESTIONS_VIRTUALLY, VIRTUAL_INTERVIEW } from "interfaces/interfaces";
+import {QUESTIONS_ON_LOCATION, QUESTIONS_VIRTUALLY, VIRTUAL_INTERVIEW } from "interfaces/interfaces";
 
 const QuestionsAuthorBox = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const selectedRequest = useSelector(selectRequestInfo);
   const type = selectedRequest?.interviewSettings.questionSettings.type;
-  const locationName = selectedRequest?.interviewSettings.questionSettings.locationSettings.name;
-  const locationPhone = selectedRequest?.interviewSettings.questionSettings.locationSettings.phone;
-  const locationEmail = selectedRequest?.interviewSettings.questionSettings.locationSettings.email;
-  const virtualName = selectedRequest?.interviewSettings.questionSettings.virtualSettings.name;
-  const virtualPhone = selectedRequest?.interviewSettings.questionSettings.virtualSettings.phone;
-  const virtualEmail = selectedRequest?.interviewSettings.questionSettings.virtualSettings.email;
+  const settings = selectedRequest?.interviewSettings.questionSettings;
+  const locationName = settings?.locationSettings.name;
+  const locationPhone = settings?.locationSettings.phone;
+  const locationEmail = settings?.locationSettings.email;
+  const virtualName = settings?.virtualSettings.name;
+  const virtualPhone = settings?.virtualSettings.phone;
+  const virtualEmail = settings?.virtualSettings.email;
 
   const [isLocationQuestionExpanded, setIsLocationQuestionExpanded] = useState(false);
   const [isVirtualQuestionsExpanded, setIsVirtualQuestionsExpanded] = useState(false);

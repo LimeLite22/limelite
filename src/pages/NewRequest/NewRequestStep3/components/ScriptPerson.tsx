@@ -19,7 +19,6 @@ const ScriptPerson = ({ person, index }: IProps) => {
     const dispatch = useDispatch();
     const containerRef = useRef<HTMLDivElement>(null);
     const handleBlur = (event: React.FocusEvent<HTMLDivElement>) => {
-        // Перевіряємо, чи relatedTarget є дочірнім для containerRef
         if (
             containerRef.current &&
             containerRef.current.contains(event.relatedTarget as Node)
@@ -60,7 +59,7 @@ const ScriptPerson = ({ person, index }: IProps) => {
         <div ref={containerRef} key={index} className={styles.persons_item} tabIndex={0} onBlur={handleBlur} >
             <div className={styles.persons_title}><span>Person # {index + 1}</span> {index > 0 && <img onClick={() => {
                 dispatch(deletePerson(person.id))
-            }} src={Remove}
+            }} src={Remove} alt=""
             />}</div>
             <input
                 className={styles.persons_item_input} type="text" value={person.name} onChange={(e) => {

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,
-  setProjectTone,
+  updateDraftField,
 } from "../../../../../redux/requests/reducer";
 import "./ProjectTone.scss";
 
@@ -70,7 +70,12 @@ const ToneSelector = ({ isError, setIsError }: IProps) => {
               className="typeDropdown__item"
               key={index}
               onClick={() => {
-                dispatch(setProjectTone(option));
+                dispatch(
+                  updateDraftField({
+                    path: "projectTone",
+                    value:  option,
+                  })
+                );
                 setIsError(false);
                 setOpened(false);
               }}

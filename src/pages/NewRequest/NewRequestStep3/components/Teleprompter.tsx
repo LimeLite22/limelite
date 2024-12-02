@@ -4,20 +4,28 @@ import {
     CheckBoxSelected,
 } from "assets/images";
 import { useDispatch, useSelector } from "react-redux";
-import { selectRequestInfo, setTeleprompter } from "../../../../redux/requests/reducer";
+import { selectRequestInfo, updateDraftField } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 
 const Teleprompter = () => {
     const isTeleprompter = useSelector(selectRequestInfo)?.scriptSettings?.teleprompter;
     const dispatch = useDispatch();
+    const handleUpdateField = (path: string, value: boolean) => {
+        dispatch(
+          updateDraftField({
+            path,
+            value,
+          })
+        );
+      };
     return (
         <div className={styles.teleprompter}>
             <div className={styles.teleprompter_header} >Do you need a teleprompter?*</div>
             <div className={styles.teleprompter_options}>
-                <div className={styles.teleprompter_option} onClick={() => dispatch(setTeleprompter(true))} >
+                <div className={styles.teleprompter_option} onClick={() => handleUpdateField( 'scriptSettings.teleprompter', true)} >
                     <img src={isTeleprompter === true ? CheckBoxSelected : AltCheckBox} alt="locationIcon" />
                     Yes</div>
-                <div className={styles.teleprompter_option} onClick={() => dispatch(setTeleprompter(false))}>
+                <div className={styles.teleprompter_option} onClick={() => handleUpdateField( 'scriptSettings.teleprompter', false)}>
                     <img src={isTeleprompter === false ? CheckBoxSelected : AltCheckBox} alt="locationIcon" />
                     No</div>
             </div>
