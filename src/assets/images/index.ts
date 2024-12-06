@@ -1,13 +1,8 @@
-export { default as ProjectsGreyIcon } from "./BottomMenu/ProjectsGreyIcon.svg";
+
 export { default as AddOnlyIcon } from "./BottomMenu/AddOnlyIcon.svg";
 export { default as EditOnlyIcon } from "./BottomMenu/EditOnlyIcon.svg";
-export { default as HomeGreenIcon } from "./BottomMenu/HomeGreenIcon.svg";
-export { default as HomeGreyIcon } from "./BottomMenu/HomeGreyIcon.svg";
-export { default as LearnGreenIcon } from "./BottomMenu/LearnGreenIcon.svg";
-export { default as LearnGreyIcon } from "./BottomMenu/LearnGreyIcon.svg";
 export { default as BottomNewRequestIcon } from "./BottomMenu/NewRequestIcon.svg";
 export { default as OtherIcon } from "./BottomMenu/OtherIcon.svg";
-export { default as ProjectsGreenIcon } from "./BottomMenu/ProjectsGreenIcon.svg";
 export { default as ShootEditIcon } from "./BottomMenu/ShootEditIcon.svg";
 export { default as ShootOnlyIcon } from "./BottomMenu/ShootOnlyIcon.svg";
 // header
@@ -23,38 +18,17 @@ export { default as User1Foto } from "./SelectProfile/User1.png";
 export { default as User2Foto } from "./SelectProfile/User2.png";
 export { default as User3Foto } from "./SelectProfile/User3.png";
 export { default as User4Foto } from "./SelectProfile/User4.png";
-export { default as AddOnsGreenIcon } from "./SideBar/AddOnsGreenIcon.svg";
-export { default as AddOnsGreyIcon } from "./SideBar/AddOnsGreyIcon.svg";
-export { default as AddOnsWhiteIcon } from "./SideBar/AddOnsWhiteIcon.svg";
-export { default as SideBarHomeGreenIcon } from "./SideBar/HomeGreenIcon.svg";
 
 // sideBar
-export { default as SideBarHomeGreyIcon } from "./SideBar/HomeGreyIcon.svg";
-export { default as HomeWhiteIcon } from "./SideBar/HomeWhiteIcon.svg";
-export { default as SideBarLearnGreenIcon } from "./SideBar/LearnGreenIcon.svg";
-export { default as SideBarLearnGreyIcon } from "./SideBar/LearnGreyIcon.svg";
-export { default as SideBarLearnWhiteIcon } from "./SideBar/LearnWhiteIcon.svg";
-
-export { default as NewRequestGreenIcon } from "./SideBar/NewRequestGreenIcon.svg";
-export { default as NewRequestGreyIcon } from "./SideBar/NewRequestGreyIcon.svg";
-export { default as NewRequestWhiteIcon } from "./SideBar/NewRequestWhiteIcon.svg";
-export { default as NotificationsGreenIcon } from "./SideBar/NotificationGreenIcon.svg";
-export { default as SideBarNotificationsGreenIcon } from "./SideBar/NotificationGreenIcon.svg";
-export { default as NotificationsGreyIcon } from "./SideBar/NotificationGreyIcon.svg";
-
-//ww
-export { default as SideBarNotificationsGreyIcon } from "./SideBar/NotificationGreyIcon.svg";
-export { default as NotificationsWhiteIcon } from "./SideBar/NotificationWhiteIcon.svg";
-export { default as SideBarProjectsGreenIcon } from "./SideBar/ProjectsGreenIcon.svg";
-export { default as SideBarProjectsGreyIcon } from "./SideBar/ProjectsGreyIcon.svg";
-export { default as ProjectsWhiteIcon } from "./SideBar/ProjectsWhiteIcon.svg";
-export { default as SettingsGreenIcon } from "./SideBar/SettingsGreenIcon.svg";
-
-export { default as SettingsGreyIcon } from "./SideBar/SettingsGreyIcon.svg";
-export { default as SettingsWhiteIcon } from "./SideBar/SettingsWhiteIcon.svg";
-export { default as SupportGreenIcon } from "./SideBar/SupportGreenIcon.svg";
-export { default as SupportGreyIcon } from "./SideBar/SupportGreyIcon.svg";
-export { default as SupportWhiteIcon } from "./SideBar/SupportWhiteIcon.svg";
+export { default as AddOns } from "./SideBar/AddOns.svg";
+export { default as Home } from "./SideBar/Home.svg";
+export { default as Learn } from "./SideBar/Learn.svg";
+export { default as NewRequest } from "./SideBar/NewRequest.svg";
+export { default as Inspiration } from "./SideBar/Inspiration.svg";
+export { default as Notifications } from "./SideBar/Notifications.svg";
+export { default as Projects } from "./SideBar/Projects.svg";
+export { default as Settings2 } from "./SideBar/Settings.svg";
+export { default as Support } from "./SideBar/Support.svg";
 
 //support images
 export { default as Arrow2 } from "./Support/Arrow2.svg";

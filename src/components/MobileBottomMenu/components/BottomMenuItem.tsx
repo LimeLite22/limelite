@@ -9,15 +9,13 @@ type IProps = {
   value: selectedPages;
   setSelectedPage: (page: selectedPages) => void;
   isOpened: boolean;
-  whiteIcon: string;
-  greyIcon: string;
+  Icon: string;
 };
 const BottomMenuItem = ({
   isPageSelected,
   setSelectedPage,
   isOpened,
-  whiteIcon: WhiteIcon,
-  greyIcon: GreyIcon,
+  Icon,
   value,
 }: IProps) => {
   const unreadNotifications = useSelector(selectUnreadNotificationsNumber);
@@ -32,17 +30,21 @@ const BottomMenuItem = ({
       onClick={() => setSelectedPage(value)}
     >
       {value === NOTIFICATIONS ? (
-        <div className={styles.bottomMenu_item_notificationContainer}>
-          <img src={isPageSelected ? WhiteIcon : GreyIcon} alt={value} />
-          <div className={styles.bottomMenu_item_notification}>
+          <div className={styles.bottomMenu_item_notificationContainer}>
+      <svg className={styles.sideBar_navItem_svg} style={{
+        fill: isPageSelected ? "#4dbd38" : "#323232"
+      }}><use href={Icon} /></svg>
+                  <div className={styles.bottomMenu_item_notification} style={{ outline:`2px solid var(--white)`}}>
             {String(unreadNotifications)}
           </div>
         </div>
       ) : (
-        <img src={isPageSelected ? WhiteIcon : GreyIcon} alt={value} />
+        <svg className={styles.sideBar_navItem_svg} style={{
+          fill: isPageSelected ? "#4dbd38" : "#323232"
+        }}><use href={Icon} /></svg>
       )}
-
       {value}
+
     </button>
   );
 };

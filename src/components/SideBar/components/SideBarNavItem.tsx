@@ -10,18 +10,14 @@ type IProps = {
   value: selectedPages;
   setSelectedPage: (page: selectedPages) => void;
   isOpened: boolean;
-  whiteIcon: string;
-  greyIcon: string;
-  greenIcon: string;
+  icon: string;
   onClick?: () => void;
 };
 const SideBarNavItem = ({
   selectedPage,
   setSelectedPage,
   isOpened,
-  whiteIcon: WhiteIcon,
-  greyIcon: GreyIcon,
-  greenIcon: GreenIcon,
+  icon: Icon,
   value,
   onClick
 }: IProps) => {
@@ -29,45 +25,30 @@ const SideBarNavItem = ({
   const unreadNotifications = useSelector(selectUnreadNotificationsNumber);
   return (
     <button
-      className={`${styles.sideBar_navItem} ${
-        selectedPage === value ? styles.sideBar_navItem_selected : ""
-      }
+      className={`${styles.sideBar_navItem} ${selectedPage === value ? styles.sideBar_navItem_selected : ""
+        }
     ${isOpened ? styles.sideBar_navItem_opened : ""}
     `}
       onClick={() => {
-         setSelectedPage(value)
+        setSelectedPage(value)
         onClick && onClick();
-        }}
+      }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {value === NOTIFICATIONS ? (
         <div className={styles.sideBar_navItem_notificationContainer}>
-          <img
-            src={
-              isHovered && window.innerWidth > 768
-                ? GreenIcon
-                : selectedPage === value
-                  ? WhiteIcon
-                  : GreyIcon
-            }
-            alt={value}
-          ></img>
-          <div className={styles.sideBar_navItem_notification}>
+      <svg className={styles.sideBar_navItem_svg} style={{
+        fill: isHovered && window.innerWidth > 768 ? "#1d7b1e" : selectedPage === value ? "#ffffff" : "#323232"
+      }}><use href={Icon} /></svg>
+          <div className={styles.sideBar_navItem_notification} style={{ outline:`2px solid ${isHovered && window.innerWidth > 768 ? "#eaf2eb" : selectedPage === value ? "var(--green)" : "var(--white)"}`}}>
             {String(unreadNotifications)}
           </div>
         </div>
       ) : (
-        <img
-          src={
-            isHovered && window.innerWidth > 768
-              ? GreenIcon
-              : selectedPage === value
-                ? WhiteIcon
-                : GreyIcon
-          }
-          alt={value}
-        ></img>
+        <svg className={styles.sideBar_navItem_svg} style={{
+          fill: isHovered && window.innerWidth > 768 ? "#1d7b1e" : selectedPage === value ? "#ffffff" : "#323232"
+        }}><use href={Icon} /></svg>
       )}
 
       {value}

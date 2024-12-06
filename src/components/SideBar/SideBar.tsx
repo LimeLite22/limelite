@@ -3,35 +3,21 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import {
-  AddOnsGreenIcon,
-  AddOnsGreyIcon,
-  AddOnsWhiteIcon,
-  HomeWhiteIcon,
-  NewRequestGreenIcon,
-  NewRequestGreyIcon,
-  NewRequestWhiteIcon,
-  NotificationsWhiteIcon,
-  ProjectsWhiteIcon,
-  SettingsGreenIcon,
-  SettingsGreyIcon,
-  SettingsWhiteIcon,
-  SideBarHomeGreenIcon,
-  SideBarHomeGreyIcon,
-  SideBarLearnGreenIcon,
-  SideBarLearnGreyIcon,
-  SideBarLearnWhiteIcon,
-  SideBarNotificationsGreenIcon,
-  SideBarNotificationsGreyIcon,
-  SideBarProjectsGreenIcon,
-  SideBarProjectsGreyIcon,
-  SupportGreenIcon,
-  SupportGreyIcon,
-  SupportWhiteIcon,
+  AddOns,
+  NewRequest,
+  Settings2,
+  Home,
+  Learn,
+  Notifications,
+  Projects,
+  Support,
+  Inspiration,
 } from "../../assets/images";
 import styles from "./SideBar.module.scss";
 import SideBarNavItem from "./components/SideBarNavItem";
 import {
   ADD_ONS,
+  INSPIRATION,
   LEARN,
   NEW_REQUEST,
   NOTIFICATIONS,
@@ -63,11 +49,17 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
     if (
       location.pathname.includes("newRequest/start") ||
       location.pathname.includes("newRequest/step1") ||
-      location.pathname.includes("newRequest/step2")
+      location.pathname.includes("newRequest/step2") ||
+      location.pathname.includes("newRequest/step3") ||
+      location.pathname.includes("newRequest/step4")
     ) {
       setSelectedPage(NEW_REQUEST);
     }
   }, [location]);
+
+  const handleLinkClick = () => {
+    windowWidth < 768 && setIsOpened(false)
+  }
   return (
     <div
       className={`${styles.sideBar} ${isOpened ? styles.sideBar_opened : ""}`}
@@ -80,18 +72,15 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
               isOpened={isOpened}
-              whiteIcon={HomeWhiteIcon}
-              greyIcon={SideBarHomeGreyIcon}
-              greenIcon={SideBarHomeGreenIcon}
+              icon={`${Home}#Home`}
               value={WELCOME}
-              onClick={() => windowWidth < 768 && setIsOpened(false)}
+              onClick={handleLinkClick}
             />
           </Link>
 
           <div
-            className={`${styles.sideBar_navItemContainer_switchArrow} ${
-              isOpened ? styles.sideBar_navItemContainer_switchArrow_opened : ""
-            }`}
+            className={`${styles.sideBar_navItemContainer_switchArrow} ${isOpened ? styles.sideBar_navItemContainer_switchArrow_opened : ""
+              }`}
             onClick={() => setIsOpened(!isOpened)}
           />
         </div>
@@ -100,11 +89,9 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
             selectedPage={selectedPage}
             setSelectedPage={setSelectedPage}
             isOpened={isOpened}
-            whiteIcon={NewRequestWhiteIcon}
-            greyIcon={NewRequestGreyIcon}
-            greenIcon={NewRequestGreenIcon}
+            icon={`${NewRequest}#NewRequest`}
             value={NEW_REQUEST}
-            onClick={() => windowWidth < 768 && setIsOpened(false)}
+            onClick={handleLinkClick}
           />
         </Link>
         <Link to="" style={{ textDecoration: "none" }}>
@@ -112,11 +99,9 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
             selectedPage={selectedPage}
             setSelectedPage={setSelectedPage}
             isOpened={isOpened}
-            whiteIcon={ProjectsWhiteIcon}
-            greyIcon={SideBarProjectsGreyIcon}
-            greenIcon={SideBarProjectsGreenIcon}
+            icon={`${Projects}#Projects`}
             value={PROJECTS}
-            onClick={() => windowWidth < 768 && setIsOpened(false)}
+            onClick={handleLinkClick}
           />
         </Link>
         <Link to="/learn/faqs" style={{ textDecoration: "none" }}>
@@ -124,11 +109,9 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
             selectedPage={selectedPage}
             setSelectedPage={setSelectedPage}
             isOpened={isOpened}
-            whiteIcon={SideBarLearnWhiteIcon}
-            greyIcon={SideBarLearnGreyIcon}
-            greenIcon={SideBarLearnGreenIcon}
+            icon={`${Learn}#Learn`}
             value={LEARN}
-            onClick={() => windowWidth < 768 && setIsOpened(false)}
+            onClick={handleLinkClick}
           />
         </Link>
         <Link to="" style={{ textDecoration: "none" }}>
@@ -136,11 +119,19 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
             selectedPage={selectedPage}
             setSelectedPage={setSelectedPage}
             isOpened={isOpened}
-            whiteIcon={AddOnsWhiteIcon}
-            greyIcon={AddOnsGreyIcon}
-            greenIcon={AddOnsGreenIcon}
+            icon={`${AddOns}#AddOns`}
             value={ADD_ONS}
-            onClick={() => windowWidth < 768 && setIsOpened(false)}
+            onClick={handleLinkClick}
+          />
+        </Link>
+        <Link to="" style={{ textDecoration: "none" }}>
+          <SideBarNavItem
+            selectedPage={selectedPage}
+            setSelectedPage={setSelectedPage}
+            isOpened={isOpened}
+            icon={`${Inspiration}#Inspiration`}
+            value={INSPIRATION}
+            onClick={handleLinkClick}
           />
         </Link>
         <div className={styles.sideBar_divider}></div>
@@ -150,11 +141,9 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
             selectedPage={selectedPage}
             setSelectedPage={setSelectedPage}
             isOpened={isOpened}
-            whiteIcon={NotificationsWhiteIcon}
-            greyIcon={SideBarNotificationsGreyIcon}
-            greenIcon={SideBarNotificationsGreenIcon}
+            icon={`${Notifications}#Notifications`}
             value={NOTIFICATIONS}
-            onClick={() => windowWidth < 768 && setIsOpened(false)}
+            onClick={handleLinkClick}
           />
         </Link>
         <Link to="" style={{ textDecoration: "none" }}>
@@ -162,11 +151,9 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
             selectedPage={selectedPage}
             setSelectedPage={setSelectedPage}
             isOpened={isOpened}
-            whiteIcon={SettingsWhiteIcon}
-            greyIcon={SettingsGreyIcon}
-            greenIcon={SettingsGreenIcon}
+            icon={`${Settings2}#Settings`}
             value={SETTINGS}
-            onClick={() => windowWidth < 768 && setIsOpened(false)}
+            onClick={handleLinkClick}
           />
         </Link>
         <Link to="/support" style={{ textDecoration: "none" }}>
@@ -174,11 +161,9 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
             selectedPage={selectedPage}
             setSelectedPage={setSelectedPage}
             isOpened={isOpened}
-            whiteIcon={SupportWhiteIcon}
-            greyIcon={SupportGreyIcon}
-            greenIcon={SupportGreenIcon}
+            icon={`${Support}#Support`}
             value={SUPPORT}
-            onClick={() => windowWidth < 768 && setIsOpened(false)}
+            onClick={handleLinkClick}
           />
         </Link>
       </div>

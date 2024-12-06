@@ -8,15 +8,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   BottomNewRequestIcon,
   EditOnlyIcon,
-  HomeGreenIcon,
-  HomeGreyIcon,
-  LearnGreenIcon,
-  LearnGreyIcon,
-  NotificationsGreenIcon,
-  NotificationsGreyIcon,
+  Home,
+  Learn,
+  Notifications,
   OtherIcon,
-  ProjectsGreenIcon,
-  ProjectsGreyIcon,
+  Projects,
   ShootEditIcon,
   ShootOnlyIcon,
 } from "../../assets/images";
@@ -39,7 +35,6 @@ const BottomMenu = ({ isOpened }: IProps) => {
   const [selectedPage, setSelectedPage] = useState<selectedPages>(HOME);
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-  const openBottomSheet = () => setIsOpen(true);
   const closeBottomSheet = () => setIsOpen(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -70,8 +65,7 @@ const BottomMenu = ({ isOpened }: IProps) => {
           isPageSelected={selectedPage === HOME}
           setSelectedPage={setSelectedPage}
           value="Home"
-          whiteIcon={HomeGreenIcon}
-          greyIcon={HomeGreyIcon}
+          Icon={`${Home}#Home`}
           isOpened={isOpened}
         />
       </Link>
@@ -79,8 +73,7 @@ const BottomMenu = ({ isOpened }: IProps) => {
         isPageSelected={selectedPage === PROJECTS}
         setSelectedPage={setSelectedPage}
         value="Projects"
-        whiteIcon={ProjectsGreenIcon}
-        greyIcon={ProjectsGreyIcon}
+        Icon={`${Projects}#Projects`}
         isOpened={isOpened}
       />
       <Link style={{ textDecoration: "none" }} to="/newRequest/start">
@@ -94,8 +87,7 @@ const BottomMenu = ({ isOpened }: IProps) => {
           isPageSelected={selectedPage === LEARN}
           setSelectedPage={setSelectedPage}
           value="Learn"
-          whiteIcon={LearnGreenIcon}
-          greyIcon={LearnGreyIcon}
+          Icon={`${Learn}#Learn`}
           isOpened={isOpened}
         />
       </Link>
@@ -104,8 +96,7 @@ const BottomMenu = ({ isOpened }: IProps) => {
           isPageSelected={selectedPage === NOTIFICATIONS}
           setSelectedPage={setSelectedPage}
           value="Notifications"
-          whiteIcon={NotificationsGreenIcon}
-          greyIcon={NotificationsGreyIcon}
+          Icon={`${Notifications}#Notifications`}
           isOpened={isOpened}
         />
       </Link>
