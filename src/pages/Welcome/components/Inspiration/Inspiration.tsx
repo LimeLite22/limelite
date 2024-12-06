@@ -14,6 +14,7 @@ import useWindowWidth from "hooks/useWindowWidth";
 import { useEffect, useState } from "react";
 import InspirationItem from "./InspirationItem";
 import { data } from "./data";
+import { generateUniqueId } from "utils/generateId";
 const Inspiration = (): JSX.Element => {
 	const [position, setPosition] = useState(0);
 	const windowWidth = useWindowWidth();
@@ -54,6 +55,7 @@ const Inspiration = (): JSX.Element => {
 				>
 					<ChangeSlide position={position} />
 					<SwiperSlide
+						key={generateUniqueId()}
 						className={
 							styles.welcomeContainer__content_main_inspiration_cardItem
 						}
@@ -63,6 +65,7 @@ const Inspiration = (): JSX.Element => {
 					</SwiperSlide>
 					{data.map((item) => (
 						<SwiperSlide
+							key={generateUniqueId()}
 							className={
 								styles.welcomeContainer__content_main_inspiration_cardItem
 							}
@@ -95,11 +98,9 @@ const Inspiration = (): JSX.Element => {
 							></div>
 						</SwiperSlide>
 					))}
-					<SwiperSlide></SwiperSlide>
-					<SwiperSlide></SwiperSlide>
-					<SwiperSlide></SwiperSlide>
-					<SwiperSlide></SwiperSlide>
-					<SwiperSlide></SwiperSlide>
+					{Array.from({ length: 5 }).map(() => (
+						<SwiperSlide key={generateUniqueId()}></SwiperSlide>
+					))}
 				</Swiper>
 			</div>
 			<div

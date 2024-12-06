@@ -63,15 +63,17 @@ const Drafts = () => {
             <ChangeSlide position={position} />
             {drafts.map((draft, index) => {
 
-              return <SwiperSlide onClick={() => {
-                dispatch(
-                  updateDraftField({
-                    path: "selectedRequest",
-                    value: draft.id,
-                  })
-                );
-                navigate("/newRequest/step1");
-              }}>
+              return <SwiperSlide
+                key={generateUniqueId()}
+                onClick={() => {
+                  dispatch(
+                    updateDraftField({
+                      path: "selectedRequest",
+                      value: draft.id,
+                    })
+                  );
+                  navigate("/newRequest/step1");
+                }}>
                 <DraftItem draft={draft} index={index} key={generateUniqueId()} />
               </SwiperSlide>
 

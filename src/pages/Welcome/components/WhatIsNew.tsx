@@ -12,6 +12,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import useWindowWidth from "hooks/useWindowWidth";
 import { useEffect, useState } from "react";
+import { generateUniqueId } from "utils/generateId";
 
 const WhatisNew = (): JSX.Element => {
 	const [position, setPosition] = useState(0);
@@ -54,6 +55,7 @@ const WhatisNew = (): JSX.Element => {
 				>
 					<ChangeSlide position={position} />
 					<SwiperSlide
+						key={generateUniqueId()}
 						className={` ${styles.welcomeContainer__content_main_whatIsNew_cardItem} ${styles.welcomeContainer__content_main_whatIsNew_cardItem_type1}`}
 					>
 						<div
@@ -70,6 +72,7 @@ const WhatisNew = (): JSX.Element => {
 						</div>
 					</SwiperSlide>
 					<SwiperSlide
+						key={generateUniqueId()}
 						className={` ${styles.welcomeContainer__content_main_whatIsNew_cardItem} ${styles.welcomeContainer__content_main_whatIsNew_cardItem_type2}`}
 					>
 						<div
@@ -86,6 +89,7 @@ const WhatisNew = (): JSX.Element => {
 						</div>
 					</SwiperSlide>
 					<SwiperSlide
+						key={generateUniqueId()}
 						className={` ${styles.welcomeContainer__content_main_whatIsNew_cardItem} ${styles.welcomeContainer__content_main_whatIsNew_cardItem_type3}`}
 					>
 						<div
@@ -102,6 +106,7 @@ const WhatisNew = (): JSX.Element => {
 						</div>
 					</SwiperSlide>
 					<SwiperSlide
+						key={generateUniqueId()}
 						className={` ${styles.welcomeContainer__content_main_whatIsNew_cardItem} ${styles.welcomeContainer__content_main_whatIsNew_cardItem_type4}`}
 					>
 						<div
@@ -118,6 +123,7 @@ const WhatisNew = (): JSX.Element => {
 						</div>
 					</SwiperSlide>
 					<SwiperSlide
+						key={generateUniqueId()}
 						className={` ${styles.welcomeContainer__content_main_whatIsNew_cardItem} ${styles.welcomeContainer__content_main_whatIsNew_cardItem_type1}`}
 					>
 						<div
@@ -134,6 +140,7 @@ const WhatisNew = (): JSX.Element => {
 						</div>
 					</SwiperSlide>
 					<SwiperSlide
+						key={generateUniqueId()}
 						className={` ${styles.welcomeContainer__content_main_whatIsNew_cardItem} ${styles.welcomeContainer__content_main_whatIsNew_cardItem_type2}`}
 					>
 						<div
@@ -150,6 +157,7 @@ const WhatisNew = (): JSX.Element => {
 						</div>
 					</SwiperSlide>
 					<SwiperSlide
+						key={generateUniqueId()}
 						className={` ${styles.welcomeContainer__content_main_whatIsNew_cardItem} ${styles.welcomeContainer__content_main_whatIsNew_cardItem_type3}`}
 					>
 						<div
@@ -166,6 +174,7 @@ const WhatisNew = (): JSX.Element => {
 						</div>
 					</SwiperSlide>
 					<SwiperSlide
+						key={generateUniqueId()}
 						className={` ${styles.welcomeContainer__content_main_whatIsNew_cardItem} ${styles.welcomeContainer__content_main_whatIsNew_cardItem_type4}`}
 					>
 						<div
@@ -182,26 +191,29 @@ const WhatisNew = (): JSX.Element => {
 						</div>
 					</SwiperSlide>
 					<SwiperSlide
+						key={generateUniqueId()}
 						className={styles.welcomeContainer__content_main_whatIsNew_cardItem}
 					></SwiperSlide>
 					<SwiperSlide
+						key={generateUniqueId()}
 						className={styles.welcomeContainer__content_main_whatIsNew_cardItem}
 					></SwiperSlide>
-					<>
-						<SwiperSlide
-							className={
-								styles.welcomeContainer__content_main_whatIsNew_cardItem
-							}
-						></SwiperSlide>
-					</>
+					<SwiperSlide
+						key={generateUniqueId()}
+						className={
+							styles.welcomeContainer__content_main_whatIsNew_cardItem
+						}
+					></SwiperSlide>
 					{windowWidth < 768 && (
 						<>
 							<SwiperSlide
+								key={generateUniqueId()}
 								className={
 									styles.welcomeContainer__content_main_whatIsNew_cardItem
 								}
 							></SwiperSlide>
 							<SwiperSlide
+								key={generateUniqueId()}
 								className={
 									styles.welcomeContainer__content_main_whatIsNew_cardItem
 								}
