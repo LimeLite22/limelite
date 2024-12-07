@@ -24,17 +24,7 @@
             }
             &_creditUsage {
                 width: 100%;
-                height: 217px;
                 margin-bottom: 24px;
-                @media screen and (max-width: 1440px) {
-                    height: 166px;
-                }
-                @media screen and (max-width: 1024px) {
-                    height: 138px;
-                }
-                @media screen and (max-width: 768px) {
-                    margin-bottom: 16px;
-                }
                 &_text {
                     color: var(--black);
                     font-family: "Poppins";
@@ -44,12 +34,28 @@
                     line-height: 100%;
                     margin-bottom: 18px;
                     @media screen and (max-width: 1440px) {
-                        font-size: 32px;
                         margin-bottom: 12px;
+                        font-family: Poppins;
+                        font-size: 24px;
+                        font-weight: 500;
+                        line-height: 28.8px;
+                        text-align: left;
+                        text-underline-position: from-font;
+                        text-decoration-skip-ink: none;
                     }
                     @media screen and (max-width: 1024px) {
                         font-size: 22px;
                         margin-bottom: 8px;
+                    }
+                    @media screen and (max-width: 768px) {
+                        //styleName: Large screens/Heading/Heading 3;
+                        font-family: Poppins;
+                        font-size: 18px;
+                        font-weight: 500;
+                        line-height: 27px;
+                        text-align: left;
+                        text-underline-position: from-font;
+                        text-decoration-skip-ink: none;
                     }
                 }
                 &_cardsList {
@@ -61,7 +67,7 @@
                         height: 120px;
                     }
                     @media screen and (max-width: 1024px) {
-                        height: 108px;
+                        height: 115px;
                     }
                     @media screen and (max-width: 768px) {
                         justify-content: space-between;
@@ -78,7 +84,8 @@
                         border-radius: 16px;
                         padding-right: 30px;
                         @media screen and (max-width: 1440px) {
-                            padding: 12px;
+                            padding: 16px;
+                            min-width: 200px;
                         }
                         @media screen and (max-width: 768px) {
                             min-width: unset;
@@ -101,6 +108,16 @@
                                 font-weight: 600;
                                 font-size: 18px;
                                 line-height: 120%;
+                                //styleName: Large screens/Heading/Heading 4;
+                                font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 500;
+                                line-height: 17.6px;
+                                letter-spacing: 0.02em;
+                                text-align: left;
+                                text-underline-position: from-font;
+                                text-decoration-skip-ink: none;
+
                                 margin-bottom: 4px;
                                 white-space: nowrap;
                             }
@@ -131,6 +148,7 @@
                                 margin-bottom: 8px;
                             }
                             @media screen and (max-width: 768px) {
+                                margin-bottom: 12px;
                                 font-size: 12px;
                             }
 
@@ -144,18 +162,17 @@
                                     background-color: var(--white);
 
                                     width: 332px;
-                           
+
                                     box-shadow: 5px 4px 10px 0px rgba(90, 95, 101, 0.1);
                                     padding: 12px;
                                     border-radius: 8px;
                                     z-index: 10;
                                     @media screen and (max-width: 1440px) {
                                         width: 288px;
-                          
                                     }
                                     @media screen and (max-width: 768px) {
-                                        min-height:110px;
-                                        height:unset;
+                                        min-height: 110px;
+                                        height: unset;
                                     }
                                     &_header {
                                         color: var(--gray-dark);
@@ -208,7 +225,6 @@
             }
             &_projects {
                 width: 100%;
-                height: 206px;
                 margin-bottom: 24px;
                 display: flex;
                 flex-direction: column;
@@ -216,15 +232,6 @@
                 justify-content: space-between;
                 position: relative;
                 z-index: 4;
-                @media screen and (max-width: 1440px) {
-                    height: 194px;
-                }
-                @media screen and (max-width: 1024px) {
-                    height: 149px;
-                }
-                @media screen and (max-width: 768px) {
-                    margin-bottom: 16px;
-                }
                 &_text {
                     color: var(--black);
                     font-family: "Poppins";
@@ -232,12 +239,27 @@
                     font-weight: 500;
                     font-size: 32px;
                     line-height: 100%;
+                    margin-bottom: 18px;
                     @media screen and (max-width: 1440px) {
-                        font-size: 30px;
+                        font-family: Poppins;
+                        font-size: 24px;
+                        font-weight: 500;
+                        line-height: 120%;
+                        margin-bottom: 12px;
                     }
                     @media screen and (max-width: 1024px) {
                         font-size: 22px;
                         margin-bottom: 8px;
+                    }
+                    @media screen and (max-width: 768px) {
+                        //styleName: Large screens/Heading/Heading 3;
+                        font-family: Poppins;
+                        font-size: 18px;
+                        font-weight: 500;
+                        line-height: 27px;
+                        text-align: left;
+                        text-underline-position: from-font;
+                        text-decoration-skip-ink: none;
                     }
                 }
                 &_content {
@@ -250,10 +272,10 @@
                         height: 144px;
                     }
                     @media screen and (max-width: 1024px) {
-                        height: 121px;
+                        height: 130px;
                     }
                     @media screen and (max-width: 768px) {
-                        height: 115px;
+                        height: 122px;
                     }
 
                     font-weight: 500;
@@ -276,7 +298,7 @@
                                 width: 1458px;
                             }
                             @media screen and (max-width: 768px) {
-                                width: 1285px;
+                                width: 1216px;
                             }
                         }
                         &_bullets {
@@ -333,7 +355,7 @@
                         border-radius: 18px;
                         background-color: var(--white-light);
                         margin-right: 16px;
-                        padding: 10px 16px 16px 27px;
+                        padding: 16px;
                         position: relative;
                         display: flex;
                         flex-direction: column;
@@ -343,41 +365,38 @@
                         }
                         @media screen and (max-width: 1024px) {
                             width: 338px;
-                            padding: 11px 16px 16px 27px;
                         }
                         @media screen and (max-width: 768px) {
-                            min-width: 310px;
-                            max-width: 310px;
-                            padding: 8px 12px 8px 21px;
+                            border-radius: 12px;
+                            min-width: 292px;
+                            max-width: 292px;
+                            padding: 12px;
                         }
                         &_header {
                             color: var(--black);
                             display: flex;
-                            align-items: center;
+                            align-items: flex-start;
                             justify-content: space-between;
                             min-height: 40px;
-                            margin-bottom: 8px;
                             width: 100%;
                             overflow-wrap: break-word;
-                            font-family: "Poppins";
-                            font-weight: 400;
+                            font-family: Poppins;
+                            font-size: 18px;
                             font-weight: 500;
-                            font-size: 20px;
-                            font-weight: 500;
-                            line-height: 22px;
+                            line-height: 20px;
+                            letter-spacing: 0.02em;
                             text-align: left;
+                            text-underline-position: from-font;
+                            text-decoration-skip-ink: none;
 
                             @media screen and (max-width: 1440px) {
-                                font-family: "Poppins";
-                                font-weight: 600;
-                                font-size: 18px;
-                                line-height: 18px;
-                                min-height: 30px;
+                                font-size: 16px;
                             }
                             @media screen and (max-width: 1024px) {
-                                min-height: 20px;
-                                margin-bottom: 8px;
-                                font-size: 18px;
+                                font-size: 17px;
+                                line-height: 18px;
+                                min-height: 36px;
+                                margin-bottom: 4px;
                             }
                             @media screen and (max-width: 768px) {
                                 font-size: 14px;
@@ -388,14 +407,18 @@
                             &_status {
                                 display: flex;
                                 align-items: center;
-                                color: var(--gray-dark);
-
-                                font-family: "Poppins";
-                                font-weight: 400;
-                                font-weight: 500;
+                                color: var(--gray-dark3);
+                                font-family: Inter;
                                 font-size: 14px;
+                                font-weight: 400;
+                                line-height: 14.4px;
+                                text-align: left;
+                                text-underline-position: from-font;
+                                text-decoration-skip-ink: none;
+                                white-space: nowrap;
+
                                 @media screen and (max-width: 1440px) {
-                                    font-size: 14px;
+                                    font-size: 12px;
                                 }
                                 @media screen and (max-width: 1024px) {
                                     margin-left: 6px;
@@ -404,23 +427,32 @@
                                     font-size: 12px;
                                 }
                                 &_scheduled {
-                                    background-image: url(../../assets/images/Projects/ScheduledIcon.svg);
-                                    background-size: 100% 100%;
-                                    background-repeat: no-repeat;
-                                    background-position: center;
-                                    width: 20px;
-                                    height: 20px;
-                                    margin-right: 4px;
+                                    width: 9px;
+                                    height: 9px;
+                                    background-color: var(--yellow);
+                                    border-radius: 2px;
+                                    margin: 4.5px;
                                 }
                                 &_pending {
-                                    background-image: url(../../assets/images/Projects/PendingIcon.svg);
-                                    background-size: 100% 100%;
-                                    background-repeat: no-repeat;
-                                    background-position: center;
-                                    width: 20px;
-                                    height: 20px;
-                                    margin-right: 4px;
+                                    width: 9px;
+                                    height: 9px;
+                                    background-color: var(--pink-dark2);
+                                    border-radius: 2px;
+                                    margin: 4.5px;
                                 }
+                            }
+                        }
+                        &_type {
+                            font-family: Inter;
+                            font-size: 14px;
+                            font-weight: 400;
+                            line-height: 16.8px;
+                            text-align: left;
+                            text-underline-position: from-font;
+                            text-decoration-skip-ink: none;
+                            color: var(--gray-dark);
+                            @media screen and (max-width: 1024px) {
+                                margin-bottom: 4px;
                             }
                         }
                         &_text {
@@ -455,27 +487,6 @@
                                 height: unset;
                                 margin-bottom: 7px;
                             }
-                            &_info {
-                                border-radius: 35px;
-                                margin-left: 12px;
-                                font-family: Inter;
-                                font-size: 14px;
-                                font-weight: 500;
-                                line-height: 14px;
-                                text-align: left;
-                                background-color: var(--black);
-                                color: var(--white);
-                                padding: 2px 8px;
-                                border-radius: 100px;
-                                margin-left: 6px;
-                                @media screen and (max-width: 1440px) {
-                                    font-size: 14px;
-                                    line-height: 14px;
-                                }
-                                @media screen and (max-width: 1024px) {
-                                    font-size: 12px;
-                                }
-                            }
                         }
                         &_subText {
                             color: var(--gray-dark);
@@ -484,23 +495,22 @@
                             display: flex;
                             align-items: center;
                             justify-content: start;
-
                             font-family: Inter;
-                            font-weight: 400;
+
+                            font-family: "Poppins";
                             font-size: 18px;
-                            line-height: 19.8px;
+                            font-weight: 400;
+                            line-height: 20px;
                             text-align: left;
+                            text-underline-position: from-font;
+                            text-decoration-skip-ink: none;
 
                             @media screen and (max-width: 1440px) {
-                                font-family: "Poppins";
-                                font-size: 18px;
-                                line-height: 20px;
+                                font-size: 14px;
+                                line-height: 16.8px;
                             }
 
                             @media screen and (max-width: 1024px) {
-                                font-size: 16px;
-                                line-height: 14px;
-                                margin-bottom: 2.5px;
                                 height: 15px;
                             }
                             @media screen and (max-width: 768px) {
@@ -533,25 +543,53 @@
                                 }
                             }
                         }
-                        &_line {
-                            width: 3px;
-                            height: 128px;
-                            border-radius: 40px;
-                            background-color: var(--green-dark2);
-                            left: 14px;
-                            top: 50%;
+                        &_dot {
+                            width: 4px;
+                            height: 4px;
+                            border-radius: 50%;
+                            background-color: var(--gray-light11);
+                            margin: 0 4px;
+                        }
+                        &_credit {
                             position: absolute;
-                            transform: translateY(-50%);
+                            bottom: 19px;
+                            left: 16px;
+                            border-radius: 35px;
+                            font-family: Inter;
+                            font-size: 14px;
+                            font-weight: 500;
+                            line-height: 14px;
+                            text-align: left;
+                            background-color: var(--black);
+                            color: var(--white);
+                            padding: 2px 8px;
+                            border-radius: 100px;
                             @media screen and (max-width: 1440px) {
-                                left: 16px;
-                                height: 112px;
+                                font-size: 14px;
+                                line-height: 14px;
                             }
                             @media screen and (max-width: 1024px) {
-                                height: 98px;
+                                font-size: 12px;
+                                bottom: 10px;
                             }
                             @media screen and (max-width: 768px) {
+                                font-size: 14px;
+                                font-weight: 500;
+                                line-height: 16.94px;
+                                padding: 1px 8px;
+                                bottom: 12px;
                                 left: 12px;
-                                height: 93px;
+                            }
+                        }
+                        &_userIcon {
+                            position: absolute;
+                            bottom: 16px;
+                            right: 16px;
+                            width: 24px;
+                            height: 24px;
+                            @media screen and (max-width: 1024px) {
+                                bottom: 10px;
+                                right: 12px;
                             }
                         }
                     }
@@ -567,32 +605,26 @@
                         flex-direction: column;
                         align-items: center;
                         justify-content: center;
-                        color: var(--green-dark);
+                        color: var(--gray-dark3);
                         img {
                             width: 43px;
                             height: 43px;
                             margin-bottom: 14.3px;
                         }
-                        font-family: "Poppins";
-                        font-weight: 400;
-                        font-weight: 500;
+                        font-family: Inter;
                         font-size: 20px;
-                        font-weight: 500;
-                        line-height: 22px;
+                        font-weight: 400;
+                        line-height: 21.6px;
                         text-align: left;
+                        text-underline-position: from-font;
+                        text-decoration-skip-ink: none;
 
                         @media screen and (max-width: 1440px) {
                             width: 360px;
                             img {
                                 margin-bottom: 8px;
                             }
-                            font-family: "Poppins";
-                            font-weight: 600;
-                            font-size: 16px;
-                            font-weight: 600;
-                            line-height: 17.6px;
-                            letter-spacing: 0.02em;
-                            text-align: left;
+                            font-size: 18px;
                         }
                         @media screen and (max-width: 1024px) {
                             width: 338px;
@@ -637,19 +669,12 @@
             }
             &_whatIsNew {
                 width: 100%;
-                height: 263px;
                 margin-bottom: 24px;
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
                 position: relative;
                 z-index: 3;
-                @media screen and (max-width: 1440px) {
-                    height: 195px;
-                }
-                @media screen and (max-width: 1024px) {
-                    height: 178px;
-                }
                 &_text {
                     color: var(--black);
                     font-family: "Poppins";
@@ -657,13 +682,27 @@
                     font-weight: 500;
                     font-size: 32px;
                     line-height: 100%;
-                    margin-bottom: 12px;
+                    margin-bottom: 18px;
                     @media screen and (max-width: 1440px) {
-                        font-size: 30px;
+                        font-family: Poppins;
+                        line-height: 120%;
+                        font-size: 24px;
+                        font-weight: 500;
+                        margin-bottom: 12px;
                     }
                     @media screen and (max-width: 1024px) {
                         font-size: 22px;
                         margin-bottom: 8px;
+                    }
+                    @media screen and (max-width: 768px) {
+                        //styleName: Large screens/Heading/Heading 3;
+                        font-family: Poppins;
+                        font-size: 18px;
+                        font-weight: 500;
+                        line-height: 27px;
+                        text-align: left;
+                        text-underline-position: from-font;
+                        text-decoration-skip-ink: none;
                     }
                 }
                 &_cardsList {
@@ -673,15 +712,26 @@
                     align-items: flex-start;
                     position: relative;
                     max-height: 218px;
+                    height: 218px;
+                    min-height: 218px;
                     @media screen and (max-width: 1440px) {
                         max-height: 150px;
+                        height: 150px;
+                        min-height: 150px;
+                    }
+                    @media screen and (max-width: 768px) {
+                        max-height: 124px;
+                        height: 124px;
+                        min-height: 124px;
                     }
 
                     &_swiper {
                         width: 2396px;
-                        padding: 5px !important;
                         @media screen and (max-width: 1440px) {
                             width: 1394px;
+                        }
+                        @media screen and (max-width: 768px) {
+                            width: 1160px;
                         }
 
                         margin-left: 0 !important;
@@ -741,9 +791,7 @@
                 }
                 &_cardItem {
                     max-width: 386px;
-                    @media screen and (max-width: 1440px) {
-                        max-width: 266px;
-                    }
+
                     height: 100%;
                     border-radius: 18px;
                     background-size: 100% 100%;
@@ -756,6 +804,12 @@
                     position: relative;
                     padding: 12px;
                     padding-right: 15px;
+                    @media screen and (max-width: 1440px) {
+                        max-width: 266px;
+                    }
+                    @media screen and (max-width: 768px) {
+                        max-width: 220px;
+                    }
                     &_header {
                         font-family: "Poppins";
                         font-weight: 400;
@@ -797,6 +851,16 @@
                             font-size: 16px;
                             line-height: normal;
                         }
+                        @media screen and (max-width: 768px) {
+                            //styleName: Heading/H6;
+                            font-family: Poppins;
+                            font-size: 12px;
+                            font-weight: 500;
+                            line-height: 13.2px;
+                            text-align: left;
+                            text-underline-position: from-font;
+                            text-decoration-skip-ink: none;
+                        }
                     }
                     &_type1 {
                         background-image: url(../../assets/images/WhatIsNew/Slider1.png);
@@ -814,16 +878,12 @@
             }
             &_inspiration {
                 width: 100%;
-                height: 297px;
                 margin-bottom: 56px;
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
                 position: relative;
                 z-index: 2;
-                @media screen and (max-width: 1440px) {
-                    height: 237px;
-                }
                 @media screen and (max-width: 768px) {
                     display: none;
                 }
@@ -834,12 +894,15 @@
                     font-weight: 500;
                     font-size: 32px;
                     line-height: 100%;
-                    margin-bottom: 12px;
+                    margin-bottom: 18px;
                     @media screen and (max-width: 1440px) {
-                        font-size: 28px;
+                        font-family: Poppins;
+                        font-size: 24px;
+                        font-weight: 500;
+                        margin-bottom: 12px;
                     }
                     @media screen and (max-width: 1024px) {
-                        font-size: 20px;
+                        font-size: 22px;
                         margin-bottom: 8px;
                     }
                 }
@@ -850,8 +913,10 @@
                     align-items: flex-start;
                     position: relative;
                     max-height: 262px;
+                    min-height: 262px;
                     @media screen and (max-width: 1440px) {
-                        max-height: 201px;
+                        max-height: 205px;
+                        min-height: 205px;
                     }
                     &_swiper {
                         width: 2396px;
@@ -1026,6 +1091,16 @@
                     @media screen and (max-width: 1024px) {
                         font-size: 22px;
                         margin-bottom: 8px;
+                    }
+                    @media screen and (max-width: 768px) {
+                        //styleName: Large screens/Heading/Heading 3;
+                        font-family: Poppins;
+                        font-size: 18px;
+                        font-weight: 500;
+                        line-height: 27px;
+                        text-align: left;
+                        text-underline-position: from-font;
+                        text-decoration-skip-ink: none;
                     }
                 }
                 &_cardsList {
@@ -1440,7 +1515,7 @@
             margin-top: 24px;
             @media screen and (max-width: 768px) {
                 margin-top: 0px;
-                gap:0px;
+                gap: 0px;
                 margin-bottom: 5px;
             }
             &_buttonContainer {
@@ -1457,7 +1532,6 @@
                 @media screen and (max-width: 768px) {
                     width: 10px;
                     height: 10px;
-
                 }
             }
         }

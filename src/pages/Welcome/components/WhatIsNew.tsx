@@ -212,12 +212,6 @@ const WhatisNew = (): JSX.Element => {
 									styles.welcomeContainer__content_main_whatIsNew_cardItem
 								}
 							></SwiperSlide>
-							<SwiperSlide
-								key={generateUniqueId()}
-								className={
-									styles.welcomeContainer__content_main_whatIsNew_cardItem
-								}
-							></SwiperSlide>
 						</>
 					)}
 				</Swiper>

@@ -13,10 +13,12 @@
   --gray-light8: #ebeff3;
   --gray-light9: #f5f5f5;
   --gray-light10: #f9f9fa;
+  --gray-light11: #C4C5C8;
   --gray-blue: #263238;
 
   --pink: #fce0f1;
   --pink-dark: #d754a3;
+  --pink-dark2:#D70A7B;
 
   --white: #fff;
   --white-light: #ffffffad;
@@ -49,10 +51,13 @@
   --orange: #6b4806;
   --orange-light: #ffebcd;
 
+  --yellow:#FBC62E;
+
   --teal: #194c9e;
   --teal-light: #e0fbfc;
 
   --voilet: #553ea0;
+
 
   --popUpBaseBackground: rgba(17, 16, 14, 0.6);
 }

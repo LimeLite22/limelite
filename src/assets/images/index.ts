@@ -149,4 +149,4 @@ export { default as StatusProgress } from "./Сommon/StatusProgress.svg";
 export { default as StatusUnavailable } from "./Сommon/StatusUnavailable.svg";
 export { default as Remove } from "./Сommon/Remove.svg";
 export { default as Add2 } from "./Сommon/Add2.svg";
- 
+export { default as SettingsMenu } from "./Сommon/SettingsMenu.svg";

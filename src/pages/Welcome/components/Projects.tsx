@@ -1,4 +1,4 @@
-import { NewRequestIcon } from "assets/images";
+import { NewRequestIcon, SettingsMenu, User1Foto } from "assets/images";
 import useWindowWidth from "hooks/useWindowWidth";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
@@ -68,15 +68,10 @@ const Projects = () => {
 						>
 							<div
 								className={
-									styles.welcomeContainer__content_main_projects_content_projectItem_line
-								}
-							></div>
-							<div
-								className={
 									styles.welcomeContainer__content_main_projects_content_projectItem_header
 								}
 							>
-								Television Commercial{" "}
+								Aerial Perspectives
 								<div
 									className={
 										styles.welcomeContainer__content_main_projects_content_projectItem_header_status
@@ -90,26 +85,13 @@ const Projects = () => {
 									>
 										{" "}
 									</div>
-									SCHEDULED
+									Scheduled
+									<img src={SettingsMenu} alt="" />
 								</div>
 							</div>
 							<div
 								className={
-									styles.welcomeContainer__content_main_projects_content_projectItem_text
-								}
-							>
-								Shoot + Edit
-								<div
-									className={
-										styles.welcomeContainer__content_main_projects_content_projectItem_text_info
-									}
-								>
-									2 credits
-								</div>
-							</div>
-							<div
-								className={
-									styles.welcomeContainer__content_main_projects_content_projectItem_subText
+									styles.welcomeContainer__content_main_projects_content_projectItem_type
 								}
 							>
 								Testimonial Video
@@ -119,21 +101,36 @@ const Projects = () => {
 									styles.welcomeContainer__content_main_projects_content_projectItem_subText
 								}
 							>
-								Requested by Leah Z.
+								Shoot+Edit <div className={
+									styles.welcomeContainer__content_main_projects_content_projectItem_dot
+								} ></div>Shoot: 11/12/2024
 							</div>
+							<div
+								className={
+									styles.welcomeContainer__content_main_projects_content_projectItem_credit
+								}
+							>
+								1 Credit
+							</div>
+							<img
+									className={
+										styles.welcomeContainer__content_main_projects_content_projectItem_userIcon
+									}
+								src={User1Foto}
+								alt={"Account"}
+							/>
 						</SwiperSlide>
 						<SwiperSlide
 							className={
 								styles.welcomeContainer__content_main_projects_content_projectItem
 							}
 						>
-							{" "}
 							<div
 								className={
 									styles.welcomeContainer__content_main_projects_content_projectItem_header
 								}
 							>
-								{text.length > 30 && isTablet
+									{text.length > 30 && isTablet
 									? text.substring(0, 30) + "..."
 									: text}
 								<div
@@ -149,92 +146,13 @@ const Projects = () => {
 									>
 										{" "}
 									</div>
-									PENDING
+									In Editing
+									<img src={SettingsMenu} alt="" />
 								</div>
 							</div>
 							<div
 								className={
-									styles.welcomeContainer__content_main_projects_content_projectItem_line
-								}
-							></div>
-							<div
-								className={
-									styles.welcomeContainer__content_main_projects_content_projectItem_text
-								}
-							>
-								Shoot Only
-								<div
-									className={
-										styles.welcomeContainer__content_main_projects_content_projectItem_text_info
-									}
-								>
-									1 credit
-								</div>
-							</div>
-							<div
-								className={
-									styles.welcomeContainer__content_main_projects_content_projectItem_subText
-								}
-							>
-								Event Recap Shoot
-							</div>
-							<div
-								className={
-									styles.welcomeContainer__content_main_projects_content_projectItem_subText
-								}
-							>
-								Requested by Clay G.
-							</div>
-						</SwiperSlide>
-						<SwiperSlide
-							className={
-								styles.welcomeContainer__content_main_projects_content_projectItem
-							}
-						>
-							<div
-								className={
-									styles.welcomeContainer__content_main_projects_content_projectItem_line
-								}
-							></div>
-							<div
-								className={
-									styles.welcomeContainer__content_main_projects_content_projectItem_header
-								}
-							>
-								Television Commercial{" "}
-								<div
-									className={
-										styles.welcomeContainer__content_main_projects_content_projectItem_header_status
-									}
-								>
-									{" "}
-									<div
-										className={
-											styles.welcomeContainer__content_main_projects_content_projectItem_header_status_scheduled
-										}
-									>
-										{" "}
-									</div>
-									SCHEDULED
-								</div>
-							</div>
-							<div
-								className={
-									styles.welcomeContainer__content_main_projects_content_projectItem_text
-								}
-							>
-								Shoot + Edit
-								<div
-									className={
-										styles.welcomeContainer__content_main_projects_content_projectItem_text_info
-									}
-								>
-									2 credits
-								</div>
-							</div>
-							<div
-								className={
-									styles.welcomeContainer__content_main_projects_content_projectItem_subText
+									styles.welcomeContainer__content_main_projects_content_projectItem_type
 								}
 							>
 								Testimonial Video
@@ -244,8 +162,83 @@ const Projects = () => {
 									styles.welcomeContainer__content_main_projects_content_projectItem_subText
 								}
 							>
-								Requested by Leah Z.
+								Shoot+Edit <div className={
+									styles.welcomeContainer__content_main_projects_content_projectItem_dot
+								} ></div>Shoot: 11/12/2024
 							</div>
+							<div
+								className={
+									styles.welcomeContainer__content_main_projects_content_projectItem_credit
+								}
+							>
+								1 Credit
+							</div>
+							<img
+									className={
+										styles.welcomeContainer__content_main_projects_content_projectItem_userIcon
+									}
+								src={User1Foto}
+								alt={"Account"}
+							/>
+						</SwiperSlide>
+						<SwiperSlide
+							className={
+								styles.welcomeContainer__content_main_projects_content_projectItem
+							}
+						>
+							<div
+								className={
+									styles.welcomeContainer__content_main_projects_content_projectItem_header
+								}
+							>
+										Aerial Perspectives
+								<div
+									className={
+										styles.welcomeContainer__content_main_projects_content_projectItem_header_status
+									}
+								>
+									{" "}
+									<div
+										className={
+											styles.welcomeContainer__content_main_projects_content_projectItem_header_status_pending
+										}
+									>
+										{" "}
+									</div>
+									In Editing
+									<img src={SettingsMenu} alt="" />
+								</div>
+							</div>
+							<div
+								className={
+									styles.welcomeContainer__content_main_projects_content_projectItem_type
+								}
+							>
+								Testimonial Video
+							</div>
+							<div
+								className={
+									styles.welcomeContainer__content_main_projects_content_projectItem_subText
+								}
+							>
+								Shoot+Edit <div className={
+									styles.welcomeContainer__content_main_projects_content_projectItem_dot
+								} ></div>Shoot: 11/12/2024
+							</div>
+							<div
+								className={
+									styles.welcomeContainer__content_main_projects_content_projectItem_credit
+								}
+							>
+								2 Credits
+							</div>
+							<img
+									className={
+										styles.welcomeContainer__content_main_projects_content_projectItem_userIcon
+									}
+								src={User1Foto}
+								alt={"Account"}
+							/>
 						</SwiperSlide>
 						<SwiperSlide
 							className={
