@@ -821,6 +821,7 @@
                     }
                     @media screen and (max-width: 768px) {
                         max-width: 220px;
+                        padding: 8px;
                     }
                     &_header {
                         font-family: "Poppins";
@@ -828,44 +829,43 @@
                         font-weight: 500;
                         font-size: 14px;
                         line-height: 7px;
-                        text-transform: uppercase;
                         border-radius: 35px;
                         padding: 6px 8px;
-                        padding: 2.5px 8px;
+                        padding: 3.5px 9px;
                         line-height: 14px;
                         display: inline-block;
-                        &_education {
-                            color: var(--orange);
-                            background: var(--orange-light);
-                        }
-                        &_company {
-                            background-color: var(--teal-light);
-                            color: var(--teal);
-                        }
-                        &_explainers {
-                            color: var(--green-dark3);
-                            background: var(--green-light4);
-                        }
-                        &_drone {
-                            color: var(--blue);
-                            background-color: var(--blue-light);
+                        font-family: Inter;
+                        font-size: 14px;
+                        font-weight: 500;
+                        line-height: 16.94px;
+                        text-align: left;
+                        text-underline-position: from-font;
+                        text-decoration-skip-ink: none;
+                        color:var(--white);
+                        background: rgba(17, 16, 14, 0.5);
+                        display: flex;
+                        align-items: center;
+                        gap:4px;
+                        @media screen and (max-width: 768px) {
+                            padding: 4px;
+                            border-radius: 50%;
                         }
                     }
                     &_text {
                         color: var(--white);
-                        font-family: "Poppins";
-                        font-weight: 400;
-                        font-weight: 500;
-                        font-size: 18px;
-                        line-height: 27px;
+                        font-family: Inter;
+                        font-size: 14px;
+                        font-weight: 600;
+                        line-height: 16.8px;
+                        text-align: left;
+                        text-underline-position: from-font;
+                        text-decoration-skip-ink: none;
 
                         @media screen and (max-width: 1024px) {
                             font-size: 16px;
                             line-height: normal;
                         }
                         @media screen and (max-width: 768px) {
-                            //styleName: Heading/H6;
-                            font-family: Poppins;
                             font-size: 12px;
                             font-weight: 500;
                             line-height: 13.2px;
@@ -873,18 +873,6 @@
                             text-underline-position: from-font;
                             text-decoration-skip-ink: none;
                         }
-                    }
-                    &_type1 {
-                        background-image: url(../../assets/images/WhatIsNew/Slider1.png);
-                    }
-                    &_type2 {
-                        background-image: url(../../assets/images/WhatIsNew/Slider2.png);
-                    }
-                    &_type3 {
-                        background-image: url(../../assets/images/WhatIsNew/Slider3.png);
-                    }
-                    &_type4 {
-                        background-image: url(../../assets/images/WhatIsNew/Slider4.png);
                     }
                 }
             }

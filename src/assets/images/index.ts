@@ -150,3 +150,15 @@ export { default as StatusUnavailable } from "./Сommon/StatusUnavailable.svg";
 export { default as Remove } from "./Сommon/Remove.svg";
 export { default as Add2 } from "./Сommon/Add2.svg";
 export { default as SettingsMenu } from "./Сommon/SettingsMenu.svg";
+
+// what is new
+ 
+
+export { default as  WhatisNew1 } from "./WhatIsNew/Slider1.png";
+export { default as  WhatisNew2 } from "./WhatIsNew/Slider2.png";
+export { default as  WhatisNew3 } from "./WhatIsNew/Slider3.png";
+export { default as  WhatisNew4 } from "./WhatIsNew/Slider4.png";
+
+export { default as CompanyType } from "./WhatIsNew/CompanyType.svg";
+export { default as EducationType } from "./WhatIsNew/EducationType.svg";
+export { default as SocialMediaType } from "./WhatIsNew/SocialMediaType.svg";

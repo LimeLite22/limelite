@@ -13,6 +13,7 @@ import "swiper/css/pagination";
 import useWindowWidth from "hooks/useWindowWidth";
 import { useEffect, useState } from "react";
 import { generateUniqueId } from "utils/generateId";
+import { CompanyType, EducationType, SocialMediaType, WhatisNew1, WhatisNew2, WhatisNew3, WhatisNew4 } from "assets/images";
 
 const WhatisNew = (): JSX.Element => {
 	const [position, setPosition] = useState(0);
@@ -27,6 +28,50 @@ const WhatisNew = (): JSX.Element => {
 		}, [swiper, position]);
 		return null;
 	};
+	const items = [
+		{
+			id: generateUniqueId(),
+			header: "Social Media",
+			text: 'Create FOMO: How Event Recap Videos Drive Future Attendance',
+			img: WhatisNew1,
+			imgType: SocialMediaType
+		},
+		{
+			id: generateUniqueId(),
+			header: "Company Overview",
+			text: 'Create FOMO: How Event Recap Videos Drive Future Attendance',
+			img: WhatisNew2,
+			imgType: CompanyType
+		},
+		{
+			id: generateUniqueId(),
+			header: "Social Media",
+			text: 'Create FOMO: How Event Recap Videos Drive Future Attendance',
+			img: WhatisNew3,
+			imgType: SocialMediaType
+		},
+		{
+			id: generateUniqueId(),
+			header: "Social Media",
+			text: 'Create FOMO: How Event Recap Videos Drive Future Attendance',
+			img: WhatisNew4,
+			imgType: EducationType
+		},
+		{
+			id: generateUniqueId(),
+			header: "Social Media",
+			text: 'Create FOMO: How Event Recap Videos Drive Future Attendance',
+			img: WhatisNew3,
+			imgType: EducationType
+		},
+		{
+			id: generateUniqueId(),
+			header: "Social Media",
+			text: 'Create FOMO: How Event Recap Videos Drive Future Attendance',
+			img: WhatisNew4,
+			imgType: EducationType
+		}
+	]
 	return (
 		<div className={styles.welcomeContainer__content_main_whatIsNew}>
 			<div className={styles.welcomeContainer__content_main_whatIsNew_text}>
@@ -54,166 +99,34 @@ const WhatisNew = (): JSX.Element => {
 					}
 				>
 					<ChangeSlide position={position} />
-					<SwiperSlide
-						key={generateUniqueId()}
-						className={` ${styles.welcomeContainer__content_main_whatIsNew_cardItem} ${styles.welcomeContainer__content_main_whatIsNew_cardItem_type1}`}
-					>
-						<div
-							className={` ${styles.welcomeContainer__content_main_whatIsNew_cardItem_header} ${styles.welcomeContainer__content_main_whatIsNew_cardItem_header_education}`}
-						>
-							EDUCATIONAL
-						</div>
-						<div
-							className={
-								styles.welcomeContainer__content_main_whatIsNew_cardItem_text
-							}
-						>
-							Create FOMO: How Event Recap Videos Drive Future Attendance
-						</div>
-					</SwiperSlide>
-					<SwiperSlide
-						key={generateUniqueId()}
-						className={` ${styles.welcomeContainer__content_main_whatIsNew_cardItem} ${styles.welcomeContainer__content_main_whatIsNew_cardItem_type2}`}
-					>
-						<div
-							className={` ${styles.welcomeContainer__content_main_whatIsNew_cardItem_header} ${styles.welcomeContainer__content_main_whatIsNew_cardItem_header_company}`}
-						>
-							COMPANY
-						</div>
-						<div
-							className={
-								styles.welcomeContainer__content_main_whatIsNew_cardItem_text
-							}
-						>
-							Create FOMO: How Event Recap Videos Drive Future Attendance
-						</div>
-					</SwiperSlide>
-					<SwiperSlide
-						key={generateUniqueId()}
-						className={` ${styles.welcomeContainer__content_main_whatIsNew_cardItem} ${styles.welcomeContainer__content_main_whatIsNew_cardItem_type3}`}
-					>
-						<div
-							className={` ${styles.welcomeContainer__content_main_whatIsNew_cardItem_header} ${styles.welcomeContainer__content_main_whatIsNew_cardItem_header_education}`}
-						>
-							EDUCATIONAL
-						</div>
-						<div
-							className={
-								styles.welcomeContainer__content_main_whatIsNew_cardItem_text
-							}
-						>
-							From Good to Great: How to Give Constructive Editing Feedback
-						</div>
-					</SwiperSlide>
-					<SwiperSlide
-						key={generateUniqueId()}
-						className={` ${styles.welcomeContainer__content_main_whatIsNew_cardItem} ${styles.welcomeContainer__content_main_whatIsNew_cardItem_type4}`}
-					>
-						<div
-							className={` ${styles.welcomeContainer__content_main_whatIsNew_cardItem_header} ${styles.welcomeContainer__content_main_whatIsNew_cardItem_header_explainers}`}
-						>
-							EXPLAINERS
-						</div>
-						<div
-							className={
-								styles.welcomeContainer__content_main_whatIsNew_cardItem_text
-							}
-						>
-							LimeLite 101: Get the most out of Your LimeLite subscription
-						</div>
-					</SwiperSlide>
-					<SwiperSlide
-						key={generateUniqueId()}
-						className={` ${styles.welcomeContainer__content_main_whatIsNew_cardItem} ${styles.welcomeContainer__content_main_whatIsNew_cardItem_type1}`}
-					>
-						<div
-							className={` ${styles.welcomeContainer__content_main_whatIsNew_cardItem_header} ${styles.welcomeContainer__content_main_whatIsNew_cardItem_header_drone}`}
-						>
-							DRONE
-						</div>
-						<div
-							className={
-								styles.welcomeContainer__content_main_whatIsNew_cardItem_text
-							}
-						>
-							From Good to Great: How to Give Constructive Editing Feedback
-						</div>
-					</SwiperSlide>
-					<SwiperSlide
-						key={generateUniqueId()}
-						className={` ${styles.welcomeContainer__content_main_whatIsNew_cardItem} ${styles.welcomeContainer__content_main_whatIsNew_cardItem_type2}`}
-					>
-						<div
-							className={` ${styles.welcomeContainer__content_main_whatIsNew_cardItem_header} ${styles.welcomeContainer__content_main_whatIsNew_cardItem_header_education}`}
-						>
-							EDUCATIONAL
-						</div>
-						<div
-							className={
-								styles.welcomeContainer__content_main_whatIsNew_cardItem_text
-							}
-						>
-							From Good to Great: How to Give Constructive Editing Feedback
-						</div>
-					</SwiperSlide>
-					<SwiperSlide
-						key={generateUniqueId()}
-						className={` ${styles.welcomeContainer__content_main_whatIsNew_cardItem} ${styles.welcomeContainer__content_main_whatIsNew_cardItem_type3}`}
-					>
-						<div
-							className={` ${styles.welcomeContainer__content_main_whatIsNew_cardItem_header} ${styles.welcomeContainer__content_main_whatIsNew_cardItem_header_explainers}`}
-						>
-							EXPLAINERS
-						</div>
-						<div
-							className={
-								styles.welcomeContainer__content_main_whatIsNew_cardItem_text
-							}
-						>
-							From Good to Great: How to Give Constructive Editing Feedback
-						</div>
-					</SwiperSlide>
-					<SwiperSlide
-						key={generateUniqueId()}
-						className={` ${styles.welcomeContainer__content_main_whatIsNew_cardItem} ${styles.welcomeContainer__content_main_whatIsNew_cardItem_type4}`}
-					>
-						<div
-							className={` ${styles.welcomeContainer__content_main_whatIsNew_cardItem_header} ${styles.welcomeContainer__content_main_whatIsNew_cardItem_header_company}`}
-						>
-							COMPANY
-						</div>
-						<div
-							className={
-								styles.welcomeContainer__content_main_whatIsNew_cardItem_text
-							}
-						>
-							From Good to Great: How to Give Constructive Editing Feedback
-						</div>
-					</SwiperSlide>
-					<SwiperSlide
-						key={generateUniqueId()}
-						className={styles.welcomeContainer__content_main_whatIsNew_cardItem}
-					></SwiperSlide>
-					<SwiperSlide
-						key={generateUniqueId()}
-						className={styles.welcomeContainer__content_main_whatIsNew_cardItem}
-					></SwiperSlide>
-					<SwiperSlide
-						key={generateUniqueId()}
-						className={
-							styles.welcomeContainer__content_main_whatIsNew_cardItem
-						}
-					></SwiperSlide>
-					{windowWidth < 768 && (
-						<>
-							<SwiperSlide
-								key={generateUniqueId()}
-								className={
-									styles.welcomeContainer__content_main_whatIsNew_cardItem
-								}
-							></SwiperSlide>
-						</>
-					)}
+					{
+						items.map((item) => {
+							return <SwiperSlide
+								key={item.id}
+								className={styles.welcomeContainer__content_main_whatIsNew_cardItem}
+								style={{ backgroundImage: `url(${item.img})` }}
+							>
+								<div
+									className={styles.welcomeContainer__content_main_whatIsNew_cardItem_header}
+								>
+									<img src={item.imgType} alt='ere' />	{ windowWidth > 768 &&item.header}
+								</div>
+								<div
+									className={
+										styles.welcomeContainer__content_main_whatIsNew_cardItem_text
+									}
+								>
+									{item.text}
+								</div>
+							</SwiperSlide>
+						})
+					}
+					{Array.from({ length: windowWidth < 990 ? 4 : 3 }).map(() => (
+						<SwiperSlide
+							key={generateUniqueId()}
+							className={styles.welcomeContainer__content_main_whatIsNew_cardItem}
+						></SwiperSlide>
+					))}
 				</Swiper>
 			</div>
 			<div
