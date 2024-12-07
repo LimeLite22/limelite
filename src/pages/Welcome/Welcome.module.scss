@@ -841,11 +841,11 @@
                         text-align: left;
                         text-underline-position: from-font;
                         text-decoration-skip-ink: none;
-                        color:var(--white);
+                        color: var(--white);
                         background: rgba(17, 16, 14, 0.5);
                         display: flex;
                         align-items: center;
-                        gap:4px;
+                        gap: 4px;
                         @media screen and (max-width: 768px) {
                             padding: 4px;
                             border-radius: 50%;
@@ -854,12 +854,17 @@
                     &_text {
                         color: var(--white);
                         font-family: Inter;
-                        font-size: 14px;
+                        font-size: 17px;
                         font-weight: 600;
-                        line-height: 16.8px;
+                        line-height: 19.8px;
                         text-align: left;
                         text-underline-position: from-font;
                         text-decoration-skip-ink: none;
+                        @media screen and (max-width: 1440px) {
+                            font-size: 14px;
+                            font-weight: 600;
+                            line-height: 16.8px;
+                        }
 
                         @media screen and (max-width: 1024px) {
                             font-size: 16px;
@@ -899,7 +904,7 @@
                         font-family: Poppins;
                         font-size: 24px;
                         font-weight: 500;
-                        margin-bottom: 12px;
+                        margin-bottom: 10px;
                     }
                     @media screen and (max-width: 1024px) {
                         font-size: 22px;
@@ -915,18 +920,21 @@
                     max-height: 262px;
                     min-height: 262px;
                     @media screen and (max-width: 1440px) {
-                        max-height: 205px;
-                        min-height: 205px;
+                        max-height: 207px;
+                        min-height: 207px;
                     }
                     &_swiper {
                         width: 2396px;
 
-                        margin-left: 0 !important;
+                        margin-left: -5px !important;
                         position: relative;
                         height: 100%;
                         padding: 5px !important;
                         @media screen and (max-width: 1440px) {
-                            width: 1312px;
+                            width: 1300px;
+                        }
+                        @media screen and (max-width: 768px) {
+                            margin-left: -0px !important;
                         }
                     }
                     &_bullets {
@@ -985,7 +993,7 @@
                     border-radius: 18px;
                     background-color: var(--white-light);
                     margin-right: 16px;
-                    padding: 12px;
+                    padding: 16px;
                     display: flex;
                     flex-direction: column;
                     align-items: flex-start;
@@ -996,21 +1004,14 @@
                     &_img {
                         height: 48px;
                         width: 48px;
-                        img {
-                            width: 45px;
-                        }
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         margin-bottom: 24px;
                         @media screen and (max-width: 1440px) {
-                            height: 34px;
-                            width: 34px;
+                            height: 36px;
+                            width: 36px;
                             margin-bottom: 12px;
-                            img {
-                                width: 30px;
-                                height: 27px;
-                            }
                         }
                     }
 
@@ -1019,7 +1020,7 @@
                         font-family: "Poppins";
                         font-weight: 400;
                         font-weight: 500;
-                        font-size: 20px;
+                        font-size: 22px;
                         font-weight: 500;
                         line-height: 22px;
                         text-align: left;
@@ -1042,8 +1043,14 @@
                         text-align: left;
 
                         @media screen and (max-width: 1440px) {
-                            font-size: 18px;
-                            line-height: 100%;
+                            //styleName: Large screens/Body/Caption Regular;
+                            font-family: Inter;
+                            font-size: 14px;
+                            font-weight: 400;
+                            line-height: 16.8px;
+                            text-align: left;
+                            text-underline-position: from-font;
+                            text-decoration-skip-ink: none;
                         }
                     }
                     &_downArrow {
@@ -1054,7 +1061,7 @@
                             height: 24px;
                         }
                         position: absolute;
-                        right: 12px;
+                        right: 16px;
                         bottom: 12px;
                         background-image: url(../../assets/images/Welcome/DownArrow.svg);
                         background-position: center;
@@ -1063,7 +1070,11 @@
                     }
                 }
                 &_cardItem:hover {
-                    transform: scale(1.05);
+                    transform: scale(1.03);
+                    @media screen and (max-width: 1440px) {
+                        transform: scale(1.05);
+                    }
+                 
                 }
             }
 
@@ -1078,7 +1089,6 @@
                 @media screen and (max-width: 768px) {
                     height: 86px;
                     display: block;
-                    margin-bottom: 16px;
                 }
                 &_text {
                     color: var(--gray-dark);
@@ -1145,12 +1155,15 @@
                     }
 
                     &_header {
-                        color: var(--black);
-                        font-family: "Poppins";
-                        font-weight: 600;
+                        color: var(--gray-dark);
+                        //styleName: Mobile/Body/Caption Regular;
+                        font-family: Inter;
                         font-size: 14px;
-                        line-height: 100%;
-                        white-space: nowrap;
+                        font-weight: 400;
+                        line-height: 15.4px;
+                        text-align: center;
+                        text-underline-position: from-font;
+                        text-decoration-skip-ink: none;
                     }
                     &_text {
                         color: var(--gray-dark);
@@ -1259,7 +1272,7 @@
                         padding-top: 35px;
                     }
                     @media screen and (max-width: 1024px) {
-                        padding-top: 28px;
+                        padding-top: 12px;
                         flex: 1;
                         margin-left: 25px;
                     }
@@ -1267,6 +1280,7 @@
                         width: 100%;
                         margin-left: 0px;
                         align-items: center;
+                        padding-bottom: 25px;
                     }
                     &_header {
                         color: var(--black);
@@ -1280,11 +1294,14 @@
                             margin-bottom: 8px;
                         }
                         @media screen and (max-width: 768px) {
-                            font-family: "Poppins";
-                            font-weight: 400;
+                            //styleName: Heading/H2;
+                            font-family: Poppins;
+                            font-size: 20px;
                             font-weight: 500;
+                            line-height: 22px;
                             text-align: center;
-                            font-size: 22px;
+                            text-underline-position: from-font;
+                            text-decoration-skip-ink: none;
                         }
                     }
                     &_text {
@@ -1299,8 +1316,14 @@
                             margin-bottom: 16px;
                         }
                         @media screen and (max-width: 768px) {
-                            font-size: 14px;
-                            text-align: center;
+font-size: 12px;
+font-weight: 400;
+line-height: 14.4px;
+letter-spacing: 0.01em;
+text-align: center;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+
                         }
                     }
                     &_button {
@@ -1326,7 +1349,7 @@
                             line-height: 20px;
                         }
                         @media screen and (max-width: 768px) {
-                            padding: 6px 48px;
+                            padding: 6px 25px;
                             font-size: 20px;
                             line-height: 27px;
                         }

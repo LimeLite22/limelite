@@ -1,4 +1,4 @@
-import { AnnouncementVideosIcon } from "assets/images";
+import { AnnouncementVideos } from "assets/images";
 import { useState } from "react";
 import { useRef } from "react";
 import type { Swiper as SwiperType } from "swiper";
@@ -191,7 +191,7 @@ const InspirationItemMobile = (): JSX.Element => {
       onClick={() => setIsOpened(true)}
     >
       {" "}
-      <img src={AnnouncementVideosIcon} alt={"AnnouncementVideosIcon"} />{" "}
+      <img src={AnnouncementVideos} alt={"AnnouncementVideos"} />{" "}
       <div
         className={
           styles.welcomeContainer__content_main_inspirationMobile_cardItem_header

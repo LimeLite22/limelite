@@ -1,4 +1,4 @@
-import { AnnouncementVideosIcon, Close } from "assets/images";
+import { AnnouncementVideos, Close } from "assets/images";
 import useWindowWidth from "hooks/useWindowWidth";
 import { useState } from "react";
 import { useRef } from "react";
@@ -32,7 +32,7 @@ const InspirationItem = (): JSX.Element => {
           onClick={(e) => e.stopPropagation()}
         >
           <div className={styles.inspirationPopUpContainer_content_header}>
-            <img src={AnnouncementVideosIcon} alt={"AnnouncementVideosIcon"} />
+            <img src={AnnouncementVideos} alt={"AnnouncementVideos"} />
             <div className={styles.welcomeContainer_closeButton}>
               <img
                 onClick={() => setIsOpened(false)}
@@ -162,7 +162,7 @@ const InspirationItem = (): JSX.Element => {
         }
       >
         {" "}
-        <img src={AnnouncementVideosIcon} alt={"AnnouncementVideosIcon"} />{" "}
+        <img src={AnnouncementVideos} alt={"AnnouncementVideos"} />{" "}
       </div>{" "}
       <div
         className={

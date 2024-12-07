@@ -84,7 +84,7 @@ export { default as SwiperFoto3 } from "./WalkThrough/SwiperFoto3.png";
 export { default as SwiperFoto3Mob } from "./WalkThrough/SwiperFoto3Mob.webp";
 
 // Welcome icons
-export { default as AnnouncementVideosIcon } from "./Welcome/AnnouncementVideos.svg";
+export { default as AnnouncementVideos } from "./Welcome/AnnouncementVideos.svg";
 export { default as ClosePopUpIcon } from "./Welcome/ClosePopUpIcon.svg";
 export { default as ClosedBurgerIcon } from "./Welcome/ClosedBurgerIcon.svg";
 
