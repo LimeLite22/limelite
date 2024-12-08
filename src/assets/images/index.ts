@@ -150,6 +150,9 @@ export { default as StatusUnavailable } from "./Сommon/StatusUnavailable.svg";
 export { default as Remove } from "./Сommon/Remove.svg";
 export { default as Add2 } from "./Сommon/Add2.svg";
 export { default as SettingsMenu } from "./Сommon/SettingsMenu.svg";
+export { default as Audio } from "./Сommon/Audio.svg";
+export { default as Download } from "./Сommon/Download.svg";
+export { default as DeleteAudio } from "./Сommon/DeleteAudio.svg";
 
 // what is new
  

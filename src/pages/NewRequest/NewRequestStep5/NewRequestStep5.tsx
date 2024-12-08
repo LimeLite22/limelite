@@ -16,10 +16,10 @@ import { DEFAULT, QUESTIONS_AUTHOR_CLIENT, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTI
 import { useEffect, useState } from "react";
 import StepsNavigation from "../components/StepsNavigation";
 import { useCalculateFinalPrice } from "utils/priceCalculator";
-import InterviewQuestionsBox from "./components/Questions/InterviewQuestionsBox";
-import QuestionsAuthorBox from "./components/QuestionsAuthorBox";
+import VoiceTrackBox from "./components/Track/VoiceTrackBox";
+import InterviewScriptBox from "./components/Script/InterviewScriptBox";
 
-const NewRequestStep4 = () => {
+const NewRequestStep5 = () => {
   const selectedRequest = useSelector(selectRequestInfo);
   const price = useCalculateFinalPrice();
   const [isDisabled, setIsDisabled] = useState(true);
@@ -104,12 +104,12 @@ const NewRequestStep4 = () => {
             <StepsNavigation />
             <div className={styles.nR_header}>
               <div className={styles.nR_header_text}>
-                <Link to="/newRequest/step3">
+                <Link to="/newRequest/step4">
                   <div className={styles.nR_header_text_button}>
                     <img src={ArrowGray4} alt="" />
                   </div>
                 </Link>
-                About Your Interview(s)
+                About Your Voiceover
               </div>
               <div className={styles.nR_header_subText}>
                 Please provide important information below regarding your video
@@ -117,8 +117,8 @@ const NewRequestStep4 = () => {
               </div>
             </div>
             <div className={styles.nR_formContainer}>
-              <InterviewQuestionsBox />
-              <QuestionsAuthorBox />
+              <VoiceTrackBox />
+              <InterviewScriptBox />
               {isDisabled && showBottomMessage &&
                 <div className={styles.nR_formContainer_error}>
                   Please ensure all required fields are filled out before submitting the
@@ -144,7 +144,7 @@ const NewRequestStep4 = () => {
                       Next <img src={ArrowWhite} alt="" />
                     </button>
                   ) : (
-                    <Link to={"/newRequest/step5"} >
+                    <Link to={"/newRequest/step6"} >
                       <button
                         className={`${styles.nR_buttons_delivery}`}
                       >
@@ -163,4 +163,4 @@ const NewRequestStep4 = () => {
   );
 };
 
-export default NewRequestStep4;
+export default NewRequestStep5;

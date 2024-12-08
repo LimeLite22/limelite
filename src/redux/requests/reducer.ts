@@ -148,7 +148,22 @@ const initialState: IRequestState = {
             email: '',
           },
         },
+      },
+      voiceTrackSettings:{
+        trackAuthor: DEFAULT,
+        track: DEFAULT,
+        scriptAuthor:DEFAULT,
+        scriptAuthorProfSettings: {
+          subject: '',
+          phone:'',
+          email: '',
+          text: '',
+        },
+        scriptAuthorOwnSettings: {
+          text: '',
+        },
       }
+      
     },
     {
       id: "2",
@@ -217,6 +232,20 @@ const initialState: IRequestState = {
             phone: '',
             email: '',
           },
+        },
+      },
+      voiceTrackSettings:{
+        trackAuthor: DEFAULT,
+        track: DEFAULT,
+        scriptAuthor: DEFAULT,
+        scriptAuthorProfSettings: {
+          subject: '',
+          phone:'',
+          email: '',
+          text: '',
+        },
+        scriptAuthorOwnSettings: {
+          text: '',
         },
       }
     },
@@ -300,6 +329,21 @@ const requestReducer = createSlice({
               email: '',
             },
           },
+          
+        },
+        voiceTrackSettings:{
+          trackAuthor: DEFAULT,
+          track: DEFAULT,
+          scriptAuthor:DEFAULT,
+                  scriptAuthorProfSettings: {
+          subject: '',
+          phone:'',
+          email: '',
+          text: '',
+        },
+        scriptAuthorOwnSettings: {
+          text: '',
+        },
         }
       });
       state.selectedRequest = id;

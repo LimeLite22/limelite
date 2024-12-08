@@ -29,6 +29,9 @@ export const QUESTIONS_AUTHOR_PROFESSIONAL = 'professional';
 export  const QUESTIONS_ON_LOCATION = 'questions on location';
 export  const QUESTIONS_VIRTUALLY = 'questions virtualy';
 export  const VIRTUAL_INTERVIEW = 'virtual interview';
+export const TRACK_AUTHOR_CLIENT = 'client';
+export const TRACK_AUTHOR_PROFESSIONAL = 'professional';
+
 
 type ValuePiece = Date | null;
 
@@ -147,6 +150,20 @@ export interface IRequest {
     persons:IPerson[] 
   }
   interviewSettings: InterviewSettings;
+  voiceTrackSettings:{
+    trackAuthor: typeof TRACK_AUTHOR_CLIENT | typeof TRACK_AUTHOR_PROFESSIONAL | typeof DEFAULT;
+    track: File | typeof DEFAULT;
+    scriptAuthor: IScriptWriter,
+    scriptAuthorProfSettings: {
+      subject: string;
+      phone:number | '';
+      email: string;
+      text: string;
+    };
+    scriptAuthorOwnSettings: {
+      text: string;
+    };
+  }
 }
 export interface IRequestState {
   selectedRequest: string;

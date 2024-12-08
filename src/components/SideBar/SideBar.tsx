@@ -51,7 +51,8 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
       location.pathname.includes("newRequest/step1") ||
       location.pathname.includes("newRequest/step2") ||
       location.pathname.includes("newRequest/step3") ||
-      location.pathname.includes("newRequest/step4")
+      location.pathname.includes("newRequest/step4") ||
+      location.pathname.includes("newRequest/step5")
     ) {
       setSelectedPage(NEW_REQUEST);
     }
