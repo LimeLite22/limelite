@@ -265,7 +265,7 @@ const requestReducer = createSlice({
       state.drafts.unshift({
         id: id,
         option: action.payload,
-        projectName: "",
+        projectName: `Request ${ state.drafts.length + 1 }`,
         targetAudience: "",
         projectType: "",
         projectTone: "",

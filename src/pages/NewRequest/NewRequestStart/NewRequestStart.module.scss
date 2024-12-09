@@ -414,7 +414,7 @@
                         margin-left: 0 !important;
                         position: relative;
                         @media screen and (max-width: 768px) {
-                            width: 536px;
+                            width: 600px;
                             overflow: visible !important;
                         }
                     }
@@ -467,8 +467,7 @@
                     }
                 }
                 &_projectItem {
-                    width: 360px;
-                    max-width: 360px !important;
+                    width: 368px;
                     height: 100%;
                     border-radius: 18px;
                     background-color: var(--white-light);
@@ -478,34 +477,43 @@
                     display: flex;
                     flex-direction: column;
                     align-items: flex-start;
-                    cursor: pointer;
-                    position: relative;
+                    @media screen and (max-width: 1440px) {
+                        width: 360px;
+                    }
+                    @media screen and (max-width: 1024px) {
+                        width: 338px;
+                    }
                     @media screen and (max-width: 768px) {
-                        min-width: 264px;
-                        max-width: 264px !important;
-                        min-height: 104px;
-                        padding: 6px 12px 8px 13px;
+                        border-radius: 12px;
+                        min-width: 292px;
+                        max-width: 292px;
+                        padding: 12px;
                     }
                     &_header {
                         color: var(--black);
                         display: flex;
-                        align-items: center;
+                        align-items: flex-start;
                         justify-content: space-between;
-                        min-height: 24px;
-                        margin-bottom: 8px;
+                        min-height: 40px;
                         width: 100%;
                         overflow-wrap: break-word;
-                        //styleName: Large screens/Heading/Heading 4;
                         font-family: Poppins;
-                        font-size: 16px;
+                        font-size: 18px;
                         font-weight: 500;
-                        line-height: 17.6px;
+                        line-height: 20px;
                         letter-spacing: 0.02em;
                         text-align: left;
+                        text-underline-position: from-font;
+                        text-decoration-skip-ink: none;
+
+                        @media screen and (max-width: 1440px) {
+                            font-size: 16px;
+                        }
                         @media screen and (max-width: 1024px) {
-                            min-height: 20px;
-                            margin-bottom: 8px;
-                            font-size: 18px;
+                            font-size: 17px;
+                            line-height: 18px;
+                            min-height: 36px;
+                            margin-bottom: 4px;
                         }
                         @media screen and (max-width: 768px) {
                             font-size: 14px;
@@ -517,13 +525,17 @@
                             display: flex;
                             align-items: center;
                             color: var(--gray-dark3);
-
-                            font-family: "Poppins";
-                            font-weight: 400;
-                            font-weight: 500;
+                            font-family: Inter;
                             font-size: 14px;
+                            font-weight: 400;
+                            line-height: 14.4px;
+                            text-align: left;
+                            text-underline-position: from-font;
+                            text-decoration-skip-ink: none;
+                            white-space: nowrap;
+
                             @media screen and (max-width: 1440px) {
-                                font-size: 14px;
+                                font-size: 12px;
                             }
                             @media screen and (max-width: 1024px) {
                                 margin-left: 6px;
@@ -532,29 +544,49 @@
                                 font-size: 12px;
                             }
                             &_scheduled {
-                                background-color: var(--blue);
+                                width: 9px;
+                                height: 9px;
+                                background-color: var(--yellow);
                                 border-radius: 2px;
-                                background-size: 100% 100%;
-                                background-repeat: no-repeat;
-                                background-position: center;
-                                width: 12px;
-                                height: 12px;
-                                margin-right: 8px;
+                                margin: 4.5px;
                             }
                             &_pending {
-                                background-image: url(../../../assets/images/Projects/PendingIcon.svg);
-                                background-size: 100% 100%;
-                                background-repeat: no-repeat;
-                                background-position: center;
-                                width: 20px;
-                                height: 20px;
-                                margin-right: 4px;
+                                width: 9px;
+                                height: 9px;
+                                background-color: var(--pink-dark2);
+                                border-radius: 2px;
+                                margin: 4.5px;
                             }
+                        }
+                    }
+                    &_type {
+                        color: var(--gray-dark);
+
+                        font-family: Inter;
+                        font-size: 18px;
+                        font-weight: 400;
+                        line-height: 20px;
+                        margin: 5px 0;
+                        text-align: left;
+                        text-underline-position: from-font;
+                        text-decoration-skip-ink: none;
+                        @media screen and (max-width: 1440px) {
+                            font-family: Inter;
+                            font-size: 14px;
+                            font-weight: 400;
+                            line-height: 16.8px;
+                            text-align: left;
+                            text-underline-position: from-font;
+                            text-decoration-skip-ink: none;
+                            margin: 0;
+                        }
+                        @media screen and (max-width: 1024px) {
+                            margin-bottom: 4px;
                         }
                     }
                     &_text {
                         color: var(--gray-dark);
-                        margin-bottom: 10px;
+                        margin-bottom: 9px;
                         display: flex;
                         align-items: center;
                         justify-content: start;
@@ -565,18 +597,12 @@
                         line-height: 19.8px;
                         text-align: left;
 
-                        //styleName: Large screens/Body/Content Regular;
-                        font-family: Inter;
-                        font-size: 16px;
-                        font-weight: 400;
-                        line-height: 19.2px;
-                        text-align: left;
-                        &_dot {
-                            background-color: #b3b4b8;
-                            margin: 0px 10px;
-                            min-width: 4px;
-                            min-height: 4px;
-                            border-radius: 50%;
+                        @media screen and (max-width: 1440px) {
+                            font-family: "Poppins";
+                            font-size: 18px;
+                            line-height: 20px;
+                            height: 20px;
+                            margin-bottom: 10px;
                         }
 
                         @media screen and (max-width: 1024px) {
@@ -590,65 +616,115 @@
                             height: unset;
                             margin-bottom: 7px;
                         }
+                    }
+                    &_subText {
+                        color: var(--gray-dark);
+                        height: 20px;
+                        margin-bottom: 4px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: start;
+                        font-family: Inter;
+
+                        font-family: "Poppins";
+                        font-size: 18px;
+                        font-weight: 400;
+                        line-height: 20px;
+                        text-align: left;
+                        text-underline-position: from-font;
+                        text-decoration-skip-ink: none;
+
+                        @media screen and (max-width: 1440px) {
+                            font-size: 14px;
+                            line-height: 16.8px;
+                        }
+
+                        @media screen and (max-width: 1024px) {
+                            height: 15px;
+                        }
+                        @media screen and (max-width: 768px) {
+                            font-size: 14px;
+                            line-height: 12px;
+                            height: unset;
+                        }
                         &_info {
                             display: flex;
                             padding: 6px 8px;
                             justify-content: center;
                             align-items: center;
-                            border-radius: 35px;
-                            border: 2px solid var(--green-dark2);
-                            color: var(--black);
+                            border-radius: 12px;
+                            background-color: var(--green);
+                            color: var(--white);
                             font-family: "Poppins";
                             font-weight: 400;
                             font-weight: 500;
-
-                            margin-left: 12px;
-
                             font-size: 14px;
-                            line-height: 14px;
-
-                            @media screen and (max-width: 1440px) {
-                                font-size: 14px;
-                                line-height: 14px;
-                            }
+                            line-height: 12px;
+                            margin-left: 12px;
                             @media screen and (max-width: 1024px) {
                                 display: flex;
                                 padding: 4px 6px;
                                 justify-content: center;
                                 align-items: center;
+
                                 font-size: 12px;
+                                border-radius: 12px;
                             }
                         }
                     }
-                    &_progressInfo {
-                        width: 100%;
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-between;
-                        //styleName: Large screens/Body/Caption Regular;
+                    &_dot {
+                        width: 4px;
+                        height: 4px;
+                        border-radius: 50%;
+                        background-color: var(--gray-light11);
+                        margin: 0 4px;
+                    }
+                    &_credit {
+                        position: absolute;
+                        bottom: 19px;
+                        left: 16px;
+                        border-radius: 35px;
                         font-family: Inter;
                         font-size: 14px;
-                        font-weight: 400;
-                        line-height: 16.8px;
+                        font-weight: 500;
+                        line-height: 14px;
                         text-align: left;
-                        color: var(--gray-dark);
-                        margin-bottom: 12px;
+                        background-color: var(--black);
+                        color: var(--white);
+                        padding: 2px 8px;
+                        border-radius: 100px;
+                        @media screen and (max-width: 1440px) {
+                            font-size: 14px;
+                            line-height: 14px;
+                        }
+                        @media screen and (max-width: 1024px) {
+                            font-size: 12px;
+                            bottom: 10px;
+                        }
+                        @media screen and (max-width: 768px) {
+                            font-size: 14px;
+                            font-weight: 500;
+                            line-height: 16.94px;
+                            padding: 1px 8px;
+                            bottom: 12px;
+                            left: 12px;
+                        }
                     }
-                    &_progress {
-                        width: 100%;
-                        min-height: 4px;
-                        background-color: var(--gray-light5);
-                        border-radius: 56px;
-                        &_bar {
-                            height: 100%;
-                            border-radius: 56px;
-                            background-color: var(--green-dark2);
+                    &_userIcon {
+                        position: absolute;
+                        bottom: 16px;
+                        right: 16px;
+                        width: 24px;
+                        height: 24px;
+                        @media screen and (max-width: 1024px) {
+                            bottom: 10px;
+                            right: 12px;
                         }
                     }
                     &_settingsMenu {
                         position: absolute;
                         top: 55px;
-                        right: -55px;
+                        right: -5px;
                         width: 220px;
                         height: 90px;
                         border-radius: 8px;
@@ -656,6 +732,7 @@
                         box-shadow: 0px 4px 8px 0px rgba(55, 55, 61, 0.05);
                         border: 1px solid #f5f6f5;
                         padding: 12px 16px;
+                        z-index: 5;
                         @media screen and (max-width: 768px) {
                             top:50%;
                             left:50%;
