@@ -18,6 +18,7 @@ import StepsNavigation from "../components/StepsNavigation";
 import { useCalculateFinalPrice } from "utils/priceCalculator";
 import InterviewQuestionsBox from "./components/Questions/InterviewQuestionsBox";
 import QuestionsAuthorBox from "./components/QuestionsAuthorBox";
+import InterviewPersons from "./components/InterviewPersons";
 
 const NewRequestStep4 = () => {
   const selectedRequest = useSelector(selectRequestInfo);
@@ -118,6 +119,7 @@ const NewRequestStep4 = () => {
             </div>
             <div className={styles.nR_formContainer}>
               <InterviewQuestionsBox />
+              <InterviewPersons />
               <QuestionsAuthorBox />
               {isDisabled && showBottomMessage &&
                 <div className={styles.nR_formContainer_error}>
