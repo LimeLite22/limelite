@@ -118,7 +118,7 @@ const InterviewScriptBox = () => {
       setIsError(errors);
     }
 
-  }, [subject, phone, email, ownText, proffessionalText, selection])
+  }, [subject, phone, email, ownText, proffessionalText])
 
   return (
     <div
