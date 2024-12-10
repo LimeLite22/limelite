@@ -15,7 +15,7 @@ import FormFooter from "../components/FormFooter";
 import IsScriptRequired from "./components/Script/IsScriptRequiredBox";
 import ScriptPersons from "./components/ScriptPersons";
 import Teleprompter from "./components/Teleprompter";
-import { DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT } from "interfaces/interfaces";
+import { DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT } from "consts/consts";
 import { useEffect, useState } from "react";
 import StepsNavigation from "../components/StepsNavigation";
 import { useCalculateFinalPrice } from "utils/priceCalculator";

@@ -1,13 +1,14 @@
+import { NOTIFICATIONS } from "consts/consts";
 import { useSelector } from "react-redux";
+import { selectedMobPages } from "types/types";
 
 import { selectUnreadNotificationsNumber } from "../../../redux/notifications/reducer";
 import styles from "../BottomMenu.module.scss";
-import { NOTIFICATIONS, type selectedPages } from "../types";
 
 type IProps = {
   isPageSelected: boolean;
-  value: selectedPages;
-  setSelectedPage: (page: selectedPages) => void;
+  value: selectedMobPages;
+  setSelectedPage: (page: selectedMobPages) => void;
   isOpened: boolean;
   Icon: string;
 };

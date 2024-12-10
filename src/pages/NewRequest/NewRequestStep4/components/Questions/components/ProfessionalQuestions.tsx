@@ -1,5 +1,5 @@
 import { AltCheckBox, CheckBoxSelected, Expand } from "assets/images";
-import { QUESTIONS_AUTHOR_PROFESSIONAL } from "interfaces/interfaces";
+import { QUESTIONS_AUTHOR_PROFESSIONAL } from "consts/consts";
 import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
 import { useDispatch, useSelector } from "react-redux";
 import { selectRequestInfo, updateDraftField } from "../../../../../../redux/requests/reducer";

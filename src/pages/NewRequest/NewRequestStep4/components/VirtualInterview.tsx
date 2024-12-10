@@ -4,8 +4,10 @@ import {
   Expand,
   Note,
 } from "assets/images";
+import { VIRTUAL_INTERVIEW } from "consts/consts";
 import useWindowWidth from "hooks/useWindowWidth";
-import { IHomeRentalProps, VIRTUAL_INTERVIEW } from "interfaces/interfaces";
+import { IHomeRentalProps } from "interfaces/interfaces";
+
 import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -33,7 +35,7 @@ const VirtualInterview = ({ isExpanded, setIsExpanded }: IHomeRentalProps) => {
     <div
       className={`
        ${styles.box}
-       ${type === VIRTUAL_INTERVIEW ? styles.box_selected : ""} 
+       ${type === VIRTUAL_INTERVIEW? styles.box_selected : ""} 
        ${isExpanded ? styles.box_expanded : ""}`}
       onClick={() => {
         handleUpdateField("interviewSettings.questionSettings.type", VIRTUAL_INTERVIEW);

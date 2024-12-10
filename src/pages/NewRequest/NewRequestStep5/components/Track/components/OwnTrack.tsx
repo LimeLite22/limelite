@@ -1,5 +1,5 @@
 import { AltCheckBox, Audio, CheckBoxSelected, DeleteAudio, Download, Expand } from "assets/images";
-import { DEFAULT, TRACK_AUTHOR_CLIENT } from "interfaces/interfaces";
+import { DEFAULT, TRACK_AUTHOR_CLIENT } from "consts/consts";
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectRequestInfo, updateDraftField } from "../../../../../../redux/requests/reducer";

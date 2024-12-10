@@ -1,3 +1,10 @@
+import { VIDEO_STANDARD, VIDEO_VERTICAL, VIDEO_SQUARE, VIDEO_STORY, 
+  N0_THUMBNAIL, BASIC_THUMBNAIL, CUSTOM_THUMBNAIL,
+  RUSH_TIME, STANDARD_TIME, DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT,
+  QUESTIONS_AUTHOR_CLIENT, QUESTIONS_AUTHOR_PROFESSIONAL,
+  QUESTIONS_ON_LOCATION , QUESTIONS_VIRTUALLY, VIRTUAL_INTERVIEW,TRACK_AUTHOR_CLIENT,
+  TRACK_AUTHOR_PROFESSIONAL
+ } from "consts/consts";
 import {
   CalendarType,
   HOME_RENTAL,
@@ -6,6 +13,7 @@ import {
   STUDIO_RENTAL,
   YES,
 } from "pages/NewRequest/consts";
+import { ProjectTone, ProjectType } from "types/types";
 
 export type IOption = {
   id: string;
@@ -21,53 +29,13 @@ export type ITravel = {
     value: number;
   };
 };
-export const DEFAULT = "default";
-export const OWN_SCRIPT = "own script";
-export const PROFESSIONAL_SCRIPT = "professional script";
-export const QUESTIONS_AUTHOR_CLIENT = 'client';
-export const QUESTIONS_AUTHOR_PROFESSIONAL = 'professional';
-export  const QUESTIONS_ON_LOCATION = 'questions on location';
-export  const QUESTIONS_VIRTUALLY = 'questions virtualy';
-export  const VIRTUAL_INTERVIEW = 'virtual interview';
-export const TRACK_AUTHOR_CLIENT = 'client';
-export const TRACK_AUTHOR_PROFESSIONAL = 'professional';
+
 
 
 type ValuePiece = Date | null;
 
 export type Value = ValuePiece | [ValuePiece, ValuePiece];
-export type ProjectType =
-  | "Announcement Videos"
-  | "Company Overview Video"
-  | "Demo Video"
-  | "Drone Video"
-  | "Educational Video"
-  | "Event Recap Video"
-  | "FAQ Video"
-  | "Fundraising Video"
-  | "HR/Recruiting Video"
-  | "Hype/Sizzle Video"
-  | "Interview"
-  | "Onboarding Video"
-  | "Photography"
-  | "Product & Service Video"
-  | "Social Media Video"
-  | "Television Commercial"
-  | "Testimonial/Case Study Video"
-  | "Videography"
-  | "Website Header Video"
-  | "Other";
-export type ProjectTone =
-  | "Adventurous"
-  | "Casual"
-  | "Cinematic"
-  | "Dramatic"
-  | "Educational"
-  | "Emotional"
-  | "Humorous"
-  | "Inspirational"
-  | "Professional"
-  | "Urgent";
+
 export interface ILocation {
   type:
     | typeof DEFAULT
@@ -126,7 +94,7 @@ export interface IRequest {
   projectName: string;
   targetAudience: string;
   projectType: ProjectType | string;
-  projectTone: ProjectTone | string;
+  projectTone: ProjectTone| string;
   approachList: string[];
   travel: ITravel;
   location: ILocation;
@@ -163,6 +131,15 @@ export interface IRequest {
     scriptAuthorOwnSettings: {
       text: string;
     };
+  }
+  videoSettings:{
+    format: typeof VIDEO_STANDARD | typeof VIDEO_STORY | typeof VIDEO_SQUARE | typeof VIDEO_VERTICAL | typeof DEFAULT;
+    targetDuration:number;
+    captions:boolean;
+    thumbnail: typeof N0_THUMBNAIL | typeof BASIC_THUMBNAIL | typeof CUSTOM_THUMBNAIL | typeof DEFAULT;
+    additionalFormats:boolean | typeof DEFAULT;
+    additionalVisualEffects:boolean | typeof DEFAULT;
+    resultTime: typeof RUSH_TIME | typeof STANDARD_TIME | typeof DEFAULT
   }
 }
 export interface IRequestState {

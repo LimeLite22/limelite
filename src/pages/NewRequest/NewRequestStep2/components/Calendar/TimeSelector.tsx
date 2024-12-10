@@ -1,5 +1,5 @@
 import { ArrowGray2 } from "assets/images";
-import { DEFAULT } from "interfaces/interfaces";
+import { DEFAULT } from "consts/consts";
 import { TimeValue } from "interfaces/interfaces";
 import { hoursList } from "pages/NewRequest/consts";
 import { useState } from "react";

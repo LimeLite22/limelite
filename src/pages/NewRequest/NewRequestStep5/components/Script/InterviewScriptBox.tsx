@@ -1,5 +1,5 @@
 
-import { DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT } from "interfaces/interfaces";
+import { DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT } from "consts/consts";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import {

@@ -16,7 +16,7 @@ import IsTravelRequired from "./components/IsTravelRequiredBox";
 import Location from "./components/LocationBox";
 import ShotList from "./components/ShotListBox";
 import FormFooter from "../components/FormFooter";
-import { DEFAULT } from "interfaces/interfaces";
+import { DEFAULT } from "consts/consts";
 import { OWN_ADDRESS, YES } from "../consts";
 import { useEffect, useState } from "react";
 import StepsNavigation from "../components/StepsNavigation";

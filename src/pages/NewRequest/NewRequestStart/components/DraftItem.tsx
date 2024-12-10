@@ -1,11 +1,13 @@
-import { DEFAULT, IRequest } from "interfaces/interfaces";
+import { IRequest } from "interfaces/interfaces";
+
+
 import styles from "../NewRequestStart.module.scss";
-import { Copy, Delete, Settings, SettingsMenu, User1Foto } from "assets/images";
+import { Copy, Delete,SettingsMenu, User1Foto } from "assets/images";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteDraft } from "../../../../redux/requests/reducer";
-import { formatDate } from "utils/calendar";
 import { format } from "date-fns";
+import { DEFAULT } from "consts/consts";
 
 interface IProps {
     draft: IRequest;

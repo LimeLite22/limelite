@@ -15,18 +15,8 @@ import {
 } from "../../assets/images";
 import styles from "./SideBar.module.scss";
 import SideBarNavItem from "./components/SideBarNavItem";
-import {
-  ADD_ONS,
-  INSPIRATION,
-  LEARN,
-  NEW_REQUEST,
-  NOTIFICATIONS,
-  PROJECTS,
-  SETTINGS,
-  SUPPORT,
-  WELCOME,
-  type selectedPages,
-} from "./types";
+import { selectedPages } from "types/types";
+import { WELCOME, LEARN, NOTIFICATIONS, NEW_REQUEST, PROJECTS, SUPPORT, INSPIRATION, SETTINGS, ADD_ONS } from "consts/consts";
 
 type IProps = {
   isOpened: boolean;

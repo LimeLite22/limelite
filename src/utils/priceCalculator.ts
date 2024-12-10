@@ -1,7 +1,6 @@
-import { PROFESSIONAL_SCRIPT } from 'interfaces/interfaces';
 import { selectRequestInfo } from './../redux/requests/reducer';
 import { useSelector } from 'react-redux';
-import { DEFAULT } from 'interfaces/interfaces';
+import { DEFAULT, PROFESSIONAL_SCRIPT } from 'consts/consts';
 
 
 export const useCalculateFinalPrice = () => {

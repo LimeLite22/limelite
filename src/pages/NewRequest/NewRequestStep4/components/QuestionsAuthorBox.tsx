@@ -9,7 +9,7 @@ import LearnMorePopUp from "./LearnMorePopUp";
 import QuestionsOnLocationInput from "./QuestionsOnLocationInput";
 import VirtualQuestionsInput from "./VirtualQuestionsInput";
 import VirtualInterview from "./VirtualInterview";
-import {QUESTIONS_ON_LOCATION, QUESTIONS_VIRTUALLY, VIRTUAL_INTERVIEW } from "interfaces/interfaces";
+import {QUESTIONS_ON_LOCATION, QUESTIONS_VIRTUALLY, VIRTUAL_INTERVIEW } from "consts/consts";
 
 const QuestionsAuthorBox = () => {
   const containerRef = useRef<HTMLDivElement>(null);

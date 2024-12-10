@@ -9,10 +9,10 @@ import useWindowWidth from "hooks/useWindowWidth";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { selectRequestInfo } from "../../../redux/requests/reducer";
+import {selectRequestVoiceSettings } from "../../../redux/requests/reducer";
 import styles from "../NewRequest.module.scss";
 import FormFooter from "../components/FormFooter";
-import { DEFAULT, QUESTIONS_AUTHOR_CLIENT, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTIONS_ON_LOCATION, QUESTIONS_VIRTUALLY } from "interfaces/interfaces";
+import { DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT, TRACK_AUTHOR_CLIENT } from "consts/consts";
 import { useEffect, useState } from "react";
 import StepsNavigation from "../components/StepsNavigation";
 import { useCalculateFinalPrice } from "utils/priceCalculator";
@@ -20,7 +20,7 @@ import VoiceTrackBox from "./components/Track/VoiceTrackBox";
 import InterviewScriptBox from "./components/Script/InterviewScriptBox";
 
 const NewRequestStep5 = () => {
-  const selectedRequest = useSelector(selectRequestInfo);
+  const voiceSettings = useSelector(selectRequestVoiceSettings);
   const price = useCalculateFinalPrice();
   const [isDisabled, setIsDisabled] = useState(true);
   const [showBottomMessage, setShowBottomMessage] = useState(false);
@@ -28,50 +28,26 @@ const NewRequestStep5 = () => {
 
   const handleNextDisabled = () => {
     let disabled = false;
-    if (selectedRequest?.interviewSettings.questionsAuthor === DEFAULT) {
-      console.log('1')
+    if (voiceSettings?.trackAuthor === DEFAULT) {
       disabled = true;
     }
-    if (selectedRequest?.interviewSettings.questionsAuthor === QUESTIONS_AUTHOR_CLIENT
-      && selectedRequest?.interviewSettings.questionsAuthorOwnSettings.text.length === 0) {
+    if (voiceSettings?.trackAuthor === TRACK_AUTHOR_CLIENT
+      && voiceSettings?.track === DEFAULT) {
       disabled = true;
     }
-    const profSettings = selectedRequest?.interviewSettings.questionsAuthorProfSettings;
-    if (selectedRequest?.interviewSettings.questionsAuthor === QUESTIONS_AUTHOR_PROFESSIONAL
+    const profSettings = voiceSettings?.scriptAuthorProfSettings;
+    if (voiceSettings?.scriptAuthor === OWN_SCRIPT
       && (profSettings?.text.length === 0
         || profSettings?.subject.length === 0 ||
         profSettings?.phone === '' ||
         profSettings?.email.length === 0)) {
-      console.log('2')
       disabled = true;
     }
-    const persons = selectedRequest?.interviewSettings?.persons;
-    persons?.forEach((person) => {
-      if (person.name.length === 0 || person.title.length === 0) {
-        console.log('3')
-        disabled = true;
-      }
-    });
-    const questionSettings = selectedRequest?.interviewSettings?.questionSettings;
-    if (questionSettings?.type === DEFAULT) {
-      console.log('4')
-      disabled = true;
-    }
-    if (questionSettings?.type === QUESTIONS_ON_LOCATION && (
-      questionSettings?.locationSettings.name === "" ||
-      questionSettings?.locationSettings.email === "" ||
-      questionSettings?.locationSettings.phone === ""
-    )) {
-      console.log('5')
-      disabled = true;
-    }
-    if (questionSettings?.type === QUESTIONS_VIRTUALLY &&
-      (
-        questionSettings?.virtualSettings.name === "" ||
-        questionSettings?.virtualSettings.email === "" ||
-        questionSettings?.virtualSettings.phone === ''
-      )) {
-      console.log('6')
+    if (voiceSettings?.scriptAuthor === PROFESSIONAL_SCRIPT
+      && (profSettings?.text.length === 0
+        || profSettings?.subject.length === 0 ||
+        profSettings?.phone === '' ||
+        profSettings?.email.length === 0)) {
       disabled = true;
     }
     console.log("disabled", disabled);
@@ -80,7 +56,7 @@ const NewRequestStep5 = () => {
   }
   useEffect(() => {
     handleNextDisabled();
-  }, [selectedRequest]);
+  }, [voiceSettings]);
 
   return (
     <>

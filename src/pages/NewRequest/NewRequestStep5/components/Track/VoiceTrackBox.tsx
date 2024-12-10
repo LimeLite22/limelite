@@ -1,5 +1,5 @@
 
-import { DEFAULT,TRACK_AUTHOR_CLIENT, TRACK_AUTHOR_PROFESSIONAL } from "interfaces/interfaces";
+import { DEFAULT,TRACK_AUTHOR_CLIENT, TRACK_AUTHOR_PROFESSIONAL } from "consts/consts";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import {

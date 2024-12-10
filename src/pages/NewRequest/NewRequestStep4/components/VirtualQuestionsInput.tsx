@@ -6,7 +6,8 @@ import {
   Expand,
 } from "assets/images";
 import useWindowWidth from "hooks/useWindowWidth";
-import { IAddressProps, QUESTIONS_VIRTUALLY } from "interfaces/interfaces";
+import { QUESTIONS_VIRTUALLY } from "consts/consts";
+
 import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +17,7 @@ import {
   updateDraftField,
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
+import { IAddressProps } from "interfaces/interfaces";
 
 
 const VirtualQuestionsInput = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {

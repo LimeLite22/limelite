@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { selectRequestInfo } from "../../../redux/requests/reducer";
 import { format } from "date-fns";
-import { DEFAULT } from "interfaces/interfaces";
+import { DEFAULT } from "consts/consts";
 import { useCalculateFinalPrice } from "utils/priceCalculator";
 
 const FormFooter = () => {

@@ -1,9 +1,10 @@
+import { NOTIFICATIONS } from "consts/consts";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { selectedPages } from "types/types";
 
 import { selectUnreadNotificationsNumber } from "../../../redux/notifications/reducer";
 import styles from "../SideBar.module.scss";
-import { NOTIFICATIONS, type selectedPages } from "../types";
 
 type IProps = {
   selectedPage: selectedPages;

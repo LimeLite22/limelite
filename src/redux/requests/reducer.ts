@@ -1,7 +1,6 @@
 import { generateUniqueId } from 'utils/generateId';
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 import {
-  DEFAULT,
   IRequestState,
 } from "interfaces/interfaces";
 import { optionsList } from "pages/NewRequest/consts";
@@ -9,6 +8,7 @@ import { IRootState } from "redux/rootReducer";
 import set from "lodash/set";
 
 import { IRequest } from "./../../interfaces/interfaces";
+import { DEFAULT } from 'consts/consts';
 
 // const loadStateFromLocalStorage = (): IRequestState | undefined => {
 //   try {
@@ -162,8 +162,16 @@ const initialState: IRequestState = {
         scriptAuthorOwnSettings: {
           text: '',
         },
-      }
-      
+      },
+      videoSettings:{
+        format:DEFAULT,
+        targetDuration:0,
+        captions:false,
+        thumbnail:DEFAULT,
+        additionalFormats:DEFAULT,
+        additionalVisualEffects:DEFAULT,
+        resultTime:DEFAULT,
+      } 
     },
     {
       id: "2",
@@ -247,7 +255,16 @@ const initialState: IRequestState = {
         scriptAuthorOwnSettings: {
           text: '',
         },
-      }
+      },
+      videoSettings:{
+        format:DEFAULT,
+        targetDuration:0,
+        captions:false,
+        thumbnail:DEFAULT,
+        additionalFormats:DEFAULT,
+        additionalVisualEffects:DEFAULT,
+        resultTime:DEFAULT,
+      } 
     },
   ],
 };
@@ -344,7 +361,16 @@ const requestReducer = createSlice({
         scriptAuthorOwnSettings: {
           text: '',
         },
-        }
+        },
+        videoSettings:{
+          format:DEFAULT,
+          targetDuration:0,
+          captions:false,
+          thumbnail:DEFAULT,
+          additionalFormats:DEFAULT,
+          additionalVisualEffects:DEFAULT,
+          resultTime:DEFAULT,
+        } 
       });
       state.selectedRequest = id;
     },
@@ -396,6 +422,12 @@ export const selectRequestInfo = (state: IRootState) => {
   return state.request.drafts.find(
     (draft) => draft.id === state.request.selectedRequest,
   );
+};
+
+export const selectRequestVoiceSettings = (state: IRootState) => {
+  return state.request.drafts.find(
+    (draft) => draft.id === state.request.selectedRequest,
+  )?.voiceTrackSettings;
 };
 export const selectDrafts = (state: IRootState) => {
   return state.request.drafts;

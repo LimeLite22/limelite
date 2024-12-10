@@ -5,7 +5,7 @@ import {
 } from "assets/images";
 import { format } from "date-fns";
 import useWindowWidth from "hooks/useWindowWidth";
-import { DEFAULT } from "interfaces/interfaces";
+import { DEFAULT } from "consts/consts";
 import { useEffect, useState } from "react";
 import { Calendar as ReactCalendar } from "react-calendar";
 import { createPortal } from "react-dom";

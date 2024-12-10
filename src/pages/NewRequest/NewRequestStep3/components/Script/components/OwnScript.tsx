@@ -1,5 +1,5 @@
 import { AltCheckBox, CheckBoxSelected, Expand, StatusApproved, StatusProgress, StatusUnavailable } from "assets/images";
-import { OWN_SCRIPT } from "interfaces/interfaces";
+import { OWN_SCRIPT } from "consts/consts";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectRequestInfo, updateDraftField } from "../../../../../../redux/requests/reducer";
