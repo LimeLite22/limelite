@@ -64,8 +64,6 @@ export { default as NewRequestIcon } from "./Welcome/NewRequestIcon.svg";
 export { default as OpenedBurgerIcon } from "./Welcome/OpenedBurgerIcon.svg";
 export { default as OnBoarding } from "./Welcome/OnBoarding.svg";
 export { default as Photography } from "./Welcome/Photography.svg";
-export { default as QuestionIconDarkGray } from "./Welcome/QuestionIconDarkGray.svg";
-export { default as QuestionIconLightGray } from "./Welcome/QuestionIconLightGray.svg";
 export { default as ProductServiceVideos } from "./Welcome/ProductServiceVideos.svg";
 export { default as HypeSizzle } from "./Welcome/Sizzle.svg";
 export { default as SocialMedia } from "./Welcome/SocialMedia.svg";
@@ -153,6 +151,7 @@ export { default as SettingsMenu } from "./Сommon/SettingsMenu.svg";
 export { default as Audio } from "./Сommon/Audio.svg";
 export { default as Download } from "./Сommon/Download.svg";
 export { default as DeleteAudio } from "./Сommon/DeleteAudio.svg";
+export { default as QuestionIcon } from "./Сommon/QuestionIcon.svg";
 
 // what is new
  

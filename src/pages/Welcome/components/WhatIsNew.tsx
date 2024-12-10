@@ -13,7 +13,7 @@ import "swiper/css/pagination";
 import useWindowWidth from "hooks/useWindowWidth";
 import { useEffect, useState } from "react";
 import { generateUniqueId } from "utils/generateId";
-import { CompanyType, EducationType, SocialMediaType, WhatisNew1, WhatisNew2, WhatisNew3, WhatisNew4 } from "assets/images";
+import { CompanyType, EducationType, QuestionIcon, SocialMediaType, WhatisNew1, WhatisNew2, WhatisNew3, WhatisNew4 } from "assets/images";
 
 const WhatisNew = (): JSX.Element => {
 	const [position, setPosition] = useState(0);
@@ -76,6 +76,11 @@ const WhatisNew = (): JSX.Element => {
 		<div className={styles.welcomeContainer__content_main_whatIsNew}>
 			<div className={styles.welcomeContainer__content_main_whatIsNew_text}>
 				What’s New
+				<img
+					src={QuestionIcon}
+					alt={"QuestionIconDarkGray"}
+				/>
+				<div className={styles.welcomeContainer__content_main_whatIsNew_text_seeAll} >See All</div>
 			</div>
 			<div
 				className={styles.welcomeContainer__content_main_whatIsNew_cardsList}

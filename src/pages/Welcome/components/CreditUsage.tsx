@@ -1,3 +1,4 @@
+import { QuestionIcon } from "assets/images";
 import styles from "../Welcome.module.scss";
 import CreditUsageItem from "./CreditUsageItem";
 
@@ -6,6 +7,12 @@ const CreditUsage = () => {
 		<div className={styles.welcomeContainer__content_main_creditUsage}>
 			<div className={styles.welcomeContainer__content_main_creditUsage_text}>
 				Credit Usage
+				<img
+					
+					src={QuestionIcon}
+					alt={"QuestionIconDarkGray"}
+				/>
+				<div className={styles.welcomeContainer__content_main_creditUsage_text_seeAll}>See All</div>
 			</div>
 			<div
 				className={styles.welcomeContainer__content_main_creditUsage_cardsList}

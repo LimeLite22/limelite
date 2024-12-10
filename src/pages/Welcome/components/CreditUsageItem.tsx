@@ -1,7 +1,6 @@
 import {
 	InfoIcon,
-	QuestionIconDarkGray,
-	QuestionIconLightGray,
+	QuestionIcon,
 } from "assets/images";
 import useWindowWidth from "hooks/useWindowWidth";
 import { useState } from "react";
@@ -43,10 +42,11 @@ const CreditUsageItem = ({ header, text, number }: IProps) => {
 						styles.welcomeContainer__content_main_creditUsage_cardsList_card_text_iconContainer
 					}
 					tabIndex={0}
-				onBlur={() => setIsOpen(false)}
+					onBlur={() => setIsOpen(false)}
 				>
 					<img
-						src={isOpen ? QuestionIconDarkGray : QuestionIconLightGray}
+					
+						src={QuestionIcon}
 						alt={"QuestionIconDarkGray"}
 					/>
 					{isOpen && (

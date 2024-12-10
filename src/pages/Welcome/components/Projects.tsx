@@ -1,4 +1,4 @@
-import { NewRequestIcon, SettingsMenu, User1Foto } from "assets/images";
+import { NewRequestIcon, QuestionIcon, SettingsMenu, User1Foto } from "assets/images";
 import useWindowWidth from "hooks/useWindowWidth";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
@@ -35,6 +35,11 @@ const Projects = () => {
 		<div className={styles.welcomeContainer__content_main_projects}>
 			<div className={styles.welcomeContainer__content_main_projects_text}>
 				Projects
+				<img
+					src={QuestionIcon}
+					alt={"QuestionIconDarkGray"}
+				/>
+				<div className={styles.welcomeContainer__content_main_projects_text_seeAll}>See All</div>
 			</div>
 			<div className={styles.welcomeContainer__content_main_projects_content}>
 				<div
@@ -113,9 +118,9 @@ const Projects = () => {
 								1 Credit
 							</div>
 							<img
-									className={
-										styles.welcomeContainer__content_main_projects_content_projectItem_userIcon
-									}
+								className={
+									styles.welcomeContainer__content_main_projects_content_projectItem_userIcon
+								}
 								src={User1Foto}
 								alt={"Account"}
 							/>
@@ -130,7 +135,7 @@ const Projects = () => {
 									styles.welcomeContainer__content_main_projects_content_projectItem_header
 								}
 							>
-									{text.length > 30 && isTablet
+								{text.length > 30 && isTablet
 									? text.substring(0, 30) + "..."
 									: text}
 								<div
@@ -174,9 +179,9 @@ const Projects = () => {
 								1 Credit
 							</div>
 							<img
-									className={
-										styles.welcomeContainer__content_main_projects_content_projectItem_userIcon
-									}
+								className={
+									styles.welcomeContainer__content_main_projects_content_projectItem_userIcon
+								}
 								src={User1Foto}
 								alt={"Account"}
 							/>
@@ -191,7 +196,7 @@ const Projects = () => {
 									styles.welcomeContainer__content_main_projects_content_projectItem_header
 								}
 							>
-										Aerial Perspectives
+								Aerial Perspectives
 								<div
 									className={
 										styles.welcomeContainer__content_main_projects_content_projectItem_header_status
@@ -233,9 +238,9 @@ const Projects = () => {
 								2 Credits
 							</div>
 							<img
-									className={
-										styles.welcomeContainer__content_main_projects_content_projectItem_userIcon
-									}
+								className={
+									styles.welcomeContainer__content_main_projects_content_projectItem_userIcon
+								}
 								src={User1Foto}
 								alt={"Account"}
 							/>
