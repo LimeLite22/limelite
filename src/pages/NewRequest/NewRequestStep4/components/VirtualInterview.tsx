@@ -1,5 +1,5 @@
 import {
-  AltCheckBox,
+  CheckBox,
   CheckBoxSelected,
   Expand,
   Note,
@@ -55,7 +55,7 @@ const VirtualInterview = ({ isExpanded, setIsExpanded }: IHomeRentalProps) => {
       >
         <img
           className={styles.box_circle}
-          src={type === VIRTUAL_INTERVIEW ? CheckBoxSelected : AltCheckBox}
+          src={type === VIRTUAL_INTERVIEW ? CheckBoxSelected : CheckBox}
           alt="CheckBox"
         />
         <div className={styles.box_title}>

@@ -1,7 +1,7 @@
 import { ArrowGray2 } from "assets/images";
 import { DEFAULT } from "consts/consts";
 import { TimeValue } from "interfaces/interfaces";
-import { hoursList } from "pages/NewRequest/consts";
+import { hoursList } from "consts/consts";
 import { useState } from "react";
 
 import "./Calendar.scss";

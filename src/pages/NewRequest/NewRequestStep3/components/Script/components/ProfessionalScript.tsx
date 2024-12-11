@@ -1,4 +1,4 @@
-import { AltCheckBox, CheckBoxSelected, Expand } from "assets/images";
+import { CheckBox, CheckBoxSelected, Expand } from "assets/images";
 import { PROFESSIONAL_SCRIPT } from "consts/consts";
 import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
 import { useDispatch, useSelector } from "react-redux";
@@ -59,7 +59,7 @@ const ProffessionalScript = ({ isExpanded, setIsExpanded, isError }: IProps) => 
         >
             <img
                 className={styles.box_circle}
-                src={selection === PROFESSIONAL_SCRIPT ? CheckBoxSelected : AltCheckBox}
+                src={selection === PROFESSIONAL_SCRIPT ? CheckBoxSelected : CheckBox}
                 alt="CheckBox"
             />
             <span className={styles.box_title}>

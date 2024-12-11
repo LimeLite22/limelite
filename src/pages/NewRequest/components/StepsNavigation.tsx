@@ -22,6 +22,9 @@ const StepsNavigation = () => {
         if(location.pathname.includes("step5")) {
             setStep(5);
         }
+        if(location.pathname.includes("step6")) {
+            setStep(6);
+        }
     }, [location])
 
 
@@ -54,8 +57,8 @@ const StepsNavigation = () => {
                 <p>Voiceover</p>
             </div>
             <img src={ArrowLightGray} alt="" />
-            <div className={styles.navigation_item}>
-                <span className={styles.navigation_item_number}>6</span>{" "}
+            <div className={`${styles.navigation_item} ${step === 6 && styles.navigation_item_selected}`} >
+            {step > 6 ? <img src={Success} alt="" /> : <span className={step === 6 ? styles.navigation_item_blackNumber : styles.navigation_item_number}>6</span>}
                 <p>Video edit</p>
             </div>
             <img src={ArrowLightGray} alt="" />

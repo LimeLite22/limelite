@@ -1,4 +1,4 @@
-import { AltCheckBox, CheckBoxSelected, Expand, StatusApproved, StatusProgress, StatusUnavailable } from "assets/images";
+import { CheckBox, CheckBoxSelected, Expand, StatusApproved, StatusProgress, StatusUnavailable } from "assets/images";
 import { QUESTIONS_AUTHOR_CLIENT } from "consts/consts";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -52,7 +52,7 @@ const OwnQuestions = ({
         >
             <img
                 className={styles.box_circle}
-                src={selection === QUESTIONS_AUTHOR_CLIENT ? CheckBoxSelected : AltCheckBox}
+                src={selection === QUESTIONS_AUTHOR_CLIENT ? CheckBoxSelected : CheckBox}
                 alt="CheckBox"
             />
             <span className={styles.box_title}>

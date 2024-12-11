@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 import { generateUniqueId } from "utils/generateId";
 
 import { createDraft } from "../../../redux/requests/reducer";
-import { optionsList } from "../consts";
+import { optionsList } from "consts/consts";
 import styles from "./NewRequestStart.module.scss";
 import Drafts from "./components/Drafts";
 import TipsPopUp from "./components/TipsPopUp";

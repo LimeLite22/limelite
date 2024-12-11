@@ -1,5 +1,5 @@
 import {
-  AltCheckBox,
+  CheckBox,
   CheckBoxSelected,
   Expand,
   Note,
@@ -7,9 +7,9 @@ import {
   SwiperFoto2,
   SwiperFoto3,
 } from "assets/images";
+import { STUDIO_RENTAL } from "consts/consts";
 import useWindowWidth from "hooks/useWindowWidth";
 import { IStudioRentalProps } from "interfaces/interfaces";
-import { STUDIO_RENTAL } from "pages/NewRequest/consts";
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { Swiper as SwiperType } from "swiper";
@@ -69,7 +69,7 @@ const StudioRental = ({ isExpanded, setIsExpanded }: IStudioRentalProps) => {
         {" "}
         <img
           className={styles.box_circle}
-          src={type === STUDIO_RENTAL ? CheckBoxSelected : AltCheckBox}
+          src={type === STUDIO_RENTAL ? CheckBoxSelected : CheckBox}
           alt="CheckBox"
         />
         <span className={styles.box_title}>

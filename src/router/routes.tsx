@@ -9,6 +9,7 @@ import {
   NewRequestStep3,
   NewRequestStep4,
   NewRequestStep5,
+  NewRequestStep6,
   Notifications,
   PageContainer,
   SelectProfile,
@@ -62,6 +63,12 @@ const routes = createBrowserRouter([
             path: "/newRequest/step5",
             element: (
               <PrivateRoute component={NewRequestStep5} redirectTo="/auth" />
+            ),
+          },
+          {
+            path: "/newRequest/step6",
+            element: (
+              <PrivateRoute component={NewRequestStep6} redirectTo="/auth" />
             ),
           },
           {

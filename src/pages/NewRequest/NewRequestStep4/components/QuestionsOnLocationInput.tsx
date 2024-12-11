@@ -1,5 +1,5 @@
 import {
-  AltCheckBox,
+  CheckBox,
   CheckBoxSelected,
   Expand,
 } from "assets/images";
@@ -68,7 +68,7 @@ const QuestionsOnLocationInput = ({ isExpanded, setIsExpanded, isError }: IAddre
       >
         <img
           className={styles.box_circle}
-          src={type === QUESTIONS_ON_LOCATION ? CheckBoxSelected : AltCheckBox}
+          src={type === QUESTIONS_ON_LOCATION ? CheckBoxSelected : CheckBox}
           alt="CheckBox"
         />
         <div className={styles.box_title}>We'll do it on location</div>

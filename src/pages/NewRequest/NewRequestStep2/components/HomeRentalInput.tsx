@@ -1,5 +1,5 @@
 import {
-  AltCheckBox,
+  CheckBox,
   CheckBoxSelected,
   Expand,
   Note,
@@ -7,7 +7,7 @@ import {
 import useWindowWidth from "hooks/useWindowWidth";
 import { IHomeRentalProps } from "interfaces/interfaces";
 import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
-import { HOME_RENTAL } from "pages/NewRequest/consts";
+import { HOME_RENTAL } from "consts/consts";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -50,7 +50,7 @@ const HomeRental = ({ isExpanded, setIsExpanded }: IHomeRentalProps) => {
       >
         <img
           className={styles.box_circle}
-          src={type === HOME_RENTAL ? CheckBoxSelected : AltCheckBox}
+          src={type === HOME_RENTAL ? CheckBoxSelected : CheckBox}
           alt="CheckBox"
         />
         <div className={styles.box_title}>

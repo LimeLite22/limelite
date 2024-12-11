@@ -1,6 +1,6 @@
 import {
     Note,
-    AltCheckBox,
+    CheckBox,
     CheckBoxSelected,
 } from "assets/images";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,10 +23,10 @@ const Teleprompter = () => {
             <div className={styles.teleprompter_header} >Do you need a teleprompter?*</div>
             <div className={styles.teleprompter_options}>
                 <div className={styles.teleprompter_option} onClick={() => handleUpdateField( 'scriptSettings.teleprompter', true)} >
-                    <img src={isTeleprompter === true ? CheckBoxSelected : AltCheckBox} alt="locationIcon" />
+                    <img src={isTeleprompter === true ? CheckBoxSelected : CheckBox} alt="locationIcon" />
                     Yes</div>
                 <div className={styles.teleprompter_option} onClick={() => handleUpdateField( 'scriptSettings.teleprompter', false)}>
-                    <img src={isTeleprompter === false ? CheckBoxSelected : AltCheckBox} alt="locationIcon" />
+                    <img src={isTeleprompter === false ? CheckBoxSelected : CheckBox} alt="locationIcon" />
                     No</div>
             </div>
             <div className={styles.teleprompter_subText}>

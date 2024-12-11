@@ -1,4 +1,4 @@
-import { OWN_ADDRESS } from "pages/NewRequest/consts";
+import { OWN_ADDRESS } from "consts/consts";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import "swiper/css";

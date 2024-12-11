@@ -49,4 +49,6 @@ export type selectedPages =
   | "Videography"
   | "Website Header Video"
   | "Other";
+
+  export type CalendarType = "time" | "date" | "schedule";
     

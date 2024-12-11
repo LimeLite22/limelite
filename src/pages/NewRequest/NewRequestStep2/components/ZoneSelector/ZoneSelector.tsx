@@ -1,5 +1,5 @@
 import { GrayArrow } from "assets/images";
-import { options } from "pages/NewRequest/consts";
+import { options } from "consts/consts";
 import { type FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 

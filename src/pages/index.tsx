@@ -13,5 +13,6 @@ export { default as NewRequestStep2 } from "./NewRequest/NewRequestStep2/NewRequ
 export { default as NewRequestStep3 } from "./NewRequest/NewRequestStep3/NewRequestStep3";
 export { default as NewRequestStep4 } from "./NewRequest/NewRequestStep4/NewRequestStep4";
 export { default as NewRequestStep5 } from "./NewRequest/NewRequestStep5/NewRequestStep5";
+export { default as NewRequestStep6 } from "./NewRequest/NewRequestStep6/NewRequestStep6";
 export { default as PageContainer } from "./PageContainer/PageContainer";
 export { default as Auth } from "./Auth/Auth";

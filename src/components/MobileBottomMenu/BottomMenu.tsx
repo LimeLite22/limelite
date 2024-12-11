@@ -1,6 +1,6 @@
 import { HOME, LEARN, NOTIFICATIONS, PROJECTS } from "consts/consts";
 import { IRequest } from "interfaces/interfaces";
-import { optionsList } from "pages/NewRequest/consts";
+import { optionsList } from "consts/consts";
 import { useEffect, useState } from "react";
 import { Sheet } from "react-modal-sheet";
 import { useDispatch } from "react-redux";

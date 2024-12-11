@@ -1,7 +1,7 @@
 
 
 import {
-  AltCheckBox,
+  CheckBox,
   CheckBoxSelected,
   Expand,
 } from "assets/images";
@@ -70,7 +70,7 @@ const VirtualQuestionsInput = ({ isExpanded, setIsExpanded, isError }: IAddressP
       >
         <img
           className={styles.box_circle}
-          src={type === QUESTIONS_VIRTUALLY ? CheckBoxSelected : AltCheckBox}
+          src={type === QUESTIONS_VIRTUALLY ? CheckBoxSelected : CheckBox}
           alt="CheckBox"
         />
         <span className={styles.box_title}>

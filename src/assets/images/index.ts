@@ -112,7 +112,7 @@ export { default as CalendarIcon } from "./NewRequest/Calendar.svg";
 
 // common
 export { default as DetailsGreen } from "./Сommon/DetailsGreen.svg";
-export { default as AltCheckBox } from "./Сommon/CheckBox.svg";
+export { default as CheckBox } from "./Сommon/CheckBox.svg";
 export { default as CheckBoxType2 } from "./Сommon/CheckBoxType2.svg";
 export { default as CheckBoxSelectedType2 } from "./Сommon/CheckBoxSelectedType2.svg";
 export { default as ArrowGray } from "./Сommon/ArrowGray.svg";
@@ -152,6 +152,12 @@ export { default as Audio } from "./Сommon/Audio.svg";
 export { default as Download } from "./Сommon/Download.svg";
 export { default as DeleteAudio } from "./Сommon/DeleteAudio.svg";
 export { default as QuestionIcon } from "./Сommon/QuestionIcon.svg";
+export { default as FaceBook } from "./Сommon/FaceBook.svg";
+export { default as Linkedin } from "./Сommon/Linkedin.svg";
+export { default as Instagram } from "./Сommon/Instagram.svg";
+export { default as Twitter } from "./Сommon/Twitter.svg";
+export { default as Youtube } from "./Сommon/Youtube.svg";
+
 
 // what is new
  

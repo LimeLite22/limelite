@@ -1,5 +1,5 @@
 import { CheckBoxSelectedType2, CheckBoxType2 } from "assets/images";
-import { optionsList } from "pages/NewRequest/consts";
+import { optionsList } from "consts/consts";
 import { type FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { generateUniqueId } from "utils/generateId";

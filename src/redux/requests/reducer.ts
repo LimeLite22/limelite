@@ -3,12 +3,11 @@ import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 import {
   IRequestState,
 } from "interfaces/interfaces";
-import { optionsList } from "pages/NewRequest/consts";
 import { IRootState } from "redux/rootReducer";
 import set from "lodash/set";
 
 import { IRequest } from "./../../interfaces/interfaces";
-import { DEFAULT } from 'consts/consts';
+import { DEFAULT, optionsList } from 'consts/consts';
 
 // const loadStateFromLocalStorage = (): IRequestState | undefined => {
 //   try {

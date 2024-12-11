@@ -1,5 +1,5 @@
 import {
-  AltCheckBox,
+  CheckBox,
   CheckBoxSelected,
   Expand,
   LocationBlack,
@@ -7,7 +7,7 @@ import {
 import axios from "axios";
 import useWindowWidth from "hooks/useWindowWidth";
 import { IAddressProps } from "interfaces/interfaces";
-import { OWN_ADDRESS } from "pages/NewRequest/consts";
+import { OWN_ADDRESS } from "consts/consts";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -98,7 +98,7 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
       >
         <img
           className={styles.box_circle}
-          src={type === OWN_ADDRESS ? CheckBoxSelected : AltCheckBox}
+          src={type === OWN_ADDRESS ? CheckBoxSelected : CheckBox}
           alt="CheckBox"
         />
         <div className={styles.box_title}>We'll provide the address</div>

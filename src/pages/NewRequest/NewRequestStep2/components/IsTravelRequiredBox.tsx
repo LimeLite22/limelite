@@ -1,5 +1,5 @@
 import {
-  AltCheckBox,
+  CheckBox,
   CheckBoxSelected,
   Expand,
   Note,
@@ -7,7 +7,7 @@ import {
   SwiperFoto2,
   SwiperFoto3,
 } from "assets/images";
-import { NO, YES } from "pages/NewRequest/consts";
+import { NO, YES } from "consts/consts";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { Swiper as SwiperType } from "swiper";
@@ -133,7 +133,7 @@ const IsTravelRequired = () => {
         >
           <img
             className={styles.box_circle}
-            src={selection === NO ? CheckBoxSelected : AltCheckBox}
+            src={selection === NO ? CheckBoxSelected : CheckBox}
             alt="CheckBox"
           />
           <div className={styles.box_title}>No</div>
@@ -160,7 +160,7 @@ const IsTravelRequired = () => {
         >
           <img
             className={styles.box_circle}
-            src={selection === YES ? CheckBoxSelected : AltCheckBox}
+            src={selection === YES ? CheckBoxSelected : CheckBox}
             alt="CheckBox"
           />
           <span className={styles.box_title}>

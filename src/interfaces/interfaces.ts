@@ -1,19 +1,16 @@
-import { VIDEO_STANDARD, VIDEO_VERTICAL, VIDEO_SQUARE, VIDEO_STORY, 
+import {
+  VIDEO_STANDARD, VIDEO_VERTICAL, VIDEO_SQUARE, VIDEO_STORY,
   N0_THUMBNAIL, BASIC_THUMBNAIL, CUSTOM_THUMBNAIL,
   RUSH_TIME, STANDARD_TIME, DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT,
   QUESTIONS_AUTHOR_CLIENT, QUESTIONS_AUTHOR_PROFESSIONAL,
-  QUESTIONS_ON_LOCATION , QUESTIONS_VIRTUALLY, VIRTUAL_INTERVIEW,TRACK_AUTHOR_CLIENT,
-  TRACK_AUTHOR_PROFESSIONAL
- } from "consts/consts";
-import {
-  CalendarType,
-  HOME_RENTAL,
+  QUESTIONS_ON_LOCATION, QUESTIONS_VIRTUALLY, VIRTUAL_INTERVIEW, TRACK_AUTHOR_CLIENT,
+  TRACK_AUTHOR_PROFESSIONAL, HOME_RENTAL,
   NO,
   OWN_ADDRESS,
   STUDIO_RENTAL,
   YES,
-} from "pages/NewRequest/consts";
-import { ProjectTone, ProjectType } from "types/types";
+} from "consts/consts";
+import { CalendarType, ProjectTone, ProjectType } from "types/types";
 
 export type IOption = {
   id: string;
@@ -38,10 +35,10 @@ export type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 export interface ILocation {
   type:
-    | typeof DEFAULT
-    | typeof OWN_ADDRESS
-    | typeof STUDIO_RENTAL
-    | typeof HOME_RENTAL;
+  | typeof DEFAULT
+  | typeof OWN_ADDRESS
+  | typeof STUDIO_RENTAL
+  | typeof HOME_RENTAL;
   street: string;
   company: string;
   city: string;
@@ -56,7 +53,7 @@ export interface TimeItem {
   isAddon: boolean;
 }
 export type TimeValue = typeof DEFAULT | TimeItem;
-export type IScriptWriter = typeof PROFESSIONAL_SCRIPT | typeof OWN_SCRIPT |  typeof DEFAULT ;
+export type IScriptWriter = typeof PROFESSIONAL_SCRIPT | typeof OWN_SCRIPT | typeof DEFAULT;
 export interface IPerson {
   id: string;
   name: string;
@@ -66,7 +63,7 @@ type InterviewSettings = {
   questionsAuthor: typeof QUESTIONS_AUTHOR_CLIENT | typeof QUESTIONS_AUTHOR_PROFESSIONAL | typeof DEFAULT;
   questionsAuthorProfSettings: {
     subject: string;
-    phone:number | '';
+    phone: number | '';
     email: string;
     text: string;
   };
@@ -78,12 +75,12 @@ type InterviewSettings = {
     type: typeof QUESTIONS_ON_LOCATION | typeof QUESTIONS_VIRTUALLY | typeof VIRTUAL_INTERVIEW | typeof DEFAULT;
     locationSettings: {
       name: string;
-      phone:number | '';
+      phone: number | '';
       email: string;
     };
     virtualSettings: {
       name: string;
-      phone:number | '';
+      phone: number | '';
       email: string;
     };
   };
@@ -94,7 +91,7 @@ export interface IRequest {
   projectName: string;
   targetAudience: string;
   projectType: ProjectType | string;
-  projectTone: ProjectTone| string;
+  projectTone: ProjectTone | string;
   approachList: string[];
   travel: ITravel;
   location: ILocation;
@@ -107,24 +104,24 @@ export interface IRequest {
     date: typeof DEFAULT | Value;
     time: TimeValue;
   };
-  scriptSettings:{
+  scriptSettings: {
     scriptWriter: IScriptWriter;
-    name:string ;
-    phone:number | '';
-    email:string;
+    name: string;
+    phone: number | '';
+    email: string;
     profText: string;
-    ownText:string;
+    ownText: string;
     teleprompter: boolean | typeof DEFAULT;
-    persons:IPerson[] 
+    persons: IPerson[]
   }
   interviewSettings: InterviewSettings;
-  voiceTrackSettings:{
+  voiceTrackSettings: {
     trackAuthor: typeof TRACK_AUTHOR_CLIENT | typeof TRACK_AUTHOR_PROFESSIONAL | typeof DEFAULT;
     track: File | typeof DEFAULT;
     scriptAuthor: IScriptWriter,
     scriptAuthorProfSettings: {
       subject: string;
-      phone:number | '';
+      phone: number | '';
       email: string;
       text: string;
     };
@@ -132,13 +129,13 @@ export interface IRequest {
       text: string;
     };
   }
-  videoSettings:{
+  videoSettings: {
     format: typeof VIDEO_STANDARD | typeof VIDEO_STORY | typeof VIDEO_SQUARE | typeof VIDEO_VERTICAL | typeof DEFAULT;
-    targetDuration:number;
-    captions:boolean;
+    targetDuration: number;
+    captions: boolean;
     thumbnail: typeof N0_THUMBNAIL | typeof BASIC_THUMBNAIL | typeof CUSTOM_THUMBNAIL | typeof DEFAULT;
-    additionalFormats:boolean | typeof DEFAULT;
-    additionalVisualEffects:boolean | typeof DEFAULT;
+    additionalFormats: boolean | typeof DEFAULT;
+    additionalVisualEffects: boolean | typeof DEFAULT;
     resultTime: typeof RUSH_TIME | typeof STANDARD_TIME | typeof DEFAULT
   }
 }
