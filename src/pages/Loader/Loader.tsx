@@ -3,11 +3,16 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
 import styles from "./Loader.module.scss";
+interface IProps{
+  isWelcome?: boolean
+}
 
-const Loader = (): JSX.Element => {
+const Loader = ({isWelcome}:IProps) => {
+  
   const navigate = useNavigate();
   useEffect(() => {
-    setTimeout(() => {
+
+    !isWelcome &&  setTimeout(() => {
       navigate("/walkThrough");
     }, 5000);
   }, []);

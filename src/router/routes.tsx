@@ -27,8 +27,13 @@ const routes = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <PageContainer />,
+        element: <PrivateRoute component={PageContainer} redirectTo="/auth" />
+        ,
         children: [
+          {
+            path: "/",
+            element: <PrivateRoute component={Welcome} redirectTo="/auth" />,
+          },
           {
             path: "/newRequest/start",
             element: (

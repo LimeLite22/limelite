@@ -1,5 +1,6 @@
 import { BottomMenu, SideBar } from "components";
 import useWindowWidth from "hooks/useWindowWidth";
+import Loader from "pages/Loader/Loader";
 import Footer from "pages/Welcome/components/Footer/Footer";
 import WelomeHeader from "pages/Welcome/components/Header/WelcomeHeader";
 import { useEffect, useState } from "react";
@@ -28,6 +29,20 @@ const PageContainer = () => {
     document?.getElementById("pageContainer")?.scrollTo(0, 34);
   }, [pathname]);
   useCalculateFinalPrice();
+  const notFirst = localStorage.getItem("notFirstVisit") === "true";
+  const [notFirstVisit, setNotFirstVisit] = useState(notFirst);
+  useEffect(() => {
+    if (!notFirst) {
+      setTimeout(() => {
+        setNotFirstVisit(true)
+        localStorage.setItem("notFirstVisit", "true");
+      }, 6000);
+    }
+  }, [])
+  if (!notFirstVisit) {
+    // localStorage.setItem("isFirstVisit", "false");
+    return (<Loader isWelcome={true} />)
+  }
 
   return (
     <div
