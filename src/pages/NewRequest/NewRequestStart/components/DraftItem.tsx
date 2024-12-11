@@ -2,7 +2,7 @@ import { IRequest } from "interfaces/interfaces";
 
 
 import styles from "../NewRequestStart.module.scss";
-import { Copy, Delete,SettingsMenu, User1Foto } from "assets/images";
+import { Copy, Delete, SettingsMenu, User1Foto } from "assets/images";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteDraft } from "../../../../redux/requests/reducer";
@@ -21,7 +21,7 @@ const DraftItem = ({ draft, index }: IProps) => {
         setIsSettingsMenuOpened(true);
     };
 
-    return  <>
+    return <>
         {/* <div
             className={styles.nR_content_projects_content_projectItem}
             onContextMenu={handleRightClick}
@@ -117,7 +117,7 @@ const DraftItem = ({ draft, index }: IProps) => {
                 setIsSettingsMenuOpened(false);
             }}
         >
-                 {isSettingsMenuOpened && <div
+            {isSettingsMenuOpened && <div
                 onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
@@ -135,56 +135,62 @@ const DraftItem = ({ draft, index }: IProps) => {
                     <img src={Delete} alt={"Delete"} />
                     Delete draft</div>
             </div>}
+            <img className={styles.nR_content_projects_content_projectItem_settingsIcon} src={SettingsMenu} alt="" onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setIsSettingsMenuOpened(!isSettingsMenuOpened)
+                    }} />
             <div
                 className={
                     styles.nR_content_projects_content_projectItem_header
                 }
             >
-               {draft.projectName}
-                <div
-                    className={
-                        styles.nR_content_projects_content_projectItem_header_status
-                    }
-                >
-                    {" "}
-                    <div
-                        className={
-                            styles.nR_content_projects_content_projectItem_header_status_pending
-                        }
-                    >
-                        {" "}
-                    </div>
-                    In Editing
-                    <img src={SettingsMenu} alt=""  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setIsSettingsMenuOpened(!isSettingsMenuOpened)
-                }} />
-                </div>
+                {draft.projectName}
             </div>
             <div
                 className={
                     styles.nR_content_projects_content_projectItem_type
                 }
             >
-             {draft.projectType || "Project type" }
+                {draft.projectType || "Project type"}
             </div>
             <div
                 className={
                     styles.nR_content_projects_content_projectItem_subText
                 }
             >
-             {draft.option?.value || ""} <div className={
+                {draft.option?.value || ""} <div className={
                     styles.nR_content_projects_content_projectItem_dot
-                } ></div>     <div>Shoot: {draft.preferredDate.date !== DEFAULT ? <>{format( draft.preferredDate.date as Date, "dd/MM/yyyy")}</> : "00/00/0000"} </div>
+                } ></div>     <div>Shoot: {draft.preferredDate.date !== DEFAULT ? <>{format(draft.preferredDate.date as Date, "MM/dd/yyyy")}</> : "00/00/0000"} </div>
             </div>
             <div
+                className={
+                    styles.nR_content_projects_content_projectItem_progressText
+                }
+            >
+                3 days ago <div className={
+                    styles.nR_content_projects_content_projectItem_dot
+                } ></div>     <div>10% </div>
+  
+                </div>
+                <div className={
+                    styles.nR_content_projects_content_projectItem_progressBar
+                } >
+                    <div
+                        style={{ width: "10%" }}
+                        className={
+                            styles.nR_content_projects_content_projectItem_progressBar_bar
+                        }
+                    ></div>
+            </div>
+            {/* <div
                 className={
                     styles.nR_content_projects_content_projectItem_credit
                 }
             >
                 {draft.option?.credits} { draft.option?.credits === 1 ? "credit" : "credits"}
-             </div> 
+             </div>  */}
+            <div></div>
             <img
                 className={
                     styles.nR_content_projects_content_projectItem_userIcon

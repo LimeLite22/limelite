@@ -98,7 +98,7 @@ const initialState: IRequestState = {
         zip: "",
       },
       preferredDate: {
-        date: DEFAULT,
+        date: new Date('2025-01-18'),
         time: DEFAULT,
       },
       isAlternate: false,
@@ -197,7 +197,7 @@ const initialState: IRequestState = {
         zip: "",
       },
       preferredDate: {
-        date: DEFAULT,
+        date: new Date('2025-01-18'),
         time: DEFAULT,
       },
       isAlternate: false,
