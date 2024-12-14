@@ -989,11 +989,11 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap:16px;
+        gap: 16px;
         font-family: Inter;
         font-size: 16px;
         font-weight: 400;
-        color:var(--black);
+        color: var(--black);
         line-height: 19.2px;
         text-align: left;
         text-underline-position: from-font;
@@ -1010,8 +1010,9 @@
     }
     &_videTypes {
         display: flex;
-        justify-content: space-between;
         align-items: flex-end;
+        flex-wrap: wrap;
+        gap: 8px;
         cursor: pointer;
     }
 
@@ -1032,24 +1033,31 @@
         height: 125px;
     }
     &_videoType {
-        background-color: var(--gray-light);
+        border: 1px solid var(--gray-light7);
         border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: Poppins;
+        font-family: Inter;
         font-size: 16px;
-        font-weight: 500;
-        line-height: 17.6px;
-        letter-spacing: 0.02em;
+        font-weight: 400;
+        line-height: 19.2px;
         text-align: left;
         text-underline-position: from-font;
         text-decoration-skip-ink: none;
-        color: var(--black);
+        color: var(--gray-dark);
         position: relative;
+        width: 323px;
+        height: 72px;
+        &_dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: var(--gray-light11);
+            margin: 0 8px;
+        }
     }
     &_videoTypeSelected {
-        background-color: var(--green-light6);
         border: 1px solid var(--green-dark2);
     }
     &_question {
@@ -2366,5 +2374,32 @@
             text-underline-position: from-font;
             text-decoration-skip-ink: none;
         }
+    }
+}
+.captions{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.switcher{
+    width:40px;
+    height:24px;
+    position: relative;
+    padding: 4px;
+    background-color: var(--gray-light7);
+    border-radius: 1000px;
+    cursor: pointer;
+    transition-duration: 0.3s;
+    &_circle{
+        width: 16px;
+        height: 16px;
+        background-color: var(--white);
+        border-radius: 1000px;
+        position: absolute;
+        left:4px;
+        transition-duration: 0.3s;
+    }
+    &_circle_active{
+        left: 20px;
     }
 }

@@ -10,7 +10,7 @@ import LearnMorePopUp from "../LearnMorePopUp";
 import OwnScript from "./components/OwnScript";
 import ProffessionalScript from "./components/ProfessionalScript";
 
-const InterviewScriptBox = () => {
+const AdditionalFormatsBox = () => {
 
   const selectedRequest = useSelector(selectRequestInfo);
   const [isError, setIsError] = useState({
@@ -127,7 +127,7 @@ const InterviewScriptBox = () => {
       onBlur={handleBlur}
     >
       <div className={styles.box_question_header_text}>
-        Who will write the script?*
+      Do you need additional/social formats?*
       </div>
       <LearnMorePopUp />
       <OwnScript isError={{ text: isError.ownScript }} isExpanded={isOwnExpanded} setIsExpanded={setIsOwnExpanded} />
@@ -140,4 +140,4 @@ const InterviewScriptBox = () => {
   );
 };
 
-export default InterviewScriptBox;
+export default AdditionalFormatsBox;

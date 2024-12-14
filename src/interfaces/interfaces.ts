@@ -9,6 +9,14 @@ import {
   OWN_ADDRESS,
   STUDIO_RENTAL,
   YES,
+  LESS_15,
+  LESS_30,
+  LESS_60,
+  LESS_1_30,
+  LESS_2_00,
+  LESS_2_30,
+  LESS_3_00,
+  MORE_3_00,
 } from "consts/consts";
 import { CalendarType, ProjectTone, ProjectType } from "types/types";
 
@@ -131,7 +139,10 @@ export interface IRequest {
   }
   videoSettings: {
     format: typeof VIDEO_STANDARD | typeof VIDEO_STORY | typeof VIDEO_SQUARE | typeof VIDEO_VERTICAL | typeof DEFAULT;
-    targetDuration: number;
+    targetDuration: 
+    typeof DEFAULT | typeof LESS_15 | typeof LESS_30 | 
+    typeof LESS_30 | typeof LESS_60 | typeof LESS_1_30 | typeof LESS_2_00 | typeof LESS_2_30 | 
+    typeof LESS_3_00 | typeof MORE_3_00;
     captions: boolean;
     thumbnail: typeof N0_THUMBNAIL | typeof BASIC_THUMBNAIL | typeof CUSTOM_THUMBNAIL | typeof DEFAULT;
     additionalFormats: boolean | typeof DEFAULT;

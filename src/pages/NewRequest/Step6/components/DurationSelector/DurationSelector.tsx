@@ -1,5 +1,5 @@
 import { GrayArrow } from "assets/images";
-import { options } from "consts/consts";
+import { DEFAULT, videoDurationsList } from "consts/consts";
 import { type FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -7,23 +7,21 @@ import {
   selectRequestInfo,
   updateDraftField,
 } from "../../../../../redux/requests/reducer";
-import "./Zone.scss";
+import "./DurationSelector.scss";
 
 interface IProps {
   onChange: (zone: { name: string; value: number }) => void;
   isError?: boolean;
 }
-const ZoneSelector: FC<IProps> = ({ onChange, isError }) => {
+const DurationSelector: FC<IProps> = ({ onChange, isError }) => {
   const selectedRequest = useSelector(selectRequestInfo);
-  const travel = selectedRequest?.travel;
-  const zoneCode = travel?.zoneCode;
+  const  duration = selectedRequest?.videoSettings.targetDuration;
   const [isOpened, setOpened] = useState(false);
   const dispatch = useDispatch();
   const showError = isError && !isOpened;
 
   return (
     <div className={`dropdown ${showError ? "dropdown_error" : ""}`}>
-      <div className="dropdown_header">Zone</div>
       <div
         className={`dropdown__selected ${showError ? "dropdown__selected_error" : ""}`}
         onClick={() => {
@@ -31,7 +29,7 @@ const ZoneSelector: FC<IProps> = ({ onChange, isError }) => {
         }}
       >
         <div className="dropdown__selected_name">
-          {zoneCode?.name || <span>Select</span>}{" "}
+          {duration !== DEFAULT ? duration  : <span>Select</span>}
         </div>
         {isError && !isOpened && (
           <div className="dropdown__selected_errorMessage">
@@ -47,7 +45,7 @@ const ZoneSelector: FC<IProps> = ({ onChange, isError }) => {
 
       {isOpened && (
         <div className="dropdown__itemsContainer">
-          {options.map((option, index) => (
+          {videoDurationsList.map((option, index) => (
             <div
               style={{
                 borderTopLeftRadius: index === 0 ? "4px" : "",
@@ -56,20 +54,17 @@ const ZoneSelector: FC<IProps> = ({ onChange, isError }) => {
               className="dropdown__item"
               key={index}
               onClick={() => {
-                onChange({ name: option?.name, value: option?.value });
+                // onChange({ value: option?.value });
                   dispatch(
                     updateDraftField({
-                      path: "travel.zoneCode",
-                      value:{
-                        name: option?.name,
-                        value: option?.value
-                      },
+                      path: "videoSettings.targetDuration",
+                      value: option.value,
                     })
                   );
                 setOpened(false);
               }}
             >
-              <div className="dropdown__item_name">{option?.name}</div>
+              <div className="dropdown__item_name">{option?.value}</div>
             </div>
           ))}{" "}
         </div>
@@ -78,4 +73,4 @@ const ZoneSelector: FC<IProps> = ({ onChange, isError }) => {
   );
 };
 
-export default ZoneSelector;
+export default DurationSelector;

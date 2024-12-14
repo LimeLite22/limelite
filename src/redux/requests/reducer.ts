@@ -164,7 +164,7 @@ const initialState: IRequestState = {
       },
       videoSettings:{
         format:DEFAULT,
-        targetDuration:0,
+        targetDuration:DEFAULT,
         captions:false,
         thumbnail:DEFAULT,
         additionalFormats:DEFAULT,
@@ -257,7 +257,7 @@ const initialState: IRequestState = {
       },
       videoSettings:{
         format:DEFAULT,
-        targetDuration:0,
+        targetDuration: DEFAULT ,
         captions:false,
         thumbnail:DEFAULT,
         additionalFormats:DEFAULT,
@@ -363,7 +363,7 @@ const requestReducer = createSlice({
         },
         videoSettings:{
           format:DEFAULT,
-          targetDuration:0,
+          targetDuration: DEFAULT ,
           captions:false,
           thumbnail:DEFAULT,
           additionalFormats:DEFAULT,

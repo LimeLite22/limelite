@@ -1,5 +1,5 @@
-import { CheckBox, CheckBoxSelected, Expand, Note } from "assets/images";
-import { TRACK_AUTHOR_PROFESSIONAL } from "consts/consts";
+import { CheckBox, CheckBoxSelected, Expand } from "assets/images";
+import { PROFESSIONAL_SCRIPT } from "consts/consts";
 import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
 import { useDispatch, useSelector } from "react-redux";
 import { selectRequestInfo, updateDraftField } from "../../../../../../redux/requests/reducer";
@@ -7,11 +7,21 @@ import styles from "../../../../NewRequest.module.scss";
 interface IProps {
     isExpanded: boolean;
     setIsExpanded: (value: boolean) => void;
+    isError: {
+        subject: boolean,
+        text: boolean,
+        email: boolean,
+        phone: boolean,
+    },
 }
-const ProffessionalTrack = ({ isExpanded, setIsExpanded }: IProps) => {
+const ProffessionalQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
     const selectedRequest = useSelector(selectRequestInfo);
 
-    const selection = selectedRequest?.voiceTrackSettings.trackAuthor;
+    const selection = selectedRequest?.voiceTrackSettings.scriptAuthor;
+    const subject = selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings.subject;
+    const phone = selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings.phone;
+    const email = selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings.email;
+    const text = selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings.text;
 
     const dispatch = useDispatch();
     const handleUpdateField = (path: string, value: string) => {
@@ -24,11 +34,11 @@ const ProffessionalTrack = ({ isExpanded, setIsExpanded }: IProps) => {
     };
 
     const handleSelect = () => {
-        handleUpdateField("voiceTrackSettings.trackAuthor", TRACK_AUTHOR_PROFESSIONAL)
+        handleUpdateField("voiceTrackSettings.scriptAuthor", PROFESSIONAL_SCRIPT)
         setIsExpanded(true);
     }
     const handleExpand = (e: any) => {
-        handleUpdateField("voiceTrackSettings.trackAuthor", TRACK_AUTHOR_PROFESSIONAL)
+        handleUpdateField("voiceTrackSettings.scriptAuthor", PROFESSIONAL_SCRIPT)
         setIsExpanded(!isExpanded);
         e.stopPropagation();
         e.preventDefault();
@@ -37,7 +47,7 @@ const ProffessionalTrack = ({ isExpanded, setIsExpanded }: IProps) => {
     return <div
         className={`
         ${styles.box}
-        ${selection === TRACK_AUTHOR_PROFESSIONAL ? styles.box_selected : ""} 
+        ${selection === PROFESSIONAL_SCRIPT ? styles.box_selected : ""} 
         ${isExpanded ? styles.box_expanded : ""}`}
         onClick={handleSelect}
     >
@@ -46,15 +56,15 @@ const ProffessionalTrack = ({ isExpanded, setIsExpanded }: IProps) => {
         >
             <img
                 className={styles.box_circle}
-                src={selection === TRACK_AUTHOR_PROFESSIONAL ? CheckBoxSelected : CheckBox}
+                src={selection === PROFESSIONAL_SCRIPT ? CheckBoxSelected : CheckBox}
                 alt="CheckBox"
             />
             <span className={styles.box_title}>
-                A professional voice artist
+                Yes
                 <div className={styles.box_title_addOn}>Add-on</div>
             </span>
             <div className={styles.box_title2}>
-                We'd like LimeLite to book a professional voiceover artist.
+                We'd like LimeLite to create additional/social formats of this video.
             </div>
         </div>
         <div className={styles.box_container}>
@@ -65,23 +75,25 @@ const ProffessionalTrack = ({ isExpanded, setIsExpanded }: IProps) => {
                     <div
                         className={styles.box_content_info_header}
                     >
-                        Standart Add-on:
+                        Standard Add-on:
 
                         <span className={styles.box_content_info_header_addOn}>
-                            +$895
+                            +$75
                         </span>
                     </div>
                     <div className={styles.box_content_info_text}>
-                        Add some polish to your LimeLite Video! For videos without on-camera talent (customers, employees, actors, etc.), a professional Voiceover Artist is an excellent option. Price includes casting, auditions, recording session, and all usage rights (for web/social media usage only).
+                        Diam fringilla et nisi enim sed enim cum. Est lacus commodo egestas
+                        tortor sit tempus aenean sollicitudin. Ornare rhoncus tortor tincidunt
+                        pharetra ut dapibus id aliquam in.
+                    </div>
+                    <div className={styles.box_zone}>
                     </div>
                 </div>
+            </div>
+            <div>Video format</div>
+            <div>Video format</div>
+            <div>Add an additional format</div>
 
-            </div>
-            <div className={styles.box_subText}>
-                <img src={Note} alt="locationIcon" /> Note: You will have an
-                opportunity to enter a discount code for any for a Standard Add-ons
-                during check-out
-            </div>
         </div>
         <img
             onClick={(e) => handleExpand(e)}
@@ -92,4 +104,4 @@ const ProffessionalTrack = ({ isExpanded, setIsExpanded }: IProps) => {
     </div>;
 };
 
-export default ProffessionalTrack;
+export default ProffessionalQuestions;

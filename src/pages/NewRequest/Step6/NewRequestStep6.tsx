@@ -16,9 +16,12 @@ import { DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT, TRACK_AUTHOR_CLIENT } from "c
 import { useEffect, useState } from "react";
 import StepsNavigation from "../components/StepsNavigation";
 import { useCalculateFinalPrice } from "utils/priceCalculator";
-import VoiceTrackBox from "./components/Track/VoiceTrackBox";
-import InterviewScriptBox from "./components/Script/InterviewScriptBox";
+import InterviewScriptBox from "./components/AdditionalFormats/AdditionalFormatsBox";
 import FormatBox from "./components/FormatBox";
+import ThumbnailBox from "./components/Thumbnail/ThumbnailBox";
+import VideoTargetDurationBox from "./components/VideoTargetDuration";
+import CaptionBox from "./components/CaptionBox";
+import AdditionalFormatsBox from "./components/AdditionalFormats/AdditionalFormatsBox";
 
 const NewRequestStep6 = () => {
   const voiceSettings = useSelector(selectRequestVoiceSettings);
@@ -94,7 +97,10 @@ const NewRequestStep6 = () => {
             </div>
             <div className={styles.nR_formContainer}>
               <FormatBox />
-              <VoiceTrackBox />
+              <VideoTargetDurationBox />
+              <CaptionBox />
+              <AdditionalFormatsBox />
+              <ThumbnailBox/>
               <InterviewScriptBox />
               {isDisabled && showBottomMessage &&
                 <div className={styles.nR_formContainer_error}>
