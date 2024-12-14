@@ -13,7 +13,7 @@ interface IProps {
   onChange: (zone: { name: string; value: number }) => void;
   isError?: boolean;
 }
-const DurationSelector: FC<IProps> = ({ onChange, isError }) => {
+const DurationSelector: FC<IProps> = ({ isError }) => {
   const selectedRequest = useSelector(selectRequestInfo);
   const  duration = selectedRequest?.videoSettings.targetDuration;
   const [isOpened, setOpened] = useState(false);

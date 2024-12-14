@@ -2376,30 +2376,84 @@
         }
     }
 }
-.captions{
+.captions {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.switcher{
-    width:40px;
-    height:24px;
+.videoFormat {
+    &_header {
+        //styleName: Large screens/Body/Form Title;
+        font-family: Inter;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 16.8px;
+        letter-spacing: 0.02em;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+        color: var(--gray-dark3);
+    }
+    &_formats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 24px;
+    }
+    &_formatItem {
+        width: 250px;
+        height: 43px;
+        border: 1px solid var(--gray-light7);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19.2px;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+        color: var(--gray-dark);
+    }
+    &_addFormat {
+        //styleName: Large screens/Heading/Heading 4;
+        font-family: Poppins;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 17.6px;
+        letter-spacing: 0.02em;
+        text-align: center;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+        color:var(--green-dark);
+        padding:8px 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+    }
+}
+.switcher {
+    width: 40px;
+    height: 24px;
     position: relative;
     padding: 4px;
     background-color: var(--gray-light7);
     border-radius: 1000px;
     cursor: pointer;
     transition-duration: 0.3s;
-    &_circle{
+    &_circle {
         width: 16px;
         height: 16px;
         background-color: var(--white);
         border-radius: 1000px;
         position: absolute;
-        left:4px;
+        left: 4px;
         transition-duration: 0.3s;
     }
-    &_circle_active{
+    &_circle_active {
         left: 20px;
     }
 }

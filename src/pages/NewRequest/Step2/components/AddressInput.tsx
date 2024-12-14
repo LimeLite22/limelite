@@ -164,7 +164,7 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
                       handleUpdateField("location.street", suggestion.street_line);
                       handleUpdateField("location.city", suggestion.city);
                       handleUpdateField("location.state", suggestion.state);
-                      handleUpdateField("location.zipcode", suggestion.zipcode);
+                      handleUpdateField("location.zip", suggestion.zipcode);
                       setSuggestions([]);
                     }}
                   >
@@ -242,7 +242,7 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
             `}
               value={zip}
               onChange={(e) => {
-                handleUpdateField("location.zipcode", e.target?.value)
+                handleUpdateField("location.zip", e.target?.value)
               }}
               placeholder="Enter zip"
               name="zip"

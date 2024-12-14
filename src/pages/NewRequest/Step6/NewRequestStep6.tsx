@@ -99,9 +99,8 @@ const NewRequestStep6 = () => {
               <FormatBox />
               <VideoTargetDurationBox />
               <CaptionBox />
-              <AdditionalFormatsBox />
               <ThumbnailBox/>
-              <InterviewScriptBox />
+              <AdditionalFormatsBox />
               {isDisabled && showBottomMessage &&
                 <div className={styles.nR_formContainer_error}>
                   Please ensure all required fields are filled out before submitting the

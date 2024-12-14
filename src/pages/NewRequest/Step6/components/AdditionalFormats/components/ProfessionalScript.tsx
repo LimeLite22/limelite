@@ -1,9 +1,11 @@
-import { CheckBox, CheckBoxSelected, Expand } from "assets/images";
-import { PROFESSIONAL_SCRIPT } from "consts/consts";
+import { Add2, CheckBox, CheckBoxSelected, Expand, Note } from "assets/images";
+import { DEFAULT, PROFESSIONAL_SCRIPT, VIDEO_SQUARE, VIDEO_STANDARD, VIDEO_STORY, VIDEO_VERTICAL } from "consts/consts";
 import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
 import { useDispatch, useSelector } from "react-redux";
+import { generateUniqueId } from "utils/generateId";
 import { selectRequestInfo, updateDraftField } from "../../../../../../redux/requests/reducer";
 import styles from "../../../../NewRequest.module.scss";
+import DurationSelector from "../../DurationSelector/DurationSelector";
 interface IProps {
     isExpanded: boolean;
     setIsExpanded: (value: boolean) => void;
@@ -18,10 +20,6 @@ const ProffessionalQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) 
     const selectedRequest = useSelector(selectRequestInfo);
 
     const selection = selectedRequest?.voiceTrackSettings.scriptAuthor;
-    const subject = selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings.subject;
-    const phone = selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings.phone;
-    const email = selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings.email;
-    const text = selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings.text;
 
     const dispatch = useDispatch();
     const handleUpdateField = (path: string, value: string) => {
@@ -42,6 +40,20 @@ const ProffessionalQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) 
         setIsExpanded(!isExpanded);
         e.stopPropagation();
         e.preventDefault();
+    }
+    const handleAddNewFormat = () => {
+        const selectedFormats = [...selectedRequest?.videoSettings?.selectedAdditionalFormats ?? []];
+        selectedFormats?.unshift({
+            id: generateUniqueId(),
+            format: DEFAULT,
+            duration: DEFAULT
+        });
+        dispatch(
+            updateDraftField({
+                path: "videoSettings.selectedAdditionalFormats",
+                value: selectedFormats,
+            })
+        );
     }
 
     return <div
@@ -90,9 +102,49 @@ const ProffessionalQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) 
                     </div>
                 </div>
             </div>
-            <div>Video format</div>
-            <div>Video format</div>
-            <div>Add an additional format</div>
+            <div className={styles.box_subText}>
+                <img src={Note} alt="locationIcon" /> Note: You will have an
+                opportunity to enter a discount code for any for a Standard Add-ons
+                during check-out
+            </div>
+            <>
+                {
+                    selectedRequest?.videoSettings.selectedAdditionalFormats.map((item, index) => {
+                        return <div key={item.id}>
+                            <div className={styles.videoFormat_header}>Video format</div>
+                            <div className={styles.videoFormat_formats}>
+                                <div className={`
+                     ${item.format === VIDEO_STANDARD ? styles.box_videoTypeSelected : ""} 
+                    ${styles.videoFormat_formatItem}`}  >Standard <div className={styles.box_videoType_dot}></div> 16:9
+                                </div>
+                                <div className={styles.box_videoTypeContainer}>
+                                    <div className={`
+                    ${item.format === VIDEO_STORY ? styles.box_videoTypeSelected : ""}  
+                    ${styles.videoFormat_formatItem}`} >Story <div className={styles.box_videoType_dot}></div> 9:16
+                                    </div>
+                                </div>
+                                <div className={styles.box_videoTypeContainer} >
+                                    <div className={`
+                    ${item.format === VIDEO_SQUARE ? styles.box_videoTypeSelected : ""}  
+                    ${styles.videoFormat_formatItem}`} >Square <div className={styles.box_videoType_dot}></div> 1:1
+                                    </div>
+                                </div>
+                                <div className={styles.box_videoTypeContainer}>
+                                    <div className={`    
+                    ${item.format === VIDEO_VERTICAL ? styles.box_videoTypeSelected : ""}  
+                    ${styles.videoFormat_formatItem}`} >Vertical <div className={styles.box_videoType_dot}></div> 4:5
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className={styles.videoFormat_header}>Target duration </div>
+                            <DurationSelector onChange={() => { }} />
+                        </div>
+                    })
+                }
+            </>
+
+            <div className={styles.videoFormat_addFormat} onClick={handleAddNewFormat}><img src={Add2} alt="locationIcon" /> Add an additional format</div>
 
         </div>
         <img

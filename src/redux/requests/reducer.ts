@@ -106,7 +106,7 @@ const initialState: IRequestState = {
         date: DEFAULT,
         time: DEFAULT,
       },
-      scriptSettings:{
+      scriptSettings: {
         scriptWriter: DEFAULT,
         name: "",
         phone: '',
@@ -114,13 +114,13 @@ const initialState: IRequestState = {
         profText: "",
         ownText: "",
         teleprompter: DEFAULT,
-        persons: [{id: generateUniqueId(), name: '', title: ''}]
+        persons: [{ id: generateUniqueId(), name: '', title: '' }]
       },
       interviewSettings: {
         questionsAuthor: DEFAULT,
         questionsAuthorProfSettings: {
           subject: '',
-          phone:'',
+          phone: '',
           email: '',
           text: '',
         },
@@ -148,13 +148,13 @@ const initialState: IRequestState = {
           },
         },
       },
-      voiceTrackSettings:{
+      voiceTrackSettings: {
         trackAuthor: DEFAULT,
         track: DEFAULT,
-        scriptAuthor:DEFAULT,
+        scriptAuthor: DEFAULT,
         scriptAuthorProfSettings: {
           subject: '',
-          phone:'',
+          phone: '',
           email: '',
           text: '',
         },
@@ -162,15 +162,20 @@ const initialState: IRequestState = {
           text: '',
         },
       },
-      videoSettings:{
-        format:DEFAULT,
-        targetDuration:DEFAULT,
-        captions:false,
-        thumbnail:DEFAULT,
-        additionalFormats:DEFAULT,
-        additionalVisualEffects:DEFAULT,
-        resultTime:DEFAULT,
-      } 
+      videoSettings: {
+        format: DEFAULT,
+        targetDuration: DEFAULT,
+        captions: false,
+        thumbnail: DEFAULT,
+        additionalFormats: DEFAULT,
+        selectedAdditionalFormats: [{
+          id: generateUniqueId(),
+          format: DEFAULT,
+          duration: DEFAULT
+        }],
+        additionalVisualEffects: DEFAULT,
+        resultTime: DEFAULT,
+      }
     },
     {
       id: "2",
@@ -205,7 +210,7 @@ const initialState: IRequestState = {
         date: DEFAULT,
         time: DEFAULT,
       },
-      scriptSettings:{
+      scriptSettings: {
         scriptWriter: DEFAULT,
         name: '',
         phone: '',
@@ -213,7 +218,7 @@ const initialState: IRequestState = {
         profText: "",
         ownText: "",
         teleprompter: DEFAULT,
-        persons: [{id: generateUniqueId(), name: '', title: ''}]
+        persons: [{ id: generateUniqueId(), name: '', title: '' }]
       },
       interviewSettings: {
         questionsAuthor: DEFAULT,
@@ -241,13 +246,13 @@ const initialState: IRequestState = {
           },
         },
       },
-      voiceTrackSettings:{
+      voiceTrackSettings: {
         trackAuthor: DEFAULT,
         track: DEFAULT,
         scriptAuthor: DEFAULT,
         scriptAuthorProfSettings: {
           subject: '',
-          phone:'',
+          phone: '',
           email: '',
           text: '',
         },
@@ -255,15 +260,23 @@ const initialState: IRequestState = {
           text: '',
         },
       },
-      videoSettings:{
-        format:DEFAULT,
-        targetDuration: DEFAULT ,
-        captions:false,
-        thumbnail:DEFAULT,
-        additionalFormats:DEFAULT,
-        additionalVisualEffects:DEFAULT,
-        resultTime:DEFAULT,
-      } 
+      videoSettings: {
+        format: DEFAULT,
+        targetDuration: DEFAULT,
+        captions: false,
+        thumbnail: DEFAULT,
+        additionalFormats: DEFAULT,
+
+        selectedAdditionalFormats: [
+          {
+            id: generateUniqueId(),
+            format: DEFAULT,
+            duration: DEFAULT
+          }
+        ],
+        additionalVisualEffects: DEFAULT,
+        resultTime: DEFAULT,
+      }
     },
   ],
 };
@@ -276,12 +289,12 @@ const requestReducer = createSlice({
   name: "request",
   initialState,
   reducers: {
-    createDraft: (state, action: PayloadAction<IRequest["option"]> ) => {
+    createDraft: (state, action: PayloadAction<IRequest["option"]>) => {
       const id = generateUniqueId();
       state.drafts.unshift({
         id: id,
         option: action.payload,
-        projectName: `Request ${ state.drafts.length + 1 }`,
+        projectName: `Request ${state.drafts.length + 1}`,
         targetAudience: "",
         projectType: "",
         projectTone: "",
@@ -310,15 +323,15 @@ const requestReducer = createSlice({
           date: DEFAULT,
           time: DEFAULT,
         },
-        scriptSettings:{
-          scriptWriter:DEFAULT,
-          name:'',
-          phone:'',
+        scriptSettings: {
+          scriptWriter: DEFAULT,
+          name: '',
+          phone: '',
           email: '',
           profText: "",
           ownText: "",
           teleprompter: DEFAULT,
-          persons: [{id: generateUniqueId(), name: '', title: ''}]
+          persons: [{ id: generateUniqueId(), name: '', title: '' }]
         },
         interviewSettings: {
           questionsAuthor: DEFAULT,
@@ -345,31 +358,36 @@ const requestReducer = createSlice({
               email: '',
             },
           },
-          
+
         },
-        voiceTrackSettings:{
+        voiceTrackSettings: {
           trackAuthor: DEFAULT,
           track: DEFAULT,
-          scriptAuthor:DEFAULT,
-                  scriptAuthorProfSettings: {
-          subject: '',
-          phone:'',
-          email: '',
-          text: '',
+          scriptAuthor: DEFAULT,
+          scriptAuthorProfSettings: {
+            subject: '',
+            phone: '',
+            email: '',
+            text: '',
+          },
+          scriptAuthorOwnSettings: {
+            text: '',
+          },
         },
-        scriptAuthorOwnSettings: {
-          text: '',
-        },
-        },
-        videoSettings:{
-          format:DEFAULT,
-          targetDuration: DEFAULT ,
-          captions:false,
-          thumbnail:DEFAULT,
-          additionalFormats:DEFAULT,
-          additionalVisualEffects:DEFAULT,
-          resultTime:DEFAULT,
-        } 
+        videoSettings: {
+          format: DEFAULT,
+          targetDuration: DEFAULT,
+          captions: false,
+          thumbnail: DEFAULT,
+          additionalFormats: DEFAULT,
+          selectedAdditionalFormats: [{
+            id: generateUniqueId(),
+            format: DEFAULT,
+            duration: DEFAULT
+          }],
+          additionalVisualEffects: DEFAULT,
+          resultTime: DEFAULT,
+        }
       });
       state.selectedRequest = id;
     },
@@ -387,7 +405,7 @@ const requestReducer = createSlice({
         draft.scriptSettings.persons = draft.scriptSettings.persons.filter((person) => person.id !== id);
       }
     },
-    updatePerson: (state, action: PayloadAction<{ id: string; name: string, title: string}>) => {
+    updatePerson: (state, action: PayloadAction<{ id: string; name: string, title: string }>) => {
       const { id, name, title } = action.payload;
       const draft = state.drafts.find(
         (draft) => draft.id === state.selectedRequest,
@@ -399,11 +417,11 @@ const requestReducer = createSlice({
           person.title = title;
         }
       }
-    } ,
+    },
     updateDraftField: (state, action: PayloadAction<DraftFieldUpdate>) => {
       const draft = state.drafts.find((draft) => draft.id === state.selectedRequest);
       if (!draft) return;
-       console.log( "updateDraftField", action.payload);
+      console.log("updateDraftField", action.payload);
       set(draft, action.payload.path, action.payload.value);
     },
   },
