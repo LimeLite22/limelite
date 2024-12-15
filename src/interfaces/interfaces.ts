@@ -67,6 +67,12 @@ export interface IPerson {
   name: string;
   title: string;
 }
+export type IVideoDuration  = typeof DEFAULT | typeof LESS_15 | typeof LESS_30 | typeof LESS_30 | typeof LESS_60 | typeof LESS_1_30 | typeof LESS_2_00 | typeof LESS_2_30 | typeof LESS_3_00 | typeof MORE_3_00;
+export interface IAdditionalVideoFormat  {
+  id: string;
+  format: typeof DEFAULT | typeof VIDEO_STANDARD | typeof VIDEO_STORY | typeof VIDEO_SQUARE | typeof VIDEO_VERTICAL;
+  duration: IVideoDuration;
+}
 type InterviewSettings = {
   questionsAuthor: typeof QUESTIONS_AUTHOR_CLIENT | typeof QUESTIONS_AUTHOR_PROFESSIONAL | typeof DEFAULT;
   questionsAuthorProfSettings: {
@@ -139,18 +145,11 @@ export interface IRequest {
   }
   videoSettings: {
     format: typeof VIDEO_STANDARD | typeof VIDEO_STORY | typeof VIDEO_SQUARE | typeof VIDEO_VERTICAL | typeof DEFAULT;
-    targetDuration: 
-    typeof DEFAULT | typeof LESS_15 | typeof LESS_30 | 
-    typeof LESS_30 | typeof LESS_60 | typeof LESS_1_30 | typeof LESS_2_00 | typeof LESS_2_30 | 
-    typeof LESS_3_00 | typeof MORE_3_00;
+    targetDuration: IVideoDuration;
     captions: boolean;
     thumbnail: typeof N0_THUMBNAIL | typeof BASIC_THUMBNAIL | typeof CUSTOM_THUMBNAIL | typeof DEFAULT;
     additionalFormats: boolean | typeof DEFAULT;
-    selectedAdditionalFormats:{
-      id: string;
-      format: typeof DEFAULT | typeof VIDEO_STANDARD | typeof VIDEO_STORY | typeof VIDEO_SQUARE | typeof VIDEO_VERTICAL;
-      duration: typeof DEFAULT | typeof LESS_15 | typeof LESS_30 | typeof LESS_30 | typeof LESS_60 | typeof LESS_1_30 | typeof LESS_2_00 | typeof LESS_2_30 | typeof LESS_3_00 | typeof MORE_3_00;
-    }[],
+    selectedAdditionalFormats:IAdditionalVideoFormat[],
     additionalVisualEffects: boolean | typeof DEFAULT;
     resultTime: typeof RUSH_TIME | typeof STANDARD_TIME | typeof DEFAULT
   }

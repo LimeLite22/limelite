@@ -33,16 +33,18 @@ const RequestType: FC = () => {
             <div
               key={generateUniqueId()}
               className={styles.requestTypeContainer_item}
+              style={requestType?.value === option.value ?
+                 { border: "1px solid var(--green-dark2)", color: 'var(--black)' } : {}}
               onClick={() => {
                 dispatch(
                   updateDraftField({
-                      path: "option",
-                      value: option,
+                    path: "option",
+                    value: option,
                   })
-              );
+                );
               }}
             >
-              <img src={requestType?.value === option.value ? CheckBoxSelectedType2 : CheckBoxType2} />{option.value}
+              {option.value}
             </div>
           );
         })

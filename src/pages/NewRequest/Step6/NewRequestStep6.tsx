@@ -16,12 +16,12 @@ import { DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT, TRACK_AUTHOR_CLIENT } from "c
 import { useEffect, useState } from "react";
 import StepsNavigation from "../components/StepsNavigation";
 import { useCalculateFinalPrice } from "utils/priceCalculator";
-import InterviewScriptBox from "./components/AdditionalFormats/AdditionalFormatsBox";
 import FormatBox from "./components/FormatBox";
 import ThumbnailBox from "./components/Thumbnail/ThumbnailBox";
 import VideoTargetDurationBox from "./components/VideoTargetDuration";
 import CaptionBox from "./components/CaptionBox";
 import AdditionalFormatsBox from "./components/AdditionalFormats/AdditionalFormatsBox";
+import AdditionalVisualAssetsBox from "./components/AdditionalVisualAssets/AdditionalVisualAssets";
 
 const NewRequestStep6 = () => {
   const voiceSettings = useSelector(selectRequestVoiceSettings);
@@ -101,6 +101,7 @@ const NewRequestStep6 = () => {
               <CaptionBox />
               <ThumbnailBox/>
               <AdditionalFormatsBox />
+              <AdditionalVisualAssetsBox />
               {isDisabled && showBottomMessage &&
                 <div className={styles.nR_formContainer_error}>
                   Please ensure all required fields are filled out before submitting the

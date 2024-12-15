@@ -7,10 +7,10 @@ import {
 } from "../../../../../redux/requests/reducer";
 import styles from "../../../NewRequest.module.scss";
 import LearnMorePopUp from "../LearnMorePopUp";
-import NoFormats from "./components/NoFormats";
-import SelectedAdditionalFormats from "./components/SelectedAdditionalFormats";
+import NoAdditionalAssets from "./components/NoAdditionalAssets";
+import SelectedAdditionalFormats from "./components/AdditionnalAssets";
 
-const AdditionalFormatsBox = () => {
+const AdditionalVisualAssetsBox = () => {
 
   const selectedRequest = useSelector(selectRequestInfo);
   const [isError, setIsError] = useState({
@@ -127,10 +127,10 @@ const AdditionalFormatsBox = () => {
       onBlur={handleBlur}
     >
       <div className={styles.box_question_header_text}>
-      Do you need additional/social formats?*
+      Do you have additional visual assets?*
       </div>
       <LearnMorePopUp />
-      <NoFormats isError={{ text: isError.ownScript }} isExpanded={isOwnExpanded} setIsExpanded={setIsOwnExpanded} />
+      <NoAdditionalAssets isError={{ text: isError.ownScript }} isExpanded={isOwnExpanded} setIsExpanded={setIsOwnExpanded} />
       <SelectedAdditionalFormats
         isError={{ subject: isError.subject, email: isError.email, phone: isError.phone, text: isError.proffessionalScript }}
         isExpanded={isProffessionalExpanded}
@@ -140,4 +140,4 @@ const AdditionalFormatsBox = () => {
   );
 };
 
-export default AdditionalFormatsBox;
+export default AdditionalVisualAssetsBox;

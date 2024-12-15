@@ -1,11 +1,11 @@
 import { Add2, CheckBox, CheckBoxSelected, Expand, Note } from "assets/images";
-import { DEFAULT, PROFESSIONAL_SCRIPT, VIDEO_SQUARE, VIDEO_STANDARD, VIDEO_STORY, VIDEO_VERTICAL } from "consts/consts";
+import { DEFAULT, PROFESSIONAL_SCRIPT } from "consts/consts";
 import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
 import { useDispatch, useSelector } from "react-redux";
 import { generateUniqueId } from "utils/generateId";
 import { selectRequestInfo, updateDraftField } from "../../../../../../redux/requests/reducer";
 import styles from "../../../../NewRequest.module.scss";
-import DurationSelector from "../../DurationSelector/DurationSelector";
+import AdditionalFormatItem from "./AdditionalFormatItem";
 interface IProps {
     isExpanded: boolean;
     setIsExpanded: (value: boolean) => void;
@@ -16,7 +16,7 @@ interface IProps {
         phone: boolean,
     },
 }
-const ProffessionalQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
+const SelectedAdditionalFormats = ({ isExpanded, setIsExpanded }: IProps) => {
     const selectedRequest = useSelector(selectRequestInfo);
 
     const selection = selectedRequest?.voiceTrackSettings.scriptAuthor;
@@ -43,7 +43,7 @@ const ProffessionalQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) 
     }
     const handleAddNewFormat = () => {
         const selectedFormats = [...selectedRequest?.videoSettings?.selectedAdditionalFormats ?? []];
-        selectedFormats?.unshift({
+        selectedFormats?.push({
             id: generateUniqueId(),
             format: DEFAULT,
             duration: DEFAULT
@@ -110,36 +110,7 @@ const ProffessionalQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) 
             <>
                 {
                     selectedRequest?.videoSettings.selectedAdditionalFormats.map((item, index) => {
-                        return <div key={item.id}>
-                            <div className={styles.videoFormat_header}>Video format</div>
-                            <div className={styles.videoFormat_formats}>
-                                <div className={`
-                     ${item.format === VIDEO_STANDARD ? styles.box_videoTypeSelected : ""} 
-                    ${styles.videoFormat_formatItem}`}  >Standard <div className={styles.box_videoType_dot}></div> 16:9
-                                </div>
-                                <div className={styles.box_videoTypeContainer}>
-                                    <div className={`
-                    ${item.format === VIDEO_STORY ? styles.box_videoTypeSelected : ""}  
-                    ${styles.videoFormat_formatItem}`} >Story <div className={styles.box_videoType_dot}></div> 9:16
-                                    </div>
-                                </div>
-                                <div className={styles.box_videoTypeContainer} >
-                                    <div className={`
-                    ${item.format === VIDEO_SQUARE ? styles.box_videoTypeSelected : ""}  
-                    ${styles.videoFormat_formatItem}`} >Square <div className={styles.box_videoType_dot}></div> 1:1
-                                    </div>
-                                </div>
-                                <div className={styles.box_videoTypeContainer}>
-                                    <div className={`    
-                    ${item.format === VIDEO_VERTICAL ? styles.box_videoTypeSelected : ""}  
-                    ${styles.videoFormat_formatItem}`} >Vertical <div className={styles.box_videoType_dot}></div> 4:5
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className={styles.videoFormat_header}>Target duration </div>
-                            <DurationSelector onChange={() => { }} />
-                        </div>
+                        return <AdditionalFormatItem key={item.id} item={item} index={index} />
                     })
                 }
             </>
@@ -156,4 +127,4 @@ const ProffessionalQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) 
     </div>;
 };
 
-export default ProffessionalQuestions;
+export default SelectedAdditionalFormats;

@@ -1,5 +1,5 @@
 import { EditOnlyIcon, OtherIcon, ShootEditIcon, ShootOnlyIcon } from "assets/images";
-import { IOptionsList, TimeItem } from "interfaces/interfaces";
+import { IOptionsList, IVideoDuration, TimeItem } from "interfaces/interfaces";
 import { generateUniqueId } from "utils/generateId";
 
 // sidebar consts
@@ -222,7 +222,7 @@ export const LESS_2_30 = "≤ 2:30";
 export const LESS_3_00 = "≤ 3:00";
 export const MORE_3_00 = "> 3:00";
 
-export const videoDurationsList = [
+export const videoDurationsList: { id: string; value: IVideoDuration }[] = [
   {
     id: generateUniqueId(),
     value: LESS_15,

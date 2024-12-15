@@ -1,4 +1,4 @@
-import { CheckBox, CheckBoxSelected} from "assets/images";
+import { CheckBox, CheckBoxSelected } from "assets/images";
 import { OWN_SCRIPT } from "consts/consts";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +12,7 @@ interface IProps {
         text: boolean,
     },
 }
-const OwnQuestions = ({
+const NoAdditionalAssets = ({
     isExpanded, setIsExpanded, isError,
 }: IProps) => {
     const selectedRequest = useSelector(selectRequestInfo);
@@ -57,11 +57,11 @@ const OwnQuestions = ({
                 No
             </span>
             <div className={styles.box_title2}>
-                We don't need any additional formats of this video.
+                We don't have any additional visual assets to share.
             </div>
         </div>
     </div >
         ;
 };
 
-export default OwnQuestions;
+export default NoAdditionalAssets;

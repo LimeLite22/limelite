@@ -1,23 +1,17 @@
 import { GrayArrow } from "assets/images";
 import { DEFAULT, videoDurationsList } from "consts/consts";
+import { IVideoDuration } from "interfaces/interfaces";
 import { type FC, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-import {
-  selectRequestInfo,
-  updateDraftField,
-} from "../../../../../redux/requests/reducer";
 import "./DurationSelector.scss";
 
 interface IProps {
-  onChange: (zone: { name: string; value: number }) => void;
+  value: IVideoDuration;
+  onChange: ( value: IVideoDuration) => void;
   isError?: boolean;
 }
-const DurationSelector: FC<IProps> = ({ isError }) => {
-  const selectedRequest = useSelector(selectRequestInfo);
-  const  duration = selectedRequest?.videoSettings.targetDuration;
+const DurationSelector: FC<IProps> = ({ isError, value, onChange }) => {
+  const  duration = value;
   const [isOpened, setOpened] = useState(false);
-  const dispatch = useDispatch();
   const showError = isError && !isOpened;
 
   return (
@@ -54,13 +48,7 @@ const DurationSelector: FC<IProps> = ({ isError }) => {
               className="dropdown__item"
               key={index}
               onClick={() => {
-                // onChange({ value: option?.value });
-                  dispatch(
-                    updateDraftField({
-                      path: "videoSettings.targetDuration",
-                      value: option.value,
-                    })
-                  );
+                onChange(option?.value);
                 setOpened(false);
               }}
             >

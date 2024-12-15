@@ -1,6 +1,7 @@
 import { generateUniqueId } from 'utils/generateId';
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 import {
+  IAdditionalVideoFormat,
   IRequestState,
 } from "interfaces/interfaces";
 import { IRootState } from "redux/rootReducer";
@@ -424,6 +425,30 @@ const requestReducer = createSlice({
       console.log("updateDraftField", action.payload);
       set(draft, action.payload.path, action.payload.value);
     },
+    deleteAdditionalVideoFormat: (state, action: PayloadAction<string>) => {
+      const id = action.payload;
+      const draft = state.drafts.find(
+        (draft) => draft.id === state.selectedRequest,
+      );
+      if (draft) {
+        draft.videoSettings.selectedAdditionalFormats = draft.videoSettings.selectedAdditionalFormats.filter((person) => person.id !== id);
+      }
+    },
+    updateAdditionalVideoFormat: (state, action: PayloadAction<IAdditionalVideoFormat>) => {
+      const { id } = action.payload;
+      const draft = state.drafts.find(
+        (draft) => draft.id === state.selectedRequest,
+      );
+      if (draft) {
+        console.log('драфт є');
+        const format = draft.videoSettings.selectedAdditionalFormats.find((format) => format.id === id);
+        if (format) {
+          console.log('формат є');
+          format.format = action.payload.format;
+          format.duration = action.payload.duration;
+        }
+      }
+    },
   },
 });
 
@@ -432,6 +457,8 @@ export const {
   deleteDraft,
   updatePerson,
   deletePerson,
+  deleteAdditionalVideoFormat,
+  updateAdditionalVideoFormat,
   updateDraftField
 } = requestReducer.actions;
 
