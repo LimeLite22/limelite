@@ -36,7 +36,7 @@ const ProffessionalScript = ({ isExpanded, setIsExpanded, isError }: IProps) => 
         handleUpdateField("scriptSettings.scriptWriter", PROFESSIONAL_SCRIPT)
         setIsExpanded(true);
     }
-    const handleExpand = (e: any) => {
+    const handleExpand = (e: React.MouseEvent) => {
         handleUpdateField("scriptSettings.scriptWriter", PROFESSIONAL_SCRIPT)
         setIsExpanded(!isExpanded);
         e.stopPropagation();

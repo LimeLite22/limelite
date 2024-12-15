@@ -94,7 +94,7 @@ const ChatSupport = (): JSX.Element => {
     }
   };
 
-  const handleKeyDown = (e: any) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
       handleSendMessage();
     }
@@ -169,11 +169,10 @@ const ChatSupport = (): JSX.Element => {
           id="supportContainer"
         >
           <div
-            className={`${styles.supportContainer__content_main_content_chat} ${
-              message.images && message.images?.length > 0
+            className={`${styles.supportContainer__content_main_content_chat} ${message.images && message.images?.length > 0
                 ? styles.supportContainer__content_main_content_chat_padding
                 : ""
-            }`}
+              }`}
             ref={messageListRef}
             style={{
               height: `${height}px`,

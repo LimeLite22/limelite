@@ -35,7 +35,7 @@ const SelectedAdditionalFormats = ({ isExpanded, setIsExpanded }: IProps) => {
         handleUpdateField("voiceTrackSettings.scriptAuthor", PROFESSIONAL_SCRIPT)
         setIsExpanded(true);
     }
-    const handleExpand = (e: any) => {
+    const handleExpand = (e: React.MouseEvent) => {
         handleUpdateField("voiceTrackSettings.scriptAuthor", PROFESSIONAL_SCRIPT)
         setIsExpanded(!isExpanded);
         e.stopPropagation();

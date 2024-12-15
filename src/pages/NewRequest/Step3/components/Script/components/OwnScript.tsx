@@ -1,6 +1,6 @@
 import { CheckBox, CheckBoxSelected, Expand, StatusApproved, StatusProgress, StatusUnavailable } from "assets/images";
 import { OWN_SCRIPT } from "consts/consts";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectRequestInfo, updateDraftField } from "../../../../../../redux/requests/reducer";
 
@@ -34,7 +34,7 @@ const OwnScript = ({
         handleUpdateField("scriptSettings.scriptWriter", OWN_SCRIPT);
         setIsExpanded(true);
     }
-    const handleExpand = (e: any) => {
+    const handleExpand = (e: React.MouseEvent) => {
         e.stopPropagation();
         e.preventDefault();
         handleUpdateField("scriptSettings.scriptWriter", OWN_SCRIPT)

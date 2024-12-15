@@ -28,7 +28,7 @@ const OwnQuestions = ({
             })
         );
     };
-    const handleExpand = (e: any) => {
+    const handleExpand = (e: React.MouseEvent) => {
         e.stopPropagation();
         e.preventDefault();
         handleUpdateField("voiceTrackSettings.scriptAuthor", OWN_SCRIPT);

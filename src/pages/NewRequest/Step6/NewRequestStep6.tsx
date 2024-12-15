@@ -99,7 +99,7 @@ const NewRequestStep6 = () => {
               <FormatBox />
               <VideoTargetDurationBox />
               <CaptionBox />
-              <ThumbnailBox/>
+              <ThumbnailBox />
               <AdditionalFormatsBox />
               <AdditionalVisualAssetsBox />
               {isDisabled && showBottomMessage &&

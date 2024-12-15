@@ -27,13 +27,6 @@ const NoFormats = ({
             })
         );
     };
-    const handleExpand = (e: any) => {
-        e.stopPropagation();
-        e.preventDefault();
-        handleUpdateField("voiceTrackSettings.scriptAuthor", OWN_SCRIPT);
-        setIsExpanded(!isExpanded);
-    }
-
 
 
     return <div

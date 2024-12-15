@@ -1,23 +1,12 @@
 import { CheckBox, CheckBoxSelected } from "assets/images";
 import { OWN_SCRIPT } from "consts/consts";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectRequestInfo, updateDraftField } from "../../../../../../redux/requests/reducer";
 
 import styles from "../../../../NewRequest.module.scss";
-interface IProps {
-    isExpanded: boolean;
-    setIsExpanded: (value: boolean) => void;
-    isError: {
-        text: boolean,
-    },
-}
-const NoAdditionalAssets = ({
-    isExpanded, setIsExpanded, isError,
-}: IProps) => {
+const NoAdditionalAssets = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const selection = selectedRequest?.voiceTrackSettings.scriptAuthor;
-    const [textStatus, setTextStatus] = useState(0);
     const dispatch = useDispatch();
     const handleUpdateField = (path: string, value: string) => {
         dispatch(
@@ -27,14 +16,6 @@ const NoAdditionalAssets = ({
             })
         );
     };
-    const handleExpand = (e: any) => {
-        e.stopPropagation();
-        e.preventDefault();
-        handleUpdateField("voiceTrackSettings.scriptAuthor", OWN_SCRIPT);
-        setIsExpanded(!isExpanded);
-    }
-
-
 
     return <div
         className={`
@@ -42,7 +23,6 @@ const NoAdditionalAssets = ({
     ${selection === OWN_SCRIPT ? styles.box_selected : ""} `}
         onClick={() => {
             handleUpdateField("voiceTrackSettings.scriptAuthor", OWN_SCRIPT);
-            setIsExpanded(true);
         }}
     >
         <div

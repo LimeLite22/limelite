@@ -1,4 +1,5 @@
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { IRootState } from "redux/rootReducer";
 import { generateUniqueId } from "utils/generateId";
 
 import type { INotification } from "./../../pages/Notifications/interfaces";
@@ -93,7 +94,7 @@ const notificationsReducer = createSlice({
 	name: "notifications",
 	initialState,
 	reducers: {
-		setNotifications: (state, action: PayloadAction<any>) => {
+		setNotifications: (state, action: PayloadAction<INotification[]>) => {
 			state.list = action.payload;
 		},
 		readNotification: (state, action: PayloadAction<string>) => {
@@ -120,8 +121,8 @@ const notificationsReducer = createSlice({
 
 export const { setNotifications, readNotification, markAllAsRead } =
 	notificationsReducer.actions;
-export const selectNotifications = (state: any) => state.notifications.list;
-export const selectUnreadNotificationsNumber = (state: any) => {
+export const selectNotifications = (state: IRootState) => state.notifications.list;
+export const selectUnreadNotificationsNumber = (state: IRootState) => {
 	return state.notifications.list.filter((notification: INotification) => {
 		return !notification.isRead;
 	}).length;

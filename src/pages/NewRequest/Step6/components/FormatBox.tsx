@@ -1,8 +1,9 @@
-import { VIDEO_SQUARE, VIDEO_STANDARD, VIDEO_STORY, VIDEO_VERTICAL } from "consts/consts";
+
 import { useDispatch, useSelector } from "react-redux";
 import { selectRequestInfo, updateDraftField } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 import LearnMorePopUp from "./LearnMorePopUp";
+import { VIDEO_SQUARE, VIDEO_STANDARD, VIDEO_STORY, VIDEO_VERTICAL } from "consts/consts";
 const FormatBox = () => {
 
     const requestInfo = useSelector(selectRequestInfo);

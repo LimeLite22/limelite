@@ -284,7 +284,7 @@ const initialState: IRequestState = {
 
 type DraftFieldUpdate = {
   path: string;
-  value: any;
+  value: unknown;
 };
 const requestReducer = createSlice({
   name: "request",

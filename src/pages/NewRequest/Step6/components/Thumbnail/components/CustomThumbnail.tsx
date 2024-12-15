@@ -27,7 +27,7 @@ const CustomThumbnail = ({ isExpanded, setIsExpanded }: IProps) => {
         handleUpdateField("videoSettings.thumbnail", CUSTOM_THUMBNAIL);
         setIsExpanded(true);
     }
-    const handleExpand = (e: any) => {
+    const handleExpand = (e: React.MouseEvent) => {
         handleUpdateField("videoSettings.thumbnail", CUSTOM_THUMBNAIL);
         setIsExpanded(!isExpanded);
         e.stopPropagation();

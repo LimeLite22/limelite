@@ -37,7 +37,7 @@ const ProffessionalQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) 
         handleUpdateField("interviewSettings.questionsAuthor", QUESTIONS_AUTHOR_PROFESSIONAL)
         setIsExpanded(true);
     }
-    const handleExpand = (e: any) => {
+    const handleExpand = (e: React.MouseEvent) => {
         handleUpdateField("interviewSettings.questionsAuthor", QUESTIONS_AUTHOR_PROFESSIONAL)
         setIsExpanded(!isExpanded);
         e.stopPropagation();

@@ -127,10 +127,10 @@ const AdditionalVisualAssetsBox = () => {
       onBlur={handleBlur}
     >
       <div className={styles.box_question_header_text}>
-      Do you have additional visual assets?*
+        Do you have additional visual assets?*
       </div>
       <LearnMorePopUp />
-      <NoAdditionalAssets isError={{ text: isError.ownScript }} isExpanded={isOwnExpanded} setIsExpanded={setIsOwnExpanded} />
+      <NoAdditionalAssets />
       <SelectedAdditionalFormats
         isError={{ subject: isError.subject, email: isError.email, phone: isError.phone, text: isError.proffessionalScript }}
         isExpanded={isProffessionalExpanded}

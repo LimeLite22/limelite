@@ -27,7 +27,7 @@ const ProffessionalTrack = ({ isExpanded, setIsExpanded }: IProps) => {
         handleUpdateField("voiceTrackSettings.trackAuthor", TRACK_AUTHOR_PROFESSIONAL)
         setIsExpanded(true);
     }
-    const handleExpand = (e: any) => {
+    const handleExpand = (e: React.MouseEvent) => {
         handleUpdateField("voiceTrackSettings.trackAuthor", TRACK_AUTHOR_PROFESSIONAL)
         setIsExpanded(!isExpanded);
         e.stopPropagation();

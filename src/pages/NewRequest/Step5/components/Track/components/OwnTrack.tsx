@@ -49,7 +49,7 @@ const OwnTrack = ({
     };
 
     const dispatch = useDispatch();
-    const handleExpand = (e: any) => {
+    const handleExpand = (e: React.MouseEvent) => {
         e.stopPropagation();
         e.preventDefault();
         handleUpdateField("voiceTrackSettings.trackAuthor", TRACK_AUTHOR_CLIENT);

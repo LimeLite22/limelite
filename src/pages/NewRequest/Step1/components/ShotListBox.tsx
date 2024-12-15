@@ -17,11 +17,6 @@ import { useState } from "react";
 import styles from "../NewRequestStep1.module.scss";
 
 const ShotList = () => {
-  // const [editorState, setEditorState] = useState<any>(null);
-
-  // const handleEditorStateChange = (editorState: any) => {
-  //   setEditorState(editorState);
-  // };
   const [text, setText] = useState<string>("");
   return (
     <div>

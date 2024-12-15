@@ -56,7 +56,7 @@ const Notifications = (): JSX.Element => {
             item.text.toLowerCase().includes(searchValue.toLocaleLowerCase()) ||
             item.sender.toLowerCase().includes(searchValue.toLowerCase()),
         )
-        .map((item: any) => (
+        .map((item: INotification) => (
           <Notification key={generateUniqueId()} notification={item} />
         ))}
 
