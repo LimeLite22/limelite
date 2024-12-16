@@ -5,7 +5,8 @@ body {
   margin: 0;
   height: 100%;
 }
-html, body {
+html,
+body {
   overflow-x: hidden;
 }
 

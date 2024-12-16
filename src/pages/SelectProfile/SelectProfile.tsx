@@ -1,3 +1,7 @@
+import { useNavigate } from "react-router";
+
+import Header from "components/Header/Header";
+
 import {
   AddIcon,
   EditIcon,
@@ -6,9 +10,6 @@ import {
   User3Foto,
   User4Foto,
 } from "assets/images";
-import { useNavigate } from "react-router";
-
-import Header from "components/Header/Header";
 
 import styles from "./SelectProfile.module.scss";
 

@@ -1,16 +1,20 @@
-import {
-  BackCalendarArrow,
-  CloseCalendar,
-  ForwardCalendarArrow,
-} from "assets/images";
-import { format } from "date-fns";
-import useWindowWidth from "hooks/useWindowWidth";
-import { DEFAULT } from "consts/consts";
 import { useEffect, useState } from "react";
 import { Calendar as ReactCalendar } from "react-calendar";
 import { createPortal } from "react-dom";
 import { Sheet } from "react-modal-sheet";
 import { useDispatch, useSelector } from "react-redux";
+
+import { format } from "date-fns";
+
+import {
+  BackCalendarArrow,
+  CloseCalendar,
+  ForwardCalendarArrow,
+} from "assets/images";
+
+import useWindowWidth from "hooks/useWindowWidth";
+
+import { DEFAULT } from "consts/consts";
 
 import {
   selectRequestInfo,
@@ -128,7 +132,7 @@ const Calendar = ({ onClose, isPreferredDate, isOpened }: ICalendarProps) => {
       updateDraftField({
         path,
         value,
-      })
+      }),
     );
   };
   const handleRequest = () => {

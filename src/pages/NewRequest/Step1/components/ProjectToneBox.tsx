@@ -1,8 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  selectRequestInfo,
-} from "../../../../redux/requests/reducer";
+import { selectRequestInfo } from "../../../../redux/requests/reducer";
 import styles from "../NewRequestStep1.module.scss";
 
 const ProjectToneBox = () => {

@@ -1,11 +1,12 @@
+import { Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+
 import {
   ClosedBurgerIcon,
   OpenedBurgerIcon,
   SearchIcon,
   User1Foto,
 } from "assets/images";
-import { Autoplay } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 
 import styles from "./WelcomeHeader.module.scss";
 

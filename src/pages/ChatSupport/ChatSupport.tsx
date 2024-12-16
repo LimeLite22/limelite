@@ -1,3 +1,6 @@
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+
 import {
   Arrow2,
   AttachFileIcon,
@@ -7,9 +10,9 @@ import {
   SupportCloseIcon,
   VoiceMessageIcon,
 } from "assets/images";
+
 import useWindowWidth from "hooks/useWindowWidth";
-import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+
 import { generateUniqueId } from "utils/generateId";
 
 import ChatMessagePerson from "./ChatMessagePerson";
@@ -169,10 +172,11 @@ const ChatSupport = (): JSX.Element => {
           id="supportContainer"
         >
           <div
-            className={`${styles.supportContainer__content_main_content_chat} ${message.images && message.images?.length > 0
+            className={`${styles.supportContainer__content_main_content_chat} ${
+              message.images && message.images?.length > 0
                 ? styles.supportContainer__content_main_content_chat_padding
                 : ""
-              }`}
+            }`}
             ref={messageListRef}
             style={{
               height: `${height}px`,

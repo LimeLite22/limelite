@@ -1,8 +1,10 @@
-import { OWN_ADDRESS } from "consts/consts";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+
 import "swiper/css";
 import "swiper/css/pagination";
+
+import { OWN_ADDRESS } from "consts/consts";
 
 import { selectRequestInfo } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
@@ -28,7 +30,7 @@ const Location = () => {
     if (
       containerRef.current &&
       event.relatedTarget &&
-      containerRef.current.contains(event.relatedTarget as Node) 
+      containerRef.current.contains(event.relatedTarget as Node)
     ) {
       return;
     }

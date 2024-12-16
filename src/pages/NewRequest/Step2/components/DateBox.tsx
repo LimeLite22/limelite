@@ -1,9 +1,12 @@
-import { Add, CalendarIcon2, Close, Note, Valid } from "assets/images";
-import { format } from "date-fns";
-import { DEFAULT} from "consts/consts";
-
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import { format } from "date-fns";
+import { TimeValue } from "interfaces/interfaces";
+
+import { Add, CalendarIcon2, Close, Note, Valid } from "assets/images";
+
+import { DEFAULT } from "consts/consts";
 
 import {
   selectRequestInfo,
@@ -13,7 +16,6 @@ import styles from "../../NewRequest.module.scss";
 import Calendar from "./Calendar/Calendar";
 import TimeSelector from "./Calendar/TimeSelector";
 import LearnMorePopUp from "./LearnMorePopUp";
-import { TimeValue } from "interfaces/interfaces";
 
 const Date = () => {
   const selectedRequest = useSelector(selectRequestInfo);
@@ -32,23 +34,31 @@ const Date = () => {
         valid = true;
       }
     } else {
-      if (preferredDate?.date !== DEFAULT && preferredDate?.time !== DEFAULT && alternateDate?.date !== DEFAULT && alternateDate?.time !== DEFAULT) {
+      if (
+        preferredDate?.date !== DEFAULT &&
+        preferredDate?.time !== DEFAULT &&
+        alternateDate?.date !== DEFAULT &&
+        alternateDate?.time !== DEFAULT
+      ) {
         valid = true;
       }
     }
     setIsDataValid(valid);
-  }
+  };
 
   useEffect(() => {
     isValid();
   }, [preferredDate, alternateDate, isAlternate]);
   const dispatch = useDispatch();
-  const handleUpdateField = (path: string, value: boolean | typeof DEFAULT | TimeValue) => {
+  const handleUpdateField = (
+    path: string,
+    value: boolean | typeof DEFAULT | TimeValue,
+  ) => {
     dispatch(
       updateDraftField({
         path,
         value,
-      })
+      }),
     );
   };
 
@@ -70,10 +80,10 @@ const Date = () => {
         isPreferredDate={isPrefferedCalendar}
         onClose={handleClose}
       />
-          <div className={styles.box_question_header_text}>
-            How soon do you want to shoot? <span>*</span>
-          </div>
-          <LearnMorePopUp />
+      <div className={styles.box_question_header_text}>
+        How soon do you want to shoot? <span>*</span>
+      </div>
+      <LearnMorePopUp />
       <div
         className={`${styles.box_dateBox} ${isDataValid ? styles.box_dateBox_valid : ""}`}
       >

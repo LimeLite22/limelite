@@ -1,170 +1,170 @@
 .typeDropdown {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    height:40px;
-    min-height: 63px;
-    height: 63px;
-    cursor: pointer;
-    transition-duration: 0.2s;
-    user-select: none;
-    width: 100%;
-    position: relative;
-    min-width: 246px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 40px;
+  min-height: 63px;
+  height: 63px;
+  cursor: pointer;
+  transition-duration: 0.2s;
+  user-select: none;
+  width: 100%;
+  position: relative;
+  min-width: 246px;
+  @media screen and (max-width: 768px) {
+    min-width: unset;
+    height: unset;
+  }
+  &_error {
+    min-height: 80px;
+  }
+  &_header {
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 17.6px;
+    letter-spacing: 0.02em;
+    text-align: left;
+    color: var(--gray-dark);
     @media screen and (max-width: 768px) {
-        min-width: unset; 
-        height:unset;
+      font-family: Inter;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 16.8px;
+      letter-spacing: 0.02em;
+      text-align: left;
+      margin-top: 10px;
+      margin-bottom: 3px;
+      margin-top: 10px;
+      margin-bottom: 3px;
+      font-family: Poppins;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 17.6px;
+      letter-spacing: 0.02em;
+      text-align: left;
     }
-    &_error {
-        min-height: 80px;
-    }
-    &_header {
-        font-family: Poppins;
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 17.6px;
-        letter-spacing: 0.02em;
-        text-align: left;
-        color: var(--gray-dark);
-        @media screen and (max-width: 768px) {
-            font-family: Inter;
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 16.8px;
-            letter-spacing: 0.02em;
-            text-align: left;
-            margin-top: 10px;
-            margin-bottom: 3px;
-            margin-top: 10px;
-            margin-bottom: 3px;
-            font-family: Poppins;
-            font-size: 16px;
-            font-weight: 500;
-            line-height: 17.6px;
-            letter-spacing: 0.02em;
-            text-align: left;
-        }
-    }
-    &__selected {
-        z-index: 5;
-        width: 100%;
-        display: flex;
-        min-height:40px;
-        flex-direction: column;
-        justify-content: center;
-        border-radius: 6px;
-        position: relative;
-        margin-bottom: 5px;
-        border: 1px solid var(--gray-light3);
-        color: var(--gray-dark);
-        position: relative;
-        padding-right: 15px;
+  }
+  &__selected {
+    z-index: 5;
+    width: 100%;
+    display: flex;
+    min-height: 40px;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 6px;
+    position: relative;
+    margin-bottom: 5px;
+    border: 1px solid var(--gray-light3);
+    color: var(--gray-dark);
+    position: relative;
+    padding-right: 15px;
 
-        width: 100%;
-        height: 40px;
-        border-radius: 6px;
-        border: 1px solid var(--gray-light7);
-        padding: 0px 16px;
-        display: flex;
-        align-items: center;
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+    border: 1px solid var(--gray-light7);
+    padding: 0px 16px;
+    display: flex;
+    align-items: center;
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16.8px;
+    text-align: left;
+    text-align: left;
+    color: var(--gray-dark);
+    &_error {
+      border: 1px solid var(--red);
+    }
+    &_name {
+      width: 100%;
+      text-align: left;
+      span {
         font-family: Inter;
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 400;
         line-height: 16.8px;
         text-align: left;
-        text-align: left;
-        color: var(--gray-dark);
-        &_error {
-            border: 1px solid var(--red);
-        }
-        &_name {
-            width: 100%;
-            text-align: left;
-            span {
-                font-family: Inter;
-                font-size: 14px;
-                font-weight: 400;
-                line-height: 16.8px;
-                text-align: left;
-                color: var(--gray-light5);
-            }
-        }
-        &__itemArrow {
-            height: 25px;
-            width: 25px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translateY(-50%) translateX(-50%);
-        }
-        &_arrow {
-            top: 50%;
-            right: 5px;
-            position: absolute;
-            transform: translateY(-50%);
-            transition-duration: 0.3s;
-        }
-        &_arrowOpened {
-            transform: translateY(-50%) rotate(180deg);
-        }
-        &_errorMessage {
-            position: absolute;
-            bottom: -25px;
-            font-family: Inter;
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 16.8px;
-            text-align: left;
-            color: var(--red);
-            width:100%;
-        }
-        &_collapseIcon {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            transition-duration: 0.3s;
-            &_opened {
-                transform: rotate(180deg);
-            }
-        }
+        color: var(--gray-light5);
+      }
     }
-    &__itemsContainer {
-        background-color: var(--white);
-        min-height: 287px;
-        max-height: 287px;
-        height: 287px;
-        z-index: 10;
-        overflow: scroll;
-        border-radius: 6px;
-        border: 1px solid var(--gray-light3);
+    &__itemArrow {
+      height: 25px;
+      width: 25px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateY(-50%) translateX(-50%);
     }
-    &__item {
-        z-index: 6;
-        min-height: 41px;
-        width: 100%;
-        display: flex;
-        font-family: Inter;
-        flex-direction: column;
-        justify-content: center;
-        color: var(--gray-dark);
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        position: relative;
-        &_name {
-            width: 100%;
-            text-align: left;
-            padding: 0px 10px;
-            font-family: Inter;
-        }
-        &__itemArrow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translateY(-50%) translateX(-50%);
-        }
+    &_arrow {
+      top: 50%;
+      right: 5px;
+      position: absolute;
+      transform: translateY(-50%);
+      transition-duration: 0.3s;
     }
-    &__item:hover {
-        background: var(--gray-light8);
+    &_arrowOpened {
+      transform: translateY(-50%) rotate(180deg);
     }
+    &_errorMessage {
+      position: absolute;
+      bottom: -25px;
+      font-family: Inter;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16.8px;
+      text-align: left;
+      color: var(--red);
+      width: 100%;
+    }
+    &_collapseIcon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      transition-duration: 0.3s;
+      &_opened {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  &__itemsContainer {
+    background-color: var(--white);
+    min-height: 287px;
+    max-height: 287px;
+    height: 287px;
+    z-index: 10;
+    overflow: scroll;
+    border-radius: 6px;
+    border: 1px solid var(--gray-light3);
+  }
+  &__item {
+    z-index: 6;
+    min-height: 41px;
+    width: 100%;
+    display: flex;
+    font-family: Inter;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--gray-dark);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: relative;
+    &_name {
+      width: 100%;
+      text-align: left;
+      padding: 0px 10px;
+      font-family: Inter;
+    }
+    &__itemArrow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateY(-50%) translateX(-50%);
+    }
+  }
+  &__item:hover {
+    background: var(--gray-light8);
+  }
 }

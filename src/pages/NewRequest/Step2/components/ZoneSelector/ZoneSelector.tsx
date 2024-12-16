@@ -1,7 +1,9 @@
-import { GrayArrow } from "assets/images";
-import { zonesList } from "consts/consts";
 import { type FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import { GrayArrow } from "assets/images";
+
+import { zonesList } from "consts/consts";
 
 import {
   selectRequestInfo,
@@ -57,15 +59,15 @@ const ZoneSelector: FC<IProps> = ({ onChange, isError }) => {
               key={index}
               onClick={() => {
                 onChange({ name: option?.name, value: option?.value });
-                  dispatch(
-                    updateDraftField({
-                      path: "travel.zoneCode",
-                      value:{
-                        name: option?.name,
-                        value: option?.value
-                      },
-                    })
-                  );
+                dispatch(
+                  updateDraftField({
+                    path: "travel.zoneCode",
+                    value: {
+                      name: option?.name,
+                      value: option?.value,
+                    },
+                  }),
+                );
                 setOpened(false);
               }}
             >

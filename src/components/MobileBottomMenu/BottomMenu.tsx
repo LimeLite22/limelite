@@ -1,11 +1,13 @@
-import { HOME, LEARN, NOTIFICATIONS, PROJECTS } from "consts/consts";
-import { IRequest } from "interfaces/interfaces";
-import { optionsList } from "consts/consts";
 import { useEffect, useState } from "react";
 import { Sheet } from "react-modal-sheet";
 import { useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+
+import { IRequest } from "interfaces/interfaces";
 import { selectedMobPages } from "types/types";
+
+import { HOME, LEARN, NOTIFICATIONS, PROJECTS } from "consts/consts";
+import { optionsList } from "consts/consts";
 
 import {
   BottomNewRequestIcon,
@@ -72,11 +74,11 @@ const BottomMenu = ({ isOpened }: IProps) => {
         isOpened={isOpened}
       />
       <Link style={{ textDecoration: "none" }} to="/newRequest/start">
-        <div className={styles.bottomMenu_item} >
+        <div className={styles.bottomMenu_item}>
           <img src={BottomNewRequestIcon} alt={" NewRequestIcon"} />
           New Request
         </div>
-      </Link >
+      </Link>
       <Link style={{ textDecoration: "none" }} to="/learn/faqs">
         <BottomMenuItem
           isPageSelected={selectedPage === LEARN}
@@ -95,7 +97,7 @@ const BottomMenu = ({ isOpened }: IProps) => {
           isOpened={isOpened}
         />
       </Link>
-      {isOpen &&
+      {isOpen && (
         <Sheet
           isOpen={isOpen}
           onClose={closeBottomSheet}
@@ -119,11 +121,20 @@ const BottomMenu = ({ isOpened }: IProps) => {
                 className={`${styles.newRequestMenuContainer_newRequestMenu} 
         `}
               >
-                <div className={styles.newRequestMenuContainer_newRequestMenu_line} />
-                <div className={styles.newRequestMenuContainer_newRequestMenu_title}>
+                <div
+                  className={styles.newRequestMenuContainer_newRequestMenu_line}
+                />
+                <div
+                  className={
+                    styles.newRequestMenuContainer_newRequestMenu_title
+                  }
+                >
                   Choose an option to get started:
                 </div>
-                <div className={styles.newRequestMenuContainer_newRequestMenu_item} onClick={() => handleCardClick(optionsList[0])}>
+                <div
+                  className={styles.newRequestMenuContainer_newRequestMenu_item}
+                  onClick={() => handleCardClick(optionsList[0])}
+                >
                   <img src={ShootEditIcon} alt={"ShootEditIcon"} /> Shoot + Edit{" "}
                   <div
                     className={
@@ -133,7 +144,10 @@ const BottomMenu = ({ isOpened }: IProps) => {
                     2 credits
                   </div>
                 </div>
-                <div className={styles.newRequestMenuContainer_newRequestMenu_item} onClick={() => handleCardClick(optionsList[1])}>
+                <div
+                  className={styles.newRequestMenuContainer_newRequestMenu_item}
+                  onClick={() => handleCardClick(optionsList[1])}
+                >
                   <img src={ShootOnlyIcon} alt={"ShootOnlyIcon"} /> Shoot Only
                   <div
                     className={
@@ -143,7 +157,10 @@ const BottomMenu = ({ isOpened }: IProps) => {
                     1 credit
                   </div>
                 </div>
-                <div className={styles.newRequestMenuContainer_newRequestMenu_item} onClick={() => handleCardClick(optionsList[2])}>
+                <div
+                  className={styles.newRequestMenuContainer_newRequestMenu_item}
+                  onClick={() => handleCardClick(optionsList[2])}
+                >
                   <img src={EditOnlyIcon} alt={"EditOnlyIcon"} /> Edit Only
                   <div
                     className={
@@ -153,14 +170,17 @@ const BottomMenu = ({ isOpened }: IProps) => {
                     1 credit
                   </div>
                 </div>
-                <div className={styles.newRequestMenuContainer_newRequestMenu_item} onClick={() => handleCardClick(optionsList[3])}>
+                <div
+                  className={styles.newRequestMenuContainer_newRequestMenu_item}
+                  onClick={() => handleCardClick(optionsList[3])}
+                >
                   <img src={OtherIcon} alt={"OtherIcon"} /> Other
                 </div>
               </div>
-
             </Sheet.Content>
           </Sheet.Container>
-        </Sheet>}
+        </Sheet>
+      )}
     </div>
   );
 };

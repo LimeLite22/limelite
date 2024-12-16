@@ -1,11 +1,14 @@
-import { BottomMenu, SideBar } from "components";
-import useWindowWidth from "hooks/useWindowWidth";
-import Loader from "pages/Loader/Loader";
-import Footer from "pages/Welcome/components/Footer/Footer";
-import WelomeHeader from "pages/Welcome/components/Header/WelcomeHeader";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { Outlet } from "react-router-dom";
+
+import { BottomMenu, SideBar } from "components";
+import Loader from "pages/Loader/Loader";
+import Footer from "pages/Welcome/components/Footer/Footer";
+import WelomeHeader from "pages/Welcome/components/Header/WelcomeHeader";
+
+import useWindowWidth from "hooks/useWindowWidth";
+
 import { useCalculateFinalPrice } from "utils/priceCalculator";
 
 import styles from "./PageContainer.module.scss";
@@ -34,21 +37,22 @@ const PageContainer = () => {
   useEffect(() => {
     if (!notFirst) {
       setTimeout(() => {
-        setNotFirstVisit(true)
+        setNotFirstVisit(true);
         localStorage.setItem("notFirstVisit", "true");
       }, 6000);
     }
-  }, [])
+  }, []);
   if (!notFirstVisit) {
     // localStorage.setItem("isFirstVisit", "false");
-    return (<Loader isWelcome={true} />)
+    return <Loader isWelcome={true} />;
   }
 
   return (
     <div
       id="pageContainer"
-      className={` ${styles.pageContainer} ${whiteBackgroundForMobile ? styles.whiteBackgroundForMobile : ""
-        }
+      className={` ${styles.pageContainer} ${
+        whiteBackgroundForMobile ? styles.whiteBackgroundForMobile : ""
+      }
       ${isNewRequestSteps ? styles.newRequestStep2Container : ""}
       `}
     >
@@ -90,8 +94,7 @@ const PageContainer = () => {
                 !location.pathname.includes("newRequest/step3") &&
                 !location.pathname.includes("newRequest/step4") &&
                 !location.pathname.includes("newRequest/step5") &&
-                !location.pathname.includes("newRequest/step6") &&
-                <Footer />}
+                !location.pathname.includes("newRequest/step6") && <Footer />}
             </>
           )}
         </div>

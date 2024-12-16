@@ -1,40 +1,43 @@
-
-
-import {
-  CheckBox,
-  CheckBoxSelected,
-  Expand,
-} from "assets/images";
-import useWindowWidth from "hooks/useWindowWidth";
-import { QUESTIONS_VIRTUALLY } from "consts/consts";
-
-import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import { IAddressProps } from "interfaces/interfaces";
+import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
+
+import { CheckBox, CheckBoxSelected, Expand } from "assets/images";
+
+import useWindowWidth from "hooks/useWindowWidth";
+
+import { QUESTIONS_VIRTUALLY } from "consts/consts";
 
 import {
   selectRequestInfo,
   updateDraftField,
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
-import { IAddressProps } from "interfaces/interfaces";
 
-
-const VirtualQuestionsInput = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
+const VirtualQuestionsInput = ({
+  isExpanded,
+  setIsExpanded,
+  isError,
+}: IAddressProps) => {
   const selectedRequest = useSelector(selectRequestInfo);
   const type = selectedRequest?.interviewSettings.questionSettings.type;
-  const name = selectedRequest?.interviewSettings.questionSettings.virtualSettings.name;
-  const phone = selectedRequest?.interviewSettings.questionSettings.virtualSettings.phone;
-  const email = selectedRequest?.interviewSettings.questionSettings.locationSettings.email;
+  const name =
+    selectedRequest?.interviewSettings.questionSettings.virtualSettings.name;
+  const phone =
+    selectedRequest?.interviewSettings.questionSettings.virtualSettings.phone;
+  const email =
+    selectedRequest?.interviewSettings.questionSettings.locationSettings.email;
 
   const containerRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
   const width = useWindowWidth();
   const handleBlur = (event: React.FocusEvent<HTMLDivElement>) => {
     if (
-      (containerRef.current &&
-        event.relatedTarget &&
-        containerRef.current.contains(event.relatedTarget as Node))
+      containerRef.current &&
+      event.relatedTarget &&
+      containerRef.current.contains(event.relatedTarget as Node)
     ) {
       return;
     }
@@ -45,7 +48,7 @@ const VirtualQuestionsInput = ({ isExpanded, setIsExpanded, isError }: IAddressP
       updateDraftField({
         path,
         value,
-      })
+      }),
     );
   };
   return (
@@ -57,7 +60,10 @@ const VirtualQuestionsInput = ({ isExpanded, setIsExpanded, isError }: IAddressP
       ${isExpanded ? styles.box_expanded : ""}
       `}
       onClick={() => {
-        handleUpdateField("interviewSettings.questionSettings.type", QUESTIONS_VIRTUALLY);
+        handleUpdateField(
+          "interviewSettings.questionSettings.type",
+          QUESTIONS_VIRTUALLY,
+        );
         !isExpanded && setIsExpanded(true);
       }}
       tabIndex={0}
@@ -86,9 +92,7 @@ const VirtualQuestionsInput = ({ isExpanded, setIsExpanded, isError }: IAddressP
         <div className={styles.box_content}>
           <DefaultSlider />
           <div className={styles.box_content_info}>
-            <div
-              className={styles.box_content_info_header}
-            >
+            <div className={styles.box_content_info_header}>
               Premium Add-on:
               <span className={styles.box_content_info_header_addOn}>
                 +$695
@@ -103,13 +107,14 @@ const VirtualQuestionsInput = ({ isExpanded, setIsExpanded, isError }: IAddressP
           </div>
         </div>
         <div className={styles.box_companyContainer}>
-          <div className={styles.box_companyContainer_text}>
-            Full name
-          </div>
+          <div className={styles.box_companyContainer_text}>Full name</div>
           <input
             value={name}
             onChange={(e) => {
-              handleUpdateField("interviewSettings.questionSettings.virtualSettings.name", e.target?.value);
+              handleUpdateField(
+                "interviewSettings.questionSettings.virtualSettings.name",
+                e.target?.value,
+              );
             }}
             placeholder="Full name"
             type="company"
@@ -119,26 +124,25 @@ const VirtualQuestionsInput = ({ isExpanded, setIsExpanded, isError }: IAddressP
             `}
           />
           {isError && width > 768 && name?.trim() === "" && (
-            <div
-              className={styles.box_companyContainer_input_errorText}
-            >
+            <div className={styles.box_companyContainer_input_errorText}>
               Kindly complete the address fields before moving to the next step
             </div>
           )}
         </div>
         <div className={styles.box_inputsContainer}>
           <div className={styles.box_addressContainer}>
-            <div className={styles.box_addressContainer_text}>
-              Phone
-            </div>
+            <div className={styles.box_addressContainer_text}>Phone</div>
             <input
               className={`
                     ${styles.box_addressContainer_input} 
-                    ${isError && (phone === '') ? styles.box_addressContainer_input_error : ""}
+                    ${isError && phone === "" ? styles.box_addressContainer_input_error : ""}
                     `}
               value={phone}
               onChange={(e) => {
-                handleUpdateField("interviewSettings.questionSettings.virtualSettings.phone", e.target?.value);
+                handleUpdateField(
+                  "interviewSettings.questionSettings.virtualSettings.phone",
+                  e.target?.value,
+                );
               }}
               placeholder="+1 123 456 7890"
               name="phone"
@@ -146,9 +150,7 @@ const VirtualQuestionsInput = ({ isExpanded, setIsExpanded, isError }: IAddressP
             />
           </div>
           <div className={styles.box_addressContainer}>
-            <div className={styles.box_addressContainer_text}>
-              Email
-            </div>
+            <div className={styles.box_addressContainer_text}>Email</div>
             <input
               className={`
                 ${styles.box_addressContainer_input} 
@@ -156,23 +158,24 @@ const VirtualQuestionsInput = ({ isExpanded, setIsExpanded, isError }: IAddressP
                 `}
               value={email}
               onChange={(e) => {
-                handleUpdateField("interviewSettings.questionSettings.locationSettings.email", e.target?.value);
+                handleUpdateField(
+                  "interviewSettings.questionSettings.locationSettings.email",
+                  e.target?.value,
+                );
               }}
               placeholder="example@email.com"
               name="email"
               type="text"
             />
           </div>
-          {isError && width > 768 &&
-            (phone === '' || email?.trim() === "" || name?.trim() === "") && (
-              <div
-                className={styles.box_addressContainer_input_errorText}
-              >
+          {isError &&
+            width > 768 &&
+            (phone === "" || email?.trim() === "" || name?.trim() === "") && (
+              <div className={styles.box_addressContainer_input_errorText}>
                 Kindly complete the fields before moving to the next step
               </div>
             )}
         </div>
-
       </div>
 
       <img
@@ -181,10 +184,12 @@ const VirtualQuestionsInput = ({ isExpanded, setIsExpanded, isError }: IAddressP
         alt="Expand"
         className={styles.box_expand}
       />
-      {isError && width < 768 && isExpanded &&
-        (phone === '' || email?.trim() === "" || name?.trim() === "") && (
+      {isError &&
+        width < 768 &&
+        isExpanded &&
+        (phone === "" || email?.trim() === "" || name?.trim() === "") && (
           <div
-            style={{ left: '8px', bottom: '10px' }}
+            style={{ left: "8px", bottom: "10px" }}
             className={styles.box_addressContainer_input_errorText}
           >
             Kindly complete the fields before moving to the next step
@@ -195,4 +200,3 @@ const VirtualQuestionsInput = ({ isExpanded, setIsExpanded, isError }: IAddressP
 };
 
 export default VirtualQuestionsInput;
-

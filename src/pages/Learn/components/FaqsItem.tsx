@@ -1,5 +1,7 @@
-import { Minus, Plus } from "assets/images";
 import { useState } from "react";
+
+import { Minus, Plus } from "assets/images";
+
 import { generateUniqueId } from "utils/generateId";
 
 import styles from "../Learn.module.scss";

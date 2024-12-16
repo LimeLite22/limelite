@@ -15,9 +15,7 @@ const Header = () => {
   return (
     <div className={styles.headerContainer}>
       {openedNotification && (
-        <div className={styles.notification}>
-          {textToshow}
-        </div>
+        <div className={styles.notification}>{textToshow}</div>
       )}
       <div className={styles.header}>
         <div className={styles.header_logo} />

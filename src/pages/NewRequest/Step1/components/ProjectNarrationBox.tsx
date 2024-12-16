@@ -1,7 +1,9 @@
-import { SquareCheckbox, SquareCheckboxSelected } from "assets/images";
-import useWindowWidth from "hooks/useWindowWidth";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import { SquareCheckbox, SquareCheckboxSelected } from "assets/images";
+
+import useWindowWidth from "hooks/useWindowWidth";
 
 import {
   selectRequestInfo,
@@ -35,7 +37,7 @@ const ProjectNarrationBox = ({ isError, setIsError }: IProps) => {
         updateDraftField({
           path: "approachList",
           value: ["None"],
-        })
+        }),
       );
       return;
     }
@@ -56,9 +58,8 @@ const ProjectNarrationBox = ({ isError, setIsError }: IProps) => {
         updateDraftField({
           path: "approachList",
           value: list,
-        })
+        }),
       );
-
     }
   };
 

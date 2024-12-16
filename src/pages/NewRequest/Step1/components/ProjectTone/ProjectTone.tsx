@@ -1,7 +1,9 @@
-import { GrayArrow } from "assets/images";
-import { projectTones } from "consts/consts";
-import {  useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import { GrayArrow } from "assets/images";
+
+import { projectTones } from "consts/consts";
 
 import {
   selectRequestInfo,
@@ -73,8 +75,8 @@ const ToneSelector = ({ isError, setIsError }: IProps) => {
                 dispatch(
                   updateDraftField({
                     path: "projectTone",
-                    value:  option,
-                  })
+                    value: option,
+                  }),
                 );
                 setIsError(false);
                 setOpened(false);

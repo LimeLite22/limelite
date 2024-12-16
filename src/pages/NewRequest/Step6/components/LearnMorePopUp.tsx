@@ -1,10 +1,12 @@
-import { LearnMore } from "assets/images";
-import Close from "assets/images/LearnMore/Close.svg";
-import TestImage from "assets/images/LearnMore/TestImage.png";
-import useWindowWidth from "hooks/useWindowWidth";
 import { useState } from "react";
 import ReactDOM from "react-dom";
 import { Sheet } from "react-modal-sheet";
+
+import { LearnMore } from "assets/images";
+import Close from "assets/images/LearnMore/Close.svg";
+import TestImage from "assets/images/LearnMore/TestImage.png";
+
+import useWindowWidth from "hooks/useWindowWidth";
 
 import styles from "../../NewRequest.module.scss";
 
@@ -111,7 +113,10 @@ const LearnMorePopUp = ({ smallMargin }: { smallMargin?: boolean }) => {
                 src={TestImage}
                 alt="TestImage"
               />
-              <div  onClick={() => setOpen(false)} className={styles.learnMore_container_closeButton}>
+              <div
+                onClick={() => setOpen(false)}
+                className={styles.learnMore_container_closeButton}
+              >
                 <img
                   className={styles.learnMore_container_close}
                   src={Close}
@@ -145,7 +150,10 @@ const LearnMorePopUp = ({ smallMargin }: { smallMargin?: boolean }) => {
               <div className={styles.learnMore_container_subHeader}>
                 Urna elementum pellentesque est gravida in.<span>+$595</span>
               </div>
-              <div className={styles.learnMore_container_subText} style={{borderBottom: "none"}}>
+              <div
+                className={styles.learnMore_container_subText}
+                style={{ borderBottom: "none" }}
+              >
                 Dui rutrum aliquet lobortis fringilla turpis elementum pretium
                 integer. Elementum venenatis nisi odio tempor. Massa id.
               </div>

@@ -1,10 +1,11 @@
-import { QuestionIcon } from "assets/images";
 import "swiper/css";
 import "swiper/css/pagination";
 
+import { QuestionIcon } from "assets/images";
+
 import styles from "../../Welcome.module.scss";
-import { data } from "./data";
 import InspirationItemMobile from "./InspirationItemMobile";
+import { data } from "./data";
 
 const InspirationMobile = (): JSX.Element => {
   return (
@@ -13,11 +14,14 @@ const InspirationMobile = (): JSX.Element => {
         className={styles.welcomeContainer__content_main_inspirationMobile_text}
       >
         Inspiration
-        <img
-					src={QuestionIcon}
-					alt={"QuestionIconDarkGray"}
-				/>
-				<div className={styles.welcomeContainer__content_main_inspirationMobile_text_seeAll}>See All</div>
+        <img src={QuestionIcon} alt={"QuestionIconDarkGray"} />
+        <div
+          className={
+            styles.welcomeContainer__content_main_inspirationMobile_text_seeAll
+          }
+        >
+          See All
+        </div>
       </div>
       <div
         className={

@@ -1,5 +1,12 @@
-import { EditOnlyIcon, OtherIcon, ShootEditIcon, ShootOnlyIcon } from "assets/images";
 import { IOptionsList, IVideoDuration, TimeItem } from "interfaces/interfaces";
+
+import {
+  EditOnlyIcon,
+  OtherIcon,
+  ShootEditIcon,
+  ShootOnlyIcon,
+} from "assets/images";
+
 import { generateUniqueId } from "utils/generateId";
 
 // sidebar consts
@@ -15,28 +22,28 @@ export const SETTINGS = "Settings";
 export const SUPPORT = "Support";
 
 // video formats
-export const VIDEO_STANDARD = 'standard';
-export const VIDEO_STORY = 'story';
-export const VIDEO_SQUARE = 'square';
-export const VIDEO_VERTICAL = 'vertical';
+export const VIDEO_STANDARD = "standard";
+export const VIDEO_STORY = "story";
+export const VIDEO_SQUARE = "square";
+export const VIDEO_VERTICAL = "vertical";
 
-export const N0_THUMBNAIL = 'no thumbnail';
-export const BASIC_THUMBNAIL = 'default thumbnail';
-export const CUSTOM_THUMBNAIL = 'custom thumbnail';
+export const N0_THUMBNAIL = "no thumbnail";
+export const BASIC_THUMBNAIL = "default thumbnail";
+export const CUSTOM_THUMBNAIL = "custom thumbnail";
 
-export const RUSH_TIME = 'rush time';
-export const STANDARD_TIME = 'standard time';
+export const RUSH_TIME = "rush time";
+export const STANDARD_TIME = "standard time";
 
 export const DEFAULT = "default";
 export const OWN_SCRIPT = "own script";
 export const PROFESSIONAL_SCRIPT = "professional script";
-export const QUESTIONS_AUTHOR_CLIENT = 'client';
-export const QUESTIONS_AUTHOR_PROFESSIONAL = 'professional';
-export const QUESTIONS_ON_LOCATION = 'questions on location';
-export const QUESTIONS_VIRTUALLY = 'questions virtualy';
-export const VIRTUAL_INTERVIEW = 'virtual interview';
-export const TRACK_AUTHOR_CLIENT = 'client';
-export const TRACK_AUTHOR_PROFESSIONAL = 'professional';
+export const QUESTIONS_AUTHOR_CLIENT = "client";
+export const QUESTIONS_AUTHOR_PROFESSIONAL = "professional";
+export const QUESTIONS_ON_LOCATION = "questions on location";
+export const QUESTIONS_VIRTUALLY = "questions virtualy";
+export const VIRTUAL_INTERVIEW = "virtual interview";
+export const TRACK_AUTHOR_CLIENT = "client";
+export const TRACK_AUTHOR_PROFESSIONAL = "professional";
 
 export const optionsList: IOptionsList = [
   {
@@ -190,7 +197,7 @@ export const hoursList: TimeItem[] = [
   },
 ];
 export const zonesList = [
-  { id: generateUniqueId(), name: "Zone 1 (< 50 Miles): $0", value: 0, },
+  { id: generateUniqueId(), name: "Zone 1 (< 50 Miles): $0", value: 0 },
   {
     id: generateUniqueId(),
     name: "Zone 2 (51 - 150 Miles): $295",
@@ -218,7 +225,7 @@ export const LESS_30 = "≤ :30";
 export const LESS_60 = "≤ :60";
 export const LESS_1_30 = "≤ 1:30";
 export const LESS_2_00 = "≤ 2:00";
-export const LESS_2_30 = "≤ 2:30"; 
+export const LESS_2_30 = "≤ 2:30";
 export const LESS_3_00 = "≤ 3:00";
 export const MORE_3_00 = "> 3:00";
 
@@ -255,8 +262,6 @@ export const videoDurationsList: { id: string; value: IVideoDuration }[] = [
     id: generateUniqueId(),
     value: MORE_3_00,
   },
-
-
 ];
 export const projectTypes = [
   "Announcement Videos",

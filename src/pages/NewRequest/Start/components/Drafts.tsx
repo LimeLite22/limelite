@@ -1,8 +1,7 @@
-import { QuestionLightGray } from "assets/images";
-import useWindowWidth from "hooks/useWindowWidth";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+
 import {
   A11y,
   Keyboard,
@@ -12,6 +11,11 @@ import {
   Scrollbar,
 } from "swiper/modules";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+
+import { QuestionLightGray } from "assets/images";
+
+import useWindowWidth from "hooks/useWindowWidth";
+
 import { generateUniqueId } from "utils/generateId";
 
 import {
@@ -62,23 +66,27 @@ const Drafts = () => {
           >
             <ChangeSlide position={position} />
             {drafts.map((draft, index) => {
-
-              return <SwiperSlide
-                key={generateUniqueId()}
-                onClick={() => {
-                  dispatch(
-                    updateDraftField({
-                      path: "selectedRequest",
-                      value: draft.id,
-                    })
-                  );
-                  navigate("/newRequest/step1");
-                }}>
-                <DraftItem draft={draft} index={index} key={generateUniqueId()} />
-              </SwiperSlide>
-
-            }
-            )}
+              return (
+                <SwiperSlide
+                  key={generateUniqueId()}
+                  onClick={() => {
+                    dispatch(
+                      updateDraftField({
+                        path: "selectedRequest",
+                        value: draft.id,
+                      }),
+                    );
+                    navigate("/newRequest/step1");
+                  }}
+                >
+                  <DraftItem
+                    draft={draft}
+                    index={index}
+                    key={generateUniqueId()}
+                  />
+                </SwiperSlide>
+              );
+            })}
             <SwiperSlide
               className={styles.nR_content_projects_content_projectSpaceItem}
             ></SwiperSlide>
@@ -93,7 +101,9 @@ const Drafts = () => {
           onClick={() => position > 0 && setPosition(position - 1)}
         ></button>
         <button
-          onClick={() => position < drafts.length - 1 && setPosition(position + 1)}
+          onClick={() =>
+            position < drafts.length - 1 && setPosition(position + 1)
+          }
           className={
             styles.nR_content_projects_content_projectsList_bullets_forward
           }

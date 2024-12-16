@@ -1,3 +1,14 @@
+import { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { IStudioRentalProps } from "interfaces/interfaces";
+import type { Swiper as SwiperType } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Navigation, Pagination } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+
 import {
   CheckBox,
   CheckBoxSelected,
@@ -7,17 +18,10 @@ import {
   SwiperFoto2,
   SwiperFoto3,
 } from "assets/images";
-import { STUDIO_RENTAL } from "consts/consts";
+
 import useWindowWidth from "hooks/useWindowWidth";
-import { IStudioRentalProps } from "interfaces/interfaces";
-import { useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import type { Swiper as SwiperType } from "swiper";
-import "swiper/css";
-import "swiper/css/pagination";
-import { Navigation, Pagination } from "swiper/modules";
-import { Autoplay } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
+
+import { STUDIO_RENTAL } from "consts/consts";
 
 import {
   selectRequestInfo,
@@ -49,7 +53,7 @@ const StudioRental = ({ isExpanded, setIsExpanded }: IStudioRentalProps) => {
           updateDraftField({
             path: "location.type",
             value: STUDIO_RENTAL,
-          })
+          }),
         );
         !isExpanded && setIsExpanded(true);
       }}

@@ -39,7 +39,7 @@ const TargetAudienceBox = ({ isError, setIsError }: IProps) => {
             updateDraftField({
               path: "targetAudience",
               value: e.target.value,
-            })
+            }),
           );
         }}
         className={styles.nR_inputContainer_input}

@@ -1,3 +1,13 @@
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import type { Swiper as SwiperType } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Navigation, Pagination } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+
 import {
   CheckBox,
   CheckBoxSelected,
@@ -7,15 +17,8 @@ import {
   SwiperFoto2,
   SwiperFoto3,
 } from "assets/images";
+
 import { NO, YES } from "consts/consts";
-import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import type { Swiper as SwiperType } from "swiper";
-import "swiper/css";
-import "swiper/css/pagination";
-import { Navigation, Pagination } from "swiper/modules";
-import { Autoplay } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 
 import {
   selectRequestInfo,
@@ -79,7 +82,7 @@ const IsTravelRequired = () => {
       updateDraftField({
         path: "travel.selection",
         value: selection,
-      })
+      }),
     );
   };
   const handleZoneCode = () => {
@@ -113,10 +116,10 @@ const IsTravelRequired = () => {
       tabIndex={-1}
       onBlur={handleBlur}
     >
-          <div className={styles.box_question_header_text}>
-            Is travel required for this shoot? <span>*</span>
-          </div>
-          <LearnMorePopUp />
+      <div className={styles.box_question_header_text}>
+        Is travel required for this shoot? <span>*</span>
+      </div>
+      <LearnMorePopUp />
 
       <div
         className={`
@@ -244,7 +247,10 @@ const IsTravelRequired = () => {
               >
                 Premium Add-on:
                 <span className={styles.box_content_info_header_addOn}>
-                  +${zoneCode?.value === 0 ? "TBD" : zoneCode?.value && addCommas(zoneCode?.value)}
+                  +$
+                  {zoneCode?.value === 0
+                    ? "TBD"
+                    : zoneCode?.value && addCommas(zoneCode?.value)}
                 </span>
               </div>
               <div className={styles.box_content_info_text}>

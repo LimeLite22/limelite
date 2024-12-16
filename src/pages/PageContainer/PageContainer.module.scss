@@ -1,76 +1,76 @@
 .pageContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: var(--gray-light);
+  overflow-x: hidden;
+  &__content {
+    flex: 1 1 auto;
     width: 100%;
-    height: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background-color: var(--gray-light);
-    overflow-x: hidden;
-    &__content {
-        flex: 1 1 auto;
-        width: 100%;
-        display: flex;
-        position: relative;
-        &_main {
-            flex: 1;
-            padding: 24px 24px 0px 24px;
-            width: 74%;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+    position: relative;
+    &_main {
+      flex: 1;
+      padding: 24px 24px 0px 24px;
+      width: 74%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
 
-            @media screen and (max-width: 1024px) {
-                width: 65%;
-            }
-            @media screen and (max-width: 768px) {
-                padding: 18px 16px 72px 16px;
-            }
-            &_content {
-                width: 100%;
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                // @media screen and (max-width: 1024px) { s
-                //     justify-content: center;
-                // }
-            }
-        }
+      @media screen and (max-width: 1024px) {
+        width: 65%;
+      }
+      @media screen and (max-width: 768px) {
+        padding: 18px 16px 72px 16px;
+      }
+      &_content {
+        width: 100%;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // @media screen and (max-width: 1024px) { s
+        //     justify-content: center;
+        // }
+      }
     }
+  }
 }
 .whiteBackgroundForMobile {
-    @media screen and (max-width: 768px) {
-        background-color: var(--white);
-    }
+  @media screen and (max-width: 768px) {
+    background-color: var(--white);
+  }
 }
 .newRequestStep2Container {
-    background-color: var(--white);
-    padding: 0;
+  background-color: var(--white);
+  padding: 0;
 }
-.newRequestStep1MobContainer{
-    padding: 18px 16px 24px 16px;
+.newRequestStep1MobContainer {
+  padding: 18px 16px 24px 16px;
 }
 .sideBarHideContainer {
-    @media screen and (max-width: 768px) {
-        display: none;
-    }
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 }
 .mobileSideMenuContainer {
-    display: none;
-    @media screen and (max-width: 768px) {
-        display: block;
+  display: none;
+  @media screen and (max-width: 768px) {
+    display: block;
 
-        width: 100%;
-        height: 100%;
-        position: relative;
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: var(--popUpBaseBackground);
-        backdrop-filter: blur(2.5px);
-        z-index: 8;
-    }
+    width: 100%;
+    height: 100%;
+    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--popUpBaseBackground);
+    backdrop-filter: blur(2.5px);
+    z-index: 8;
+  }
 }

@@ -13,15 +13,14 @@
   --gray-light8: #ebeff3;
   --gray-light9: #f5f5f5;
   --gray-light10: #f9f9fa;
-  --gray-light11: #C4C5C8;
+  --gray-light11: #c4c5c8;
   --gray-light12: #d0d0d0;
-  --gray-light13:#FBFBFB;
+  --gray-light13: #fbfbfb;
   --gray-blue: #263238;
-
 
   --pink: #fce0f1;
   --pink-dark: #d754a3;
-  --pink-dark2:#D70A7B;
+  --pink-dark2: #d70a7b;
 
   --white: #fff;
   --white-light: #ffffffad;
@@ -54,13 +53,12 @@
   --orange: #6b4806;
   --orange-light: #ffebcd;
 
-  --yellow:#FBC62E;
+  --yellow: #fbc62e;
 
   --teal: #194c9e;
   --teal-light: #e0fbfc;
 
   --voilet: #553ea0;
-
 
   --popUpBaseBackground: rgba(17, 16, 14, 0.6);
 }
@@ -102,8 +100,8 @@
 .rdw-option-active:hover {
   box-shadow: none;
 }
-.public-DraftEditor-content{
-  font-family: 'Inter';
+.public-DraftEditor-content {
+  font-family: "Inter";
 }
 .css-tlfecz-indicatorContainer {
   display: none !important;
@@ -149,7 +147,7 @@
 }
 .file-drop-target.file-drop-dragging-over-frame {
   /* overlay a black mask when dragging over the frame */
-  background-color:var(--gray-light9);
+  background-color: var(--gray-light9);
   border-radius: 12px;
   box-shadow: none;
   z-index: 50;

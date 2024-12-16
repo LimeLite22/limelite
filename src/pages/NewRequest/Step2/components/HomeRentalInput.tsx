@@ -1,14 +1,13 @@
-import {
-  CheckBox,
-  CheckBoxSelected,
-  Expand,
-  Note,
-} from "assets/images";
-import useWindowWidth from "hooks/useWindowWidth";
+import { useDispatch, useSelector } from "react-redux";
+
 import { IHomeRentalProps } from "interfaces/interfaces";
 import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
+
+import { CheckBox, CheckBoxSelected, Expand, Note } from "assets/images";
+
+import useWindowWidth from "hooks/useWindowWidth";
+
 import { HOME_RENTAL } from "consts/consts";
-import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,
@@ -32,7 +31,7 @@ const HomeRental = ({ isExpanded, setIsExpanded }: IHomeRentalProps) => {
           updateDraftField({
             path: "location.type",
             value: HOME_RENTAL,
-          })
+          }),
         );
         !isExpanded && setIsExpanded(true);
       }}
@@ -63,13 +62,10 @@ const HomeRental = ({ isExpanded, setIsExpanded }: IHomeRentalProps) => {
       </div>
       <div className={styles.box_container}>
         {" "}
-
         <div className={styles.box_content}>
           <DefaultSlider />
           <div className={styles.box_content_info}>
-            <div
-              className={styles.box_content_info_header}
-            >
+            <div className={styles.box_content_info_header}>
               Premium Add-on:
               <span className={styles.box_content_info_header_addOn}>
                 +$695

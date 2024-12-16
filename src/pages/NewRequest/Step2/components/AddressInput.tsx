@@ -1,15 +1,19 @@
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import axios from "axios";
+import { IAddressProps } from "interfaces/interfaces";
+
 import {
   CheckBox,
   CheckBoxSelected,
   Expand,
   LocationBlack,
 } from "assets/images";
-import axios from "axios";
+
 import useWindowWidth from "hooks/useWindowWidth";
-import { IAddressProps } from "interfaces/interfaces";
+
 import { OWN_ADDRESS } from "consts/consts";
-import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,
@@ -36,9 +40,9 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
   const width = useWindowWidth();
   const handleBlur = (event: React.FocusEvent<HTMLDivElement>) => {
     if (
-      (containerRef.current &&
-        event.relatedTarget &&
-        containerRef.current.contains(event.relatedTarget as Node))
+      containerRef.current &&
+      event.relatedTarget &&
+      containerRef.current.contains(event.relatedTarget as Node)
     ) {
       return;
     }
@@ -49,7 +53,7 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
       updateDraftField({
         path,
         value,
-      })
+      }),
     );
   };
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -110,9 +114,7 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
       <div className={styles.box_container}>
         {" "}
         <div className={styles.box_companyContainer}>
-          <div className={styles.box_companyContainer_text}>
-            Company name
-          </div>
+          <div className={styles.box_companyContainer_text}>Company name</div>
           <input
             value={company}
             onChange={(e) => {
@@ -126,17 +128,13 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
             `}
           />
           {isError && width > 768 && company?.trim() === "" && (
-            <div
-              className={styles.box_companyContainer_input_errorText}
-            >
+            <div className={styles.box_companyContainer_input_errorText}>
               Kindly complete the address fields before moving to the next step
             </div>
           )}
         </div>
         <div className={styles.box_addressContainer}>
-          <div className={styles.box_addressContainer_text}>
-            Address
-          </div>
+          <div className={styles.box_addressContainer_text}>Address</div>
           <input
             value={street}
             onChange={handleChange}
@@ -149,7 +147,7 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
           />
           {suggestions?.length > 0 && (
             <div className={styles.box_addressContainer_suggestions}>
-              {suggestions.map((suggestion:any, index) => {
+              {suggestions.map((suggestion: any, index) => {
                 const regex = new RegExp(`(${street})`, "gi");
                 const highlightedText = suggestion.street_linea.replace(
                   regex,
@@ -161,7 +159,10 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
                     className={styles.box_addressContainer_suggestion}
                     key={index}
                     onClick={() => {
-                      handleUpdateField("location.street", suggestion.street_line);
+                      handleUpdateField(
+                        "location.street",
+                        suggestion.street_line,
+                      );
                       handleUpdateField("location.city", suggestion.city);
                       handleUpdateField("location.state", suggestion.state);
                       handleUpdateField("location.zip", suggestion.zipcode);
@@ -176,9 +177,7 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
                     <div className={styles.box_addressContainer_city}>
                       {suggestion.city}
                     </div>
-                    <div
-                      className={styles.box_addressContainer_state}
-                    >
+                    <div className={styles.box_addressContainer_state}>
                       {suggestion.state}
                     </div>
                   </div>
@@ -187,18 +186,14 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
             </div>
           )}
           {isError && width > 768 && street?.trim() === "" && (
-            <div
-              className={styles.box_addressContainer_input_errorText}
-            >
+            <div className={styles.box_addressContainer_input_errorText}>
               Kindly complete the address fields before moving to the next step
             </div>
           )}
         </div>
         <div className={styles.box_inputsContainer}>
           <div className={styles.box_addressContainer}>
-            <div className={styles.box_addressContainer_text}>
-              City
-            </div>
+            <div className={styles.box_addressContainer_text}>City</div>
             <input
               className={`
                     ${styles.box_addressContainer_input} 
@@ -206,7 +201,7 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
                     `}
               value={city}
               onChange={(e) => {
-                handleUpdateField("location.city", e.target?.value)
+                handleUpdateField("location.city", e.target?.value);
               }}
               placeholder="Enter city"
               name="city"
@@ -214,9 +209,7 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
             />
           </div>
           <div className={styles.box_addressContainer}>
-            <div className={styles.box_addressContainer_text}>
-              State
-            </div>
+            <div className={styles.box_addressContainer_text}>State</div>
             <input
               className={`
                 ${styles.box_addressContainer_input} 
@@ -224,7 +217,7 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
                 `}
               value={state}
               onChange={(e) => {
-                handleUpdateField("location.state", e.target?.value)
+                handleUpdateField("location.state", e.target?.value);
               }}
               placeholder="Enter state"
               name="state"
@@ -232,9 +225,7 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
             />
           </div>
           <div className={styles.box_addressContainer}>
-            <div className={styles.box_addressContainer_text}>
-              Zip
-            </div>
+            <div className={styles.box_addressContainer_text}>Zip</div>
             <input
               className={`
             ${styles.box_addressContainer_input} 
@@ -242,23 +233,23 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
             `}
               value={zip}
               onChange={(e) => {
-                handleUpdateField("location.zip", e.target?.value)
+                handleUpdateField("location.zip", e.target?.value);
               }}
               placeholder="Enter zip"
               name="zip"
               type="text"
             />
           </div>
-          {isError && width > 768 &&
-            (city?.trim() === "" || state?.trim() === "" || zip?.trim() === "") && (
-              <div
-                className={styles.box_addressContainer_input_errorText}
-              >
+          {isError &&
+            width > 768 &&
+            (city?.trim() === "" ||
+              state?.trim() === "" ||
+              zip?.trim() === "") && (
+              <div className={styles.box_addressContainer_input_errorText}>
                 Kindly complete the fields before moving to the next step
               </div>
             )}
         </div>
-
       </div>
 
       <img
@@ -267,10 +258,15 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
         alt="Expand"
         className={styles.box_expand}
       />
-      {isError && width < 768 &&
-        (city?.trim() === "" || state?.trim() === "" || zip?.trim() === "" || street?.trim() === "" || company?.trim() === "") && (
+      {isError &&
+        width < 768 &&
+        (city?.trim() === "" ||
+          state?.trim() === "" ||
+          zip?.trim() === "" ||
+          street?.trim() === "" ||
+          company?.trim() === "") && (
           <div
-            style={{ left: '8px', bottom: '10px' }}
+            style={{ left: "8px", bottom: "10px" }}
             className={styles.box_addressContainer_input_errorText}
           >
             Kindly complete the fields before moving to the next step

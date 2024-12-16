@@ -1,22 +1,19 @@
-
-import { CUSTOM_THUMBNAIL, DEFAULT } from "consts/consts";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import {
-  selectRequestInfo,
-} from "../../../../../redux/requests/reducer";
+
+import { CUSTOM_THUMBNAIL, DEFAULT } from "consts/consts";
+
+import { selectRequestInfo } from "../../../../../redux/requests/reducer";
 import styles from "../../../NewRequest.module.scss";
 import LearnMorePopUp from "../LearnMorePopUp";
 import BasicThumbnail from "./components/BasicThumbnail";
-import NoThumbnail from "./components/NoThumbnail";
 import ProffessionalTrack from "./components/CustomThumbnail";
+import NoThumbnail from "./components/NoThumbnail";
 
 const ThumbnailBox = () => {
-
   const selectedRequest = useSelector(selectRequestInfo);
   const selection = selectedRequest?.videoSettings.thumbnail;
   const [isProffessionalExpanded, setIsProffessionalExpanded] = useState(false);
-
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -34,17 +31,12 @@ const ThumbnailBox = () => {
   };
 
   useEffect(() => {
-    if (selection === DEFAULT) return
+    if (selection === DEFAULT) return;
     if (selection === CUSTOM_THUMBNAIL) setIsProffessionalExpanded(true);
-  }, [selection])
-
+  }, [selection]);
 
   return (
-    <div
-      ref={containerRef}
-      tabIndex={-1}
-      onBlur={handleBlur}
-    >
+    <div ref={containerRef} tabIndex={-1} onBlur={handleBlur}>
       <div className={styles.box_question_header_text}>
         Do you need a thumbnail?*
       </div>
@@ -55,7 +47,7 @@ const ThumbnailBox = () => {
         isExpanded={isProffessionalExpanded}
         setIsExpanded={setIsProffessionalExpanded}
       />
-    </div >
+    </div>
   );
 };
 

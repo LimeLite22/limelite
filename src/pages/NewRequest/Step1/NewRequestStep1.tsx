@@ -1,3 +1,7 @@
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
 import {
   ArrowGray,
   ArrowGray3,
@@ -5,22 +9,20 @@ import {
   ArrowWhite,
   DetailsGreen,
 } from "assets/images";
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+
 import { selectRequestInfo } from "../../../redux/requests/reducer";
+import FormFooter from "../components/FormFooter";
+import StepsNavigation from "../components/StepsNavigation";
 import styles from "./NewRequestStep1.module.scss";
 import {
   ProjectNameBox,
   ProjectNarrationBox,
-  ShotListBox,
-  TargetAudienceBox,
   ProjectTone,
   ProjectType,
   RequestType,
+  ShotListBox,
+  TargetAudienceBox,
 } from "./components";
-import FormFooter from "../components/FormFooter";
-import StepsNavigation from "../components/StepsNavigation";
 
 const NewRequestStep1 = () => {
   const selectedRequest = useSelector(selectRequestInfo);

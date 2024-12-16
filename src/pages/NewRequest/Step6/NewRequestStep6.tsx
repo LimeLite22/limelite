@@ -1,3 +1,7 @@
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
 import {
   ArrowGray,
   ArrowGray3,
@@ -5,23 +9,28 @@ import {
   ArrowWhite,
   DetailsGreen,
 } from "assets/images";
+
 import useWindowWidth from "hooks/useWindowWidth";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+
+import { useCalculateFinalPrice } from "utils/priceCalculator";
+
+import {
+  DEFAULT,
+  OWN_SCRIPT,
+  PROFESSIONAL_SCRIPT,
+  TRACK_AUTHOR_CLIENT,
+} from "consts/consts";
 
 import { selectRequestVoiceSettings } from "../../../redux/requests/reducer";
 import styles from "../NewRequest.module.scss";
 import FormFooter from "../components/FormFooter";
-import { DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT, TRACK_AUTHOR_CLIENT } from "consts/consts";
-import { useEffect, useState } from "react";
 import StepsNavigation from "../components/StepsNavigation";
-import { useCalculateFinalPrice } from "utils/priceCalculator";
+import AdditionalFormatsBox from "./components/AdditionalFormats/AdditionalFormatsBox";
+import AdditionalVisualAssetsBox from "./components/AdditionalVisualAssets/AdditionalVisualAssets";
+import CaptionBox from "./components/CaptionBox";
 import FormatBox from "./components/FormatBox";
 import ThumbnailBox from "./components/Thumbnail/ThumbnailBox";
 import VideoTargetDurationBox from "./components/VideoTargetDuration";
-import CaptionBox from "./components/CaptionBox";
-import AdditionalFormatsBox from "./components/AdditionalFormats/AdditionalFormatsBox";
-import AdditionalVisualAssetsBox from "./components/AdditionalVisualAssets/AdditionalVisualAssets";
 
 const NewRequestStep6 = () => {
   const voiceSettings = useSelector(selectRequestVoiceSettings);
@@ -35,29 +44,34 @@ const NewRequestStep6 = () => {
     if (voiceSettings?.trackAuthor === DEFAULT) {
       disabled = true;
     }
-    if (voiceSettings?.trackAuthor === TRACK_AUTHOR_CLIENT
-      && voiceSettings?.track === DEFAULT) {
+    if (
+      voiceSettings?.trackAuthor === TRACK_AUTHOR_CLIENT &&
+      voiceSettings?.track === DEFAULT
+    ) {
       disabled = true;
     }
     const profSettings = voiceSettings?.scriptAuthorProfSettings;
-    if (voiceSettings?.scriptAuthor === OWN_SCRIPT
-      && (profSettings?.text.length === 0
-        || profSettings?.subject.length === 0 ||
-        profSettings?.phone === '' ||
-        profSettings?.email.length === 0)) {
+    if (
+      voiceSettings?.scriptAuthor === OWN_SCRIPT &&
+      (profSettings?.text.length === 0 ||
+        profSettings?.subject.length === 0 ||
+        profSettings?.phone === "" ||
+        profSettings?.email.length === 0)
+    ) {
       disabled = true;
     }
-    if (voiceSettings?.scriptAuthor === PROFESSIONAL_SCRIPT
-      && (profSettings?.text.length === 0
-        || profSettings?.subject.length === 0 ||
-        profSettings?.phone === '' ||
-        profSettings?.email.length === 0)) {
+    if (
+      voiceSettings?.scriptAuthor === PROFESSIONAL_SCRIPT &&
+      (profSettings?.text.length === 0 ||
+        profSettings?.subject.length === 0 ||
+        profSettings?.phone === "" ||
+        profSettings?.email.length === 0)
+    ) {
       disabled = true;
     }
     console.log("disabled", disabled);
     setIsDisabled(disabled);
-
-  }
+  };
   useEffect(() => {
     handleNextDisabled();
   }, [voiceSettings]);
@@ -68,11 +82,7 @@ const NewRequestStep6 = () => {
         <div
           className={styles.nR_container}
           style={{
-            paddingBottom:
-              price ===
-                0 && width < 768
-                ? "20px"
-                : "",
+            paddingBottom: price === 0 && width < 768 ? "20px" : "",
           }}
         >
           <Link to="/newRequest/step3">
@@ -92,7 +102,8 @@ const NewRequestStep6 = () => {
                 About Your Video Edit
               </div>
               <div className={styles.nR_header_subText}>
-                Please provide important information below regarding your completed video
+                Please provide important information below regarding your
+                completed video
               </div>
             </div>
             <div className={styles.nR_formContainer}>
@@ -102,12 +113,13 @@ const NewRequestStep6 = () => {
               <ThumbnailBox />
               <AdditionalFormatsBox />
               <AdditionalVisualAssetsBox />
-              {isDisabled && showBottomMessage &&
+              {isDisabled && showBottomMessage && (
                 <div className={styles.nR_formContainer_error}>
-                  Please ensure all required fields are filled out before submitting the
-                  form. Each section must be completed to proceed.
+                  Please ensure all required fields are filled out before
+                  submitting the form. Each section must be completed to
+                  proceed.
                 </div>
-              }
+              )}
               <div className={styles.nR_formContainer_buttons}>
                 <Link to="/newRequest/step2">
                   <button className={styles.nR_back}>
@@ -127,10 +139,8 @@ const NewRequestStep6 = () => {
                       Next <img src={ArrowWhite} alt="" />
                     </button>
                   ) : (
-                    <Link to={"/newRequest/step6"} >
-                      <button
-                        className={`${styles.nR_buttons_delivery}`}
-                      >
+                    <Link to={"/newRequest/step6"}>
+                      <button className={`${styles.nR_buttons_delivery}`}>
                         Next <img src={ArrowWhite} alt="" />
                       </button>
                     </Link>

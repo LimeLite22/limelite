@@ -1,15 +1,21 @@
-
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+
 import "swiper/css";
 import "swiper/css/pagination";
+
+import {
+  QUESTIONS_ON_LOCATION,
+  QUESTIONS_VIRTUALLY,
+  VIRTUAL_INTERVIEW,
+} from "consts/consts";
+
 import { selectRequestInfo } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 import LearnMorePopUp from "./LearnMorePopUp";
 import QuestionsOnLocationInput from "./QuestionsOnLocationInput";
-import VirtualQuestionsInput from "./VirtualQuestionsInput";
 import VirtualInterview from "./VirtualInterview";
-import {QUESTIONS_ON_LOCATION, QUESTIONS_VIRTUALLY, VIRTUAL_INTERVIEW } from "consts/consts";
+import VirtualQuestionsInput from "./VirtualQuestionsInput";
 
 const QuestionsAuthorBox = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -23,9 +29,12 @@ const QuestionsAuthorBox = () => {
   const virtualPhone = settings?.virtualSettings.phone;
   const virtualEmail = settings?.virtualSettings.email;
 
-  const [isLocationQuestionExpanded, setIsLocationQuestionExpanded] = useState(false);
-  const [isVirtualQuestionsExpanded, setIsVirtualQuestionsExpanded] = useState(false);
-  const [isVirtualInterviewExpanded, setIsVirtulalInterviewExpanded] = useState(false);
+  const [isLocationQuestionExpanded, setIsLocationQuestionExpanded] =
+    useState(false);
+  const [isVirtualQuestionsExpanded, setIsVirtualQuestionsExpanded] =
+    useState(false);
+  const [isVirtualInterviewExpanded, setIsVirtulalInterviewExpanded] =
+    useState(false);
   const [isError, setIsError] = useState(false);
   const handleBlur = (event: React.FocusEvent<HTMLDivElement>) => {
     if (
@@ -36,8 +45,10 @@ const QuestionsAuthorBox = () => {
       return;
     }
     if (
-      type === QUESTIONS_ON_LOCATION
-      && (locationName?.trim() === "" || locationEmail?.trim() === "" || locationPhone === '')
+      type === QUESTIONS_ON_LOCATION &&
+      (locationName?.trim() === "" ||
+        locationEmail?.trim() === "" ||
+        locationPhone === "")
     ) {
       setIsError(true);
       setIsLocationQuestionExpanded(true);
@@ -45,8 +56,10 @@ const QuestionsAuthorBox = () => {
       setIsVirtulalInterviewExpanded(false);
     }
     if (
-      type === QUESTIONS_VIRTUALLY
-      && (virtualName?.trim() === "" || virtualEmail?.trim() === "" || virtualPhone === '')
+      type === QUESTIONS_VIRTUALLY &&
+      (virtualName?.trim() === "" ||
+        virtualEmail?.trim() === "" ||
+        virtualPhone === "")
     ) {
       setIsError(true);
       setIsLocationQuestionExpanded(false);
@@ -59,34 +72,43 @@ const QuestionsAuthorBox = () => {
       setIsVirtualQuestionsExpanded(false);
       setIsVirtulalInterviewExpanded(false);
     }
-
   };
   useEffect(() => {
     if (
-      type === QUESTIONS_ON_LOCATION
-      && locationName?.trim() !== ""
-      && locationEmail?.trim() !== ""
-      && locationPhone !== '') {
+      type === QUESTIONS_ON_LOCATION &&
+      locationName?.trim() !== "" &&
+      locationEmail?.trim() !== "" &&
+      locationPhone !== ""
+    ) {
       setIsError(false);
     }
     if (
-      type === QUESTIONS_VIRTUALLY
-      && virtualName?.trim() !== ""
-      && virtualEmail?.trim() !== ""
-      && virtualPhone !== '') {
+      type === QUESTIONS_VIRTUALLY &&
+      virtualName?.trim() !== "" &&
+      virtualEmail?.trim() !== "" &&
+      virtualPhone !== ""
+    ) {
       setIsError(false);
     }
     if (type === VIRTUAL_INTERVIEW) {
       setIsError(false);
     }
-  }, [type, locationName, locationEmail, locationPhone, virtualName, virtualEmail, virtualPhone]);
+  }, [
+    type,
+    locationName,
+    locationEmail,
+    locationPhone,
+    virtualName,
+    virtualEmail,
+    virtualPhone,
+  ]);
 
   return (
     <div ref={containerRef} tabIndex={-1} onBlur={handleBlur}>
-          <div className={styles.box_question_header_text}>
-            Who will conduct the interview(s)?
-          </div>
-          <LearnMorePopUp smallMargin />
+      <div className={styles.box_question_header_text}>
+        Who will conduct the interview(s)?
+      </div>
+      <LearnMorePopUp smallMargin />
       <QuestionsOnLocationInput
         isExpanded={isLocationQuestionExpanded}
         setIsExpanded={setIsLocationQuestionExpanded}
@@ -96,7 +118,6 @@ const QuestionsAuthorBox = () => {
         isExpanded={isVirtualQuestionsExpanded}
         setIsExpanded={setIsVirtualQuestionsExpanded}
         isError={isError && type === QUESTIONS_VIRTUALLY}
-
       />
       <VirtualInterview
         isExpanded={isVirtualInterviewExpanded}

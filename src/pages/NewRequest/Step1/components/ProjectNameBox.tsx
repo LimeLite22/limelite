@@ -39,7 +39,7 @@ const ProjectNameBox = ({ isError, setIsError }: IProps) => {
             updateDraftField({
               path: "projectName",
               value: e.target.value,
-            })
+            }),
           );
         }}
         className={styles.nR_inputContainer_input}

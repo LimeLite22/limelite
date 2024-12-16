@@ -1,22 +1,35 @@
-import useWindowWidth from "hooks/useWindowWidth";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
+import { selectedPages } from "types/types";
+
+import useWindowWidth from "hooks/useWindowWidth";
+
+import {
+  ADD_ONS,
+  INSPIRATION,
+  LEARN,
+  NEW_REQUEST,
+  NOTIFICATIONS,
+  PROJECTS,
+  SETTINGS,
+  SUPPORT,
+  WELCOME,
+} from "consts/consts";
+
 import {
   AddOns,
-  NewRequest,
-  Settings2,
   Home,
+  Inspiration,
   Learn,
+  NewRequest,
   Notifications,
   Projects,
+  Settings2,
   Support,
-  Inspiration,
 } from "../../assets/images";
 import styles from "./SideBar.module.scss";
 import SideBarNavItem from "./components/SideBarNavItem";
-import { selectedPages } from "types/types";
-import { WELCOME, LEARN, NOTIFICATIONS, NEW_REQUEST, PROJECTS, SUPPORT, INSPIRATION, SETTINGS, ADD_ONS } from "consts/consts";
 
 type IProps = {
   isOpened: boolean;
@@ -44,15 +57,14 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
       location.pathname.includes("newRequest/step4") ||
       location.pathname.includes("newRequest/step5") ||
       location.pathname.includes("newRequest/step6")
-
     ) {
       setSelectedPage(NEW_REQUEST);
     }
   }, [location]);
 
   const handleLinkClick = () => {
-    windowWidth < 768 && setIsOpened(false)
-  }
+    windowWidth < 768 && setIsOpened(false);
+  };
   return (
     <div
       className={`${styles.sideBar} ${isOpened ? styles.sideBar_opened : ""}`}
@@ -72,8 +84,9 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
           </Link>
 
           <div
-            className={`${styles.sideBar_navItemContainer_switchArrow} ${isOpened ? styles.sideBar_navItemContainer_switchArrow_opened : ""
-              }`}
+            className={`${styles.sideBar_navItemContainer_switchArrow} ${
+              isOpened ? styles.sideBar_navItemContainer_switchArrow_opened : ""
+            }`}
             onClick={() => setIsOpened(!isOpened)}
           />
         </div>

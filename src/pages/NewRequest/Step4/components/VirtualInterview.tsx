@@ -1,15 +1,13 @@
-import {
-  CheckBox,
-  CheckBoxSelected,
-  Expand,
-  Note,
-} from "assets/images";
-import { VIRTUAL_INTERVIEW } from "consts/consts";
-import useWindowWidth from "hooks/useWindowWidth";
-import { IHomeRentalProps } from "interfaces/interfaces";
-
-import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
 import { useDispatch, useSelector } from "react-redux";
+
+import { IHomeRentalProps } from "interfaces/interfaces";
+import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
+
+import { CheckBox, CheckBoxSelected, Expand, Note } from "assets/images";
+
+import useWindowWidth from "hooks/useWindowWidth";
+
+import { VIRTUAL_INTERVIEW } from "consts/consts";
 
 import {
   selectRequestInfo,
@@ -28,17 +26,20 @@ const VirtualInterview = ({ isExpanded, setIsExpanded }: IHomeRentalProps) => {
       updateDraftField({
         path,
         value,
-      })
+      }),
     );
   };
   return (
     <div
       className={`
        ${styles.box}
-       ${type === VIRTUAL_INTERVIEW? styles.box_selected : ""} 
+       ${type === VIRTUAL_INTERVIEW ? styles.box_selected : ""} 
        ${isExpanded ? styles.box_expanded : ""}`}
       onClick={() => {
-        handleUpdateField("interviewSettings.questionSettings.type", VIRTUAL_INTERVIEW);
+        handleUpdateField(
+          "interviewSettings.questionSettings.type",
+          VIRTUAL_INTERVIEW,
+        );
         !isExpanded && setIsExpanded(true);
       }}
       tabIndex={0}
@@ -68,13 +69,10 @@ const VirtualInterview = ({ isExpanded, setIsExpanded }: IHomeRentalProps) => {
       </div>
       <div className={styles.box_container}>
         {" "}
-
         <div className={styles.box_content}>
           <DefaultSlider />
           <div className={styles.box_content_info}>
-            <div
-              className={styles.box_content_info_header}
-            >
+            <div className={styles.box_content_info_header}>
               Premium Add-on:
               <span className={styles.box_content_info_header_addOn}>
                 +$695
@@ -107,4 +105,3 @@ const VirtualInterview = ({ isExpanded, setIsExpanded }: IHomeRentalProps) => {
 };
 
 export default VirtualInterview;
-

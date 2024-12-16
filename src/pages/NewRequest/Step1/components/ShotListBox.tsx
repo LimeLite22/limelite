@@ -11,9 +11,9 @@
 //   UnorderedList,
 // } from "assets/images";
 import { useState } from "react";
+
 // import { Editor } from "react-draft-wysiwyg";
 // import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-
 import styles from "../NewRequestStep1.module.scss";
 
 const ShotList = () => {
@@ -95,7 +95,12 @@ const ShotList = () => {
           // stripPastedStyles
         />
       </div> */}
-      <textarea className={styles.nR_shotList_textArea} placeholder="Add your shot list here..." value={text} onChange={(e) => setText(e.target.value)} />
+      <textarea
+        className={styles.nR_shotList_textArea}
+        placeholder="Add your shot list here..."
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
     </div>
   );
 };

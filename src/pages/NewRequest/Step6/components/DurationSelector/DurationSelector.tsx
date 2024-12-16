@@ -1,16 +1,20 @@
-import { GrayArrow } from "assets/images";
-import { DEFAULT, videoDurationsList } from "consts/consts";
-import { IVideoDuration } from "interfaces/interfaces";
 import { type FC, useState } from "react";
+
+import { IVideoDuration } from "interfaces/interfaces";
+
+import { GrayArrow } from "assets/images";
+
+import { DEFAULT, videoDurationsList } from "consts/consts";
+
 import "./DurationSelector.scss";
 
 interface IProps {
   value: IVideoDuration;
-  onChange: ( value: IVideoDuration) => void;
+  onChange: (value: IVideoDuration) => void;
   isError?: boolean;
 }
 const DurationSelector: FC<IProps> = ({ isError, value, onChange }) => {
-  const  duration = value;
+  const duration = value;
   const [isOpened, setOpened] = useState(false);
   const showError = isError && !isOpened;
 
@@ -23,7 +27,7 @@ const DurationSelector: FC<IProps> = ({ isError, value, onChange }) => {
         }}
       >
         <div className="dropdown__selected_name">
-          {duration !== DEFAULT ? duration  : <span>Select</span>}
+          {duration !== DEFAULT ? duration : <span>Select</span>}
         </div>
         {isError && !isOpened && (
           <div className="dropdown__selected_errorMessage">

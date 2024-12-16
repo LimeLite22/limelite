@@ -1,6 +1,3 @@
+const FormNNavigationButtons = () => {};
 
-const FormNNavigationButtons = () => {
-    
-}
-
-export default FormNNavigationButtons
+export default FormNNavigationButtons;

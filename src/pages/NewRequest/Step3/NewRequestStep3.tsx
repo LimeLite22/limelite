@@ -1,3 +1,7 @@
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
 import {
   ArrowGray,
   ArrowGray3,
@@ -5,20 +9,20 @@ import {
   ArrowWhite,
   DetailsGreen,
 } from "assets/images";
+
 import useWindowWidth from "hooks/useWindowWidth";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+
+import { useCalculateFinalPrice } from "utils/priceCalculator";
+
+import { DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT } from "consts/consts";
 
 import { selectRequestInfo } from "../../../redux/requests/reducer";
 import styles from "../NewRequest.module.scss";
 import FormFooter from "../components/FormFooter";
+import StepsNavigation from "../components/StepsNavigation";
 import IsScriptRequired from "./components/Script/IsScriptRequiredBox";
 import ScriptPersons from "./components/ScriptPersons";
 import Teleprompter from "./components/Teleprompter";
-import { DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT } from "consts/consts";
-import { useEffect, useState } from "react";
-import StepsNavigation from "../components/StepsNavigation";
-import { useCalculateFinalPrice } from "utils/priceCalculator";
 
 const NewRequestStep3 = () => {
   const selectedRequest = useSelector(selectRequestInfo);
@@ -32,14 +36,19 @@ const NewRequestStep3 = () => {
     if (selectedRequest?.scriptSettings?.scriptWriter === DEFAULT) {
       disabled = true;
     }
-    if (selectedRequest?.scriptSettings?.scriptWriter === OWN_SCRIPT && selectedRequest?.scriptSettings?.ownText.length === 0) {
+    if (
+      selectedRequest?.scriptSettings?.scriptWriter === OWN_SCRIPT &&
+      selectedRequest?.scriptSettings?.ownText.length === 0
+    ) {
       disabled = true;
     }
-    if (selectedRequest?.scriptSettings?.scriptWriter === PROFESSIONAL_SCRIPT
-      && (selectedRequest?.scriptSettings?.profText.length === 0
-        || selectedRequest?.scriptSettings?.name.length === 0 ||
+    if (
+      selectedRequest?.scriptSettings?.scriptWriter === PROFESSIONAL_SCRIPT &&
+      (selectedRequest?.scriptSettings?.profText.length === 0 ||
+        selectedRequest?.scriptSettings?.name.length === 0 ||
         selectedRequest?.scriptSettings?.phone === 0 ||
-        selectedRequest?.scriptSettings?.phone === '')) {
+        selectedRequest?.scriptSettings?.phone === "")
+    ) {
       disabled = true;
     }
     if (selectedRequest?.scriptSettings?.teleprompter === DEFAULT) {
@@ -52,8 +61,7 @@ const NewRequestStep3 = () => {
       }
     });
     setIsDisabled(disabled);
-
-  }
+  };
   useEffect(() => {
     handleNextDisabled();
   }, [selectedRequest]);
@@ -64,11 +72,7 @@ const NewRequestStep3 = () => {
         <div
           className={styles.nR_container}
           style={{
-            paddingBottom:
-              price ===
-                0 && width < 768
-                ? "20px"
-                : "",
+            paddingBottom: price === 0 && width < 768 ? "20px" : "",
           }}
         >
           <Link to="/newRequest/step2">
@@ -96,12 +100,13 @@ const NewRequestStep3 = () => {
               <IsScriptRequired />
               <Teleprompter />
               <ScriptPersons />
-              {isDisabled && showBottomMessage &&
+              {isDisabled && showBottomMessage && (
                 <div className={styles.nR_formContainer_error}>
-                  Please ensure all required fields are filled out before submitting the
-                  form. Each section must be completed to proceed.
+                  Please ensure all required fields are filled out before
+                  submitting the form. Each section must be completed to
+                  proceed.
                 </div>
-              }
+              )}
               <div className={styles.nR_formContainer_buttons}>
                 <Link to="/newRequest/step2">
                   <button className={styles.nR_back}>
@@ -121,10 +126,8 @@ const NewRequestStep3 = () => {
                       Next <img src={ArrowWhite} alt="" />
                     </button>
                   ) : (
-                    <Link to={"/newRequest/step4"} >
-                      <button
-                        className={`${styles.nR_buttons_delivery}`}
-                      >
+                    <Link to={"/newRequest/step4"}>
+                      <button className={`${styles.nR_buttons_delivery}`}>
                         Next <img src={ArrowWhite} alt="" />
                       </button>
                     </Link>
@@ -136,7 +139,6 @@ const NewRequestStep3 = () => {
           <FormFooter />
         </div>
       </div>
-
     </>
   );
 };

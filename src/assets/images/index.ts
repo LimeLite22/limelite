@@ -1,4 +1,3 @@
-
 export { default as AddOnlyIcon } from "./BottomMenu/AddOnlyIcon.svg";
 export { default as EditOnlyIcon } from "./BottomMenu/EditOnlyIcon.svg";
 export { default as BottomNewRequestIcon } from "./BottomMenu/NewRequestIcon.svg";
@@ -141,7 +140,7 @@ export { default as Close } from "./LearnMore/Close.svg";
 export { default as QuestionLightGray } from "./Сommon/QuestionLightGray.svg";
 export { default as Settings } from "./Сommon/Settings.svg";
 export { default as Delete } from "./Сommon/Delete.svg";
-export { default as Copy} from "./Сommon/Copy.svg";
+export { default as Copy } from "./Сommon/Copy.svg";
 export { default as StatusApproved } from "./Сommon/StatusApproved.svg";
 export { default as StatusProgress } from "./Сommon/StatusProgress.svg";
 export { default as StatusUnavailable } from "./Сommon/StatusUnavailable.svg";
@@ -159,14 +158,12 @@ export { default as Twitter } from "./Сommon/Twitter.svg";
 export { default as Youtube } from "./Сommon/Youtube.svg";
 export { default as Drop } from "./Сommon/Drop.svg";
 
-
 // what is new
- 
 
-export { default as  WhatisNew1 } from "./WhatIsNew/Slider1.png";
-export { default as  WhatisNew2 } from "./WhatIsNew/Slider2.png";
-export { default as  WhatisNew3 } from "./WhatIsNew/Slider3.png";
-export { default as  WhatisNew4 } from "./WhatIsNew/Slider4.png";
+export { default as WhatisNew1 } from "./WhatIsNew/Slider1.png";
+export { default as WhatisNew2 } from "./WhatIsNew/Slider2.png";
+export { default as WhatisNew3 } from "./WhatIsNew/Slider3.png";
+export { default as WhatisNew4 } from "./WhatIsNew/Slider4.png";
 
 export { default as CompanyType } from "./WhatIsNew/CompanyType.svg";
 export { default as EducationType } from "./WhatIsNew/EducationType.svg";

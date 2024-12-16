@@ -1,3 +1,5 @@
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+
 import {
   Auth,
   ChatSupport,
@@ -17,7 +19,6 @@ import {
   WalkThrough,
   Welcome,
 } from "pages";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import PrivateRoute from "./PrivateRouter";
 
@@ -27,8 +28,7 @@ const routes = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <PrivateRoute component={PageContainer} redirectTo="/auth" />
-        ,
+        element: <PrivateRoute component={PageContainer} redirectTo="/auth" />,
         children: [
           {
             path: "/",

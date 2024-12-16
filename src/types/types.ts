@@ -1,23 +1,34 @@
-import { NEW_REQUEST, WELCOME, PROJECTS, LEARN, ADD_ONS, NOTIFICATIONS, SETTINGS, SUPPORT, INSPIRATION, HOME } from "consts/consts";
+import {
+  ADD_ONS,
+  HOME,
+  INSPIRATION,
+  LEARN,
+  NEW_REQUEST,
+  NOTIFICATIONS,
+  PROJECTS,
+  SETTINGS,
+  SUPPORT,
+  WELCOME,
+} from "consts/consts";
 
 export type selectedPages =
-	| typeof WELCOME
-	| typeof NEW_REQUEST
-	| typeof PROJECTS
-	| typeof LEARN
-	| typeof ADD_ONS
-	| typeof NOTIFICATIONS
-	| typeof SETTINGS
-	| typeof SUPPORT
-	| typeof INSPIRATION;
+  | typeof WELCOME
+  | typeof NEW_REQUEST
+  | typeof PROJECTS
+  | typeof LEARN
+  | typeof ADD_ONS
+  | typeof NOTIFICATIONS
+  | typeof SETTINGS
+  | typeof SUPPORT
+  | typeof INSPIRATION;
 
-    export type selectedMobPages =
-	| typeof HOME
-	| typeof PROJECTS
-	| typeof LEARN
-	| typeof NOTIFICATIONS;
+export type selectedMobPages =
+  | typeof HOME
+  | typeof PROJECTS
+  | typeof LEARN
+  | typeof NOTIFICATIONS;
 
-    export type ProjectTone =
+export type ProjectTone =
   | "Adventurous"
   | "Casual"
   | "Cinematic"
@@ -28,7 +39,7 @@ export type selectedPages =
   | "Inspirational"
   | "Professional"
   | "Urgent";
-  export type ProjectType =
+export type ProjectType =
   | "Announcement Videos"
   | "Company Overview Video"
   | "Demo Video"
@@ -50,5 +61,4 @@ export type selectedPages =
   | "Website Header Video"
   | "Other";
 
-  export type CalendarType = "time" | "date" | "schedule";
-    
+export type CalendarType = "time" | "date" | "schedule";

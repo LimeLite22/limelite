@@ -1,3 +1,7 @@
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
 import {
   ArrowGray,
   ArrowGray3,
@@ -5,20 +9,26 @@ import {
   ArrowWhite,
   DetailsGreen,
 } from "assets/images";
+
 import useWindowWidth from "hooks/useWindowWidth";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+
+import { useCalculateFinalPrice } from "utils/priceCalculator";
+
+import {
+  DEFAULT,
+  QUESTIONS_AUTHOR_CLIENT,
+  QUESTIONS_AUTHOR_PROFESSIONAL,
+  QUESTIONS_ON_LOCATION,
+  QUESTIONS_VIRTUALLY,
+} from "consts/consts";
 
 import { selectRequestInfo } from "../../../redux/requests/reducer";
 import styles from "../NewRequest.module.scss";
 import FormFooter from "../components/FormFooter";
-import { DEFAULT, QUESTIONS_AUTHOR_CLIENT, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTIONS_ON_LOCATION, QUESTIONS_VIRTUALLY } from "consts/consts";
-import { useEffect, useState } from "react";
 import StepsNavigation from "../components/StepsNavigation";
-import { useCalculateFinalPrice } from "utils/priceCalculator";
+import InterviewPersons from "./components/InterviewPersons";
 import InterviewQuestionsBox from "./components/Questions/InterviewQuestionsBox";
 import QuestionsAuthorBox from "./components/QuestionsAuthorBox";
-import InterviewPersons from "./components/InterviewPersons";
 
 const NewRequestStep4 = () => {
   const selectedRequest = useSelector(selectRequestInfo);
@@ -30,55 +40,64 @@ const NewRequestStep4 = () => {
   const handleNextDisabled = () => {
     let disabled = false;
     if (selectedRequest?.interviewSettings.questionsAuthor === DEFAULT) {
-      console.log('1')
+      console.log("1");
       disabled = true;
     }
-    if (selectedRequest?.interviewSettings.questionsAuthor === QUESTIONS_AUTHOR_CLIENT
-      && selectedRequest?.interviewSettings.questionsAuthorOwnSettings.text.length === 0) {
+    if (
+      selectedRequest?.interviewSettings.questionsAuthor ===
+        QUESTIONS_AUTHOR_CLIENT &&
+      selectedRequest?.interviewSettings.questionsAuthorOwnSettings.text
+        .length === 0
+    ) {
       disabled = true;
     }
-    const profSettings = selectedRequest?.interviewSettings.questionsAuthorProfSettings;
-    if (selectedRequest?.interviewSettings.questionsAuthor === QUESTIONS_AUTHOR_PROFESSIONAL
-      && (profSettings?.text.length === 0
-        || profSettings?.subject.length === 0 ||
-        profSettings?.phone === '' ||
-        profSettings?.email.length === 0)) {
-      console.log('2')
+    const profSettings =
+      selectedRequest?.interviewSettings.questionsAuthorProfSettings;
+    if (
+      selectedRequest?.interviewSettings.questionsAuthor ===
+        QUESTIONS_AUTHOR_PROFESSIONAL &&
+      (profSettings?.text.length === 0 ||
+        profSettings?.subject.length === 0 ||
+        profSettings?.phone === "" ||
+        profSettings?.email.length === 0)
+    ) {
+      console.log("2");
       disabled = true;
     }
     const persons = selectedRequest?.interviewSettings?.persons;
     persons?.forEach((person) => {
       if (person.name.length === 0 || person.title.length === 0) {
-        console.log('3')
+        console.log("3");
         disabled = true;
       }
     });
-    const questionSettings = selectedRequest?.interviewSettings?.questionSettings;
+    const questionSettings =
+      selectedRequest?.interviewSettings?.questionSettings;
     if (questionSettings?.type === DEFAULT) {
-      console.log('4')
+      console.log("4");
       disabled = true;
     }
-    if (questionSettings?.type === QUESTIONS_ON_LOCATION && (
-      questionSettings?.locationSettings.name === "" ||
-      questionSettings?.locationSettings.email === "" ||
-      questionSettings?.locationSettings.phone === ""
-    )) {
-      console.log('5')
+    if (
+      questionSettings?.type === QUESTIONS_ON_LOCATION &&
+      (questionSettings?.locationSettings.name === "" ||
+        questionSettings?.locationSettings.email === "" ||
+        questionSettings?.locationSettings.phone === "")
+    ) {
+      console.log("5");
       disabled = true;
     }
-    if (questionSettings?.type === QUESTIONS_VIRTUALLY &&
-      (
-        questionSettings?.virtualSettings.name === "" ||
+    if (
+      questionSettings?.type === QUESTIONS_VIRTUALLY &&
+      (questionSettings?.virtualSettings.name === "" ||
         questionSettings?.virtualSettings.email === "" ||
-        questionSettings?.virtualSettings.phone === ''
-      )) {
-      console.log('6')
+        questionSettings?.virtualSettings.phone === "")
+    ) {
+      console.log("6");
       disabled = true;
     }
     console.log("disabled", disabled);
     setIsDisabled(disabled);
-
-  }
+  };
   useEffect(() => {
     handleNextDisabled();
   }, [selectedRequest]);
@@ -89,11 +108,7 @@ const NewRequestStep4 = () => {
         <div
           className={styles.nR_container}
           style={{
-            paddingBottom:
-              price ===
-                0 && width < 768
-                ? "20px"
-                : "",
+            paddingBottom: price === 0 && width < 768 ? "20px" : "",
           }}
         >
           <Link to="/newRequest/step3">
@@ -121,12 +136,13 @@ const NewRequestStep4 = () => {
               <InterviewQuestionsBox />
               <InterviewPersons />
               <QuestionsAuthorBox />
-              {isDisabled && showBottomMessage &&
+              {isDisabled && showBottomMessage && (
                 <div className={styles.nR_formContainer_error}>
-                  Please ensure all required fields are filled out before submitting the
-                  form. Each section must be completed to proceed.
+                  Please ensure all required fields are filled out before
+                  submitting the form. Each section must be completed to
+                  proceed.
                 </div>
-              }
+              )}
               <div className={styles.nR_formContainer_buttons}>
                 <Link to="/newRequest/step2">
                   <button className={styles.nR_back}>
@@ -146,10 +162,8 @@ const NewRequestStep4 = () => {
                       Next <img src={ArrowWhite} alt="" />
                     </button>
                   ) : (
-                    <Link to={"/newRequest/step5"} >
-                      <button
-                        className={`${styles.nR_buttons_delivery}`}
-                      >
+                    <Link to={"/newRequest/step5"}>
+                      <button className={`${styles.nR_buttons_delivery}`}>
                         Next <img src={ArrowWhite} alt="" />
                       </button>
                     </Link>
