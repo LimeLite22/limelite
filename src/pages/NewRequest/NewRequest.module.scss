@@ -1023,9 +1023,12 @@
     width: 512px;
     height: 203px;
     border-radius: 12px;
-    border: 1px dashed var(--gray-light7);
+    border: 2px dashed var(--gray-light7);
     background-color: var(--gray-light13);
     margin-bottom: 24px;
+    &_error {
+      border: 2px dashed var(--red-dark);
+    }
     &_header {
       //styleName: Large screens/Body/Caption Regular;
       font-family: Inter;
@@ -1037,7 +1040,7 @@
       text-decoration-skip-ink: none;
       color: var(--gray-dark);
       margin-bottom: 24px;
-      margin-top: 6px;
+      margin-top: 2px;
     }
     &_text {
       //styleName: Large screens/Body/Caption Accent;
@@ -1065,12 +1068,105 @@
       text-decoration-skip-ink: none;
       color: var(--gray-dark3);
     }
+    &_divider {
+      //styleName: Large screens/Body/Content Accent;
+      font-family: Inter;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 19.2px;
+      text-align: left;
+      text-underline-position: from-font;
+      text-decoration-skip-ink: none;
+      color: var(--gray-light5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 5px 0px;
+      margin-bottom: 24px;
+    }
+    &_dividerLine {
+      height: 1px;
+      min-height: 1px;
+      background-color: var(--gray-light7);
+      flex: 1;
+    }
+    &_title {
+      //styleName: Large screens/Body/Form Title;
+      font-family: Inter;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 16.8px;
+      letter-spacing: 0.02em;
+      text-align: left;
+      text-underline-position: from-font;
+      text-decoration-skip-ink: none;
+      color: var(--gray-dark3);
+    }
+
+    &_input {
+      width: 100%;
+      height: 40px;
+      border-radius: 8px;
+      padding: 10.5px 16px;
+      border: 1px solid var(--gray-light7);
+      font-family: Inter;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 19.2px;
+      text-align: left;
+      text-underline-position: from-font;
+      text-decoration-skip-ink: none;
+      color: var(--gray-dark);
+      margin-top: 4px;
+      margin-bottom: 24px;
+    }
+    &_input::placeholder {
+      color: var(--gray-light5);
+    }
+    &_input:focus {
+      border: 1px solid var(--black);
+      outline: none;
+    }
   }
   &_file {
     width: 100%;
     height: 60px;
     background-color: var(--gray-light9);
     border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &_content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    &_header {
+      //styleName: Large screens/Body/Caption Accent;
+      font-family: Inter;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 16.8px;
+      text-align: left;
+      text-underline-position: from-font;
+      text-decoration-skip-ink: none;
+      color: var(--gray-dark);
+    }
+    &_text {
+      //styleName: Large screens/Body/Caption Regular;
+      font-family: Inter;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16.8px;
+      text-align: left;
+      text-underline-position: from-font;
+      text-decoration-skip-ink: none;
+      color: var(--gray-dark3);
+      margin-top: 2px;
+    }
   }
   &_videoTypeStrandart {
     width: 225px;

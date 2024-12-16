@@ -56,10 +56,10 @@ export type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 export interface ILocation {
   type:
-    | typeof DEFAULT
-    | typeof OWN_ADDRESS
-    | typeof STUDIO_RENTAL
-    | typeof HOME_RENTAL;
+  | typeof DEFAULT
+  | typeof OWN_ADDRESS
+  | typeof STUDIO_RENTAL
+  | typeof HOME_RENTAL;
   street: string;
   company: string;
   city: string;
@@ -97,18 +97,18 @@ export type IVideoDuration =
 export interface IAdditionalVideoFormat {
   id: string;
   format:
-    | typeof DEFAULT
-    | typeof VIDEO_STANDARD
-    | typeof VIDEO_STORY
-    | typeof VIDEO_SQUARE
-    | typeof VIDEO_VERTICAL;
+  | typeof DEFAULT
+  | typeof VIDEO_STANDARD
+  | typeof VIDEO_STORY
+  | typeof VIDEO_SQUARE
+  | typeof VIDEO_VERTICAL;
   duration: IVideoDuration;
 }
 type InterviewSettings = {
   questionsAuthor:
-    | typeof QUESTIONS_AUTHOR_CLIENT
-    | typeof QUESTIONS_AUTHOR_PROFESSIONAL
-    | typeof DEFAULT;
+  | typeof QUESTIONS_AUTHOR_CLIENT
+  | typeof QUESTIONS_AUTHOR_PROFESSIONAL
+  | typeof DEFAULT;
   questionsAuthorProfSettings: {
     subject: string;
     phone: number | "";
@@ -121,10 +121,10 @@ type InterviewSettings = {
   persons: IPerson[];
   questionSettings: {
     type:
-      | typeof QUESTIONS_ON_LOCATION
-      | typeof QUESTIONS_VIRTUALLY
-      | typeof VIRTUAL_INTERVIEW
-      | typeof DEFAULT;
+    | typeof QUESTIONS_ON_LOCATION
+    | typeof QUESTIONS_VIRTUALLY
+    | typeof VIRTUAL_INTERVIEW
+    | typeof DEFAULT;
     locationSettings: {
       name: string;
       phone: number | "";
@@ -169,9 +169,9 @@ export interface IRequest {
   interviewSettings: InterviewSettings;
   voiceTrackSettings: {
     trackAuthor:
-      | typeof TRACK_AUTHOR_CLIENT
-      | typeof TRACK_AUTHOR_PROFESSIONAL
-      | typeof DEFAULT;
+    | typeof TRACK_AUTHOR_CLIENT
+    | typeof TRACK_AUTHOR_PROFESSIONAL
+    | typeof DEFAULT;
     track: File | typeof DEFAULT;
     scriptAuthor: IScriptWriter;
     scriptAuthorProfSettings: {
@@ -186,21 +186,24 @@ export interface IRequest {
   };
   videoSettings: {
     format:
-      | typeof VIDEO_STANDARD
-      | typeof VIDEO_STORY
-      | typeof VIDEO_SQUARE
-      | typeof VIDEO_VERTICAL
-      | typeof DEFAULT;
+    | typeof VIDEO_STANDARD
+    | typeof VIDEO_STORY
+    | typeof VIDEO_SQUARE
+    | typeof VIDEO_VERTICAL
+    | typeof DEFAULT;
     targetDuration: IVideoDuration;
     captions: boolean;
     thumbnail:
-      | typeof N0_THUMBNAIL
-      | typeof BASIC_THUMBNAIL
-      | typeof CUSTOM_THUMBNAIL
-      | typeof DEFAULT;
+    | typeof N0_THUMBNAIL
+    | typeof BASIC_THUMBNAIL
+    | typeof CUSTOM_THUMBNAIL
+    | typeof DEFAULT;
     additionalFormats: boolean | typeof DEFAULT;
     selectedAdditionalFormats: IAdditionalVideoFormat[];
-    additionalVisualEffects: boolean | typeof DEFAULT;
+    additionalVisualAssets: boolean | typeof DEFAULT;
+    additionalVisualAssetFile: File | typeof DEFAULT;
+    additionalVisualAssetUrl: string;
+
     resultTime: typeof RUSH_TIME | typeof STANDARD_TIME | typeof DEFAULT;
   };
 }

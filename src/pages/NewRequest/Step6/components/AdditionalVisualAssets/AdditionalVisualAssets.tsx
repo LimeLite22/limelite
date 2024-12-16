@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
-import { DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT } from "consts/consts";
+import { DEFAULT } from "consts/consts";
 
 import { selectRequestInfo } from "../../../../../redux/requests/reducer";
 import styles from "../../../NewRequest.module.scss";
@@ -12,29 +12,17 @@ import NoAdditionalAssets from "./components/NoAdditionalAssets";
 const AdditionalVisualAssetsBox = () => {
   const selectedRequest = useSelector(selectRequestInfo);
   const [isError, setIsError] = useState({
-    subject: false,
-    phone: false,
-    email: false,
-    ownScript: false,
-    proffessionalScript: false,
+    url: false,
+    file: false
   });
-  const selection = selectedRequest?.voiceTrackSettings.scriptAuthor;
-  const subject =
-    selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings.subject;
-  const phone =
-    selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings.phone;
-  const email =
-    selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings.email;
-  const proffessionalText =
-    selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings.text;
-  const ownText =
-    selectedRequest?.voiceTrackSettings.scriptAuthorOwnSettings?.text;
-
-  const [isOwnExpanded, setIsOwnExpanded] = useState(false);
-  const [isProffessionalExpanded, setIsProffessionalExpanded] = useState(false);
+  const selection = selectedRequest?.videoSettings.additionalVisualAssets;
+  const file =
+    selectedRequest?.videoSettings.additionalVisualAssetFile;
+  const url =
+    selectedRequest?.videoSettings.additionalVisualAssetUrl;
+  const [isAdditionalExpanded, setIsAdditionalExpanded] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
-
   const handleBlur = (event: React.FocusEvent<HTMLDivElement>) => {
     if (
       containerRef.current &&
@@ -43,84 +31,71 @@ const AdditionalVisualAssetsBox = () => {
     ) {
       return;
     }
-    if (selection === OWN_SCRIPT) {
-      if (!ownText || ownText.length === 0) {
-        setIsOwnExpanded(true);
+    if (selection === true) {
+      console.log('556565');
+      if(file === DEFAULT || url?.length === 0){
+        console.log('099900');
+        setIsAdditionalExpanded(true);
         const errors = {
-          subject: false,
-          phone: false,
-          email: false,
-          ownScript: !ownText || ownText.length === 0,
-          proffessionalScript: false,
+          url: url?.length === 0,
+          file: file === DEFAULT
         };
         setIsError(errors);
-      } else {
-        setIsProffessionalExpanded(false);
-        setIsOwnExpanded(false);
+
       }
-    }
-    if (selection === PROFESSIONAL_SCRIPT) {
-      if (
-        !email ||
-        email.length === 0 ||
-        !proffessionalText ||
-        proffessionalText.length === 0 ||
-        !subject ||
-        subject.length === 0 ||
-        phone === ""
-      ) {
-        setIsProffessionalExpanded(true);
+      if (file !== DEFAULT || url?.length !== 0) {
+        console.log('099900');
+        setIsAdditionalExpanded(true);
         const errors = {
-          subject: !subject || subject.length === 0,
-          phone: phone === "",
-          email: !email || email.length === 0,
-          ownScript: false,
-          proffessionalScript:
-            !proffessionalText || proffessionalText.length === 0,
+          url: false,
+          file: false
         };
         setIsError(errors);
+        setIsAdditionalExpanded(true);
       } else {
-        setIsProffessionalExpanded(false);
-        setIsOwnExpanded(false);
+        setIsAdditionalExpanded(false);
       }
     }
+    if (selection === false) {
+      const errors = {
+        url: false,
+        file: false
+      };
+      setIsError(errors);
+    } 
   };
 
   useEffect(() => {
     if (selection === DEFAULT) return;
-    if (selection === OWN_SCRIPT) setIsOwnExpanded(true);
-    if (selection === PROFESSIONAL_SCRIPT) setIsProffessionalExpanded(true);
-    setIsError({
-      subject: false,
-      phone: false,
-      email: false,
-      ownScript: false,
-      proffessionalScript: false,
-    });
+    if (selection === true) setIsAdditionalExpanded(true);
   }, [selection]);
+
   useEffect(() => {
-    if (selection === OWN_SCRIPT) {
+    if (selection === false) {
       const errors = {
-        subject: false,
-        phone: false,
-        email: false,
-        ownScript: !ownText || ownText.length === 0,
-        proffessionalScript: false,
+        url: false,
+        file: false
       };
       setIsError(errors);
     }
-    if (selection === PROFESSIONAL_SCRIPT) {
-      const errors = {
-        subject: !subject || subject.length === 0,
-        phone: phone === "",
-        email: !email || email.length === 0,
-        ownScript: false,
-        proffessionalScript:
-          !proffessionalText || proffessionalText.length === 0,
-      };
-      setIsError(errors);
+
+    if (selection === true) {
+      if (file !== DEFAULT || url?.length !== 0) {
+        const errors = {
+          url: false,
+          file: false
+        };
+        setIsError(errors);
+      } else {
+        const errors = {
+          url: url?.length === 0,
+          file: file === DEFAULT
+        };
+        setIsError(errors);
+      }
+
     }
-  }, [subject, phone, email, ownText, proffessionalText]);
+  }, [url, file]);
 
   return (
     <div ref={containerRef} tabIndex={-1} onBlur={handleBlur}>
@@ -131,13 +106,11 @@ const AdditionalVisualAssetsBox = () => {
       <NoAdditionalAssets />
       <SelectedAdditionalFormats
         isError={{
-          subject: isError.subject,
-          email: isError.email,
-          phone: isError.phone,
-          text: isError.proffessionalScript,
+          url: isError.url,
+          file: isError.file
         }}
-        isExpanded={isProffessionalExpanded}
-        setIsExpanded={setIsProffessionalExpanded}
+        isExpanded={isAdditionalExpanded}
+        setIsExpanded={setIsAdditionalExpanded}
       />
     </div>
   );

@@ -157,6 +157,7 @@ export { default as Instagram } from "./Сommon/Instagram.svg";
 export { default as Twitter } from "./Сommon/Twitter.svg";
 export { default as Youtube } from "./Сommon/Youtube.svg";
 export { default as Drop } from "./Сommon/Drop.svg";
+export { default as PNG } from "./Сommon/Png.svg";
 
 // what is new
 
