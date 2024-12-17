@@ -148,7 +148,6 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
           {suggestions?.length > 0 && (
             <div className={styles.box_addressContainer_suggestions}>
               {suggestions.map((suggestion: any, index) => {
-                console.log()
                 const regex = new RegExp(`(${street})`, "gi");
                 const highlightedText = suggestion?.street_line?.replace(
                   regex,
