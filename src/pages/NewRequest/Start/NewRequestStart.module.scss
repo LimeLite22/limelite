@@ -387,12 +387,12 @@
         }
       }
       &_content {
-        min-height: 164px;
         width: 100%;
         display: flex;
         justify-content: start;
         position: relative;
         overflow: hidden;
+        min-height: 144px;
         @media screen and (max-width: 1440px) {
           min-height: 144px;
         }
@@ -514,7 +514,7 @@
             text-underline-position: from-font;
             text-decoration-skip-ink: none;
             margin-bottom: 4px;
-
+            font-size: 16px;
             @media screen and (max-width: 1440px) {
               font-size: 16px;
             }
@@ -540,7 +540,7 @@
               text-underline-position: from-font;
               text-decoration-skip-ink: none;
               white-space: nowrap;
-
+              font-size: 12px;
               @media screen and (max-width: 1440px) {
                 font-size: 12px;
               }
@@ -568,25 +568,24 @@
           }
           &_type {
             color: var(--gray-dark);
-
             font-family: Inter;
-            font-size: 18px;
+            font-size: 14px;
             font-weight: 400;
-            line-height: 20px;
-            margin: 5px 0;
+            line-height: 16.8px;
             text-align: left;
             text-underline-position: from-font;
             text-decoration-skip-ink: none;
-            @media screen and (max-width: 1440px) {
-              font-family: Inter;
-              font-size: 14px;
-              font-weight: 400;
-              line-height: 16.8px;
-              text-align: left;
-              text-underline-position: from-font;
-              text-decoration-skip-ink: none;
-              margin: 0;
-            }
+            margin: 0;
+            // @media screen and (max-width: 1440px) {
+            //   font-family: Inter;
+            //   font-size: 14px;
+            //   font-weight: 400;
+            //   line-height: 16.8px;
+            //   text-align: left;
+            //   text-underline-position: from-font;
+            //   text-decoration-skip-ink: none;
+            //   margin: 0;
+            // }
             @media screen and (max-width: 1024px) {
               margin-bottom: 1px;
             }
@@ -605,20 +604,19 @@
             display: flex;
             align-items: center;
             justify-content: start;
-
-            font-family: Inter;
-            font-weight: 400;
+            font-family: "Poppins";
             font-size: 18px;
-            line-height: 19.8px;
-            text-align: left;
+            line-height: 20px;
+            height: 20px;
+            margin-bottom: 10px;
 
-            @media screen and (max-width: 1440px) {
-              font-family: "Poppins";
-              font-size: 18px;
-              line-height: 20px;
-              height: 20px;
-              margin-bottom: 10px;
-            }
+            // @media screen and (max-width: 1440px) {
+            //   font-family: "Poppins";
+            //   font-size: 18px;
+            //   line-height: 20px;
+            //   height: 20px;
+            //   margin-bottom: 10px;
+            // }
 
             @media screen and (max-width: 1024px) {
               height: 15px;
@@ -642,18 +640,16 @@
             font-family: Inter;
 
             font-family: "Poppins";
-            font-size: 18px;
+            font-size: 14px;
+            line-height: 16.8px;
+            margin-bottom: 4px;
             font-weight: 400;
-            line-height: 20px;
-            text-align: left;
-            text-underline-position: from-font;
-            text-decoration-skip-ink: none;
 
-            @media screen and (max-width: 1440px) {
-              font-size: 14px;
-              line-height: 16.8px;
-              margin-bottom: 4px;
-            }
+            // @media screen and (max-width: 1440px) {
+            //   font-size: 14px;
+            //   line-height: 16.8px;
+            //   margin-bottom: 4px;
+            // }
 
             @media screen and (max-width: 1024px) {
               height: 15px;
@@ -704,18 +700,17 @@
             font-family: Inter;
 
             font-family: "Poppins";
-            font-size: 18px;
-            font-weight: 400;
-            line-height: 20px;
+            font-size: 14px;
+            line-height: 16.8px;
+            margin-bottom: 4px;
             text-align: left;
-            text-underline-position: from-font;
-            text-decoration-skip-ink: none;
+            font-weight: 400;
 
-            @media screen and (max-width: 1440px) {
-              font-size: 14px;
-              line-height: 16.8px;
-              margin-bottom: 4px;
-            }
+            // @media screen and (max-width: 1440px) {
+            //   font-size: 14px;
+            //   line-height: 16.8px;
+            //   margin-bottom: 4px;
+            // }
 
             @media screen and (max-width: 1024px) {
               height: 15px;
@@ -778,6 +773,8 @@
             color: var(--white);
             padding: 2px 8px;
             border-radius: 100px;
+            font-size: 14px;
+            line-height: 14px;
             @media screen and (max-width: 1440px) {
               font-size: 14px;
               line-height: 14px;

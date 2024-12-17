@@ -162,7 +162,9 @@ const DraftItem = ({ draft, index }: IProps) => {
           }}
         />
         <div className={styles.nR_content_projects_content_projectItem_header}>
-          {draft.projectName}
+          {draft.projectName.length > 30 
+                  ? draft.projectName.substring(0, 30) + "..."
+                  : draft.projectName}
         </div>
         <div className={styles.nR_content_projects_content_projectItem_type}>
           {draft.projectType || "Project type"}
