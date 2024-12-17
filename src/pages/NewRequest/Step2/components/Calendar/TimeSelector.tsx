@@ -8,6 +8,7 @@ import { DEFAULT } from "consts/consts";
 import { hoursList } from "consts/consts";
 
 import "./Calendar.scss";
+import { generateUniqueId } from "utils/generateId";
 
 interface IProps {
   time: TimeValue;
@@ -62,6 +63,7 @@ const TimeSelector = ({ time, selectTime, isError }: IProps) => {
                   borderBottomRightRadius:
                     index === 2 || index === 15 ? "4px" : "",
                 }}
+                key={generateUniqueId()}
                 className={`
               popUp_content_selectionBox_timeContainer_item 
               ${hour.isAddon ? "popUp_content_selectionBox_timeContainer_itemAddOn" : ""}`}

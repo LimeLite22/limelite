@@ -115,14 +115,18 @@ const ChatSupport = (): JSX.Element => {
   };
 
   useEffect(() => {
-    updateHeight();
-
-    window.addEventListener("resize", updateHeight);
-
-    return () => {
-      window.removeEventListener("resize", updateHeight);
+    updateHeight(); // Виклик тільки один раз при монтуванні компонента
+  
+    const handleResize = () => {
+      updateHeight();
     };
-  }, [width]);
+  
+    window.addEventListener("resize", handleResize);
+  
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []); 
   useEffect(() => {
     if (messageListRef.current) {
       setTimeout(() => {
