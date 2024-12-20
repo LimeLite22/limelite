@@ -33,8 +33,10 @@
   }
   &_subContainer {
     max-width: 655px;
+    width:655px;
     @media screen and (max-width: 768px) {
       max-width: 100%;
+      width: 100%;
     }
   }
   &_details {
@@ -73,6 +75,12 @@
         line-height: 24px;
         text-align: center;
         margin-bottom: 18px;
+      }
+      &_mobPadding{
+        @media screen and (max-width: 768px) {
+         padding-left: 50px;
+         text-align: left;
+        }
       }
       &_button {
         display: none;

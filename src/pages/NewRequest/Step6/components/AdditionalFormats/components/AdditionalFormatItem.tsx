@@ -20,7 +20,6 @@ import {
 import styles from "../../../../NewRequest.module.scss";
 import DurationSelector from "../../DurationSelector/DurationSelector";
 import { useEffect, useRef, useState } from "react";
-import { RootStateSelectors } from "reselect";
 
 interface IProps {
   index: number;

@@ -14,17 +14,12 @@ import useWindowWidth from "hooks/useWindowWidth";
 
 import { useCalculateFinalPrice } from "utils/priceCalculator";
 
-import {
-  DEFAULT,
-  OWN_SCRIPT,
-  PROFESSIONAL_SCRIPT,
-  TRACK_AUTHOR_CLIENT,
-} from "consts/consts";
-
 import { selectRequestVoiceSettings } from "../../../redux/requests/reducer";
 import styles from "../NewRequest.module.scss";
 import FormFooter from "../components/FormFooter";
 import StepsNavigation from "../components/StepsNavigation";
+import { ADD_ONS_LIST } from "consts/consts";
+import AddOnBox from "./components/AddOnBox";
 
 const NewRequestStep7 = () => {
   const voiceSettings = useSelector(selectRequestVoiceSettings);
@@ -35,34 +30,7 @@ const NewRequestStep7 = () => {
 
   const handleNextDisabled = () => {
     let disabled = false;
-    if (voiceSettings?.trackAuthor === DEFAULT) {
-      disabled = true;
-    }
-    if (
-      voiceSettings?.trackAuthor === TRACK_AUTHOR_CLIENT &&
-      voiceSettings?.track === DEFAULT
-    ) {
-      disabled = true;
-    }
-    const profSettings = voiceSettings?.scriptAuthorProfSettings;
-    if (
-      voiceSettings?.scriptAuthor === OWN_SCRIPT &&
-      (profSettings?.text.length === 0 ||
-        profSettings?.subject.length === 0 ||
-        profSettings?.phone === "" ||
-        profSettings?.email.length === 0)
-    ) {
-      disabled = true;
-    }
-    if (
-      voiceSettings?.scriptAuthor === PROFESSIONAL_SCRIPT &&
-      (profSettings?.text.length === 0 ||
-        profSettings?.subject.length === 0 ||
-        profSettings?.phone === "" ||
-        profSettings?.email.length === 0)
-    ) {
-      disabled = true;
-    }
+
     console.log("disabled", disabled);
     setIsDisabled(disabled);
   };
@@ -87,7 +55,7 @@ const NewRequestStep7 = () => {
           <div className={styles.nR_subContainer}>
             <StepsNavigation />
             <div className={styles.nR_header}>
-              <div className={styles.nR_header_text}>
+              <div className={styles.nR_header_text + " " + styles.nR_header_text_mobPadding} >
                 <Link to="/newRequest/step6">
                   <div className={styles.nR_header_text_button}>
                     <img src={ArrowGray4} alt="" />
@@ -96,7 +64,15 @@ const NewRequestStep7 = () => {
                 What additional Add-ons are needed?
               </div>
             </div>
+
             <div className={styles.nR_formContainer}>
+              <div >
+                {
+                  ADD_ONS_LIST.map((item, index) => (
+                    <AddOnBox key={index} item={item} />
+                  ))
+                }
+              </div>
               {isDisabled && showBottomMessage && (
                 <div className={styles.nR_formContainer_error}>
                   Please ensure all required fields are filled out before

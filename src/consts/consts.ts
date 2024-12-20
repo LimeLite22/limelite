@@ -1,4 +1,4 @@
-import { IOptionsList, IVideoDuration, TimeItem } from "interfaces/interfaces";
+import { IAddOnsItem, IOptionsList, IVideoDuration, TimeItem } from "interfaces/interfaces";
 
 import {
   EditOnlyIcon,
@@ -46,13 +46,13 @@ export const TRACK_AUTHOR_CLIENT = "client";
 export const TRACK_AUTHOR_PROFESSIONAL = "professional";
 
 
-export const NO_ADD_ONS = "no add ons";
-export const PROFF_ACTOR_ADD_ON = "no add ons";
-export const SECOND_CAMERA_ADD_ON = "no add ons";
-export const CUSTOM_LOGO_ADD_ON = "no add ons";
-export const MAKE_UP_ARTIST_ADD_ON = "no add ons";
-export const CANDID_FOTO_ADD_ON = "no add ons";
-export const DRONE_PILOT_ADD_ON = "no add ons";
+export const NO_ADD_ONS = "NO_ADD_ONS";
+export const PROFF_ACTOR_ADD_ON = "PROFF_ACTOR_ADD_ON";
+export const SECOND_CAMERA_ADD_ON = "SECOND_CAMERA_ADD_ON";
+export const CUSTOM_LOGO_ADD_ON = "CUSTOM_LOGO_ADD_ON";
+export const MAKE_UP_ARTIST_ADD_ON = "MAKE_UP_ARTIST_ADD_ON";
+export const CANDID_FOTO_ADD_ON = "CANDID_FOTO_ADD_ON";
+export const DRONE_PILOT_ADD_ON = "DRONE_PILOT_ADD_ON";
 
 
 export const SHOOT_EDIT = "Shoot + Edit";
@@ -73,6 +73,60 @@ export const NO_APPROACH = 'No Approach';
 export const CANDID_APPROACH = "Candid Interview Approach";
 export const SCRIPTED_APPROACH = "Scripted Delivery Approach";
 export const VOICEOVER_APPROACH = "Voiceover Approach";
+
+
+
+export const ADD_ONS_LIST: IAddOnsItem[] = [
+  {
+    id: generateUniqueId(),
+    value: NO_ADD_ONS,
+    text: `We don't need any more`,
+    title: 'Thank you, but we have everything we need for this project.',
+    price: 0
+  },
+  {
+    id: generateUniqueId(),
+    value: PROFF_ACTOR_ADD_ON,
+    text: `A professional actor`,
+    title: `We'd like to book a professional actor for this project.`,
+    price: 1350
+  },
+  {
+    id: generateUniqueId(),
+    value: SECOND_CAMERA_ADD_ON,
+    text: `A second camera`,
+    title: `We'd like our creator to have a second camera for this project.`,
+    price: 395
+  },
+  {
+    id: generateUniqueId(),
+    value: CUSTOM_LOGO_ADD_ON,
+    text: `A custom logo animation`,
+    title: `We'd like LimeLite to create a logo animation for this project.`,
+    price: 895
+  },
+  {
+    id: generateUniqueId(),
+    value: MAKE_UP_ARTIST_ADD_ON,
+    text: `A make-up artist`,
+    title: `We'd like to book a professional make-up artist for this project.`,
+    price: 600
+  },
+  {
+    id: generateUniqueId(),
+    value: CANDID_FOTO_ADD_ON,
+    text: `Candid photography`,
+    title: `We'd like to book a professional photographer for this project.`,
+    price: 696
+  },
+  {
+    id: generateUniqueId(),
+    value: DRONE_PILOT_ADD_ON,
+    text: `A professional drone pilot`,
+    title: `We'd like a professional/FAA certified drone pilot for this project.`,
+    price: 595
+  },
+]
 
 
 export const optionsList: IOptionsList = [

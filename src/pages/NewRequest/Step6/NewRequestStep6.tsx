@@ -45,9 +45,7 @@ const NewRequestStep6 = () => {
     if (videoSettings?.additionalVisualAssets === true
       && videoSettings?.additionalVisualAssetFile === DEFAULT
       && videoSettings?.additionalVisualAssetUrl.length === 0) {
-      {
-        disabled = true
-      }
+      disabled = true
     }
     if (videoSettings?.thumbnail === DEFAULT) {
       disabled = true

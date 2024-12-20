@@ -1,5 +1,4 @@
-import { CANDID_APPROACH, NO_APPROACH, SCRIPTED_APPROACH, VOICEOVER_APPROACH } from './../consts/consts';
-import { ApproachValue, CalendarType, ProjectTone, ProjectType } from "types/types";
+import { AddOnsValueType, ApproachValue, CalendarType, ProjectTone, ProjectType } from "types/types";
 
 import {
   BASIC_THUMBNAIL,
@@ -65,6 +64,13 @@ export type ITravel = {
 type ValuePiece = Date | null;
 
 export type Value = ValuePiece | [ValuePiece, ValuePiece];
+export interface IAddOnsItem {
+  id: string,
+  text: string,
+  title: string,
+  value: AddOnsValueType,
+  price: number
+}
 
 export interface ILocation {
   type:
@@ -219,7 +225,7 @@ export interface IRequest {
 
     resultTime: typeof RUSH_TIME | typeof STANDARD_TIME | typeof DEFAULT;
   };
-  addOns: typeof DEFAULT | typeof NO_ADD_ONS | typeof PROFF_ACTOR_ADD_ON | typeof SECOND_CAMERA_ADD_ON | typeof CUSTOM_LOGO_ADD_ON | typeof MAKE_UP_ARTIST_ADD_ON | typeof CANDID_FOTO_ADD_ON | typeof DRONE_PILOT_ADD_ON[];
+  addOns: IAddOnsItem[];
 }
 export interface IRequestState {
   selectedRequest: string;

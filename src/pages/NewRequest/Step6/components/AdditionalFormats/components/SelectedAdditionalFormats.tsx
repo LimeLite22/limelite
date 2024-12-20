@@ -6,7 +6,7 @@ import { Add2, CheckBox, CheckBoxSelected, Expand, Note } from "assets/images";
 
 import { generateUniqueId } from "utils/generateId";
 
-import { DEFAULT, PROFESSIONAL_SCRIPT } from "consts/consts";
+import { DEFAULT } from "consts/consts";
 
 import {
   selectRequestInfo,
@@ -14,7 +14,6 @@ import {
 } from "../../../../../../redux/requests/reducer";
 import styles from "../../../../NewRequest.module.scss";
 import AdditionalFormatItem from "./AdditionalFormatItem";
-import { isError } from "lodash";
 
 interface IProps {
   isExpanded: boolean;

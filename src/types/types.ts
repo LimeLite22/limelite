@@ -65,3 +65,8 @@ export type CalendarType = "time" | "date" | "schedule";
 
 
 export type ApproachValue = 'No Approach' | "Candid Interview Approach" | "Scripted Delivery Approach" | "Voiceover Approach";
+
+export type AddOnsValueType = "NO_ADD_ONS" 
+| "PROFF_ACTOR_ADD_ON" | "SECOND_CAMERA_ADD_ON" 
+| "CUSTOM_LOGO_ADD_ON" | "MAKE_UP_ARTIST_ADD_ON" 
+| "CANDID_FOTO_ADD_ON" | "DRONE_PILOT_ADD_ON";
