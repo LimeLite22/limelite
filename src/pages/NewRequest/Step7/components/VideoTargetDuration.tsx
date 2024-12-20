@@ -9,7 +9,6 @@ import {
   updateDraftField,
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
-import DurationSelector from "./DurationSelector/DurationSelector";
 
 const VideoTargetDurationBox = () => {
   const value = useSelector(selectRequestInfo)?.videoSettings?.targetDuration;
@@ -27,7 +26,6 @@ const VideoTargetDurationBox = () => {
       <div className={styles.box_question_header_text}>
         What is the target duration? (Seconds)*
       </div>
-      <DurationSelector value={value || DEFAULT} onChange={handleChange} />
     </div>
   );
 };

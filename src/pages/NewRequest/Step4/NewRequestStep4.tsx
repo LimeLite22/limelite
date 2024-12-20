@@ -111,7 +111,7 @@ const NewRequestStep4 = () => {
             paddingBottom: price === 0 && width < 768 ? "20px" : "",
           }}
         >
-          <Link to="/newRequest/step3">
+          <Link to="/newRequest/start">
             <div className={styles.nR_backButton}>
               <img src={ArrowGray3} alt="" /> Back to New Request{" "}
             </div>

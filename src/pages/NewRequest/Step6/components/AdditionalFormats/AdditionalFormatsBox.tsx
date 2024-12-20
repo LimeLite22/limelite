@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
-import { DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT } from "consts/consts";
+import { BASIC_THUMBNAIL, CUSTOM_THUMBNAIL, DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT } from "consts/consts";
 
 import { selectRequestInfo } from "../../../../../redux/requests/reducer";
 import styles from "../../../NewRequest.module.scss";
@@ -12,26 +12,10 @@ import SelectedAdditionalFormats from "./components/SelectedAdditionalFormats";
 const AdditionalFormatsBox = () => {
   const selectedRequest = useSelector(selectRequestInfo);
   const [isError, setIsError] = useState({
-    subject: false,
-    phone: false,
-    email: false,
-    ownScript: false,
-    proffessionalScript: false,
+    formats: false
   });
-  const selection = selectedRequest?.voiceTrackSettings.scriptAuthor;
-  const subject =
-    selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings.subject;
-  const phone =
-    selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings.phone;
-  const email =
-    selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings.email;
-  const proffessionalText =
-    selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings.text;
-  const ownText =
-    selectedRequest?.voiceTrackSettings.scriptAuthorOwnSettings?.text;
-
-  const [isOwnExpanded, setIsOwnExpanded] = useState(false);
-  const [isProffessionalExpanded, setIsProffessionalExpanded] = useState(false);
+  const selection = selectedRequest?.videoSettings.additionalFormats;
+  const [isAddFormatsExpanded, setIsAddFormatsExpanded] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -43,84 +27,28 @@ const AdditionalFormatsBox = () => {
     ) {
       return;
     }
-    if (selection === OWN_SCRIPT) {
-      if (!ownText || ownText.length === 0) {
-        setIsOwnExpanded(true);
-        const errors = {
-          subject: false,
-          phone: false,
-          email: false,
-          ownScript: !ownText || ownText.length === 0,
-          proffessionalScript: false,
-        };
-        setIsError(errors);
-      } else {
-        setIsProffessionalExpanded(false);
-        setIsOwnExpanded(false);
-      }
-    }
-    if (selection === PROFESSIONAL_SCRIPT) {
-      if (
-        !email ||
-        email.length === 0 ||
-        !proffessionalText ||
-        proffessionalText.length === 0 ||
-        !subject ||
-        subject.length === 0 ||
-        phone === ""
-      ) {
-        setIsProffessionalExpanded(true);
-        const errors = {
-          subject: !subject || subject.length === 0,
-          phone: phone === "",
-          email: !email || email.length === 0,
-          ownScript: false,
-          proffessionalScript:
-            !proffessionalText || proffessionalText.length === 0,
-        };
-        setIsError(errors);
-      } else {
-        setIsProffessionalExpanded(false);
-        setIsOwnExpanded(false);
-      }
+    const formats = selectedRequest?.videoSettings.selectedAdditionalFormats;
+    if (selection === true) {
+      formats?.forEach((item) => {
+        if (item.format === DEFAULT || item.duration === DEFAULT) {
+          setIsError({
+            formats: true
+          });
+          setIsAddFormatsExpanded(true);
+        }
+      });
     }
   };
 
   useEffect(() => {
     if (selection === DEFAULT) return;
-    if (selection === OWN_SCRIPT) setIsOwnExpanded(true);
-    if (selection === PROFESSIONAL_SCRIPT) setIsProffessionalExpanded(true);
-    setIsError({
-      subject: false,
-      phone: false,
-      email: false,
-      ownScript: false,
-      proffessionalScript: false,
-    });
+    if (selection === true) setIsAddFormatsExpanded(true);
   }, [selection]);
   useEffect(() => {
-    if (selection === OWN_SCRIPT) {
-      const errors = {
-        subject: false,
-        phone: false,
-        email: false,
-        ownScript: !ownText || ownText.length === 0,
-        proffessionalScript: false,
-      };
-      setIsError(errors);
-    }
-    if (selection === PROFESSIONAL_SCRIPT) {
-      const errors = {
-        subject: !subject || subject.length === 0,
-        phone: phone === "",
-        email: !email || email.length === 0,
-        ownScript: false,
-        proffessionalScript:
-          !proffessionalText || proffessionalText.length === 0,
-      };
-      setIsError(errors);
-    }
-  }, [subject, phone, email, ownText, proffessionalText]);
+    setIsError({
+      formats: false
+    })
+  }, [selection]);
 
   return (
     <div ref={containerRef} tabIndex={-1} onBlur={handleBlur}>
@@ -128,20 +56,13 @@ const AdditionalFormatsBox = () => {
         Do you need additional/social formats?*
       </div>
       <LearnMorePopUp />
-      <NoFormats
-        isError={{ text: isError.ownScript }}
-        isExpanded={isOwnExpanded}
-        setIsExpanded={setIsOwnExpanded}
-      />
+      <NoFormats />
       <SelectedAdditionalFormats
         isError={{
-          subject: isError.subject,
-          email: isError.email,
-          phone: isError.phone,
-          text: isError.proffessionalScript,
+          formats: isError.formats
         }}
-        isExpanded={isProffessionalExpanded}
-        setIsExpanded={setIsProffessionalExpanded}
+        isExpanded={isAddFormatsExpanded}
+        setIsExpanded={setIsAddFormatsExpanded}
       />
     </div>
   );

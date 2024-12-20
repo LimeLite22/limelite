@@ -16,7 +16,6 @@ import {
   updateAdditionalVideoFormat,
 } from "../../../../../../redux/requests/reducer";
 import styles from "../../../../NewRequest.module.scss";
-import DurationSelector from "../../DurationSelector/DurationSelector";
 
 interface IProps {
   index: number;
@@ -113,17 +112,6 @@ const AdditionalFormatItem = ({ item, index }: IProps) => {
       </div>
 
       <div className={styles.videoFormat_header}>Target duration </div>
-      <DurationSelector
-        value={item.duration}
-        onChange={(duration: IVideoDuration) => {
-          dispatch(
-            updateAdditionalVideoFormat({
-              ...item,
-              duration: duration,
-            }),
-          );
-        }}
-      />
     </div>
   );
 };

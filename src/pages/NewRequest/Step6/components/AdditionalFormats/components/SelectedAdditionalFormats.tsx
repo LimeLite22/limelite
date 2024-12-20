@@ -14,24 +14,22 @@ import {
 } from "../../../../../../redux/requests/reducer";
 import styles from "../../../../NewRequest.module.scss";
 import AdditionalFormatItem from "./AdditionalFormatItem";
+import { isError } from "lodash";
 
 interface IProps {
   isExpanded: boolean;
   setIsExpanded: (value: boolean) => void;
   isError: {
-    subject: boolean;
-    text: boolean;
-    email: boolean;
-    phone: boolean;
+    formats: boolean;
   };
 }
-const SelectedAdditionalFormats = ({ isExpanded, setIsExpanded }: IProps) => {
+const SelectedAdditionalFormats = ({ isExpanded, setIsExpanded, isError }: IProps) => {
   const selectedRequest = useSelector(selectRequestInfo);
 
-  const selection = selectedRequest?.voiceTrackSettings.scriptAuthor;
+  const selection = selectedRequest?.videoSettings.additionalFormats;
 
   const dispatch = useDispatch();
-  const handleUpdateField = (path: string, value: string) => {
+  const handleUpdateField = (path: string, value: boolean) => {
     dispatch(
       updateDraftField({
         path,
@@ -41,11 +39,11 @@ const SelectedAdditionalFormats = ({ isExpanded, setIsExpanded }: IProps) => {
   };
 
   const handleSelect = () => {
-    handleUpdateField("voiceTrackSettings.scriptAuthor", PROFESSIONAL_SCRIPT);
+    handleUpdateField("videoSettings.additionalFormats", true);
     setIsExpanded(true);
   };
   const handleExpand = (e: React.MouseEvent) => {
-    handleUpdateField("voiceTrackSettings.scriptAuthor", PROFESSIONAL_SCRIPT);
+    handleUpdateField("videoSettings.additionalFormats", true);
     setIsExpanded(!isExpanded);
     e.stopPropagation();
     e.preventDefault();
@@ -67,18 +65,20 @@ const SelectedAdditionalFormats = ({ isExpanded, setIsExpanded }: IProps) => {
     );
   };
 
+
+
   return (
     <div
       className={`
         ${styles.box}
-        ${selection === PROFESSIONAL_SCRIPT ? styles.box_selected : ""} 
+        ${selection === true ? styles.box_selected : ""} 
         ${isExpanded ? styles.box_expanded : ""}`}
       onClick={handleSelect}
     >
       <div className={styles.box_header}>
         <img
           className={styles.box_circle}
-          src={selection === PROFESSIONAL_SCRIPT ? CheckBoxSelected : CheckBox}
+          src={selection === true ? CheckBoxSelected : CheckBox}
           alt="CheckBox"
         />
         <span className={styles.box_title}>
@@ -114,7 +114,7 @@ const SelectedAdditionalFormats = ({ isExpanded, setIsExpanded }: IProps) => {
           {selectedRequest?.videoSettings.selectedAdditionalFormats.map(
             (item, index) => {
               return (
-                <AdditionalFormatItem key={item.id} item={item} index={index} />
+                <AdditionalFormatItem key={item.id} item={item} index={index} isError={isError.formats} />
               );
             },
           )}

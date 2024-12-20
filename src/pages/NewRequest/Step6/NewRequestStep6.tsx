@@ -14,14 +14,9 @@ import useWindowWidth from "hooks/useWindowWidth";
 
 import { useCalculateFinalPrice } from "utils/priceCalculator";
 
-import {
-  DEFAULT,
-  OWN_SCRIPT,
-  PROFESSIONAL_SCRIPT,
-  TRACK_AUTHOR_CLIENT,
-} from "consts/consts";
+import { DEFAULT } from "consts/consts";
 
-import { selectRequestVoiceSettings } from "../../../redux/requests/reducer";
+import { selectRequestInfo } from "../../../redux/requests/reducer";
 import styles from "../NewRequest.module.scss";
 import FormFooter from "../components/FormFooter";
 import StepsNavigation from "../components/StepsNavigation";
@@ -33,7 +28,7 @@ import ThumbnailBox from "./components/Thumbnail/ThumbnailBox";
 import VideoTargetDurationBox from "./components/VideoTargetDuration";
 
 const NewRequestStep6 = () => {
-  const voiceSettings = useSelector(selectRequestVoiceSettings);
+  const videoSettings = useSelector(selectRequestInfo)?.videoSettings;
   const price = useCalculateFinalPrice();
   const [isDisabled, setIsDisabled] = useState(true);
   const [showBottomMessage, setShowBottomMessage] = useState(false);
@@ -41,40 +36,39 @@ const NewRequestStep6 = () => {
 
   const handleNextDisabled = () => {
     let disabled = false;
-    if (voiceSettings?.trackAuthor === DEFAULT) {
-      disabled = true;
+    if (videoSettings?.format === DEFAULT) {
+      disabled = true
     }
-    if (
-      voiceSettings?.trackAuthor === TRACK_AUTHOR_CLIENT &&
-      voiceSettings?.track === DEFAULT
-    ) {
-      disabled = true;
+    if (videoSettings?.targetDuration === DEFAULT) {
+      disabled = true
     }
-    const profSettings = voiceSettings?.scriptAuthorProfSettings;
-    if (
-      voiceSettings?.scriptAuthor === OWN_SCRIPT &&
-      (profSettings?.text.length === 0 ||
-        profSettings?.subject.length === 0 ||
-        profSettings?.phone === "" ||
-        profSettings?.email.length === 0)
-    ) {
-      disabled = true;
+    if (videoSettings?.additionalVisualAssets === true
+      && videoSettings?.additionalVisualAssetFile === DEFAULT
+      && videoSettings?.additionalVisualAssetUrl.length === 0) {
+      {
+        disabled = true
+      }
     }
-    if (
-      voiceSettings?.scriptAuthor === PROFESSIONAL_SCRIPT &&
-      (profSettings?.text.length === 0 ||
-        profSettings?.subject.length === 0 ||
-        profSettings?.phone === "" ||
-        profSettings?.email.length === 0)
-    ) {
-      disabled = true;
+    if (videoSettings?.thumbnail === DEFAULT) {
+      disabled = true
     }
-    console.log("disabled", disabled);
+    if (videoSettings?.additionalFormats === true) {
+      const formats = videoSettings?.selectedAdditionalFormats;
+      formats?.forEach((item) => {
+        if (item.format === DEFAULT || item.duration === DEFAULT) {
+          disabled = true
+        }
+      });
+    }
+
+
+
+    console.log("step6 disabled", disabled);
     setIsDisabled(disabled);
   };
   useEffect(() => {
     handleNextDisabled();
-  }, [voiceSettings]);
+  }, [videoSettings]);
 
   return (
     <>
@@ -85,7 +79,7 @@ const NewRequestStep6 = () => {
             paddingBottom: price === 0 && width < 768 ? "20px" : "",
           }}
         >
-          <Link to="/newRequest/step3">
+          <Link to="/newRequest/start">
             <div className={styles.nR_backButton}>
               <img src={ArrowGray3} alt="" /> Back to New Request{" "}
             </div>

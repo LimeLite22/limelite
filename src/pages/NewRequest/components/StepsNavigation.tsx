@@ -83,15 +83,13 @@ const StepsNavigation = () => {
 
   return (
     <>
-      <div className={styles.navigation} style={{
-        top: '40px'
-      }}>
+      <div className={styles.navigation} >
         {steps.map((stepItem, index) => (
           <>
             <div
               className={`${styles.navigation_item} ${index + 1 === Number(step) && styles.navigation_item_selected}`}
             >
-              {  Number(step) > index + 1  ? (
+              {Number(step) > index + 1 ? (
                 <img src={Success} alt="" />
               ) : (
                 <span
@@ -111,7 +109,7 @@ const StepsNavigation = () => {
         ))}
 
       </div>
-      <div className={styles.navigation}>
+      {/* <div className={styles.navigation}>
         <div
           className={`${styles.navigation_item} ${step === 1 && styles.navigation_item_selected}`}
         >
@@ -244,7 +242,7 @@ const StepsNavigation = () => {
           )}
           <p>Add-ons</p>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

@@ -128,11 +128,7 @@ const AdditionalFormatsBox = () => {
         Do you need additional/social formats?*
       </div>
       <LearnMorePopUp />
-      <NoFormats
-        isError={{ text: isError.ownScript }}
-        isExpanded={isOwnExpanded}
-        setIsExpanded={setIsOwnExpanded}
-      />
+      <NoFormats />
       <SelectedAdditionalFormats
         isError={{
           subject: isError.subject,

@@ -1,4 +1,4 @@
-import { DEFAULT, PROFESSIONAL_SCRIPT } from "consts/consts";
+import { CUSTOM_THUMBNAIL, DEFAULT, PROFESSIONAL_SCRIPT, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTIONS_VIRTUALLY, TRACK_AUTHOR_PROFESSIONAL, VIRTUAL_INTERVIEW } from "consts/consts";
 import { useSelector } from "react-redux";
 
 import { selectRequestInfo } from "./../redux/requests/reducer";
@@ -50,7 +50,6 @@ export const useCalculateFinalPrice = () => {
       price += 195;
     }
   }
-
   if (request?.location.type === 2) {
     price += 795;
   }
@@ -63,6 +62,28 @@ export const useCalculateFinalPrice = () => {
   }
   if (request?.scriptSettings.scriptWriter === PROFESSIONAL_SCRIPT) {
     price += 895;
+  }
+  if (request?.interviewSettings.questionsAuthor === QUESTIONS_AUTHOR_PROFESSIONAL) {
+    price += 895
+
+  }
+  if (request?.interviewSettings.questionSettings.type === QUESTIONS_VIRTUALLY) {
+    price += 695
+  }
+  if (request?.interviewSettings.questionSettings.type === VIRTUAL_INTERVIEW) {
+    price += 695
+  }
+  if (request?.voiceTrackSettings.trackAuthor === TRACK_AUTHOR_PROFESSIONAL) {
+    price += 895
+  }
+  if (request?.voiceTrackSettings.scriptAuthor === PROFESSIONAL_SCRIPT) {
+    price += 895
+  }
+  if (request?.videoSettings.thumbnail === CUSTOM_THUMBNAIL) {
+    price += 95
+  }
+  if (request?.videoSettings?.selectedAdditionalFormats?.length && request?.videoSettings?.selectedAdditionalFormats?.length > 0) {
+    price += 75
   }
   return price || 0;
 };
