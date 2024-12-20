@@ -82,7 +82,7 @@ export const useCalculateFinalPrice = () => {
   if (request?.videoSettings.thumbnail === CUSTOM_THUMBNAIL) {
     price += 95
   }
-  if (request?.videoSettings?.additionalFormats && request?.videoSettings?.selectedAdditionalFormats?.length && request?.videoSettings?.selectedAdditionalFormats?.length > 0) {
+  if (request?.videoSettings?.additionalFormats === true && request?.videoSettings?.selectedAdditionalFormats?.length && request?.videoSettings?.selectedAdditionalFormats?.length > 0) {
     price += 75
   }
   return price || 0;
