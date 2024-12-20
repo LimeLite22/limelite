@@ -19,7 +19,7 @@ const DurationSelector: FC<IProps> = ({ isError, value, onChange }) => {
   const showError = isError && !isOpened;
 
   return (
-    <div className={`dropdown ${showError ? "duration_dropdown_error" : ""}`}>
+    <div className={`duration_dropdown ${showError ? "duration_dropdown_error" : ""}`}>
       <div
         className={`duration_dropdown__selected ${showError ? "duration_dropdown__selected_error" : ""}`}
         onClick={() => {

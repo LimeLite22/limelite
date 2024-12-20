@@ -41,52 +41,36 @@ const FormatBox = () => {
       <LearnMorePopUp />
       <div className={styles.box_videTypes}>
         <div
-          className={styles.box_videoTypeContainer}
           onClick={() => handleClick(VIDEO_STANDARD)}
-        >
-          <div
-            className={`
+          className={`
                     ${format === VIDEO_STANDARD ? styles.box_videoTypeSelected : ""} 
                     ${styles.box_videoType}`}
-          >
-            Standard <div className={styles.box_videoType_dot}></div> 16:9
-          </div>
-        </div>
-        <div
-          className={styles.box_videoTypeContainer}
-          onClick={() => handleClick(VIDEO_STORY)}
         >
+          Standard <div className={styles.box_videoType_dot}></div> 16:9
+        </div>
           <div
+             onClick={() => handleClick(VIDEO_STORY)}
             className={`
                     ${format === VIDEO_STORY ? styles.box_videoTypeSelected : ""}  
                     ${styles.box_videoType}`}
           >
             Story <div className={styles.box_videoType_dot}></div> 9:16
           </div>
-        </div>
-        <div
-          className={styles.box_videoTypeContainer}
-          onClick={() => handleClick(VIDEO_SQUARE)}
-        >
           <div
+              onClick={() => handleClick(VIDEO_SQUARE)}
             className={`
                     ${format === VIDEO_SQUARE ? styles.box_videoTypeSelected : ""}  
                     ${styles.box_videoType}`}
           >
             Square <div className={styles.box_videoType_dot}></div> 1:1
           </div>
-        </div>
-        <div
-          className={styles.box_videoTypeContainer}
-          onClick={() => handleClick(VIDEO_VERTICAL)}
-        >
           <div
+          onClick={() => handleClick(VIDEO_VERTICAL)}
             className={`    
                     ${format === VIDEO_VERTICAL ? styles.box_videoTypeSelected : ""}  
                     ${styles.box_videoType}`}
           >
             Vertical <div className={styles.box_videoType_dot}></div> 4:5
-          </div>
         </div>
       </div>
     </div>

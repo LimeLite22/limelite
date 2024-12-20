@@ -58,7 +58,7 @@ const AdditionalFormatItem = ({ item, index, isError }: IProps) => {
   }, [selection])
 
   return (
-    <div key={item.id} ref={containerRef} tabIndex={-1} onBlur={handleBlur}>
+    <div className={styles.videoFormat_item} key={item.id} ref={containerRef} tabIndex={-1} onBlur={handleBlur}>
       <div className={styles.videoFormat_header} style={{ color: formatError || (item.format === DEFAULT && isError) ? "var(--red-dark)" : "" }}>
         Video format{" "}
         <>
@@ -93,7 +93,6 @@ const AdditionalFormatItem = ({ item, index, isError }: IProps) => {
         >
           Standard <div className={styles.box_videoType_dot}></div> 16:9
         </div>
-        <div className={styles.box_videoTypeContainer}>
           <div
             className={`
                ${item.format === VIDEO_STORY ? styles.videoFormat_formatItemSelected : ""}  
@@ -111,8 +110,6 @@ const AdditionalFormatItem = ({ item, index, isError }: IProps) => {
           >
             Story <div className={styles.box_videoType_dot}></div> 9:16
           </div>
-        </div>
-        <div className={styles.box_videoTypeContainer}>
           <div
             className={`
                 ${item.format === VIDEO_SQUARE ? styles.videoFormat_formatItemSelected : ""}  
@@ -129,9 +126,7 @@ const AdditionalFormatItem = ({ item, index, isError }: IProps) => {
             }}
           >
             Square <div className={styles.box_videoType_dot}></div> 1:1
-          </div>
         </div>
-        <div className={styles.box_videoTypeContainer}>
           <div
             className={`    
                 ${item.format === VIDEO_VERTICAL ? styles.videoFormat_formatItemSelected : ""}  
@@ -149,7 +144,6 @@ const AdditionalFormatItem = ({ item, index, isError }: IProps) => {
           >
             Vertical <div className={styles.box_videoType_dot}></div> 4:5
           </div>
-        </div>
       </div>
 
       <div className={styles.videoFormat_header} style={{ color: durationError || (item.duration === DEFAULT && isError) ? "var(--red-dark)" : "" }}>Target duration </div>

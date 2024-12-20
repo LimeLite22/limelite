@@ -110,7 +110,7 @@ const SelectedAdditionalFormats = ({ isExpanded, setIsExpanded, isError }: IProp
           opportunity to enter a discount code for any for a Standard Add-ons
           during check-out
         </div>
-        <>
+        <div className={styles.videoFormat}>
           {selectedRequest?.videoSettings.selectedAdditionalFormats.map(
             (item, index) => {
               return (
@@ -118,8 +118,7 @@ const SelectedAdditionalFormats = ({ isExpanded, setIsExpanded, isError }: IProp
               );
             },
           )}
-        </>
-
+        </div>
         <div
           className={styles.videoFormat_addFormat}
           onClick={handleAddNewFormat}
