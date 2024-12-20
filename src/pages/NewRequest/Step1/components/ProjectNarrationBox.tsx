@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { SquareCheckbox, SquareCheckboxSelected } from "assets/images";
-
 import useWindowWidth from "hooks/useWindowWidth";
 
 import {
@@ -10,6 +8,8 @@ import {
   updateDraftField,
 } from "../../../../redux/requests/reducer";
 import styles from "../NewRequestStep1.module.scss";
+import { CANDID_APPROACH, EDIT_ONLY, NO_APPROACH, SCRIPTED_APPROACH, VOICEOVER_APPROACH } from "consts/consts";
+import { ApproachValue } from "types/types";
 
 interface IProps {
   isError: boolean;
@@ -29,14 +29,14 @@ const ProjectNarrationBox = ({ isError, setIsError }: IProps) => {
     }, 1500);
   };
 
-  const handleItemClick = (item: string) => {
+  const handleItemClick = (item: ApproachValue ) => {
     let list = [...(approachList || [])];
-    if (item === "None") {
+    if (item === NO_APPROACH) {
       setIsError(false);
       dispatch(
         updateDraftField({
           path: "approachList",
-          value: ["None"],
+          value: [NO_APPROACH],
         }),
       );
       return;
@@ -45,14 +45,13 @@ const ProjectNarrationBox = ({ isError, setIsError }: IProps) => {
       handleWarning();
       return;
     }
-    if (item !== "None") {
       if (list.includes(item)) {
         list = list.filter((i) => i !== item);
       } else if (list.length < 2) {
         list.push(item);
       }
 
-      list = list.filter((i) => i !== "None");
+      list = list.filter((i) => i !== NO_APPROACH);
       setIsError(false);
       dispatch(
         updateDraftField({
@@ -60,8 +59,10 @@ const ProjectNarrationBox = ({ isError, setIsError }: IProps) => {
           value: list,
         }),
       );
-    }
   };
+  if (selectedRequest?.option?.value === EDIT_ONLY) {
+    return <></>
+  }
 
   return (
     <div
@@ -83,71 +84,51 @@ const ProjectNarrationBox = ({ isError, setIsError }: IProps) => {
       </div>
       <div className={styles.nR_inputContainer_checkboxes}>
         <div
-          className={styles.nR_inputContainer_checkbox}
-          style={{ order: width < 768 ? 2 : "unset" }}
+          className={styles.requestTypeContainer_item}
+          style={{
+            order: width < 768 ? 2 : "unset",
+            border: approachList?.includes(CANDID_APPROACH) ? '1px solid var(--green-dark2)' : ''
+          }}
           onClick={() => {
-            handleItemClick("Candid Interview");
+            handleItemClick(CANDID_APPROACH);
           }}
         >
-          <img
-            src={
-              approachList?.includes("Candid Interview")
-                ? SquareCheckboxSelected
-                : SquareCheckbox
-            }
-            alt="CheckBox"
-          />
           Candid Interview
         </div>
         <div
-          className={styles.nR_inputContainer_checkbox}
-          style={{ order: width < 768 ? 3 : "unset" }}
+          className={styles.requestTypeContainer_item}
+          style={{
+            order: width < 768 ? 3 : "unset",
+            border: approachList?.includes(SCRIPTED_APPROACH) ? '1px solid var(--green-dark2)' : ''
+          }}
           onClick={() => {
-            handleItemClick("Scripted Delivery");
+            handleItemClick(SCRIPTED_APPROACH);
           }}
         >
-          <img
-            src={
-              approachList?.includes("Scripted Delivery")
-                ? SquareCheckboxSelected
-                : SquareCheckbox
-            }
-            alt="CheckBox"
-          />
           Scripted Delivery
         </div>
         <div
-          className={styles.nR_inputContainer_checkbox}
-          style={{ order: width < 768 ? 1 : "unset" }}
+          className={styles.requestTypeContainer_item}
+          style={{
+            order: width < 768 ? 1 : "unset",
+            border: approachList?.includes(VOICEOVER_APPROACH) ? '1px solid var(--green-dark2)' : ''
+          }}
           onClick={() => {
-            handleItemClick("Voiceover");
+            handleItemClick(VOICEOVER_APPROACH);
           }}
         >
-          <img
-            src={
-              approachList?.includes("Voiceover")
-                ? SquareCheckboxSelected
-                : SquareCheckbox
-            }
-            alt="CheckBox"
-          />
           Voiceover
         </div>
         <div
-          className={styles.nR_inputContainer_checkbox}
-          style={{ order: width < 768 ? 4 : "unset" }}
+          className={styles.requestTypeContainer_item}
+          style={{
+            order: width < 768 ? 4 : "unset",
+            border: approachList?.includes(NO_APPROACH) ? '1px solid var(--green-dark2)' : ''
+          }}
           onClick={() => {
-            handleItemClick("None");
+            handleItemClick(NO_APPROACH);
           }}
         >
-          <img
-            src={
-              approachList?.includes("None")
-                ? SquareCheckboxSelected
-                : SquareCheckbox
-            }
-            alt="CheckBox"
-          />
           None
         </div>
       </div>

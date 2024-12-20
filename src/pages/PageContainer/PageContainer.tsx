@@ -26,7 +26,8 @@ const PageContainer = () => {
     location.pathname.includes("newRequest/step3") ||
     location.pathname.includes("newRequest/step4") ||
     location.pathname.includes("newRequest/step5") ||
-    location.pathname.includes("newRequest/step6");
+    location.pathname.includes("newRequest/step6") ||
+    location.pathname.includes("newRequest/step7");
   const { pathname } = useLocation();
   useEffect(() => {
     document?.getElementById("pageContainer")?.scrollTo(0, 34);
@@ -50,9 +51,8 @@ const PageContainer = () => {
   return (
     <div
       id="pageContainer"
-      className={` ${styles.pageContainer} ${
-        whiteBackgroundForMobile ? styles.whiteBackgroundForMobile : ""
-      }
+      className={` ${styles.pageContainer} ${whiteBackgroundForMobile ? styles.whiteBackgroundForMobile : ""
+        }
       ${isNewRequestSteps ? styles.newRequestStep2Container : ""}
       `}
     >
@@ -94,7 +94,9 @@ const PageContainer = () => {
                 !location.pathname.includes("newRequest/step3") &&
                 !location.pathname.includes("newRequest/step4") &&
                 !location.pathname.includes("newRequest/step5") &&
-                !location.pathname.includes("newRequest/step6") && <Footer />}
+                !location.pathname.includes("newRequest/step6") &&
+                !location.pathname.includes("newRequest/step7")
+                && <Footer />}
             </>
           )}
         </div>

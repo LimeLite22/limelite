@@ -178,9 +178,10 @@ const initialState: IRequestState = {
         ],
         additionalVisualAssets: DEFAULT,
         additionalVisualAssetFile: DEFAULT,
-        additionalVisualAssetUrl:'',
+        additionalVisualAssetUrl: '',
         resultTime: DEFAULT,
       },
+      addOns: []
     },
     {
       id: "2",
@@ -281,9 +282,10 @@ const initialState: IRequestState = {
         ],
         additionalVisualAssets: DEFAULT,
         additionalVisualAssetFile: DEFAULT,
-        additionalVisualAssetUrl:'',
+        additionalVisualAssetUrl: '',
         resultTime: DEFAULT,
       },
+      addOns: []
     },
   ],
 };
@@ -395,9 +397,10 @@ const requestReducer = createSlice({
           ],
           additionalVisualAssets: DEFAULT,
           additionalVisualAssetFile: DEFAULT,
-          additionalVisualAssetUrl:'',
+          additionalVisualAssetUrl: '',
           resultTime: DEFAULT,
         },
+        addOns: []
       });
       state.selectedRequest = id;
     },

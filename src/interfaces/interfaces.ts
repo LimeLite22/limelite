@@ -1,4 +1,5 @@
-import { CalendarType, ProjectTone, ProjectType } from "types/types";
+import { CANDID_APPROACH, NO_APPROACH, SCRIPTED_APPROACH, VOICEOVER_APPROACH } from './../consts/consts';
+import { ApproachValue, CalendarType, ProjectTone, ProjectType } from "types/types";
 
 import {
   BASIC_THUMBNAIL,
@@ -33,12 +34,23 @@ import {
   VIDEO_VERTICAL,
   VIRTUAL_INTERVIEW,
   YES,
+  NO_ADD_ONS,
+  PROFF_ACTOR_ADD_ON,
+  SECOND_CAMERA_ADD_ON,
+  CUSTOM_LOGO_ADD_ON,
+  MAKE_UP_ARTIST_ADD_ON,
+  CANDID_FOTO_ADD_ON,
+  DRONE_PILOT_ADD_ON,
+  SHOOT_EDIT,
+  SHOOT_ONLY,
+  EDIT_ONLY,
+  OTHER,
 } from "consts/consts";
 
 export type IOption = {
   id: string;
   text: string;
-  value: string;
+  value: typeof SHOOT_EDIT | typeof SHOOT_ONLY | typeof EDIT_ONLY | typeof OTHER;
   credits: number | "TBD";
   img: string;
 };
@@ -137,6 +149,7 @@ type InterviewSettings = {
     };
   };
 };
+
 export interface IRequest {
   id: string;
   option: undefined | IOption;
@@ -144,7 +157,7 @@ export interface IRequest {
   targetAudience: string;
   projectType: ProjectType | string;
   projectTone: ProjectTone | string;
-  approachList: string[];
+  approachList: ApproachValue[];
   travel: ITravel;
   location: ILocation;
   preferredDate: {
@@ -206,6 +219,7 @@ export interface IRequest {
 
     resultTime: typeof RUSH_TIME | typeof STANDARD_TIME | typeof DEFAULT;
   };
+  addOns: typeof DEFAULT | typeof NO_ADD_ONS | typeof PROFF_ACTOR_ADD_ON | typeof SECOND_CAMERA_ADD_ON | typeof CUSTOM_LOGO_ADD_ON | typeof MAKE_UP_ARTIST_ADD_ON | typeof CANDID_FOTO_ADD_ON | typeof DRONE_PILOT_ADD_ON[];
 }
 export interface IRequestState {
   selectedRequest: string;

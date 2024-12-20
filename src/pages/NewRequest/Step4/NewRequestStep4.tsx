@@ -144,7 +144,7 @@ const NewRequestStep4 = () => {
                 </div>
               )}
               <div className={styles.nR_formContainer_buttons}>
-                <Link to="/newRequest/step2">
+                <Link to="/newRequest/step3">
                   <button className={styles.nR_back}>
                     <img src={ArrowGray} alt="" />
                     Go Back

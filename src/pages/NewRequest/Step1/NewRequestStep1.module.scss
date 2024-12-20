@@ -433,7 +433,7 @@
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 8px;
       width: 100%;
       margin-top: 12px;
       padding-bottom: 4px;
@@ -855,7 +855,7 @@
     gap: 8px;
     border: 1px solid var(--gray-light7);
     border-radius: 8px;
-
+    user-select: none;
     height: 72px;
     display: flex;
     align-items: center;

@@ -62,3 +62,6 @@ export type ProjectType =
   | "Other";
 
 export type CalendarType = "time" | "date" | "schedule";
+
+
+export type ApproachValue = 'No Approach' | "Candid Interview Approach" | "Scripted Delivery Approach" | "Voiceover Approach";

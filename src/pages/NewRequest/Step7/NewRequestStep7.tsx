@@ -25,14 +25,8 @@ import { selectRequestVoiceSettings } from "../../../redux/requests/reducer";
 import styles from "../NewRequest.module.scss";
 import FormFooter from "../components/FormFooter";
 import StepsNavigation from "../components/StepsNavigation";
-import AdditionalFormatsBox from "./components/AdditionalFormats/AdditionalFormatsBox";
-import AdditionalVisualAssetsBox from "./components/AdditionalVisualAssets/AdditionalVisualAssets";
-import CaptionBox from "./components/CaptionBox";
-import FormatBox from "./components/FormatBox";
-import ThumbnailBox from "./components/Thumbnail/ThumbnailBox";
-import VideoTargetDurationBox from "./components/VideoTargetDuration";
 
-const NewRequestStep6 = () => {
+const NewRequestStep7 = () => {
   const voiceSettings = useSelector(selectRequestVoiceSettings);
   const price = useCalculateFinalPrice();
   const [isDisabled, setIsDisabled] = useState(true);
@@ -99,20 +93,10 @@ const NewRequestStep6 = () => {
                     <img src={ArrowGray4} alt="" />
                   </div>
                 </Link>
-                About Your Video Edit
-              </div>
-              <div className={styles.nR_header_subText}>
-                Please provide important information below regarding your
-                completed video
+                What additional Add-ons are needed?
               </div>
             </div>
             <div className={styles.nR_formContainer}>
-              <FormatBox />
-              <VideoTargetDurationBox />
-              <CaptionBox />
-              <ThumbnailBox />
-              <AdditionalFormatsBox />
-              <AdditionalVisualAssetsBox />
               {isDisabled && showBottomMessage && (
                 <div className={styles.nR_formContainer_error}>
                   Please ensure all required fields are filled out before
@@ -121,7 +105,7 @@ const NewRequestStep6 = () => {
                 </div>
               )}
               <div className={styles.nR_formContainer_buttons}>
-                <Link to="/newRequest/step5">
+                <Link to="/newRequest/step2">
                   <button className={styles.nR_back}>
                     <img src={ArrowGray} alt="" />
                     Go Back
@@ -139,7 +123,7 @@ const NewRequestStep6 = () => {
                       Next <img src={ArrowWhite} alt="" />
                     </button>
                   ) : (
-                    <Link to={"/newRequest/step7"}>
+                    <Link to={"/newRequest/step6"}>
                       <button className={`${styles.nR_buttons_delivery}`}>
                         Next <img src={ArrowWhite} alt="" />
                       </button>
@@ -156,4 +140,4 @@ const NewRequestStep6 = () => {
   );
 };
 
-export default NewRequestStep6;
+export default NewRequestStep7;

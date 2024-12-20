@@ -45,17 +45,47 @@ export const VIRTUAL_INTERVIEW = "virtual interview";
 export const TRACK_AUTHOR_CLIENT = "client";
 export const TRACK_AUTHOR_PROFESSIONAL = "professional";
 
+
+export const NO_ADD_ONS = "no add ons";
+export const PROFF_ACTOR_ADD_ON = "no add ons";
+export const SECOND_CAMERA_ADD_ON = "no add ons";
+export const CUSTOM_LOGO_ADD_ON = "no add ons";
+export const MAKE_UP_ARTIST_ADD_ON = "no add ons";
+export const CANDID_FOTO_ADD_ON = "no add ons";
+export const DRONE_PILOT_ADD_ON = "no add ons";
+
+
+export const SHOOT_EDIT = "Shoot + Edit";
+export const SHOOT_ONLY = "Shoot only";
+export const EDIT_ONLY = "Edit only";
+export const OTHER = "Other";
+
+
+export const PROJECT_STEP = 'Project';
+export const LOGISTICS_STEP = 'Logistics';
+export const SCRIPT_STEP = 'Script';
+export const INTERVIEW_STEP = 'Interview';
+export const VOICEOVER_STEP = 'Voiceover';
+export const VIDEO_EDIT_STEP = 'Video Edit';
+export const ADD_ONS_STEP = 'Add-ons';
+
+export const NO_APPROACH = 'No Approach';
+export const CANDID_APPROACH = "Candid Interview Approach";
+export const SCRIPTED_APPROACH = "Scripted Delivery Approach";
+export const VOICEOVER_APPROACH = "Voiceover Approach";
+
+
 export const optionsList: IOptionsList = [
   {
     id: generateUniqueId(),
-    value: "Shoot + Edit",
+    value: SHOOT_EDIT,
     credits: 2,
     text: "We need LimeLite to Shoot+Edit this project",
     img: ShootEditIcon,
   },
   {
     id: generateUniqueId(),
-    value: "Shoot only",
+    value: SHOOT_ONLY,
     credits: 1,
     text: "We only need LimeLite to Shoot this project",
     img: ShootOnlyIcon,
@@ -63,14 +93,14 @@ export const optionsList: IOptionsList = [
 
   {
     id: generateUniqueId(),
-    value: "Edit only",
+    value: EDIT_ONLY,
     credits: 1,
     text: "We need LimeLite to Edit this project",
     img: EditOnlyIcon,
   },
   {
     id: generateUniqueId(),
-    value: "Other",
+    value: OTHER,
     credits: "TBD",
     text: "We need assistance scheduling this project",
     img: OtherIcon,
