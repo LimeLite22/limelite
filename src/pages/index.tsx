@@ -15,5 +15,6 @@ export { default as NewRequestStep4 } from "./NewRequest/Step4/NewRequestStep4";
 export { default as NewRequestStep5 } from "./NewRequest/Step5/NewRequestStep5";
 export { default as NewRequestStep6 } from "./NewRequest/Step6/NewRequestStep6";
 export { default as NewRequestStep7 } from "./NewRequest/Step7/NewRequestStep7";
+export { default as Final } from "./NewRequest/Final/Final";
 export { default as PageContainer } from "./PageContainer/PageContainer";
 export { default as Auth } from "./Auth/Auth";

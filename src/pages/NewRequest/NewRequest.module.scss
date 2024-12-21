@@ -33,7 +33,7 @@
   }
   &_subContainer {
     max-width: 655px;
-    width:655px;
+    width: 655px;
     @media screen and (max-width: 768px) {
       max-width: 100%;
       width: 100%;
@@ -76,10 +76,10 @@
         text-align: center;
         margin-bottom: 18px;
       }
-      &_mobPadding{
+      &_mobPadding {
         @media screen and (max-width: 768px) {
-         padding-left: 50px;
-         text-align: left;
+          padding-left: 50px;
+          text-align: left;
         }
       }
       &_button {
@@ -1222,8 +1222,8 @@
     width: 323px;
     height: 72px;
     @media screen and (max-width: 768px) {
-      width: calc( 50% - 8px);
-      min-width: calc( 50% - 8px);
+      width: calc(50% - 8px);
+      min-width: calc(50% - 8px);
       height: 42px;
     }
     &_dot {
@@ -2657,5 +2657,67 @@
   }
   &_circle_active {
     left: 20px;
+  }
+}
+.finalContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 75px;
+  }
+  &_header {
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: center;
+    color: var(--gray-dark3);
+    margin-bottom: 12px;
+  }
+  &_title {
+    font-family: Poppins;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 33.6px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: var(--black);
+    margin-bottom: 12px;
+  }
+  &_title2 {
+    //styleName: Large screens/Body/Content Regular;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: var(--gray-dark);
+    margin-bottom: 36px;
+  }
+  &_button {
+    //styleName: Large screens/Heading/Heading 4;
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 17.6px;
+    letter-spacing: 0.02em;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: var(--gray-dark);
+    padding:15px 22px;
+    border-radius: 10px;
+    border: 1px solid var(--gray-light7);
+    cursor: pointer;
   }
 }

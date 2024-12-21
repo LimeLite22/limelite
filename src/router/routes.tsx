@@ -3,6 +3,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import {
   Auth,
   ChatSupport,
+  Final,
   Learn,
   Loader,
   NewRequestStart,
@@ -81,6 +82,12 @@ const routes = createBrowserRouter([
             path: "/newRequest/step7",
             element: (
               <PrivateRoute component={NewRequestStep7} redirectTo="/auth" />
+            ),
+          },
+          {
+            path: "/newRequest/final",
+            element: (
+              <PrivateRoute component={Final} redirectTo="/auth" />
             ),
           },
           {

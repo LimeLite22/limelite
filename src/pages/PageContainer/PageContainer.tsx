@@ -27,7 +27,8 @@ const PageContainer = () => {
     location.pathname.includes("newRequest/step4") ||
     location.pathname.includes("newRequest/step5") ||
     location.pathname.includes("newRequest/step6") ||
-    location.pathname.includes("newRequest/step7");
+    location.pathname.includes("newRequest/step7") || 
+    location.pathname.includes("newRequest/final");
   const { pathname } = useLocation();
   useEffect(() => {
     document?.getElementById("pageContainer")?.scrollTo(0, 34);
@@ -95,7 +96,8 @@ const PageContainer = () => {
                 !location.pathname.includes("newRequest/step4") &&
                 !location.pathname.includes("newRequest/step5") &&
                 !location.pathname.includes("newRequest/step6") &&
-                !location.pathname.includes("newRequest/step7")
+                !location.pathname.includes("newRequest/step7") && 
+                !location.pathname.includes("newRequest/final")
                 && <Footer />}
             </>
           )}

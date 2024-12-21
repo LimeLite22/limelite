@@ -1,3 +1,4 @@
+import { Success } from 'assets/images';
 export { default as AddOnlyIcon } from "./BottomMenu/AddOnlyIcon.svg";
 export { default as EditOnlyIcon } from "./BottomMenu/EditOnlyIcon.svg";
 export { default as BottomNewRequestIcon } from "./BottomMenu/NewRequestIcon.svg";
@@ -158,6 +159,7 @@ export { default as Twitter } from "./Сommon/Twitter.svg";
 export { default as Youtube } from "./Сommon/Youtube.svg";
 export { default as Drop } from "./Сommon/Drop.svg";
 export { default as PNG } from "./Сommon/Png.svg";
+export { default as SuccessGap } from "./Сommon/SuccessGap.svg";
 
 // what is new
 
