@@ -159,7 +159,7 @@ export { default as Twitter } from "./Сommon/Twitter.svg";
 export { default as Youtube } from "./Сommon/Youtube.svg";
 export { default as Drop } from "./Сommon/Drop.svg";
 export { default as PNG } from "./Сommon/Png.svg";
-export { default as SuccessGap } from "./Сommon/SuccessGap.svg";
+export { default as SuccessGap } from "./Сommon/SuccessGap.webp";
 
 // what is new
 
