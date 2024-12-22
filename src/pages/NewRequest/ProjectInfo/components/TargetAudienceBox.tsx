@@ -4,7 +4,7 @@ import {
   selectRequestInfo,
   updateDraftField,
 } from "../../../../redux/requests/reducer";
-import styles from "../NewRequestStep1.module.scss";
+import styles from "../ProjectInfo.module.scss";
 
 interface IProps {
   isError: boolean;

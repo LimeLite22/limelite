@@ -14,21 +14,18 @@ import useWindowWidth from "hooks/useWindowWidth";
 
 import { useCalculateFinalPrice } from "utils/priceCalculator";
 
-import { DEFAULT } from "consts/consts";
+import { DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT } from "consts/consts";
 
 import { selectRequestInfo } from "../../../redux/requests/reducer";
 import styles from "../NewRequest.module.scss";
 import FormFooter from "../components/FormFooter";
 import StepsNavigation from "../components/StepsNavigation";
-import AdditionalFormatsBox from "./components/AdditionalFormats/AdditionalFormatsBox";
-import AdditionalVisualAssetsBox from "./components/AdditionalVisualAssets/AdditionalVisualAssets";
-import CaptionBox from "./components/CaptionBox";
-import FormatBox from "./components/FormatBox";
-import ThumbnailBox from "./components/Thumbnail/ThumbnailBox";
-import VideoTargetDurationBox from "./components/VideoTargetDuration";
+import IsScriptRequired from "./components/Script/IsScriptRequiredBox";
+import ScriptPersons from "./components/ScriptPersons";
+import Teleprompter from "./components/Teleprompter";
 
-const NewRequestStep6 = () => {
-  const videoSettings = useSelector(selectRequestInfo)?.videoSettings;
+const ScriptedDelivery = () => {
+  const selectedRequest = useSelector(selectRequestInfo);
   const price = useCalculateFinalPrice();
   const [isDisabled, setIsDisabled] = useState(true);
   const [showBottomMessage, setShowBottomMessage] = useState(false);
@@ -36,37 +33,38 @@ const NewRequestStep6 = () => {
 
   const handleNextDisabled = () => {
     let disabled = false;
-    if (videoSettings?.format === DEFAULT) {
-      disabled = true
+    if (selectedRequest?.scriptSettings?.scriptWriter === DEFAULT) {
+      disabled = true;
     }
-    if (videoSettings?.targetDuration === DEFAULT) {
-      disabled = true
+    if (
+      selectedRequest?.scriptSettings?.scriptWriter === OWN_SCRIPT &&
+      selectedRequest?.scriptSettings?.ownText.length === 0
+    ) {
+      disabled = true;
     }
-    if (videoSettings?.additionalVisualAssets === true
-      && videoSettings?.additionalVisualAssetFile === DEFAULT
-      && videoSettings?.additionalVisualAssetUrl.length === 0) {
-      disabled = true
+    if (
+      selectedRequest?.scriptSettings?.scriptWriter === PROFESSIONAL_SCRIPT &&
+      (selectedRequest?.scriptSettings?.profText.length === 0 ||
+        selectedRequest?.scriptSettings?.name.length === 0 ||
+        selectedRequest?.scriptSettings?.phone === 0 ||
+        selectedRequest?.scriptSettings?.phone === "")
+    ) {
+      disabled = true;
     }
-    if (videoSettings?.thumbnail === DEFAULT) {
-      disabled = true
+    if (selectedRequest?.scriptSettings?.teleprompter === DEFAULT) {
+      disabled = true;
     }
-    if (videoSettings?.additionalFormats === true) {
-      const formats = videoSettings?.selectedAdditionalFormats;
-      formats?.forEach((item) => {
-        if (item.format === DEFAULT || item.duration === DEFAULT) {
-          disabled = true
-        }
-      });
-    }
-
-
-
-    console.log("step6 disabled", disabled);
+    const persons = selectedRequest?.scriptSettings?.persons;
+    persons?.forEach((person) => {
+      if (person.name.length === 0 || person.title.length === 0) {
+        disabled = true;
+      }
+    });
     setIsDisabled(disabled);
   };
   useEffect(() => {
     handleNextDisabled();
-  }, [videoSettings]);
+  }, [selectedRequest]);
 
   return (
     <>
@@ -86,25 +84,22 @@ const NewRequestStep6 = () => {
             <StepsNavigation />
             <div className={styles.nR_header}>
               <div className={styles.nR_header_text}>
-                <Link to="/newRequest/step5">
+                <Link to="/newRequest/step2">
                   <div className={styles.nR_header_text_button}>
                     <img src={ArrowGray4} alt="" />
                   </div>
                 </Link>
-                About Your Video Edit
+                Scripted Delivery
               </div>
               <div className={styles.nR_header_subText}>
-                Please provide important information below regarding your
-                completed video
+                Please provide important information below regarding your video
+                script
               </div>
             </div>
             <div className={styles.nR_formContainer}>
-              <FormatBox />
-              <VideoTargetDurationBox />
-              <CaptionBox />
-              <ThumbnailBox />
-              <AdditionalFormatsBox />
-              <AdditionalVisualAssetsBox />
+              <IsScriptRequired />
+              <Teleprompter />
+              <ScriptPersons />
               {isDisabled && showBottomMessage && (
                 <div className={styles.nR_formContainer_error}>
                   Please ensure all required fields are filled out before
@@ -113,7 +108,7 @@ const NewRequestStep6 = () => {
                 </div>
               )}
               <div className={styles.nR_formContainer_buttons}>
-                <Link to="/newRequest/step5">
+                <Link to="/newRequest/step2">
                   <button className={styles.nR_back}>
                     <img src={ArrowGray} alt="" />
                     Go Back
@@ -131,7 +126,7 @@ const NewRequestStep6 = () => {
                       Next <img src={ArrowWhite} alt="" />
                     </button>
                   ) : (
-                    <Link to={"/newRequest/step7"}>
+                    <Link to={"/newRequest/step4"}>
                       <button className={`${styles.nR_buttons_delivery}`}>
                         Next <img src={ArrowWhite} alt="" />
                       </button>
@@ -148,4 +143,4 @@ const NewRequestStep6 = () => {
   );
 };
 
-export default NewRequestStep6;
+export default ScriptedDelivery;

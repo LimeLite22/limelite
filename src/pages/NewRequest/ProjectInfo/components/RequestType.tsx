@@ -1,8 +1,6 @@
 import { type FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { CheckBoxSelectedType2, CheckBoxType2 } from "assets/images";
-
 import { generateUniqueId } from "utils/generateId";
 
 import { optionsList } from "consts/consts";
@@ -11,7 +9,7 @@ import {
   selectRequestInfo,
   updateDraftField,
 } from "../../../../redux/requests/reducer";
-import styles from "../NewRequestStep1.module.scss";
+import styles from "../ProjectInfo.module.scss";
 
 const RequestType: FC = () => {
   const dispatch = useDispatch();

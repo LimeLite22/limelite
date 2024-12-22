@@ -1,4 +1,3 @@
-import { Success } from 'assets/images';
 export { default as AddOnlyIcon } from "./BottomMenu/AddOnlyIcon.svg";
 export { default as EditOnlyIcon } from "./BottomMenu/EditOnlyIcon.svg";
 export { default as BottomNewRequestIcon } from "./BottomMenu/NewRequestIcon.svg";

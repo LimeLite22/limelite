@@ -14,18 +14,15 @@ import useWindowWidth from "hooks/useWindowWidth";
 
 import { useCalculateFinalPrice } from "utils/priceCalculator";
 
-import { DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT } from "consts/consts";
-
-import { selectRequestInfo } from "../../../redux/requests/reducer";
+import { selectRequestVoiceSettings } from "../../../redux/requests/reducer";
 import styles from "../NewRequest.module.scss";
 import FormFooter from "../components/FormFooter";
 import StepsNavigation from "../components/StepsNavigation";
-import IsScriptRequired from "./components/Script/IsScriptRequiredBox";
-import ScriptPersons from "./components/ScriptPersons";
-import Teleprompter from "./components/Teleprompter";
+import { ADD_ONS_LIST } from "consts/consts";
+import AddOnBox from "./components/AddOnBox";
 
-const NewRequestStep3 = () => {
-  const selectedRequest = useSelector(selectRequestInfo);
+const AddOns = () => {
+  const voiceSettings = useSelector(selectRequestVoiceSettings);
   const price = useCalculateFinalPrice();
   const [isDisabled, setIsDisabled] = useState(true);
   const [showBottomMessage, setShowBottomMessage] = useState(false);
@@ -33,38 +30,13 @@ const NewRequestStep3 = () => {
 
   const handleNextDisabled = () => {
     let disabled = false;
-    if (selectedRequest?.scriptSettings?.scriptWriter === DEFAULT) {
-      disabled = true;
-    }
-    if (
-      selectedRequest?.scriptSettings?.scriptWriter === OWN_SCRIPT &&
-      selectedRequest?.scriptSettings?.ownText.length === 0
-    ) {
-      disabled = true;
-    }
-    if (
-      selectedRequest?.scriptSettings?.scriptWriter === PROFESSIONAL_SCRIPT &&
-      (selectedRequest?.scriptSettings?.profText.length === 0 ||
-        selectedRequest?.scriptSettings?.name.length === 0 ||
-        selectedRequest?.scriptSettings?.phone === 0 ||
-        selectedRequest?.scriptSettings?.phone === "")
-    ) {
-      disabled = true;
-    }
-    if (selectedRequest?.scriptSettings?.teleprompter === DEFAULT) {
-      disabled = true;
-    }
-    const persons = selectedRequest?.scriptSettings?.persons;
-    persons?.forEach((person) => {
-      if (person.name.length === 0 || person.title.length === 0) {
-        disabled = true;
-      }
-    });
+
+    console.log("disabled", disabled);
     setIsDisabled(disabled);
   };
   useEffect(() => {
     handleNextDisabled();
-  }, [selectedRequest]);
+  }, [voiceSettings]);
 
   return (
     <>
@@ -83,23 +55,24 @@ const NewRequestStep3 = () => {
           <div className={styles.nR_subContainer}>
             <StepsNavigation />
             <div className={styles.nR_header}>
-              <div className={styles.nR_header_text}>
-                <Link to="/newRequest/step2">
+              <div className={styles.nR_header_text + " " + styles.nR_header_text_mobPadding} >
+                <Link to="/newRequest/step6">
                   <div className={styles.nR_header_text_button}>
                     <img src={ArrowGray4} alt="" />
                   </div>
                 </Link>
-                Scripted Delivery
-              </div>
-              <div className={styles.nR_header_subText}>
-                Please provide important information below regarding your video
-                script
+                What additional Add-ons are needed?
               </div>
             </div>
+
             <div className={styles.nR_formContainer}>
-              <IsScriptRequired />
-              <Teleprompter />
-              <ScriptPersons />
+              <div >
+                {
+                  ADD_ONS_LIST.map((item, index) => (
+                    <AddOnBox key={index} item={item} />
+                  ))
+                }
+              </div>
               {isDisabled && showBottomMessage && (
                 <div className={styles.nR_formContainer_error}>
                   Please ensure all required fields are filled out before
@@ -126,7 +99,7 @@ const NewRequestStep3 = () => {
                       Next <img src={ArrowWhite} alt="" />
                     </button>
                   ) : (
-                    <Link to={"/newRequest/step4"}>
+                    <Link to={"/newRequest/step6"}>
                       <button className={`${styles.nR_buttons_delivery}`}>
                         Next <img src={ArrowWhite} alt="" />
                       </button>
@@ -143,4 +116,4 @@ const NewRequestStep3 = () => {
   );
 };
 
-export default NewRequestStep3;
+export default AddOns;

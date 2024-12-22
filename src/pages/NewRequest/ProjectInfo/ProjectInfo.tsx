@@ -13,7 +13,7 @@ import {
 import { selectRequestInfo } from "../../../redux/requests/reducer";
 import FormFooter from "../components/FormFooter";
 import StepsNavigation from "../components/StepsNavigation";
-import styles from "./NewRequestStep1.module.scss";
+import styles from "./ProjectInfo.module.scss";
 import {
   ProjectNameBox,
   ProjectNarrationBox,
@@ -24,7 +24,7 @@ import {
   TargetAudienceBox,
 } from "./components";
 
-const NewRequestStep1 = () => {
+const ProjectInfo = () => {
   const selectedRequest = useSelector(selectRequestInfo);
   const projectType = selectedRequest?.projectType;
   const projectTone = selectedRequest?.projectTone;
@@ -159,4 +159,4 @@ const NewRequestStep1 = () => {
   );
 };
 
-export default NewRequestStep1;
+export default ProjectInfo;

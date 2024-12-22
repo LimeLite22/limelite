@@ -14,7 +14,7 @@ import { useState } from "react";
 
 // import { Editor } from "react-draft-wysiwyg";
 // import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import styles from "../NewRequestStep1.module.scss";
+import styles from "../ProjectInfo.module.scss";
 
 const ShotList = () => {
   const [text, setText] = useState<string>("");

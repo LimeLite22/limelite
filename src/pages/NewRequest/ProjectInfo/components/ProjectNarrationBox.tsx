@@ -7,7 +7,7 @@ import {
   selectRequestInfo,
   updateDraftField,
 } from "../../../../redux/requests/reducer";
-import styles from "../NewRequestStep1.module.scss";
+import styles from "../ProjectInfo.module.scss";
 import { CANDID_APPROACH, EDIT_ONLY, NO_APPROACH, SCRIPTED_APPROACH, VOICEOVER_APPROACH } from "consts/consts";
 import { ApproachValue } from "types/types";
 
@@ -29,7 +29,7 @@ const ProjectNarrationBox = ({ isError, setIsError }: IProps) => {
     }, 1500);
   };
 
-  const handleItemClick = (item: ApproachValue ) => {
+  const handleItemClick = (item: ApproachValue) => {
     let list = [...(approachList || [])];
     if (item === NO_APPROACH) {
       setIsError(false);
@@ -45,20 +45,20 @@ const ProjectNarrationBox = ({ isError, setIsError }: IProps) => {
       handleWarning();
       return;
     }
-      if (list.includes(item)) {
-        list = list.filter((i) => i !== item);
-      } else if (list.length < 2) {
-        list.push(item);
-      }
+    if (list.includes(item)) {
+      list = list.filter((i) => i !== item);
+    } else if (list.length < 2) {
+      list.push(item);
+    }
 
-      list = list.filter((i) => i !== NO_APPROACH);
-      setIsError(false);
-      dispatch(
-        updateDraftField({
-          path: "approachList",
-          value: list,
-        }),
-      );
+    list = list.filter((i) => i !== NO_APPROACH);
+    setIsError(false);
+    dispatch(
+      updateDraftField({
+        path: "approachList",
+        value: list,
+      }),
+    );
   };
   if (selectedRequest?.option?.value === EDIT_ONLY) {
     return <></>

@@ -1,5 +1,4 @@
 import { SuccessGap } from "assets/images"
-import { useRef } from "react";
 import styles from "../NewRequest.module.scss";
 import Realistic from "react-canvas-confetti/dist/presets/realistic";
 
