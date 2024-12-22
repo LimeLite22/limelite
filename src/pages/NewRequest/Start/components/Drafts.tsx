@@ -76,7 +76,7 @@ const Drafts = () => {
                         value: draft.id,
                       }),
                     );
-                    navigate("/newRequest/step1");
+                    navigate("/new-request/project");
                   }}
                 >
                   <DraftItem

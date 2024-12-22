@@ -7,13 +7,6 @@ import {
   Learn,
   Loader,
   NewRequestStart,
-  NewRequestStep1,
-  NewRequestStep2,
-  NewRequestStep3,
-  NewRequestStep4,
-  NewRequestStep5,
-  NewRequestStep6,
-  NewRequestStep7,
   Notifications,
   PageContainer,
   SelectProfile,
@@ -23,6 +16,14 @@ import {
 } from "pages";
 
 import PrivateRoute from "./PrivateRouter";
+import ProjectInfo from "pages/NewRequest/ProjectInfo/ProjectInfo";
+import Logistics from "pages/NewRequest/Logistics/Logistics";
+import ScriptedDelivery from "pages/NewRequest/ScriptedDelivery/ScriptedDelivery";
+import Interview from "pages/NewRequest/Interview/Interview";
+import Voiceover from "pages/NewRequest/Voiceover/Voiceover";
+import VideoEdit from "pages/NewRequest/VideoEdit/VideoEdit";
+import AddOns from "pages/NewRequest/AddOns/AddOns";
+import Submit from "pages/NewRequest/Submit/Submit";
 
 const routes = createBrowserRouter([
   {
@@ -37,55 +38,62 @@ const routes = createBrowserRouter([
             element: <PrivateRoute component={Welcome} redirectTo="/auth" />,
           },
           {
-            path: "/newRequest/start",
+            path: "/new-request/start",
             element: (
               <PrivateRoute component={NewRequestStart} redirectTo="/auth" />
             ),
           },
+
           {
-            path: "/newRequest/step1",
+            path: "/new-request/project",
             element: (
-              <PrivateRoute component={NewRequestStep1} redirectTo="/auth" />
+              <PrivateRoute component={ProjectInfo} redirectTo="/auth" />
             ),
           },
           {
-            path: "/newRequest/step2",
+            path: "/new-request/logistics",
             element: (
-              <PrivateRoute component={NewRequestStep2} redirectTo="/auth" />
+              <PrivateRoute component={Logistics} redirectTo="/auth" />
             ),
           },
           {
-            path: "/newRequest/step3",
+            path: "/new-request/script",
             element: (
-              <PrivateRoute component={NewRequestStep3} redirectTo="/auth" />
+              <PrivateRoute component={ScriptedDelivery} redirectTo="/auth" />
             ),
           },
           {
-            path: "/newRequest/step4",
+            path: "/new-request/interview",
             element: (
-              <PrivateRoute component={NewRequestStep4} redirectTo="/auth" />
+              <PrivateRoute component={Interview} redirectTo="/auth" />
             ),
           },
           {
-            path: "/newRequest/step5",
+            path: "new-request/voiceover",
             element: (
-              <PrivateRoute component={NewRequestStep5} redirectTo="/auth" />
+              <PrivateRoute component={Voiceover} redirectTo="/auth" />
             ),
           },
           {
-            path: "/newRequest/step6",
+            path: "new-request/video-edit",
             element: (
-              <PrivateRoute component={NewRequestStep6} redirectTo="/auth" />
+              <PrivateRoute component={VideoEdit} redirectTo="/auth" />
             ),
           },
           {
-            path: "/newRequest/step7",
+            path: "new-request/add-ons",
             element: (
-              <PrivateRoute component={NewRequestStep7} redirectTo="/auth" />
+              <PrivateRoute component={AddOns} redirectTo="/auth" />
             ),
           },
           {
-            path: "/newRequest/final",
+            path: "new-request/submit",
+            element: (
+              <PrivateRoute component={Submit} redirectTo="/auth" />
+            ),
+          },
+          {
+            path: "new-request/final",
             element: (
               <PrivateRoute component={Final} redirectTo="/auth" />
             ),

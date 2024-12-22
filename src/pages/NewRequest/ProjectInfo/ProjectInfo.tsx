@@ -23,6 +23,7 @@ import {
   ShotListBox,
   TargetAudienceBox,
 } from "./components";
+import NextButton from "../components/NextButton";
 
 const ProjectInfo = () => {
   const selectedRequest = useSelector(selectRequestInfo);
@@ -68,7 +69,7 @@ const ProjectInfo = () => {
     <>
       <div className={styles.nR}>
         <div className={styles.nR_container}>
-          <Link to="/newRequest/start">
+          <Link to="/new-request/start">
             <div className={styles.nR_backButton}>
               <img src={ArrowGray3} alt="" /> Back to New Request{" "}
             </div>
@@ -77,7 +78,7 @@ const ProjectInfo = () => {
             <StepsNavigation />
             <div className={styles.nR_header}>
               <div className={styles.nR_header_text}>
-                <Link to="/newRequest/start">
+                <Link to="/new-request/start">
                   <div className={styles.nR_header_text_button}>
                     <img src={ArrowGray4} alt="" />
                   </div>
@@ -121,7 +122,7 @@ const ProjectInfo = () => {
                   </div>
                 )}
                 <div className={styles.nR_formContainer_buttons}>
-                  <Link to="/newRequest/start">
+                  <Link to="/new-request/start">
                     <button className={styles.nR_formContainer_back}>
                       <img src={ArrowGray} alt="" />
                       Go Back
@@ -131,22 +132,9 @@ const ProjectInfo = () => {
                     <button className={styles.nR_formContainer_buttons_save}>
                       <img src={DetailsGreen} alt="" />
                     </button>
-                    {isNextDisabled ? (
-                      <button
-                        onClick={handleErrors}
-                        className={`${styles.nR_formContainer_buttons_delivery} ${isNextDisabled ? styles.nR_formContainer_buttons_deliveryDisabled : ""} `}
-                      >
-                        Next <img src={ArrowWhite} alt="" />
-                      </button>
-                    ) : (
-                      <Link to={"/newRequest/step2"} onClick={handleErrors}>
-                        <button
-                          className={`${styles.nR_formContainer_buttons_delivery}`}
-                        >
-                          Next <img src={ArrowWhite} alt="" />
-                        </button>
-                      </Link>
-                    )}
+                    <NextButton isDisabled={isNextDisabled} onClick={()=>{
+                      isNextDisabled && handleErrors()
+                    }} />
                   </div>
                 </div>
               </div>

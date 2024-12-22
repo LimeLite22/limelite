@@ -1,4 +1,4 @@
-import { AddOnsValueType, ApproachValue, CalendarType, ProjectTone, ProjectType } from "types/types";
+import { AddOnsValueType, ApproachValue, CalendarType, ProjectTone, ProjectType, stepType } from "types/types";
 
 import {
   BASIC_THUMBNAIL,
@@ -229,6 +229,7 @@ export interface IRequest {
 }
 export interface IRequestState {
   selectedRequest: string;
+  stepsList: stepType[];
   drafts: IRequest[];
 }
 export type IOptionsList = IOption[];

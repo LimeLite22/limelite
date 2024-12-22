@@ -19,7 +19,7 @@ const NewRequestStart = () => {
   const navigate = useNavigate();
   const handleCardClick = (option: IRequest["option"]) => {
     dispatch(createDraft(option));
-    navigate("/newRequest/step1");
+    navigate("/new-request/project");
   };
 
   return (

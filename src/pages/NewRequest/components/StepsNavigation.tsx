@@ -5,81 +5,13 @@ import { ArrowLightGray, Success } from "assets/images";
 
 import styles from "../NewRequest.module.scss";
 import { useSelector } from "react-redux";
-import { selectRequestInfo } from "../../../redux/requests/reducer";
-import { ADD_ONS_STEP, CANDID_APPROACH, EDIT_ONLY, INTERVIEW_STEP, LOGISTICS_STEP, PROJECT_STEP, SCRIPTED_APPROACH, SCRIPT_STEP, SHOOT_EDIT, SHOOT_ONLY, VIDEO_EDIT_STEP, VOICEOVER_APPROACH, VOICEOVER_STEP } from "consts/consts";
+import { selectSteps } from "../../../redux/requests/reducer";
 
 const StepsNavigation = () => {
   const [step, setStep] = useState(1);
+  const steps = useSelector(selectSteps)
+
   const location = useLocation();
-  const request = useSelector(selectRequestInfo);
-  useEffect(() => {
-    if (location.pathname.includes("step1")) {
-      setStep(1);
-    }
-    if (location.pathname.includes("step2")) {
-      setStep(2);
-    }
-    if (location.pathname.includes("step3")) {
-      setStep(3);
-    }
-    if (location.pathname.includes("step4")) {
-      setStep(4);
-    }
-    if (location.pathname.includes("step5")) {
-      setStep(5);
-    }
-    if (location.pathname.includes("step6")) {
-      setStep(6);
-    }
-    if (location.pathname.includes("step7")) {
-      setStep(7);
-    }
-  }, [location]);
-  const [steps, setSteps] = useState<string[]>([]);
-  useEffect(() => {
-    let updatedSteps = []
-    if (request?.option?.value === SHOOT_EDIT) {
-      updatedSteps.push(PROJECT_STEP);
-      updatedSteps.push(LOGISTICS_STEP);
-      if (request?.approachList?.includes(SCRIPTED_APPROACH)) {
-        updatedSteps.push(SCRIPT_STEP);
-      }
-      if (request?.approachList?.includes(CANDID_APPROACH)) {
-        updatedSteps.push(INTERVIEW_STEP);
-      }
-      if (request?.approachList?.includes(VOICEOVER_APPROACH)) {
-        updatedSteps.push(VOICEOVER_STEP);
-      }
-      updatedSteps.push(VIDEO_EDIT_STEP);
-      updatedSteps.push(ADD_ONS_STEP);
-      console.log("updatedSteps", updatedSteps);
-      setSteps(updatedSteps);
-    }
-    if (request?.option?.value === SHOOT_ONLY) {
-      updatedSteps.push(PROJECT_STEP);
-      updatedSteps.push(LOGISTICS_STEP);
-      if (request?.approachList?.includes(SCRIPTED_APPROACH)) {
-        updatedSteps.push(SCRIPT_STEP);
-      }
-      if (request?.approachList?.includes(CANDID_APPROACH)) {
-        updatedSteps.push(INTERVIEW_STEP);
-      }
-      if (request?.approachList?.includes(VOICEOVER_APPROACH)) {
-        updatedSteps.push(VOICEOVER_STEP);
-      }
-      updatedSteps.push(VIDEO_EDIT_STEP);
-      updatedSteps.push(ADD_ONS_STEP);
-      console.log("updatedSteps", updatedSteps);
-      setSteps(updatedSteps);
-    }
-    if (request?.option?.value === EDIT_ONLY) {
-      updatedSteps.push(PROJECT_STEP);
-      updatedSteps.push(LOGISTICS_STEP);
-      updatedSteps.push(VIDEO_EDIT_STEP);
-      console.log("updatedSteps", updatedSteps);
-      setSteps(updatedSteps);
-    }
-  }, [request])
 
   return (
     <>

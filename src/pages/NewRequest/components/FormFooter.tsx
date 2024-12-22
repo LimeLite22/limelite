@@ -74,7 +74,7 @@ const FormFooter = () => {
                   </div>
                 )}
               </div>
-              <Link to="/newRequest/step1">
+              <Link to="/new-request/project">
                 <div
                   className={styles.footer_container_typeContainer_text_title2}
                 >

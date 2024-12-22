@@ -50,14 +50,14 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
       setSelectedPage(NOTIFICATIONS);
     }
     if (
-      location.pathname.includes("newRequest/start") ||
-      location.pathname.includes("newRequest/step1") ||
-      location.pathname.includes("newRequest/step2") ||
-      location.pathname.includes("newRequest/step3") ||
-      location.pathname.includes("newRequest/step4") ||
-      location.pathname.includes("newRequest/step5") ||
-      location.pathname.includes("newRequest/step6") ||
-      location.pathname.includes("newRequest/step7")
+      location.pathname.includes("new-request/start") ||
+      location.pathname.includes("new-request/project") ||
+      location.pathname.includes("new-request/logistics") ||
+      location.pathname.includes("new-request/script") ||
+      location.pathname.includes("new-request/interview") ||
+      location.pathname.includes("new-request/voiceover") ||
+      location.pathname.includes("new-request/video-edit") ||
+      location.pathname.includes("new-request/add-ons")
     ) {
       setSelectedPage(NEW_REQUEST);
     }
@@ -91,7 +91,7 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
             onClick={() => setIsOpened(!isOpened)}
           />
         </div>
-        <Link to="/newRequest/start" style={{ textDecoration: "none" }}>
+        <Link to="/new-request/start" style={{ textDecoration: "none" }}>
           <SideBarNavItem
             selectedPage={selectedPage}
             setSelectedPage={setSelectedPage}

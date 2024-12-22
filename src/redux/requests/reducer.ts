@@ -9,6 +9,7 @@ import { generateUniqueId } from "utils/generateId";
 import { DEFAULT, optionsList } from "consts/consts";
 
 import { IRequest } from "./../../interfaces/interfaces";
+import { stepType } from "types/types";
 
 // const loadStateFromLocalStorage = (): IRequestState | undefined => {
 //   try {
@@ -73,6 +74,7 @@ localStorage.removeItem("requestState");
 
 const initialState: IRequestState = {
   selectedRequest: "1",
+  stepsList: [],
   drafts: [
     {
       id: "1",
@@ -478,6 +480,9 @@ const requestReducer = createSlice({
         }
       }
     },
+    updateStepsList: (state, action: PayloadAction<stepType[]>) => {
+      state.stepsList = action.payload
+    }
   },
 });
 
@@ -489,6 +494,7 @@ export const {
   deleteAdditionalVideoFormat,
   updateAdditionalVideoFormat,
   updateDraftField,
+  updateStepsList
 } = requestReducer.actions;
 
 export const selectRequestInfo = (state: IRootState) => {
@@ -505,5 +511,11 @@ export const selectRequestVoiceSettings = (state: IRootState) => {
 export const selectDrafts = (state: IRootState) => {
   return state.request.drafts;
 };
+
+export const selectSteps = (state: IRootState) => {
+  return state.request.stepsList;
+};
+
+
 
 export default requestReducer.reducer;

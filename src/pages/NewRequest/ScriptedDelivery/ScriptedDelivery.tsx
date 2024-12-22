@@ -23,6 +23,7 @@ import StepsNavigation from "../components/StepsNavigation";
 import IsScriptRequired from "./components/Script/IsScriptRequiredBox";
 import ScriptPersons from "./components/ScriptPersons";
 import Teleprompter from "./components/Teleprompter";
+import NextButton from "../components/NextButton";
 
 const ScriptedDelivery = () => {
   const selectedRequest = useSelector(selectRequestInfo);
@@ -75,7 +76,7 @@ const ScriptedDelivery = () => {
             paddingBottom: price === 0 && width < 768 ? "20px" : "",
           }}
         >
-          <Link to="/newRequest/start">
+          <Link to="/new-request/start">
             <div className={styles.nR_backButton}>
               <img src={ArrowGray3} alt="" /> Back to New Request{" "}
             </div>
@@ -84,7 +85,7 @@ const ScriptedDelivery = () => {
             <StepsNavigation />
             <div className={styles.nR_header}>
               <div className={styles.nR_header_text}>
-                <Link to="/newRequest/step2">
+                <Link to="/new-request/logistics">
                   <div className={styles.nR_header_text_button}>
                     <img src={ArrowGray4} alt="" />
                   </div>
@@ -108,7 +109,7 @@ const ScriptedDelivery = () => {
                 </div>
               )}
               <div className={styles.nR_formContainer_buttons}>
-                <Link to="/newRequest/step2">
+                <Link to="/new-request/logistics">
                   <button className={styles.nR_back}>
                     <img src={ArrowGray} alt="" />
                     Go Back
@@ -118,20 +119,9 @@ const ScriptedDelivery = () => {
                   <button className={styles.nR_buttons_save}>
                     <img src={DetailsGreen} alt="" />
                   </button>
-                  {isDisabled ? (
-                    <button
-                      onClick={() => setShowBottomMessage(true)}
-                      className={`${styles.nR_buttons_delivery} ${isDisabled ? styles.nR_buttons_deliveryDisabled : ""} `}
-                    >
-                      Next <img src={ArrowWhite} alt="" />
-                    </button>
-                  ) : (
-                    <Link to={"/newRequest/step4"}>
-                      <button className={`${styles.nR_buttons_delivery}`}>
-                        Next <img src={ArrowWhite} alt="" />
-                      </button>
-                    </Link>
-                  )}
+                  <NextButton isDisabled={isDisabled} onClick={()=>{
+                    isDisabled && setShowBottomMessage(true)
+                  }} />
                 </div>
               </div>
             </div>

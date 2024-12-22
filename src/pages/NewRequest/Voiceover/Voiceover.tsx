@@ -6,7 +6,6 @@ import {
   ArrowGray,
   ArrowGray3,
   ArrowGray4,
-  ArrowWhite,
   DetailsGreen,
 } from "assets/images";
 
@@ -27,8 +26,9 @@ import FormFooter from "../components/FormFooter";
 import StepsNavigation from "../components/StepsNavigation";
 import InterviewScriptBox from "./components/Script/InterviewScriptBox";
 import VoiceTrackBox from "./components/Track/VoiceTrackBox";
+import NextButton from "../components/NextButton";
 
-const NewRequestStep5 = () => {
+const Voiceover = () => {
   const voiceSettings = useSelector(selectRequestVoiceSettings);
   const price = useCalculateFinalPrice();
   const [isDisabled, setIsDisabled] = useState(true);
@@ -81,7 +81,7 @@ const NewRequestStep5 = () => {
             paddingBottom: price === 0 && width < 768 ? "20px" : "",
           }}
         >
-          <Link to="/newRequest/start">
+          <Link to="/new-request/start">
             <div className={styles.nR_backButton}>
               <img src={ArrowGray3} alt="" /> Back to New Request{" "}
             </div>
@@ -90,7 +90,7 @@ const NewRequestStep5 = () => {
             <StepsNavigation />
             <div className={styles.nR_header}>
               <div className={styles.nR_header_text}>
-                <Link to="/newRequest/step4">
+                <Link to="/new-request/interview">
                   <div className={styles.nR_header_text_button}>
                     <img src={ArrowGray4} alt="" />
                   </div>
@@ -113,7 +113,7 @@ const NewRequestStep5 = () => {
                 </div>
               )}
               <div className={styles.nR_formContainer_buttons}>
-                <Link to="/newRequest/step4">
+                <Link to="/new-request/interview">
                   <button className={styles.nR_back}>
                     <img src={ArrowGray} alt="" />
                     Go Back
@@ -123,20 +123,9 @@ const NewRequestStep5 = () => {
                   <button className={styles.nR_buttons_save}>
                     <img src={DetailsGreen} alt="" />
                   </button>
-                  {isDisabled ? (
-                    <button
-                      onClick={() => setShowBottomMessage(true)}
-                      className={`${styles.nR_buttons_delivery} ${isDisabled ? styles.nR_buttons_deliveryDisabled : ""} `}
-                    >
-                      Next <img src={ArrowWhite} alt="" />
-                    </button>
-                  ) : (
-                    <Link to={"/newRequest/step6"}>
-                      <button className={`${styles.nR_buttons_delivery}`}>
-                        Next <img src={ArrowWhite} alt="" />
-                      </button>
-                    </Link>
-                  )}
+                  <NextButton isDisabled={isDisabled} onClick={() => {
+                    isDisabled && setShowBottomMessage(true)
+                  }} />
                 </div>
               </div>
             </div>
@@ -148,4 +137,4 @@ const NewRequestStep5 = () => {
   );
 };
 
-export default NewRequestStep5;
+export default Voiceover;

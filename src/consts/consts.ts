@@ -61,13 +61,17 @@ export const EDIT_ONLY = "Edit only";
 export const OTHER = "Other";
 
 
-export const PROJECT_STEP = 'Project';
-export const LOGISTICS_STEP = 'Logistics';
-export const SCRIPT_STEP = 'Script';
-export const INTERVIEW_STEP = 'Interview';
-export const VOICEOVER_STEP = 'Voiceover';
-export const VIDEO_EDIT_STEP = 'Video Edit';
-export const ADD_ONS_STEP = 'Add-ons';
+export const PROJECT_STEP = 'new-request/project';
+export const LOGISTICS_STEP = 'new-request/logistics';
+export const SCRIPT_STEP = 'new-request/script';
+export const INTERVIEW_STEP = 'new-request/interview';
+export const VOICEOVER_STEP = 'new-request/voiceover';
+export const VIDEO_EDIT_STEP = 'new-request/video-edit';
+export const ADD_ONS_STEP = 'new-request/add-ons';
+export const SUBMIT_STEP = 'new-request/submit';
+export const FINAL_STEP = 'new-request/final';
+
+
 
 export const NO_APPROACH = 'No Approach';
 export const CANDID_APPROACH = "Candid Interview Approach";

@@ -37,7 +37,7 @@ const BottomMenu = ({ isOpened }: IProps) => {
   const navigate = useNavigate();
   const handleCardClick = (option: IRequest["option"]) => {
     dispatch(createDraft(option));
-    navigate("/newRequest/step1");
+    navigate("/new-request/start");
   };
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const BottomMenu = ({ isOpened }: IProps) => {
       setSelectedPage(NOTIFICATIONS);
     }
   }, [location]);
-  if (location?.pathname.includes("newRequest/start")) {
+  if (location?.pathname.includes("new-request/start")) {
     return null;
   }
 
@@ -73,7 +73,7 @@ const BottomMenu = ({ isOpened }: IProps) => {
         Icon={`${Projects}#Projects`}
         isOpened={isOpened}
       />
-      <Link style={{ textDecoration: "none" }} to="/newRequest/start">
+      <Link style={{ textDecoration: "none" }} to="/new-request/start">
         <div className={styles.bottomMenu_item}>
           <img src={BottomNewRequestIcon} alt={" NewRequestIcon"} />
           New Request

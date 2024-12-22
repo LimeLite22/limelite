@@ -12,28 +12,32 @@ import useWindowWidth from "hooks/useWindowWidth";
 import { useCalculateFinalPrice } from "utils/priceCalculator";
 
 import styles from "./PageContainer.module.scss";
+import { useConfigureStepsList } from "utils/configureStepsList";
 
 const PageContainer = () => {
   const [isSideBarOpened, setIsSideBarOpened] = useState(true);
   const [isBurgerOpened, setIsBurgerOpened] = useState(false);
+
+
   const width = useWindowWidth();
   const location = useLocation();
   const hideFooterForMobile = location.pathname.includes("support");
   const whiteBackgroundForMobile = location.pathname.includes("support");
   const isNewRequestSteps =
-    location.pathname.includes("newRequest/step1") ||
-    location.pathname.includes("newRequest/step2") ||
-    location.pathname.includes("newRequest/step3") ||
-    location.pathname.includes("newRequest/step4") ||
-    location.pathname.includes("newRequest/step5") ||
-    location.pathname.includes("newRequest/step6") ||
-    location.pathname.includes("newRequest/step7") || 
+    location.pathname.includes("new-request/project") ||
+    location.pathname.includes("new-request/logistics") ||
+    location.pathname.includes("new-request/script") ||
+    location.pathname.includes("new-request/interview") ||
+    location.pathname.includes("new-request/voiceover") ||
+    location.pathname.includes("new-request/video-edit") ||
+    location.pathname.includes("new-request/add-ons") || 
     location.pathname.includes("newRequest/final");
   const { pathname } = useLocation();
   useEffect(() => {
     document?.getElementById("pageContainer")?.scrollTo(0, 34);
   }, [pathname]);
   useCalculateFinalPrice();
+  useConfigureStepsList();
   const notFirst = localStorage.getItem("notFirstVisit") === "true";
   const [notFirstVisit, setNotFirstVisit] = useState(notFirst);
   useEffect(() => {
@@ -82,7 +86,7 @@ const PageContainer = () => {
           className={`
           ${styles.pageContainer__content_main} 
           ${isNewRequestSteps ? styles.newRequestStep2Container : ""}           
-          ${width < 768 && location.pathname.includes("newRequest/start") ? styles.newRequestStep1MobContainer : ""}`}
+          ${width < 768 && location.pathname.includes("new-request/start") ? styles.newRequestStep1MobContainer : ""}`}
         >
           <div className={styles.pageContainer__content_main_content}>
             <Outlet />
@@ -90,13 +94,13 @@ const PageContainer = () => {
 
           {((hideFooterForMobile && width > 768) || !hideFooterForMobile) && (
             <>
-              {!location.pathname.includes("newRequest/step2") &&
-                !location.pathname.includes("newRequest/step1") &&
-                !location.pathname.includes("newRequest/step3") &&
-                !location.pathname.includes("newRequest/step4") &&
-                !location.pathname.includes("newRequest/step5") &&
-                !location.pathname.includes("newRequest/step6") &&
-                !location.pathname.includes("newRequest/step7") && 
+              {!location.pathname.includes("new-request/logistics") &&
+                !location.pathname.includes("new-request/project") &&
+                !location.pathname.includes("new-request/script") &&
+                !location.pathname.includes("new-request/interview") &&
+                !location.pathname.includes("new-request/voiceover") &&
+                !location.pathname.includes("new-request/video-edit") &&
+                !location.pathname.includes("new-request/add-ons") && 
                 !location.pathname.includes("newRequest/final")
                 && <Footer />}
             </>

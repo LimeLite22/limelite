@@ -280,7 +280,7 @@ const Projects = () => {
                     }
               }
               onClick={() => {
-                navigate("/newRequest/start");
+                navigate("/new-request/start");
               }}
             >
               <img src={NewRequestIcon} alt={"NewRequestIcon"} />

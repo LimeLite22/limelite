@@ -177,6 +177,9 @@
       a {
         text-decoration: none;
       }
+      a:hover {
+        color: var(--white);
+      }
       &_next {
         width: 237px;
         height: 47px;
@@ -2667,6 +2670,7 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
+  position: relative;
   img {
     width: 100px;
     margin-bottom: 75px;
