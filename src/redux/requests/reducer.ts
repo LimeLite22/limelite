@@ -239,7 +239,11 @@ const initialState: IRequestState = {
         questionsAuthorOwnSettings: {
           text: "",
         },
-        persons: [],
+        persons: [{
+          id: generateUniqueId(),
+          name: "",
+          title: "",
+        },],
         questionSettings: {
           type: DEFAULT,
           locationSettings: {
@@ -355,7 +359,13 @@ const requestReducer = createSlice({
           questionsAuthorOwnSettings: {
             text: "",
           },
-          persons: [],
+          persons: [
+            {
+              id: generateUniqueId(),
+              name: "",
+              title: "",
+            },
+          ],
           questionSettings: {
             type: DEFAULT,
             locationSettings: {
