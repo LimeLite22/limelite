@@ -75,7 +75,7 @@
     text-align: left;
     color: var(--gray-dark);
     &_error {
-      border: 1px solid var(--red);
+      border: 1px solid var(--red-dark);
     }
     &_name {
       width: 100%;
@@ -115,7 +115,7 @@
       font-weight: 400;
       line-height: 16.8px;
       text-align: left;
-      color: var(--red);
+      color: var(--red-dark);
       width: 100%;
     }
     &_collapseIcon {
