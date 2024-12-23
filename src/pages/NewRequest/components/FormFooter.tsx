@@ -218,11 +218,14 @@ const FormFooter = () => {
             </div>
           </div>
           <div className={styles.footer_mobContainer_imgContainer}>
-            <img
-              className={styles.footer_container_priceContainer_img}
-              src={Basket}
-              alt=""
-            />
+          <div style={{ position: "relative" }}>
+              <img
+                className={styles.footer_container_priceContainer_img}
+                src={Basket}
+                alt=""
+              />
+              <div className={styles.footer_container_priceContainer_count}>{addOnsCount}</div>
+            </div>
           </div>
         </div>
       )}
