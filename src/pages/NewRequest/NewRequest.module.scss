@@ -682,6 +682,28 @@
       &_img {
         width: 24px;
         height: 24px;
+        padding: 3px;
+      }
+      &_count {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        background-color: var(--red);
+        font-family: "Cairo";
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 22.49px;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+        padding-bottom: 1px;
+        position: absolute;
+        right:-3px;
+        top:-3px;
       }
       &_text {
         display: flex;
@@ -2674,9 +2696,9 @@
   img {
     width: 100px;
     margin-bottom: 75px;
-    @media  screen and (max-width: 768px) {
-       margin-bottom: 30px;
-       width:60px;
+    @media screen and (max-width: 768px) {
+      margin-bottom: 30px;
+      width: 60px;
     }
   }
   &_header {
@@ -2735,7 +2757,7 @@
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
     color: var(--gray-dark);
-    padding:15px 22px;
+    padding: 15px 22px;
     border-radius: 10px;
     border: 1px solid var(--gray-light7);
     cursor: pointer;
@@ -2744,7 +2766,7 @@
       line-height: 17.6px;
     }
   }
-  &_button:hover{
+  &_button:hover {
     color: var(--gray-dark);
     text-decoration: none;
   }

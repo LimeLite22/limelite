@@ -125,6 +125,7 @@ export { default as ArrowBlue3 } from "./Сommon/BlueArrowType3.svg";
 export { default as Success } from "./Сommon/Success.svg";
 export { default as LocationBlack } from "./Сommon/Location.svg";
 export { default as Price } from "./Сommon/Price.svg";
+export { default as Basket } from "./Сommon/Basket.svg";
 export { default as CalendarBlack } from "./Сommon/CalendarBlack.svg";
 export { default as Chat2 } from "./Сommon/Chat.svg";
 export { default as CalendarIcon2 } from "./Сommon/Calendar.svg";

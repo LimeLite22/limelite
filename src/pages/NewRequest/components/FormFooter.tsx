@@ -5,6 +5,7 @@ import { format } from "date-fns";
 
 import {
   ArrowBlue3,
+  Basket,
   CalendarBlack,
   Chat2,
   LearnMore,
@@ -28,7 +29,7 @@ const FormFooter = () => {
   const city = selectedRequest?.location.city;
   const state = selectedRequest?.location.state;
   const zip = selectedRequest?.location.zip;
-  const price = useCalculateFinalPrice();
+  const { price, addOnsCount } = useCalculateFinalPrice();
   const calculateEndTime = (
     hour: number | undefined,
     period: string | undefined,
@@ -172,11 +173,15 @@ const FormFooter = () => {
           </div>
           <div className={styles.footer_container_content_divider}></div>
           <div className={styles.footer_container_priceContainer}>
-            <img
-              className={styles.footer_container_priceContainer_img}
-              src={Price}
-              alt=""
-            />
+            <div style={{ position: "relative" }}>
+              <img
+                className={styles.footer_container_priceContainer_img}
+                src={Basket}
+                alt=""
+              />
+              <div className={styles.footer_container_priceContainer_count}>{addOnsCount}</div>
+            </div>
+
             <div className={styles.footer_container_priceContainer_text}>
               <div
                 className={styles.footer_container_priceContainer_text_title1}
@@ -215,7 +220,7 @@ const FormFooter = () => {
           <div className={styles.footer_mobContainer_imgContainer}>
             <img
               className={styles.footer_container_priceContainer_img}
-              src={Price}
+              src={Basket}
               alt=""
             />
           </div>
