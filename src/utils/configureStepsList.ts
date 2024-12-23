@@ -1,9 +1,8 @@
-import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { stepType } from "types/types";
 import { ADD_ONS_STEP, CANDID_APPROACH, EDIT_ONLY, INTERVIEW_STEP, LOGISTICS_STEP, PROJECT_STEP, SCRIPTED_APPROACH, SCRIPT_STEP, SHOOT_EDIT, SHOOT_ONLY, VIDEO_EDIT_STEP, VOICEOVER_APPROACH, VOICEOVER_STEP, SUBMIT_STEP, FINAL_STEP, OTHER } from "consts/consts";
 import { useDispatch, useSelector } from 'react-redux';
-import { selectRequestInfo, selectSteps, updateStepsList } from '../redux/requests/reducer';
+import { selectRequestInfo, updateStepsList } from '../redux/requests/reducer';
 
 
 export const useConfigureStepsList = () => {

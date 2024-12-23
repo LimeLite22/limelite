@@ -1,6 +1,3 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router";
-
 import { ArrowLightGray, Success } from "assets/images";
 
 import styles from "../NewRequest.module.scss";
@@ -8,10 +5,8 @@ import { useSelector } from "react-redux";
 import { selectSteps } from "../../../redux/requests/reducer";
 
 const StepsNavigation = () => {
-  const [step, setStep] = useState(1);
+  const step = 1;
   const steps = useSelector(selectSteps)
-
-  const location = useLocation();
 
   return (
     <>

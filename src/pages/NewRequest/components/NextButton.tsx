@@ -56,44 +56,44 @@ export default NextButton;
 // shoot+edit (approach : none) :  
 //project =>  logistics => video edit  => add ons => submit => final
 
-const steps1 = [PROJECT_STEP, LOGISTICS_STEP, VIDEO_EDIT_STEP, ADD_ONS_STEP, SUBMIT_STEP, FINAL_STEP]
+// const steps1 = [PROJECT_STEP, LOGISTICS_STEP, VIDEO_EDIT_STEP, ADD_ONS_STEP, SUBMIT_STEP, FINAL_STEP]
 
 // shoot+edit ( approach : scripted delivery)  :  
 // project =>  logistics => scripted delivery => video edit  => add ons => submit => final
 
-const steps2 = [PROJECT_STEP, LOGISTICS_STEP, SCRIPT_STEP, VIDEO_EDIT_STEP, ADD_ONS_STEP, SUBMIT_STEP, FINAL_STEP]
+// const steps2 = [PROJECT_STEP, LOGISTICS_STEP, SCRIPT_STEP, VIDEO_EDIT_STEP, ADD_ONS_STEP, SUBMIT_STEP, FINAL_STEP]
 
 // shoot+edit ( approach : candid interview)  :  
 // project =>  logistics  => interview => video edit => add ons => submit => final
 
-const steps3 = [PROJECT_STEP, LOGISTICS_STEP, INTERVIEW_STEP, VIDEO_EDIT_STEP, ADD_ONS_STEP, SUBMIT_STEP, FINAL_STEP]
+// const steps3 = [PROJECT_STEP, LOGISTICS_STEP, INTERVIEW_STEP, VIDEO_EDIT_STEP, ADD_ONS_STEP, SUBMIT_STEP, FINAL_STEP]
 
 // shoot+edit ( approach : voiceover)  :  
 // project =>  logistics => voiceover => video edit => add ons => submit => final
 
-const steps4 = [PROJECT_STEP, LOGISTICS_STEP, VOICEOVER_STEP, VIDEO_EDIT_STEP, ADD_ONS_STEP, SUBMIT_STEP, FINAL_STEP]
+// const steps4 = [PROJECT_STEP, LOGISTICS_STEP, VOICEOVER_STEP, VIDEO_EDIT_STEP, ADD_ONS_STEP, SUBMIT_STEP, FINAL_STEP]
 
 // shoot+edit ( approach : scripted delivery + сandid interview)  :  
 // project =>  logistics => scripted delivery => interview => video edit => add ons => submit => final  
 
-const steps5 = [PROJECT_STEP, LOGISTICS_STEP, SCRIPT_STEP, INTERVIEW_STEP, VIDEO_EDIT_STEP, ADD_ONS_STEP, SUBMIT_STEP, FINAL_STEP]
+// const steps5 = [PROJECT_STEP, LOGISTICS_STEP, SCRIPT_STEP, INTERVIEW_STEP, VIDEO_EDIT_STEP, ADD_ONS_STEP, SUBMIT_STEP, FINAL_STEP]
 
 // shoot+edit ( approach : scripted delivery + voiceover)  :  
 // project =>  logistics => scripted delivery => voiceover => video edit => add ons => submit => final
 
-const steps6 = [PROJECT_STEP, LOGISTICS_STEP, SCRIPT_STEP, VOICEOVER_STEP, VIDEO_EDIT_STEP, ADD_ONS_STEP, SUBMIT_STEP, FINAL_STEP]
+// const steps6 = [PROJECT_STEP, LOGISTICS_STEP, SCRIPT_STEP, VOICEOVER_STEP, VIDEO_EDIT_STEP, ADD_ONS_STEP, SUBMIT_STEP, FINAL_STEP]
 
 // shoot+edit ( approach : сandid interview + voiceover )  :  
 // project =>  logistics => interview => voiceover => video edit => add ons => submit => final
 
-const steps7 = [PROJECT_STEP, LOGISTICS_STEP, INTERVIEW_STEP, VOICEOVER_STEP, VIDEO_EDIT_STEP, ADD_ONS_STEP, SUBMIT_STEP, FINAL_STEP]
+// const steps7 = [PROJECT_STEP, LOGISTICS_STEP, INTERVIEW_STEP, VOICEOVER_STEP, VIDEO_EDIT_STEP, ADD_ONS_STEP, SUBMIT_STEP, FINAL_STEP]
 
 
 // SHOOT ONLY
 // shoot only (approach : none) :  
 //project =>  logistics  => add ons => submit => final
 
-const steps8 = [PROJECT_STEP, LOGISTICS_STEP, ADD_ONS_STEP, SUBMIT_STEP, FINAL_STEP]
+// const steps8 = [PROJECT_STEP, LOGISTICS_STEP, ADD_ONS_STEP, SUBMIT_STEP, FINAL_STEP]
 
 // shoot only ( approach : scripted delivery) :  
 // project =>  logistics => scripted delivery   => add ons => submit => final

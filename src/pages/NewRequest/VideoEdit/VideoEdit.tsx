@@ -6,13 +6,8 @@ import {
   ArrowGray,
   ArrowGray3,
   ArrowGray4,
-  ArrowWhite,
   DetailsGreen,
 } from "assets/images";
-
-import useWindowWidth from "hooks/useWindowWidth";
-
-import { useCalculateFinalPrice } from "utils/priceCalculator";
 
 import { DEFAULT } from "consts/consts";
 
@@ -27,13 +22,13 @@ import FormatBox from "./components/FormatBox";
 import ThumbnailBox from "./components/Thumbnail/ThumbnailBox";
 import VideoTargetDurationBox from "./components/VideoTargetDuration";
 import NextButton from "../components/NextButton";
+import { useCustomPadding } from "utils/customPadding";
 
 const VideoEdit = () => {
   const videoSettings = useSelector(selectRequestInfo)?.videoSettings;
-  const price = useCalculateFinalPrice();
   const [isDisabled, setIsDisabled] = useState(true);
   const [showBottomMessage, setShowBottomMessage] = useState(false);
-  const width = useWindowWidth();
+  const customPadding = useCustomPadding();
 
   const handleNextDisabled = () => {
     let disabled = false;
@@ -70,12 +65,10 @@ const VideoEdit = () => {
   }, [videoSettings]);
 
   return (
-    <>
-      <div className={styles.nR}>
         <div
           className={styles.nR_container}
           style={{
-            paddingBottom: price === 0 && width < 768 ? "20px" : "",
+            paddingBottom: customPadding,
           }}
         >
           <Link to="/new-request/start">
@@ -133,8 +126,6 @@ const VideoEdit = () => {
           </div>
           <FormFooter />
         </div>
-      </div>
-    </>
   );
 };
 

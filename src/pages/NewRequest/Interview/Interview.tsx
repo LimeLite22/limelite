@@ -6,13 +6,8 @@ import {
   ArrowGray,
   ArrowGray3,
   ArrowGray4,
-  ArrowWhite,
   DetailsGreen,
 } from "assets/images";
-
-import useWindowWidth from "hooks/useWindowWidth";
-
-import { useCalculateFinalPrice } from "utils/priceCalculator";
 
 import {
   DEFAULT,
@@ -30,13 +25,14 @@ import InterviewPersons from "./components/InterviewPersons";
 import InterviewQuestionsBox from "./components/Questions/InterviewQuestionsBox";
 import QuestionsAuthorBox from "./components/QuestionsAuthorBox";
 import NextButton from "../components/NextButton";
+import { useCustomPadding } from "utils/customPadding";
 
 const Interview = () => {
   const selectedRequest = useSelector(selectRequestInfo);
-  const price = useCalculateFinalPrice();
   const [isDisabled, setIsDisabled] = useState(true);
   const [showBottomMessage, setShowBottomMessage] = useState(false);
-  const width = useWindowWidth();
+
+  const customPadding = useCustomPadding();
 
   const handleNextDisabled = () => {
     let disabled = false;
@@ -104,12 +100,10 @@ const Interview = () => {
   }, [selectedRequest]);
 
   return (
-    <>
-      <div className={styles.nR}>
         <div
           className={styles.nR_container}
           style={{
-            paddingBottom: price === 0 && width < 768 ? "20px" : "",
+            paddingBottom: customPadding,
           }}
         >
           <Link to="/new-request/start">
@@ -164,8 +158,6 @@ const Interview = () => {
           </div>
           <FormFooter />
         </div>
-      </div>
-    </>
   );
 };
 

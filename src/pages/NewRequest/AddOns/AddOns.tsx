@@ -6,13 +6,9 @@ import {
   ArrowGray,
   ArrowGray3,
   ArrowGray4,
-  ArrowWhite,
   DetailsGreen,
 } from "assets/images";
 
-import useWindowWidth from "hooks/useWindowWidth";
-
-import { useCalculateFinalPrice } from "utils/priceCalculator";
 
 import { selectRequestVoiceSettings } from "../../../redux/requests/reducer";
 import styles from "../NewRequest.module.scss";
@@ -21,13 +17,13 @@ import StepsNavigation from "../components/StepsNavigation";
 import { ADD_ONS_LIST } from "consts/consts";
 import AddOnBox from "./components/AddOnBox";
 import NextButton from "../components/NextButton";
+import { useCustomPadding } from "utils/customPadding";
 
 const AddOns = () => {
   const voiceSettings = useSelector(selectRequestVoiceSettings);
-  const price = useCalculateFinalPrice();
   const [isDisabled, setIsDisabled] = useState(true);
   const [showBottomMessage, setShowBottomMessage] = useState(false);
-  const width = useWindowWidth();
+  const customPadding = useCustomPadding();
 
   const handleNextDisabled = () => {
     let disabled = false;
@@ -40,12 +36,10 @@ const AddOns = () => {
   }, [voiceSettings]);
 
   return (
-    <>
-      <div className={styles.nR}>
         <div
           className={styles.nR_container}
           style={{
-            paddingBottom: price === 0 && width < 768 ? "20px" : "",
+            paddingBottom: customPadding,
           }}
         >
           <Link to="/new-request/start">
@@ -101,8 +95,6 @@ const AddOns = () => {
           </div>
           <FormFooter />
         </div>
-      </div>
-    </>
   );
 };
 

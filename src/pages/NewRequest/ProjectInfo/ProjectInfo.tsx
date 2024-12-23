@@ -24,6 +24,7 @@ import {
   TargetAudienceBox,
 } from "./components";
 import NextButton from "../components/NextButton";
+import { useCustomPadding } from "utils/customPadding";
 
 const ProjectInfo = () => {
   const selectedRequest = useSelector(selectRequestInfo);
@@ -45,6 +46,7 @@ const ProjectInfo = () => {
   const [isTypeError, setIsTypeError] = useState(false);
   const [isTargetError, setIsTargetError] = useState(false);
   const [isApproachError, setIsApproachError] = useState(false);
+  const customPadding = useCustomPadding();
 
   const handleErrors = () => {
     if (!projectName) {
@@ -66,84 +68,83 @@ const ProjectInfo = () => {
   };
 
   return (
-    <>
-      <div className={styles.nR}>
-        <div className={styles.nR_container}>
-          <Link to="/new-request/start">
-            <div className={styles.nR_backButton}>
-              <img src={ArrowGray3} alt="" /> Back to New Request{" "}
-            </div>
-          </Link>
-          <div className={styles.nR_subContainer}>
-            <StepsNavigation />
-            <div className={styles.nR_header}>
-              <div className={styles.nR_header_text}>
-                <Link to="/new-request/start">
-                  <div className={styles.nR_header_text_button}>
-                    <img src={ArrowGray4} alt="" />
-                  </div>
-                </Link>
-                Your Project
+    <div className={styles.nR_container}
+      style={{
+        paddingBottom: customPadding,
+      }}>
+      <Link to="/new-request/start">
+        <div className={styles.nR_backButton}>
+          <img src={ArrowGray3} alt="" /> Back to New Request{" "}
+        </div>
+      </Link>
+      <div className={styles.nR_subContainer}>
+        <StepsNavigation />
+        <div className={styles.nR_header}>
+          <div className={styles.nR_header_text}>
+            <Link to="/new-request/start">
+              <div className={styles.nR_header_text_button}>
+                <img src={ArrowGray4} alt="" />
               </div>
-              <div className={styles.nR_header_subText}>
-                Please provide important information below regarding your video
-                shoot
+            </Link>
+            Your Project
+          </div>
+          <div className={styles.nR_header_subText}>
+            Please provide important information below regarding your video
+            shoot
+          </div>
+        </div>
+        <div className={styles.nR_content}>
+          <div className={styles.nR_formContainer}>
+            <RequestType />
+            <ProjectNameBox
+              isError={isNameError}
+              setIsError={setIsNameError}
+            />
+            <TargetAudienceBox
+              isError={isTargetError}
+              setIsError={setIsTargetError}
+            />
+            <ProjectType
+              isError={isTypeError}
+              setIsError={setIsTypeError}
+            />
+            <ProjectTone
+              isError={isToneError}
+              setIsError={setIsToneError}
+            />
+            <ProjectNarrationBox
+              isError={isApproachError}
+              setIsError={setIsApproachError}
+            />
+            <ShotListBox />
+            {isNextDisabled && showBottomMessage && (
+              <div className={styles.nR_formContainer_error}>
+                Please ensure all required fields are filled out before
+                submitting the form. Each section must be completed to
+                proceed.
               </div>
-            </div>
-            <div className={styles.nR_content}>
-              <div className={styles.nR_formContainer}>
-                <RequestType />
-                <ProjectNameBox
-                  isError={isNameError}
-                  setIsError={setIsNameError}
-                />
-                <TargetAudienceBox
-                  isError={isTargetError}
-                  setIsError={setIsTargetError}
-                />
-                <ProjectType
-                  isError={isTypeError}
-                  setIsError={setIsTypeError}
-                />
-                <ProjectTone
-                  isError={isToneError}
-                  setIsError={setIsToneError}
-                />
-                <ProjectNarrationBox
-                  isError={isApproachError}
-                  setIsError={setIsApproachError}
-                />
-                <ShotListBox />
-                {isNextDisabled && showBottomMessage && (
-                  <div className={styles.nR_formContainer_error}>
-                    Please ensure all required fields are filled out before
-                    submitting the form. Each section must be completed to
-                    proceed.
-                  </div>
-                )}
-                <div className={styles.nR_formContainer_buttons}>
-                  <Link to="/new-request/start">
-                    <button className={styles.nR_formContainer_back}>
-                      <img src={ArrowGray} alt="" />
-                      Go Back
-                    </button>
-                  </Link>
-                  <div className={styles.nR_formContainer_buttons_container}>
-                    <button className={styles.nR_formContainer_buttons_save}>
-                      <img src={DetailsGreen} alt="" />
-                    </button>
-                    <NextButton isDisabled={isNextDisabled} onClick={()=>{
-                      isNextDisabled && handleErrors()
-                    }} />
-                  </div>
-                </div>
+            )}
+            <div className={styles.nR_formContainer_buttons}>
+              <Link to="/new-request/start">
+                <button className={styles.nR_formContainer_back}>
+                  <img src={ArrowGray} alt="" />
+                  Go Back
+                </button>
+              </Link>
+              <div className={styles.nR_formContainer_buttons_container}>
+                <button className={styles.nR_formContainer_buttons_save}>
+                  <img src={DetailsGreen} alt="" />
+                </button>
+                <NextButton isDisabled={isNextDisabled} onClick={() => {
+                  isNextDisabled && handleErrors()
+                }} />
               </div>
             </div>
           </div>
-          <FormFooter />
         </div>
       </div>
-    </>
+      <FormFooter />
+    </div>
   );
 };
 

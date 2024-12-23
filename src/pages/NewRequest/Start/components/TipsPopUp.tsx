@@ -27,7 +27,7 @@ const TipsPopUp = () => {
         }}
       >
         Check your credit usage & availability
-        <img src={ArrowBlue} />
+        <img src={ArrowBlue} alt="Arrow" />
       </div>
       {width > 768 &&
         isOpened &&

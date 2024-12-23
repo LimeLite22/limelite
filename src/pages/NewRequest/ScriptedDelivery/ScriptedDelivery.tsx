@@ -6,13 +6,8 @@ import {
   ArrowGray,
   ArrowGray3,
   ArrowGray4,
-  ArrowWhite,
   DetailsGreen,
 } from "assets/images";
-
-import useWindowWidth from "hooks/useWindowWidth";
-
-import { useCalculateFinalPrice } from "utils/priceCalculator";
 
 import { DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT } from "consts/consts";
 
@@ -24,13 +19,13 @@ import IsScriptRequired from "./components/Script/IsScriptRequiredBox";
 import ScriptPersons from "./components/ScriptPersons";
 import Teleprompter from "./components/Teleprompter";
 import NextButton from "../components/NextButton";
+import { useCustomPadding } from "utils/customPadding";
 
 const ScriptedDelivery = () => {
   const selectedRequest = useSelector(selectRequestInfo);
-  const price = useCalculateFinalPrice();
   const [isDisabled, setIsDisabled] = useState(true);
   const [showBottomMessage, setShowBottomMessage] = useState(false);
-  const width = useWindowWidth();
+  const customPadding = useCustomPadding();
 
   const handleNextDisabled = () => {
     let disabled = false;
@@ -68,12 +63,10 @@ const ScriptedDelivery = () => {
   }, [selectedRequest]);
 
   return (
-    <>
-      <div className={styles.nR}>
         <div
           className={styles.nR_container}
           style={{
-            paddingBottom: price === 0 && width < 768 ? "20px" : "",
+            paddingBottom: customPadding,
           }}
         >
           <Link to="/new-request/start">
@@ -128,8 +121,6 @@ const ScriptedDelivery = () => {
           </div>
           <FormFooter />
         </div>
-      </div>
-    </>
   );
 };
 
