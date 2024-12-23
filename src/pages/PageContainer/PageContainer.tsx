@@ -31,7 +31,8 @@ const PageContainer = () => {
     location.pathname.includes("new-request/voiceover") ||
     location.pathname.includes("new-request/video-edit") ||
     location.pathname.includes("new-request/add-ons") || 
-    location.pathname.includes("newRequest/final");
+    location.pathname.includes("new-request/submit") || 
+    location.pathname.includes("new-request/final");
   const { pathname } = useLocation();
   useEffect(() => {
     document?.getElementById("pageContainer")?.scrollTo(0, 34);
@@ -101,7 +102,8 @@ const PageContainer = () => {
                 !location.pathname.includes("new-request/voiceover") &&
                 !location.pathname.includes("new-request/video-edit") &&
                 !location.pathname.includes("new-request/add-ons") && 
-                !location.pathname.includes("newRequest/final")
+                !location.pathname.includes("new-request/submit") &&
+                !location.pathname.includes("new-request/final")
                 && <Footer />}
             </>
           )}

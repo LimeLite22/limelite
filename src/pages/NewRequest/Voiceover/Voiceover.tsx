@@ -43,12 +43,9 @@ const Voiceover = () => {
       disabled = true;
     }
     const profSettings = voiceSettings?.scriptAuthorProfSettings;
+    const ownSettings = voiceSettings?.scriptAuthorOwnSettings;
     if (
-      voiceSettings?.scriptAuthor === OWN_SCRIPT &&
-      (profSettings?.text.length === 0 ||
-        profSettings?.subject.length === 0 ||
-        profSettings?.phone === "" ||
-        profSettings?.email.length === 0)
+      voiceSettings?.scriptAuthor === OWN_SCRIPT && ownSettings?.text.length === 0
     ) {
       disabled = true;
     }
@@ -84,7 +81,7 @@ const Voiceover = () => {
         <StepsNavigation />
         <div className={styles.nR_header}>
           <div className={styles.nR_header_text}>
-            <Link to="/new-request/interview">
+            <Link to="/new-request/start">
               <div className={styles.nR_header_text_button}>
                 <img src={ArrowGray4} alt="" />
               </div>

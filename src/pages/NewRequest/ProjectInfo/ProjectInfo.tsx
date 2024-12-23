@@ -25,6 +25,7 @@ import {
 } from "./components";
 import NextButton from "../components/NextButton";
 import { useCustomPadding } from "utils/customPadding";
+import BackButton from "../components/BackButton";
 
 const ProjectInfo = () => {
   const selectedRequest = useSelector(selectRequestInfo);
@@ -125,12 +126,7 @@ const ProjectInfo = () => {
               </div>
             )}
             <div className={styles.nR_formContainer_buttons}>
-              <Link to="/new-request/start">
-                <button className={styles.nR_formContainer_back}>
-                  <img src={ArrowGray} alt="" />
-                  Go Back
-                </button>
-              </Link>
+              <BackButton />
               <div className={styles.nR_formContainer_buttons_container}>
                 <button className={styles.nR_formContainer_buttons_save}>
                   <img src={DetailsGreen} alt="" />

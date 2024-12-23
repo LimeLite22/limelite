@@ -27,7 +27,6 @@ export const useConfigureStepsList = () => {
             uS.push(ADD_ONS_STEP);
             uS.push(SUBMIT_STEP);
             uS.push(FINAL_STEP);
-            console.log("uS", uS);
             dispatch(updateStepsList(uS));
         }
         if (request?.option?.value === SHOOT_ONLY) {
@@ -45,7 +44,6 @@ export const useConfigureStepsList = () => {
             uS.push(ADD_ONS_STEP);
             uS.push(SUBMIT_STEP);
             uS.push(FINAL_STEP);
-            console.log("uS", uS);
             dispatch(updateStepsList(uS));
         }
         if (request?.option?.value === EDIT_ONLY) {
@@ -54,7 +52,6 @@ export const useConfigureStepsList = () => {
             uS.push(ADD_ONS_STEP);
             uS.push(SUBMIT_STEP);
             uS.push(FINAL_STEP);
-            console.log("uS", uS);
             dispatch(updateStepsList(uS));
         }
     }, [request])

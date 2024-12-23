@@ -2744,4 +2744,8 @@
       line-height: 17.6px;
     }
   }
+  &_button:hover{
+    color: var(--gray-dark);
+    text-decoration: none;
+  }
 }

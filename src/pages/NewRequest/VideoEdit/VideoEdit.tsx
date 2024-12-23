@@ -23,6 +23,7 @@ import ThumbnailBox from "./components/Thumbnail/ThumbnailBox";
 import VideoTargetDurationBox from "./components/VideoTargetDuration";
 import NextButton from "../components/NextButton";
 import { useCustomPadding } from "utils/customPadding";
+import BackButton from "../components/BackButton";
 
 const VideoEdit = () => {
   const videoSettings = useSelector(selectRequestInfo)?.videoSettings;
@@ -36,6 +37,9 @@ const VideoEdit = () => {
       disabled = true
     }
     if (videoSettings?.targetDuration === DEFAULT) {
+      disabled = true
+    }
+    if(videoSettings?.additionalVisualAssets === DEFAULT){
       disabled = true
     }
     if (videoSettings?.additionalVisualAssets === true
@@ -80,7 +84,7 @@ const VideoEdit = () => {
             <StepsNavigation />
             <div className={styles.nR_header}>
               <div className={styles.nR_header_text}>
-                <Link to="/new-request/voiceover">
+              <Link to="/new-request/start">
                   <div className={styles.nR_header_text_button}>
                     <img src={ArrowGray4} alt="" />
                   </div>
@@ -107,12 +111,7 @@ const VideoEdit = () => {
                 </div>
               )}
               <div className={styles.nR_formContainer_buttons}>
-                <Link to="/new-request/voiceover">
-                  <button className={styles.nR_back}>
-                    <img src={ArrowGray} alt="" />
-                    Go Back
-                  </button>
-                </Link>
+              <BackButton />
                 <div className={styles.nR_buttons_container}>
                   <button className={styles.nR_buttons_save}>
                     <img src={DetailsGreen} alt="" />

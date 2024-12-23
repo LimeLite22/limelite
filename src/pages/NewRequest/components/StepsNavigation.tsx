@@ -3,25 +3,33 @@ import { ArrowLightGray, Success } from "assets/images";
 import styles from "../NewRequest.module.scss";
 import { useSelector } from "react-redux";
 import { selectSteps } from "../../../redux/requests/reducer";
+import { useLocation } from "react-router";
 
 const StepsNavigation = () => {
-  const step = 1;
-  const steps = useSelector(selectSteps)
+  const steps = useSelector(selectSteps);
+  const location = useLocation();
+  const stepItem = location.pathname.slice(1);
+  const stepIndex = steps.findIndex(step => step === stepItem) + 1;
+  const getStepName = (step: string) => {
+    if (step === 'new-request/video-edit') return 'Video Edit'
+    return step.replace(/^new-request\//, "").replace(/^./, match => match.toUpperCase())
+  }
 
   return (
     <>
       <div className={styles.navigation} >
-        {steps.map((stepItem, index) => (
-          <>
+        {steps.map((stepItem, index) => {
+          if (getStepName(stepItem) === 'Final' || getStepName(stepItem) === 'Submit') return
+          return <>
             <div
-              className={`${styles.navigation_item} ${index + 1 === Number(step) && styles.navigation_item_selected}`}
+              className={`${styles.navigation_item} ${index + 1 === Number(stepIndex) && styles.navigation_item_selected}`}
             >
-              {Number(step) > index + 1 ? (
+              {Number(stepIndex) > index + 1 ? (
                 <img src={Success} alt="" />
               ) : (
                 <span
                   className={
-                    index + 1 === Number(step)
+                    index + 1 === Number(stepIndex)
                       ? styles.navigation_item_blackNumber
                       : styles.navigation_item_number
                   }
@@ -29,11 +37,13 @@ const StepsNavigation = () => {
                   {index + 1}
                 </span>
               )}
-              <p>{stepItem}</p>
+              <p>{getStepName(stepItem)}</p>
             </div>
-            {index !== steps.length - 1 && <img src={ArrowLightGray} alt="" />}
+            {index !== steps.length - 3 && <img src={ArrowLightGray} alt="" />}
           </>
-        ))}
+
+        })
+        }
 
       </div>
       {/* <div className={styles.navigation}>

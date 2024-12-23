@@ -20,6 +20,7 @@ import ScriptPersons from "./components/ScriptPersons";
 import Teleprompter from "./components/Teleprompter";
 import NextButton from "../components/NextButton";
 import { useCustomPadding } from "utils/customPadding";
+import BackButton from "../components/BackButton";
 
 const ScriptedDelivery = () => {
   const selectedRequest = useSelector(selectRequestInfo);
@@ -78,7 +79,7 @@ const ScriptedDelivery = () => {
             <StepsNavigation />
             <div className={styles.nR_header}>
               <div className={styles.nR_header_text}>
-                <Link to="/new-request/logistics">
+              <Link to="/new-request/start">
                   <div className={styles.nR_header_text_button}>
                     <img src={ArrowGray4} alt="" />
                   </div>
@@ -102,12 +103,7 @@ const ScriptedDelivery = () => {
                 </div>
               )}
               <div className={styles.nR_formContainer_buttons}>
-                <Link to="/new-request/logistics">
-                  <button className={styles.nR_back}>
-                    <img src={ArrowGray} alt="" />
-                    Go Back
-                  </button>
-                </Link>
+               <BackButton />
                 <div className={styles.nR_buttons_container}>
                   <button className={styles.nR_buttons_save}>
                     <img src={DetailsGreen} alt="" />
