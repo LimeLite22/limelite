@@ -22,7 +22,7 @@ import {
   selectDrafts,
   updateDraftField,
 } from "../../../../redux/requests/reducer";
-import styles from "../NewRequestStart.module.scss";
+import styles from "../../NewRequest.module.scss";
 import DraftItem from "./DraftItem";
 
 const Drafts = () => {

@@ -13,7 +13,7 @@ import {
 
 import useWindowWidth from "hooks/useWindowWidth";
 
-import styles from "../NewRequestStart.module.scss";
+import styles from "../../NewRequest.module.scss";
 
 const TipsPopUp = () => {
   const [isOpened, setIsOpened] = useState(false);
