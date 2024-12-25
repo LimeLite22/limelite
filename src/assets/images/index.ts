@@ -160,6 +160,7 @@ export { default as Youtube } from "./Сommon/Youtube.svg";
 export { default as Drop } from "./Сommon/Drop.svg";
 export { default as PNG } from "./Сommon/Png.svg";
 export { default as SuccessGap } from "./Сommon/SuccessGap.webp";
+export { default as Edit } from "./Сommon/EditIcon.svg";
 
 // what is new
 

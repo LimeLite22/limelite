@@ -13,6 +13,111 @@
       padding: 44px 16px 100px 16px;
     }
   }
+  &_submitContainer {
+    width: 100%;
+    height: 100%;
+    padding: 68px 24px 48px 24px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (max-width: 768px) {
+      padding: 44px 16px 100px 16px;
+    }
+    &_content {
+      width: 100%;
+      flex: 1;
+      display: flex;
+      gap: 24px;
+      &_main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        &_buttons {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+      &_sideInfo {
+        min-width: 340px;
+        height: 100%;
+        border: 1px solid var(--gray-light7);
+        border-radius: 12px;
+        padding: 16px;
+        &_box {
+          min-height: 84px;
+          margin-bottom: 12px;
+          padding-bottom: 12px;
+          border-bottom: 1px solid var(--gray-light7);
+          &_header {
+            font-family: Inter;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 16.8px;
+            letter-spacing: 0.02em;
+            text-align: left;
+            color: var(--gray-dark3);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+          &_type {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: Inter;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 19.2px;
+            text-align: left;
+            color: var(--gray-dark3);
+            margin-top: 16px;
+          }
+          &_typeImg {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+          }
+          &_dateText {
+            font-family: Inter;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 19.2px;
+            text-align: left;
+            color: var(--gray-dark);
+            margin-top: 8px;
+          }
+          &_timeText {
+            font-family: Inter;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 16.8px;
+            text-align: left;
+            color: var(--gray-dark);
+            span {
+              font-weight: 500;
+            }
+            margin-top: 8px;
+          }
+        }
+        &_addOnsHeader {
+          //styleName: Large screens/Body/Form Title;
+          font-family: Inter;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 16.8px;
+          letter-spacing: 0.02em;
+          text-align: left;
+          color: var(--gray-dark3);
+        }
+      }
+    }
+  }
   &_startContainer {
     display: flex;
     flex-direction: column;
@@ -20,7 +125,8 @@
     width: 100%;
     flex: 1px;
   }
-  &_startHeader{
+
+  &_startHeader {
     width: 100%;
     &_text {
       font-family: "Poppins";
@@ -78,6 +184,14 @@
     @media screen and (max-width: 768px) {
       margin-bottom: 0px;
     }
+  }
+  &_submitText {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    text-align: left;
+    color: var(--gray-dark3);
   }
   &_backButton {
     position: absolute;
@@ -414,7 +528,7 @@
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          cursor:pointer;
+          cursor: pointer;
           @media screen and (max-width: 1440px) {
             width: 360px;
           }
@@ -1859,8 +1973,8 @@
         text-decoration-skip-ink: none;
         padding-bottom: 1px;
         position: absolute;
-        right:-3px;
-        top:-3px;
+        right: -3px;
+        top: -3px;
       }
       &_text {
         display: flex;
@@ -2012,7 +2126,7 @@
       padding: 12px;
       border: 1px solid var(--gray-light7);
       border-radius: 8px;
-      max-height:50px;
+      max-height: 50px;
       max-width: 50px;
     }
   }
