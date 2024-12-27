@@ -1,5 +1,5 @@
-import { IAddOnsItem, IOptionsList, IVideoDuration, TimeItem } from "interfaces/interfaces";
-
+import { IOptionsList, IProjectTypeInfo, IVideoDuration, TimeItem } from "interfaces/interfaces";
+import { generateUniqueId } from "utils/generateId";
 import {
   EditOnlyIcon,
   OtherIcon,
@@ -7,7 +7,6 @@ import {
   ShootOnlyIcon,
 } from "assets/images";
 
-import { generateUniqueId } from "utils/generateId";
 
 // sidebar consts
 export const WELCOME = "Welcome";
@@ -47,12 +46,147 @@ export const TRACK_AUTHOR_PROFESSIONAL = "professional";
 
 
 export const NO_ADD_ONS = "NO_ADD_ONS";
-export const PROFF_ACTOR_ADD_ON = "PROFF_ACTOR_ADD_ON";
-export const SECOND_CAMERA_ADD_ON = "SECOND_CAMERA_ADD_ON";
-export const CUSTOM_LOGO_ADD_ON = "CUSTOM_LOGO_ADD_ON";
-export const MAKE_UP_ARTIST_ADD_ON = "MAKE_UP_ARTIST_ADD_ON";
-export const CANDID_FOTO_ADD_ON = "CANDID_FOTO_ADD_ON";
-export const DRONE_PILOT_ADD_ON = "DRONE_PILOT_ADD_ON";
+export const NO_ADD_ONS_ADD_ON = {
+  id: generateUniqueId(),
+  price: 600,
+  value: "NO_ADD_ONS",
+  header: "No Add Ons",
+  subHeader: "No Add Ons",
+  description: ``,
+  isSelected: false
+}
+export const IDEATION_SESSION_ADD_ON = {
+  id: generateUniqueId(),
+  price: 600,
+  value: "IDEATION_SESSION_ADD_ON",
+  header: "Ideation Session",
+  subHeader: "We will have an ideation session",
+  description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+Price includes 2-3 concepts and three rounds of revision. , ` ,
+  isSelected: false
+}
+export const PAID_TALENT_ADD_ON = {
+  id: generateUniqueId(),
+  price: 600,
+  value: "PAID_TALENT_ADD_ON",
+  header: "Paid Talent",
+  subHeader: "We will have a paid talent",
+  description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+Price includes 2-3 concepts and three rounds of revision. , ` ,
+  isSelected: false
+};
+export const HOST_PAID_TALENT_ADD_ON = {
+  id: generateUniqueId(),
+  price: 600,
+  value: "HOST_PAID_TALENT_ADD_ON",
+  header: "Paid Talent",
+  subHeader: "We will have a paid talent",
+  description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+Price includes 2-3 concepts and three rounds of revision. , ` ,
+  isSelected: false
+};
+export const MUA_ADD_ON = {
+  id: generateUniqueId(),
+  price: 600,
+  value: "MUA_ADD_ON",
+  header: "MUA",
+  subHeader: "We will have a MUA",
+  description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+Price includes 2-3 concepts and three rounds of revision. , ` ,
+  isSelected: false
+};
+export const GREEN_SCREEN_ADD_ON = {
+  id: generateUniqueId(),
+  price: 600,
+  value: "GREEN_SCREEN_ADD_ON",
+  header: "Green Screen",
+  subHeader: "We will have a Green Screen",
+  description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+Price includes 2-3 concepts and three rounds of revision. , ` ,
+  isSelected: false
+};
+export const SECOND_CAMERA_ADD_ON = {
+  id: generateUniqueId(),
+  price: 600,
+  value: "SECOND_CAMERA_ADD_ON",
+  header: "Second Camera",
+  subHeader: "We will have a Second Camera",
+  description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+Price includes 2-3 concepts and three rounds of revision. , ` ,
+  isSelected: false
+};
+export const SOCK_VIDEO_ADD_ON = {
+  id: generateUniqueId(),
+  price: 600,
+  value: "SOCK_VIDEO_ADD_ON",
+  header: "Sock Video",
+  subHeader: "We will have a Sock Video",
+  description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+Price includes 2-3 concepts and three rounds of revision. , ` ,
+  isSelected: false
+}
+export const ON_SET_PRODUCER_ADD_ON = {
+  id: generateUniqueId(),
+  price: 600,
+  value: "ON_SET_PRODUCER_ADD_ON",
+  header: "On Set Producer",
+  subHeader: "We will have a On Set Producer",
+  description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+Price includes 2-3 concepts and three rounds of revision. , ` ,
+  isSelected: false
+}
+export const RAW_FILE_DELIVERY_ADD_ON = {
+  id: generateUniqueId(),
+  price: 600,
+  value: "RAW_FILE_DELIVERY_ADD_ON",
+  header: "Raw File Delivery",
+  subHeader: "We will have a Raw File Delivery",
+  description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+Price includes 2-3 concepts and three rounds of revision. , ` ,
+  isSelected: false
+}
+
+export const DRONE_PILOT_ADD_ON = {
+  id: generateUniqueId(),
+  price: 600,
+  value: "DRONE_PILOT_ADD_ON",
+  header: "Drone Pilot",
+  subHeader: "We will have a Drone Pilot",
+  description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+Price includes 2-3 concepts and three rounds of revision. , ` ,
+  isSelected: false
+}
+export const PROFF_ACTOR_ADD_ON = {
+  id: generateUniqueId(),
+  price: 600,
+  value: "PROFF_ACTOR_ADD_ON",
+  header: "Proff Actor",
+  subHeader: "We will have a Proff Actor",
+  description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+Price includes 2-3 concepts and three rounds of revision. , ` ,
+  isSelected: false
+};
+export const CUSTOM_LOGO_ADD_ON = {
+  id: generateUniqueId(),
+  price: 600,
+  value: "CUSTOM_LOGO_ADD_ON",
+  header: "Custom Logo",
+  subHeader: "We will have a Custom Logo",
+  description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+Price includes 2-3 concepts and three rounds of revision. , ` ,
+  isSelected: false
+};
+export const CANDID_FOTO_ADD_ON = {
+  id: generateUniqueId(),
+  price: 600,
+  value: "CANDID_FOTO_ADD_ON",
+  header: "Candid Foto",
+  subHeader: "We will have a Candid Foto",
+  description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+Price includes 2-3 concepts and three rounds of revision. , ` ,
+  isSelected: false
+};
+
 
 
 export const SHOOT_EDIT = "Shoot + Edit";
@@ -78,59 +212,10 @@ export const CANDID_APPROACH = "Candid Interview Approach";
 export const SCRIPTED_APPROACH = "Scripted Delivery Approach";
 export const VOICEOVER_APPROACH = "Voiceover Approach";
 
+// PROJECT TYPES
 
 
-export const ADD_ONS_LIST: IAddOnsItem[] = [
-  {
-    id: generateUniqueId(),
-    value: NO_ADD_ONS,
-    text: `We don't need any more`,
-    title: 'Thank you, but we have everything we need for this project.',
-    price: 0
-  },
-  {
-    id: generateUniqueId(),
-    value: PROFF_ACTOR_ADD_ON,
-    text: `A professional actor`,
-    title: `We'd like to book a professional actor for this project.`,
-    price: 1350
-  },
-  {
-    id: generateUniqueId(),
-    value: SECOND_CAMERA_ADD_ON,
-    text: `A second camera`,
-    title: `We'd like our creator to have a second camera for this project.`,
-    price: 395
-  },
-  {
-    id: generateUniqueId(),
-    value: CUSTOM_LOGO_ADD_ON,
-    text: `A custom logo animation`,
-    title: `We'd like LimeLite to create a logo animation for this project.`,
-    price: 895
-  },
-  {
-    id: generateUniqueId(),
-    value: MAKE_UP_ARTIST_ADD_ON,
-    text: `A make-up artist`,
-    title: `We'd like to book a professional make-up artist for this project.`,
-    price: 600
-  },
-  {
-    id: generateUniqueId(),
-    value: CANDID_FOTO_ADD_ON,
-    text: `Candid photography`,
-    title: `We'd like to book a professional photographer for this project.`,
-    price: 696
-  },
-  {
-    id: generateUniqueId(),
-    value: DRONE_PILOT_ADD_ON,
-    text: `A professional drone pilot`,
-    title: `We'd like a professional/FAA certified drone pilot for this project.`,
-    price: 595
-  },
-]
+
 
 
 export const optionsList: IOptionsList = [
@@ -351,27 +436,229 @@ export const videoDurationsList: { id: string; value: IVideoDuration }[] = [
     value: MORE_3_00,
   },
 ];
-export const projectTypes = [
-  "Announcement Videos",
-  "Company Overview Video",
-  "Demo Video",
-  "Drone Video",
-  "Educational Video",
-  "Event Recap Video",
-  "FAQ Video",
-  "Fundraising Video",
-  "HR/Recruiting Video",
-  "Hype/Sizzle Video",
-  "Interview",
-  "Onboarding Video",
-  "Photography",
-  "Product & Service Video",
-  "Social Media Video",
-  "Television Commercial",
-  "Testimonial/Case Study Video",
-  "Videography",
-  "Website Header Video",
-  "Other",
+export const projectTypes: IProjectTypeInfo[] = [
+  {
+    id: generateUniqueId(),
+    header: "Announcement Videos",
+    subHeader: `We'd like LimeLite to .....`,
+    description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+  Price includes 2-3 concepts and three rounds of revision. `,
+    price: 600,
+    addOns: [NO_ADD_ONS_ADD_ON, IDEATION_SESSION_ADD_ON, DRONE_PILOT_ADD_ON,
+      HOST_PAID_TALENT_ADD_ON, MUA_ADD_ON, GREEN_SCREEN_ADD_ON, SECOND_CAMERA_ADD_ON, SOCK_VIDEO_ADD_ON
+      , ON_SET_PRODUCER_ADD_ON, RAW_FILE_DELIVERY_ADD_ON
+    ]
+  },
+  {
+    id: generateUniqueId(),
+    header: "Company Overview Video",
+    subHeader: `We'd like LimeLite to .....`,
+    description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+  Price includes 2-3 concepts and three rounds of revision. `,
+    price: 600,
+    addOns: [
+      NO_ADD_ONS_ADD_ON, IDEATION_SESSION_ADD_ON, ON_SET_PRODUCER_ADD_ON, MUA_ADD_ON, DRONE_PILOT_ADD_ON,
+      SOCK_VIDEO_ADD_ON, CANDID_FOTO_ADD_ON, RAW_FILE_DELIVERY_ADD_ON
+    ]
+  }, {
+    id: generateUniqueId(),
+    header: "Demo Video",
+    subHeader: `We'd like LimeLite to .....`,
+    description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+  Price includes 2-3 concepts and three rounds of revision. `,
+    price: 600,
+    addOns: [NO_ADD_ONS_ADD_ON, IDEATION_SESSION_ADD_ON, PAID_TALENT_ADD_ON,
+      MUA_ADD_ON, GREEN_SCREEN_ADD_ON, SECOND_CAMERA_ADD_ON, ON_SET_PRODUCER_ADD_ON,
+      RAW_FILE_DELIVERY_ADD_ON
+    ]
+  }, {
+    id: generateUniqueId(),
+    header: "Drone Video",
+    subHeader: `We'd like LimeLite to .....`,
+    description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+  Price includes 2-3 concepts and three rounds of revision. `,
+    price: 600,
+    addOns: [
+      NO_ADD_ONS_ADD_ON, RAW_FILE_DELIVERY_ADD_ON
+    ]
+  }, {
+    id: generateUniqueId(),
+    header: "Educational Video",
+    subHeader: `We'd like LimeLite to .....`,
+    description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+  Price includes 2-3 concepts and three rounds of revision. `,
+    price: 600,
+    addOns: [
+      NO_ADD_ONS_ADD_ON, IDEATION_SESSION_ADD_ON, ON_SET_PRODUCER_ADD_ON, HOST_PAID_TALENT_ADD_ON, MUA_ADD_ON,
+      GREEN_SCREEN_ADD_ON, SECOND_CAMERA_ADD_ON, SOCK_VIDEO_ADD_ON, ON_SET_PRODUCER_ADD_ON,
+      RAW_FILE_DELIVERY_ADD_ON
+    ]
+  }, {
+    id: generateUniqueId(),
+    header: "Event Recap Video",
+    subHeader: `We'd like LimeLite to .....`,
+    description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+  Price includes 2-3 concepts and three rounds of revision. `,
+    price: 600,
+    addOns: [
+      NO_ADD_ONS_ADD_ON, DRONE_PILOT_ADD_ON, CANDID_FOTO_ADD_ON, RAW_FILE_DELIVERY_ADD_ON
+    ]
+  }, {
+    id: generateUniqueId(),
+    header: "FAQ Video",
+    subHeader: `We'd like LimeLite to .....`,
+    description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+  Price includes 2-3 concepts and three rounds of revision. `,
+    price: 600,
+    addOns: [
+      NO_ADD_ONS_ADD_ON, MUA_ADD_ON, GREEN_SCREEN_ADD_ON, SECOND_CAMERA_ADD_ON, SOCK_VIDEO_ADD_ON, RAW_FILE_DELIVERY_ADD_ON
+    ]
+
+  }, {
+    id: generateUniqueId(),
+    header: "Fundraising Video",
+    subHeader: `We'd like LimeLite to .....`,
+    description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+  Price includes 2-3 concepts and three rounds of revision. `,
+    price: 600,
+    addOns: [
+      NO_ADD_ONS_ADD_ON, DRONE_PILOT_ADD_ON, CANDID_FOTO_ADD_ON, RAW_FILE_DELIVERY_ADD_ON
+    ]
+  }, {
+    id: generateUniqueId(),
+    header: "HR/Recruiting Video",
+    subHeader: `We'd like LimeLite to .....`,
+    description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+  Price includes 2-3 concepts and three rounds of revision. `,
+    price: 600,
+    addOns: [
+      NO_ADD_ONS_ADD_ON, IDEATION_SESSION_ADD_ON, ON_SET_PRODUCER_ADD_ON, MUA_ADD_ON, DRONE_PILOT_ADD_ON, SOCK_VIDEO_ADD_ON,
+      CANDID_FOTO_ADD_ON, RAW_FILE_DELIVERY_ADD_ON
+    ]
+  }, {
+    id: generateUniqueId(),
+    header: "Hype/Sizzle Video",
+    subHeader: `We'd like LimeLite to .....`,
+    description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+  Price includes 2-3 concepts and three rounds of revision. `,
+    price: 600,
+    addOns: [
+      NO_ADD_ONS_ADD_ON, IDEATION_SESSION_ADD_ON, DRONE_PILOT_ADD_ON, HOST_PAID_TALENT_ADD_ON,
+      MUA_ADD_ON, GREEN_SCREEN_ADD_ON, SECOND_CAMERA_ADD_ON, SOCK_VIDEO_ADD_ON,
+      ON_SET_PRODUCER_ADD_ON, RAW_FILE_DELIVERY_ADD_ON
+    ]
+  }, {
+    id: generateUniqueId(),
+    header: "Interview",
+    subHeader: `We'd like LimeLite to .....`,
+    description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+  Price includes 2-3 concepts and three rounds of revision. `,
+    price: 600,
+    addOns: [
+      NO_ADD_ONS_ADD_ON, MUA_ADD_ON,
+      GREEN_SCREEN_ADD_ON, SECOND_CAMERA_ADD_ON, ON_SET_PRODUCER_ADD_ON,
+      RAW_FILE_DELIVERY_ADD_ON
+    ]
+  }
+  , {
+    id: generateUniqueId(),
+    header: "Onboarding Video",
+    subHeader: `We'd like LimeLite to .....`,
+    description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+  Price includes 2-3 concepts and three rounds of revision. `,
+    price: 600,
+    addOns: [
+      NO_ADD_ONS_ADD_ON, MUA_ADD_ON,
+      GREEN_SCREEN_ADD_ON, SECOND_CAMERA_ADD_ON, SOCK_VIDEO_ADD_ON, ON_SET_PRODUCER_ADD_ON,
+      RAW_FILE_DELIVERY_ADD_ON
+    ]
+  }, {
+    id: generateUniqueId(),
+    header: "Photography",
+    subHeader: `We'd like LimeLite to .....`,
+    description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+  Price includes 2-3 concepts and three rounds of revision. `,
+    price: 600,
+    addOns: [
+      NO_ADD_ONS_ADD_ON, RAW_FILE_DELIVERY_ADD_ON
+    ]
+  }, {
+    id: generateUniqueId(),
+    header: "Product & Service Video",
+    subHeader: `We'd like LimeLite to .....`,
+    description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+  Price includes 2-3 concepts and three rounds of revision. `,
+    price: 600,
+    addOns: [
+      NO_ADD_ONS_ADD_ON, ON_SET_PRODUCER_ADD_ON, RAW_FILE_DELIVERY_ADD_ON
+    ]
+  }, {
+    id: generateUniqueId(),
+    header: "Social Media Video",
+    subHeader: `We'd like LimeLite to .....`,
+    description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+  Price includes 2-3 concepts and three rounds of revision. `,
+    price: 600,
+    addOns: [
+      NO_ADD_ONS_ADD_ON, IDEATION_SESSION_ADD_ON, ON_SET_PRODUCER_ADD_ON, MUA_ADD_ON, DRONE_PILOT_ADD_ON,
+      SOCK_VIDEO_ADD_ON, CANDID_FOTO_ADD_ON, RAW_FILE_DELIVERY_ADD_ON
+    ]
+  }, {
+    id: generateUniqueId(),
+    header: "Television Commercial",
+    subHeader: `We'd like LimeLite to .....`,
+    description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+  Price includes 2-3 concepts and three rounds of revision. `,
+    price: 600,
+    addOns: [
+      NO_ADD_ONS_ADD_ON, IDEATION_SESSION_ADD_ON, DRONE_PILOT_ADD_ON, HOST_PAID_TALENT_ADD_ON, MUA_ADD_ON,
+      GREEN_SCREEN_ADD_ON, SECOND_CAMERA_ADD_ON, SOCK_VIDEO_ADD_ON, RAW_FILE_DELIVERY_ADD_ON
+    ]
+  }
+  , {
+    id: generateUniqueId(),
+    header: "Testimonial/Case Study Video",
+    subHeader: `We'd like LimeLite to .....`,
+    description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+  Price includes 2-3 concepts and three rounds of revision. `,
+    price: 600,
+    addOns: [
+      NO_ADD_ONS_ADD_ON, MUA_ADD_ON, GREEN_SCREEN_ADD_ON, SECOND_CAMERA_ADD_ON, RAW_FILE_DELIVERY_ADD_ON
+    ]
+  }
+  , {
+    id: generateUniqueId(),
+    header: "Videography",
+    subHeader: `We'd like LimeLite to .....`,
+    description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+  Price includes 2-3 concepts and three rounds of revision. `,
+    price: 600,
+    addOns: [
+      NO_ADD_ONS_ADD_ON, RAW_FILE_DELIVERY_ADD_ON
+    ]
+  }, {
+    id: generateUniqueId(),
+    header: "Website Header Video",
+    subHeader: `We'd like LimeLite to .....`,
+    description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+  Price includes 2-3 concepts and three rounds of revision. `,
+    price: 600,
+    addOns: [
+      NO_ADD_ONS_ADD_ON, IDEATION_SESSION_ADD_ON, DRONE_PILOT_ADD_ON
+    ]
+  }
+  ,
+  {
+    id: generateUniqueId(),
+    header: "Other",
+    subHeader: `We'd like LimeLite to .....`,
+    description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
+  Price includes 2-3 concepts and three rounds of revision. `,
+    price: 600,
+    addOns: [
+      NO_ADD_ONS_ADD_ON
+    ]
+  }
 ];
 export const projectTones = [
   "Adventurous",

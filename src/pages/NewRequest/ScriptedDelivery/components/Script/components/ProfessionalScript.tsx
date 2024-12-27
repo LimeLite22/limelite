@@ -59,8 +59,6 @@ const ProffessionalScript = ({
   };
   const phoneRegex = /^\+?1?\s?(\d{3}|\(\d{3}\))[-.\s]?\d{3}[-.\s]?\d{4}$/;
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  console.log("phoneRegex.test(String(phone))", phoneRegex.test(String(phone)));
-  console.log("phone", phone);
 
   return (
     <div

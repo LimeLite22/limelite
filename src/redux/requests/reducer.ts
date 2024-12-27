@@ -81,7 +81,15 @@ const initialState: IRequestState = {
       option: optionsList[0],
       projectName: "No Fear Testimonial",
       targetAudience: "",
-      projectType: "Testimonial",
+      projectType: {
+        id: generateUniqueId(),
+        header: "",
+        subHeader: ``,
+        description: ``,
+        price: 0,
+        addOns: [
+        ]
+      },
       projectTone: "",
       approachList: [],
 
@@ -183,14 +191,21 @@ const initialState: IRequestState = {
         additionalVisualAssetUrl: '',
         resultTime: DEFAULT,
       },
-      addOns: []
     },
     {
       id: "2",
       option: optionsList[0],
       projectName: "Vesper Institute",
       targetAudience: "",
-      projectType: "Event Video",
+      projectType: {
+        id: generateUniqueId(),
+        header: "",
+        subHeader: ``,
+        description: ``,
+        price: 0,
+        addOns: [
+        ]
+      },
       projectTone: "",
       approachList: [],
 
@@ -291,7 +306,6 @@ const initialState: IRequestState = {
         additionalVisualAssetUrl: '',
         resultTime: DEFAULT,
       },
-      addOns: []
     },
   ],
 };
@@ -311,7 +325,15 @@ const requestReducer = createSlice({
         option: action.payload,
         projectName: `Request ${state.drafts.length + 1}`,
         targetAudience: "",
-        projectType: "",
+        projectType: {
+          id: generateUniqueId(),
+          header: "",
+          subHeader: ``,
+          description: ``,
+          price: 0,
+          addOns: [
+          ]
+        },
         projectTone: "",
         approachList: [],
         travel: {
@@ -412,7 +434,6 @@ const requestReducer = createSlice({
           additionalVisualAssetUrl: '',
           resultTime: DEFAULT,
         },
-        addOns: []
       });
       state.selectedRequest = id;
     },
@@ -492,6 +513,29 @@ const requestReducer = createSlice({
     },
     updateStepsList: (state, action: PayloadAction<stepType[]>) => {
       state.stepsList = action.payload
+    },
+    updateAddOnSelectionStatus: (state, action: PayloadAction<{ id: string }>) => {
+      const draft = state.drafts.find(
+        (draft) => draft.id === state.selectedRequest,
+      );
+      if (draft) {
+
+        if (action.payload.id === draft.projectType.addOns[0].id) {
+          draft.projectType.addOns[0].isSelected = true
+          for (let i = 1; i < draft.projectType.addOns.length; i++) {
+            draft.projectType.addOns[i].isSelected = false
+          }
+        } else {
+          const addOn = draft.projectType.addOns.find(
+            (addOn) => addOn.id === action.payload.id
+          )
+          if (addOn) {
+            draft.projectType.addOns[0].isSelected = false
+            addOn.isSelected = !addOn.isSelected
+          }
+        }
+
+      }
     }
   },
 });
@@ -503,6 +547,7 @@ export const {
   deletePerson,
   deleteAdditionalVideoFormat,
   updateAdditionalVideoFormat,
+  updateAddOnSelectionStatus,
   updateDraftField,
   updateStepsList
 } = requestReducer.actions;

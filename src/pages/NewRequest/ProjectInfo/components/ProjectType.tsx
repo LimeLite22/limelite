@@ -48,7 +48,7 @@ const ProjectType: FC<IProps> = ({ isError, setIsError }) => {
           className={`${styles.typeDropdown__selected_name}`}
           style={{ borderColor: isError ? "var(--red-dark)" : "" }}
         >
-          {projectType || <span>Select your project type...</span>}{" "}
+          { projectType?.header !== '' ? projectType?.header : <span>Select your project type...</span>}{" "}
         </div>
         {isError && !isOpened && (
           <div className={`${styles.typeDropdown__selected_errorMessage}`}>
@@ -85,7 +85,7 @@ const ProjectType: FC<IProps> = ({ isError, setIsError }) => {
                 setOpened(false);
               }}
             >
-              <div className={styles.typeDropdown__item_name}>{option}</div>
+              <div className={styles.typeDropdown__item_name}>{option.header}</div>
             </div>
           ))}{" "}
         </div>

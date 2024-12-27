@@ -81,7 +81,7 @@ const DraftItem = ({ draft, index }: IProps) => {
                   : draft.projectName}
         </div>
         <div className={styles.nR_content_projects_content_projectItem_type}>
-          {draft.projectType || "Project type"}
+          { draft.projectType.header !== '' ? draft.projectType.header : "Project type"}
         </div>
         <div className={styles.nR_content_projects_content_projectItem_subText}>
           {draft.option?.value || ""}{" "}

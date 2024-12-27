@@ -3,25 +3,26 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import {
-  ArrowGray,
   ArrowGray3,
   ArrowGray4,
   DetailsGreen,
 } from "assets/images";
 
 
-import { selectRequestVoiceSettings } from "../../../redux/requests/reducer";
+import { selectRequestInfo, selectRequestVoiceSettings } from "../../../redux/requests/reducer";
 import styles from "../NewRequest.module.scss";
 import FormFooter from "../components/FormFooter";
 import StepsNavigation from "../components/StepsNavigation";
-import { ADD_ONS_LIST } from "consts/consts";
 import AddOnBox from "./components/AddOnBox";
 import NextButton from "../components/NextButton";
 import { useCustomPadding } from "utils/customPadding";
 import BackButton from "../components/BackButton";
+import { ProjectType } from "../ProjectInfo/components";
 
 const AddOns = () => {
   const voiceSettings = useSelector(selectRequestVoiceSettings);
+  const selectedRequest = useSelector(selectRequestInfo);
+  const projectType = selectedRequest?.projectType;
   const [isDisabled, setIsDisabled] = useState(true);
   const [showBottomMessage, setShowBottomMessage] = useState(false);
   const customPadding = useCustomPadding();
@@ -29,7 +30,6 @@ const AddOns = () => {
   const handleNextDisabled = () => {
     let disabled = false;
 
-    console.log("disabled", disabled);
     setIsDisabled(disabled);
   };
   useEffect(() => {
@@ -60,12 +60,16 @@ const AddOns = () => {
             What additional Add-ons are needed?
           </div>
         </div>
+        <ProjectType
+          isError={false}
+          setIsError={() => { }}
+        />
 
         <div className={styles.nR_formContainer}>
           <div >
             {
-              ADD_ONS_LIST.map((item, index) => (
-                <AddOnBox key={index} item={item} />
+              projectType !== undefined && projectType?.addOns.map((item, index) => (
+                <AddOnBox key={index} item={item} /> 
               ))
             }
           </div>

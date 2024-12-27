@@ -101,8 +101,5 @@ export const useCalculateFinalPrice = () => {
     price += 75
     addOnsCount += 1
   }
-  if( request?.addOns?.length && request?.addOns?.length > 0){
-    addOnsCount += request?.addOns?.length
-  }
   return { price: price || 0, addOnsCount: addOnsCount || 0 };
 };

@@ -1,4 +1,4 @@
-import { AddOnsValueType, ApproachValue, CalendarType, ProjectTone, ProjectType, stepType } from "types/types";
+import { ApproachValue, CalendarType, ProjectTone, stepType } from "types/types";
 
 import {
   BASIC_THUMBNAIL,
@@ -33,13 +33,6 @@ import {
   VIDEO_VERTICAL,
   VIRTUAL_INTERVIEW,
   YES,
-  NO_ADD_ONS,
-  PROFF_ACTOR_ADD_ON,
-  SECOND_CAMERA_ADD_ON,
-  CUSTOM_LOGO_ADD_ON,
-  MAKE_UP_ARTIST_ADD_ON,
-  CANDID_FOTO_ADD_ON,
-  DRONE_PILOT_ADD_ON,
   SHOOT_EDIT,
   SHOOT_ONLY,
   EDIT_ONLY,
@@ -64,13 +57,6 @@ export type ITravel = {
 type ValuePiece = Date | null;
 
 export type Value = ValuePiece | [ValuePiece, ValuePiece];
-export interface IAddOnsItem {
-  id: string,
-  text: string,
-  title: string,
-  value: AddOnsValueType,
-  price: number
-}
 
 export interface ILocation {
   type:
@@ -84,6 +70,26 @@ export interface ILocation {
   state: string;
   zip: string;
 }
+export interface AddOnsValue {
+  id:string,
+  value: string,
+  header: string,
+  subHeader: string,
+  description: string,
+  isSelected: boolean,
+  price: number
+}
+
+export interface IProjectTypeInfo {
+  id: string,
+  header: string,
+  subHeader: string,
+  description: string,
+  price: number,
+  addOns: AddOnsValue[]
+}
+
+
 export interface TimeItem {
   id: string;
   hour: number;
@@ -161,7 +167,7 @@ export interface IRequest {
   option: undefined | IOption;
   projectName: string;
   targetAudience: string;
-  projectType: ProjectType | string;
+  projectType: IProjectTypeInfo;
   projectTone: ProjectTone | string;
   approachList: ApproachValue[];
   travel: ITravel;
@@ -225,7 +231,6 @@ export interface IRequest {
 
     resultTime: typeof RUSH_TIME | typeof STANDARD_TIME | typeof DEFAULT;
   };
-  addOns: IAddOnsItem[];
 }
 export interface IRequestState {
   selectedRequest: string;
