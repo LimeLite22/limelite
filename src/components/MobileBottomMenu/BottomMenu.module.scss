@@ -118,18 +118,15 @@
         padding: 32px 36px 36px 36px;
         position: relative;
         &_header {
-          //styleName: Heading/H1;
           font-family: Poppins;
           font-size: 28px;
           font-weight: 500;
           line-height: 33.6px;
           text-align: left;
-          text-underline-position: from-font;
-          text-decoration-skip-ink: none;
+
           color: var(--gray-dark);
           margin-bottom: 34px;
           @media screen and (max-width: 768px) {
-            //styleName: Mobile/Heading/Heading 1;
             font-family: Poppins;
             font-size: 18px;
             font-weight: 500;
@@ -139,25 +136,20 @@
           }
         }
         &_text {
-          //styleName: Large screens/Body/Content Regular;
           font-family: Inter;
           font-size: 16px;
           font-weight: 400;
           line-height: 19.2px;
           text-align: left;
-          text-underline-position: from-font;
-          text-decoration-skip-ink: none;
+
           color: var(--gray-dark);
           margin-bottom: 24px;
           @media screen and (max-width: 768px) {
-            //styleName: Mobile/Body/Caption Regular;
             font-family: Inter;
             font-size: 14px;
             font-weight: 400;
             line-height: 15.4px;
             text-align: left;
-            text-underline-position: from-font;
-            text-decoration-skip-ink: none;
           }
         }
       }
@@ -299,7 +291,6 @@
           height: unset;
         }
         &_header {
-          //styleName: Large screens/Body/Content Accent;
           font-family: Inter;
           font-size: 16px;
           font-weight: 600;
@@ -307,14 +298,11 @@
           text-align: left;
           color: var(--black);
           @media screen and (max-width: 768px) {
-            //styleName: Large screens/Body/Content Accent;
             font-family: Inter;
             font-size: 16px;
             font-weight: 600;
             line-height: 19.2px;
             text-align: left;
-            text-underline-position: from-font;
-            text-decoration-skip-ink: none;
           }
         }
         &_text {

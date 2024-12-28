@@ -32,9 +32,7 @@ const NextButton = ({ isDisabled, onClick }: IProps) => {
         if (isDisabled) return
 
         const currentStep = location.pathname.slice(1);
-        console.log(currentStep, stepsList);
         const nextStepIndex = stepsList?.findIndex(step => step === currentStep);
-        console.log(nextStepIndex, stepsList[nextStepIndex + 1]);
         setNextStepLink(stepsList[nextStepIndex + 1]);
         navigate(`/${stepsList[nextStepIndex + 1]}`);
     }

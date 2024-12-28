@@ -58,7 +58,6 @@ const Voiceover = () => {
     ) {
       disabled = true;
     }
-    console.log("disabled", disabled);
     setIsDisabled(disabled);
   };
   useEffect(() => {

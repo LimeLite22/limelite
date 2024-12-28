@@ -33,8 +33,7 @@
           line-height: 100%;
           margin-bottom: 18px;
           text-align: left;
-          text-underline-position: from-font;
-          text-decoration-skip-ink: none;
+          
           display: flex;
           align-items: center;
           gap: 4px;
@@ -122,15 +121,14 @@
                 font-weight: 600;
                 font-size: 18px;
                 line-height: 120%;
-                //styleName: Large screens/Heading/Heading 4;
                 font-family: Poppins;
                 font-size: 16px;
                 font-weight: 500;
                 line-height: 17.6px;
                 letter-spacing: 0.02em;
                 text-align: left;
-                text-underline-position: from-font;
-                text-decoration-skip-ink: none;
+                
+                
 
                 margin-bottom: 4px;
                 white-space: nowrap;
@@ -256,8 +254,7 @@
           align-items: center;
           gap: 4px;
           text-align: left;
-          text-underline-position: from-font;
-          text-decoration-skip-ink: none;
+          
           width: 100%;
           img {
             cursor: pointer;
@@ -417,8 +414,7 @@
               line-height: 20px;
               letter-spacing: 0.02em;
               text-align: left;
-              text-underline-position: from-font;
-              text-decoration-skip-ink: none;
+             
 
               @media screen and (max-width: 1440px) {
                 font-size: 16px;
@@ -444,8 +440,8 @@
                 font-weight: 400;
                 line-height: 14.4px;
                 text-align: left;
-                text-underline-position: from-font;
-                text-decoration-skip-ink: none;
+                
+                
                 white-space: nowrap;
 
                 @media screen and (max-width: 1440px) {
@@ -482,16 +478,15 @@
               line-height: 20px;
               margin: 5px 0;
               text-align: left;
-              text-underline-position: from-font;
-              text-decoration-skip-ink: none;
+             
               @media screen and (max-width: 1440px) {
                 font-family: Inter;
                 font-size: 14px;
                 font-weight: 400;
                 line-height: 16.8px;
                 text-align: left;
-                text-underline-position: from-font;
-                text-decoration-skip-ink: none;
+                
+                
                 margin: 0;
               }
               @media screen and (max-width: 1024px) {
@@ -545,8 +540,7 @@
               font-weight: 400;
               line-height: 20px;
               text-align: left;
-              text-underline-position: from-font;
-              text-decoration-skip-ink: none;
+             
 
               @media screen and (max-width: 1440px) {
                 font-size: 14px;
@@ -659,8 +653,8 @@
             font-weight: 400;
             line-height: 21.6px;
             text-align: left;
-            text-underline-position: from-font;
-            text-decoration-skip-ink: none;
+            
+            
 
             @media screen and (max-width: 1440px) {
               width: 360px;
@@ -882,8 +876,8 @@
             font-weight: 500;
             line-height: 16.94px;
             text-align: left;
-            text-underline-position: from-font;
-            text-decoration-skip-ink: none;
+            
+            
             color: var(--white);
             background: rgba(17, 16, 14, 0.5);
             display: flex;
@@ -901,8 +895,8 @@
             font-weight: 600;
             line-height: 19.8px;
             text-align: left;
-            text-underline-position: from-font;
-            text-decoration-skip-ink: none;
+            
+            
             @media screen and (max-width: 1440px) {
               font-size: 14px;
               font-weight: 600;
@@ -918,8 +912,7 @@
               font-weight: 500;
               line-height: 13.2px;
               text-align: left;
-              text-underline-position: from-font;
-              text-decoration-skip-ink: none;
+             
             }
           }
         }
@@ -1086,14 +1079,12 @@
             text-align: left;
 
             @media screen and (max-width: 1440px) {
-              //styleName: Large screens/Body/Caption Regular;
               font-family: Inter;
               font-size: 14px;
               font-weight: 400;
               line-height: 16.8px;
               text-align: left;
-              text-underline-position: from-font;
-              text-decoration-skip-ink: none;
+             
             }
           }
           &_downArrow {
@@ -1211,14 +1202,13 @@
 
           &_header {
             color: var(--gray-dark);
-            //styleName: Mobile/Body/Caption Regular;
             font-family: Inter;
             font-size: 14px;
             font-weight: 400;
             line-height: 15.4px;
             text-align: center;
-            text-underline-position: from-font;
-            text-decoration-skip-ink: none;
+            
+            
           }
           &_text {
             color: var(--gray-dark);
@@ -1349,14 +1339,12 @@
               margin-bottom: 8px;
             }
             @media screen and (max-width: 768px) {
-              //styleName: Heading/H2;
               font-family: Poppins;
               font-size: 20px;
               font-weight: 500;
               line-height: 22px;
               text-align: center;
-              text-underline-position: from-font;
-              text-decoration-skip-ink: none;
+             
             }
           }
           &_text {
@@ -1393,8 +1381,6 @@
               line-height: 14.4px;
               letter-spacing: 0.01em;
               text-align: center;
-              text-underline-position: from-font;
-              text-decoration-skip-ink: none;
             }
           }
           &_button {
@@ -1544,14 +1530,11 @@
         color: var(--black);
         font-size: 20px;
         margin-bottom: 12px;
-        //styleName: Mobile/Heading/Heading 1;
         font-family: Poppins;
         font-size: 18px;
         font-weight: 500;
         line-height: 21.6px;
         text-align: center;
-        text-underline-position: from-font;
-        text-decoration-skip-ink: none;
       }
     }
     &_text {
@@ -1563,7 +1546,6 @@
       margin-bottom: 8px;
       @media screen and (max-width: 768px) {
         font-size: 14px;
-        //styleName: Large screens/Body/Caption Regular;
         font-family: Inter;
         font-size: 14px;
         font-weight: 400;
@@ -1706,7 +1688,6 @@
       margin-bottom: 20px;
     }
     &_header {
-      //styleName: Heading/H1;
       font-family: Poppins;
       font-size: 28px;
       font-weight: 500;
@@ -1724,7 +1705,6 @@
       text-align: left;
 
       @media screen and (max-width: 768px) {
-        //styleName: Heading/Heading 3;
         font-family: Poppins;
         font-size: 18px;
         font-weight: 500;
@@ -1789,7 +1769,6 @@
       margin-bottom: 5px;
       color: var(--gray-dark);
       @media screen and (max-width: 768px) {
-        //styleName: Mobile/Heading/Heading 2;
         font-family: Poppins;
         font-size: 16px;
         font-weight: 500;
@@ -1846,7 +1825,6 @@
         font-size: 14px;
         line-height: 19px;
         padding-bottom: 12px;
-        //styleName: Mobile/Body/Caption Regular;
         font-family: Inter;
         font-size: 14px;
         font-weight: 400;

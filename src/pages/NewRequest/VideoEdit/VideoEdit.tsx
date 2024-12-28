@@ -58,10 +58,6 @@ const VideoEdit = () => {
         }
       });
     }
-
-
-
-    console.log("step6 disabled", disabled);
     setIsDisabled(disabled);
   };
   useEffect(() => {

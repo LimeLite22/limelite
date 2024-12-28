@@ -31,7 +31,8 @@ const Drafts = () => {
   const drafts = useSelector(selectDrafts);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  console.log('position', position)
+//styleName: Mobile/Heading/Heading 1;
   const ChangeSlide = ({ position }: { position: number }) => {
     const swiper = useSwiper();
     useEffect(() => {
@@ -109,6 +110,7 @@ const Drafts = () => {
           }
         ></button>
       </div>
+      <div className={styles.nR_content_projects_content_projectsList_pagination}>{position + 1}{position + 2 > drafts.length ? '' : '-'}{position + 2 > drafts.length ? '' : position + 2} <span>of {drafts.length}</span></div>
     </div>
   );
 };

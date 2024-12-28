@@ -10,7 +10,6 @@ import {
   Chat2,
   LearnMore,
   LocationBlack,
-  Price,
 } from "assets/images";
 
 import { useCalculateFinalPrice } from "utils/priceCalculator";
@@ -179,7 +178,7 @@ const FormFooter = () => {
                 src={Basket}
                 alt=""
               />
-              <div className={styles.footer_container_priceContainer_count}>{addOnsCount}</div>
+             {addOnsCount > 0 && <div className={styles.footer_container_priceContainer_count}>{addOnsCount > 9 ? "+9" : addOnsCount}</div>}
             </div>
 
             <div className={styles.footer_container_priceContainer_text}>
@@ -224,7 +223,7 @@ const FormFooter = () => {
                 src={Basket}
                 alt=""
               />
-              <div className={styles.footer_container_priceContainer_count}>{addOnsCount}</div>
+              <div className={styles.footer_container_priceContainer_count}>{addOnsCount > 9 ? "+9" : addOnsCount}</div>
             </div>
           </div>
         </div>

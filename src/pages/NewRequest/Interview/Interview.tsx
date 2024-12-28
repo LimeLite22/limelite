@@ -37,7 +37,6 @@ const Interview = () => {
   const handleNextDisabled = () => {
     let disabled = false;
     if (selectedRequest?.interviewSettings.questionsAuthor === DEFAULT) {
-      console.log("1");
       disabled = true;
     }
     if (
@@ -58,20 +57,17 @@ const Interview = () => {
         profSettings?.phone === "" ||
         profSettings?.email.length === 0)
     ) {
-      console.log("2");
       disabled = true;
     }
     const persons = selectedRequest?.interviewSettings?.persons;
     persons?.forEach((person) => {
       if (person.name.length === 0 || person.title.length === 0) {
-        console.log("3");
         disabled = true;
       }
     });
     const questionSettings =
       selectedRequest?.interviewSettings?.questionSettings;
     if (questionSettings?.type === DEFAULT) {
-      console.log("4");
       disabled = true;
     }
     if (
@@ -80,7 +76,6 @@ const Interview = () => {
         questionSettings?.locationSettings.email === "" ||
         questionSettings?.locationSettings.phone === "")
     ) {
-      console.log("5");
       disabled = true;
     }
     if (
@@ -89,10 +84,8 @@ const Interview = () => {
         questionSettings?.virtualSettings.email === "" ||
         questionSettings?.virtualSettings.phone === "")
     ) {
-      console.log("6");
       disabled = true;
     }
-    console.log("disabled", disabled);
     setIsDisabled(disabled);
   };
   useEffect(() => {

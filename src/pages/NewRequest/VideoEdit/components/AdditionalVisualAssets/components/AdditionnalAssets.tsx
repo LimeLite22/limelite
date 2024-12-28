@@ -97,7 +97,6 @@ const AdditionalAsset = ({ isExpanded, setIsExpanded, isError }: IProps) => {
           <FileDrop
             className={`${styles.box_drop} ${isError.file ? styles.box_drop_error : ""}`}
             onDrop={(files, event) => {
-              console.log("onDrop", files, event);
               if (files && files[0]) {
                 handleUpdateField("videoSettings.additionalVisualAssetFile", files[0]);
               }

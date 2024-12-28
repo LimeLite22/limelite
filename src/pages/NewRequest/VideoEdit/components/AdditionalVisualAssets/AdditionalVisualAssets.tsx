@@ -32,7 +32,6 @@ const AdditionalVisualAssetsBox = () => {
       return;
     }
     if (selection === true) {
-      console.log('556565');
       if(file === DEFAULT  && url?.length === 0){
         setIsAdditionalExpanded(true);
         const errors = {
@@ -44,29 +43,6 @@ const AdditionalVisualAssetsBox = () => {
       }else{
         setIsAdditionalExpanded(false);
       }
-      // if(file === DEFAULT || url?.length === 0){
-      //   console.log('099900');
-      //   setIsAdditionalExpanded(true);
-      //   const errors = {
-      //     url: url?.length === 0,
-      //     file: file === DEFAULT
-      //   };
-      //   setIsError(errors);
-
-      // }
-      // if (file !== DEFAULT || url?.length !== 0) {
-      //   console.log('1');
-      //   setIsAdditionalExpanded(true);
-      //   const errors = {
-      //     url: false,
-      //     file: false
-      //   };
-      //   setIsError(errors);
-      //   setIsAdditionalExpanded(true);
-      // } else {
-      //   console.log('2');
-      //   setIsAdditionalExpanded(false);
-      // }
     }
     if (selection === false) {
       const errors = {

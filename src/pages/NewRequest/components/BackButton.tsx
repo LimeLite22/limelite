@@ -15,7 +15,6 @@ const BackButton = () => {
     const handleNext = () => {
         const currentStep = location.pathname.slice(1);
         const nextStepIndex = stepsList?.findIndex(step => step === currentStep);
-        console.log(stepsList[nextStepIndex - 1]);
         navigate(nextStepIndex === 0 ? '/new-request/start' : `/${stepsList[nextStepIndex - 1]}`);
     }
 

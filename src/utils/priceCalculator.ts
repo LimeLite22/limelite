@@ -101,5 +101,13 @@ export const useCalculateFinalPrice = () => {
     price += 75
     addOnsCount += 1
   }
+  if (request?.projectType?.addOns?.length && request?.projectType?.addOns?.length > 0) {
+    request?.projectType.addOns.forEach((addOn, index) => {
+      if (addOn.isSelected && index !== 0) {
+        price += addOn.price;
+        addOnsCount += 1
+      }
+    });
+  }
   return { price: price || 0, addOnsCount: addOnsCount || 0 };
 };

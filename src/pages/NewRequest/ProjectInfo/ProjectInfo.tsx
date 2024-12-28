@@ -3,10 +3,8 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import {
-  ArrowGray,
   ArrowGray3,
   ArrowGray4,
-  ArrowWhite,
   DetailsGreen,
 } from "assets/images";
 
@@ -26,6 +24,7 @@ import {
 import NextButton from "../components/NextButton";
 import { useCustomPadding } from "utils/customPadding";
 import BackButton from "../components/BackButton";
+import { OTHER, SHOOT_EDIT, SHOOT_ONLY } from "consts/consts";
 
 const ProjectInfo = () => {
   const selectedRequest = useSelector(selectRequestInfo);
@@ -39,7 +38,11 @@ const ProjectInfo = () => {
     !projectName ||
     !projectTone ||
     !projectType ||
-    approachList?.length === 0 ||
+    (approachList?.length === 0
+      && (
+        selectedRequest.option?.value === SHOOT_EDIT ||
+        selectedRequest.option?.value === SHOOT_ONLY ||
+        selectedRequest.option?.value === OTHER)) ||
     !targetAudience;
   const [showBottomMessage, setShowBottomMessage] = useState(false);
   const [isNameError, setIsNameError] = useState(false);

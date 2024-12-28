@@ -31,7 +31,6 @@ import { stepType } from "types/types";
 
 //     // Check if it's the old format and migrate if necessary
 //     if ("isTravelRequired" in state) {
-//       console.log("виправляємо");
 //       state = {
 //         ...state,
 //         travel: {
@@ -476,7 +475,6 @@ const requestReducer = createSlice({
         (draft) => draft.id === state.selectedRequest,
       );
       if (!draft) return;
-      console.log("updateDraftField", action.payload);
       set(draft, action.payload.path, action.payload.value);
     },
     deleteAdditionalVideoFormat: (state, action: PayloadAction<string>) => {
@@ -500,12 +498,10 @@ const requestReducer = createSlice({
         (draft) => draft.id === state.selectedRequest,
       );
       if (draft) {
-        console.log("драфт є");
         const format = draft.videoSettings.selectedAdditionalFormats.find(
           (format) => format.id === id,
         );
         if (format) {
-          console.log("формат є");
           format.format = action.payload.format;
           format.duration = action.payload.duration;
         }

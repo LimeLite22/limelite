@@ -34,9 +34,7 @@ const VoiceTrackBox = () => {
       return;
     }
     if (selection === TRACK_AUTHOR_CLIENT) {
-      console.log("1");
       if (track === DEFAULT) {
-        console.log("2");
         setIsOwnExpanded(true);
         const errors = {
           track: true,
