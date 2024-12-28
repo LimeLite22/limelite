@@ -26,6 +26,10 @@
     padding-top: 132px;
     position: relative;
     margin-bottom: 50px;
+    @media screen and (max-width: 1440px) {
+      margin-top: 40px;
+      padding-bottom: 10px;
+    }
     @media screen and (max-width: 1024px) {
       width: 88%;
       max-width: 734px;
@@ -180,8 +184,6 @@
       color: var(--black);
       text-align: center;
       font-family: "Poppins";
-      font-weight: 400;
-      font-weight: 500;
       font-size: 20px;
       font-style: normal;
       font-weight: 400;
@@ -191,6 +193,7 @@
       flex-direction: column;
       margin-top: 36px;
       cursor: pointer;
+      text-decoration: none;
       &_img {
         width: 56px;
         height: 56px;
