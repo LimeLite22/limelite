@@ -24,6 +24,7 @@ import Voiceover from "pages/NewRequest/Voiceover/Voiceover";
 import VideoEdit from "pages/NewRequest/VideoEdit/VideoEdit";
 import AddOns from "pages/NewRequest/AddOns/AddOns";
 import Submit from "pages/NewRequest/Submit/Submit";
+import CreateProfile from "pages/CreateProfile/CreateProfile";
 
 const routes = createBrowserRouter([
   {
@@ -139,6 +140,10 @@ const routes = createBrowserRouter([
       {
         path: "/selectProfile",
         element: <PrivateRoute component={SelectProfile} redirectTo="/auth" />,
+      },
+      {
+        path: "/profile-create",
+        element: <PrivateRoute component={CreateProfile} redirectTo="/auth" />,
       },
     ],
   },

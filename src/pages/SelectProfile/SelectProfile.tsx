@@ -12,6 +12,7 @@ import {
 } from "assets/images";
 
 import styles from "./SelectProfile.module.scss";
+import { Link } from "react-router-dom";
 
 const SelectProfile = () => {
   const navigate = useNavigate();
@@ -82,14 +83,14 @@ const SelectProfile = () => {
             Shabnam L.
           </div>
         </div>
-        <div className={styles.selectProfileСontainer__content_addIcon}>
+        <Link to={'/profile-create'} className={styles.selectProfileСontainer__content_addIcon}>
           <img
             className={styles.selectProfileСontainer__content_addIcon_img}
             src={AddIcon}
             alt={"AddIcon"}
           />
           Add New
-        </div>
+        </Link>
       </div>
     </div>
   );
