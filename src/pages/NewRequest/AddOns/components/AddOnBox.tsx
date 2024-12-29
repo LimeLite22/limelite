@@ -43,6 +43,8 @@ const AddOnBox = ({ item }: IProps) => {
        ${isExpanded && item.value !== NO_ADD_ONS ? styles.box_expanded : ""}
         `}
       onClick={handleSelect}
+      tabIndex={0}
+      onBlur={() => setIsExpanded(false)}
     >
       <div className={styles.box_header}>
         <img
