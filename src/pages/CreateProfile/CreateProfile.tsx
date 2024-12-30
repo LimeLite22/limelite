@@ -17,6 +17,52 @@ const CreateProfile = () => {
         receiveMessages: false,
         acceptTerms: false
     })
+    const [profileError, setProfileError] = useState({
+        firstName: false,
+        lastName: false,
+        email: false,
+        phoneNumber: false,
+        jobTitle: false,
+        tShortSize: false,
+        password: false,
+        confirmPassword: false,
+        validPasswords: false,
+        receiveMessages: false,
+        acceptTerms: false
+    })
+
+    const handleError = () => {
+        setProfileError({
+            firstName: profile.firstName?.length === 0,
+            lastName: profile.lastName?.length === 0,
+            email: profile.email?.length === 0,
+            phoneNumber: profile.phoneNumber?.length === 0,
+            jobTitle: profile.jobTitle?.length === 0,
+            tShortSize: profile.tShortSize?.length === 0,
+            password: profile.password?.length < 8,
+            confirmPassword: profile.confirmPassword?.length < 8,
+            validPasswords: profile.password !== profile.confirmPassword,
+            receiveMessages: !profile.receiveMessages,
+            acceptTerms: !profile.acceptTerms
+        })
+    }
+
+    useEffect(() => {
+        setProfileError({
+            firstName: false,
+            lastName: false,
+            email: false,
+            phoneNumber: false,
+            jobTitle: false,
+            tShortSize: false,
+            password: false,
+            confirmPassword: false,
+            receiveMessages: false,
+            validPasswords: false,
+            acceptTerms: false
+        })
+    }, [profile])
+
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
     const isDisabled = profile.firstName?.length === 0
@@ -83,6 +129,7 @@ const CreateProfile = () => {
                 <div className={styles.createProfile_text}>Last Name *</div>
                 <input className={styles.createProfile_input} onChange={(e) => setProfile({ ...profile, lastName: e.target.value })} type="text" placeholder="Provide your last name..." />
             </div>
+            {(profileError.firstName || profileError.lastName) && <div className={styles.createProfile_error}>Complete the fields to proceed.</div>}
         </div>
         <div className={styles.createProfile_row}>
             <div className={styles.createProfile_inputContainer} >
@@ -93,6 +140,7 @@ const CreateProfile = () => {
                 <div className={styles.createProfile_text}>Mobile *</div>
                 <input className={styles.createProfile_input} onChange={(e) => setProfile({ ...profile, phoneNumber: e.target.value })} type="text" placeholder="(###) ###-####" />
             </div>
+            {(profileError.email || profileError.phoneNumber) && <div className={styles.createProfile_error}>Complete the fields to proceed.</div>}
         </div>
         <div className={styles.createProfile_row}>
             <div className={styles.createProfile_inputContainer} >
@@ -108,6 +156,7 @@ const CreateProfile = () => {
                     <div className={styles.createProfile_size} style={{ border: profile.tShortSize === 'XL' ? '1px solid var(--green-dark2)' : '' }} onClick={() => setProfile({ ...profile, tShortSize: 'XL' })}>XL</div>
                 </div>
             </div>
+            {(profileError.jobTitle || profileError.tShortSize) && <div className={styles.createProfile_error}>Complete the fields to proceed.</div>}
         </div>
         <div className={styles.createProfile_row}>
             <div className={styles.createProfile_inputContainer} >
@@ -131,6 +180,7 @@ const CreateProfile = () => {
                 </div>
 
             </div>
+            {(profileError.password || profileError.confirmPassword || profileError.validPasswords) && <div className={styles.createProfile_error}>{profileError.validPasswords ? 'Passwords do not match' : 'Complete the fields to proceed.'} </div>}
         </div>
         <div className={styles.createProfile_checkContainer}>
             <img src={profile.receiveMessages ? GapCheck : GapUnCheck} alt='' onClick={() => setProfile({ ...profile, receiveMessages: !profile.receiveMessages })} />
@@ -142,8 +192,13 @@ const CreateProfile = () => {
         </div>
         <div className={styles.createProfile_buttons}>
             <button className={styles.createProfile_cancel}>Cancel</button>
-            <button className={`${styles.createProfile_create} ${isDisabled ? styles.createProfile_disabled : ''} `}>Create account</button>
+            <button className={`${styles.createProfile_create} ${isDisabled ? styles.createProfile_disabled : ''} `} onClick={handleError}>Create account</button>
         </div>
+        {(profileError.jobTitle || profileError.tShortSize 
+            || profileError.password || profileError.confirmPassword 
+            || profileError.validPasswords || profileError.receiveMessages 
+            || profileError.acceptTerms) && <div className={styles.createProfile_errorMessage}
+            >Please ensure all required fields are filled out before submitting the form</div>}
     </div>
 };
 
