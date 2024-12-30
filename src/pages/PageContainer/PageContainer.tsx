@@ -33,6 +33,7 @@ const PageContainer = () => {
     location.pathname.includes("new-request/add-ons") || 
     location.pathname.includes("new-request/submit") || 
     location.pathname.includes("new-request/final");
+    const isCreateProfilePage = location.pathname.includes("profile-create");
   const { pathname } = useLocation();
   useEffect(() => {
     document?.getElementById("pageContainer")?.scrollTo(0, 34);
@@ -57,8 +58,9 @@ const PageContainer = () => {
   return (
     <div
       id="pageContainer"
-      className={` ${styles.pageContainer} ${whiteBackgroundForMobile ? styles.whiteBackgroundForMobile : ""
-        }
+      className={` 
+      ${styles.pageContainer} 
+      ${whiteBackgroundForMobile ? styles.whiteBackgroundForMobile : ""}
       ${isNewRequestSteps ? styles.newRequestStep2Container : ""}
       `}
     >
@@ -75,7 +77,7 @@ const PageContainer = () => {
           `}
         style={{ overflow: isBurgerOpened ? "hidden" : "" }}
       >
-        {!isNewRequestSteps && (
+        {!isNewRequestSteps && !isCreateProfilePage && (
           <div className={styles.sideBarHideContainer}>
             <SideBar
               isOpened={isSideBarOpened}
@@ -86,6 +88,7 @@ const PageContainer = () => {
         <div
           className={`
           ${styles.pageContainer__content_main} 
+          ${isCreateProfilePage ? styles.pageContainer__content_noPaddingForMobile : ""}
           ${isNewRequestSteps ? styles.newRequestStep2Container : ""}           
           ${width < 768 && location.pathname.includes("new-request/start") ? styles.newRequestStep1MobContainer : ""}`}
         >
@@ -103,12 +106,13 @@ const PageContainer = () => {
                 !location.pathname.includes("new-request/video-edit") &&
                 !location.pathname.includes("new-request/add-ons") && 
                 !location.pathname.includes("new-request/submit") &&
-                !location.pathname.includes("new-request/final")
+                !location.pathname.includes("new-request/final") &&
+                !location.pathname.includes("profile-create")
                 && <Footer />}
             </>
           )}
         </div>
-        {!isNewRequestSteps && <BottomMenu isOpened={isSideBarOpened} />}
+        {!isNewRequestSteps && !isCreateProfilePage && <BottomMenu isOpened={isSideBarOpened} />}
         {isBurgerOpened && (
           <div
             className={styles.mobileSideMenuContainer}

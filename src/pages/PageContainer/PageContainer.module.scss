@@ -36,6 +36,11 @@
         // }
       }
     }
+    &_noPaddingForMobile {
+      @media screen and (max-width: 768px) {
+        padding: 0 ;
+      }
+    }
   }
 }
 .whiteBackgroundForMobile {

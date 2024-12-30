@@ -123,6 +123,10 @@ const routes = createBrowserRouter([
               <PrivateRoute component={Notifications} redirectTo="/auth" />
             ),
           },
+          {
+            path: "/profile-create",
+            element: <PrivateRoute component={CreateProfile} redirectTo="/auth" />,
+          },
         ],
       },
       {
@@ -140,10 +144,6 @@ const routes = createBrowserRouter([
       {
         path: "/selectProfile",
         element: <PrivateRoute component={SelectProfile} redirectTo="/auth" />,
-      },
-      {
-        path: "/profile-create",
-        element: <PrivateRoute component={CreateProfile} redirectTo="/auth" />,
       },
     ],
   },

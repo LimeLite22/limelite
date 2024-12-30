@@ -161,6 +161,11 @@ export { default as Drop } from "./Сommon/Drop.svg";
 export { default as PNG } from "./Сommon/Png.svg";
 export { default as SuccessGap } from "./Сommon/SuccessGap.webp";
 export { default as Edit } from "./Сommon/EditIcon.svg";
+export { default as AddAccount } from "./Сommon/AddAccount.svg";
+export { default as VisiblePassword } from "./Сommon/VisiblePassword.svg";
+export { default as InvisiblePassword } from "./Сommon/InVisiblePassword.svg";
+export { default as GapCheck } from "./Сommon/GapCheck.svg";
+export { default as GapUnCheck } from "./Сommon/GapUnCheck.svg";
 
 // what is new
 
