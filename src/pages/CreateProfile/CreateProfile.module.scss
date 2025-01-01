@@ -190,6 +190,9 @@
         align-items: center;
         justify-content: space-between;
         width: 100%;
+        @media screen and (max-width: 768px) {
+            gap: 8px;
+        }
     }
     &_size {
         width: 67px;
@@ -206,6 +209,9 @@
         text-align: left;
         cursor: pointer;
         color: var(--gray-dark3);
+        @media screen and (max-width: 768px) {
+            flex: 1;
+        }
     }
     &_checkContainer {
         width: 100%;
@@ -292,5 +298,16 @@
         text-align: left;
         color: var(--red-dark);
         margin-top: 8px;
+    }
+}
+.hideForDesktop {
+    display: none;
+    @media screen and (max-width: 768px) {
+        display: flex;
+    }
+}
+.hideForMob {
+    @media screen and (max-width: 768px) {
+        display: none;
     }
 }

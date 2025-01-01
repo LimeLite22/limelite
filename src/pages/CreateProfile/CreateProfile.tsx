@@ -131,6 +131,13 @@ const CreateProfile = () => {
             </div>
             {(profileError.firstName || profileError.lastName) && <div className={styles.createProfile_error}>Complete the fields to proceed.</div>}
         </div>
+        <div className={`${styles.createProfile_row} ${styles.hideForDesktop} `}> 
+            <div className={styles.createProfile_inputContainer}  >
+                <div className={styles.createProfile_text}>Job Title *</div>
+                <input className={styles.createProfile_input} onChange={(e) => setProfile({ ...profile, jobTitle: e.target.value })} type="text" placeholder="Provide your job title..." />
+            </div>
+            {(profileError.jobTitle) && <div className={styles.createProfile_error}>Complete the fields to proceed.</div>}
+        </div>
         <div className={styles.createProfile_row}>
             <div className={styles.createProfile_inputContainer} >
                 <div className={styles.createProfile_text}>Email *</div>
@@ -142,8 +149,8 @@ const CreateProfile = () => {
             </div>
             {(profileError.email || profileError.phoneNumber) && <div className={styles.createProfile_error}>Complete the fields to proceed.</div>}
         </div>
-        <div className={styles.createProfile_row}>
-            <div className={styles.createProfile_inputContainer} >
+        <div className={styles.createProfile_row}> 
+            <div className={`${styles.createProfile_inputContainer} ${styles.hideForMob}`}  >
                 <div className={styles.createProfile_text}>Job Title *</div>
                 <input className={styles.createProfile_input} onChange={(e) => setProfile({ ...profile, jobTitle: e.target.value })} type="text" placeholder="Provide your job title..." />
             </div>
