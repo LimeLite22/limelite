@@ -116,7 +116,7 @@ const CreateProfile = () => {
                 style={{ display: "none" }} // Приховуємо інпут
             />
             <div className={styles.createProfile_content_info}>
-                <div className={styles.createProfile_text}>User image </div>
+                <div className={styles.createProfile_text}>Profile Photo </div>
                 <div className={styles.createProfile_text2}>Please provide a profile photo to help our video creators connect with you at shoots. </div>
             </div>
         </div>
