@@ -46,6 +46,36 @@ const Submit = () => {
             </div>
             <div className={styles.nR_submitContainer_content}>
                 <div className={styles.nR_submitContainer_content_main}>
+                    <div className={styles.nR_submitContainer_content_main_generalInfo}>
+                        <div className={styles.nR_submitContainer_content_main_generalInfo_header}>Project information</div>
+                        <div className={styles.nR_submitContainer_content_main_generalInfo_row}>
+                            <div className={styles.nR_submitContainer_content_main_generalInfo_column}>
+                                <div className={styles.nR_submitContainer_content_main_generalInfo_line} > <p>Name:</p> {selectedRequest?.projectName}</div>
+                                <div className={styles.nR_submitContainer_content_main_generalInfo_line}> <p>Tone:</p> {selectedRequest?.projectType?.header} </div>
+                                <div className={styles.nR_submitContainer_content_main_generalInfo_line}><p>Approach:</p> {selectedRequest?.approachList.map((approach) => approach).join(", ")}</div>
+                            </div>
+                            <div className={styles.nR_submitContainer_content_main_generalInfo_column}>
+                                <div className={styles.nR_submitContainer_content_main_generalInfo_line}><p>Audience:</p> {selectedRequest?.targetAudience}</div>
+                                <div className={styles.nR_submitContainer_content_main_generalInfo_line}><p>Tone:</p> {selectedRequest?.projectTone}</div>
+                                <div className={styles.nR_submitContainer_content_main_generalInfo_line}><p>Details:</p> Project overview</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styles.nR_submitContainer_content_main_generalInfo}>
+                        <div className={styles.nR_submitContainer_content_main_generalInfo_header}>Request  details</div>
+                        <div className={styles.nR_submitContainer_content_main_generalInfo_detail}>
+                            <div className={styles.nR_submitContainer_content_main_generalInfo_detail_header}>Logistic:</div>
+                        </div>
+                        <div className={styles.nR_submitContainer_content_main_generalInfo_detail}>
+                            <div className={styles.nR_submitContainer_content_main_generalInfo_detail_header}>Script:</div>
+                        </div>
+                        <div className={styles.nR_submitContainer_content_main_generalInfo_detail}>
+                            <div className={styles.nR_submitContainer_content_main_generalInfo_detail_header}>Interview:</div>
+                        </div>
+                        <div className={styles.nR_submitContainer_content_main_generalInfo_detail}>
+                            <div className={styles.nR_submitContainer_content_main_generalInfo_detail_header}>Voiceover:</div>
+                        </div>
+                    </div>
                     <div className={styles.nR_submitContainer_content_main_buttons}>
                         <BackButton />
                         <NextButton isDisabled={false} onClick={() => { }} />
@@ -114,7 +144,28 @@ const Submit = () => {
                         <div className={styles.nR_submitContainer_content_sideInfo_box_timeText}>    {zip || "CA 90001"}</div>
                     </div>
                     <div className={styles.nR_submitContainer_content_sideInfo_addOnsHeader} >Requested Add-ons, $</div>
-                    <div></div>
+                    <div className={styles.nR_submitContainer_content_sideInfo_addOns}>
+                        Rush shoot     <p>595.<span>00</span></p>
+                    </div>
+                    <div className={styles.nR_submitContainer_content_sideInfo_addOns}>
+                        Studio rental     <p>595.<span>00</span></p>
+                    </div>
+                    <div className={styles.nR_submitContainer_content_sideInfo_addOns}>
+                        Scriptwriter (script)    <p>595.<span>00</span></p>
+                    </div>
+                    <div className={styles.nR_submitContainer_content_sideInfo_addOns}>
+                        Interviewer    <p>595.<span>00</span></p>
+                    </div>
+                    <div className={styles.nR_submitContainer_content_sideInfo_addOns}>
+                        Virtually interview    <p>595.<span>00</span></p>
+                    </div>
+                    <div className={styles.nR_submitContainer_content_sideInfo_addOns}>
+                        Scriptwriter (voiceover)    <p>595.<span>00</span></p>
+                    </div>
+
+                    <div className={styles.nR_submitContainer_content_sideInfo_total}>
+                        Estimated Price: <p>1395. <span>00</span></p>
+                    </div>
                 </div>
 
             </div>
