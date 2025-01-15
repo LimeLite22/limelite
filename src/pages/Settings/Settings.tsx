@@ -69,7 +69,7 @@ const Settings = () => {
                         </div>
 
                         <div className={styles.settings_text}>Your photo</div>
-                        <div>This will be displayed  o your profile.</div>
+                        <div className={styles.settings_subText}>This will be displayed  o your profile.</div>
                     </div>
 
                     <div className={styles.settings_inputContainer}>
