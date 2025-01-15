@@ -15,11 +15,11 @@ const Settings = () => {
         jobTitle: string
         password: string
         shirtSize: 'S' | 'M' | 'L' | 'XL',
-        foto: string | File 
-    
+        foto: string | File
+
     }
-    >( {
-        name:'',
+    >({
+        name: '',
         lastName: '',
         email: '',
         phone: '',
@@ -74,9 +74,9 @@ const Settings = () => {
 
                     <div className={styles.settings_inputContainer}>
                         <div className={styles.settings_text}> First Name *</div>
-                        <input type="text" value={currentValues.name}   onChange={(e) => {
+                        <input type="text" value={currentValues.name} onChange={(e) => {
                             setCurrentValues({ ...currentValues, name: e.target.value })
-                         }} placeholder="First Name" />
+                        }} placeholder="First Name" />
                     </div>
                     <div className={styles.settings_inputContainer}>
                         <div className={styles.settings_text}> Job Title *</div>
@@ -121,11 +121,10 @@ const Settings = () => {
                     <div className={styles.settings_inputContainer}>
                         <div className={styles.settings_text}>  T-Shirt Size*</div>
                         <div className={styles.settings_sizes}>
-                            <div className={styles.settings_size} style={{ border: account.shirtSize === 'S' ? '1px solid var(--green-dark2)' : '' }}>S</div>
-                            <div className={styles.settings_size} style={{ border: account.shirtSize === 'M' ? '1px solid var(--green-dark2)' : '' }}>M</div>
-                            <div className={styles.settings_size} style={{ border: account.shirtSize === 'L' ? '1px solid var(--green-dark2)' : '' }}>L</div>
-                            <div className={styles.settings_size} style={{ border: account.shirtSize === 'XL' ? '1px solid var(--green-dark2)' : '' }}>XL</div>
-
+                            <div className={styles.settings_size} onClick={() => setCurrentValues({ ...currentValues, shirtSize: 'S' })} style={{ border: currentValues.shirtSize === 'S' ? '1px solid var(--green-dark2)' : '' }}>S</div>
+                            <div className={styles.settings_size} onClick={() => setCurrentValues({ ...currentValues, shirtSize: 'M' })} style={{ border: currentValues.shirtSize === 'M' ? '1px solid var(--green-dark2)' : '' }}>M</div>
+                            <div className={styles.settings_size} onClick={() => setCurrentValues({ ...currentValues, shirtSize: 'L' })} style={{ border: currentValues.shirtSize === 'L' ? '1px solid var(--green-dark2)' : '' }}>L</div>
+                            <div className={styles.settings_size} onClick={() => setCurrentValues({ ...currentValues, shirtSize: 'XL' })} style={{ border: currentValues.shirtSize === 'XL' ? '1px solid var(--green-dark2)' : '' }}>XL</div>
                         </div>
                     </div>
                 </div>
