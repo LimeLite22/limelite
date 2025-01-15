@@ -10,4 +10,5 @@ export { default as Demo } from "./DemoPage/Demo";
 export { default as NewRequestStart } from "./NewRequest/Start/NewRequestStart";
 export { default as Final } from "./NewRequest/Final/Final";
 export { default as PageContainer } from "./PageContainer/PageContainer";
+export { default as Settings } from "./Settings/Settings";
 export { default as Auth } from "./Auth/Auth";

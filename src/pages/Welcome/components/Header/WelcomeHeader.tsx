@@ -9,6 +9,8 @@ import {
 } from "assets/images";
 
 import styles from "./WelcomeHeader.module.scss";
+import { useSelector } from "react-redux";
+import { selectAccount } from "../../../../redux/account/account";
 
 type IProps = {
   isOpened?: boolean;
@@ -20,6 +22,8 @@ const WelomeHeader = ({
   isBurgerOpened,
   setIsBurgerOpened,
 }: IProps) => {
+  const account = useSelector(selectAccount);
+  console.log(account);
   return (
     <div className={styles.headerContainer}>
       <Swiper
@@ -67,17 +71,14 @@ const WelomeHeader = ({
         <div className={styles.header_profile}>
           <div className={styles.header_profile_content}>
             <div className={styles.header_profile_content_name}>
-              Welcome, Clay!
+              Welcome,{account.name}!
             </div>
             <div className={styles.header_profile_content_text}>
               Subscriber Since July, 2020
             </div>
           </div>
-          <img
-            className={styles.header_profile_image}
-            src={User1Foto}
-            alt={"UserIcon"}
-          />
+
+          <img className={styles.header_profile_image} src={typeof account.foto === 'string' ? account.foto : URL.createObjectURL(account.foto)} alt="avatar" />
           <div
             className={styles.header_burgerButton}
             onClick={() => setIsBurgerOpened(!isBurgerOpened)}

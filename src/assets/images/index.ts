@@ -141,11 +141,13 @@ export { default as Close } from "./LearnMore/Close.svg";
 export { default as QuestionLightGray } from "./Сommon/QuestionLightGray.svg";
 export { default as Settings } from "./Сommon/Settings.svg";
 export { default as Delete } from "./Сommon/Delete.svg";
+export { default as DeleteRed } from "./Сommon/DeleteRed.svg";
 export { default as Copy } from "./Сommon/Copy.svg";
 export { default as StatusApproved } from "./Сommon/StatusApproved.svg";
 export { default as StatusProgress } from "./Сommon/StatusProgress.svg";
 export { default as StatusUnavailable } from "./Сommon/StatusUnavailable.svg";
 export { default as Remove } from "./Сommon/Remove.svg";
+export { default as Remove2 } from "./Сommon/Remove2.svg";
 export { default as Add2 } from "./Сommon/Add2.svg";
 export { default as SettingsMenu } from "./Сommon/SettingsMenu.svg";
 export { default as Audio } from "./Сommon/Audio.svg";
@@ -166,7 +168,10 @@ export { default as VisiblePassword } from "./Сommon/VisiblePassword.svg";
 export { default as InvisiblePassword } from "./Сommon/InVisiblePassword.svg";
 export { default as GapCheck } from "./Сommon/GapCheck.svg";
 export { default as GapUnCheck } from "./Сommon/GapUnCheck.svg";
-
+export { default as Search } from "./Сommon/Search.svg";
+export { default as Filter } from "./Сommon/Filter.svg";
+export { default as LastDays } from "./Сommon/LastDays.svg";
+export { default as NoUser } from "./Сommon/NoUser.svg";
 // what is new
 
 export { default as WhatisNew1 } from "./WhatIsNew/Slider1.png";

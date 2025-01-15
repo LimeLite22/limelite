@@ -49,6 +49,9 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
     if (location.pathname.includes("notifications")) {
       setSelectedPage(NOTIFICATIONS);
     }
+    if (location.pathname.includes("settings")) {
+      setSelectedPage(SETTINGS);
+    }
     if (
       location.pathname.includes("new-request/start") ||
       location.pathname.includes("new-request/project") ||
@@ -153,7 +156,7 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
             onClick={handleLinkClick}
           />
         </Link>
-        <Link to="" style={{ textDecoration: "none" }}>
+        <Link to="/settings" style={{ textDecoration: "none" }}>
           <SideBarNavItem
             selectedPage={selectedPage}
             setSelectedPage={setSelectedPage}

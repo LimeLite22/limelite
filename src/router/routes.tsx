@@ -10,6 +10,7 @@ import {
   Notifications,
   PageContainer,
   SelectProfile,
+  Settings,
   Support,
   WalkThrough,
   Welcome,
@@ -25,6 +26,7 @@ import VideoEdit from "pages/NewRequest/VideoEdit/VideoEdit";
 import AddOns from "pages/NewRequest/AddOns/AddOns";
 import Submit from "pages/NewRequest/Submit/Submit";
 import CreateProfile from "pages/CreateProfile/CreateProfile";
+import ProjectPage from "pages/Projects/Projects";
 
 const routes = createBrowserRouter([
   {
@@ -104,6 +106,10 @@ const routes = createBrowserRouter([
             element: <PrivateRoute component={Welcome} redirectTo="/auth" />,
           },
           {
+            path: "/projects",
+            element: <PrivateRoute component={ProjectPage} redirectTo="/auth" />,
+          },
+          {
             path: "/support",
             element: <PrivateRoute component={Support} redirectTo="/auth" />,
           },
@@ -115,6 +121,12 @@ const routes = createBrowserRouter([
             path: "/chatSupport",
             element: (
               <PrivateRoute component={ChatSupport} redirectTo="/auth" />
+            ),
+          },
+          {
+            path: "/settings",
+            element: (
+              <PrivateRoute component={Settings} redirectTo="/auth" />
             ),
           },
           {

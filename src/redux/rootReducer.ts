@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import account from "./account/account";
 
 import notifications from "./notifications/reducer";
 import request from "./requests/reducer";
@@ -7,6 +8,7 @@ export const store = configureStore({
   reducer: {
     notifications: notifications,
     request: request,
+    account: account,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
