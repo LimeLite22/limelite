@@ -172,6 +172,7 @@ export { default as Filter } from "./Сommon/Filter.svg";
 export { default as LastDays } from "./Сommon/LastDays.svg";
 export { default as NoUser } from "./Сommon/NoUser.svg";
 export { default as InviteUser } from "./Сommon/InviteUser.svg";
+export { default as Transfer } from "./Сommon/Transfer.svg";
 // what is new
 
 export { default as WhatisNew1 } from "./WhatIsNew/Slider1.png";

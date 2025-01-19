@@ -404,6 +404,20 @@
             cursor: pointer;
         }
     }
+    &_closeButton{
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1px solid var(--gray-light7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 32px;
+        right: 36px;
+        margin-bottom: 0 !important;
+        cursor: pointer;
+    }
 }
 .team {
     &_header {
@@ -612,6 +626,7 @@
         background-color: var(--white);
         border-radius: 20px;
         padding: 34px 36px 36px 36px;
+        position: relative;
         &_header {
             font-family: Poppins;
             font-size: 28px;
@@ -630,6 +645,14 @@
             text-align: left;
             color: var(--gray-dark);
             margin-bottom: 24px;
+            span {
+                font-family: Inter;
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 19.2px;
+                text-align: left;
+                color: var(--blue-dark);
+            }
         }
         &_title {
             font-family: Poppins;
@@ -656,7 +679,6 @@
             margin-bottom: 24px;
             cursor: pointer;
             user-select: none;
-
         }
         &_input {
             width: 100%;
@@ -688,9 +710,44 @@
             cursor: pointer;
             margin-bottom: 24px;
             user-select: none;
-            img{
-                width:24px;
-                height:24px;
+            img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+        &_transfer {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 48px;
+            img {
+                width: 56px;
+                height: 56px;
+            }
+            &_user {
+                display: flex;
+                gap: 12px;
+                align-items: center;
+                &_container {
+                    display: flex;
+                    flex-direction: column;
+                }
+                &_header {
+                    font-family: Inter;
+                    font-size: 16px;
+                    font-weight: 600;
+                    line-height: 19.2px;
+                    text-align: left;
+                    color: var(--gray-dark);
+                }
+                &_subHeader {
+                    font-family: Inter;
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 19.2px;
+                    text-align: left;
+                    color: var(--gray-dark);
+                }
             }
         }
         &_buttons {
@@ -708,11 +765,12 @@
                 letter-spacing: 0.02em;
                 text-align: center;
                 color: var(--gray-dark);
-                border:1px solid var(--gray-light7);
+                border: 1px solid var(--gray-light7);
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 border-radius: 10px;
+                cursor: pointer;
             }
             &_save {
                 flex: 1;
@@ -729,7 +787,23 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                cursor: pointer;
             }
         }
     }
+    &_closeButton{
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1px solid var(--gray-light7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 32px;
+        right: 36px;
+        margin-bottom: 0 !important;
+        cursor: pointer;
+    }
+    
 }

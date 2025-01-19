@@ -29,7 +29,6 @@ const AddOnBox = ({ item }: IProps) => {
     setIsExpanded(true);
   };
   const handleExpand = (e: React.MouseEvent) => {
-    // dispatch(updateAddOnSelectionStatus({ id: item.id }))
     setIsExpanded(!isExpanded);
     e.stopPropagation();
     e.preventDefault();

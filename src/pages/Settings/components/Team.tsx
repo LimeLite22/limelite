@@ -1,4 +1,4 @@
-import { Add, GapCheck, GapUnCheck, InviteUser, User1Foto, User2Foto, User3Foto, } from "assets/images";
+import { Add, Close, GapCheck, GapUnCheck, InviteUser, User1Foto, User2Foto, User3Foto, } from "assets/images";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "../Settings.module.scss";
@@ -70,7 +70,7 @@ const Team = () => {
         setIsInviteOpened(true);
     }
     const handleCloseInvite = () => {
-        setIsInviteOpened(true);
+        setIsInviteOpened(false);
     }
 
     return (
@@ -107,7 +107,12 @@ const Team = () => {
                 isInviteOpened && createPortal(
                     <div className={styles.invite} tabIndex={-1} onClick={handleCloseInvite}>
                         <div className={styles.invite_wrapper} onClick={(e) => e.stopPropagation()}>
-                            <div className={styles.invite_wrapper_header}>Invite your team members</div>
+                            <div className={styles.invite_wrapper_header}>Invite your team members<div
+                                className={styles.invite_closeButton}
+                                onClick={handleCloseInvite}
+                            >
+                                <img src={Close} alt='' />
+                            </div></div>
                             <div className={styles.invite_wrapper_subHeader}>Add your colleagues to Limelite space and assign them a role.</div>
                             <div className={styles.invite_wrapper_title}>Email </div>
                             <input className={styles.invite_wrapper_input} type='text' />
