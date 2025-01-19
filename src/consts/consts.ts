@@ -672,3 +672,11 @@ export const projectTones = [
   "Professional",
   "Urgent",
 ];
+
+
+//  settings sub sections
+
+export const SETTING_TEAM_SECTION = 'SETTING_TEAM_SECTION';
+export const SETTING_PASSWORD_SECTION = 'SETTING_PASSWORD_SECTION';
+export const SETTING_COMMUNICATION_SECTION = 'SETTING_COMMUNICATION_SECTION';
+export const SETTING_EDIT_SECTION = 'SETTING_EDIT_SECTION';

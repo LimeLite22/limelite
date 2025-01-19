@@ -22,6 +22,10 @@ const BottomMenuItem = ({
   value,
 }: IProps) => {
   const unreadNotifications = useSelector(selectUnreadNotificationsNumber);
+
+  const handleSelectedPage = () => {
+    setSelectedPage(value);
+  }
   return (
     <button
       type="button"
@@ -30,7 +34,7 @@ const BottomMenuItem = ({
       }
     ${isOpened ? styles.sideBar_navItem_opened : ""}
     `}
-      onClick={() => setSelectedPage(value)}
+      onClick={handleSelectedPage}
     >
       {value === NOTIFICATIONS ? (
         <div className={styles.bottomMenu_item_notificationContainer}>

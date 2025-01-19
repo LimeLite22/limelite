@@ -113,20 +113,29 @@ const ChatSupport = (): JSX.Element => {
       }
     }
   };
+  const handleImageClick = (item: { id: string; url: string }) => {
+    message.images &&
+      setMessage({
+        ...message,
+        images: message.images.filter(
+          (_) => _.id !== item.id,
+        ),
+      });
+  }
 
   useEffect(() => {
-    updateHeight(); // Виклик тільки один раз при монтуванні компонента
-  
+    updateHeight();
+
     const handleResize = () => {
       updateHeight();
     };
-  
+
     window.addEventListener("resize", handleResize);
-  
+
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []); 
+  }, []);
   useEffect(() => {
     if (messageListRef.current) {
       setTimeout(() => {
@@ -176,11 +185,10 @@ const ChatSupport = (): JSX.Element => {
           id="supportContainer"
         >
           <div
-            className={`${styles.supportContainer__content_main_content_chat} ${
-              message.images && message.images?.length > 0
-                ? styles.supportContainer__content_main_content_chat_padding
-                : ""
-            }`}
+            className={`${styles.supportContainer__content_main_content_chat} ${message.images && message.images?.length > 0
+              ? styles.supportContainer__content_main_content_chat_padding
+              : ""
+              }`}
             ref={messageListRef}
             style={{
               height: `${height}px`,
@@ -189,7 +197,7 @@ const ChatSupport = (): JSX.Element => {
                 message.images && message.images?.length > 0 ? "140px" : "0",
             }}
           >
-            {messageList.map((item, index) => {
+            {messageList.map((item) => {
               if (item.person) {
                 return <ChatMessagePerson key={item.message} message={item} />;
               } else {
@@ -213,13 +221,7 @@ const ChatSupport = (): JSX.Element => {
                       styles.supportContainer__content_main_content_images_imageContainer_close
                     }
                     onClick={() => {
-                      message.images &&
-                        setMessage({
-                          ...message,
-                          images: message.images.filter(
-                            (_) => _.id !== item.id,
-                          ),
-                        });
+                      handleImageClick(item);
                     }}
                   >
                     <div

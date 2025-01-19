@@ -26,17 +26,20 @@ const SideBarNavItem = ({
 }: IProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const unreadNotifications = useSelector(selectUnreadNotificationsNumber);
+
+  const isLargeScreenHovered = isHovered && window.innerWidth > 768;
+
+  const handleClick = () => {
+    setSelectedPage(value);
+    onClick && onClick();
+  }
   return (
     <button
-      className={`${styles.sideBar_navItem} ${
-        selectedPage === value ? styles.sideBar_navItem_selected : ""
-      }
+      className={`${styles.sideBar_navItem} ${selectedPage === value ? styles.sideBar_navItem_selected : ""
+        }
     ${isOpened ? styles.sideBar_navItem_opened : ""}
     `}
-      onClick={() => {
-        setSelectedPage(value);
-        onClick && onClick();
-      }}
+      onClick={handleClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -46,7 +49,7 @@ const SideBarNavItem = ({
             className={styles.sideBar_navItem_svg}
             style={{
               fill:
-                isHovered && window.innerWidth > 768
+                isLargeScreenHovered
                   ? "#1d7b1e"
                   : selectedPage === value
                     ? "#ffffff"
@@ -58,7 +61,7 @@ const SideBarNavItem = ({
           <div
             className={styles.sideBar_navItem_notification}
             style={{
-              outline: `2px solid ${isHovered && window.innerWidth > 768 ? "#eaf2eb" : selectedPage === value ? "var(--green)" : "var(--white)"}`,
+              outline: `2px solid ${isLargeScreenHovered ? "#eaf2eb" : selectedPage === value ? "var(--green)" : "var(--white)"}`,
             }}
           >
             {String(unreadNotifications)}
@@ -69,7 +72,7 @@ const SideBarNavItem = ({
           className={styles.sideBar_navItem_svg}
           style={{
             fill:
-              isHovered && window.innerWidth > 768
+              isLargeScreenHovered
                 ? "#1d7b1e"
                 : selectedPage === value
                   ? "#ffffff"

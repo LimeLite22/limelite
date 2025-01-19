@@ -3,9 +3,11 @@ import styles from "./Settings.module.scss";
 import Team from "./components/Team";
 import EditProfile from "./components/EditProfile";
 import PasswordUpdate from "./components/PasswordUpdate";
+import Communication from "./components/Communication";
+import { SETTING_COMMUNICATION_SECTION, SETTING_EDIT_SECTION, SETTING_PASSWORD_SECTION, SETTING_TEAM_SECTION } from "consts/consts";
 
 const Settings = () => {
-    const [menu, setMenu] = useState('edit');
+    const [menu, setMenu] = useState(SETTING_EDIT_SECTION);
 
     return (
         <div className={styles.settings} >
@@ -13,41 +15,30 @@ const Settings = () => {
             <div className={styles.settings_navigation}>
                 <div
                     className={`
-                    ${styles.settings_navigation_item} ${menu === 'edit' && styles.settings_navigation_selected}`}
-                    onClick={() => setMenu('edit')}
+                    ${styles.settings_navigation_item} ${menu === SETTING_EDIT_SECTION && styles.settings_navigation_selected}`}
+                    onClick={() => setMenu(SETTING_EDIT_SECTION)}
                 >Profile edit</div>
                 <div
-                    onClick={() => setMenu('team')}
+                    onClick={() => setMenu(SETTING_TEAM_SECTION)}
                     className={`${styles.settings_navigation_item} 
-                    ${menu === 'team' && styles.settings_navigation_selected}`}>Team Management </div>
+                    ${menu === SETTING_TEAM_SECTION && styles.settings_navigation_selected}`}>Team Management </div>
                 <div
-                    onClick={() => setMenu('password')}
+                    onClick={() => setMenu(SETTING_PASSWORD_SECTION)}
                     className={`${styles.settings_navigation_item} 
-                    ${menu === 'password' && styles.settings_navigation_selected}`}>Password </div>
+                    ${menu === SETTING_PASSWORD_SECTION && styles.settings_navigation_selected}`}>Password </div>
                 <div className={
 
                     `${styles.settings_navigation_item} 
-                    ${menu === 'communication' && styles.settings_navigation_selected}`}
-                    onClick={() => setMenu('communication')}
+                    ${menu === SETTING_COMMUNICATION_SECTION && styles.settings_navigation_selected}`}
+                    onClick={() => setMenu(SETTING_COMMUNICATION_SECTION)}
                 >Communication Preferences
                 </div>
             </div>
 
-            {menu === 'edit' && <EditProfile /> }
-            {menu === 'password' && <PasswordUpdate />}
-            {  menu === 'team' && <Team /> }
-            {
-                menu === 'communication' &&
-                <div className={styles.settings_communicationContainer}>
-                    <div className={styles.settings_text} >Consent to Receive Text Updates </div>
-                    <div className={styles.settings_text2}>By checking this box, you agree to receive text messages
-                        from LimeLite Videos with information about your projects and plan.
-                        Message and data rates may apply. You can opt out at any time
-                    </div>
-                    <div className={styles.settings_text} >The Terms and Conditions of LimeLite </div>
-                    <div className={styles.settings_text2}>By proceeding, you agree to our Terms and Conditions. Click the link to review the full details.</div>
-                </div>
-
+            {menu === SETTING_EDIT_SECTION && <EditProfile />}
+            {menu === SETTING_PASSWORD_SECTION && <PasswordUpdate />}
+            {menu === SETTING_TEAM_SECTION && <Team />}
+            {menu === SETTING_COMMUNICATION_SECTION && <Communication />
             }
 
         </div>

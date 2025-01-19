@@ -654,6 +654,9 @@
             display: flex;
             align-items: center;
             margin-bottom: 24px;
+            cursor: pointer;
+            user-select: none;
+
         }
         &_input {
             width: 100%;
@@ -684,6 +687,7 @@
             gap: 6px;
             cursor: pointer;
             margin-bottom: 24px;
+            user-select: none;
             img{
                 width:24px;
                 height:24px;

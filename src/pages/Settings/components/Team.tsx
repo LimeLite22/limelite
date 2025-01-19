@@ -1,4 +1,4 @@
-import { Add, GapUnCheck, InviteUser, User1Foto, User2Foto, User3Foto, } from "assets/images";
+import { Add, GapCheck, GapUnCheck, InviteUser, User1Foto, User2Foto, User3Foto, } from "assets/images";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "../Settings.module.scss";
@@ -7,7 +7,7 @@ import TeamItem from "./TeamItem";
 
 
 const Team = () => {
-    const [members, setMembers] = useState([
+    const [members] = useState([
 
         {
             name: 'Alex',
@@ -62,6 +62,17 @@ const Team = () => {
 
     ]);
     const [isInviteOpened, setIsInviteOpened] = useState(false);
+    const [transferRights, setTransferRights] = useState(false);
+    const handleTransferRights = () => {
+        setTransferRights(!transferRights);
+    }
+    const handleOpenInvite = () => {
+        setIsInviteOpened(true);
+    }
+    const handleCloseInvite = () => {
+        setIsInviteOpened(true);
+    }
+
     return (
         <>
             <div>
@@ -74,7 +85,7 @@ const Team = () => {
                         </div>
                         <div className={styles.team_header_subTitle}>Add or manage team members that need to log into Limelite space.</div>
                     </div>
-                    <div className={styles.team_invite} onClick={() => setIsInviteOpened(true)}>
+                    <div className={styles.team_invite} onClick={handleOpenInvite}>
                         <img src={InviteUser} alt="" />
                         Invite user</div>
                 </div>
@@ -94,14 +105,14 @@ const Team = () => {
             </div>
             {
                 isInviteOpened && createPortal(
-                    <div className={styles.invite} tabIndex={-1} onClick={() => setIsInviteOpened(false)}>
+                    <div className={styles.invite} tabIndex={-1} onClick={handleCloseInvite}>
                         <div className={styles.invite_wrapper} onClick={(e) => e.stopPropagation()}>
                             <div className={styles.invite_wrapper_header}>Invite your team members</div>
                             <div className={styles.invite_wrapper_subHeader}>Add your colleagues to Limelite space and assign them a role.</div>
                             <div className={styles.invite_wrapper_title}>Email </div>
                             <input className={styles.invite_wrapper_input} type='text' />
-                            <div className={styles.invite_wrapper_title2} >
-                                <img src={GapUnCheck} alt="" />
+                            <div className={styles.invite_wrapper_title2} onClick={handleTransferRights} >
+                                <img src={transferRights ? GapCheck : GapUnCheck} alt="" />
                                 Transfer administrator rights</div>
                             <div className={styles.invite_wrapper_add}>
                                 <img src={Add} alt="" />

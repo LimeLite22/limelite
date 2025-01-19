@@ -53,14 +53,7 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
       setSelectedPage(SETTINGS);
     }
     if (
-      location.pathname.includes("new-request/start") ||
-      location.pathname.includes("new-request/project") ||
-      location.pathname.includes("new-request/logistics") ||
-      location.pathname.includes("new-request/script") ||
-      location.pathname.includes("new-request/interview") ||
-      location.pathname.includes("new-request/voiceover") ||
-      location.pathname.includes("new-request/video-edit") ||
-      location.pathname.includes("new-request/add-ons")
+      location.pathname.includes("new-request/start")
     ) {
       setSelectedPage(NEW_REQUEST);
     }
@@ -69,6 +62,9 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
   const handleLinkClick = () => {
     windowWidth < 768 && setIsOpened(false);
   };
+  const handleToggleIsOpened = () => {
+    setIsOpened(!isOpened);
+  }
   return (
     <div
       className={`${styles.sideBar} ${isOpened ? styles.sideBar_opened : ""}`}
@@ -88,10 +84,9 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
           </Link>
 
           <div
-            className={`${styles.sideBar_navItemContainer_switchArrow} ${
-              isOpened ? styles.sideBar_navItemContainer_switchArrow_opened : ""
-            }`}
-            onClick={() => setIsOpened(!isOpened)}
+            className={`${styles.sideBar_navItemContainer_switchArrow} ${isOpened ? styles.sideBar_navItemContainer_switchArrow_opened : ""
+              }`}
+            onClick={handleToggleIsOpened}
           />
         </div>
         <Link to="/new-request/start" style={{ textDecoration: "none" }}>
