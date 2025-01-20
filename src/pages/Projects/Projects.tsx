@@ -133,7 +133,10 @@ const ProjectsPage = () => {
 
     return <div className={styles.projectsPage}>
         <div className={styles.projectsPage_header}>
-            <div >Projects</div>
+            <div className={styles.projectsPage_header_text} >Projects 
+            <p> 
+                <div className={styles.projectsPage_header_text_divider}></div>
+                {projects.length} requests</p></div>
             <div className={styles.projectsPage_content}>
                 <div className={styles.projectsPage_filter}><img src={Filter} alt="filter" /> Filter</div>
                 <div className={styles.projectsPage_lastDays}><img src={LastDays} alt="filter" /> Last 30 days</div>
@@ -169,7 +172,9 @@ const ProjectsPage = () => {
         <div className={styles.projectsPage_projects}>
             {
                 projects.map((project) => {
-                    return <div key={project.id} className={styles.projectsPage_project}>
+                    return <>
+           
+                     <div key={project.id} className={styles.projectsPage_project}>
                         <div className={styles.projectsPage_project_start}>
                             <img className={styles.projectsPage_project_img} src={SwiperFoto1} alt="" />
                             <div className={styles.projectsPage_project_start_item} >
@@ -197,6 +202,8 @@ const ProjectsPage = () => {
                             </div>
                         </div>
                     </div>
+                    <div className={styles.projectsPage_projects_divider}></div>
+                    </>
                 })
             }
         </div>
