@@ -171,10 +171,18 @@ const ProjectsPage = () => {
         </div>
         <div className={styles.projectsPage_projects}>
             {
-                projects.map((project) => {
+                projects.map((project,index) => {
                     return <>
            
-                     <div key={project.id} className={styles.projectsPage_project}>
+                     <div key={project.id} className={styles.projectsPage_project} onMouseEnter={()=>{
+                        const divider = document.getElementById(`${index - 1}divider`);
+                        divider?.style.setProperty('background-color', 'transparent');
+                     }}
+                     onMouseLeave={()=>{
+                        const divider = document.getElementById(`${index - 1}divider`);
+                        divider?.style.setProperty('background-color', 'var(--gray-light7)');
+                     }}
+                     >
                         <div className={styles.projectsPage_project_start}>
                             <img className={styles.projectsPage_project_img} src={SwiperFoto1} alt="" />
                             <div className={styles.projectsPage_project_start_item} >
@@ -202,7 +210,7 @@ const ProjectsPage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className={styles.projectsPage_projects_divider}></div>
+                    <div id={`${index}divider`} className={styles.projectsPage_projects_divider}></div>
                     </>
                 })
             }
