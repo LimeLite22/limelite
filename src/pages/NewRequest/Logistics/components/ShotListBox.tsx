@@ -6,10 +6,10 @@ const ShotList = () => {
   const [text, setText] = useState<string>("");
   return (
     <div>
-      <div className={styles.nR_shotList_header}>Shot list</div>
+      <div className={styles.nR_shotList_header}>Project overview / Details*</div>
       <textarea
         className={styles.nR_shotList_textArea}
-        placeholder="Add your shot list here..."
+        placeholder="Add a brief overview of the project here..."
         value={text}
         onChange={(e) => setText(e.target.value)}
       />

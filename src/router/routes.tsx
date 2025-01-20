@@ -26,7 +26,8 @@ import VideoEdit from "pages/NewRequest/VideoEdit/VideoEdit";
 import AddOns from "pages/NewRequest/AddOns/AddOns";
 import Submit from "pages/NewRequest/Submit/Submit";
 import CreateProfile from "pages/CreateProfile/CreateProfile";
-import ProjectPage from "pages/Projects/Projects";
+import Login from "pages/Login/Login";
+import ProjectsPage from "pages/Projects/Projects";
 
 const routes = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const routes = createBrowserRouter([
           {
             path: "/",
             element: <PrivateRoute component={Welcome} redirectTo="/auth" />,
+          },
+          {
+            path: "/login",
+            element: <Login />,
           },
           {
             path: "/new-request/start",
@@ -107,7 +112,7 @@ const routes = createBrowserRouter([
           },
           {
             path: "/projects",
-            element: <PrivateRoute component={ProjectPage} redirectTo="/auth" />,
+            element: <PrivateRoute component={ProjectsPage} redirectTo="/auth" />,
           },
           {
             path: "/support",

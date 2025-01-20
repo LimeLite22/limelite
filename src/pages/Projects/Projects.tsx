@@ -1,11 +1,11 @@
-import { Filter, LastDays, Search, SwiperFoto1, User2Foto } from "assets/images";
-import { optionsList } from "consts/consts";
+import { Filter, LastDays, Search, Settings, SwiperFoto1, User2Foto } from "assets/images";
+import { CANCELED_REQUEST_STATUS, COMPLETE_REQUEST_STATUS, IN_EDITING_REQUEST_STATUS, ON_HOLD_REQUEST_STATUS, optionsList, projectTypes, REQUESTED_REQUEST_STATUS, SCHEDULED_REQUEST_STATUS } from "consts/consts";
 import { useState } from "react";
 import { format } from "date-fns";
 import { generateUniqueId } from "utils/generateId";
 import styles from "./ProjectsPage.module.scss";
 
-const ProjectPage = () => {
+const ProjectsPage = () => {
 
     const [search, setSearch] = useState<string>("");
     const projects = [
@@ -13,18 +13,127 @@ const ProjectPage = () => {
             id: generateUniqueId(),
             img: '',
             name: "Crafting Visual Stories: Behind the lens",
-            type: "Type 1",
+            type: projectTypes[0],
             account: 'Clay Gerhold',
             option: optionsList[0],
-            status:'In editing' ,
+            status: COMPLETE_REQUEST_STATUS,
+            accountFoto: User2Foto,
+            date: new Date(),
+
+        },
+        {
+            id: generateUniqueId(),
+            img: '',
+            name: "Crafting Visual Stories: Behind the lens",
+            type:  projectTypes[1],
+            account: 'Clay Gerhold',
+            option: optionsList[0],
+            status: IN_EDITING_REQUEST_STATUS,
+            accountFoto: User2Foto,
+            date: new Date(),
+
+        },
+        {
+            id: generateUniqueId(),
+            img: '',
+            name: "Crafting Visual Stories: Behind the lens",
+            type: projectTypes[0],
+            account: 'Clay Gerhold',
+            option: optionsList[0],
+            status: SCHEDULED_REQUEST_STATUS,
+            accountFoto: User2Foto,
+            date: new Date(),
+
+        },
+        {
+            id: generateUniqueId(),
+            img: '',
+            name: "Crafting Visual Stories: Behind the lens",
+            type:  projectTypes[2],
+            account: 'Clay Gerhold',
+            option: optionsList[0],
+            status: REQUESTED_REQUEST_STATUS,
+            accountFoto: User2Foto,
+            date: new Date(),
+
+        },
+        {
+            id: generateUniqueId(),
+            img: '',
+            name: "Crafting Visual Stories: Behind the lens",
+            type: projectTypes[3],
+            account: 'Clay Gerhold',
+            option: optionsList[0],
+            status: ON_HOLD_REQUEST_STATUS,
+            accountFoto: User2Foto,
+            date: new Date(),
+
+        },
+        {
+            id: generateUniqueId(),
+            img: '',
+            name: "Crafting Visual Stories: Behind the lens",
+            type:  projectTypes[4],
+            account: 'Clay Gerhold',
+            option: optionsList[0],
+            status: CANCELED_REQUEST_STATUS,
+            accountFoto: User2Foto,
+            date: new Date(),
+
+        },
+        {
+            id: generateUniqueId(),
+            img: '',
+            name: "Crafting Visual Stories: Behind the lens",
+            type:  projectTypes[5],
+            account: 'Clay Gerhold',
+            option: optionsList[0],
+            status: CANCELED_REQUEST_STATUS,
             accountFoto: User2Foto,
             date: new Date(),
 
         }
+        ,
+        {
+            id: generateUniqueId(),
+            img: '',
+            name: "Crafting Visual Stories: Behind the lens",
+            type: projectTypes[6],
+            account: 'Clay Gerhold',
+            option: optionsList[0],
+            status: CANCELED_REQUEST_STATUS,
+            accountFoto: User2Foto,
+            date: new Date(),
+
+        }
+        ,
+        {
+            id: generateUniqueId(),
+            img: '',
+            name: "Crafting Visual Stories: Behind the lens",
+            type:  projectTypes[7],
+            account: 'Clay Gerhold',
+            option: optionsList[0],
+            status: CANCELED_REQUEST_STATUS,
+            accountFoto: User2Foto,
+            date: new Date(),
+
+        }
+
     ]
+
+    const statusColor = (status: string) => {
+        if (status === COMPLETE_REQUEST_STATUS) return `var(--green-dark2)`;
+        if (status === IN_EDITING_REQUEST_STATUS) return `var(--pink-dark2)`;
+        if (status === SCHEDULED_REQUEST_STATUS) return `var(--yellow-light)`;
+        if (status === REQUESTED_REQUEST_STATUS) return `var(--blue)`;
+        if (status === ON_HOLD_REQUEST_STATUS) return `var(--orange-light2)`;
+        if (status === CANCELED_REQUEST_STATUS) return `var(--red)`;
+    }
+
     return <div className={styles.projectsPage}>
         <div className={styles.projectsPage_header}>
-            <div>Projects</div>
+            <div >Projects</div>
             <div className={styles.projectsPage_content}>
                 <div className={styles.projectsPage_filter}><img src={Filter} alt="filter" /> Filter</div>
                 <div className={styles.projectsPage_lastDays}><img src={LastDays} alt="filter" /> Last 30 days</div>
@@ -36,25 +145,56 @@ const ProjectPage = () => {
                 </div>
             </div>
         </div>
+        <div className={styles.projectsPage_projectHeader}>
+            <div className={styles.projectsPage_projectHeader_start}>
+                <div className={styles.projectsPage_projectHeader_preview} >Preview</div>
+                <div className={styles.projectsPage_projectHeader_start_item} >
+                    Project Name
+                </div>
+            </div>
+            <div className={styles.projectsPage_projectHeader_info}>
+                <div className={styles.projectsPage_projectHeader_info_request}>
+                    Requested By
+                </div>
+                <div className={`${styles.projectsPage_projectHeader_info_item}`}>
+                    Credit Usage
+                </div>
+                <div className={styles.projectsPage_projectHeader_info_item}>Requested date</div>
+                <div className={styles.projectsPage_projectHeader_info_item}>
+                    Status</div>
+                <div className={styles.projectsPage_projectHeader_info_settings}>
+                </div>
+            </div>
+        </div>
         <div className={styles.projectsPage_projects}>
             {
                 projects.map((project) => {
                     return <div key={project.id} className={styles.projectsPage_project}>
-                        <img className={styles.projectsPage_project_img} src={SwiperFoto1} alt="" />
-                        <div className={styles.projectsPage_project_text} >{project.name}</div>
-
+                        <div className={styles.projectsPage_project_start}>
+                            <img className={styles.projectsPage_project_img} src={SwiperFoto1} alt="" />
+                            <div className={styles.projectsPage_project_start_item} >
+                                <div className={styles.projectsPage_project_start_item_header}>{project.name}</div>
+                                <div className={styles.projectsPage_project_start_item_option}>
+                                <img src={project.type.img} alt='' />     {project.type.header}    /  <img src={project.option.img} alt='' /> {project.option.value}</div>
+                            </div>
+                        </div>
                         <div className={styles.projectsPage_project_info}>
-                            <div className={styles.projectsPage_project_account}><img src={project.accountFoto} alt="" /> {project.account}</div>
-                            <div className={styles.projectsPage_project_option}>
-                                <div className={styles.projectsPage_project_option_credit}>
+                            <div className={styles.projectsPage_project_info_request}>
+                                <img src={project.accountFoto} alt="" /> {project.account}
+                            </div>
+                            <div className={`${styles.projectsPage_project_info_item}`}>
+                                <div className={`${styles.projectsPage_project_credit}`}>
                                     {project.option?.credits}{" "}
                                     {project.option?.credits > 1 ? "Credits" : "Credit"}
                                 </div>
-
-                                {project.option.value}</div>
-                            <div className={styles.projectsPage_project_date}>{format(project.date, "dd/MM/yyyy")}</div>
-                            <div className={styles.projectsPage_project_status}>{project.status}</div>
-                            <div className={styles.projectsPage_project_setting}></div>
+                            </div>
+                            <div className={styles.projectsPage_project_info_item}>{format(project.date, "dd/MM/yyyy")}</div>
+                            <div className={styles.projectsPage_project_info_item}>
+                                <div className={styles.projectsPage_project_info_status} style={{ backgroundColor: statusColor(project.status) }} ></div>
+                                {project.status}</div>
+                            <div className={styles.projectsPage_project_info_settings}>
+                                <img src={Settings} alt="" />
+                            </div>
                         </div>
                     </div>
                 })
@@ -63,4 +203,4 @@ const ProjectPage = () => {
     </div>;
 };
 
-export default ProjectPage;
+export default ProjectsPage;

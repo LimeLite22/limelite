@@ -82,6 +82,7 @@ export interface AddOnsValue {
 
 export interface IProjectTypeInfo {
   id: string,
+  img:string,
   header: string,
   subHeader: string,
   description: string,

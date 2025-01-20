@@ -1,10 +1,30 @@
 import { IOptionsList, IProjectTypeInfo, IVideoDuration, TimeItem } from "interfaces/interfaces";
 import { generateUniqueId } from "utils/generateId";
 import {
+  AnnouncementVideos,
+  CompanyOverviewIcon,
+  DemoVideosIcon,
+  DroneIcon,
   EditOnlyIcon,
+  EducationType,
+  EducationVideo,
+  EventRecaps,
+  FAQS,
+  Fundrasing,
+  HRRecruiting,
+  HypeSizzle,
+  Interviews,
+  OnBoarding,
   OtherIcon,
+  Photography,
+  ProductServiceVideos,
   ShootEditIcon,
   ShootOnlyIcon,
+  SocialMedia,
+  TelevisionCommercials,
+  TestimonialsCaseStudies,
+  Videography,
+  WebsiteHeaderVideos,
 } from "assets/images";
 
 
@@ -439,6 +459,7 @@ export const videoDurationsList: { id: string; value: IVideoDuration }[] = [
 export const projectTypes: IProjectTypeInfo[] = [
   {
     id: generateUniqueId(),
+    img:AnnouncementVideos,
     header: "Announcement Videos",
     subHeader: `We'd like LimeLite to .....`,
     description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
@@ -451,6 +472,7 @@ export const projectTypes: IProjectTypeInfo[] = [
   },
   {
     id: generateUniqueId(),
+    img:CompanyOverviewIcon,
     header: "Company Overview Video",
     subHeader: `We'd like LimeLite to .....`,
     description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
@@ -462,6 +484,7 @@ export const projectTypes: IProjectTypeInfo[] = [
     ]
   }, {
     id: generateUniqueId(),
+    img:DemoVideosIcon,
     header: "Demo Video",
     subHeader: `We'd like LimeLite to .....`,
     description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
@@ -473,6 +496,7 @@ export const projectTypes: IProjectTypeInfo[] = [
     ]
   }, {
     id: generateUniqueId(),
+    img:DroneIcon,
     header: "Drone Video",
     subHeader: `We'd like LimeLite to .....`,
     description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
@@ -483,6 +507,7 @@ export const projectTypes: IProjectTypeInfo[] = [
     ]
   }, {
     id: generateUniqueId(),
+    img:EducationVideo,
     header: "Educational Video",
     subHeader: `We'd like LimeLite to .....`,
     description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
@@ -495,6 +520,7 @@ export const projectTypes: IProjectTypeInfo[] = [
     ]
   }, {
     id: generateUniqueId(),
+    img:EventRecaps,
     header: "Event Recap Video",
     subHeader: `We'd like LimeLite to .....`,
     description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
@@ -505,6 +531,7 @@ export const projectTypes: IProjectTypeInfo[] = [
     ]
   }, {
     id: generateUniqueId(),
+    img:FAQS,
     header: "FAQ Video",
     subHeader: `We'd like LimeLite to .....`,
     description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
@@ -516,6 +543,7 @@ export const projectTypes: IProjectTypeInfo[] = [
 
   }, {
     id: generateUniqueId(),
+    img:Fundrasing,
     header: "Fundraising Video",
     subHeader: `We'd like LimeLite to .....`,
     description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
@@ -526,6 +554,7 @@ export const projectTypes: IProjectTypeInfo[] = [
     ]
   }, {
     id: generateUniqueId(),
+    img:HRRecruiting,
     header: "HR/Recruiting Video",
     subHeader: `We'd like LimeLite to .....`,
     description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
@@ -537,6 +566,7 @@ export const projectTypes: IProjectTypeInfo[] = [
     ]
   }, {
     id: generateUniqueId(),
+    img:HypeSizzle,
     header: "Hype/Sizzle Video",
     subHeader: `We'd like LimeLite to .....`,
     description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
@@ -549,6 +579,7 @@ export const projectTypes: IProjectTypeInfo[] = [
     ]
   }, {
     id: generateUniqueId(),
+    img:Interviews,
     header: "Interview",
     subHeader: `We'd like LimeLite to .....`,
     description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
@@ -562,6 +593,7 @@ export const projectTypes: IProjectTypeInfo[] = [
   }
   , {
     id: generateUniqueId(),
+    img:OnBoarding,
     header: "Onboarding Video",
     subHeader: `We'd like LimeLite to .....`,
     description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
@@ -574,6 +606,7 @@ export const projectTypes: IProjectTypeInfo[] = [
     ]
   }, {
     id: generateUniqueId(),
+    img: Photography,
     header: "Photography",
     subHeader: `We'd like LimeLite to .....`,
     description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
@@ -584,6 +617,7 @@ export const projectTypes: IProjectTypeInfo[] = [
     ]
   }, {
     id: generateUniqueId(),
+    img:ProductServiceVideos,
     header: "Product & Service Video",
     subHeader: `We'd like LimeLite to .....`,
     description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
@@ -594,6 +628,7 @@ export const projectTypes: IProjectTypeInfo[] = [
     ]
   }, {
     id: generateUniqueId(),
+    img:SocialMedia,
     header: "Social Media Video",
     subHeader: `We'd like LimeLite to .....`,
     description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
@@ -605,6 +640,7 @@ export const projectTypes: IProjectTypeInfo[] = [
     ]
   }, {
     id: generateUniqueId(),
+    img:TelevisionCommercials,
     header: "Television Commercial",
     subHeader: `We'd like LimeLite to .....`,
     description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
@@ -617,6 +653,7 @@ export const projectTypes: IProjectTypeInfo[] = [
   }
   , {
     id: generateUniqueId(),
+    img:TestimonialsCaseStudies,
     header: "Testimonial/Case Study Video",
     subHeader: `We'd like LimeLite to .....`,
     description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
@@ -628,6 +665,7 @@ export const projectTypes: IProjectTypeInfo[] = [
   }
   , {
     id: generateUniqueId(),
+    img:Videography,
     header: "Videography",
     subHeader: `We'd like LimeLite to .....`,
     description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
@@ -638,6 +676,7 @@ export const projectTypes: IProjectTypeInfo[] = [
     ]
   }, {
     id: generateUniqueId(),
+    img:WebsiteHeaderVideos,
     header: "Website Header Video",
     subHeader: `We'd like LimeLite to .....`,
     description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
@@ -650,6 +689,7 @@ export const projectTypes: IProjectTypeInfo[] = [
   ,
   {
     id: generateUniqueId(),
+    img:WebsiteHeaderVideos,
     header: "Other",
     subHeader: `We'd like LimeLite to .....`,
     description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
@@ -680,3 +720,15 @@ export const SETTING_TEAM_SECTION = 'SETTING_TEAM_SECTION';
 export const SETTING_PASSWORD_SECTION = 'SETTING_PASSWORD_SECTION';
 export const SETTING_COMMUNICATION_SECTION = 'SETTING_COMMUNICATION_SECTION';
 export const SETTING_EDIT_SECTION = 'SETTING_EDIT_SECTION';
+
+
+// request   statuses
+
+
+export const COMPLETE_REQUEST_STATUS = "Complete"; 
+export const IN_EDITING_REQUEST_STATUS = "In Editing";
+export const SCHEDULED_REQUEST_STATUS = "Scheduled";
+export const REQUESTED_REQUEST_STATUS = "Requested";
+export const ON_HOLD_REQUEST_STATUS = "On Hold";
+export const CANCELED_REQUEST_STATUS = "Canceled";
+

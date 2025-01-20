@@ -82,6 +82,7 @@ const initialState: IRequestState = {
       targetAudience: "",
       projectType: {
         id: generateUniqueId(),
+        img: '',
         header: "",
         subHeader: ``,
         description: ``,
@@ -198,6 +199,7 @@ const initialState: IRequestState = {
       targetAudience: "",
       projectType: {
         id: generateUniqueId(),
+        img:'',
         header: "",
         subHeader: ``,
         description: ``,
@@ -326,6 +328,7 @@ const requestReducer = createSlice({
         targetAudience: "",
         projectType: {
           id: generateUniqueId(),
+          img:'',
           header: "",
           subHeader: ``,
           description: ``,

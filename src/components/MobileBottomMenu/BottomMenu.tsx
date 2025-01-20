@@ -1,26 +1,26 @@
 import { useEffect, useState } from "react";
-import { Sheet } from "react-modal-sheet";
+// import { Sheet } from "react-modal-sheet";
 import { useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import { IRequest } from "interfaces/interfaces";
+// import { IRequest } from "interfaces/interfaces";
 import { selectedMobPages } from "types/types";
 
 import { HOME, LEARN, NOTIFICATIONS, PROJECTS } from "consts/consts";
-import { optionsList } from "consts/consts";
+// import { optionsList } from "consts/consts";
 
 import {
   BottomNewRequestIcon,
-  EditOnlyIcon,
+  // EditOnlyIcon,
   Home,
   Learn,
   Notifications,
-  OtherIcon,
+  // OtherIcon,
   Projects,
-  ShootEditIcon,
-  ShootOnlyIcon,
+  // ShootEditIcon,
+  // ShootOnlyIcon,
 } from "../../assets/images";
-import { createDraft } from "../../redux/requests/reducer";
+// import { createDraft } from "../../redux/requests/reducer";
 import styles from "./BottomMenu.module.scss";
 import BottomMenuItem from "./components/BottomMenuItem";
 
@@ -31,14 +31,14 @@ type IProps = {
 const BottomMenu = ({ isOpened }: IProps) => {
   const [selectedPage, setSelectedPage] = useState<selectedMobPages>(HOME);
   const location = useLocation();
-  const [isOpen, setIsOpen] = useState(false);
-  const closeBottomSheet = () => setIsOpen(false);
+  // const [isOpen, setIsOpen] = useState(false);
+  // const closeBottomSheet = () => setIsOpen(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleCardClick = (option: IRequest["option"]) => {
-    dispatch(createDraft(option));
-    navigate("/new-request/start");
-  };
+  // const handleCardClick = (option: IRequest["option"]) => {
+  //   dispatch(createDraft(option));
+  //   navigate("/new-request/start");
+  // };
 
   useEffect(() => {
     if (location?.pathname.includes("learn")) {
@@ -97,7 +97,7 @@ const BottomMenu = ({ isOpened }: IProps) => {
           isOpened={isOpened}
         />
       </Link>
-      {isOpen && (
+      {/* {isOpen && (
         <Sheet
           isOpen={isOpen}
           onClose={closeBottomSheet}
@@ -180,7 +180,7 @@ const BottomMenu = ({ isOpened }: IProps) => {
             </Sheet.Content>
           </Sheet.Container>
         </Sheet>
-      )}
+      )} */}
     </div>
   );
 };

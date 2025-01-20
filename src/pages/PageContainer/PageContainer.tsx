@@ -34,6 +34,7 @@ const PageContainer = () => {
     location.pathname.includes("new-request/submit") || 
     location.pathname.includes("new-request/final");
     const isCreateProfilePage = location.pathname.includes("profile-create");
+    const isLoginPage = location.pathname.includes("login");
   const { pathname } = useLocation();
   useEffect(() => {
     document?.getElementById("pageContainer")?.scrollTo(0, 34);
@@ -77,7 +78,7 @@ const PageContainer = () => {
           `}
         style={{ overflow: isBurgerOpened ? "hidden" : "" }}
       >
-        {!isNewRequestSteps && !isCreateProfilePage && (
+        {!isNewRequestSteps && !isCreateProfilePage && !isLoginPage && (
           <div className={styles.sideBarHideContainer}>
             <SideBar
               isOpened={isSideBarOpened}
@@ -107,12 +108,13 @@ const PageContainer = () => {
                 !location.pathname.includes("new-request/add-ons") && 
                 !location.pathname.includes("new-request/submit") &&
                 !location.pathname.includes("new-request/final") &&
-                !location.pathname.includes("profile-create")
+                !location.pathname.includes("profile-create") && 
+                !isLoginPage
                 && <Footer />}
             </>
           )}
         </div>
-        {!isNewRequestSteps && !isCreateProfilePage && <BottomMenu isOpened={isSideBarOpened} />}
+        {!isNewRequestSteps && !isCreateProfilePage && !isLoginPage && <BottomMenu isOpened={isSideBarOpened} />}
         {isBurgerOpened && (
           <div
             className={styles.mobileSideMenuContainer}

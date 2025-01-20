@@ -101,7 +101,7 @@ const FormFooter = () => {
               >
                 {preferredDate?.date !== DEFAULT
                   ? format(preferredDate?.date as Date, "E,MMMM dd, yyyy")
-                  : "Mon, November 22, 2024"}
+                  : "Day, Month XX, XXXX"}
               </div>
               <div
                 className={styles.footer_container_timeContainer_text_title2}
@@ -143,7 +143,7 @@ const FormFooter = () => {
                 }
                 style={{ color: !company ? "var(--gray-light5)" : "" }}
               >
-                {company || "Paycor, Inc."}
+                {company || "Company Name"}
               </div>
               <div
                 className={

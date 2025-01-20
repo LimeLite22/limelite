@@ -99,7 +99,7 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
             onClick={handleLinkClick}
           />
         </Link>
-        <Link to="" style={{ textDecoration: "none" }}>
+        <Link to="/projects" style={{ textDecoration: "none" }}>
           <SideBarNavItem
             selectedPage={selectedPage}
             setSelectedPage={setSelectedPage}
