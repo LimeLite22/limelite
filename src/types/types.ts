@@ -68,3 +68,5 @@ export type ApproachValue = 'No Approach' | "Candid Interview Approach" | "Scrip
 
 
 export type stepType = 'new-request/project' | 'new-request/logistics' | 'new-request/script' | 'new-request/interview' | 'new-request/voiceover' | 'new-request/video-edit' | 'new-request/add-ons' | 'new-request/submit' | 'new-request/final';
+
+export type TFilterMenu = 'filter start' | 'filter video type' | 'filter request type' | 'filter requested by' | 'filter status';

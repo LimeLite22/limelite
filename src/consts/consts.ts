@@ -732,3 +732,11 @@ export const REQUESTED_REQUEST_STATUS = "Requested";
 export const ON_HOLD_REQUEST_STATUS = "On Hold";
 export const CANCELED_REQUEST_STATUS = "Canceled";
 
+
+
+export const FILTER_START = 'filter start';
+export const FILTER_VIDEO_TYPE = 'filter video type';
+export const FILTER_REQUEST_TYPE = 'filter request type';
+export const FILTER_REQUESTED_BY = 'filter requested by';
+export const FILTER_STATUS = 'filter status';
+

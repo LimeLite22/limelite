@@ -129,6 +129,14 @@
         gap: 6px;
         cursor: pointer;
         position: relative;
+        &_status{
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            margin: 4.5px;
+            background-color: var(--gray);
+        }
+        
         &_container {
             width: 352px;
             height: 251px;
@@ -154,11 +162,42 @@
                     text-align: left;
                     margin-bottom: 12px;
                     padding-left: 6px;
-                    height:35px;
-                    &_container{
+                    height: 35px;
+                    &_container {
                         display: flex;
                         align-items: center;
-                        gap:6px;
+                        gap: 6px;
+                    }
+                    span {
+                        font-family: Inter;
+                        font-size: 14px;
+                        font-weight: 400;
+                        line-height: 16.8px;
+                        text-align: left;
+                        color: var(--gray-dark3);
+                    }
+                }
+            }
+            &_status {
+                height: 391px;
+                bottom: -396px;
+                &_header {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    font-family: Poppins;
+                    font-size: 18px;
+                    font-weight: 500;
+                    line-height: 27px;
+                    text-align: left;
+                    margin-bottom: 12px;
+                    padding-left: 6px;
+                    height: 35px;
+                    &_container {
+                        display: flex;
+                        align-items: center;
+                        gap: 6px;
                     }
                     span {
                         font-family: Inter;
@@ -209,12 +248,17 @@
                 height: 225px;
                 padding: 6px;
             }
+            &_statusItems {
+                height: 301px;
+                padding: 6px;
+            }
             &_item {
                 width: 100%;
                 min-height: 32px;
                 border-radius: 4px;
                 display: flex;
                 align-items: center;
+                justify-content: space-between;
                 font-family: Inter;
                 font-size: 16px;
                 font-weight: 400;
@@ -231,12 +275,28 @@
                     top: 50%;
                     transform: translateY(-50%) rotate(180deg);
                 }
+                &_img{
+                    width:24px;
+                    height:24px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                }
                 &:hover {
                     background-color: var(--gray-light);
                 }
+                span {
+                    font-family: Inter;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 16.8px;
+                    text-align: left;
+                    color: var(--gray-dark);
+                }
+
             }
             &_videoItem {
                 gap: 8px;
+                justify-content: flex-start;
             }
         }
     }
