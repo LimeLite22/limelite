@@ -24,7 +24,7 @@
             &_divider {
                 min-width: 5px;
                 min-height: 5px;
-                height:5px;
+                height: 5px;
                 margin: 0px 10px;
                 background-color: var(--gray-dark3);
                 border-radius: 50%;
@@ -128,6 +128,117 @@
         justify-content: center;
         gap: 6px;
         cursor: pointer;
+        position: relative;
+        &_container {
+            width: 352px;
+            height: 251px;
+            background-color: var(--white);
+            position: absolute;
+            bottom: -256px;
+            border: 1px solid #f5f6f5;
+            border-radius: 8px;
+            padding: 12px 16px 16px 16px;
+            overflow: hidden;
+            &_video {
+                height: 315px;
+                bottom: -321px;
+                &_header {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    font-family: Poppins;
+                    font-size: 18px;
+                    font-weight: 500;
+                    line-height: 27px;
+                    text-align: left;
+                    margin-bottom: 12px;
+                    padding-left: 6px;
+                    height:35px;
+                    &_container{
+                        display: flex;
+                        align-items: center;
+                        gap:6px;
+                    }
+                    span {
+                        font-family: Inter;
+                        font-size: 14px;
+                        font-weight: 400;
+                        line-height: 16.8px;
+                        text-align: left;
+                        color: var(--gray-dark3);
+                    }
+                }
+            }
+            &_header {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-family: Poppins;
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 27px;
+                text-align: left;
+                margin-bottom: 16px;
+                span {
+                    font-family: Inter;
+                    font-size: 14px;
+                    font-weight: 600;
+                    line-height: 16.8px;
+                    text-align: left;
+                    color: var(--blue-dark);
+                }
+            }
+            &_divider {
+                width: 100%;
+                height: 1px;
+                min-height: 1px;
+                background-color: var(--gray-light7);
+                margin-bottom: 12px;
+            }
+            &_items {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                overflow: scroll;
+                height: max-content;
+            }
+            &_videoItems {
+                height: 225px;
+                padding: 6px;
+            }
+            &_item {
+                width: 100%;
+                min-height: 32px;
+                border-radius: 4px;
+                display: flex;
+                align-items: center;
+                font-family: Inter;
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 19.2px;
+                text-align: left;
+                color: var(--gray-dark);
+                padding: 0 6px;
+                padding-right: 28px;
+                cursor: pointer;
+                position: relative;
+                &_arrow {
+                    position: absolute;
+                    right: 2px;
+                    top: 50%;
+                    transform: translateY(-50%) rotate(180deg);
+                }
+                &:hover {
+                    background-color: var(--gray-light);
+                }
+            }
+            &_videoItem {
+                gap: 8px;
+            }
+        }
     }
     &_projects {
         width: 100%;
