@@ -179,7 +179,7 @@ const ProjectsPage = () => {
                 <div className={styles.projectsPage_projectHeader_info_request}>
                     Requested By
                 </div>
-                <div className={`${styles.projectsPage_projectHeader_info_item}`}>
+                <div className={`${styles.projectsPage_projectHeader_info_item}`} style={{ justifyContent:'center'}}>
                     Credit Usage
                 </div>
                 <div className={styles.projectsPage_projectHeader_info_item}>Requested date</div>
@@ -246,8 +246,8 @@ const ProjectsPage = () => {
                                 <div className={styles.projectsPage_project_info_request}>
                                     <img src={project.user.img} alt="" /> {project.user.name}
                                 </div>
-                                <div className={`${styles.projectsPage_project_info_item}`}>
-                                    <div className={`${styles.projectsPage_project_credit}`}>
+                                <div className={`${styles.projectsPage_project_info_item}`} style={{ justifyContent:'center'}}>
+                                    <div className={`${styles.projectsPage_project_credit}`} >
                                         {project.option?.credits}{" "}
                                         {project.option?.credits > 1 ? "Credits" : "Credit"}
                                     </div>
