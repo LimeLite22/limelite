@@ -2595,6 +2595,7 @@
   }
   &_videoTypeSelected {
     border: 1px solid var(--green-dark2);
+    box-shadow: 0 0 0 1px var(--green-dark2);    
   }
   &_question {
     display: flex;

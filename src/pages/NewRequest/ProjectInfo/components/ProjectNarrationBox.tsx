@@ -87,7 +87,8 @@ const ProjectNarrationBox = ({ isError, setIsError }: IProps) => {
           className={styles.requestTypeContainer_item}
           style={{
             order: width < 768 ? 2 : "unset",
-            border: approachList?.includes(CANDID_APPROACH) ? '1px solid var(--green-dark2)' : ''
+            border: approachList?.includes(CANDID_APPROACH) ? '1px solid var(--green-dark2)' : '',
+            boxShadow: approachList?.includes(CANDID_APPROACH) ? "0 0 0 1px var(--green-dark2) " : '',
           }}
           onClick={() => {
             handleItemClick(CANDID_APPROACH);
@@ -99,7 +100,8 @@ const ProjectNarrationBox = ({ isError, setIsError }: IProps) => {
           className={styles.requestTypeContainer_item}
           style={{
             order: width < 768 ? 3 : "unset",
-            border: approachList?.includes(SCRIPTED_APPROACH) ? '1px solid var(--green-dark2)' : ''
+            border: approachList?.includes(SCRIPTED_APPROACH) ? '1px solid var(--green-dark2)' : '',
+            boxShadow: approachList?.includes(SCRIPTED_APPROACH) ? "0 0 0 1px var(--green-dark2) " : '',
           }}
           onClick={() => {
             handleItemClick(SCRIPTED_APPROACH);
@@ -111,7 +113,8 @@ const ProjectNarrationBox = ({ isError, setIsError }: IProps) => {
           className={styles.requestTypeContainer_item}
           style={{
             order: width < 768 ? 1 : "unset",
-            border: approachList?.includes(VOICEOVER_APPROACH) ? '1px solid var(--green-dark2)' : ''
+            border: approachList?.includes(VOICEOVER_APPROACH) ? '1px solid var(--green-dark2)' : '',
+            boxShadow: approachList?.includes(VOICEOVER_APPROACH) ? "0 0 0 1px var(--green-dark2) " : '',
           }}
           onClick={() => {
             handleItemClick(VOICEOVER_APPROACH);
@@ -123,7 +126,8 @@ const ProjectNarrationBox = ({ isError, setIsError }: IProps) => {
           className={styles.requestTypeContainer_item}
           style={{
             order: width < 768 ? 4 : "unset",
-            border: approachList?.includes(NO_APPROACH) ? '1px solid var(--green-dark2)' : ''
+            border: approachList?.includes(NO_APPROACH) ? '1px solid var(--green-dark2)' : '',
+            boxShadow: approachList?.includes(NO_APPROACH) ? "0 0 0 1px var(--green-dark2) " : '',
           }}
           onClick={() => {
             handleItemClick(NO_APPROACH);

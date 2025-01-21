@@ -17,7 +17,7 @@ const RequestType: FC = () => {
   const selectedRequest = useSelector(selectRequestInfo);
   const requestType = selectedRequest?.option;
   return (
-    <div className={`${styles.requestType}`} tabIndex={0} onBlur={() => {}}>
+    <div className={`${styles.requestType}`} tabIndex={0} onBlur={() => { }}>
       <div className={styles.typeDropdown_header}> Type of your request*</div>
       <div className={styles.requestTypeContainer}>
         {optionsList.map((option) => {
@@ -28,9 +28,10 @@ const RequestType: FC = () => {
               style={
                 requestType?.value === option.value
                   ? {
-                      border: "1px solid var(--green-dark2)",
-                      color: "var(--black)",
-                    }
+                    border: "1px solid var(--green-dark2)",
+                    boxShadow: "0 0 0 1px var(--green-dark2)",
+                    color: "var(--black)",
+                  }
                   : {}
               }
               onClick={() => {
