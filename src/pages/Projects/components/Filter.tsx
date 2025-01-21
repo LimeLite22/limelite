@@ -19,7 +19,7 @@ interface IProps {
 
 }
 const ProjectFilter = ({ selectedVideoTypes, selectedRequestTypes, selectedUsers, selectedStatuses, setSelectedVideoTypes, setSelectedRequestTypes, setSelectedUsers, setSelectedStatuses }: IProps) => {
-    
+
     const [isOpened, setIsOpened] = useState(false);
     const [filterMenu, setFilterMenu] = useState<TFilterMenu>(FILTER_START);
 
@@ -36,7 +36,12 @@ const ProjectFilter = ({ selectedVideoTypes, selectedRequestTypes, selectedUsers
 
 
     return (
-        <div className={styles.projectsPage_filter} onClick={() => setIsOpened(true)} tabIndex={0} onBlur={() => setIsOpened(false)} ><img src={Filter} alt="filter" /> Filter
+        <div className={styles.projectsPage_filter} onClick={() => setIsOpened(true)} tabIndex={0} onBlur={() => {
+            setIsOpened(false)
+            setFilterMenu(FILTER_START)
+        }
+
+        } ><img src={Filter} alt="filter" /> Filter
             {isOpened &&
                 <div className={`
                 ${styles.projectsPage_filter_container} 
