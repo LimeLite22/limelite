@@ -14,237 +14,198 @@
     }
   }
   &_submitContainer {
-    width: 100%;
+    width: 656px;
     height: 100%;
     padding: 68px 24px 48px 24px;
     display: flex;
-    justify-content: center;
     position: relative;
     display: flex;
     flex-direction: column;
-
-    @media screen and (max-width: 768px) {
-      padding: 44px 16px 100px 16px;
+    &_text {
+      font-family: Inter;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 19.2px;
+      text-align: left;
+      color: var(--gray-dark3);
+      margin-bottom: 48px;
     }
-    &_content {
-      width: 100%;
-      flex: 1;
-      display: flex;
-      gap: 24px;
-      &_main {
-        flex: 1;
+    &_text2 {
+      font-family: Poppins;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 17.6px;
+      letter-spacing: 0.02em;
+      text-align: left;
+      color: var(--gray-dark);
+      margin-bottom: 4px;
+    }
+    &_text3 {
+      font-family: Inter;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 19.2px;
+      text-align: left;
+      color: var(--gray-dark3);
+    }
+    &_overview {
+      color: var(--blue-dark);
+      font-family: Inter;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16.8px;
+      text-align: left;
+      padding: 2.5px 8px;
+      border: 1px solid var(--blue-dark);
+      background-color: var(--blue-light);
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    &_infoContainer {
+      border-radius: 12px;
+      border: 1px solid var(--gray-light7);
+      padding: 16px 16px 24px 16px;
+      margin-bottom: 12px;
+      &_header {
+        width: 100%;
+        height: 36px;
         display: flex;
-        flex-direction: column;
-        &_generalInfo {
-          width: 100%;
-          min-height: 180px;
-          border: 1px solid var(--gray-light7);
-          margin: 24px 0;
-          border-radius: 12px;
-          padding: 16px 16px 24px 16px;
-          display: flex;
-          flex-direction: column;
-          &_header {
-            height: 36px;
-            font-family: Poppins;
-            font-size: 16px;
-            font-weight: 500;
-            line-height: 17.6px;
-            letter-spacing: 0.02em;
-            text-align: left;
-            color: var(--gray-dark);
-            display: flex;
-            align-items: center;
-          }
-          &_row {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            margin-top: 12px;
-          }
-          &_column {
-            flex: 1;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: space-between;
-            font-family: Inter;
-            font-size: 16px;
-            font-weight: 400;
-            line-height: 19.2px;
-            text-align: left;
-            color: var(--black);
-            p {
-              width: 90px;
-              min-width: 90px;
-              color: var(--gray-dark3);
-            }
-          }
-          &_line {
-            display: flex;
-          }
-          &_detail {
-            width: 100%;
-            min-height: 52px;
-            padding-bottom: 16px;
-            margin-bottom: 16px;
-            border-bottom: 1px solid var(--gray-light7);
-            display: flex;
-            align-items: center;
-            &_header {
-              font-family: Inter;
-              font-size: 16px;
-              font-weight: 400;
-              line-height: 19.2px;
-              text-align: left;
-              text-underline-position: from-font;
-              text-decoration-skip-ink: none;
-              color: var(--gray-dark3);
-            }
-          }
-        }
-        &_buttons {
-          width: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-        }
-      }
-      &_sideInfo {
-        min-width: 340px;
-        height: 100%;
-        border: 1px solid var(--gray-light7);
-        border-radius: 12px;
-        padding: 16px;
-        &_box {
-          min-height: 84px;
-          margin-bottom: 12px;
-          padding-bottom: 12px;
-          border-bottom: 1px solid var(--gray-light7);
-          &_header {
-            font-family: Inter;
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 16.8px;
-            letter-spacing: 0.02em;
-            text-align: left;
-            color: var(--gray-dark3);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-          }
-          &_type {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-family: Inter;
-            font-size: 16px;
-            font-weight: 600;
-            line-height: 19.2px;
-            text-align: left;
-            color: var(--gray-dark3);
-            margin-top: 16px;
-          }
-          &_typeImg {
-            width: 24px;
-            height: 24px;
-            margin-right: 8px;
-          }
-          &_dateText {
-            font-family: Inter;
-            font-size: 16px;
-            font-weight: 600;
-            line-height: 19.2px;
-            text-align: left;
-            color: var(--gray-dark);
-            margin-top: 8px;
-          }
-          &_timeText {
-            font-family: Inter;
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 16.8px;
-            text-align: left;
-            color: var(--gray-dark);
-            span {
-              font-weight: 500;
-            }
-            margin-top: 8px;
-          }
-        }
-        &_addOnsHeader {
-          font-family: Inter;
-          font-size: 14px;
-          font-weight: 500;
-          line-height: 16.8px;
-          letter-spacing: 0.02em;
-          text-align: left;
-          color: var(--gray-dark3);
-          margin-bottom: 15px;
-        }
-        &_addOns {
-          display: flex;
-          justify-content: space-between;
+        align-items: center;
+        justify-content: space-between;
+        font-family: Poppins;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 17.6px;
+        letter-spacing: 0.02em;
+        text-align: left;
+        color: var(--gray-dark);
+        margin-bottom: 24px;
+        &_edit {
+          width: 88px;
+          height: 100%;
+          border-radius: 100px;
           font-family: Inter;
           font-size: 16px;
           font-weight: 400;
           line-height: 19.2px;
           text-align: left;
           color: var(--gray-dark);
-          margin-bottom: 8px;
-          p {
-            font-family: Reddit Sans;
-            font-size: 16px;
-            font-weight: 600;
-            line-height: 16px;
-            letter-spacing: 0.02em;
-            text-align: left;
-            color: var(--gray-dark);
-          }
-          span {
-            font-family: Reddit Sans;
-            font-size: 12px;
-            font-weight: 500;
-            line-height: 12px;
-            letter-spacing: 0.02em;
-            text-align: left;
-            color: var(--gray-dark3);
-          }
-        }
-        &_total {
           display: flex;
-          justify-content: space-between;
-          font-family: Inter;
-          font-size: 16px;
-          font-weight: 600;
-          line-height: 19.2px;
-          text-align: left;
-          color:var(--black);
-          p {
-            font-family: Reddit Sans;
-            font-size: 16px;
-            font-weight: 600;
-            line-height: 16px;
-            letter-spacing: 0.02em;
-            text-align: left;
-            color: var(--blue-dark);
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          &:hover {
+            cursor: pointer;
+            background-color: var(--gray-light);
           }
-          span {
-            font-family: Reddit Sans;
-            font-size: 12px;
-            font-weight: 500;
-            line-height: 12px;
-            letter-spacing: 0.02em;
-            text-align: left;
-            color: var(--blue);
-            margin-bottom: 70px;
-          }
-
         }
       }
+      &_text {
+        display: flex;
+        align-items: flex-end;
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19.2px;
+        text-align: left;
+        color: var(--black);
+        margin-bottom: 12px;
+        &_time {
+          font-size: 14px;
+        }
+
+        p {
+          min-width: 170px;
+          width: 170px;
+          font-family: Inter;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 19.2px;
+          text-align: left;
+          color: var(--gray-dark3);
+          margin: 0;
+        }
+        span {
+          font-family: Inter;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 16.8px;
+          text-align: left;
+          color: var(--gray-dark);
+          margin: 0px 4px;
+        }
+      }
+      &_priceItem {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19.2px;
+        text-align: left;
+        margin-bottom: 8px;
+        p {
+          font-family: Reddit Sans;
+          font-size: 16px;
+          font-weight: 600;
+          line-height: 16px;
+          letter-spacing: 0.02em;
+          text-align: left;
+          color: var(--gray-dark);
+        }
+        span {
+          font-family: Reddit Sans;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 12px;
+          letter-spacing: 0.02em;
+          text-align: left;
+          color: var(--gray-dark3);
+        }
+      }
+      &_totalPrice {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 19.2px;
+        text-align: left;
+        color: var(--black);
+        p {
+          font-family: Reddit Sans;
+          font-size: 20px;
+          font-weight: 600;
+          line-height: 20px;
+          letter-spacing: 0.02em;
+          text-align: left;
+          color: var(--blue-dark);
+          margin: 0;
+        }
+        span {
+          font-family: Reddit Sans;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 16px;
+          letter-spacing: 0.02em;
+          text-align: left;
+          color: var(--blue);
+        }
+      }
+      &_divider {
+        width: 100%;
+        margin-top: 16px;
+        margin-bottom: 24px;
+      }
+    }
+    &_buttons {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 48px;
     }
   }
   &_startContainer {
@@ -1196,6 +1157,27 @@
           }
         }
       }
+    }
+    &_text2 {
+      font-family: Inter;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 19.2px;
+      text-align: left;
+      color: var(--gray-dark3);
+      margin-bottom: 12px;
+    }
+    &_text3 {
+      font-family: Inter;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 19.2px;
+      text-align: left;
+      color: var(--blue-dark);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
     }
     &_subText {
       font-family: Inter;
@@ -2595,7 +2577,7 @@
   }
   &_videoTypeSelected {
     border: 1px solid var(--green-dark2);
-    box-shadow: 0 0 0 1px var(--green-dark2);    
+    box-shadow: 0 0 0 1px var(--green-dark2);
   }
   &_question {
     display: flex;

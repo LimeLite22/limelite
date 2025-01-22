@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
+  ArrowBlue3,
   ArrowGray3,
   ArrowGray4,
   DetailsGreen,
 } from "assets/images";
 
 
-import { selectRequestInfo, selectRequestVoiceSettings } from "../../../redux/requests/reducer";
+import { selectRequestInfo, selectRequestVoiceSettings, updateAddOnSelectionStatus } from "../../../redux/requests/reducer";
 import styles from "../NewRequest.module.scss";
 import FormFooter from "../components/FormFooter";
 import StepsNavigation from "../components/StepsNavigation";
@@ -26,6 +27,8 @@ const AddOns = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   const [showBottomMessage, setShowBottomMessage] = useState(false);
   const customPadding = useCustomPadding();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleNextDisabled = () => {
     let disabled = false;
@@ -35,6 +38,10 @@ const AddOns = () => {
   useEffect(() => {
     handleNextDisabled();
   }, [voiceSettings]);
+  const handleSelect = () => {
+    projectType?.addOns[0].id && dispatch(updateAddOnSelectionStatus({ id: projectType?.addOns[0].id }))
+    navigate("/new-request/submit");
+  };
 
   return (
     <div
@@ -50,27 +57,32 @@ const AddOns = () => {
       </Link>
       <div className={styles.nR_subContainer}>
         <StepsNavigation />
+        <ProjectType
+          isError={false}
+          setIsError={() => { }}
+        />
         <div className={styles.nR_header}>
+
           <div className={styles.nR_header_text + " " + styles.nR_header_text_mobPadding} >
             <Link to="/new-request/start">
               <div className={styles.nR_header_text_button}>
                 <img src={ArrowGray4} alt="" />
               </div>
             </Link>
-            What additional Add-ons are needed?
+            About Your Video Edit
           </div>
+          <div className={styles.nR_header_text2}>Based on your project type, you may want to consider the following add-ons.</div>
+          <div className={styles.nR_header_text3} onClick={handleSelect}>
+            No thanks, we do not need any additional add-ons <img src={ArrowBlue3} alt="" /></div>
         </div>
-        <ProjectType
-          isError={false}
-          setIsError={() => { }}
-        />
 
         <div className={styles.nR_formContainer}>
           <div >
             {
-              projectType !== undefined && projectType?.addOns.map((item, index) => (
-                <AddOnBox key={index} item={item} /> 
-              ))
+              projectType !== undefined && projectType?.addOns.map((item, index) => {
+                if (index !== 0) return <AddOnBox key={index} item={item} />
+              })
+
             }
           </div>
           {isDisabled && showBottomMessage && (
