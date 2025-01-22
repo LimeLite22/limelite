@@ -6,7 +6,6 @@ import {
   DemoVideosIcon,
   DroneIcon,
   EditOnlyIcon,
-  EducationType,
   EducationVideo,
   EventRecaps,
   FAQS,
@@ -264,7 +263,7 @@ export const optionsList: IOptionsList = [
   {
     id: generateUniqueId(),
     value: OTHER,
-    credits: "TBD",
+    credits: 1,
     text: "We need assistance scheduling this project",
     img: OtherIcon,
   },

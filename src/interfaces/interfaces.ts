@@ -43,7 +43,7 @@ export type IOption = {
   id: string;
   text: string;
   value: typeof SHOOT_EDIT | typeof SHOOT_ONLY | typeof EDIT_ONLY | typeof OTHER;
-  credits: number | "TBD";
+  credits: number;
   img: string;
 };
 export type ITravel = {

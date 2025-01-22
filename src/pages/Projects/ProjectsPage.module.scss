@@ -525,3 +525,8 @@
 .projectsPage_project:hover ~ .projectsPage_projects_divider:first-of-type {
     background: transparent !important;
 }
+
+.highlight{ 
+    color:var(--gray-light7);
+    background:var(--gray-dark3);
+}

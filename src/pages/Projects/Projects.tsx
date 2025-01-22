@@ -42,7 +42,7 @@ const projects = [
     {
         id: generateUniqueId(),
         user: TestUsers[1],
-        name: "Crafting Visual Stories: Behind the lens",
+        name: "Forwarding Behind the lens",
         type: projectTypes[1],
         option: optionsList[1],
         status: IN_EDITING_REQUEST_STATUS,
@@ -52,7 +52,7 @@ const projects = [
     {
         id: generateUniqueId(),
         user: TestUsers[2],
-        name: "Crafting Visual Stories: Behind the lens",
+        name: "Growing Visual Stories: Behind the lens",
         type: projectTypes[0],
         option: optionsList[2],
         status: SCHEDULED_REQUEST_STATUS,
@@ -62,7 +62,7 @@ const projects = [
     {
         id: generateUniqueId(),
         user: TestUsers[3],
-        name: "Crafting Visual Stories: Behind the lens",
+        name: "Healing Real Stories: Behind the lens",
         type: projectTypes[2],
         option: optionsList[3],
         status: REQUESTED_REQUEST_STATUS,
@@ -72,7 +72,7 @@ const projects = [
     {
         id: generateUniqueId(),
         user: TestUsers[0],
-        name: "Crafting Visual Stories: Behind the lens",
+        name: "HQ: Behind the lens",
         type: projectTypes[3],
         option: optionsList[0],
         status: ON_HOLD_REQUEST_STATUS,
@@ -82,7 +82,7 @@ const projects = [
     {
         id: generateUniqueId(),
         user: TestUsers[0],
-        name: "Crafting Visual Stories: Behind the lens",
+        name: "XYZ: Behind the lens",
         type: projectTypes[4],
         option: optionsList[1],
         status: CANCELED_REQUEST_STATUS,
@@ -179,7 +179,7 @@ const ProjectsPage = () => {
                 <div className={styles.projectsPage_projectHeader_info_request}>
                     Requested By
                 </div>
-                <div className={`${styles.projectsPage_projectHeader_info_item}`} style={{ justifyContent:'center'}}>
+                <div className={`${styles.projectsPage_projectHeader_info_item}`} style={{ justifyContent: 'center' }}>
                     Credit Usage
                 </div>
                 <div className={styles.projectsPage_projectHeader_info_item}>Requested date</div>
@@ -198,6 +198,7 @@ const ProjectsPage = () => {
                         let matchesRequestType = true;
                         let matchesUser = true;
                         let matchesStatus = true;
+                        let matchesSearch = true;
                         if (selectedVideoTypes.length > 0) {
                             matchesVideoType = selectedVideoTypes.includes(project.type.header);
                         }
@@ -213,7 +214,13 @@ const ProjectsPage = () => {
                         if (selectedStatuses.length > 0) {
                             matchesStatus = selectedStatuses.includes(project.status);
                         }
-                        return matchesVideoType && matchesRequestType && matchesUser && matchesStatus;
+                        if( searchQuery.length > 0){
+                            matchesSearch = project.name.toLowerCase().includes(searchQuery.toLowerCase())
+                            || project.user.name.toLowerCase().includes(searchQuery.toLowerCase())
+                            || project.type.header.toLowerCase().includes(searchQuery.toLowerCase())
+                            || project.status.toLowerCase().includes(searchQuery.toLowerCase());
+                        }
+                        return matchesVideoType && matchesRequestType && matchesUser && matchesStatus && matchesSearch;
 
                     }
                 ).map((project, index) => {
@@ -246,7 +253,7 @@ const ProjectsPage = () => {
                                 <div className={styles.projectsPage_project_info_request}>
                                     <img src={project.user.img} alt="" /> {project.user.name}
                                 </div>
-                                <div className={`${styles.projectsPage_project_info_item}`} style={{ justifyContent:'center'}}>
+                                <div className={`${styles.projectsPage_project_info_item}`} style={{ justifyContent: 'center' }}>
                                     <div className={`${styles.projectsPage_project_credit}`} >
                                         {project.option?.credits}{" "}
                                         {project.option?.credits > 1 ? "Credits" : "Credit"}
