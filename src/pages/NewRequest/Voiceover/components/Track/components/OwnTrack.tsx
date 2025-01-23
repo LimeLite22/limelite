@@ -5,7 +5,7 @@ import {
   Audio,
   CheckBox,
   CheckBoxSelected,
-  DeleteAudio,
+  Delete,
   Download,
   Expand,
 } from "assets/images";
@@ -123,7 +123,7 @@ const OwnTrack = ({ isExpanded, setIsExpanded, isError }: IProps) => {
                   setFile(null);
                   handleUpdateField("voiceTrackSettings.track", DEFAULT);
                 }}
-                src={DeleteAudio}
+                src={Delete}
                 alt=""
               />
             </div>

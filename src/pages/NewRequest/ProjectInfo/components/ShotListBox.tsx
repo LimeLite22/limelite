@@ -1,5 +1,4 @@
 // import {
-//   BoldFont,
 //   CenterAlignedText,
 //   FileImage,
 //   ItalicFont,
@@ -35,7 +34,6 @@ const ShotList = () => {
               component: undefined,
               dropdownClassName: undefined,
               options: ["bold", "italic", "underline"],
-              bold: { icon: BoldFont, className: undefined },
               italic: { icon: ItalicFont, className: undefined },
               underline: {
                 icon: UnderLinedFont,

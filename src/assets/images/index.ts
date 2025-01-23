@@ -90,17 +90,9 @@ export { default as Plus } from "./Faqs/Plus.svg";
 export { default as Minus } from "./Faqs/Minus.svg";
 
 // new request icons
-
+export { default as CheckBox } from "./NewRequest/CheckBox.svg";
 export { default as CheckBoxSelected } from "./NewRequest/CheckBoxSelected.svg";
 export { default as DirectionArrow } from "./NewRequest/DirectionArrow.svg";
-export { default as BoldFont } from "./NewRequest/BoldFont.svg";
-export { default as ItalicFont } from "./NewRequest/ItalicFont.svg";
-export { default as UnderLinedFont } from "./NewRequest/UnderLinedFont.svg";
-export { default as LeftAlignedText } from "./NewRequest/LeftAlignedText.svg";
-export { default as RightAlignedText } from "./NewRequest/RightAlignedText.svg";
-export { default as CenterAlignedText } from "./NewRequest/CenterAlignedText.svg";
-export { default as UnorderedList } from "./NewRequest/UnorderedList.svg";
-export { default as OrderedList } from "./NewRequest/OrderedList.svg";
 export { default as Link } from "./NewRequest/Link.svg";
 export { default as FileImage } from "./NewRequest/File.svg";
 export { default as Note } from "./NewRequest/Note.svg";
@@ -111,9 +103,6 @@ export { default as CalendarIcon } from "./NewRequest/Calendar.svg";
 
 // common
 export { default as DetailsGreen } from "./Сommon/DetailsGreen.svg";
-export { default as CheckBox } from "./Сommon/CheckBox.svg";
-export { default as CheckBoxType2 } from "./Сommon/CheckBoxType2.svg";
-export { default as CheckBoxSelectedType2 } from "./Сommon/CheckBoxSelectedType2.svg";
 export { default as ArrowGray } from "./Сommon/ArrowGray.svg";
 export { default as ArrowGray2 } from "./Сommon/ArrowGray2.svg";
 export { default as ArrowGray3 } from "./Сommon/ArrowGray3.svg";
@@ -132,8 +121,6 @@ export { default as LearnMore } from "./Сommon/LearnMore.svg";
 export { default as Add } from "./Сommon/Add.svg";
 export { default as BackCalendarArrow } from "./Сommon/BackCalendarArrow.svg";
 export { default as ForwardCalendarArrow } from "./Сommon/ForwardCalendarArrow.svg";
-export { default as SquareCheckbox } from "./Сommon/SquareCheckBox.svg";
-export { default as SquareCheckboxSelected } from "./Сommon/SquareCheckBoxSelected.svg";
 export { default as ChatSupport } from "./Сommon/ChatSupport.svg";
 export { default as Valid } from "./Сommon/Valid.svg";
 export { default as Close } from "./LearnMore/Close.svg";
@@ -151,7 +138,6 @@ export { default as Add2 } from "./Сommon/Add2.svg";
 export { default as SettingsMenu } from "./Сommon/SettingsMenu.svg";
 export { default as Audio } from "./Сommon/Audio.svg";
 export { default as Download } from "./Сommon/Download.svg";
-export { default as DeleteAudio } from "./Сommon/DeleteAudio.svg";
 export { default as QuestionIcon } from "./Сommon/QuestionIcon.svg";
 export { default as FaceBook } from "./Сommon/FaceBook.svg";
 export { default as Linkedin } from "./Сommon/Linkedin.svg";

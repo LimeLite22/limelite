@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   CheckBox,
   CheckBoxSelected,
-  DeleteAudio,
+  Delete,
   Drop,
   Expand,
   PNG,
@@ -131,7 +131,7 @@ const AdditionalAsset = ({ isExpanded, setIsExpanded, isError }: IProps) => {
               <div className={styles.box_file_text}>{Number(file.size / 1000000).toFixed(2)} mb</div>
             </div>
           </div>
-          <img onClick={() => handleUpdateField("videoSettings.additionalVisualAssetFile", DEFAULT)} src={DeleteAudio} alt="Delete" />
+          <img onClick={() => handleUpdateField("videoSettings.additionalVisualAssetFile", DEFAULT)} src={Delete} alt="Delete" />
         </div>}
       </div>
       <img
