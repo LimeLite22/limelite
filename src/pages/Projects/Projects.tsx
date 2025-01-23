@@ -269,8 +269,7 @@ const ProjectsPage = () => {
                                 </div>
                                 <div className={`${styles.projectsPage_project_info_item}`} style={{ justifyContent: 'center' }}>
                                     <div className={`${styles.projectsPage_project_credit}`} >
-                                        {project.option?.credits}{" "}
-                                        {project.option?.credits > 1 ? "Credits" : "Credit"}
+                                        {project.option?.credits}  Credit(s)
                                     </div>
                                 </div>
                                 <div className={styles.projectsPage_project_info_item}>{format(project.date, "dd/MM/yyyy")}</div>
