@@ -1,34 +1,23 @@
-import {
-  ADD_ONS,
-  HOME,
-  INSPIRATION,
-  LEARN,
-  NEW_REQUEST,
-  NOTIFICATIONS,
-  PROJECTS,
-  SETTINGS,
-  SUPPORT,
-  WELCOME,
-} from "consts/consts";
+import { ITimeItem } from "interfaces/interfaces";
 
-export type selectedPages =
-  | typeof WELCOME
-  | typeof NEW_REQUEST
-  | typeof PROJECTS
-  | typeof LEARN
-  | typeof ADD_ONS
-  | typeof NOTIFICATIONS
-  | typeof SETTINGS
-  | typeof SUPPORT
-  | typeof INSPIRATION;
+export type TSelectedPages =
+  | "Welcome"
+  | "New Request"
+  | "Projects"
+  | "Learn"
+  | "Add ons"
+  | "Notifications"
+  | "Settings"
+  | "Support"
+  | "Inspiration";
 
-export type selectedMobPages =
-  | typeof HOME
-  | typeof PROJECTS
-  | typeof LEARN
-  | typeof NOTIFICATIONS;
+export type TSelectedMobPages =
+  | "Home"
+  | "Projects"
+  | "Learn"
+  | "Notifications";
 
-export type ProjectTone =
+export type TProjectTone =
   | "Adventurous"
   | "Casual"
   | "Cinematic"
@@ -39,34 +28,83 @@ export type ProjectTone =
   | "Inspirational"
   | "Professional"
   | "Urgent";
-export type ProjectType =
-  | "Announcement Videos"
-  | "Company Overview Video"
-  | "Demo Video"
-  | "Drone Video"
-  | "Educational Video"
-  | "Event Recap Video"
-  | "FAQ Video"
-  | "Fundraising Video"
-  | "HR/Recruiting Video"
-  | "Hype/Sizzle Video"
-  | "Interview"
-  | "Onboarding Video"
-  | "Photography"
-  | "Product & Service Video"
-  | "Social Media Video"
-  | "Television Commercial"
-  | "Testimonial/Case Study Video"
-  | "Videography"
-  | "Website Header Video"
-  | "Other";
+// export type TProjectType =
+//   | "Announcement Videos"
+//   | "Company Overview Video"
+//   | "Demo Video"
+//   | "Drone Video"
+//   | "Educational Video"
+//   | "Event Recap Video"
+//   | "FAQ Video"
+//   | "Fundraising Video"
+//   | "HR/Recruiting Video"
+//   | "Hype/Sizzle Video"
+//   | "Interview"
+//   | "Onboarding Video"
+//   | "Photography"
+//   | "Product & Service Video"
+//   | "Social Media Video"
+//   | "Television Commercial"
+//   | "Testimonial/Case Study Video"
+//   | "Videography"
+//   | "Website Header Video"
+//   | "Other";
 
-export type CalendarType = "time" | "date" | "schedule";
-
-
-export type ApproachValue = 'No Approach' | "Candid Interview Approach" | "Scripted Delivery Approach" | "Voiceover Approach";
+export type TCalendarType = "time" | "date" | "schedule";
 
 
-export type stepType = 'new-request/project' | 'new-request/logistics' | 'new-request/script' | 'new-request/interview' | 'new-request/voiceover' | 'new-request/video-edit' | 'new-request/add-ons' | 'new-request/submit' | 'new-request/final';
+export type TApproachValue = 'No Approach' | "Candid Interview Approach" | "Scripted Delivery Approach" | "Voiceover Approach";
+
+
+export type TStep = 'new-request/project' | 'new-request/logistics' | 'new-request/script' | 'new-request/interview' | 'new-request/voiceover' | 'new-request/video-edit' | 'new-request/add-ons' | 'new-request/submit' | 'new-request/final';
 
 export type TFilterMenu = 'filter start' | 'filter video type' | 'filter request type' | 'filter requested by' | 'filter status';
+
+
+export type TOption = {
+  id: string;
+  text: string;
+  value: "Shoot + Edit" | "Shoot only" | "Edit only" | "Other";
+  credits: number;
+  img: string;
+};
+
+export type TTravel = {
+  selection: null | "yes" | "no";
+  zoneCode: {
+    name: string | null;
+    value: number;
+  };
+};
+
+type ValuePiece = Date | null;
+
+export type TValue = ValuePiece | [ValuePiece, ValuePiece];
+
+export type TTimeValue = "default" | ITimeItem;
+export type IScriptWriter =
+  | "professional script"
+  | "own script"
+  | "default";
+export interface TPerson {
+  id: string;
+  name: string;
+  title: string;
+}
+export type TVideoDuration = "default" |  "≤ :15" | "≤ :30" | "≤ :60" | "≤ 1:30" | "≤ 2:00" | "≤ 2:30" | "≤ 3:00" | "> 3:00";
+
+export type TOptionsList = TOption[];
+
+
+export type TLocation = "default" | 1 | 2 | 3;
+export type TVideo = "default" | "standard" | "story" | "square" | "vertical";
+export type TQuestionAuthor = "default" | "client" | "professional";
+export type TQuestionLocation = "default" | "questions on location" | "questions virtualy" | "virtual interview";
+export type TVoiceAuthor = "default" | "client" | "professional";
+export type TThumbnail = "default" | "custom thumbnail" | "default thumbnail" | "no thumbnail";
+export type TRush = "rush time" | "standard time" | "default";
+ export type TDraftFieldUpdate = {
+  path: string;
+  value: unknown;
+};
+

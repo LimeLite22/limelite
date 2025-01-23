@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 // import { IRequest } from "interfaces/interfaces";
-import { selectedMobPages } from "types/types";
+import { TSelectedMobPages } from "types/types";
 
 import { HOME, LEARN, NOTIFICATIONS, PROJECTS } from "consts/consts";
 // import { optionsList } from "consts/consts";
@@ -24,12 +24,12 @@ import {
 import styles from "./BottomMenu.module.scss";
 import BottomMenuItem from "./components/BottomMenuItem";
 
-type IProps = {
+interface IProps  {
   isOpened: boolean;
 };
 
 const BottomMenu = ({ isOpened }: IProps) => {
-  const [selectedPage, setSelectedPage] = useState<selectedMobPages>(HOME);
+  const [selectedPage, setSelectedPage] = useState<TSelectedMobPages>(HOME);
   const location = useLocation();
   // const [isOpen, setIsOpen] = useState(false);
   // const closeBottomSheet = () => setIsOpen(false);

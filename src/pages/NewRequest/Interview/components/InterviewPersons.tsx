@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { IPerson } from "interfaces/interfaces";
 
 import { Add2 } from "assets/images";
 
@@ -12,12 +11,13 @@ import {
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 import InterviewPerson from "./InterviewPerson";
+import { TPerson } from "types/types";
 
 const InterviewPersons = () => {
   const persons =
     useSelector(selectRequestInfo)?.interviewSettings?.persons || [];
   const dispatch = useDispatch();
-  const handleUpdateField = (path: string, value: IPerson[]) => {
+  const handleUpdateField = (path: string, value: TPerson[]) => {
     dispatch(
       updateDraftField({
         path,

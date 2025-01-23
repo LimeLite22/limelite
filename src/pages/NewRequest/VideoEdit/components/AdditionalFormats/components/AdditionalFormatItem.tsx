@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { IAdditionalVideoFormat, IVideoDuration } from "interfaces/interfaces";
+import { IAdditionalVideoFormat } from "interfaces/interfaces";
 
 import { Remove } from "assets/images";
 
@@ -20,6 +20,7 @@ import {
 import styles from "../../../../NewRequest.module.scss";
 import DurationSelector from "../../DurationSelector/DurationSelector";
 import { useEffect, useRef, useState } from "react";
+import { TVideoDuration } from "types/types";
 
 interface IProps {
   index: number;
@@ -148,7 +149,7 @@ const AdditionalFormatItem = ({ item, index, isError }: IProps) => {
       <div className={styles.videoFormat_header} style={{ color: durationError || (item.duration === DEFAULT && isError) ? "var(--red-dark)" : "" }}>Target duration </div>
       <DurationSelector
         value={item.duration}
-        onChange={(duration: IVideoDuration) => {
+        onChange={(duration: TVideoDuration) => {
           dispatch(
             updateAdditionalVideoFormat({
               ...item,

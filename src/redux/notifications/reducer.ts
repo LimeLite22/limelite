@@ -4,7 +4,7 @@ import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import { generateUniqueId } from "utils/generateId";
 
-import type { INotification } from "./../../pages/Notifications/interfaces";
+import { INotification } from "./../../pages/Notifications/interfaces";
 
 const initialState: {
   list: INotification[];

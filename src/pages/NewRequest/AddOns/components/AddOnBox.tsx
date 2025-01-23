@@ -10,11 +10,11 @@ import {
   updateAddOnSelectionStatus,
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
-import { AddOnsValue} from "interfaces/interfaces";
+import { IAddOnsValue} from "interfaces/interfaces";
 import { useState } from "react";
 
 interface IProps {
-  item: AddOnsValue
+  item: IAddOnsValue
 }
 
 const AddOnBox = ({ item }: IProps) => {

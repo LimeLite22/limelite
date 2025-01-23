@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-import { selectedPages } from "types/types";
-
 import useWindowWidth from "hooks/useWindowWidth";
 
 import {
@@ -30,13 +28,14 @@ import {
 } from "../../assets/images";
 import styles from "./SideBar.module.scss";
 import SideBarNavItem from "./components/SideBarNavItem";
+import { TSelectedPages } from "types/types";
 
-type IProps = {
+interface IProps  {
   isOpened: boolean;
   setIsOpened: (value: boolean) => void;
 };
 const SideBar = ({ isOpened, setIsOpened }: IProps) => {
-  const [selectedPage, setSelectedPage] = useState<selectedPages>(WELCOME);
+  const [selectedPage, setSelectedPage] = useState<TSelectedPages>(WELCOME);
   const location = useLocation();
   const windowWidth = useWindowWidth();
   useEffect(() => {

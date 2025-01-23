@@ -9,7 +9,7 @@ import { generateUniqueId } from "utils/generateId";
 import { DEFAULT, optionsList } from "consts/consts";
 
 import { IRequest } from "./../../interfaces/interfaces";
-import { stepType } from "types/types";
+import { TDraftFieldUpdate, TStep } from "types/types";
 
 // const loadStateFromLocalStorage = (): IRequestState | undefined => {
 //   try {
@@ -311,10 +311,6 @@ const initialState: IRequestState = {
   ],
 };
 
-type DraftFieldUpdate = {
-  path: string;
-  value: unknown;
-};
 const requestReducer = createSlice({
   name: "request",
   initialState,
@@ -473,7 +469,7 @@ const requestReducer = createSlice({
         }
       }
     },
-    updateDraftField: (state, action: PayloadAction<DraftFieldUpdate>) => {
+    updateDraftField: (state, action: PayloadAction<TDraftFieldUpdate>) => {
       const draft = state.drafts.find(
         (draft) => draft.id === state.selectedRequest,
       );
@@ -510,7 +506,7 @@ const requestReducer = createSlice({
         }
       }
     },
-    updateStepsList: (state, action: PayloadAction<stepType[]>) => {
+    updateStepsList: (state, action: PayloadAction<TStep[]>) => {
       state.stepsList = action.payload
     },
     updateAddOnSelectionStatus: (state, action: PayloadAction<{ id: string }>) => {

@@ -6,7 +6,7 @@ import useWindowWidth from "hooks/useWindowWidth";
 
 import styles from "../Welcome.module.scss";
 
-type IProps = {
+interface IProps {
   header: string;
   text: string;
   number: number;

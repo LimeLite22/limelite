@@ -8,7 +8,7 @@ import {
 
 import { readNotification } from "../../redux/notifications/reducer";
 import styles from "./Notifications.module.scss";
-import type { INotification } from "./interfaces";
+import { INotification } from "./interfaces";
 
 interface IProps {
   notification: INotification;

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { format } from "date-fns";
-import { TimeValue } from "interfaces/interfaces";
 
 import { Add, CalendarIcon2, Close, Note, Valid } from "assets/images";
 
@@ -16,6 +15,7 @@ import styles from "../../NewRequest.module.scss";
 import Calendar from "./Calendar/Calendar";
 import TimeSelector from "./Calendar/TimeSelector";
 import LearnMorePopUp from "./LearnMorePopUp";
+import { TTimeValue } from "types/types";
 
 const Date = () => {
   const selectedRequest = useSelector(selectRequestInfo);
@@ -52,7 +52,7 @@ const Date = () => {
   const dispatch = useDispatch();
   const handleUpdateField = (
     path: string,
-    value: boolean | typeof DEFAULT | TimeValue,
+    value: boolean | typeof DEFAULT | TTimeValue,
   ) => {
     dispatch(
       updateDraftField({

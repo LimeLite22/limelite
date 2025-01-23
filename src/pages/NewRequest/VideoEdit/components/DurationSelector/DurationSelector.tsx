@@ -1,16 +1,15 @@
 import { type FC, useState } from "react";
 
-import { IVideoDuration } from "interfaces/interfaces";
-
 import { GrayArrow } from "assets/images";
 
 import { DEFAULT, videoDurationsList } from "consts/consts";
 
 import "./DurationSelector.scss";
+import { TVideoDuration } from "types/types";
 
 interface IProps {
-  value: IVideoDuration;
-  onChange: (value: IVideoDuration) => void;
+  value: TVideoDuration;
+  onChange: (value: TVideoDuration) => void;
   isError?: boolean;
 }
 const DurationSelector: FC<IProps> = ({ isError, value, onChange }) => {

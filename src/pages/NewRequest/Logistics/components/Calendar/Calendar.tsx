@@ -21,19 +21,7 @@ import {
   updateDraftField,
 } from "../../../../../redux/requests/reducer";
 import "./Calendar.scss";
-
-type ValuePiece = Date | null;
-
-type Value = ValuePiece | [ValuePiece, ValuePiece];
-interface TileClassNameProps {
-  date: Date;
-  view: string;
-}
-interface ICalendarProps {
-  onClose: () => void;
-  isPreferredDate: boolean;
-  isOpened: boolean;
-}
+import { ICalendarProps, ITileClassNameProps } from "interfaces/interfaces";
 
 const Calendar = ({ onClose, isPreferredDate, isOpened }: ICalendarProps) => {
   const selectedRequest = useSelector(selectRequestInfo);
@@ -87,7 +75,7 @@ const Calendar = ({ onClose, isPreferredDate, isOpened }: ICalendarProps) => {
     }, time);
   };
 
-  const tileClassName = ({ date, view }: TileClassNameProps): string | null => {
+  const tileClassName = ({ date, view }: ITileClassNameProps): string | null => {
     if (view === "month") {
       const normalizedDate = new Date(date);
       normalizedDate.setHours(0, 0, 0, 0);
@@ -115,7 +103,7 @@ const Calendar = ({ onClose, isPreferredDate, isOpened }: ICalendarProps) => {
     }
     return null;
   };
-  const tileDisabled = ({ date, view }: TileClassNameProps): boolean => {
+  const tileDisabled = ({ date, view }: ITileClassNameProps): boolean => {
     if (view === "month") {
       const normalizedDate = new Date(date);
       normalizedDate.setHours(0, 0, 0, 0);

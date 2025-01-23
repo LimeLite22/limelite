@@ -9,7 +9,7 @@ import {
 } from "../../../../redux/requests/reducer";
 import styles from "../ProjectInfo.module.scss";
 import { CANDID_APPROACH, EDIT_ONLY, NO_APPROACH, SCRIPTED_APPROACH, VOICEOVER_APPROACH } from "consts/consts";
-import { ApproachValue } from "types/types";
+import { TApproachValue } from "types/types";
 
 interface IProps {
   isError: boolean;
@@ -29,7 +29,7 @@ const ProjectNarrationBox = ({ isError, setIsError }: IProps) => {
     }, 1500);
   };
 
-  const handleItemClick = (item: ApproachValue) => {
+  const handleItemClick = (item: TApproachValue) => {
     let list = [...(approachList || [])];
     if (item === NO_APPROACH) {
       setIsError(false);

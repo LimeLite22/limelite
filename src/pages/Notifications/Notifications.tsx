@@ -13,7 +13,7 @@ import {
 } from "../../redux/notifications/reducer";
 import Notification from "./Notification";
 import styles from "./Notifications.module.scss";
-import type { INotification } from "./interfaces";
+import { INotification } from "./interfaces";
 
 const Notifications = (): JSX.Element => {
   const notificationsList = useSelector(selectNotifications);

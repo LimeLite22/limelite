@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-import { TimeValue } from "interfaces/interfaces";
-
 import { ArrowGray2 } from "assets/images";
 
 import { DEFAULT } from "consts/consts";
@@ -9,10 +7,11 @@ import { hoursList } from "consts/consts";
 
 import "./Calendar.scss";
 import { generateUniqueId } from "utils/generateId";
+import { TTimeValue } from "types/types";
 
 interface IProps {
-  time: TimeValue;
-  selectTime: (time: TimeValue) => void;
+  time: TTimeValue;
+  selectTime: (time: TTimeValue) => void;
   isError: boolean;
 }
 

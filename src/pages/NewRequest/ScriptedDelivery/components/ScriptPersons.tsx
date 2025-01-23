@@ -1,7 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { IPerson } from "interfaces/interfaces";
-
 import { Add2 } from "assets/images";
 
 import { generateUniqueId } from "utils/generateId";
@@ -12,11 +10,12 @@ import {
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 import ScriptPerson from "./ScriptPerson";
+import { TPerson } from "types/types";
 
 const ScriptPersons = () => {
   const persons = useSelector(selectRequestInfo)?.scriptSettings?.persons || [];
   const dispatch = useDispatch();
-  const handleUpdateField = (path: string, value: IPerson[]) => {
+  const handleUpdateField = (path: string, value: TPerson[]) => {
     dispatch(
       updateDraftField({
         path,

@@ -1,17 +1,16 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-import { selectedPages } from "types/types";
-
 import { NOTIFICATIONS } from "consts/consts";
 
 import { selectUnreadNotificationsNumber } from "../../../redux/notifications/reducer";
 import styles from "../SideBar.module.scss";
+import { TSelectedPages } from "types/types";
 
-type IProps = {
-  selectedPage: selectedPages;
-  value: selectedPages;
-  setSelectedPage: (page: selectedPages) => void;
+interface IProps {
+  selectedPage: TSelectedPages;
+  value: TSelectedPages;
+  setSelectedPage: (page: TSelectedPages) => void;
   isOpened: boolean;
   icon: string;
   onClick?: () => void;

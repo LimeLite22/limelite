@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { IVideoDuration } from "interfaces/interfaces";
 
 import { DEFAULT } from "consts/consts";
 
@@ -10,11 +9,12 @@ import {
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 import DurationSelector from "./DurationSelector/DurationSelector";
+import { TVideoDuration } from "types/types";
 
 const VideoTargetDurationBox = () => {
   const value = useSelector(selectRequestInfo)?.videoSettings?.targetDuration;
   const dispatch = useDispatch();
-  const handleChange = (value: IVideoDuration) => {
+  const handleChange = (value: TVideoDuration) => {
     dispatch(
       updateDraftField({
         path: "videoSettings.targetDuration",

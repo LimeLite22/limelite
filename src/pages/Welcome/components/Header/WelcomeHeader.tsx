@@ -5,14 +5,13 @@ import {
   ClosedBurgerIcon,
   OpenedBurgerIcon,
   SearchIcon,
-  User1Foto,
 } from "assets/images";
 
 import styles from "./WelcomeHeader.module.scss";
 import { useSelector } from "react-redux";
 import { selectAccount } from "../../../../redux/account/account";
 
-type IProps = {
+interface IProps {
   isOpened?: boolean;
   isBurgerOpened?: boolean;
   setIsBurgerOpened: (value: boolean) => void;
