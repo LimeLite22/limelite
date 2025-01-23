@@ -39,7 +39,7 @@ const AddOns = () => {
     handleNextDisabled();
   }, [voiceSettings]);
   const handleSelect = () => {
-    projectType?.addOns[0].id && dispatch(updateAddOnSelectionStatus({ id: projectType?.addOns[0].id }))
+    projectType?.addOns[0]?.id && dispatch(updateAddOnSelectionStatus({ id: projectType?.addOns[0].id }))
     navigate("/new-request/submit");
   };
 
