@@ -73,7 +73,7 @@ const AddOns = () => {
           </div>
           <div className={styles.nR_header_text2}>Based on your project type, you may want to consider the following add-ons.</div>
           <div className={styles.nR_header_text3} onClick={handleSelect}>
-            No thanks, we do not need any additional add-ons <img src={ArrowBlue3} alt="" /></div>
+            No thanks,<br></br> we do not need any additional add-ons <img src={ArrowBlue3} alt="" /></div>
         </div>
 
         <div className={styles.nR_formContainer}>

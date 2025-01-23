@@ -133,12 +133,20 @@ const ProjectsPage = () => {
     const [selectedRequestTypes, setSelectedRequestTypes] = useState<string[]>([]);
     const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
     const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
-    // const highlightText = (text: string, query: string) => {
-    //     if (!query) return text;
+    const highlightText = (text: string, query: string) => {
+        if (!query) return text;
 
-    //     const regex = new RegExp(`(${query})`, "gi");
-    //     return text.replace(regex, `<span style="background-color: yellow; class="${styles.highlight}">$1</span>`);
-    // };
+        const highlightStyle = `
+        color: var(--green-dark2);
+        border-radius: 4px;
+      `;
+      
+      const regex = new RegExp(`(${query})`, "gi");
+      return text.replace(
+        regex,
+        `<span style="${highlightStyle}">$1</span>`
+      );
+    };
 
 
     return <div className={styles.projectsPage}>
@@ -214,11 +222,11 @@ const ProjectsPage = () => {
                         if (selectedStatuses.length > 0) {
                             matchesStatus = selectedStatuses.includes(project.status);
                         }
-                        if( searchQuery.length > 0){
+                        if (searchQuery.length > 0) {
                             matchesSearch = project.name.toLowerCase().includes(searchQuery.toLowerCase())
-                            || project.user.name.toLowerCase().includes(searchQuery.toLowerCase())
-                            || project.type.header.toLowerCase().includes(searchQuery.toLowerCase())
-                            || project.status.toLowerCase().includes(searchQuery.toLowerCase());
+                                || project.user.name.toLowerCase().includes(searchQuery.toLowerCase())
+                                || project.type.header.toLowerCase().includes(searchQuery.toLowerCase())
+                                || project.status.toLowerCase().includes(searchQuery.toLowerCase());
                         }
                         return matchesVideoType && matchesRequestType && matchesUser && matchesStatus && matchesSearch;
 
@@ -241,17 +249,23 @@ const ProjectsPage = () => {
                                 <img className={styles.projectsPage_project_img} src={SwiperFoto1} alt="" />
                                 <div className={styles.projectsPage_project_start_item} >
                                     <div className={styles.projectsPage_project_start_item_header}
-                                    // dangerouslySetInnerHTML={{
-                                    //     __html: highlightText(project.name, searchQuery),
-                                    // }}
-                                    >{project.name}</div>
+                                        dangerouslySetInnerHTML={{
+                                            __html: highlightText(project.name, searchQuery),
+                                        }}
+                                    ></div>
                                     <div className={styles.projectsPage_project_start_item_option}>
-                                        <img src={project.type.img} alt='' />     {project.type.header}    /  <img src={project.option.img} alt='' /> {project.option.value}</div>
+                                        <img src={project.type.img} alt='' />     {project.type.header}     /  <img src={project.option.img} alt='' />  
+                                        <div dangerouslySetInnerHTML={{
+                                            __html: highlightText(project.option.value, searchQuery),
+                                        }}></div></div>
                                 </div>
                             </div>
                             <div className={styles.projectsPage_project_info}>
                                 <div className={styles.projectsPage_project_info_request}>
-                                    <img src={project.user.img} alt="" /> {project.user.name}
+                                    <img src={project.user.img} alt="" /> <div dangerouslySetInnerHTML={{
+                                        __html: highlightText(project.user.name, searchQuery),
+                                    }}
+                                    ></div>
                                 </div>
                                 <div className={`${styles.projectsPage_project_info_item}`} style={{ justifyContent: 'center' }}>
                                     <div className={`${styles.projectsPage_project_credit}`} >
@@ -262,7 +276,10 @@ const ProjectsPage = () => {
                                 <div className={styles.projectsPage_project_info_item}>{format(project.date, "dd/MM/yyyy")}</div>
                                 <div className={styles.projectsPage_project_info_item}>
                                     <div className={styles.projectsPage_project_info_status} style={{ backgroundColor: statusColor(project.status) }} ></div>
-                                    {project.status}</div>
+                                    <div dangerouslySetInnerHTML={{
+                                        __html: highlightText(project.status, searchQuery),
+                                    }}
+                                    ></div></div>
                                 <div className={styles.projectsPage_project_info_settings}>
                                     <img src={Settings} alt="" />
                                 </div>

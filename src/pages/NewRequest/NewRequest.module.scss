@@ -47,6 +47,7 @@
       line-height: 19.2px;
       text-align: left;
       color: var(--gray-dark3);
+
     }
     &_overview {
       color: var(--blue-dark);
@@ -1178,6 +1179,15 @@
       align-items: center;
       gap: 4px;
       cursor: pointer;
+      br{
+        display: none;
+      }
+      @media screen and (max-width: 768px) {
+        align-items: flex-end;
+        br{
+          display: block;
+        }
+      }
     }
     &_subText {
       font-family: Inter;
