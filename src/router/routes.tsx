@@ -28,6 +28,8 @@ import Submit from "pages/NewRequest/Submit/Submit";
 import CreateProfile from "pages/CreateProfile/CreateProfile";
 import Login from "pages/Login/Login";
 import ProjectsPage from "pages/Projects/Projects";
+import PasswordReset from "pages/PasswordReset/PasswordReset";
+import PasswordNew from "pages/PasswordNew/PasswordNew";
 
 const routes = createBrowserRouter([
   {
@@ -44,6 +46,14 @@ const routes = createBrowserRouter([
           {
             path: "/login",
             element: <Login />,
+          },
+          {
+            path: "/password-reset",
+            element: <PasswordReset />,
+          },
+          {
+            path: "/password-new",
+            element: <PasswordNew />,
           },
           {
             path: "/new-request/start",

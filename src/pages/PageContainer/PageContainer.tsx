@@ -15,34 +15,48 @@ import styles from "./PageContainer.module.scss";
 import { useConfigureStepsList } from "utils/configureStepsList";
 
 const PageContainer = () => {
+  // Hooks related to sidebar and burger menu states
   const [isSideBarOpened, setIsSideBarOpened] = useState(true);
   const [isBurgerOpened, setIsBurgerOpened] = useState(false);
 
-
+  // Window and location-related variables
   const width = useWindowWidth();
   const location = useLocation();
-  const hideFooterForMobile = location.pathname.includes("support");
-  const whiteBackgroundForMobile = location.pathname.includes("support");
-  const isNewRequestSteps =
-    location.pathname.includes("new-request/project") ||
-    location.pathname.includes("new-request/logistics") ||
-    location.pathname.includes("new-request/script") ||
-    location.pathname.includes("new-request/interview") ||
-    location.pathname.includes("new-request/voiceover") ||
-    location.pathname.includes("new-request/video-edit") ||
-    location.pathname.includes("new-request/add-ons") || 
-    location.pathname.includes("new-request/submit") || 
-    location.pathname.includes("new-request/final");
-    const isCreateProfilePage = location.pathname.includes("profile-create");
-    const isLoginPage = location.pathname.includes("login");
-  const { pathname } = useLocation();
+  const { pathname } = location;
+
+  // Utility function for path checks
+  const isPathIncluded = (paths: string[]): boolean =>
+    paths.some((path) => location.pathname.includes(path));
+
+  // Route-specific flags
+  const isNewRequestSteps = isPathIncluded([
+    "new-request/project",
+    "new-request/logistics",
+    "new-request/script",
+    "new-request/interview",
+    "new-request/voiceover",
+    "new-request/video-edit",
+    "new-request/add-ons",
+    "new-request/submit",
+    "new-request/final",
+  ]);
+  const isCreateProfilePage = isPathIncluded(["profile-create"]);
+  const isLoginPage = isPathIncluded(["login"]);
+  const isPasswordResetPage = isPathIncluded(["password-reset"]);
+  const hideFooterForMobile = isPathIncluded(["support"]);
+  const whiteBackgroundForMobile = isPathIncluded(["support"]);
+
+  // Hooks for additional functionalities
+  useCalculateFinalPrice();
+  useConfigureStepsList();
+
+  // LocalStorage-related state
+  const notFirst = localStorage.getItem("notFirstVisit") === "true";
+  const [notFirstVisit, setNotFirstVisit] = useState(notFirst);
+
   useEffect(() => {
     document?.getElementById("pageContainer")?.scrollTo(0, 34);
   }, [pathname]);
-  useCalculateFinalPrice();
-  useConfigureStepsList();
-  const notFirst = localStorage.getItem("notFirstVisit") === "true";
-  const [notFirstVisit, setNotFirstVisit] = useState(notFirst);
   useEffect(() => {
     if (!notFirst) {
       setTimeout(() => {
@@ -52,7 +66,6 @@ const PageContainer = () => {
     }
   }, []);
   if (!notFirstVisit) {
-    // localStorage.setItem("isFirstVisit", "false");
     return <Loader isWelcome={true} />;
   }
 
@@ -78,7 +91,7 @@ const PageContainer = () => {
           `}
         style={{ overflow: isBurgerOpened ? "hidden" : "" }}
       >
-        {!isNewRequestSteps && !isCreateProfilePage && !isLoginPage && (
+        {!isNewRequestSteps && !isCreateProfilePage && !isLoginPage && !isPasswordResetPage && (
           <div className={styles.sideBarHideContainer}>
             <SideBar
               isOpened={isSideBarOpened}
@@ -105,16 +118,17 @@ const PageContainer = () => {
                 !location.pathname.includes("new-request/interview") &&
                 !location.pathname.includes("new-request/voiceover") &&
                 !location.pathname.includes("new-request/video-edit") &&
-                !location.pathname.includes("new-request/add-ons") && 
+                !location.pathname.includes("new-request/add-ons") &&
                 !location.pathname.includes("new-request/submit") &&
                 !location.pathname.includes("new-request/final") &&
-                !location.pathname.includes("profile-create") && 
+                !location.pathname.includes("profile-create") &&
+                !isPasswordResetPage &&
                 !isLoginPage
                 && <Footer />}
             </>
           )}
         </div>
-        {!isNewRequestSteps && !isCreateProfilePage && !isLoginPage && <BottomMenu isOpened={isSideBarOpened} />}
+        {!isNewRequestSteps && !isCreateProfilePage && !isLoginPage && !isPasswordResetPage && <BottomMenu isOpened={isSideBarOpened} />}
         {isBurgerOpened && (
           <div
             className={styles.mobileSideMenuContainer}
