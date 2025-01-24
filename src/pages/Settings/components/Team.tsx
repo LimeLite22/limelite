@@ -1,6 +1,7 @@
 import { Add, Close, GapCheck, GapUnCheck, InviteUser, User1Foto, User2Foto, User3Foto, } from "assets/images";
 import { useState } from "react";
 import { createPortal } from "react-dom";
+
 import styles from "../Settings.module.scss";
 import TeamItem from "./TeamItem";
 

@@ -1,11 +1,12 @@
 import { LastDays, Search, Settings, SwiperFoto1, User1Foto, User2Foto, User3Foto, User4Foto } from "assets/images";
 import { CANCELED_REQUEST_STATUS, COMPLETE_REQUEST_STATUS, IN_EDITING_REQUEST_STATUS, ON_HOLD_REQUEST_STATUS, optionsList, projectTypes, REQUESTED_REQUEST_STATUS, SCHEDULED_REQUEST_STATUS } from "consts/consts";
-import { useState } from "react";
 import { format } from "date-fns";
+import { useState } from "react";
 import { generateUniqueId } from "utils/generateId";
-import styles from "./ProjectsPage.module.scss";
 import { statusColor } from "utils/statusColors";
+
 import ProjectFilter from "./components/Filter";
+import styles from "./ProjectsPage.module.scss";
 export const TestUsers = [
     {
         id: generateUniqueId(),

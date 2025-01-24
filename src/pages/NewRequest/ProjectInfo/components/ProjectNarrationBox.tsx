@@ -1,15 +1,14 @@
+import { CANDID_APPROACH, EDIT_ONLY, NO_APPROACH, SCRIPTED_APPROACH, VOICEOVER_APPROACH } from "consts/consts";
+import useWindowWidth from "hooks/useWindowWidth";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import useWindowWidth from "hooks/useWindowWidth";
+import { TApproachValue } from "types/types";
 
 import {
   selectRequestInfo,
   updateDraftField,
 } from "../../../../redux/requests/reducer";
 import styles from "../ProjectInfo.module.scss";
-import { CANDID_APPROACH, EDIT_ONLY, NO_APPROACH, SCRIPTED_APPROACH, VOICEOVER_APPROACH } from "consts/consts";
-import { TApproachValue } from "types/types";
 
 interface IProps {
   isError: boolean;

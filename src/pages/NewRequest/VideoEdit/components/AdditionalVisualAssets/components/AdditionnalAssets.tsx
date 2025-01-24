@@ -1,7 +1,3 @@
-import { useRef } from "react";
-import { FileDrop } from "react-file-drop";
-import { useDispatch, useSelector } from "react-redux";
-
 import {
   CheckBox,
   CheckBoxSelected,
@@ -10,14 +6,16 @@ import {
   Expand,
   PNG,
 } from "assets/images";
-
+import { DEFAULT } from "consts/consts";
+import { useRef } from "react";
+import { FileDrop } from "react-file-drop";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,
   updateDraftField,
 } from "../../../../../../redux/requests/reducer";
 import styles from "../../../../NewRequest.module.scss";
-import { DEFAULT } from "consts/consts";
 
 interface IProps {
   isExpanded: boolean;

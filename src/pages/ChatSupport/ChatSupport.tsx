@@ -1,6 +1,3 @@
-import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-
 import {
   Arrow2,
   AttachFileIcon,
@@ -10,9 +7,9 @@ import {
   SupportCloseIcon,
   VoiceMessageIcon,
 } from "assets/images";
-
 import useWindowWidth from "hooks/useWindowWidth";
-
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { generateUniqueId } from "utils/generateId";
 
 import ChatMessagePerson from "./ChatMessagePerson";

@@ -1,15 +1,14 @@
-import { type FC, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import "./Zone.scss";
 
 import { GrayArrow } from "assets/images";
-
 import { zonesList } from "consts/consts";
+import { type FC, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,
   updateDraftField,
 } from "../../../../../redux/requests/reducer";
-import "./Zone.scss";
 
 interface IProps {
   onChange: (zone: { name: string; value: number }) => void;

@@ -1,7 +1,5 @@
+import { createSlice,type PayloadAction } from "@reduxjs/toolkit";
 import { IRootState } from "redux/rootReducer";
-
-import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
-
 import { generateUniqueId } from "utils/generateId";
 
 import { INotification } from "./../../pages/Notifications/interfaces";

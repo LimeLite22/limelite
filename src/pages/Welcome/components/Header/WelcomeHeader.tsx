@@ -1,15 +1,14 @@
-import { Autoplay } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-
 import {
   ClosedBurgerIcon,
   OpenedBurgerIcon,
   SearchIcon,
 } from "assets/images";
-
-import styles from "./WelcomeHeader.module.scss";
 import { useSelector } from "react-redux";
+import { Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+
 import { selectAccount } from "../../../../redux/account/account";
+import styles from "./WelcomeHeader.module.scss";
 
 interface IProps {
   isOpened?: boolean;

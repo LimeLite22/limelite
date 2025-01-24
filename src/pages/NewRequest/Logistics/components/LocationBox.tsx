@@ -1,17 +1,16 @@
-import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
-
 import "swiper/css";
 import "swiper/css/pagination";
 
 import { OWN_ADDRESS } from "consts/consts";
+import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
-import { selectRequestInfo } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 import Address from "./AddressInput";
 import HomeRental from "./HomeRentalInput";
 import LearnMorePopUp from "./LearnMorePopUp";
 import StudioRental from "./StudioRentalInput";
+import { selectRequestInfo } from "../../../../redux/requests/reducer";
 
 const Location = () => {
   const containerRef = useRef<HTMLDivElement>(null);

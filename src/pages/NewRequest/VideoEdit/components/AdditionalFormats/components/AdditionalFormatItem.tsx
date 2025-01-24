@@ -1,9 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
-
-import { IAdditionalVideoFormat } from "interfaces/interfaces";
-
 import { Remove } from "assets/images";
-
 import {
   DEFAULT,
   VIDEO_SQUARE,
@@ -11,6 +6,10 @@ import {
   VIDEO_STORY,
   VIDEO_VERTICAL,
 } from "consts/consts";
+import { IAdditionalVideoFormat } from "interfaces/interfaces";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { TVideoDuration } from "types/types";
 
 import {
   deleteAdditionalVideoFormat,
@@ -19,8 +18,6 @@ import {
 } from "../../../../../../redux/requests/reducer";
 import styles from "../../../../NewRequest.module.scss";
 import DurationSelector from "../../DurationSelector/DurationSelector";
-import { useEffect, useRef, useState } from "react";
-import { TVideoDuration } from "types/types";
 
 interface IProps {
   index: number;

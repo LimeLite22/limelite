@@ -1,7 +1,6 @@
+import { Remove } from "assets/images";
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import { Remove } from "assets/images";
 
 import {
   selectRequestInfo,

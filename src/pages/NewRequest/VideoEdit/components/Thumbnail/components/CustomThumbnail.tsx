@@ -1,10 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
 
-import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
 
 import { CheckBox, CheckBoxSelected, Expand, Note } from "assets/images";
-
 import { CUSTOM_THUMBNAIL } from "consts/consts";
+import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,

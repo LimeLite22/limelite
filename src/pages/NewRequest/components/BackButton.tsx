@@ -1,9 +1,9 @@
-import { useSelector } from "react-redux";
-import { selectSteps } from "../../../redux/requests/reducer";
-
-import { useLocation, useNavigate } from "react-router";
-import styles from "../NewRequest.module.scss";
 import { ArrowGray } from "assets/images";
+import { useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router";
+
+import { selectSteps } from "../../../redux/requests/reducer";
+import styles from "../NewRequest.module.scss";
 
 const BackButton = () => {
 

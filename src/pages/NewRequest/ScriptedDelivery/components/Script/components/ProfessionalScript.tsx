@@ -1,10 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
 
-import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
 
 import { CheckBox, CheckBoxSelected, Expand } from "assets/images";
-
 import { PROFESSIONAL_SCRIPT } from "consts/consts";
+import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,

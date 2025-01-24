@@ -3,9 +3,9 @@ import "swiper/css/pagination";
 
 import { QuestionIcon } from "assets/images";
 
-import styles from "../../Welcome.module.scss";
-import InspirationItemMobile from "./InspirationItemMobile";
 import { data } from "./data";
+import InspirationItemMobile from "./InspirationItemMobile";
+import styles from "../../Welcome.module.scss";
 
 const InspirationMobile = (): JSX.Element => {
   return (

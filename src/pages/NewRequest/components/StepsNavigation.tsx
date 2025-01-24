@@ -1,9 +1,9 @@
 import { ArrowLightGray, Success } from "assets/images";
-
-import styles from "../NewRequest.module.scss";
 import { useSelector } from "react-redux";
-import { selectSteps } from "../../../redux/requests/reducer";
 import { useLocation } from "react-router";
+
+import { selectSteps } from "../../../redux/requests/reducer";
+import styles from "../NewRequest.module.scss";
 
 const StepsNavigation = () => {
   const steps = useSelector(selectSteps);

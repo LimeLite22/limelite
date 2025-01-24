@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import account from "./account/account";
 
+import account from "./account/account";
 import notifications from "./notifications/reducer";
 import request from "./requests/reducer";
 

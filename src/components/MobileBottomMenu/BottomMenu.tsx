@@ -1,13 +1,10 @@
+import { HOME, LEARN, NOTIFICATIONS, PROJECTS } from "consts/consts";
 import { useEffect, useState } from "react";
 // import { Sheet } from "react-modal-sheet";
 import { useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
 // import { IRequest } from "interfaces/interfaces";
 import { TSelectedMobPages } from "types/types";
-
-import { HOME, LEARN, NOTIFICATIONS, PROJECTS } from "consts/consts";
-// import { optionsList } from "consts/consts";
 
 import {
   BottomNewRequestIcon,
@@ -20,8 +17,9 @@ import {
   // ShootEditIcon,
   // ShootOnlyIcon,
 } from "../../assets/images";
-// import { createDraft } from "../../redux/requests/reducer";
+// import { optionsList } from "consts/consts";
 import styles from "./BottomMenu.module.scss";
+// import { createDraft } from "../../redux/requests/reducer";
 import BottomMenuItem from "./components/BottomMenuItem";
 
 interface IProps  {

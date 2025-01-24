@@ -1,14 +1,13 @@
 import { useDispatch } from "react-redux";
-
 import {
   extractFormattedTime,
   getDayOfWeek,
   timeAgo,
 } from "utils/notifications";
 
-import { readNotification } from "../../redux/notifications/reducer";
-import styles from "./Notifications.module.scss";
 import { INotification } from "./interfaces";
+import styles from "./Notifications.module.scss";
+import { readNotification } from "../../redux/notifications/reducer";
 
 interface IProps {
   notification: INotification;

@@ -1,17 +1,14 @@
-import { useDispatch} from "react-redux";
-
-import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
-
 import { CheckBox, CheckBoxSelected, Expand, Note } from "assets/images";
-
 import { NO_ADD_ONS } from "consts/consts";
+import { IAddOnsValue} from "interfaces/interfaces";
+import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
+import { useState } from "react";
+import { useDispatch} from "react-redux";
 
 import {
   updateAddOnSelectionStatus,
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
-import { IAddOnsValue} from "interfaces/interfaces";
-import { useState } from "react";
 
 interface IProps {
   item: IAddOnsValue

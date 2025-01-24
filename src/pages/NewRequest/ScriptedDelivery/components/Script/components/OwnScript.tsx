@@ -1,6 +1,3 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
 import {
   CheckBox,
   CheckBoxSelected,
@@ -9,8 +6,9 @@ import {
   StatusProgress,
   StatusUnavailable,
 } from "assets/images";
-
 import { OWN_SCRIPT } from "consts/consts";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,

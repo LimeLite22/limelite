@@ -1,9 +1,7 @@
+import { optionsList } from "consts/consts";
 import { type FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { generateUniqueId } from "utils/generateId";
-
-import { optionsList } from "consts/consts";
 
 import {
   selectRequestInfo,

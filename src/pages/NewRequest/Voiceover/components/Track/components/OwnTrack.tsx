@@ -1,6 +1,3 @@
-import { useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
 import {
   Audio,
   CheckBox,
@@ -9,8 +6,9 @@ import {
   Download,
   Expand,
 } from "assets/images";
-
 import { DEFAULT, TRACK_AUTHOR_CLIENT } from "consts/consts";
+import { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,

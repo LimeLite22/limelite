@@ -1,13 +1,5 @@
-import { useEffect, useState } from "react";
-import { useRef } from "react";
-import { useNavigate } from "react-router";
-
-import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Navigation, Pagination } from "swiper/modules";
-import { A11y, Keyboard, Scrollbar } from "swiper/modules";
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 
 import {
   SwiperFoto1,
@@ -17,11 +9,17 @@ import {
   SwiperFoto3,
   SwiperFoto3Mob,
 } from "assets/images";
-
 import useWindowWidth from "hooks/useWindowWidth";
+import { useEffect, useState } from "react";
+import { useRef } from "react";
+import { useNavigate } from "react-router";
+import type { Swiper as SwiperType } from "swiper";
+import { Navigation, Pagination } from "swiper/modules";
+import { A11y, Keyboard, Scrollbar } from "swiper/modules";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 
-import Header from "../../components/Header/Header";
 import styles from "./WalkThrough.module.scss";
+import Header from "../../components/Header/Header";
 
 const WalkThrough = () => {
   const navigate = useNavigate();

@@ -1,14 +1,10 @@
-import { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
+import { CheckBox, CheckBoxSelected, Expand } from "assets/images";
+import { QUESTIONS_VIRTUALLY } from "consts/consts";
+import useWindowWidth from "hooks/useWindowWidth";
 import { IAddressProps } from "interfaces/interfaces";
 import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
-
-import { CheckBox, CheckBoxSelected, Expand } from "assets/images";
-
-import useWindowWidth from "hooks/useWindowWidth";
-
-import { QUESTIONS_VIRTUALLY } from "consts/consts";
+import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,

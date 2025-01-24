@@ -1,19 +1,15 @@
-import { useDispatch, useSelector } from "react-redux";
-
-import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
-
 import { Add2, CheckBox, CheckBoxSelected, Expand, Note } from "assets/images";
-
+import { DEFAULT } from "consts/consts";
+import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
+import { useDispatch, useSelector } from "react-redux";
 import { generateUniqueId } from "utils/generateId";
 
-import { DEFAULT } from "consts/consts";
-
+import AdditionalFormatItem from "./AdditionalFormatItem";
 import {
   selectRequestInfo,
   updateDraftField,
 } from "../../../../../../redux/requests/reducer";
 import styles from "../../../../NewRequest.module.scss";
-import AdditionalFormatItem from "./AdditionalFormatItem";
 
 interface IProps {
   isExpanded: boolean;

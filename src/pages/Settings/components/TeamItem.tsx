@@ -1,6 +1,7 @@
 import { Close, Delete, Settings, Settings2, Transfer, User1Foto, User3Foto } from "assets/images";
 import { useState } from "react";
 import { createPortal } from "react-dom";
+
 import styles from "../Settings.module.scss";
 
 const TeamItem = ({ member, index }: any) => {

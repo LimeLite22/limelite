@@ -1,8 +1,9 @@
 import { SuccessGap } from "assets/images"
-import styles from "../NewRequest.module.scss";
-import Realistic from "react-canvas-confetti/dist/presets/realistic";
 import { useEffect, useState } from "react";
+import Realistic from "react-canvas-confetti/dist/presets/realistic";
 import { Link } from "react-router-dom";
+
+import styles from "../NewRequest.module.scss";
 
 
 const Final = () => {

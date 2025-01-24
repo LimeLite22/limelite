@@ -1,7 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
-
 import { Add2 } from "assets/images";
-
+import { useDispatch, useSelector } from "react-redux";
+import { TPerson } from "types/types";
 import { generateUniqueId } from "utils/generateId";
 
 import {
@@ -10,7 +9,6 @@ import {
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 import ScriptPerson from "./ScriptPerson";
-import { TPerson } from "types/types";
 
 const ScriptPersons = () => {
   const persons = useSelector(selectRequestInfo)?.scriptSettings?.persons || [];

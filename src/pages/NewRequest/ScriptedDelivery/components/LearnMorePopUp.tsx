@@ -1,12 +1,11 @@
-import { useState } from "react";
-import ReactDOM from "react-dom";
-import { Sheet } from "react-modal-sheet";
 
 import { LearnMore } from "assets/images";
 import Close from "assets/images/LearnMore/Close.svg";
 import TestImage from "assets/images/LearnMore/TestImage.png";
-
 import useWindowWidth from "hooks/useWindowWidth";
+import { useState } from "react";
+import ReactDOM from "react-dom";
+import { Sheet } from "react-modal-sheet";
 
 import styles from "../../NewRequest.module.scss";
 

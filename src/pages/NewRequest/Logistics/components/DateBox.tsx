@@ -1,11 +1,9 @@
+import { Add, CalendarIcon2, Close, Note, Valid } from "assets/images";
+import { DEFAULT } from "consts/consts";
+import { format } from "date-fns";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import { format } from "date-fns";
-
-import { Add, CalendarIcon2, Close, Note, Valid } from "assets/images";
-
-import { DEFAULT } from "consts/consts";
+import { TTimeValue } from "types/types";
 
 import {
   selectRequestInfo,
@@ -15,7 +13,6 @@ import styles from "../../NewRequest.module.scss";
 import Calendar from "./Calendar/Calendar";
 import TimeSelector from "./Calendar/TimeSelector";
 import LearnMorePopUp from "./LearnMorePopUp";
-import { TTimeValue } from "types/types";
 
 const Date = () => {
   const selectedRequest = useSelector(selectRequestInfo);

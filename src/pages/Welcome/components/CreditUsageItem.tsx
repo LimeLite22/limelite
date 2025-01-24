@@ -1,8 +1,7 @@
-import { useState } from "react";
 
 import { InfoIcon, QuestionIcon } from "assets/images";
-
 import useWindowWidth from "hooks/useWindowWidth";
+import { useState } from "react";
 
 import styles from "../Welcome.module.scss";
 

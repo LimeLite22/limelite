@@ -1,16 +1,5 @@
-import { useEffect, useState } from "react";
-
 import "swiper/css";
 import "swiper/css/pagination";
-import {
-  A11y,
-  Keyboard,
-  Mousewheel,
-  Navigation,
-  Pagination,
-  Scrollbar,
-} from "swiper/modules";
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 
 import {
   CompanyType,
@@ -22,9 +11,17 @@ import {
   WhatisNew3,
   WhatisNew4,
 } from "assets/images";
-
 import useWindowWidth from "hooks/useWindowWidth";
-
+import { useEffect, useState } from "react";
+import {
+  A11y,
+  Keyboard,
+  Mousewheel,
+  Navigation,
+  Pagination,
+  Scrollbar,
+} from "swiper/modules";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { generateUniqueId } from "utils/generateId";
 
 import styles from "../Welcome.module.scss";

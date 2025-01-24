@@ -1,10 +1,9 @@
-import { type FC, useState } from "react";
-
-import { GrayArrow } from "assets/images";
-
-import { DEFAULT, videoDurationsList } from "consts/consts";
 
 import "./DurationSelector.scss";
+
+import { GrayArrow } from "assets/images";
+import { DEFAULT, videoDurationsList } from "consts/consts";
+import { type FC, useState } from "react";
 import { TVideoDuration } from "types/types";
 
 interface IProps {

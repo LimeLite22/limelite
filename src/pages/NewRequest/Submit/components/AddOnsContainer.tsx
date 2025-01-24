@@ -1,5 +1,6 @@
 import { Divider, EditIcon } from "assets/images";
 import { useCalculateFinalPrice } from "utils/priceCalculator";
+
 import styles from "../../NewRequest.module.scss";
 
 const AddOnsContainer = () => {

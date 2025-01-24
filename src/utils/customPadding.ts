@@ -1,4 +1,5 @@
 import useWindowWidth from "hooks/useWindowWidth";
+
 import { useCalculateFinalPrice } from "./priceCalculator";
 
 export const useCustomPadding = () => {

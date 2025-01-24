@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
-
 import "swiper/css";
 import "swiper/css/pagination";
+
+import useWindowWidth from "hooks/useWindowWidth";
+import { useEffect, useState } from "react";
 import {
   A11y,
   Keyboard,
@@ -11,14 +12,11 @@ import {
   Scrollbar,
 } from "swiper/modules";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
-
-import useWindowWidth from "hooks/useWindowWidth";
-
 import { generateUniqueId } from "utils/generateId";
 
-import styles from "../../Welcome.module.scss";
-import InspirationItem from "./InspirationItem";
 import { data } from "./data";
+import InspirationItem from "./InspirationItem";
+import styles from "../../Welcome.module.scss";
 
 const Inspiration = (): JSX.Element => {
   const [position, setPosition] = useState(0);

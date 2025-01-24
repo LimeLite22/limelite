@@ -1,27 +1,24 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-
 import {
   ArrowGray3,
   ArrowGray4,
   DetailsGreen,
 } from "assets/images";
-
-
 import { DEFAULT, OWN_ADDRESS, YES } from "consts/consts";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { useCustomPadding } from "utils/customPadding";
 
 import { selectRequestInfo } from "../../../redux/requests/reducer";
-import styles from "../NewRequest.module.scss";
+import BackButton from "../components/BackButton";
 import FormFooter from "../components/FormFooter";
+import NextButton from "../components/NextButton";
 import StepsNavigation from "../components/StepsNavigation";
+import styles from "../NewRequest.module.scss";
 import Date from "./components/DateBox";
 import IsTravelRequired from "./components/IsTravelRequiredBox";
 import Location from "./components/LocationBox";
 import ShotList from "./components/ShotListBox";
-import NextButton from "../components/NextButton";
-import { useCustomPadding } from "utils/customPadding";
-import BackButton from "../components/BackButton";
 
 const Logistics = () => {
   const selectedRequest = useSelector(selectRequestInfo);

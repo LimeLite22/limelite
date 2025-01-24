@@ -1,29 +1,27 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-
 import {
   ArrowGray,
   ArrowGray3,
   ArrowGray4,
   DetailsGreen,
 } from "assets/images";
-
 import {
   DEFAULT,
   OWN_SCRIPT,
   PROFESSIONAL_SCRIPT,
   TRACK_AUTHOR_CLIENT,
 } from "consts/consts";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { useCustomPadding } from "utils/customPadding";
 
 import { selectRequestVoiceSettings } from "../../../redux/requests/reducer";
-import styles from "../NewRequest.module.scss";
 import FormFooter from "../components/FormFooter";
+import NextButton from "../components/NextButton";
 import StepsNavigation from "../components/StepsNavigation";
+import styles from "../NewRequest.module.scss";
 import InterviewScriptBox from "./components/Script/InterviewScriptBox";
 import VoiceTrackBox from "./components/Track/VoiceTrackBox";
-import NextButton from "../components/NextButton";
-import { useCustomPadding } from "utils/customPadding";
 
 const Voiceover = () => {
   const voiceSettings = useSelector(selectRequestVoiceSettings);

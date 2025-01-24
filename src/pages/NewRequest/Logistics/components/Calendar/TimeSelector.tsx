@@ -1,13 +1,12 @@
-import { useState } from "react";
-
-import { ArrowGray2 } from "assets/images";
-
-import { DEFAULT } from "consts/consts";
-import { hoursList } from "consts/consts";
 
 import "./Calendar.scss";
-import { generateUniqueId } from "utils/generateId";
+
+import { ArrowGray2 } from "assets/images";
+import { DEFAULT } from "consts/consts";
+import { hoursList } from "consts/consts";
+import { useState } from "react";
 import { TTimeValue } from "types/types";
+import { generateUniqueId } from "utils/generateId";
 
 interface IProps {
   time: TTimeValue;

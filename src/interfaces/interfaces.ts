@@ -1,4 +1,4 @@
-import { TApproachValue, TCalendarType, TOption, TPerson, IScriptWriter, TTravel, TVideoDuration, TProjectTone, TStep, TTimeValue, TValue, TLocation, TVideo, TQuestionAuthor, TQuestionLocation, TVoiceAuthor, TThumbnail, TRush } from "types/types";
+import { IScriptWriter, TApproachValue, TCalendarType, TLocation, TOption, TPerson, TProjectTone, TQuestionAuthor, TQuestionLocation, TRush,TStep, TThumbnail, TTimeValue, TTravel, TValue, TVideo, TVideoDuration, TVoiceAuthor } from "types/types";
 
 export interface ILocation {
   type: TLocation;

@@ -2,6 +2,7 @@ import { Edit, EditIcon } from "assets/images";
 import { DEFAULT } from "consts/consts";
 import { format } from "date-fns";
 import { useSelector } from "react-redux";
+
 import { selectRequestInfo } from "../../../redux/requests/reducer";
 import BackButton from "../components/BackButton";
 import NextButton from "../components/NextButton"

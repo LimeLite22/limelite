@@ -1,8 +1,6 @@
-import { useSelector } from "react-redux";
-
-import { TSelectedMobPages } from "types/types";
-
 import { NOTIFICATIONS } from "consts/consts";
+import { useSelector } from "react-redux";
+import { TSelectedMobPages } from "types/types";
 
 import { selectUnreadNotificationsNumber } from "../../../redux/notifications/reducer";
 import styles from "../BottomMenu.module.scss";

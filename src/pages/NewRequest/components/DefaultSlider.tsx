@@ -1,13 +1,12 @@
-import { useEffect, useRef, useState } from "react";
-
-import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
+
+import { SwiperFoto1, SwiperFoto2, SwiperFoto3 } from "assets/images";
+import { useEffect, useRef, useState } from "react";
+import type { Swiper as SwiperType } from "swiper";
 import { Navigation, Pagination } from "swiper/modules";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-import { SwiperFoto1, SwiperFoto2, SwiperFoto3 } from "assets/images";
 
 import styles from "../NewRequest.module.scss";
 

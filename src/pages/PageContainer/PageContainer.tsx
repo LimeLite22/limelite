@@ -1,18 +1,15 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router";
-import { Outlet } from "react-router-dom";
-
 import { BottomMenu, SideBar } from "components";
+import useWindowWidth from "hooks/useWindowWidth";
 import Loader from "pages/Loader/Loader";
 import Footer from "pages/Welcome/components/Footer/Footer";
 import WelomeHeader from "pages/Welcome/components/Header/WelcomeHeader";
-
-import useWindowWidth from "hooks/useWindowWidth";
-
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router";
+import { Outlet } from "react-router-dom";
+import { useConfigureStepsList } from "utils/configureStepsList";
 import { useCalculateFinalPrice } from "utils/priceCalculator";
 
 import styles from "./PageContainer.module.scss";
-import { useConfigureStepsList } from "utils/configureStepsList";
 
 const PageContainer = () => {
   // Hooks related to sidebar and burger menu states

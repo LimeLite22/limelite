@@ -1,13 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
-
-import { IHomeRentalProps } from "interfaces/interfaces";
-import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
 
 import { CheckBox, CheckBoxSelected, Expand, Note } from "assets/images";
-
-import useWindowWidth from "hooks/useWindowWidth";
-
 import { VIRTUAL_INTERVIEW } from "consts/consts";
+import useWindowWidth from "hooks/useWindowWidth";
+import { IHomeRentalProps } from "interfaces/interfaces";
+import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,

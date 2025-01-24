@@ -1,9 +1,9 @@
 import { Route, Routes, useLocation } from "react-router";
 import { Link } from "react-router-dom";
 
-import styles from "./Learn.module.scss";
 import FaqsItem from "./components/FaqsItem";
 import { data } from "./data";
+import styles from "./Learn.module.scss";
 
 // lC = Learn Container
 const Learn = () => {

@@ -1,6 +1,3 @@
-import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
-
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -9,13 +6,15 @@ import {
   QUESTIONS_VIRTUALLY,
   VIRTUAL_INTERVIEW,
 } from "consts/consts";
+import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
-import { selectRequestInfo } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 import LearnMorePopUp from "./LearnMorePopUp";
 import QuestionsOnLocationInput from "./QuestionsOnLocationInput";
 import VirtualInterview from "./VirtualInterview";
 import VirtualQuestionsInput from "./VirtualQuestionsInput";
+import { selectRequestInfo } from "../../../../redux/requests/reducer";
 
 const QuestionsAuthorBox = () => {
   const containerRef = useRef<HTMLDivElement>(null);

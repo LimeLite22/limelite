@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
-
 import { Arrow, ChatIcon, EmailIcon, SmallMailIcon } from "assets/images";
+import { Link } from "react-router-dom";
 
 import styles from "./Support.module.scss";
 

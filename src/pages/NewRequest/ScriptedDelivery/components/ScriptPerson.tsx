@@ -1,7 +1,6 @@
+import { Remove } from "assets/images";
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-
-import { Remove } from "assets/images";
 
 import { deletePerson, updatePerson } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";

@@ -1,7 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
-
-
 import { DEFAULT } from "consts/consts";
+import { useDispatch, useSelector } from "react-redux";
+import { TVideoDuration } from "types/types";
 
 import {
   selectRequestInfo,
@@ -9,7 +8,6 @@ import {
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 import DurationSelector from "./DurationSelector/DurationSelector";
-import { TVideoDuration } from "types/types";
 
 const VideoTargetDurationBox = () => {
   const value = useSelector(selectRequestInfo)?.videoSettings?.targetDuration;

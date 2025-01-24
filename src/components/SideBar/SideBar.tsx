@@ -1,8 +1,3 @@
-import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-
-import useWindowWidth from "hooks/useWindowWidth";
-
 import {
   ADD_ONS,
   INSPIRATION,
@@ -14,7 +9,13 @@ import {
   SUPPORT,
   WELCOME,
 } from "consts/consts";
+import useWindowWidth from "hooks/useWindowWidth";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { TSelectedPages } from "types/types";
 
+import SideBarNavItem from "./components/SideBarNavItem";
+import styles from "./SideBar.module.scss";
 import {
   AddOns,
   Home,
@@ -26,9 +27,6 @@ import {
   Settings2,
   Support,
 } from "../../assets/images";
-import styles from "./SideBar.module.scss";
-import SideBarNavItem from "./components/SideBarNavItem";
-import { TSelectedPages } from "types/types";
 
 interface IProps  {
   isOpened: boolean;

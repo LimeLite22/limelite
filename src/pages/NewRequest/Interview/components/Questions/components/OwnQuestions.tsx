@@ -1,6 +1,3 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
 import {
   CheckBox,
   CheckBoxSelected,
@@ -9,8 +6,9 @@ import {
   StatusProgress,
   StatusUnavailable,
 } from "assets/images";
-
 import { QUESTIONS_AUTHOR_CLIENT } from "consts/consts";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,

@@ -1,17 +1,19 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-
 import {
   ArrowGray3,
   ArrowGray4,
   DetailsGreen,
 } from "assets/images";
+import { OTHER, SHOOT_EDIT, SHOOT_ONLY } from "consts/consts";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { useCustomPadding } from "utils/customPadding";
 
 import { selectRequestInfo } from "../../../redux/requests/reducer";
+import BackButton from "../components/BackButton";
 import FormFooter from "../components/FormFooter";
+import NextButton from "../components/NextButton";
 import StepsNavigation from "../components/StepsNavigation";
-import styles from "./ProjectInfo.module.scss";
 import {
   ProjectNameBox,
   ProjectNarrationBox,
@@ -21,10 +23,7 @@ import {
   ShotListBox,
   TargetAudienceBox,
 } from "./components";
-import NextButton from "../components/NextButton";
-import { useCustomPadding } from "utils/customPadding";
-import BackButton from "../components/BackButton";
-import { OTHER, SHOOT_EDIT, SHOOT_ONLY } from "consts/consts";
+import styles from "./ProjectInfo.module.scss";
 
 const ProjectInfo = () => {
   const selectedRequest = useSelector(selectRequestInfo);

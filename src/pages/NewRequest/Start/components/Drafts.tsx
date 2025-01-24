@@ -1,7 +1,8 @@
+import { QuestionLightGray } from "assets/images";
+import useWindowWidth from "hooks/useWindowWidth";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-
 import {
   A11y,
   Keyboard,
@@ -11,11 +12,6 @@ import {
   Scrollbar,
 } from "swiper/modules";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
-
-import { QuestionLightGray } from "assets/images";
-
-import useWindowWidth from "hooks/useWindowWidth";
-
 import { generateUniqueId } from "utils/generateId";
 
 import {

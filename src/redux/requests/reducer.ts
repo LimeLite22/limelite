@@ -1,15 +1,12 @@
-import { IRootState } from "redux/rootReducer";
-
-import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice,type PayloadAction } from "@reduxjs/toolkit";
+import { DEFAULT, optionsList } from "consts/consts";
 import { IAdditionalVideoFormat, IRequestState } from "interfaces/interfaces";
 import set from "lodash/set";
-
+import { IRootState } from "redux/rootReducer";
+import { TDraftFieldUpdate, TStep } from "types/types";
 import { generateUniqueId } from "utils/generateId";
 
-import { DEFAULT, optionsList } from "consts/consts";
-
 import { IRequest } from "./../../interfaces/interfaces";
-import { TDraftFieldUpdate, TStep } from "types/types";
 
 // const loadStateFromLocalStorage = (): IRequestState | undefined => {
 //   try {

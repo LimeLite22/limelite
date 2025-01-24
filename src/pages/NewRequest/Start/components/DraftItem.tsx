@@ -1,12 +1,9 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-
+import { Copy, Delete, SettingsMenu, User1Foto } from "assets/images";
+import { DEFAULT } from "consts/consts";
 import { format } from "date-fns";
 import { IRequest } from "interfaces/interfaces";
-
-import { Copy, Delete, SettingsMenu, User1Foto } from "assets/images";
-
-import { DEFAULT } from "consts/consts";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 import { deleteDraft } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";

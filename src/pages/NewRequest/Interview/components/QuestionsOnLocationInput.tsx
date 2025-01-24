@@ -1,13 +1,9 @@
+import { CheckBox, CheckBoxSelected, Expand } from "assets/images";
+import { QUESTIONS_ON_LOCATION } from "consts/consts";
+import useWindowWidth from "hooks/useWindowWidth";
+import { IAddressProps } from "interfaces/interfaces";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import { IAddressProps } from "interfaces/interfaces";
-
-import { CheckBox, CheckBoxSelected, Expand } from "assets/images";
-
-import useWindowWidth from "hooks/useWindowWidth";
-
-import { QUESTIONS_ON_LOCATION } from "consts/consts";
 
 import {
   selectRequestInfo,

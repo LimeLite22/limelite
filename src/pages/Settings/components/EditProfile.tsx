@@ -2,6 +2,7 @@ import { DeleteRed, NoUser, Remove2 } from "assets/images";
 import { useRef, useState } from "react";
 import { FileDrop } from "react-file-drop";
 import { useDispatch } from "react-redux";
+
 import { updateAccount } from "../../../redux/account/account";
 import styles from "../Settings.module.scss";
 

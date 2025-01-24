@@ -1,19 +1,15 @@
-import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-import axios from "axios";
-import { IAddressProps } from "interfaces/interfaces";
-
 import {
   CheckBox,
   CheckBoxSelected,
   Expand,
   LocationBlack,
 } from "assets/images";
-
-import useWindowWidth from "hooks/useWindowWidth";
-
+import axios from "axios";
 import { OWN_ADDRESS } from "consts/consts";
+import useWindowWidth from "hooks/useWindowWidth";
+import { IAddressProps } from "interfaces/interfaces";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,

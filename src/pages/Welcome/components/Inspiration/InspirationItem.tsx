@@ -1,20 +1,18 @@
+import "swiper/css";
+import "swiper/css/pagination";
+
+import { AnnouncementVideos, Close } from "assets/images";
+import useWindowWidth from "hooks/useWindowWidth";
 import { useState } from "react";
 import { useRef } from "react";
 import ReactDOM from "react-dom";
-
 import type { Swiper as SwiperType } from "swiper";
-import "swiper/css";
-import "swiper/css/pagination";
 import { EffectCoverflow, Navigation, Pagination } from "swiper/modules";
 import { A11y, Keyboard, Mousewheel, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { AnnouncementVideos, Close } from "assets/images";
-
-import useWindowWidth from "hooks/useWindowWidth";
-
-import styles from "../../Welcome.module.scss";
 import { embedCode1, embedCode2, embedCode3 } from "./data";
+import styles from "../../Welcome.module.scss";
 
 const InspirationItem = (): JSX.Element => {
   const [isOpened, setIsOpened] = useState(false);

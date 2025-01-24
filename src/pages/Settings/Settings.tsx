@@ -1,10 +1,11 @@
+import { SETTING_COMMUNICATION_SECTION, SETTING_EDIT_SECTION, SETTING_PASSWORD_SECTION, SETTING_TEAM_SECTION } from "consts/consts";
 import { useState } from "react";
-import styles from "./Settings.module.scss";
-import Team from "./components/Team";
+
+import Communication from "./components/Communication";
 import EditProfile from "./components/EditProfile";
 import PasswordUpdate from "./components/PasswordUpdate";
-import Communication from "./components/Communication";
-import { SETTING_COMMUNICATION_SECTION, SETTING_EDIT_SECTION, SETTING_PASSWORD_SECTION, SETTING_TEAM_SECTION } from "consts/consts";
+import Team from "./components/Team";
+import styles from "./Settings.module.scss";
 
 const Settings = () => {
     const [menu, setMenu] = useState(SETTING_EDIT_SECTION);

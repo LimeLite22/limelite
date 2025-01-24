@@ -1,12 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Navigation, Pagination } from "swiper/modules";
-import { Autoplay } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 
 import {
   CheckBox,
@@ -17,15 +10,20 @@ import {
   SwiperFoto2,
   SwiperFoto3,
 } from "assets/images";
-
 import { NO, YES } from "consts/consts";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import type { Swiper as SwiperType } from "swiper";
+import { Navigation, Pagination } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
+import LearnMorePopUp from "./LearnMorePopUp";
 import {
   selectRequestInfo,
   updateDraftField,
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
-import LearnMorePopUp from "./LearnMorePopUp";
 import CustomFontSizeDropDown from "./ZoneSelector/ZoneSelector";
 
 const IsTravelRequired = () => {

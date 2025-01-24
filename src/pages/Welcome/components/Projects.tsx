@@ -1,6 +1,12 @@
+import {
+  NewRequestIcon,
+  QuestionIcon,
+  SettingsMenu,
+  User1Foto,
+} from "assets/images";
+import useWindowWidth from "hooks/useWindowWidth";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-
 import {
   A11y,
   Keyboard,
@@ -10,15 +16,6 @@ import {
   Scrollbar,
 } from "swiper/modules";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
-
-import {
-  NewRequestIcon,
-  QuestionIcon,
-  SettingsMenu,
-  User1Foto,
-} from "assets/images";
-
-import useWindowWidth from "hooks/useWindowWidth";
 
 import styles from "../Welcome.module.scss";
 

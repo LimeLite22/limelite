@@ -1,11 +1,10 @@
+import { NOTIFICATIONS } from "consts/consts";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-
-import { NOTIFICATIONS } from "consts/consts";
+import { TSelectedPages } from "types/types";
 
 import { selectUnreadNotificationsNumber } from "../../../redux/notifications/reducer";
 import styles from "../SideBar.module.scss";
-import { TSelectedPages } from "types/types";
 
 interface IProps {
   selectedPage: TSelectedPages;

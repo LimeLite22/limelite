@@ -1,5 +1,6 @@
 import { AddAccount, GapCheck, GapUnCheck, InvisiblePassword, VisiblePassword } from "assets/images";
 import { useEffect, useRef, useState } from "react";
+
 import styles from "./CreateProfile.module.scss";
 
 const CreateProfile = () => {

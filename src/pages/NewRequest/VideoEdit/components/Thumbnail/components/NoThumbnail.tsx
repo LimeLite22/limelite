@@ -1,8 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
 
 import { CheckBox, CheckBoxSelected } from "assets/images";
-
 import { DEFAULT, N0_THUMBNAIL } from "consts/consts";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,

@@ -1,27 +1,24 @@
-import { useEffect, useState } from "react";
-import { Calendar as ReactCalendar } from "react-calendar";
-import { createPortal } from "react-dom";
-import { Sheet } from "react-modal-sheet";
-import { useDispatch, useSelector } from "react-redux";
-
-import { format } from "date-fns";
+import "./Calendar.scss";
 
 import {
   BackCalendarArrow,
   CloseCalendar,
   ForwardCalendarArrow,
 } from "assets/images";
-
-import useWindowWidth from "hooks/useWindowWidth";
-
 import { DEFAULT } from "consts/consts";
+import { format } from "date-fns";
+import useWindowWidth from "hooks/useWindowWidth";
+import { ICalendarProps, ITileClassNameProps } from "interfaces/interfaces";
+import { useEffect, useState } from "react";
+import { Calendar as ReactCalendar } from "react-calendar";
+import { createPortal } from "react-dom";
+import { Sheet } from "react-modal-sheet";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,
   updateDraftField,
 } from "../../../../../redux/requests/reducer";
-import "./Calendar.scss";
-import { ICalendarProps, ITileClassNameProps } from "interfaces/interfaces";
 
 const Calendar = ({ onClose, isPreferredDate, isOpened }: ICalendarProps) => {
   const selectedRequest = useSelector(selectRequestInfo);

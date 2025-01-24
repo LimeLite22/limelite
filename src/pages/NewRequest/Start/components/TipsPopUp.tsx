@@ -1,7 +1,3 @@
-import { useState } from "react";
-import ReactDOM from "react-dom";
-import { Sheet } from "react-modal-sheet";
-
 import {
   ArrowBlue,
   ChatSupport,
@@ -10,8 +6,10 @@ import {
   Note,
   Valid,
 } from "assets/images";
-
 import useWindowWidth from "hooks/useWindowWidth";
+import { useState } from "react";
+import ReactDOM from "react-dom";
+import { Sheet } from "react-modal-sheet";
 
 import styles from "../../NewRequest.module.scss";
 

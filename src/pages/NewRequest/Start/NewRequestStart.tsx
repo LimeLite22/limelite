@@ -1,13 +1,9 @@
+import { GrayArrow } from "assets/images";
+import { optionsList } from "consts/consts";
+import { IRequest } from "interfaces/interfaces";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-
-import { IRequest } from "interfaces/interfaces";
-
-import { GrayArrow } from "assets/images";
-
 import { generateUniqueId } from "utils/generateId";
-
-import { optionsList } from "consts/consts";
 
 import { createDraft } from "../../../redux/requests/reducer";
 import styles from "../NewRequest.module.scss";

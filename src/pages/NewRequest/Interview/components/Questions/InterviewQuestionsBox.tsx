@@ -1,11 +1,10 @@
-import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
-
 import {
   DEFAULT,
   QUESTIONS_AUTHOR_CLIENT,
   QUESTIONS_AUTHOR_PROFESSIONAL,
 } from "consts/consts";
+import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
 import { selectRequestInfo } from "../../../../../redux/requests/reducer";
 import styles from "../../../NewRequest.module.scss";

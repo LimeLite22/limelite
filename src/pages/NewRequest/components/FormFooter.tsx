@@ -1,8 +1,3 @@
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-
-import { format } from "date-fns";
-
 import {
   ArrowBlue3,
   Basket,
@@ -11,10 +6,11 @@ import {
   LearnMore,
   LocationBlack,
 } from "assets/images";
-
-import { useCalculateFinalPrice } from "utils/priceCalculator";
-
 import { DEFAULT } from "consts/consts";
+import { format } from "date-fns";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { useCalculateFinalPrice } from "utils/priceCalculator";
 
 import { selectRequestInfo } from "../../../redux/requests/reducer";
 import styles from "../NewRequest.module.scss";

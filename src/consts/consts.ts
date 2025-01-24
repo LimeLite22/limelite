@@ -1,5 +1,3 @@
-import { IProjectTypeInfo, ITimeItem } from "interfaces/interfaces";
-import { generateUniqueId } from "utils/generateId";
 import {
   AnnouncementVideos,
   CompanyOverviewIcon,
@@ -25,7 +23,9 @@ import {
   Videography,
   WebsiteHeaderVideos,
 } from "assets/images";
+import { IProjectTypeInfo, ITimeItem } from "interfaces/interfaces";
 import { TOptionsList, TVideoDuration } from "types/types";
+import { generateUniqueId } from "utils/generateId";
 
 
 // sidebar consts

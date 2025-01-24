@@ -1,24 +1,22 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-
 import {
   ArrowBlue3,
   ArrowGray3,
   ArrowGray4,
   DetailsGreen,
 } from "assets/images";
-
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useCustomPadding } from "utils/customPadding";
 
 import { selectRequestInfo, selectRequestVoiceSettings, updateAddOnSelectionStatus } from "../../../redux/requests/reducer";
-import styles from "../NewRequest.module.scss";
-import FormFooter from "../components/FormFooter";
-import StepsNavigation from "../components/StepsNavigation";
-import AddOnBox from "./components/AddOnBox";
-import NextButton from "../components/NextButton";
-import { useCustomPadding } from "utils/customPadding";
 import BackButton from "../components/BackButton";
+import FormFooter from "../components/FormFooter";
+import NextButton from "../components/NextButton";
+import StepsNavigation from "../components/StepsNavigation";
+import styles from "../NewRequest.module.scss";
 import { ProjectType } from "../ProjectInfo/components";
+import AddOnBox from "./components/AddOnBox";
 
 const AddOns = () => {
   const voiceSettings = useSelector(selectRequestVoiceSettings);
@@ -31,7 +29,7 @@ const AddOns = () => {
   const navigate = useNavigate();
 
   const handleNextDisabled = () => {
-    let disabled = false;
+    const disabled = false;
 
     setIsDisabled(disabled);
   };

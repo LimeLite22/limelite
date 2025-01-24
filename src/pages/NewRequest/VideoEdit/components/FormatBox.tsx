@@ -1,11 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
-
 import {
   VIDEO_SQUARE,
   VIDEO_STANDARD,
   VIDEO_STORY,
   VIDEO_VERTICAL,
 } from "consts/consts";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,

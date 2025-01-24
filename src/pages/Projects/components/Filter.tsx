@@ -1,11 +1,12 @@
 import { ArrowGray, Filter, GapCheck, GapUnCheck } from "assets/images";
+import { CANCELED_REQUEST_STATUS, COMPLETE_REQUEST_STATUS, FILTER_REQUEST_TYPE, FILTER_REQUESTED_BY, FILTER_START, FILTER_STATUS, FILTER_VIDEO_TYPE, IN_EDITING_REQUEST_STATUS, ON_HOLD_REQUEST_STATUS, optionsList, projectTypes, REQUESTED_REQUEST_STATUS, SCHEDULED_REQUEST_STATUS } from "consts/consts";
 import { useState } from "react";
+import { TFilterMenu } from "types/types";
+import { statusColor } from "utils/statusColors";
 import { truncateString } from "utils/truncateString";
+
 import { TestUsers } from "../Projects";
 import styles from "../ProjectsPage.module.scss";
-import { CANCELED_REQUEST_STATUS, COMPLETE_REQUEST_STATUS, FILTER_START, FILTER_VIDEO_TYPE, FILTER_REQUEST_TYPE, FILTER_STATUS, FILTER_REQUESTED_BY, IN_EDITING_REQUEST_STATUS, ON_HOLD_REQUEST_STATUS, optionsList, projectTypes, REQUESTED_REQUEST_STATUS, SCHEDULED_REQUEST_STATUS } from "consts/consts";
-import { statusColor } from "utils/statusColors";
-import { TFilterMenu } from "types/types";
 const statusList = [COMPLETE_REQUEST_STATUS, IN_EDITING_REQUEST_STATUS, REQUESTED_REQUEST_STATUS, SCHEDULED_REQUEST_STATUS, ON_HOLD_REQUEST_STATUS, CANCELED_REQUEST_STATUS,];
 interface IProps {
     selectedVideoTypes: string[];

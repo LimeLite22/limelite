@@ -1,11 +1,11 @@
-import { useSelector } from "react-redux";
-import { selectSteps } from "../../../redux/requests/reducer";
-
-import { ADD_ONS_STEP, INTERVIEW_STEP, LOGISTICS_STEP, PROJECT_STEP, SCRIPT_STEP, VIDEO_EDIT_STEP, VOICEOVER_STEP, SUBMIT_STEP, FINAL_STEP } from "consts/consts";
-import { useLocation, useNavigate } from "react-router";
-import { useEffect, useState } from "react";
-import styles from "../NewRequest.module.scss";
 import { ArrowWhite } from "assets/images";
+import { ADD_ONS_STEP, FINAL_STEP,INTERVIEW_STEP, LOGISTICS_STEP, PROJECT_STEP, SCRIPT_STEP, SUBMIT_STEP, VIDEO_EDIT_STEP, VOICEOVER_STEP } from "consts/consts";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router";
+
+import { selectSteps } from "../../../redux/requests/reducer";
+import styles from "../NewRequest.module.scss";
 
 interface IProps {
     isDisabled: boolean

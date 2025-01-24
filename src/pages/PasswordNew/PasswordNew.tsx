@@ -1,6 +1,7 @@
 import { GapCheck, GapUnCheck, InvisiblePassword, VisiblePassword } from 'assets/images';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+
 import styles from './PasswordNew.module.scss';
 
 const PasswordNew = () => {

@@ -1,7 +1,6 @@
+import { CUSTOM_THUMBNAIL, DEFAULT } from "consts/consts";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-
-import { CUSTOM_THUMBNAIL, DEFAULT } from "consts/consts";
 
 import { selectRequestInfo } from "../../../../../redux/requests/reducer";
 import styles from "../../../NewRequest.module.scss";

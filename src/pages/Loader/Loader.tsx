@@ -1,7 +1,6 @@
+import { LoaderGif } from "assets/images";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-
-import { LoaderGif } from "assets/images";
 
 import styles from "./Loader.module.scss";
 

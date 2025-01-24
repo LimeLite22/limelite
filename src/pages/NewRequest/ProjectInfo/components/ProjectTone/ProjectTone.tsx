@@ -1,15 +1,14 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import "./ProjectTone.scss";
 
 import { GrayArrow } from "assets/images";
-
 import { projectTones } from "consts/consts";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,
   updateDraftField,
 } from "../../../../../redux/requests/reducer";
-import "./ProjectTone.scss";
 
 interface IProps {
   isError: boolean;

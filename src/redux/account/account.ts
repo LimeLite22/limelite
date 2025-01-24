@@ -1,7 +1,6 @@
-import { IRootState } from "redux/rootReducer";
-
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { NoUser, User1Foto } from "assets/images";
+import { IRootState } from "redux/rootReducer";
 
 
 const initialState: {
