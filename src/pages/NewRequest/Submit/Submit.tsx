@@ -73,8 +73,12 @@ const Submit = () => {
                     <div className={styles.nR_submitContainer_infoContainer_text}><p>Type:</p> {selectedRequest?.projectType.header}</div>
                     <div className={styles.nR_submitContainer_infoContainer_text}><p>Tone:</p> {selectedRequest?.projectTone}</div>
                     <div className={styles.nR_submitContainer_infoContainer_text}><p>Approach:</p> {selectedRequest?.approachList.map((approach) => approach).join(", ")}</div>
-                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Details</p> 
-                    <div className={styles.nR_submitContainer_overview} >Project overview</div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Details</p>
+                        Opening Scene:
+                        Visuals: Close-up shots of employees at work, a bustling office environment, and people collaborating.
+
+                        Narrator:
+                        "Welcome to Foundations of Excellence—a program dedicated to building the skills, values, and knowledge that drive our organization forward."
                     </div>
                 </div>
                 <div className={styles.nR_submitContainer_infoContainer}>
@@ -126,6 +130,172 @@ const Submit = () => {
                             </>
                         )}
                     </div>
+                </div>
+                <div className={styles.nR_submitContainer_infoContainer}>
+                    <div className={styles.nR_submitContainer_infoContainer_header}>Scripted Delivery (V1)
+                        <div className={styles.nR_submitContainer_infoContainer_header_edit}>
+                            <img src={EditIcon} alt='' />
+                            Edit</div>
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Script Status</p> Approved</div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Script:</p>
+                        Opening Scene:
+                        Visuals: Close-up shots of employees at work, a bustling office environment, and people collaborating.
+
+                        Narrator:
+                        "Welcome to Foundations of Excellence—a program dedicated to building the skills, values, and knowledge that drive our organization forward."
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Teleprompter:</p>
+                        No
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Script delivers:</p>
+                        John Doe, Managerm  Mike Smith
+                    </div>
+                </div>
+                <div className={styles.nR_submitContainer_infoContainer}>
+                    <div className={styles.nR_submitContainer_infoContainer_header}>Scripted Delivery (V2)
+                        <div className={styles.nR_submitContainer_infoContainer_header_edit}>
+                            <img src={EditIcon} alt='' />
+                            Edit</div>
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Professional scriptwriter</p></div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Subject matter expert</p>
+                        John Doe
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Teleprompter:</p>
+                        No
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Script delivers:</p>
+                        John Doe, Managerm  Mike Smith
+                    </div>
+                </div>
+                <div className={styles.nR_submitContainer_infoContainer}>
+                    <div className={styles.nR_submitContainer_infoContainer_header}>About Your Interview(s) (V1)
+                        <div className={styles.nR_submitContainer_infoContainer_header_edit}>
+                            <img src={EditIcon} alt='' />
+                            Edit</div>
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Questions Status:</p> Approved</div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Questions:</p>
+                        1) What is your favorite color? 2) What is your favorite animal? 3) What is your favorite food?</div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Questions Status:</p> Approved</div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Interviewees?:</p>
+                        John Doe, Managerm  Mike Smith
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Interview conduction:</p>
+                        On location
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Full name:</p>
+                        John Doe
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Phone:</p>
+                        123-456-7890
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Email:</p>
+                        4V5dX@example.com
+                    </div>
+                </div>
+                <div className={styles.nR_submitContainer_infoContainer}>
+                    <div className={styles.nR_submitContainer_infoContainer_header}>About Your Interview(s) (V2)
+                        <div className={styles.nR_submitContainer_infoContainer_header_edit}>
+                            <img src={EditIcon} alt='' />
+                            Edit</div>
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Questions Status:</p> Approved</div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Questions:</p>
+                        1) What is your favorite color? 2) What is your favorite animal? 3) What is your favorite food?</div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Questions Status:</p> Approved</div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Interviewees?:</p>
+                        John Doe, Managerm  Mike Smith
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Interview conduction:</p>
+                        Virtual
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Full name:</p>
+                        John Doe
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Phone:</p>
+                        123-456-7890
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Email:</p>
+                        4V5dX@example.com
+                    </div>
+                </div>
+                <div className={styles.nR_submitContainer_infoContainer}>
+                    <div className={styles.nR_submitContainer_infoContainer_header}>About Your Interview(s) (V3)
+                        <div className={styles.nR_submitContainer_infoContainer_header_edit}>
+                            <img src={EditIcon} alt='' />
+                            Edit</div>
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Questions Status:</p> Approved</div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Questions:</p>
+                        1) What is your favorite color? 2) What is your favorite animal? 3) What is your favorite food?</div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Questions Status:</p> Approved</div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Interviewees?:</p>
+                        John Doe, Managerm  Mike Smith
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Interview conduction:</p>
+                        Proffesional recording
+                    </div>
+                </div>
+                <div className={styles.nR_submitContainer_infoContainer}>
+                    <div className={styles.nR_submitContainer_infoContainer_header}>About Your Voiceover (V1)
+                        <div className={styles.nR_submitContainer_infoContainer_header_edit}>
+                            <img src={EditIcon} alt='' />
+                            Edit</div>
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Voice Track:</p>  Track-For-Interview.mp3</div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Script Status</p> Approved</div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Script</p> Opening Scene:
+                        Visuals: Close-up shots of employees at work, a bustling office environment, and people collaborating.
+
+                        Narrator:
+                        "Welcome to Foundations of Excellence—a program dedicated to building the skills, values, and knowledge that drive our organization forward."</div>
+                </div>
+                <div className={styles.nR_submitContainer_infoContainer}>
+                    <div className={styles.nR_submitContainer_infoContainer_header}>About Your Voiceover (V2)
+                        <div className={styles.nR_submitContainer_infoContainer_header_edit}>
+                            <img src={EditIcon} alt='' />
+                            Edit</div>
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Voice Track:</p> https://music.youtube.com</div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Script</p> A professional scriptwriter</div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Full name:</p>
+                        John Doe
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Phone:</p>
+                        123-456-7890
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Email:</p>
+                        4V5dX@example.com
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Background information:</p> A professional scriptwriter with a background in film and TV production. </div>
+                </div>
+
+                <div className={styles.nR_submitContainer_infoContainer}>
+                    <div className={styles.nR_submitContainer_infoContainer_header}>About Your Video Edit (V1)
+                        <div className={styles.nR_submitContainer_infoContainer_header_edit}>
+                            <img src={EditIcon} alt='' />
+                            Edit</div>
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Video format :</p>  Standart 16:9 </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Target duration :</p>  60 sec</div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Captions :</p> No </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Thumbnail:</p> Basic </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Additional/social formats:</p>No</div>
+                </div>
+                                <div className={styles.nR_submitContainer_infoContainer}>
+                    <div className={styles.nR_submitContainer_infoContainer_header}>About Your Video Edit (V2)
+                        <div className={styles.nR_submitContainer_infoContainer_header_edit}>
+                            <img src={EditIcon} alt='' />
+                            Edit</div>
+                    </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Video format :</p>  Standart 16:9 </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Target duration :</p>  60 sec</div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Captions :</p> No </div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Thumbnail:</p> Custom</div>
+                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Additional/social formats:</p>No</div>
+                    
                 </div>
                 <AddOnsContainer />
 
