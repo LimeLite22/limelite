@@ -69,7 +69,7 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
     >
       <div className={styles.sideBar_navItems}>
         <div className={styles.sideBar_navItemContainer}>
-          <Link to="/welcome" style={{ textDecoration: "none" }}>
+          <Link to="/welcome">
             <SideBarNavItem
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
@@ -86,7 +86,7 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
             onClick={handleToggleIsOpened}
           />
         </div>
-        <Link to="/new-request/start" style={{ textDecoration: "none" }}>
+        <Link to="/new-request/start">
           <SideBarNavItem
             selectedPage={selectedPage}
             setSelectedPage={setSelectedPage}
@@ -96,7 +96,7 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
             onClick={handleLinkClick}
           />
         </Link>
-        <Link to="/projects" style={{ textDecoration: "none" }}>
+        <Link to="/projects">
           <SideBarNavItem
             selectedPage={selectedPage}
             setSelectedPage={setSelectedPage}
@@ -106,7 +106,7 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
             onClick={handleLinkClick}
           />
         </Link>
-        <Link to="/learn/faqs" style={{ textDecoration: "none" }}>
+        <Link to="/learn/faqs" >
           <SideBarNavItem
             selectedPage={selectedPage}
             setSelectedPage={setSelectedPage}
@@ -116,7 +116,7 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
             onClick={handleLinkClick}
           />
         </Link>
-        <Link to="" style={{ textDecoration: "none" }}>
+        <Link to="" >
           <SideBarNavItem
             selectedPage={selectedPage}
             setSelectedPage={setSelectedPage}
@@ -126,7 +126,7 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
             onClick={handleLinkClick}
           />
         </Link>
-        <Link to="" style={{ textDecoration: "none" }}>
+        <Link to="">
           <SideBarNavItem
             selectedPage={selectedPage}
             setSelectedPage={setSelectedPage}
@@ -138,7 +138,7 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
         </Link>
         <div className={styles.sideBar_divider}></div>
 
-        <Link to="/notifications" style={{ textDecoration: "none" }}>
+        <Link to="/notifications" >
           <SideBarNavItem
             selectedPage={selectedPage}
             setSelectedPage={setSelectedPage}
@@ -148,7 +148,7 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
             onClick={handleLinkClick}
           />
         </Link>
-        <Link to="/settings" style={{ textDecoration: "none" }}>
+        <Link to="/settings" >
           <SideBarNavItem
             selectedPage={selectedPage}
             setSelectedPage={setSelectedPage}
@@ -158,7 +158,7 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
             onClick={handleLinkClick}
           />
         </Link>
-        <Link to="/support" style={{ textDecoration: "none" }}>
+        <Link to="/support">
           <SideBarNavItem
             selectedPage={selectedPage}
             setSelectedPage={setSelectedPage}

@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { Outlet } from "react-router-dom";
 import { useConfigureStepsList } from "utils/configureStepsList";
+import { useIsPathIncluded } from "utils/pathChecker";
 import { useCalculateFinalPrice } from "utils/priceCalculator";
 
 import styles from "./PageContainer.module.scss";
@@ -22,11 +23,9 @@ const PageContainer = () => {
   const { pathname } = location;
 
   // Utility function for path checks
-  const isPathIncluded = (paths: string[]): boolean =>
-    paths.some((path) => location.pathname.includes(path));
 
   // Route-specific flags
-  const isNewRequestSteps = isPathIncluded([
+  const isNewRequestSteps = useIsPathIncluded([
     "new-request/project",
     "new-request/logistics",
     "new-request/script",
@@ -37,11 +36,12 @@ const PageContainer = () => {
     "new-request/submit",
     "new-request/final",
   ]);
-  const isCreateProfilePage = isPathIncluded(["profile-create"]);
-  const isLoginPage = isPathIncluded(["login"]);
-  const isPasswordResetPage = isPathIncluded(["password-reset"]);
-  const hideFooterForMobile = isPathIncluded(["support"]);
-  const whiteBackgroundForMobile = isPathIncluded(["support"]);
+  const isLoginPages = useIsPathIncluded(["login", "password-reset", "password-new"]);
+  const isCreateProfilePage = useIsPathIncluded(["profile-create"]);
+  const isSupportPage = useIsPathIncluded(["support"]);
+
+  const notPrivatePage = !isLoginPages && !isCreateProfilePage && !isNewRequestSteps;
+  const whiteBackgroundForMobile = useIsPathIncluded(["support"]);
 
   // Hooks for additional functionalities
   useCalculateFinalPrice();
@@ -54,6 +54,7 @@ const PageContainer = () => {
   useEffect(() => {
     document?.getElementById("pageContainer")?.scrollTo(0, 34);
   }, [pathname]);
+
   useEffect(() => {
     if (!notFirst) {
       setTimeout(() => {
@@ -84,17 +85,19 @@ const PageContainer = () => {
         id="mainContent"
         className={`
           ${styles.pageContainer__content}
-
           `}
         style={{ overflow: isBurgerOpened ? "hidden" : "" }}
       >
-        {!isNewRequestSteps && !isCreateProfilePage && !isLoginPage && !isPasswordResetPage && (
-          <div className={styles.sideBarHideContainer}>
-            <SideBar
-              isOpened={isSideBarOpened}
-              setIsOpened={setIsSideBarOpened}
-            />
-          </div>
+        {notPrivatePage && (
+          <>
+            <div className={styles.sideBarHideContainer}>
+              <SideBar
+                isOpened={isSideBarOpened}
+                setIsOpened={setIsSideBarOpened}
+              />
+            </div>
+            <BottomMenu isOpened={isSideBarOpened} />
+          </>
         )}
         <div
           className={`
@@ -107,25 +110,13 @@ const PageContainer = () => {
             <Outlet />
           </div>
 
-          {((hideFooterForMobile && width > 768) || !hideFooterForMobile) && (
+          {((isSupportPage && width > 768) || !isSupportPage) && (
             <>
-              {!location.pathname.includes("new-request/logistics") &&
-                !location.pathname.includes("new-request/project") &&
-                !location.pathname.includes("new-request/script") &&
-                !location.pathname.includes("new-request/interview") &&
-                !location.pathname.includes("new-request/voiceover") &&
-                !location.pathname.includes("new-request/video-edit") &&
-                !location.pathname.includes("new-request/add-ons") &&
-                !location.pathname.includes("new-request/submit") &&
-                !location.pathname.includes("new-request/final") &&
-                !location.pathname.includes("profile-create") &&
-                !isPasswordResetPage &&
-                !isLoginPage
+              {notPrivatePage
                 && <Footer />}
             </>
           )}
         </div>
-        {!isNewRequestSteps && !isCreateProfilePage && !isLoginPage && !isPasswordResetPage && <BottomMenu isOpened={isSideBarOpened} />}
         {isBurgerOpened && (
           <div
             className={styles.mobileSideMenuContainer}

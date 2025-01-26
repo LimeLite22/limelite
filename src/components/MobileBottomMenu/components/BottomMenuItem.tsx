@@ -8,22 +8,16 @@ import styles from "../BottomMenu.module.scss";
 interface IProps  {
   isPageSelected: boolean;
   value: TSelectedMobPages;
-  setSelectedPage: (page: TSelectedMobPages) => void;
   isOpened: boolean;
   Icon: string;
 };
 const BottomMenuItem = ({
   isPageSelected,
-  setSelectedPage,
   isOpened,
   Icon,
   value,
 }: IProps) => {
   const unreadNotifications = useSelector(selectUnreadNotificationsNumber);
-
-  const handleSelectedPage = () => {
-    setSelectedPage(value);
-  }
   return (
     <button
       type="button"
@@ -32,7 +26,6 @@ const BottomMenuItem = ({
       }
     ${isOpened ? styles.sideBar_navItem_opened : ""}
     `}
-      onClick={handleSelectedPage}
     >
       {value === NOTIFICATIONS ? (
         <div className={styles.bottomMenu_item_notificationContainer}>
