@@ -70,14 +70,14 @@ const DateFilter = ({ selectedDateRange, setSelectedDateRange }: IProps) => {
                         detent="full-height"
                     >
                         <div
-                            className={styles.dateRange_closeArea}
+                            className={styles.dateRange_closeArea2}
                             onClick={(e) => {
                                 console.log('close');
                                 e.stopPropagation();
                                 setIsOpened(false)
                             }}
                         ></div>
-                        <Sheet.Container className={styles.dateRange_sheet}>
+                        <Sheet.Container className={styles.dateRange_sheet2}>
                             <Sheet.Content >
                                 <div className={styles.dateRange_line}></div>
                                 <div className={styles.dateRange_container}>

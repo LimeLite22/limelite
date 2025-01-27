@@ -317,7 +317,14 @@ const ProjectFilter = ({ selectedVideoTypes, selectedRequestTypes, selectedUsers
                         detent="full-height"
                     >
                         <div
-                            className={styles.dateRange_closeArea}
+                            className={`${styles.dateRange_closeArea}  
+                        ${(filterMenu === FILTER_REQUESTED_BY || filterMenu === FILTER_VIDEO_TYPE || filterMenu === FILTER_REQUEST_TYPE)
+                                ? styles.dateRange_medium_closeArea : ''}
+                        ${( filterMenu === FILTER_STATUS)
+                                ? styles.dateRange_high_closeArea : ''}
+                            
+                            
+                            `}
                             onClick={(e) => {
                                 console.log('close');
                                 e.stopPropagation();

@@ -832,6 +832,14 @@
         left: 0;
         pointer-events: auto !important;
     }
+    &_closeArea2 {
+        height: calc(100% - 290px);
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        pointer-events: auto !important;
+    }
     &_line {
         width: 80px;
         height: 5px;
@@ -848,6 +856,14 @@
         overflow: hidden !important;
         box-shadow: none !important;
         height: 290px !important;
+        pointer-events: auto !important;
+    }
+    &_sheet2 {
+        border-top-left-radius: 20px !important;
+        border-top-right-radius: 20px !important;
+        overflow: hidden !important;
+        box-shadow: none !important;
+        height: 310px !important;
         pointer-events: auto !important;
     }
     &_container {
