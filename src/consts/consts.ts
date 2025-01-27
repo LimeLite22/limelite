@@ -740,3 +740,11 @@ export const FILTER_REQUEST_TYPE = 'filter request type';
 export const FILTER_REQUESTED_BY = 'filter requested by';
 export const FILTER_STATUS = 'filter status';
 
+
+
+export const LAST_WEEK_RANGE = 'Last week';
+export const CURRENT_MONTH_RANGE = 'Current month';
+export const LAST_30_DAYS = 'Last 30 days';
+export const CURRENT_YEAR_RANGE = 'Current year';
+export const LAST_12_MONTHS = 'Last 12 months';
+

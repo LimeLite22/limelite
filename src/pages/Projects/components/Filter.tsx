@@ -1,6 +1,6 @@
-import { ArrowGray, Filter, GapCheck, GapUnCheck } from "assets/images";
+import { ArrowGray, CloseRed, Filter, GapCheck, GapUnCheck } from "assets/images";
 import { CANCELED_REQUEST_STATUS, COMPLETE_REQUEST_STATUS, FILTER_REQUEST_TYPE, FILTER_REQUESTED_BY, FILTER_START, FILTER_STATUS, FILTER_VIDEO_TYPE, IN_EDITING_REQUEST_STATUS, ON_HOLD_REQUEST_STATUS, optionsList, projectTypes, REQUESTED_REQUEST_STATUS, SCHEDULED_REQUEST_STATUS } from "consts/consts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TFilterMenu } from "types/types";
 import { statusColor } from "utils/statusColors";
 import { truncateString } from "utils/truncateString";
@@ -23,6 +23,7 @@ const ProjectFilter = ({ selectedVideoTypes, selectedRequestTypes, selectedUsers
 
     const [isOpened, setIsOpened] = useState(false);
     const [filterMenu, setFilterMenu] = useState<TFilterMenu>(FILTER_START);
+    const [filterCount, setFilterCount] = useState(0);
 
     const handleClearAll = () => {
         setSelectedVideoTypes([]);
@@ -35,6 +36,15 @@ const ProjectFilter = ({ selectedVideoTypes, selectedRequestTypes, selectedUsers
         setFilterMenu(FILTER_START);
     }
 
+    useEffect(() => {
+        let count = 0;
+        selectedVideoTypes.length > 0 && count++;
+        selectedRequestTypes.length > 0 && count++;
+        selectedUsers.length > 0 && count++;
+        selectedStatuses.length > 0 && count++;
+        setFilterCount(count)
+    }, [selectedVideoTypes, selectedRequestTypes, selectedUsers, selectedStatuses])
+
 
     return (
         <div className={styles.projectsPage_filter} onClick={() => setIsOpened(true)} tabIndex={0} onBlur={() => {
@@ -42,7 +52,17 @@ const ProjectFilter = ({ selectedVideoTypes, selectedRequestTypes, selectedUsers
             setFilterMenu(FILTER_START)
         }
 
-        } ><img src={Filter} alt="filter" /> Filter
+        } ><img src={Filter} alt="filter" /> Filter  {filterCount > 0 &&
+            <>
+                <div className={styles.projectsPage_filter_dot}></div>
+                <span className={styles.projectsPage_filter_count}>{filterCount} </span>
+                <img src={CloseRed} alt="filter" onClick={(e)=>{
+                    e.stopPropagation();
+                    setIsOpened(false);
+                    handleClearAll();
+                }} />
+            </>
+            }
             {isOpened &&
                 <div className={`
                 ${styles.projectsPage_filter_container} 

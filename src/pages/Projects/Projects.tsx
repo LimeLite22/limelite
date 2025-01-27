@@ -1,9 +1,14 @@
 import { LastDays, Search, Settings, SwiperFoto1, User1Foto, User2Foto, User3Foto, User4Foto } from "assets/images";
-import { CANCELED_REQUEST_STATUS, COMPLETE_REQUEST_STATUS, IN_EDITING_REQUEST_STATUS, ON_HOLD_REQUEST_STATUS, optionsList, projectTypes, REQUESTED_REQUEST_STATUS, SCHEDULED_REQUEST_STATUS } from "consts/consts";
+import { CANCELED_REQUEST_STATUS, COMPLETE_REQUEST_STATUS, DEFAULT, IN_EDITING_REQUEST_STATUS, ON_HOLD_REQUEST_STATUS, optionsList, projectTypes, REQUESTED_REQUEST_STATUS, SCHEDULED_REQUEST_STATUS } from "consts/consts";
 import { format } from "date-fns";
+import useWindowWidth from "hooks/useWindowWidth";
 import { useState } from "react";
+import { TRange } from "types/types";
+import { isDateInRange } from "utils/dateRange";
 import { generateUniqueId } from "utils/generateId";
 import { statusColor } from "utils/statusColors";
+import { truncateString } from "utils/truncateString";
+import DateFilter from "./components/DateFilter";
 
 import ProjectFilter from "./components/Filter";
 import styles from "./ProjectsPage.module.scss";
@@ -37,7 +42,7 @@ const projects = [
         type: projectTypes[0],
         option: optionsList[0],
         status: COMPLETE_REQUEST_STATUS,
-        date: new Date(),
+        date: new Date(2025,0,25),
 
     },
     {
@@ -47,7 +52,7 @@ const projects = [
         type: projectTypes[1],
         option: optionsList[1],
         status: IN_EDITING_REQUEST_STATUS,
-        date: new Date(),
+        date: new Date(2024,6,15),
 
     },
     {
@@ -57,7 +62,7 @@ const projects = [
         type: projectTypes[0],
         option: optionsList[2],
         status: SCHEDULED_REQUEST_STATUS,
-        date: new Date(),
+        date: new Date(2025,0,12),
 
     },
     {
@@ -67,7 +72,7 @@ const projects = [
         type: projectTypes[2],
         option: optionsList[3],
         status: REQUESTED_REQUEST_STATUS,
-        date: new Date(),
+        date: new Date(2025,0,15),
 
     },
     {
@@ -77,7 +82,7 @@ const projects = [
         type: projectTypes[3],
         option: optionsList[0],
         status: ON_HOLD_REQUEST_STATUS,
-        date: new Date(),
+        date: new Date(2024,9,0),
 
     },
     {
@@ -87,7 +92,7 @@ const projects = [
         type: projectTypes[4],
         option: optionsList[1],
         status: CANCELED_REQUEST_STATUS,
-        date: new Date(),
+        date: new Date(2024,4,22),
 
     },
     {
@@ -97,7 +102,7 @@ const projects = [
         type: projectTypes[5],
         option: optionsList[0],
         status: CANCELED_REQUEST_STATUS,
-        date: new Date(),
+        date: new Date(2024,4,22),
 
     }
     ,
@@ -108,7 +113,7 @@ const projects = [
         type: projectTypes[6],
         option: optionsList[2],
         status: CANCELED_REQUEST_STATUS,
-        date: new Date(),
+        date: new Date(2024,4,22),
 
     }
     ,
@@ -119,7 +124,7 @@ const projects = [
         type: projectTypes[7],
         option: optionsList[3],
         status: CANCELED_REQUEST_STATUS,
-        date: new Date(),
+        date: new Date(2024,4,22),
 
     }
 
@@ -134,19 +139,24 @@ const ProjectsPage = () => {
     const [selectedRequestTypes, setSelectedRequestTypes] = useState<string[]>([]);
     const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
     const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
-    const highlightText = (text: string, query: string) => {
-        if (!query) return text;
+    const [selectedDateRange, setSelectedDateRange] = useState<TRange>(DEFAULT);
+
+    const windowWidth = useWindowWidth(); // Adjust maxLength dynamically
+
+    const highlightText = (text: string, query: string, maxLength: number) => {
+        const truncatedText = truncateString(text, (windowWidth > 990 && windowWidth < 1250) ? maxLength : 40);
+        if (!query) return truncatedText;
 
         const highlightStyle = `
         color: var(--green-dark2);
         border-radius: 4px;
       `;
-      
-      const regex = new RegExp(`(${query})`, "gi");
-      return text.replace(
-        regex,
-        `<span style="${highlightStyle}">$1</span>`
-      );
+
+        const regex = new RegExp(`(${query})`, "gi");
+        return truncatedText.replace(
+            regex,
+            `<span style="${highlightStyle}">$1</span>`
+        );
     };
 
 
@@ -157,6 +167,7 @@ const ProjectsPage = () => {
                     <div className={styles.projectsPage_header_text_divider}></div>
                     {projects.length} requests</p></div>
             <div className={styles.projectsPage_content}>
+                <div className={styles.projectsPage_buttons}>
                 <ProjectFilter
                     selectedVideoTypes={selectedVideoTypes}
                     setSelectedVideoTypes={setSelectedVideoTypes}
@@ -167,7 +178,9 @@ const ProjectsPage = () => {
                     selectedStatuses={selectedStatuses}
                     setSelectedStatuses={setSelectedStatuses}
                 />
-                <div className={styles.projectsPage_lastDays}><img src={LastDays} alt="filter" /> Last 30 days</div>
+                <DateFilter selectedDateRange={selectedDateRange} setSelectedDateRange={setSelectedDateRange} />
+                </div>
+
                 <div className={styles.projectsPage_searchContainer}>
                     <input type="text" value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)} className={styles.projectsPage_search} placeholder="Search by name, type, etc..." />
@@ -186,12 +199,12 @@ const ProjectsPage = () => {
             </div>
             <div className={styles.projectsPage_projectHeader_info}>
                 <div className={styles.projectsPage_projectHeader_info_request}>
-                    Requested By
+                    {windowWidth > 1100 ? 'Requested By' : " Req. By"}
                 </div>
                 <div className={`${styles.projectsPage_projectHeader_info_item}`} style={{ justifyContent: 'center' }}>
                     Credit Usage
                 </div>
-                <div className={styles.projectsPage_projectHeader_info_item}>Requested date</div>
+                <div className={`${styles.projectsPage_projectHeader_info_item} ${styles.projectsPage_projectHeader_info_date}`}>Requested date</div>
                 <div className={styles.projectsPage_projectHeader_info_item}>
                     Status</div>
                 <div className={styles.projectsPage_projectHeader_info_settings}>
@@ -208,6 +221,7 @@ const ProjectsPage = () => {
                         let matchesUser = true;
                         let matchesStatus = true;
                         let matchesSearch = true;
+                        let matchesDate = true;
                         if (selectedVideoTypes.length > 0) {
                             matchesVideoType = selectedVideoTypes.includes(project.type.header);
                         }
@@ -229,12 +243,13 @@ const ProjectsPage = () => {
                                 || project.type.header.toLowerCase().includes(searchQuery.toLowerCase())
                                 || project.status.toLowerCase().includes(searchQuery.toLowerCase());
                         }
-                        return matchesVideoType && matchesRequestType && matchesUser && matchesStatus && matchesSearch;
+                        if (selectedDateRange !== DEFAULT) {
+                            matchesDate = isDateInRange(project.date, selectedDateRange)
+                        }
+                        return matchesVideoType && matchesRequestType && matchesUser && matchesStatus && matchesSearch && matchesDate;
 
                     }
                 ).map((project, index) => {
-                    const matchesQuery = [project.name, project.user.name, project.type.header, project.status]
-                        .some(field => field.toLowerCase().includes(searchQuery.toLowerCase()));
                     return <>
 
                         <div key={project.id} className={styles.projectsPage_project} onMouseEnter={() => {
@@ -251,20 +266,20 @@ const ProjectsPage = () => {
                                 <div className={styles.projectsPage_project_start_item} >
                                     <div className={styles.projectsPage_project_start_item_header}
                                         dangerouslySetInnerHTML={{
-                                            __html: highlightText(project.name, searchQuery),
+                                            __html: highlightText(project.name, searchQuery, 20),
                                         }}
                                     ></div>
                                     <div className={styles.projectsPage_project_start_item_option}>
-                                        <img src={project.type.img} alt='' />     {project.type.header}     /  <img src={project.option.img} alt='' />  
+                                        <img src={project.type.img} alt='' />   {truncateString(project.type.header, (windowWidth > 990 && windowWidth < 1250) ? 8 : 40)} /  <img src={project.option.img} alt='' />
                                         <div dangerouslySetInnerHTML={{
-                                            __html: highlightText(project.option.value, searchQuery),
+                                            __html: highlightText(project.option.value, searchQuery, 15),
                                         }}></div></div>
                                 </div>
                             </div>
                             <div className={styles.projectsPage_project_info}>
                                 <div className={styles.projectsPage_project_info_request}>
                                     <img src={project.user.img} alt="" /> <div dangerouslySetInnerHTML={{
-                                        __html: highlightText(project.user.name, searchQuery),
+                                        __html: highlightText(project.user.name, searchQuery, 12),
                                     }}
                                     ></div>
                                 </div>
@@ -273,11 +288,11 @@ const ProjectsPage = () => {
                                         {project.option?.credits}  Credit(s)
                                     </div>
                                 </div>
-                                <div className={styles.projectsPage_project_info_item}>{format(project.date, "dd/MM/yyyy")}</div>
-                                <div className={styles.projectsPage_project_info_item}>
+                                <div className={`${styles.projectsPage_project_info_item}  ${styles.projectsPage_project_info_date}`}>{format(project.date, "dd/MM/yyyy")}</div>
+                                <div className={`${styles.projectsPage_project_info_item} ${styles.projectsPage_project_info_statusContainer} `}>
                                     <div className={styles.projectsPage_project_info_status} style={{ backgroundColor: statusColor(project.status) }} ></div>
                                     <div dangerouslySetInnerHTML={{
-                                        __html: highlightText(project.status, searchQuery),
+                                        __html: highlightText(project.status, searchQuery, 15),
                                     }}
                                     ></div></div>
                                 <div className={styles.projectsPage_project_info_settings}>

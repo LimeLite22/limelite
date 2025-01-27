@@ -91,7 +91,7 @@ export interface TPerson {
   name: string;
   title: string;
 }
-export type TVideoDuration = "default" |  "≤ :15" | "≤ :30" | "≤ :60" | "≤ 1:30" | "≤ 2:00" | "≤ 2:30" | "≤ 3:00" | "> 3:00";
+export type TVideoDuration = "default" | "≤ :15" | "≤ :30" | "≤ :60" | "≤ 1:30" | "≤ 2:00" | "≤ 2:30" | "≤ 3:00" | "> 3:00";
 
 export type TOptionsList = TOption[];
 
@@ -103,8 +103,12 @@ export type TQuestionLocation = "default" | "questions on location" | "questions
 export type TVoiceAuthor = "default" | "client" | "professional";
 export type TThumbnail = "default" | "custom thumbnail" | "default thumbnail" | "no thumbnail";
 export type TRush = "rush time" | "standard time" | "default";
- export type TDraftFieldUpdate = {
+export type TDraftFieldUpdate = {
   path: string;
   value: unknown;
 };
+
+
+export type TRange = 'Last week' | 'Current month' | 'Last 30 days' | 'Current year' | 'Last 12 months' |
+  'default';
 
