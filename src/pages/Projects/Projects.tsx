@@ -144,7 +144,7 @@ const ProjectsPage = () => {
     const windowWidth = useWindowWidth(); // Adjust maxLength dynamically
 
     const highlightText = (text: string, query: string, maxLength: number) => {
-        const truncatedText = truncateString(text,(windowWidth > 990 && windowWidth < 1250) ? maxLength : 40);
+        const truncatedText = truncateString(text, (windowWidth > 990 && windowWidth < 1250) ? maxLength : 40);
         if (!query) return truncatedText;
 
         const highlightStyle = `
@@ -270,16 +270,19 @@ const ProjectsPage = () => {
                                         }}
                                     ></div>
                                     <div className={styles.projectsPage_project_start_item_option}>
-                                        <img src={project.type.img} alt='' />  {windowWidth > 790 && truncateString(project.type.header, (windowWidth > 990 && windowWidth < 1250) ? 8 : 40)} /  <img src={project.option.img} alt='' />
-                                        <div dangerouslySetInnerHTML={{
-                                            __html: highlightText(project.option.value, searchQuery, 15),
-                                        }}></div>
-                                        
+                                        <img src={project.type.img} alt='' />  {truncateString(project.type.header, (windowWidth > 990 && windowWidth < 1250) ? 8 : 40)} 
+                                        {windowWidth > 990 &&
+                                            <>/ <img src={project.option.img} alt='' />
+                                                <div dangerouslySetInnerHTML={{
+                                                    __html: highlightText(project.option.value, searchQuery, 15),
+                                                }}></div>
+                                            </>}
+
                                         <div className={`${styles.projectsPage_project_info_item} ${styles.mobOnly}`} >
-                                    <div className={`${styles.projectsPage_project_credit}`} >
-                                        {project.option?.credits}  Credit(s)
-                                    </div>
-                                </div></div>
+                                            <div className={`${styles.projectsPage_project_credit}`} >
+                                                {project.option?.credits}  Credit(s)
+                                            </div>
+                                        </div></div>
                                 </div>
                             </div>
                             <div className={styles.projectsPage_project_info}>
@@ -305,7 +308,7 @@ const ProjectsPage = () => {
                                     <img src={Settings} alt="" />
                                 </div>
                             </div>
-                            <img  className={styles.mobOnly} src={Settings} />
+                            <img className={styles.mobOnly} src={Settings} />
                         </div>
                         <div id={`${index}divider`} className={styles.projectsPage_projects_divider}></div>
                     </>

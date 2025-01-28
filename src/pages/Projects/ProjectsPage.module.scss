@@ -676,6 +676,7 @@
                     white-space: nowrap;
                     @media screen and (max-width: 990px) {
                         width:100%;
+                        white-space: wrap;
                     }
                     img {
                         width: 18px;
@@ -917,7 +918,6 @@
     display: none;
     @media screen and (max-width: 990px) {
         display: flex; 
-        flex:unset;
         margin-left: 10px;
     }
 }
