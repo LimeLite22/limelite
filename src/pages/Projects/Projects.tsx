@@ -42,7 +42,7 @@ const projects = [
         type: projectTypes[0],
         option: optionsList[0],
         status: COMPLETE_REQUEST_STATUS,
-        date: new Date(2025,0,25),
+        date: new Date(2025, 0, 25),
 
     },
     {
@@ -52,7 +52,7 @@ const projects = [
         type: projectTypes[1],
         option: optionsList[1],
         status: IN_EDITING_REQUEST_STATUS,
-        date: new Date(2024,6,15),
+        date: new Date(2024, 6, 15),
 
     },
     {
@@ -62,7 +62,7 @@ const projects = [
         type: projectTypes[0],
         option: optionsList[2],
         status: SCHEDULED_REQUEST_STATUS,
-        date: new Date(2025,0,12),
+        date: new Date(2025, 0, 12),
 
     },
     {
@@ -72,7 +72,7 @@ const projects = [
         type: projectTypes[2],
         option: optionsList[3],
         status: REQUESTED_REQUEST_STATUS,
-        date: new Date(2025,0,15),
+        date: new Date(2025, 0, 15),
 
     },
     {
@@ -82,7 +82,7 @@ const projects = [
         type: projectTypes[3],
         option: optionsList[0],
         status: ON_HOLD_REQUEST_STATUS,
-        date: new Date(2024,9,0),
+        date: new Date(2024, 9, 0),
 
     },
     {
@@ -92,7 +92,7 @@ const projects = [
         type: projectTypes[4],
         option: optionsList[1],
         status: CANCELED_REQUEST_STATUS,
-        date: new Date(2024,4,22),
+        date: new Date(2024, 4, 22),
 
     },
     {
@@ -102,7 +102,7 @@ const projects = [
         type: projectTypes[5],
         option: optionsList[0],
         status: CANCELED_REQUEST_STATUS,
-        date: new Date(2024,4,22),
+        date: new Date(2024, 4, 22),
 
     }
     ,
@@ -113,7 +113,7 @@ const projects = [
         type: projectTypes[6],
         option: optionsList[2],
         status: CANCELED_REQUEST_STATUS,
-        date: new Date(2024,4,22),
+        date: new Date(2024, 4, 22),
 
     }
     ,
@@ -124,7 +124,7 @@ const projects = [
         type: projectTypes[7],
         option: optionsList[3],
         status: CANCELED_REQUEST_STATUS,
-        date: new Date(2024,4,22),
+        date: new Date(2024, 4, 22),
 
     }
 
@@ -144,7 +144,7 @@ const ProjectsPage = () => {
     const windowWidth = useWindowWidth(); // Adjust maxLength dynamically
 
     const highlightText = (text: string, query: string, maxLength: number) => {
-        const truncatedText = truncateString(text, (windowWidth > 990 && windowWidth < 1250) ? maxLength : 40);
+        const truncatedText = truncateString(text,(windowWidth > 990 && windowWidth < 1250) ? maxLength : 40);
         if (!query) return truncatedText;
 
         const highlightStyle = `
@@ -168,17 +168,17 @@ const ProjectsPage = () => {
                     {projects.length} requests</p></div>
             <div className={styles.projectsPage_content}>
                 <div className={styles.projectsPage_buttons}>
-                <ProjectFilter
-                    selectedVideoTypes={selectedVideoTypes}
-                    setSelectedVideoTypes={setSelectedVideoTypes}
-                    selectedRequestTypes={selectedRequestTypes}
-                    setSelectedRequestTypes={setSelectedRequestTypes}
-                    selectedUsers={selectedUsers}
-                    setSelectedUsers={setSelectedUsers}
-                    selectedStatuses={selectedStatuses}
-                    setSelectedStatuses={setSelectedStatuses}
-                />
-                <DateFilter selectedDateRange={selectedDateRange} setSelectedDateRange={setSelectedDateRange} />
+                    <ProjectFilter
+                        selectedVideoTypes={selectedVideoTypes}
+                        setSelectedVideoTypes={setSelectedVideoTypes}
+                        selectedRequestTypes={selectedRequestTypes}
+                        setSelectedRequestTypes={setSelectedRequestTypes}
+                        selectedUsers={selectedUsers}
+                        setSelectedUsers={setSelectedUsers}
+                        selectedStatuses={selectedStatuses}
+                        setSelectedStatuses={setSelectedStatuses}
+                    />
+                    <DateFilter selectedDateRange={selectedDateRange} setSelectedDateRange={setSelectedDateRange} />
                 </div>
 
                 <div className={styles.projectsPage_searchContainer}>
@@ -270,10 +270,16 @@ const ProjectsPage = () => {
                                         }}
                                     ></div>
                                     <div className={styles.projectsPage_project_start_item_option}>
-                                        <img src={project.type.img} alt='' />   {truncateString(project.type.header, (windowWidth > 990 && windowWidth < 1250) ? 8 : 40)} /  <img src={project.option.img} alt='' />
+                                        <img src={project.type.img} alt='' />  {windowWidth > 790 && truncateString(project.type.header, (windowWidth > 990 && windowWidth < 1250) ? 8 : 40)} /  <img src={project.option.img} alt='' />
                                         <div dangerouslySetInnerHTML={{
                                             __html: highlightText(project.option.value, searchQuery, 15),
-                                        }}></div></div>
+                                        }}></div>
+                                        
+                                        <div className={`${styles.projectsPage_project_info_item} ${styles.mobOnly}`} >
+                                    <div className={`${styles.projectsPage_project_credit}`} >
+                                        {project.option?.credits}  Credit(s)
+                                    </div>
+                                </div></div>
                                 </div>
                             </div>
                             <div className={styles.projectsPage_project_info}>
@@ -299,6 +305,7 @@ const ProjectsPage = () => {
                                     <img src={Settings} alt="" />
                                 </div>
                             </div>
+                            <img  className={styles.mobOnly} src={Settings} />
                         </div>
                         <div id={`${index}divider`} className={styles.projectsPage_projects_divider}></div>
                     </>

@@ -9,6 +9,7 @@ import NextButton from "../components/NextButton"
 import StepsNavigation from "../components/StepsNavigation";
 import styles from "../NewRequest.module.scss";
 import AddOnsContainer from "./components/AddOnsContainer";
+import ProjectInfo from "./components/ProjectInfo";
 
 const Submit = () => {
     const selectedRequest = useSelector(selectRequestInfo);
@@ -51,36 +52,7 @@ const Submit = () => {
                     Your request will not be submitted until you click ‘Submit’. To make edits,
                     click ‘Go back’ or ‘Edit’ below.
                 </div>
-                <div className={styles.nR_submitContainer_infoContainer}>
-                    <div className={styles.nR_submitContainer_infoContainer_header}>Project information
-                        <div className={styles.nR_submitContainer_infoContainer_header_edit}>
-                            <img src={EditIcon} alt='' />
-                            Edit</div>
-                    </div>
-                    <div className={styles.nR_submitContainer_infoContainer_text}>
-                        <p>Requested type:</p> <span>{option?.value}  {option?.credits && (
-                            <div
-                                className={
-                                    `${styles.footer_container_typeContainer_text_title1_tag}
-                            `
-                                }
-                            >
-                                {option?.credits}{" "}
-                                {option?.credits > 1 ? "Credits" : "Credit"}{" "}
-                            </div>
-                        )}</span></div>
-                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Name:</p> {selectedRequest?.projectName}</div>
-                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Type:</p> {selectedRequest?.projectType.header}</div>
-                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Tone:</p> {selectedRequest?.projectTone}</div>
-                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Approach:</p> {selectedRequest?.approachList.map((approach) => approach).join(", ")}</div>
-                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Details</p>
-                        Opening Scene:
-                        Visuals: Close-up shots of employees at work, a bustling office environment, and people collaborating.
-
-                        Narrator:
-                        "Welcome to Foundations of Excellence—a program dedicated to building the skills, values, and knowledge that drive our organization forward."
-                    </div>
-                </div>
+                <ProjectInfo />
                 <div className={styles.nR_submitContainer_infoContainer}>
                     <div className={styles.nR_submitContainer_infoContainer_header}>Logistic
                         <div className={styles.nR_submitContainer_infoContainer_header_edit}>

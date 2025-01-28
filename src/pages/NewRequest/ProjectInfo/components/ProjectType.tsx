@@ -12,9 +12,10 @@ import styles from "../ProjectInfo.module.scss";
 interface IProps {
   isError: boolean;
   setIsError: React.Dispatch<React.SetStateAction<boolean>>;
+  isSubmitMode?: boolean;
 }
 
-const ProjectType: FC<IProps> = ({ isError, setIsError }) => {
+const ProjectType: FC<IProps> = ({ isError, setIsError, isSubmitMode }) => {
   const [isOpened, setOpened] = useState(false);
   const dispatch = useDispatch();
   const showError = isError && !isOpened;
@@ -23,7 +24,11 @@ const ProjectType: FC<IProps> = ({ isError, setIsError }) => {
   const projectType = selectedRequest?.projectType;
   return (
     <div
-      className={`${styles.typeDropdown} ${showError ? styles.typeDropdown_error : ""}`}
+      className={`
+      ${styles.typeDropdown} 
+      ${showError ? styles.typeDropdown_error : ""}
+      ${isSubmitMode ? styles.typeDropdown_submit : ""}
+       `}
       tabIndex={0}
       onBlur={() => {
         if (!projectType) {
@@ -32,12 +37,15 @@ const ProjectType: FC<IProps> = ({ isError, setIsError }) => {
         }
       }}
     >
-      <div className={styles.typeDropdown_header}>
+     {!isSubmitMode && <div className={styles.typeDropdown_header}>
         {" "}
         What type of project do you need?*
-      </div>
+      </div>}
       <div
-        className={`${styles.typeDropdown__selected} ${showError ? styles.typeDropdown__selected_error : ""}`}
+        className={`
+        ${styles.typeDropdown__selected}
+        ${isSubmitMode ? styles.typeDropdown_selected_submit : ""}
+         ${showError ? styles.typeDropdown__selected_error : ""}`}
         onClick={() => {
           setOpened(!isOpened);
         }}

@@ -13,9 +13,10 @@ import {
 interface IProps {
   isError: boolean;
   setIsError: React.Dispatch<React.SetStateAction<boolean>>;
+  isSubmitMode?: boolean;
 }
 
-const ToneSelector = ({ isError, setIsError }: IProps) => {
+const ToneSelector = ({ isError, setIsError, isSubmitMode }: IProps) => {
   const [isOpened, setOpened] = useState(false);
   const dispatch = useDispatch();
   const showError = isError && !isOpened;
@@ -23,7 +24,11 @@ const ToneSelector = ({ isError, setIsError }: IProps) => {
   const projectTone = selectedRequest?.projectTone;
   return (
     <div
-      className={`typeDropdown ${showError ? "typeDropdown_error" : ""}`}
+      className={`
+      typeDropdown 
+      ${showError ? "typeDropdown_error" : ""}
+      ${isSubmitMode ? "typeDropdown_submit" : ""}
+      `}
       tabIndex={0}
       onBlur={() => {
         if (!projectTone) {
@@ -32,12 +37,16 @@ const ToneSelector = ({ isError, setIsError }: IProps) => {
         }
       }}
     >
-      <div className="typeDropdown_header">
+      {!isSubmitMode && <div className="typeDropdown_header">
         {" "}
         What is the tone for this project?*
-      </div>
+      </div>}
       <div
-        className={`typeDropdown__selected ${showError ? "typeDropdown__selected_error" : ""}`}
+        className={`
+        typeDropdown__selected 
+        ${showError ? "typeDropdown__selected_error" : ""}
+        ${isSubmitMode ? "typeDropdown__selected_submit" : ""}
+        `}
         onClick={() => {
           setOpened(!isOpened);
         }}

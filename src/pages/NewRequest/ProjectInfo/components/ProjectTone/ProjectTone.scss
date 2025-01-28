@@ -18,6 +18,10 @@
   &_error {
     min-height: 80px;
   }
+  &_submit{
+    min-height:35px;
+    height: 35px;
+  }
   &_header {
     font-family: Poppins;
     font-size: 16px;
@@ -74,6 +78,11 @@
     text-align: left;
     text-align: left;
     color: var(--gray-dark);
+    &_submit{
+      min-height: 35px;
+      height:35px;
+      border-radius: 8px;
+    }
     &_error {
       border: 1px solid var(--red-dark);
     }
@@ -120,11 +129,14 @@
     }
     &_collapseIcon {
       position: absolute;
-      top: 10px;
       right: 10px;
+      top:50%;
+      transform: translateY(-50%);
       transition-duration: 0.3s;
+      transform-origin: center;
       &_opened {
-        transform: rotate(180deg);
+        transform-origin: center;
+        transform: rotate(180deg) translateY(50%);
       }
     }
   }
