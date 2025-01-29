@@ -51,7 +51,10 @@ const ProjectType: FC<IProps> = ({ isError, setIsError, isSubmitMode }) => {
         }}
       >
         <div
-          className={`${styles.typeDropdown__selected_name}`}
+          className={`
+          ${styles.typeDropdown__selected_name}
+          ${ isSubmitMode ? styles.typeDropdown__selected_name_submit : ''}
+          `}
           style={{ borderColor: isError ? "var(--red-dark)" : "" }}
         >
           { projectType?.header !== '' ? projectType?.header : <span>Select your project type...</span>}{" "}

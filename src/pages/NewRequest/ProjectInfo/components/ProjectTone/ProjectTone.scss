@@ -89,6 +89,15 @@
     &_name {
       width: 100%;
       text-align: left;
+      &_submit {
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19.2px;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+      }
       span {
         font-family: Inter;
         font-size: 14px;
@@ -168,6 +177,15 @@
       text-align: left;
       padding: 0px 10px;
       font-family: Inter;
+      &_submit {
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19.2px;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+      }
     }
     &__itemArrow {
       position: absolute;

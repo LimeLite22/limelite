@@ -16,7 +16,7 @@
   &_submitContainer {
     width: 656px;
     height: 100%;
-    padding: 68px 24px 48px 24px;
+    padding: 68px 0px 48px 0px;
     display: flex;
     position: relative;
     display: flex;
@@ -108,6 +108,48 @@
             background-color: var(--gray-light);
           }
         }
+        &_decline {
+          padding: 6px 18px 6px 12px;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-family: Poppins;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 17.6px;
+          letter-spacing: 0.02em;
+          text-align: left;
+          color: var(--red-dark);
+          border-radius: 10px;
+          cursor:pointer;
+          &:hover {
+            cursor: pointer;
+            background-color: var(--gray-light);
+          }
+        }
+        &_save{
+          padding: 6px 18px 6px 12px;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-family: Poppins;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 17.6px;
+          letter-spacing: 0.02em;
+          text-align: left;
+          color: var(--green-dark);
+          border-radius: 10px;
+          cursor:pointer;
+          &:hover {
+            cursor: pointer;
+            background-color: var(--gray-light);
+          }
+        }
+        &_buttons {
+          display: flex;
+          gap: 2px;
+        }
       }
       &_text {
         display: flex;
@@ -125,8 +167,8 @@
         }
 
         p {
-          min-width: 170px;
-          width: 170px;
+          min-width: 180px;
+          width: 180px;
           font-family: Inter;
           font-size: 16px;
           font-weight: 400;
@@ -219,6 +261,14 @@
         border: 1px solid var(--gray-light7);
         outline: none;
         border-radius: 8px;
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19.2px;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+
         &:focus {
           border: 1px solid var(--black);
         }
@@ -231,6 +281,13 @@
         outline: none;
         border-radius: 8px;
         resize: none;
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19.2px;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
         &:focus {
           border: 1px solid var(--black);
         }

@@ -1,4 +1,4 @@
-import { LastDays, Search, Settings, SwiperFoto1, User1Foto, User2Foto, User3Foto, User4Foto } from "assets/images";
+import { Search, Settings, SwiperFoto1, User1Foto, User2Foto, User3Foto, User4Foto } from "assets/images";
 import { CANCELED_REQUEST_STATUS, COMPLETE_REQUEST_STATUS, DEFAULT, IN_EDITING_REQUEST_STATUS, ON_HOLD_REQUEST_STATUS, optionsList, projectTypes, REQUESTED_REQUEST_STATUS, SCHEDULED_REQUEST_STATUS } from "consts/consts";
 import { format } from "date-fns";
 import useWindowWidth from "hooks/useWindowWidth";
@@ -132,16 +132,14 @@ const projects = [
 
 const ProjectsPage = () => {
 
-    const [search, setSearch] = useState<string>("");
-
     const [searchQuery, setSearchQuery] = useState("");
-    const [selectedVideoTypes, setSelectedVideoTypes] = useState<string[]>([]);
-    const [selectedRequestTypes, setSelectedRequestTypes] = useState<string[]>([]);
-    const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
-    const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
-    const [selectedDateRange, setSelectedDateRange] = useState<TRange>(DEFAULT);
+    const [videoTypes, setVideoTypes] = useState<string[]>([]);
+    const [requestTypes, setRequestTypes] = useState<string[]>([]);
+    const [users, setUsers] = useState<string[]>([]);
+    const [statuses, setStatuses] = useState<string[]>([]);
+    const [dateRange, setDateRange] = useState<TRange>(DEFAULT);
 
-    const windowWidth = useWindowWidth(); // Adjust maxLength dynamically
+    const windowWidth = useWindowWidth();
 
     const highlightText = (text: string, query: string, maxLength: number) => {
         const truncatedText = truncateString(text, (windowWidth > 990 && windowWidth < 1250) ? maxLength : 40);
@@ -158,6 +156,37 @@ const ProjectsPage = () => {
             `<span style="${highlightStyle}">$1</span>`
         );
     };
+    const handleMouseEnter = (index: number) => {
+        const divider = document.getElementById(`${index - 1}divider`);
+        divider?.style.setProperty('background-color', 'transparent');
+    }
+    const handleMouseLeave = (index: number) => {
+        const divider = document.getElementById(`${index - 1}divider`);
+        divider?.style.setProperty('background-color', 'var(--gray-light7)');
+    }
+
+    const filteredProjects = projects.filter((project) => {
+        const {
+            type: { header: projectType },
+            option: { value: projectOption },
+            user: { name: userName },
+            status: projectStatus,
+            name: projectName,
+            date: projectDate,
+        } = project;
+
+        const matchesVideoType = videoTypes.length === 0 || videoTypes.includes(projectType);
+        const matchesRequestType = requestTypes.length === 0 || requestTypes.includes(projectOption);
+        const matchesUser = users.length === 0 || users.includes(userName);
+        const matchesStatus = statuses.length === 0 || statuses.includes(projectStatus);
+        const matchesSearch = searchQuery.length === 0 ||
+            [projectName, userName, projectType, projectStatus].some((field) =>
+                field.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+        const matchesDate = dateRange === DEFAULT || isDateInRange(projectDate, dateRange);
+
+        return matchesVideoType && matchesRequestType && matchesUser && matchesStatus && matchesSearch && matchesDate;
+    });
 
 
     return <div className={styles.projectsPage}>
@@ -169,22 +198,22 @@ const ProjectsPage = () => {
             <div className={styles.projectsPage_content}>
                 <div className={styles.projectsPage_buttons}>
                     <ProjectFilter
-                        selectedVideoTypes={selectedVideoTypes}
-                        setSelectedVideoTypes={setSelectedVideoTypes}
-                        selectedRequestTypes={selectedRequestTypes}
-                        setSelectedRequestTypes={setSelectedRequestTypes}
-                        selectedUsers={selectedUsers}
-                        setSelectedUsers={setSelectedUsers}
-                        selectedStatuses={selectedStatuses}
-                        setSelectedStatuses={setSelectedStatuses}
+                        videoTypes={videoTypes}
+                        setVideoTypes={setVideoTypes}
+                        requestTypes={requestTypes}
+                        setRequestTypes={setRequestTypes}
+                        users={users}
+                        setUsers={setUsers}
+                        statuses={statuses}
+                        setStatuses={setStatuses}
                     />
-                    <DateFilter selectedDateRange={selectedDateRange} setSelectedDateRange={setSelectedDateRange} />
+                    <DateFilter dateRange={dateRange} setDateRange={setDateRange} />
                 </div>
 
                 <div className={styles.projectsPage_searchContainer}>
                     <input type="text" value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)} className={styles.projectsPage_search} placeholder="Search by name, type, etc..." />
-                    <div style={{ opacity: search.length > 0 ? 1 : '' }} className={styles.projectsPage_searchIcon}>
+                    <div style={{ opacity: searchQuery.length > 0 ? 1 : '' }} className={styles.projectsPage_searchIcon}>
                         <img src={Search} alt="close" />
                     </div>
                 </div>
@@ -212,65 +241,27 @@ const ProjectsPage = () => {
             </div>
         </div>
         <div className={styles.projectsPage_projects}>
-            {
-
-                projects.filter(
-                    (project) => {
-                        let matchesVideoType = true;
-                        let matchesRequestType = true;
-                        let matchesUser = true;
-                        let matchesStatus = true;
-                        let matchesSearch = true;
-                        let matchesDate = true;
-                        if (selectedVideoTypes.length > 0) {
-                            matchesVideoType = selectedVideoTypes.includes(project.type.header);
-                        }
-
-                        if (selectedRequestTypes.length > 0) {
-                            matchesRequestType = selectedRequestTypes.includes(project.option.value);
-                        }
-
-                        if (selectedUsers.length > 0) {
-                            matchesUser = selectedUsers.includes(project.user.name);
-                        }
-
-                        if (selectedStatuses.length > 0) {
-                            matchesStatus = selectedStatuses.includes(project.status);
-                        }
-                        if (searchQuery.length > 0) {
-                            matchesSearch = project.name.toLowerCase().includes(searchQuery.toLowerCase())
-                                || project.user.name.toLowerCase().includes(searchQuery.toLowerCase())
-                                || project.type.header.toLowerCase().includes(searchQuery.toLowerCase())
-                                || project.status.toLowerCase().includes(searchQuery.toLowerCase());
-                        }
-                        if (selectedDateRange !== DEFAULT) {
-                            matchesDate = isDateInRange(project.date, selectedDateRange)
-                        }
-                        return matchesVideoType && matchesRequestType && matchesUser && matchesStatus && matchesSearch && matchesDate;
-
-                    }
-                ).map((project, index) => {
+            {filteredProjects
+                .map((project, index) => {
                     return <>
-
-                        <div key={project.id} className={styles.projectsPage_project} onMouseEnter={() => {
-                            const divider = document.getElementById(`${index - 1}divider`);
-                            divider?.style.setProperty('background-color', 'transparent');
-                        }}
+                        <div key={project.id} className={styles.project}
+                            onMouseEnter={() => {
+                                handleMouseEnter(index)
+                            }}
                             onMouseLeave={() => {
-                                const divider = document.getElementById(`${index - 1}divider`);
-                                divider?.style.setProperty('background-color', 'var(--gray-light7)');
+                                handleMouseLeave(index)
                             }}
                         >
-                            <div className={styles.projectsPage_project_start}>
-                                <img className={styles.projectsPage_project_img} src={SwiperFoto1} alt="" />
-                                <div className={styles.projectsPage_project_start_item} >
-                                    <div className={styles.projectsPage_project_start_item_header}
+                            <div className={styles.project_start}>
+                                <img className={styles.project_img} src={SwiperFoto1} alt="" />
+                                <div className={styles.project_start_item} >
+                                    <div className={styles.project_start_item_header}
                                         dangerouslySetInnerHTML={{
                                             __html: highlightText(project.name, searchQuery, 20),
                                         }}
                                     ></div>
-                                    <div className={styles.projectsPage_project_start_item_option}>
-                                        <img src={project.type.img} alt='' />  {truncateString(project.type.header, (windowWidth > 990 && windowWidth < 1250) ? 8 : 40)} 
+                                    <div className={styles.project_start_item_option}>
+                                        <img src={project.type.img} alt='' />  {truncateString(project.type.header, (windowWidth > 990 && windowWidth < 1250) ? 8 : 40)}
                                         {windowWidth > 990 &&
                                             <>/ <img src={project.option.img} alt='' />
                                                 <div dangerouslySetInnerHTML={{
@@ -278,33 +269,33 @@ const ProjectsPage = () => {
                                                 }}></div>
                                             </>}
 
-                                        <div className={`${styles.projectsPage_project_info_item} ${styles.mobOnly}`} >
-                                            <div className={`${styles.projectsPage_project_credit}`} >
+                                        <div className={`${styles.project_info_item} ${styles.mobOnly}`} >
+                                            <div className={`${styles.project_credit}`} >
                                                 {project.option?.credits}  Credit(s)
                                             </div>
                                         </div></div>
                                 </div>
                             </div>
-                            <div className={styles.projectsPage_project_info}>
-                                <div className={styles.projectsPage_project_info_request}>
+                            <div className={styles.project_info}>
+                                <div className={styles.project_info_request}>
                                     <img src={project.user.img} alt="" /> <div dangerouslySetInnerHTML={{
                                         __html: highlightText(project.user.name, searchQuery, 12),
                                     }}
                                     ></div>
                                 </div>
-                                <div className={`${styles.projectsPage_project_info_item}`} style={{ justifyContent: 'center' }}>
-                                    <div className={`${styles.projectsPage_project_credit}`} >
+                                <div className={`${styles.project_info_item}`} style={{ justifyContent: 'center' }}>
+                                    <div className={`${styles.project_credit}`} >
                                         {project.option?.credits}  Credit(s)
                                     </div>
                                 </div>
-                                <div className={`${styles.projectsPage_project_info_item}  ${styles.projectsPage_project_info_date}`}>{format(project.date, "dd/MM/yyyy")}</div>
-                                <div className={`${styles.projectsPage_project_info_item} ${styles.projectsPage_project_info_statusContainer} `}>
-                                    <div className={styles.projectsPage_project_info_status} style={{ backgroundColor: statusColor(project.status) }} ></div>
+                                <div className={`${styles.project_info_item}  ${styles.project_info_date}`}>{format(project.date, "dd/MM/yyyy")}</div>
+                                <div className={`${styles.project_info_item} ${styles.project_info_statusContainer} `}>
+                                    <div className={styles.project_info_status} style={{ backgroundColor: statusColor(project.status) }} ></div>
                                     <div dangerouslySetInnerHTML={{
                                         __html: highlightText(project.status, searchQuery, 15),
                                     }}
                                     ></div></div>
-                                <div className={styles.projectsPage_project_info_settings}>
+                                <div className={styles.project_info_settings}>
                                     <img src={Settings} alt="" />
                                 </div>
                             </div>

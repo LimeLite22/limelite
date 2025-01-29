@@ -52,7 +52,7 @@ const ToneSelector = ({ isError, setIsError, isSubmitMode }: IProps) => {
         }}
       >
         <div
-          className="typeDropdown__selected_name"
+          className={`typeDropdown__selected_name ${isSubmitMode ? "typeDropdown__item_name_submit" : ""}`}
           style={{ borderColor: isError ? "var(--red-dark)" : "" }}
         >
           {projectTone || <span>Select your project type...</span>}{" "}
@@ -90,7 +90,7 @@ const ToneSelector = ({ isError, setIsError, isSubmitMode }: IProps) => {
                 setOpened(false);
               }}
             >
-              <div className="typeDropdown__item_name">{option}</div>
+              <div className={`typeDropdown__item_name`}>{option}</div>
             </div>
           ))}{" "}
         </div>
