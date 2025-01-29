@@ -1,4 +1,4 @@
-import "./ProjectTone.scss";
+import styles from "../ProjectInfo.module.scss";
 
 import { GrayArrow } from "assets/images";
 import { projectTones } from "consts/consts";
@@ -8,26 +8,29 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectRequestInfo,
   updateDraftField,
-} from "../../../../../redux/requests/reducer";
+} from "../../../../redux/requests/reducer";
+import { is } from "immutable";
 
 interface IProps {
   isError: boolean;
   setIsError: React.Dispatch<React.SetStateAction<boolean>>;
   isSubmitMode?: boolean;
+  onChange?: ( value: string) => void;
 }
 
-const ToneSelector = ({ isError, setIsError, isSubmitMode }: IProps) => {
+const ToneSelector = ({ isError, setIsError, isSubmitMode, onChange }: IProps) => {
   const [isOpened, setOpened] = useState(false);
   const dispatch = useDispatch();
   const showError = isError && !isOpened;
   const selectedRequest = useSelector(selectRequestInfo);
   const projectTone = selectedRequest?.projectTone;
+  const [currentTone, setCurrentTone] = useState(projectTone);
   return (
     <div
       className={`
-      typeDropdown 
-      ${showError ? "typeDropdown_error" : ""}
-      ${isSubmitMode ? "typeDropdown_submit" : ""}
+      ${styles.toneDropdown}
+      ${showError ? styles.toneDropdown_error : ""}
+      ${isSubmitMode ? styles.toneDropdown_submit : ""}
       `}
       tabIndex={0}
       onBlur={() => {
@@ -37,60 +40,70 @@ const ToneSelector = ({ isError, setIsError, isSubmitMode }: IProps) => {
         }
       }}
     >
-      {!isSubmitMode && <div className="typeDropdown_header">
+      {!isSubmitMode && <div className={styles.toneDropdown_header}>
         {" "}
         What is the tone for this project?*
       </div>}
       <div
         className={`
-        typeDropdown__selected 
-        ${showError ? "typeDropdown__selected_error" : ""}
-        ${isSubmitMode ? "typeDropdown__selected_submit" : ""}
+         ${styles.toneDropdown__selected} 
+        ${showError ? styles.toneDropdown__selected_error : ""}
+        ${isSubmitMode ? styles.toneDropdown__selected_submit : ""}
         `}
         onClick={() => {
           setOpened(!isOpened);
         }}
       >
         <div
-          className={`typeDropdown__selected_name ${isSubmitMode ? "typeDropdown__item_name_submit" : ""}`}
+          className={`
+          ${styles.toneDropdown__selected_name}
+          ${isSubmitMode ? styles.toneDropdown__item_name_submit : ""}`}
           style={{ borderColor: isError ? "var(--red-dark)" : "" }}
         >
-          {projectTone || <span>Select your project type...</span>}{" "}
+          {isSubmitMode ? currentTone : projectTone || <span>Select your project type...</span>}{" "}
         </div>
         {isError && !isOpened && (
-          <div className="typeDropdown__selected_errorMessage">
+          <div className={styles.toneDropdown__selected_errorMessage}>
             Please fill out all required fields to submit the form
           </div>
         )}
         <img
-          className={`typeDropdown__selected_collapseIcon ${isOpened ? "typeDropdown__selected_collapseIcon_opened" : ""}`}
+          className={`
+            ${styles.toneDropdown__selected_collapseIcon} 
+            ${isOpened ? styles.toneDropdown__selected_collapseIcon_opened : ""}`}
           src={GrayArrow}
           alt="collapse"
         />
       </div>
 
       {isOpened && (
-        <div className="typeDropdown__itemsContainer">
+        <div className={styles.toneDropdown__itemsContainer}>
           {projectTones.map((option, index) => (
             <div
               style={{
                 borderTopLeftRadius: index === 0 ? "4px" : "",
                 borderTopRightRadius: index === 0 ? "4px" : "",
               }}
-              className="typeDropdown__item"
+              className={styles.toneDropdown__item}
               key={index}
               onClick={() => {
-                dispatch(
-                  updateDraftField({
-                    path: "projectTone",
-                    value: option,
-                  }),
-                );
+                if (!isSubmitMode) {
+                  dispatch(
+                    updateDraftField({
+                      path: "projectTone",
+                      value: option,
+                    }),
+                  );
+                } else {
+                  onChange && onChange(option);
+                  setCurrentTone(option);
+                }
+
                 setIsError(false);
                 setOpened(false);
               }}
             >
-              <div className={`typeDropdown__item_name`}>{option}</div>
+              <div className={styles.toneDropdown__item_name}>{option}</div>
             </div>
           ))}{" "}
         </div>

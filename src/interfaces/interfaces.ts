@@ -83,6 +83,7 @@ export interface IRequest {
   projectType: IProjectTypeInfo;
   projectTone: TProjectTone | string;
   approachList: TApproachValue[];
+  details: string;
   travel: TTravel;
   location: ILocation;
   preferredDate: {

@@ -145,6 +145,15 @@
             cursor: pointer;
             background-color: var(--gray-light);
           }
+          &_notReady{
+              opacity: 0.5;
+              cursor: not-allowed;
+              &:hover {
+                cursor: not-allowed;
+                background-color: transparent;
+              }
+          }
+
         }
         &_buttons {
           display: flex;

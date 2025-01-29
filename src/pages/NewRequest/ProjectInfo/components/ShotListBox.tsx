@@ -1,103 +1,30 @@
-// import {
-//   CenterAlignedText,
-//   FileImage,
-//   ItalicFont,
-//   LeftAlignedText,
-//   Link,
-//   OrderedList,
-//   RightAlignedText,
-//   UnderLinedFont,
-//   UnorderedList,
-// } from "assets/images";
 import { useState } from "react";
-
-// import { Editor } from "react-draft-wysiwyg";
-// import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { useDispatch } from "react-redux";
+import { updateDraftField } from "../../../../redux/requests/reducer";
 import styles from "../ProjectInfo.module.scss";
 
 const ShotList = () => {
   const [text, setText] = useState<string>("");
+  const dispatch = useDispatch();
+  const handleUpdateField = (path: string, value: string) => {
+    dispatch(
+      updateDraftField({
+        path,
+        value,
+      }),
+    );
+  };
   return (
     <div>
       <div className={styles.nR_shotList_header}>Project overview / Details*</div>
-      {/* <div className={styles.nR_shotList_editorContainer}>
-        <Editor
-          editorState={editorState}
-          toolbarClassName="editor-toolbar2"
-          wrapperClassName="editor-wrapper"
-          editorClassName="editor"
-          toolbar={{
-            options: ["inline", "list", "link", "image"],
-            inline: {
-              inDropdown: false,
-              className: undefined,
-              component: undefined,
-              dropdownClassName: undefined,
-              options: ["bold", "italic", "underline"],
-              italic: { icon: ItalicFont, className: undefined },
-              underline: {
-                icon: UnderLinedFont,
-                className: styles.nR_shotList_iconDivider,
-              },
-            },
-            link: {
-              options: ["link"],
-              showOpenOptionOnHover: false,
-              link: { icon: Link, className: undefined },
-            },
-            textAlign: {
-              inDropdown: false,
-              className: undefined,
-              component: undefined,
-              dropdownClassName: undefined,
-              options: ["left", "center", "right"],
-              left: { icon: LeftAlignedText, className: undefined },
-              center: { icon: CenterAlignedText, className: undefined },
-              right: {
-                icon: RightAlignedText,
-                className: styles.nR_shotList_iconDivider,
-              },
-            },
-            list: {
-              options: ["ordered", "unordered"],
-              unordered: {
-                icon: UnorderedList,
-                className: undefined,
-              },
-              ordered: {
-                icon: OrderedList,
-                className: styles.nR_shotList_iconDivider,
-              },
-            },
-            image: {
-              className: undefined,
-              component: undefined,
-              popupClassName: undefined,
-              urlEnabled: true,
-              uploadEnabled: true,
-              alignmentEnabled: true,
-              uploadCallback: undefined,
-              previewImage: false,
-              icon: FileImage,
-              inputAccept: "image/gif,image/jpeg,image/jpg,image/png",
-              alt: { present: true, mandatory: true },
-              defaultSize: {
-                height: "auto",
-                width: "auto",
-              },
-            },
-          }}
-          onEditorStateChange={handleEditorStateChange}
-          toolbarCustomButtons={[]}
-          spellCheck
-          // stripPastedStyles
-        />
-      </div> */}
       <textarea
         className={styles.nR_shotList_textArea}
         placeholder="Add a brief overview of the project here..."
         value={text}
-        onChange={(e) => setText(e.target.value)}
+        onChange={(e) => {
+          handleUpdateField("details", e.target.value);
+          setText(e.target.value)
+        }}
       />
     </div>
   );

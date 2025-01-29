@@ -1,4 +1,4 @@
-import { createSlice,type PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { DEFAULT, optionsList } from "consts/consts";
 import { IAdditionalVideoFormat, IRequestState } from "interfaces/interfaces";
 import set from "lodash/set";
@@ -89,7 +89,7 @@ const initialState: IRequestState = {
       },
       projectTone: "",
       approachList: [],
-
+      details: '',
       travel: {
         selection: null,
         zoneCode: {
@@ -196,7 +196,7 @@ const initialState: IRequestState = {
       targetAudience: "",
       projectType: {
         id: generateUniqueId(),
-        img:'',
+        img: '',
         header: "",
         subHeader: ``,
         description: ``,
@@ -205,6 +205,7 @@ const initialState: IRequestState = {
         ]
       },
       projectTone: "",
+      details: '',
       approachList: [],
 
       travel: {
@@ -321,7 +322,7 @@ const requestReducer = createSlice({
         targetAudience: "",
         projectType: {
           id: generateUniqueId(),
-          img:'',
+          img: '',
           header: "",
           subHeader: ``,
           description: ``,
@@ -331,6 +332,7 @@ const requestReducer = createSlice({
         },
         projectTone: "",
         approachList: [],
+        details: '',
         travel: {
           selection: null,
           zoneCode: {

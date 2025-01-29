@@ -1,5 +1,6 @@
 import { GrayArrow } from "assets/images";
 import { projectTypes } from "consts/consts";
+import { IProjectTypeInfo } from "interfaces/interfaces";
 import { type FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -13,15 +14,17 @@ interface IProps {
   isError: boolean;
   setIsError: React.Dispatch<React.SetStateAction<boolean>>;
   isSubmitMode?: boolean;
+  onChange?: (value: IProjectTypeInfo) => void;
 }
 
-const ProjectType: FC<IProps> = ({ isError, setIsError, isSubmitMode }) => {
+const ProjectType: FC<IProps> = ({ isError, setIsError, isSubmitMode, onChange }) => {
   const [isOpened, setOpened] = useState(false);
   const dispatch = useDispatch();
   const showError = isError && !isOpened;
 
   const selectedRequest = useSelector(selectRequestInfo);
   const projectType = selectedRequest?.projectType;
+  const [currentType, setCurrentType] = useState(projectType);
   return (
     <div
       className={`
@@ -37,14 +40,14 @@ const ProjectType: FC<IProps> = ({ isError, setIsError, isSubmitMode }) => {
         }
       }}
     >
-     {!isSubmitMode && <div className={styles.typeDropdown_header}>
+      {!isSubmitMode && <div className={styles.typeDropdown_header}>
         {" "}
         What type of project do you need?*
       </div>}
       <div
         className={`
         ${styles.typeDropdown__selected}
-        ${isSubmitMode ? styles.typeDropdown_selected_submit : ""}
+        ${isSubmitMode ? styles.typeDropdown__selected_submit : ""}
          ${showError ? styles.typeDropdown__selected_error : ""}`}
         onClick={() => {
           setOpened(!isOpened);
@@ -53,11 +56,11 @@ const ProjectType: FC<IProps> = ({ isError, setIsError, isSubmitMode }) => {
         <div
           className={`
           ${styles.typeDropdown__selected_name}
-          ${ isSubmitMode ? styles.typeDropdown__selected_name_submit : ''}
+          ${isSubmitMode ? styles.typeDropdown__selected_name_submit : ''}
           `}
           style={{ borderColor: isError ? "var(--red-dark)" : "" }}
         >
-          { projectType?.header !== '' ? projectType?.header : <span>Select your project type...</span>}{" "}
+          {isSubmitMode ? currentType?.header : projectType?.header !== '' ? projectType?.header : <span>Select your project type...</span>}{" "}
         </div>
         {isError && !isOpened && (
           <div className={`${styles.typeDropdown__selected_errorMessage}`}>
@@ -84,12 +87,18 @@ const ProjectType: FC<IProps> = ({ isError, setIsError, isSubmitMode }) => {
               className={styles.typeDropdown__item}
               key={index}
               onClick={() => {
-                dispatch(
-                  updateDraftField({
-                    path: "projectType",
-                    value: option,
-                  }),
-                );
+                if (isSubmitMode) {
+                  setCurrentType(option);
+                  onChange && onChange(option);
+                } else {
+                  dispatch(
+                    updateDraftField({
+                      path: "projectType",
+                      value: option,
+                    }),
+                  );
+                }
+
                 setIsError(false);
                 setOpened(false);
               }}
