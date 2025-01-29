@@ -1,5 +1,5 @@
 
-import { CloseRed, EditIcon, Success2, User1Foto } from "assets/images";
+import { ArrowBlue, ArrowBlue3, CloseRed, EditIcon, Success2, User1Foto } from "assets/images";
 import { ProjectTone, ProjectType } from "pages/NewRequest/ProjectInfo/components";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,9 +7,6 @@ import { selectRequestInfo, updateDraftField } from "../../../../redux/requests/
 import styles from "../../NewRequest.module.scss";
 const ProjectInfo = () => {
     const selectedRequest = useSelector(selectRequestInfo);
-    const option = selectedRequest?.option;
-    const [isEdit, setIsEdit] = useState(false);
-    const [isReady, setIsReady] = useState(false);
     const dispatch = useDispatch();
     const defaultState = {
         name: selectedRequest?.projectName,
@@ -18,6 +15,13 @@ const ProjectInfo = () => {
         audience: selectedRequest?.targetAudience,
         details: selectedRequest?.details
     }
+    const option = selectedRequest?.option;
+    const [isEdit, setIsEdit] = useState(false);
+    const [isReady, setIsReady] = useState(false);
+    const [current, setCurrent] = useState(defaultState);
+    const [isDetailsExpanded, setIsDetailsExpanded] = useState(false);
+    const isDetailTextBig = selectedRequest?.details && selectedRequest?.details?.length > 200;
+
     const readyToSave = () => {
         let ready = true;
         if (current.name !== selectedRequest?.projectName
@@ -37,7 +41,6 @@ const ProjectInfo = () => {
         }
         setIsReady(ready);
     }
-    const [current, setCurrent] = useState(defaultState);
     const handleOnEdit = () => {
         setIsEdit(true);
     }
@@ -80,8 +83,7 @@ const ProjectInfo = () => {
     }
     useEffect(() => {
         readyToSave();
-    }
-        , [current])
+    }, [current])
 
     return (
         <div className={styles.nR_submitContainer_infoContainer}>
@@ -152,18 +154,47 @@ const ProjectInfo = () => {
                         }}
                         isSubmitMode /> : selectedRequest?.projectTone}</div>
             <div className={styles.nR_submitContainer_infoContainer_text}><p>Approach:</p> {selectedRequest?.approachList.map((approach) => approach).join(", ") || "Voiceover, Scripted Delivery"}</div>
-            <div className={styles.nR_submitContainer_infoContainer_text}><p style={{ height: isEdit ? "200px" : "auto" }}>Details</p>
+            <div className={styles.nR_submitContainer_infoContainer_text}>
+                <p className={`
+                ${styles.nR_submitContainer_infoContainer_detailsHeader}
+                ${isDetailTextBig ? styles.nR_submitContainer_infoContainer_detailsHeader_big : ''}
+                ${isDetailsExpanded ? styles.nR_submitContainer_infoContainer_detailsHeader_expanded : ''}
+                `}>Details</p>
                 {isEdit ?
                     <textarea className={styles.nR_submitContainer_infoContainer_textarea}
                         onChange={(e) => setCurrent({ ...current, details: e.target.value })}
                         value={current.details} /> :
                     <div>
-                        {selectedRequest?.details}
+                        <div className={`
+                    ${styles.nR_submitContainer_infoContainer_details} 
+                    ${isDetailsExpanded ? styles.nR_submitContainer_infoContainer_details_expanded : ''}`}
+                        >
+                            {selectedRequest?.details}
+                        </div>
+                        {isDetailTextBig &&
+                            <>
+                                <div className={`
+                         ${styles.nR_submitContainer_infoContainer_details_shadow}
+                         ${isDetailsExpanded ? styles.nR_submitContainer_infoContainer_details_shadow_expanded : ''}
+                         `}></div>
+                                <div
+                                    className={`
+                            ${styles.nR_submitContainer_infoContainer_details_showAll}
+                            ${isDetailsExpanded ? styles.nR_submitContainer_infoContainer_details_showAll_expanded : ''}
+                                `
+                                    }
+                                    onClick={() => setIsDetailsExpanded(!isDetailsExpanded)}
+                                >
+                                    <>{isDetailsExpanded ? "Show less" : "Show all text"}<img src={ArrowBlue3} alt='' /></>
+
+                                </div>
+                            </>
+                        }
                     </div>
                 }
 
             </div>
-        </div>
+        </div >
     )
 }
 

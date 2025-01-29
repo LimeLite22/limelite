@@ -121,13 +121,13 @@
           text-align: left;
           color: var(--red-dark);
           border-radius: 10px;
-          cursor:pointer;
+          cursor: pointer;
           &:hover {
             cursor: pointer;
             background-color: var(--gray-light);
           }
         }
-        &_save{
+        &_save {
           padding: 6px 18px 6px 12px;
           display: flex;
           align-items: center;
@@ -140,20 +140,19 @@
           text-align: left;
           color: var(--green-dark);
           border-radius: 10px;
-          cursor:pointer;
+          cursor: pointer;
           &:hover {
             cursor: pointer;
             background-color: var(--gray-light);
           }
-          &_notReady{
-              opacity: 0.5;
+          &_notReady {
+            opacity: 0.5;
+            cursor: not-allowed;
+            &:hover {
               cursor: not-allowed;
-              &:hover {
-                cursor: not-allowed;
-                background-color: transparent;
-              }
+              background-color: transparent;
+            }
           }
-
         }
         &_buttons {
           display: flex;
@@ -174,7 +173,6 @@
         &_time {
           font-size: 14px;
         }
-
         p {
           min-width: 180px;
           width: 180px;
@@ -194,6 +192,61 @@
           text-align: left;
           display: flex;
           align-items: center;
+        }
+      }
+      &_detailsHeader {
+        transition-duration: 0.3s;
+        height: 60px;
+        &_big {
+          height: 94px;
+        }
+        &_expanded {
+          height: 228px;
+        }
+      }
+      &_details {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 60px;
+        transition-duration: 0.3s;
+        &_expanded {
+          height: 194px;
+          overflow: scroll;
+        }
+        &_shadow {
+          background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 69.44%);
+          width: 100%;
+          height: 45px;
+          position: absolute;
+          left: 0;
+          bottom: -20px;
+          transition-duration: 0.3s;
+          &_expanded {
+            opacity: 0;
+          }
+        }
+        &_showAll {
+          font-family: Inter;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 16.8px;
+          text-align: left;
+          color: var(--blue-dark);
+          margin-top: 10px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          img {
+            transition-duration: 0.3s;
+            transform: rotate(90deg);
+          }
+          &_expanded {
+            img {
+              transform: rotate(270deg);
+            }
+          }
         }
       }
       &_priceItem {

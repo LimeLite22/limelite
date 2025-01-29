@@ -89,7 +89,10 @@ const initialState: IRequestState = {
       },
       projectTone: "",
       approachList: [],
-      details: '',
+      details:
+        `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. 
+      Integer vel metus ut libero fermentum gravida. Aenean sit amet sapien nec purus 
+      cursus faucibus at vel elit`,
       travel: {
         selection: null,
         zoneCode: {
