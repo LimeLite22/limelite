@@ -74,6 +74,7 @@ export interface ICalendarProps {
   onClose: () => void;
   isPreferredDate: boolean;
   isOpened: boolean;
+  onChange?: ( date: Date) => void;
 }
 export interface IRequest {
   id: string;

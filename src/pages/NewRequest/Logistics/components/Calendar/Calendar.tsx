@@ -20,7 +20,7 @@ import {
   updateDraftField,
 } from "../../../../../redux/requests/reducer";
 
-const Calendar = ({ onClose, isPreferredDate, isOpened }: ICalendarProps) => {
+const Calendar = ({ onClose, isPreferredDate, isOpened, onChange }: ICalendarProps) => {
   const selectedRequest = useSelector(selectRequestInfo);
   const preferredDate = selectedRequest?.preferredDate;
   const alternateDate = selectedRequest?.alternateDate;
@@ -35,24 +35,24 @@ const Calendar = ({ onClose, isPreferredDate, isOpened }: ICalendarProps) => {
     const prevButton = document.querySelector(
       ".react-calendar__navigation__prev-button",
     );
-    if (prevButton) {
-      prevButton.innerHTML = `<img
-                                src=${BackCalendarArrow}
-                                class="popUp_content_close"
-                                alt="Close"
-                              />`;
-    }
-  }, [isOpened]);
-  useEffect(() => {
-    const prevButton = document.querySelector(
+    const nextButton = document.querySelector(
       ".react-calendar__navigation__next-button",
     );
     if (prevButton) {
-      prevButton.innerHTML = `<img
-                                src=${ForwardCalendarArrow}
-                                class="popUp_content_close"
-                                alt="Close"
-                              />`;
+      prevButton.innerHTML = 
+      `<img
+        src=${BackCalendarArrow}
+        class="popUp_content_close"
+        alt="Close"
+        />`;
+    }
+    if (nextButton) {
+      nextButton.innerHTML = 
+      `<img
+       src=${ForwardCalendarArrow}
+       class="popUp_content_close"
+       alt="Close"
+       s />`;
     }
   }, [isOpened]);
   useEffect(() => {
@@ -125,11 +125,16 @@ const Calendar = ({ onClose, isPreferredDate, isOpened }: ICalendarProps) => {
       showCalendarError(2000);
       return;
     }
-    if (isPreferredDate) {
-      handleUpdateField("preferredDate.date", currentDate as Date);
-    } else {
-      handleUpdateField("alternateDate.date", currentDate as Date);
+    if(onChange){
+      onChange(currentDate as Date);
+    }else{
+      if (isPreferredDate) {
+        handleUpdateField("preferredDate.date", currentDate as Date);
+      } else {
+        handleUpdateField("alternateDate.date", currentDate as Date);
+      }
     }
+ 
     onClose();
   };
   const currentAddOn = () => {

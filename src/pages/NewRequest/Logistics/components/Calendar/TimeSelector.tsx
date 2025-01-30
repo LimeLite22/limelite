@@ -12,18 +12,22 @@ interface IProps {
   time: TTimeValue;
   selectTime: (time: TTimeValue) => void;
   isError: boolean;
+  isSubmit?: boolean;
 }
 
-const TimeSelector = ({ time, selectTime, isError }: IProps) => {
+const TimeSelector = ({ time, selectTime, isError, isSubmit }: IProps) => {
   const [isOpened, setIsOpened] = useState(false);
   return (
     <div
-      className={"popUp_content_selectionBox_timeContainer"}
+      className={`popUp_content_selectionBox_timeContainer
+      `}
       tabIndex={0}
       onBlur={() => setIsOpened(false)}
     >
       <div
-        className={"popUp_content_selectionBox_timeContainer_time"}
+        className={`popUp_content_selectionBox_timeContainer_time
+        ${isSubmit ? "popUp_content_selectionBox_timeContainer_time_submit" : ""}
+        `}
         style={{
           color: isError
             ? "var(--red)"

@@ -1,43 +1,13 @@
-import { Edit, EditIcon } from "assets/images";
-import { DEFAULT } from "consts/consts";
-import { format } from "date-fns";
-import { useSelector } from "react-redux";
-
-import { selectRequestInfo } from "../../../redux/requests/reducer";
+import { EditIcon } from "assets/images";
 import BackButton from "../components/BackButton";
 import NextButton from "../components/NextButton"
 import StepsNavigation from "../components/StepsNavigation";
 import styles from "../NewRequest.module.scss";
 import AddOnsContainer from "./components/AddOnsContainer";
+import LogisticInfo from "./components/Logistic";
 import ProjectInfo from "./components/ProjectInfo";
 
 const Submit = () => {
-    const selectedRequest = useSelector(selectRequestInfo);
-    const option = selectedRequest?.option;
-    const isAlternate = selectedRequest?.isAlternate;
-    const preferredDate = selectedRequest?.preferredDate;
-    const alternateDate = selectedRequest?.alternateDate;
-    const street = selectedRequest?.location.street;
-    const city = selectedRequest?.location.city;
-    const zip = selectedRequest?.location.zip;
-    const calculateEndTime = (
-        hour: number | undefined,
-        period: string | undefined,
-    ): { hour: number; period: string } => {
-        if (!hour || !period) return { hour: 0, period: "AM" };
-        let adjustedHour = hour + 3;
-        let adjustedPeriod = period;
-
-        if (adjustedHour >= 12) {
-            if (adjustedHour > 12) adjustedHour -= 12;
-            adjustedPeriod = period === "AM" ? "PM" : "AM";
-        }
-
-        return { hour: adjustedHour, period: adjustedPeriod };
-    };
-    const endTime =
-        preferredDate?.time !== DEFAULT &&
-        calculateEndTime(preferredDate?.time?.hour, preferredDate?.time?.type);
     return (
         <>
             <StepsNavigation />
@@ -53,56 +23,7 @@ const Submit = () => {
                     click ‘Go back’ or ‘Edit’ below.
                 </div>
                 <ProjectInfo />
-                <div className={styles.nR_submitContainer_infoContainer}>
-                    <div className={styles.nR_submitContainer_infoContainer_header}>Logistic
-                        <div className={styles.nR_submitContainer_infoContainer_header_edit}>
-                            <img src={EditIcon} alt='' />
-                            Edit</div>
-                    </div>
-                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Address:</p> {street || "1234 Elmwood Avenue,"} {city || "Anytown,"} {zip || "12345"}</div>
-                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Preferred date:</p>{preferredDate?.date !== DEFAULT
-                        ? format(preferredDate?.date as Date, "E, dd MMM, yyyy")
-                        : "Mon, November 22, 2024"}
-                        {' '}
-                        {preferredDate?.time !== DEFAULT && endTime ? (
-                            <>
-                                <span style={{ marginLeft: "12px" }}>{" "}from{" "}</span>
-                                <div className={styles.nR_submitContainer_infoContainer_text_time}> {preferredDate?.time.hour}:00</div>
-                                <span>{" "}to{" "}</span>
-
-                                <div className={styles.nR_submitContainer_infoContainer_text_time}>    {endTime.hour}:00 {endTime.period} </div>
-
-                            </>
-                        ) : (
-                            <>
-                                <span style={{ marginLeft: "12px" }}>{" "}from{" "}</span>
-                                <div className={styles.nR_submitContainer_infoContainer_text_time}>00:00</div>
-                                <span>{" "}to{" "}</span>
-                                <div className={styles.nR_submitContainer_infoContainer_text_time}>00:00</div>
-                            </>
-                        )}
-                    </div>
-                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Alternative date:</p>
-                        {isAlternate ? format(alternateDate?.date as Date, "E, dd MMM, yyyy") : "Mon, 22 Nov, 2024"}
-                        {' '}
-                        {alternateDate?.time !== DEFAULT && endTime ? (
-                            <>
-                                <span style={{ marginLeft: "12px" }}>{" "}from{" "}</span>
-                                <div className={styles.nR_submitContainer_infoContainer_text_time} >{alternateDate?.time.hour}:00 </div>
-                                <span>{" "}to{" "}</span>
-                                <div className={styles.nR_submitContainer_infoContainer_text_time} >{endTime.hour}:00 {endTime.period}</div>
-
-                            </>
-                        ) : (
-                            <>
-                                <span style={{ marginLeft: "12px" }}>{" "}from{" "}</span>
-                                <div className={styles.nR_submitContainer_infoContainer_text_time} >00:00</div>
-                                <span>{" "}to{" "}</span>
-                                <div className={styles.nR_submitContainer_infoContainer_text_time} >00:00</div>
-                            </>
-                        )}
-                    </div>
-                </div>
+                <LogisticInfo />
                 <div className={styles.nR_submitContainer_infoContainer}>
                     <div className={styles.nR_submitContainer_infoContainer_header}>Scripted Delivery (V1)
                         <div className={styles.nR_submitContainer_infoContainer_header_edit}>
@@ -256,7 +177,7 @@ const Submit = () => {
                     <div className={styles.nR_submitContainer_infoContainer_text}><p>Thumbnail:</p> Basic </div>
                     <div className={styles.nR_submitContainer_infoContainer_text}><p>Additional/social formats:</p>No</div>
                 </div>
-                                <div className={styles.nR_submitContainer_infoContainer}>
+                <div className={styles.nR_submitContainer_infoContainer}>
                     <div className={styles.nR_submitContainer_infoContainer_header}>About Your Video Edit (V2)
                         <div className={styles.nR_submitContainer_infoContainer_header_edit}>
                             <img src={EditIcon} alt='' />
@@ -267,7 +188,7 @@ const Submit = () => {
                     <div className={styles.nR_submitContainer_infoContainer_text}><p>Captions :</p> No </div>
                     <div className={styles.nR_submitContainer_infoContainer_text}><p>Thumbnail:</p> Custom</div>
                     <div className={styles.nR_submitContainer_infoContainer_text}><p>Additional/social formats:</p>No</div>
-                    
+
                 </div>
                 <AddOnsContainer />
 

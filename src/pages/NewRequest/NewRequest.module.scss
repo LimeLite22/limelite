@@ -169,6 +169,7 @@
         text-align: left;
         color: var(--black);
         margin-bottom: 12px;
+        position: relative;
 
         &_time {
           font-size: 14px;
@@ -187,7 +188,7 @@
         span {
           font-family: Inter;
           font-size: 16px;
-          font-weight: 600;
+          font-weight: 500;
           line-height: 19.2px;
           text-align: left;
           display: flex;
@@ -246,6 +247,36 @@
             img {
               transform: rotate(270deg);
             }
+          }
+        }
+      }
+      &_date {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        &_item {
+          position: relative;
+          width: 100%;
+          border-radius: 6px;
+          height: 44px;
+          border: 1px solid var(--gray-light7);
+          font-family: Inter;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 19.2px;
+          text-align: left;
+          display: flex;
+          align-items: center;
+          padding-left: 12px;
+          color: var(--black);
+          cursor: pointer;
+          img {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
           }
         }
       }
@@ -3466,6 +3497,19 @@
       align-items: center;
       padding-left: 10px;
       font-size: 14px;
+      gap: 3px;
+      span {
+        text-align: left;
+        color: var(--gray-dark3);
+        font-weight: 500;
+        font-size: 14px;
+      }
+      div {
+        text-align: left;
+        color: var(--gray-dark3);
+        font-weight: 500;
+        font-size: 14px;
+      }
       img {
         width: 18px;
         height: 18px;

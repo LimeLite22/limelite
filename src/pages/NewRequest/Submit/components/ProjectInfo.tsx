@@ -79,6 +79,7 @@ const ProjectInfo = () => {
                 value: current.details,
             }),
         )
+        setCurrent(defaultState);
         setIsEdit(false);
     }
     useEffect(() => {

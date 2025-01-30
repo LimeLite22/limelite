@@ -102,11 +102,11 @@ const initialState: IRequestState = {
       },
       location: {
         type: DEFAULT,
-        street: "",
-        company: "",
-        city: "",
-        state: "",
-        zip: "",
+        company: "ABC Company",
+        street: "123 Main Street",
+        city: "City",
+        state: "State",
+        zip: "12345",
       },
       preferredDate: {
         date: new Date("2025-01-18"),
