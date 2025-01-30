@@ -1,4 +1,4 @@
-import { IScriptWriter, TApproachValue, TCalendarType, TLocation, TOption, TPerson, TProjectTone, TQuestionAuthor, TQuestionLocation, TRush,TStep, TThumbnail, TTimeValue, TTravel, TValue, TVideo, TVideoDuration, TVoiceAuthor } from "types/types";
+import {TScriptWriter, TApproachValue, TCalendarType, TLocation, TOption, TPerson, TProjectTone, TQuestionAuthor, TQuestionLocation, TRush,TStep, TThumbnail, TTimeValue, TTravel, TValue, TVideo, TVideoDuration, TVoiceAuthor, TTextStatus } from "types/types";
 
 export interface ILocation {
   type: TLocation;
@@ -97,7 +97,8 @@ export interface IRequest {
     time: TTimeValue;
   };
   scriptSettings: {
-    scriptWriter: IScriptWriter;
+    scriptWriter: TScriptWriter;
+    scriptStatus: TTextStatus;
     name: string;
     phone: number | "";
     email: string;
@@ -110,7 +111,7 @@ export interface IRequest {
   voiceTrackSettings: {
     trackAuthor: TVoiceAuthor;
     track: File | 'default';
-    scriptAuthor: IScriptWriter;
+    scriptAuthor: TScriptWriter;
     scriptAuthorProfSettings: {
       subject: string;
       phone: number | "";

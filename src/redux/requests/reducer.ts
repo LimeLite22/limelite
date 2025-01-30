@@ -119,6 +119,7 @@ const initialState: IRequestState = {
       },
       scriptSettings: {
         scriptWriter: DEFAULT,
+        scriptStatus: DEFAULT,
         name: "",
         phone: "",
         email: "",
@@ -237,6 +238,7 @@ const initialState: IRequestState = {
       },
       scriptSettings: {
         scriptWriter: DEFAULT,
+        scriptStatus: DEFAULT,
         name: "",
         phone: "",
         email: "",
@@ -362,6 +364,7 @@ const requestReducer = createSlice({
         },
         scriptSettings: {
           scriptWriter: DEFAULT,
+          scriptStatus: DEFAULT,
           name: "",
           phone: "",
           email: "",

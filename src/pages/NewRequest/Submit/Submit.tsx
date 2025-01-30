@@ -6,6 +6,7 @@ import styles from "../NewRequest.module.scss";
 import AddOnsContainer from "./components/AddOnsContainer";
 import LogisticInfo from "./components/Logistic";
 import ProjectInfo from "./components/ProjectInfo";
+import ScriptInfo from "./components/ScriptInfo";
 
 const Submit = () => {
     return (
@@ -24,6 +25,7 @@ const Submit = () => {
                 </div>
                 <ProjectInfo />
                 <LogisticInfo />
+                <ScriptInfo />
                 <div className={styles.nR_submitContainer_infoContainer}>
                     <div className={styles.nR_submitContainer_infoContainer_header}>Scripted Delivery (V1)
                         <div className={styles.nR_submitContainer_infoContainer_header_edit}>

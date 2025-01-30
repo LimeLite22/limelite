@@ -6,7 +6,7 @@ import {
   StatusProgress,
   StatusUnavailable,
 } from "assets/images";
-import { OWN_SCRIPT } from "consts/consts";
+import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -26,8 +26,8 @@ interface IProps {
 const OwnScript = ({ isExpanded, setIsExpanded, isError }: IProps) => {
   const selectedRequest = useSelector(selectRequestInfo);
   const selection = selectedRequest?.scriptSettings?.scriptWriter;
-  const [textStatus, setTextStatus] = useState(0);
   const text = selectedRequest?.scriptSettings?.ownText;
+  const status = selectedRequest?.scriptSettings?.scriptStatus;
   const dispatch = useDispatch();
   const [wordCount, setWordCount] = useState(0);
   const handleUpdateField = (
@@ -90,22 +90,28 @@ const OwnScript = ({ isExpanded, setIsExpanded, isError }: IProps) => {
         <div className={styles.box_text}>Script Status</div>
         <div className={styles.box_statuses}>
           <div
-            className={`${styles.box_status} ${textStatus === 0 ? styles.box_status_approved : ""} `}
-            onClick={() => setTextStatus(0)}
+            className={`${styles.box_status} ${status === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
+            onClick={() => {
+              handleUpdateField("scriptSettings.scriptStatus", APPROVED_TEXT_STATUS)
+            }}
           >
             <img src={StatusApproved} alt="status" />
             Approved
           </div>
           <div
-            className={`${styles.box_status} ${textStatus === 1 ? styles.box_status_approved : ""} `}
-            onClick={() => setTextStatus(1)}
+            className={`${styles.box_status} ${status === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
+            onClick={() => {
+              handleUpdateField("scriptSettings.scriptStatus", IN_PROGRESS_TEXT_STATUS)
+            }}
           >
             <img src={StatusProgress} alt="status" />
             In Progress
           </div>
           <div
-            className={`${styles.box_status} ${textStatus === 2 ? styles.box_status_approved : ""} `}
-            onClick={() => setTextStatus(2)}
+            className={`${styles.box_status} ${status === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
+            onClick={() => {
+              handleUpdateField("scriptSettings.scriptStatus", UNAVAILABLE_TEXT_STATUS)
+            }}
           >
             <img src={StatusUnavailable} alt="status" />
             Unavailable

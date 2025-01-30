@@ -82,7 +82,7 @@ type ValuePiece = Date | null;
 export type TValue = ValuePiece | [ValuePiece, ValuePiece];
 
 export type TTimeValue = "default" | ITimeItem;
-export type IScriptWriter =
+export type TScriptWriter =
   | "professional script"
   | "own script"
   | "default";
@@ -103,6 +103,7 @@ export type TQuestionLocation = "default" | "questions on location" | "questions
 export type TVoiceAuthor = "default" | "client" | "professional";
 export type TThumbnail = "default" | "custom thumbnail" | "default thumbnail" | "no thumbnail";
 export type TRush = "rush time" | "standard time" | "default";
+export type TTextStatus = 'default' | 'approved' | 'in progress' | 'unavailable';
 export type TDraftFieldUpdate = {
   path: string;
   value: unknown;
