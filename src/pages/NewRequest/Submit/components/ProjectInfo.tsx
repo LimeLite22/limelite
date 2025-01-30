@@ -49,6 +49,7 @@ const ProjectInfo = () => {
         setCurrent(defaultState);
     }
     const handleSave = () => {
+        if(!isReady) return
         dispatch(
             updateDraftField({
                 path: "projectName",

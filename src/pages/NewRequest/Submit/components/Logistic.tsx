@@ -77,6 +77,7 @@ const LogisticInfo = () => {
             || current.city !== selectedRequest?.location.city
             || current.state !== selectedRequest?.location.state
             || current.zip !== selectedRequest?.location.zip
+            || current.preferredDate !== selectedRequest?.preferredDate
         ) {
             if (
                 current.company?.length !== 0 &&
@@ -104,6 +105,7 @@ const LogisticInfo = () => {
     }
     const handleSave = () => {
         console.log(current.company);
+       if(!isReady) return
         dispatch(
             updateDraftField({
                 path: "location.company",
