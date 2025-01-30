@@ -86,6 +86,9 @@ const ProjectInfo = () => {
     useEffect(() => {
         readyToSave();
     }, [current])
+    useEffect(() => {
+        setCurrent(defaultState);
+    }, [selectedRequest])
 
     return (
         <div className={styles.nR_submitContainer_infoContainer}>
