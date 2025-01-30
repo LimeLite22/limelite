@@ -174,6 +174,11 @@
         &_time {
           font-size: 14px;
         }
+        &_user{
+          display: flex;
+          align-items: center;
+          gap:6px;
+        }
         p {
           min-width: 180px;
           width: 180px;
