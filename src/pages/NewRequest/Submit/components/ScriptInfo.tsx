@@ -1,36 +1,31 @@
 
-import { ArrowBlue3, CloseRed, EditIcon, Success2, User1Foto } from "assets/images";
-import { ProjectTone, ProjectType } from "pages/NewRequest/ProjectInfo/components";
+import { ArrowBlue3, CloseRed, EditIcon, StatusApproved, StatusProgress, StatusUnavailable, Success2 } from "assets/images";
+import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { TTextStatus } from "types/types";
 import { selectRequestInfo, updateDraftField } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 const ScriptInfo = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const dispatch = useDispatch();
     const defaultState = {
-        name: selectedRequest?.projectName,
-        tone: selectedRequest?.projectTone,
-        type: selectedRequest?.projectType,
-        audience: selectedRequest?.targetAudience,
-        details: selectedRequest?.details
+        status: selectedRequest?.scriptSettings.scriptStatus,
+        text: selectedRequest?.scriptSettings.ownText,
     }
-    const option = selectedRequest?.option;
     const [isEdit, setIsEdit] = useState(false);
     const [isReady, setIsReady] = useState(false);
     const [current, setCurrent] = useState(defaultState);
     const [isDetailsExpanded, setIsDetailsExpanded] = useState(false);
-    const isDetailTextBig = selectedRequest?.details && selectedRequest?.details?.length > 200;
+    const isDetailTextBig = selectedRequest?.scriptSettings.ownText
+        && selectedRequest?.scriptSettings.ownText.length > 200;
 
     const readyToSave = () => {
         let ready = true;
-        if (current.name !== selectedRequest?.projectName
-            || current.tone !== selectedRequest?.projectTone
-            || current.type !== selectedRequest?.projectType
-            || current.audience !== selectedRequest?.targetAudience
-            || current.details !== selectedRequest?.details
+        if (current.text !== selectedRequest?.scriptSettings.ownText
+            || current.status !== selectedRequest?.scriptSettings.scriptStatus
         ) {
-            if (current.name?.length !== 0 && current.audience?.length !== 0 && current.details?.length !== 0) {
+            if (current.text?.length !== 0) {
                 ready = true
             } else {
                 ready = false
@@ -49,40 +44,28 @@ const ScriptInfo = () => {
         setCurrent(defaultState);
     }
     const handleSave = () => {
-        if(!isReady) return
+        if (!isReady) return
         dispatch(
             updateDraftField({
-                path: "projectName",
-                value: current.name,
+                path: "scriptSettings.ownText",
+                value: current.text,
             }),
         );
-        dispatch(
-            updateDraftField({
-                path: "projectTone",
-                value: current.tone,
-            }),
-        );
-        dispatch(
-            updateDraftField({
-                path: "projectType",
-                value: current.type,
-            }),
-        );
-        dispatch(
-            updateDraftField({
-                path: "targetAudience",
-                value: current.audience,
-            }),
-        );
-        dispatch(
-            updateDraftField({
-                path: "details",
-                value: current.details,
-            }),
-        )
+
         setCurrent(defaultState);
         setIsEdit(false);
     }
+    const handleUpdateField = (
+        path: string,
+        value: TTextStatus,
+    ) => {
+        dispatch(
+            updateDraftField({
+                path,
+                value,
+            }),
+        );
+    };
     useEffect(() => {
         readyToSave();
     }, [current])
@@ -111,21 +94,75 @@ const ScriptInfo = () => {
 
             <div className={styles.nR_submitContainer_infoContainer_text}><p>Script Status:</p>
                 {isEdit ?
-                    <input
-                        className={styles.nR_submitContainer_infoContainer_input}
-                        value={current.name}
-                        onChange={(e) => setCurrent({ ...current, name: e.target.value })}
-                        type="text" /> : selectedRequest?.projectName}
+                    <div className={styles.nR_submitContainer_infoContainer_statuses}>
+                        <div
+                            className={`${styles.box_status} ${selectedRequest?.scriptSettings.scriptStatus === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
+                            onClick={() => {
+                                handleUpdateField("scriptSettings.scriptStatus", APPROVED_TEXT_STATUS)
+                            }}
+                        >
+                            <img src={StatusApproved} alt="status" />
+                            {APPROVED_TEXT_STATUS}
+                        </div>
+                        <div
+                            className={`${styles.box_status} ${selectedRequest?.scriptSettings.scriptStatus === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
+                            onClick={() => {
+                                handleUpdateField("scriptSettings.scriptStatus", IN_PROGRESS_TEXT_STATUS)
+                            }}
+                        >
+                            <img src={StatusProgress} alt="status" />
+                            {IN_PROGRESS_TEXT_STATUS}
+                        </div>
+                        <div
+                            className={`${styles.box_status} ${selectedRequest?.scriptSettings.scriptStatus === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
+                            onClick={() => {
+                                handleUpdateField("scriptSettings.scriptStatus", UNAVAILABLE_TEXT_STATUS)
+                            }}
+                        >
+                            <img src={StatusUnavailable} alt="status" />
+                            {UNAVAILABLE_TEXT_STATUS}
+                        </div>
+                    </div> : selectedRequest?.scriptSettings.scriptStatus}
             </div>
-            <div className={styles.nR_submitContainer_infoContainer_text}><p>Name:</p>
+            <div className={styles.nR_submitContainer_infoContainer_text}><p className={`
+                ${styles.nR_submitContainer_infoContainer_detailsHeader}
+                ${isDetailTextBig ? styles.nR_submitContainer_infoContainer_detailsHeader_big : ''}
+                ${isDetailsExpanded ? styles.nR_submitContainer_infoContainer_detailsHeader_expanded : ''}
+                `}
+            >Script:</p>
                 {isEdit ?
-                    <input
-                        className={styles.nR_submitContainer_infoContainer_input}
-                        value={current.name}
-                        onChange={(e) => setCurrent({ ...current, name: e.target.value })}
-                        type="text" /> : selectedRequest?.projectName}
+                    <textarea className={styles.nR_submitContainer_infoContainer_textarea}
+                        onChange={(e) => setCurrent({ ...current, text: e.target.value })}
+                        value={current.text} /> :
+                    <div>
+                        <div className={`
+                   ${styles.nR_submitContainer_infoContainer_details} 
+                   ${isDetailsExpanded ? styles.nR_submitContainer_infoContainer_details_expanded : ''}`}
+                        >
+                            {selectedRequest?.scriptSettings.ownText}
+                        </div>
+                        {isDetailTextBig &&
+                            <>
+                                <div className={`
+                        ${styles.nR_submitContainer_infoContainer_details_shadow}
+                        ${isDetailsExpanded ? styles.nR_submitContainer_infoContainer_details_shadow_expanded : ''}
+                        `}></div>
+                                <div
+                                    className={`
+                           ${styles.nR_submitContainer_infoContainer_details_showAll}
+                           ${isDetailsExpanded ? styles.nR_submitContainer_infoContainer_details_showAll_expanded : ''}
+                               `
+                                    }
+                                    onClick={() => setIsDetailsExpanded(!isDetailsExpanded)}
+                                >
+                                    <>{isDetailsExpanded ? "Show less" : "Show all text"}<img src={ArrowBlue3} alt='' /></>
+
+                                </div>
+                            </>
+                        }
+                    </div>}
             </div>
-            
+
         </div >
     )
 }

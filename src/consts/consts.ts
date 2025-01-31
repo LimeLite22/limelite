@@ -749,7 +749,7 @@ export const CURRENT_YEAR_RANGE = 'Current year';
 export const LAST_12_MONTHS = 'Last 12 months';
 
 
-export const APPROVED_TEXT_STATUS = 'approved';
-export const IN_PROGRESS_TEXT_STATUS = 'in progress';
-export const UNAVAILABLE_TEXT_STATUS = 'unavailable';
+export const APPROVED_TEXT_STATUS = 'Approved';
+export const IN_PROGRESS_TEXT_STATUS = 'In Progress';
+export const UNAVAILABLE_TEXT_STATUS = 'Unavailable';
 

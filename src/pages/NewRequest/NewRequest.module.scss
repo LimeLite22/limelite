@@ -390,6 +390,13 @@
           border: 1px solid var(--black);
         }
       }
+      &_statuses{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width:100%;
+
+      }
     }
     &_buttons {
       width: 100%;
@@ -2939,6 +2946,7 @@
     line-height: 19.2px;
     color: var(--gray-light5);
     border-radius: 6px;
+    cursor:pointer;
     @media screen and (max-width: 768px) {
       width: calc(50% - 4px);
       flex: unset;
