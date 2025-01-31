@@ -22,7 +22,7 @@ const IsScriptRequired = () => {
   const phone = selectedRequest?.scriptSettings?.phone;
   const email = selectedRequest?.scriptSettings?.email;
   const ownText = selectedRequest?.scriptSettings?.ownText;
-  const proffessionalText = selectedRequest?.scriptSettings?.profText;
+  const proffessionalText = selectedRequest?.scriptSettings?.backgroundInfo;
   const [isOwnExpanded, setIsOwnExpanded] = useState(false);
   const [isProffessionalExpanded, setIsProffessionalExpanded] = useState(false);
 

@@ -7,7 +7,7 @@ import { TTextStatus } from "types/types";
 import { selectRequestInfo, updateDraftField } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 import ScriptPersons from "./ScriptPersons";
-const ScriptInfo = () => {
+const ScriptInfoOwnScript = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const dispatch = useDispatch();
     const defaultState = {
@@ -218,4 +218,4 @@ const ScriptInfo = () => {
     )
 }
 
-export default ScriptInfo;
+export default ScriptInfoOwnScript;

@@ -102,7 +102,7 @@ export interface IRequest {
     name: string;
     phone: number | "";
     email: string;
-    profText: string;
+    backgroundInfo: string;
     ownText: string;
     teleprompter: boolean | 'default';
     persons: TPerson[];

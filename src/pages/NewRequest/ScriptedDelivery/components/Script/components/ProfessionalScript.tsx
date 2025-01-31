@@ -31,7 +31,7 @@ const ProffessionalScript = ({
   const name = selectedRequest?.scriptSettings?.name;
   const email = selectedRequest?.scriptSettings?.email;
   const phone = selectedRequest?.scriptSettings?.phone;
-  const text = selectedRequest?.scriptSettings?.profText;
+  const text = selectedRequest?.scriptSettings?.backgroundInfo;
 
   const dispatch = useDispatch();
   const handleUpdateField = (
@@ -195,7 +195,7 @@ const ProffessionalScript = ({
             placeholder={`Paste any details or web page URL' s with background information here...`}
             value={text}
             onChange={(e) => {
-              handleUpdateField("scriptSettings.profText", e.target.value);
+              handleUpdateField("scriptSettings.backgroundInfo", e.target.value);
             }}
           ></textarea>
           {isError.text && (

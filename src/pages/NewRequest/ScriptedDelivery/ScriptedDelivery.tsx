@@ -39,7 +39,7 @@ const ScriptedDelivery = () => {
     }
     if (
       selectedRequest?.scriptSettings?.scriptWriter === PROFESSIONAL_SCRIPT &&
-      (selectedRequest?.scriptSettings?.profText.length === 0 ||
+      (selectedRequest?.scriptSettings?.backgroundInfo.length === 0 ||
         selectedRequest?.scriptSettings?.name.length === 0 ||
         selectedRequest?.scriptSettings?.phone === 0 ||
         selectedRequest?.scriptSettings?.phone === "")
