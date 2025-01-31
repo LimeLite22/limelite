@@ -27,6 +27,8 @@ const ScriptInfo = () => {
         let ready = true;
         if (current.text !== selectedRequest?.scriptSettings.ownText
             || current.status !== selectedRequest?.scriptSettings.scriptStatus
+            || current.teleprompter !== selectedRequest?.scriptSettings.teleprompter
+            || current.persons !== selectedRequest?.scriptSettings.persons
         ) {
             if (current.text?.length !== 0) {
                 ready = true
@@ -72,24 +74,22 @@ const ScriptInfo = () => {
                 value: current.persons,
             })
         )
+        dispatch(
+            updateDraftField({
+                path: "scriptSettings.scriptStatus",
+                value: current.status,
+            })
+        )
 
         setCurrent(defaultState);
         setIsEdit(false);
     }
-    const handleUpdateField = (
-        path: string,
-        value: TTextStatus,
-    ) => {
-        dispatch(
-            updateDraftField({
-                path,
-                value,
-            }),
-        );
-    };
     useEffect(() => {
         readyToSave();
     }, [current])
+    useEffect(() => {
+        setCurrent(defaultState);
+    }, [selectedRequest])
 
     return (
         <div className={styles.nR_submitContainer_infoContainer}>
@@ -117,27 +117,27 @@ const ScriptInfo = () => {
                 {isEdit ?
                     <div className={styles.nR_submitContainer_infoContainer_statuses}>
                         <div
-                            className={`${styles.box_status} ${selectedRequest?.scriptSettings.scriptStatus === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
+                            className={`${styles.box_status} ${current.status === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
                             onClick={() => {
-                                handleUpdateField("scriptSettings.scriptStatus", APPROVED_TEXT_STATUS)
+                               setCurrent((prev) => ({ ...prev, status: APPROVED_TEXT_STATUS }))
                             }}
                         >
                             <img src={StatusApproved} alt="status" />
                             {APPROVED_TEXT_STATUS}
                         </div>
                         <div
-                            className={`${styles.box_status} ${selectedRequest?.scriptSettings.scriptStatus === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
+                            className={`${styles.box_status} ${current.status === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
                             onClick={() => {
-                                handleUpdateField("scriptSettings.scriptStatus", IN_PROGRESS_TEXT_STATUS)
+                                setCurrent((prev) => ({ ...prev, status: IN_PROGRESS_TEXT_STATUS }))
                             }}
                         >
                             <img src={StatusProgress} alt="status" />
                             {IN_PROGRESS_TEXT_STATUS}
                         </div>
                         <div
-                            className={`${styles.box_status} ${selectedRequest?.scriptSettings.scriptStatus === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
+                            className={`${styles.box_status} ${current.status === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
                             onClick={() => {
-                                handleUpdateField("scriptSettings.scriptStatus", UNAVAILABLE_TEXT_STATUS)
+                                setCurrent((prev) => ({ ...prev, status: UNAVAILABLE_TEXT_STATUS }))
                             }}
                         >
                             <img src={StatusUnavailable} alt="status" />
@@ -209,7 +209,7 @@ const ScriptInfo = () => {
                     </div>
                 </div> : selectedRequest?.scriptSettings.teleprompter ? "Yes" : "No"}
             </div>
-            <div className={styles.nR_submitContainer_infoContainer_text}><p>Teleprompter:</p>
+            <div className={styles.nR_submitContainer_infoContainer_text}><p>Persons:</p>
 
                 {isEdit ? <ScriptPersons persons={current.persons} setPersons={(persons) => setCurrent({ ...current, persons: persons })} /> : <div>{selectedRequest?.scriptSettings.persons.map((person) => `${person.name}( ${person.title})`).join(", ")}</div>}
             </div>

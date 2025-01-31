@@ -161,6 +161,7 @@
       }
       &_text {
         display: flex;
+        align-items: center;
         font-family: Inter;
         font-size: 16px;
         font-weight: 400;
@@ -185,7 +186,6 @@
           font-size: 16px;
           font-weight: 400;
           line-height: 19.2px;
-          padding-top: 6px;
           text-align: left;
           color: var(--gray-dark3);
           margin: 0;
