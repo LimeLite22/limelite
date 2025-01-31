@@ -1,17 +1,20 @@
 
-import { ArrowBlue3, CloseRed, EditIcon, StatusApproved, StatusProgress, StatusUnavailable, Success2 } from "assets/images";
+import { ArrowBlue3, CheckBox, CheckBoxSelected, CloseRed, EditIcon, StatusApproved, StatusProgress, StatusUnavailable, Success2 } from "assets/images";
 import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TTextStatus } from "types/types";
 import { selectRequestInfo, updateDraftField } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
+import ScriptPersons from "./ScriptPersons";
 const ScriptInfo = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const dispatch = useDispatch();
     const defaultState = {
         status: selectedRequest?.scriptSettings.scriptStatus,
         text: selectedRequest?.scriptSettings.ownText,
+        teleprompter: selectedRequest?.scriptSettings.teleprompter,
+        persons: selectedRequest?.scriptSettings.persons,
     }
     const [isEdit, setIsEdit] = useState(false);
     const [isReady, setIsReady] = useState(false);
@@ -51,6 +54,24 @@ const ScriptInfo = () => {
                 value: current.text,
             }),
         );
+        dispatch(
+            updateDraftField({
+                path: "scriptSettings.scriptStatus",
+                value: current.status,
+            })
+        )
+        dispatch(
+            updateDraftField({
+                path: "scriptSettings.teleprompter",
+                value: current.teleprompter,
+            })
+        )
+        dispatch(
+            updateDraftField({
+                path: "scriptSettings.persons",
+                value: current.persons,
+            })
+        )
 
         setCurrent(defaultState);
         setIsEdit(false);
@@ -161,6 +182,36 @@ const ScriptInfo = () => {
                             </>
                         }
                     </div>}
+            </div>
+            <div className={styles.nR_submitContainer_infoContainer_text}><p>Teleprompter:</p>
+                {isEdit ? <div className={styles.nR_submitContainer_infoContainer_telepromptOptions}>
+                    <div
+                        className={styles.teleprompter_option}
+                        onClick={() => setCurrent({ ...current, teleprompter: true })}
+                    >
+                        <img
+                            src={current.teleprompter === true ? CheckBoxSelected : CheckBox}
+                            alt="locationIcon"
+                        />
+                        Yes
+                    </div>
+                    <div
+                        className={styles.teleprompter_option}
+                        onClick={() =>
+                            setCurrent({ ...current, teleprompter: false })
+                        }
+                    >
+                        <img
+                            src={current.teleprompter === false ? CheckBoxSelected : CheckBox}
+                            alt="locationIcon"
+                        />
+                        No
+                    </div>
+                </div> : selectedRequest?.scriptSettings.teleprompter ? "Yes" : "No"}
+            </div>
+            <div className={styles.nR_submitContainer_infoContainer_text}><p>Teleprompter:</p>
+
+                {isEdit ? <ScriptPersons persons={current.persons} setPersons={(persons) => setCurrent({ ...current, persons: persons })} /> : <div>{selectedRequest?.scriptSettings.persons.map((person) => `${person.name}( ${person.title})`).join(", ")}</div>}
             </div>
 
         </div >

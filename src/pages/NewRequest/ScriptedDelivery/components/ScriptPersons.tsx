@@ -23,7 +23,7 @@ const ScriptPersons = () => {
   };
 
   return (
-    <div>
+    <div className={styles.personsContainer}>
       <div className={styles.box_question_header_text}>
         Who will deliver this script on camera?
       </div>
