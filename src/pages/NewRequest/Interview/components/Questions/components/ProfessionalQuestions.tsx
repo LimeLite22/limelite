@@ -36,7 +36,7 @@ const ProffessionalQuestions = ({
   const email =
     selectedRequest?.interviewSettings.questionsAuthorProfSettings?.email;
   const text =
-    selectedRequest?.interviewSettings.questionsAuthorProfSettings?.text;
+    selectedRequest?.interviewSettings.questionsAuthorProfSettings?.backgroundInfo;
 
   const dispatch = useDispatch();
   const handleUpdateField = (path: string, value: string) => {

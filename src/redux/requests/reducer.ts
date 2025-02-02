@@ -134,10 +134,11 @@ const initialState: IRequestState = {
           subject: "",
           phone: "",
           email: "",
-          text: "",
+          backgroundInfo: "",
         },
         questionsAuthorOwnSettings: {
           text: "",
+          scriptStatus: DEFAULT,
         },
         persons: [
           {
@@ -253,10 +254,11 @@ const initialState: IRequestState = {
           subject: "",
           phone: "",
           email: "",
-          text: "",
+          backgroundInfo: "",
         },
         questionsAuthorOwnSettings: {
           text: "",
+          scriptStatus: DEFAULT,
         },
         persons: [{
           id: generateUniqueId(),
@@ -379,10 +381,12 @@ const requestReducer = createSlice({
             subject: "",
             phone: "",
             email: "",
-            text: "",
+            backgroundInfo: "",
           },
           questionsAuthorOwnSettings: {
             text: "",
+            scriptStatus: DEFAULT,
+
           },
           persons: [
             {

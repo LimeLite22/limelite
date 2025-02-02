@@ -31,7 +31,7 @@ const InterviewQuestionsBox = () => {
   const ownText =
     selectedRequest?.interviewSettings.questionsAuthorOwnSettings?.text;
   const proffessionalText =
-    selectedRequest?.interviewSettings.questionsAuthorProfSettings?.text;
+    selectedRequest?.interviewSettings.questionsAuthorProfSettings?.backgroundInfo;
   const [isOwnExpanded, setIsOwnExpanded] = useState(false);
   const [isProffessionalExpanded, setIsProffessionalExpanded] = useState(false);
 

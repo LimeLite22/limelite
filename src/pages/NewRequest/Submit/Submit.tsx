@@ -4,6 +4,8 @@ import NextButton from "../components/NextButton"
 import StepsNavigation from "../components/StepsNavigation";
 import styles from "../NewRequest.module.scss";
 import AddOnsContainer from "./components/AddOnsContainer";
+import InterviewOwnScript from "./components/InterviewOwnScript";
+import InterviewProffScript from "./components/InterviewProffScript";
 import LogisticInfo from "./components/Logistic";
 import ProjectInfo from "./components/ProjectInfo";
 import ScriptInfoOwnScript from "./components/ScriptInfoOwnScript";
@@ -28,6 +30,9 @@ const Submit = () => {
                 <LogisticInfo />
                 <ScriptInfoOwnScript />
                 <ScriptInfoProffScript />
+                <InterviewOwnScript />
+                <InterviewProffScript />
+                ----
                 <div className={styles.infoContainer}>
                     <div className={styles.infoContainer_header}>About Your Interview(s) (V1)
                         <div className={styles.infoContainer_header_edit}>
@@ -54,6 +59,7 @@ const Submit = () => {
                         4V5dX@example.com
                     </div>
                 </div>
+                ----
                 <div className={styles.infoContainer}>
                     <div className={styles.infoContainer_header}>About Your Interview(s) (V2)
                         <div className={styles.infoContainer_header_edit}>

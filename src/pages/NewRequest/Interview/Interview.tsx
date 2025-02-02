@@ -50,7 +50,7 @@ const Interview = () => {
     if (
       selectedRequest?.interviewSettings.questionsAuthor ===
       QUESTIONS_AUTHOR_PROFESSIONAL &&
-      (profSettings?.text.length === 0 ||
+      (profSettings?.backgroundInfo.length === 0 ||
         profSettings?.subject.length === 0 ||
         profSettings?.phone === "" ||
         profSettings?.email.length === 0)

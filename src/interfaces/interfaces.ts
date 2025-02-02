@@ -1,4 +1,4 @@
-import {TScriptWriter, TApproachValue, TCalendarType, TLocation, TOption, TPerson, TProjectTone, TQuestionAuthor, TQuestionLocation, TRush,TStep, TThumbnail, TTimeValue, TTravel, TValue, TVideo, TVideoDuration, TVoiceAuthor, TTextStatus } from "types/types";
+import { TScriptWriter, TApproachValue, TCalendarType, TLocation, TOption, TPerson, TProjectTone, TQuestionAuthor, TQuestionLocation, TRush, TStep, TThumbnail, TTimeValue, TTravel, TValue, TVideo, TVideoDuration, TVoiceAuthor, TTextStatus } from "types/types";
 
 export interface ILocation {
   type: TLocation;
@@ -39,15 +39,16 @@ export interface IAdditionalVideoFormat {
   format: TVideo;
   duration: TVideoDuration;
 }
- interface IInterviewSettings {
+interface IInterviewSettings {
   questionsAuthor: TQuestionAuthor;
   questionsAuthorProfSettings: {
     subject: string;
     phone: number | "";
     email: string;
-    text: string;
+    backgroundInfo: string;
   };
   questionsAuthorOwnSettings: {
+    scriptStatus: TTextStatus;
     text: string;
   };
   persons: TPerson[];
@@ -74,7 +75,7 @@ export interface ICalendarProps {
   onClose: () => void;
   isPreferredDate: boolean;
   isOpened: boolean;
-  onChange?: ( date: Date) => void;
+  onChange?: (date: Date) => void;
 }
 export interface IRequest {
   id: string;
