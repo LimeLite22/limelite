@@ -105,7 +105,7 @@ const LogisticInfo = () => {
     }
     const handleSave = () => {
         console.log(current.company);
-       if(!isReady) return
+        if (!isReady) return
         dispatch(
             updateDraftField({
                 path: "location.company",
@@ -155,28 +155,28 @@ const LogisticInfo = () => {
     }, [selectedRequest])
 
     return (
-        <div className={styles.nR_submitContainer_infoContainer}>
-            <div className={styles.nR_submitContainer_infoContainer_header}>Logistic
+        <div className={styles.infoContainer}>
+            <div className={styles.infoContainer_header}>Logistic
                 {!isEdit &&
-                    <div className={styles.nR_submitContainer_infoContainer_header_edit} onClick={handleOnEdit}>
+                    <div className={styles.infoContainer_header_edit} onClick={handleOnEdit}>
                         <img src={EditIcon} alt='' />
                         Edit</div>}
                 {isEdit &&
-                    <div className={styles.nR_submitContainer_infoContainer_header_buttons}>
+                    <div className={styles.infoContainer_header_buttons}>
                         <div
-                            className={styles.nR_submitContainer_infoContainer_header_decline}
+                            className={styles.infoContainer_header_decline}
                             onClick={handleDecline}><img src={CloseRed} alt='' />Decline</div>
                         <div
                             className={`
-                            ${styles.nR_submitContainer_infoContainer_header_save}
-                            ${!isReady ? styles.nR_submitContainer_infoContainer_header_save_notReady : ''}
+                            ${styles.infoContainer_header_save}
+                            ${!isReady ? styles.infoContainer_header_save_notReady : ''}
                             `}
                             onClick={handleSave}
                         ><img src={Success2} alt='' /> Save changes</div>
                     </div>}
             </div>
             {!isEdit &&
-                <div className={styles.nR_submitContainer_infoContainer_text}>
+                <div className={styles.infoContainer_text}>
                     <p>Address:</p>
                     {current.company}{" "}
                     {current.street}{" "}
@@ -185,7 +185,7 @@ const LogisticInfo = () => {
                 </div>}
             {
                 isEdit && <>
-                    <div className={styles.nR_submitContainer_infoContainer_text} >
+                    <div className={styles.infoContainer_text} >
                         <p>Company Name:</p>
                         <input
                             value={current.company}
@@ -194,10 +194,10 @@ const LogisticInfo = () => {
                             }}
                             placeholder="Enter company name"
                             type="company"
-                            className={styles.nR_submitContainer_infoContainer_input}
+                            className={styles.infoContainer_input}
                         />
                     </div>
-                    <div className={styles.nR_submitContainer_infoContainer_text} >
+                    <div className={styles.infoContainer_text} >
                         <p>Address:</p>
                         <div style={{ position: "relative", width: "100%" }}>
                             <input
@@ -205,7 +205,7 @@ const LogisticInfo = () => {
                                 onChange={handleChange}
                                 placeholder="Enter street address"
                                 type="street"
-                                className={styles.nR_submitContainer_infoContainer_input}
+                                className={styles.infoContainer_input}
                             />
                             {suggestions?.length > 0 && (
                                 <div className={styles.box_addressContainer_suggestions}>
@@ -249,10 +249,10 @@ const LogisticInfo = () => {
                             )}
                         </div>
                     </div>
-                    <div className={styles.nR_submitContainer_infoContainer_text} >
+                    <div className={styles.infoContainer_text} >
                         <p>City:</p>
                         <input
-                            className={styles.nR_submitContainer_infoContainer_input}
+                            className={styles.infoContainer_input}
                             value={current.city}
                             onChange={(e) => {
                                 setCurrent({ ...current, city: e.target?.value });
@@ -262,10 +262,10 @@ const LogisticInfo = () => {
                             type="text"
                         />
                     </div>
-                    <div className={styles.nR_submitContainer_infoContainer_text} >
+                    <div className={styles.infoContainer_text} >
                         <p>State:</p>
                         <input
-                            className={styles.nR_submitContainer_infoContainer_input}
+                            className={styles.infoContainer_input}
                             value={current.state}
                             onChange={(e) => {
                                 setCurrent({ ...current, state: e.target?.value });
@@ -275,10 +275,10 @@ const LogisticInfo = () => {
                             type="text"
                         />
                     </div>
-                    <div className={styles.nR_submitContainer_infoContainer_text} >
+                    <div className={styles.infoContainer_text} >
                         <p>Zip:</p>
                         <input
-                            className={styles.nR_submitContainer_infoContainer_input}
+                            className={styles.infoContainer_input}
                             value={current.zip}
                             onChange={(e) => {
                                 setCurrent({ ...current, zip: e.target?.value });
@@ -293,56 +293,36 @@ const LogisticInfo = () => {
             }
             {!isEdit &&
                 <>
-                    <div className={styles.nR_submitContainer_infoContainer_text}><p>Preferred date:</p>{preferredDate?.date !== DEFAULT
+                    <div className={styles.infoContainer_text}><p>Preferred date:</p>{preferredDate?.date !== DEFAULT
                         ? format(preferredDate?.date as Date, "E, dd MMM, yyyy")
                         : "Mon, November 22, 2024"}
                         {' '}
                         {preferredDate?.time !== DEFAULT && endTime ? (
                             <>
-                                <span style={{ marginLeft: "12px" ,marginRight:"6px"}}>{" "}from{" "}</span>
-                                <div className={styles.nR_submitContainer_infoContainer_text_time}> {preferredDate?.time.hour}:00</div>
-                                <span style={{ marginLeft: "6px" ,marginRight:"6px"}}>{" "}to{" "}</span>
+                                <span style={{ marginLeft: "12px", marginRight: "6px" }}>{" "}from{" "}</span>
+                                <div className={styles.infoContainer_text_time}> {preferredDate?.time.hour}:00</div>
+                                <span style={{ marginLeft: "6px", marginRight: "6px" }}>{" "}to{" "}</span>
 
-                                <div className={styles.nR_submitContainer_infoContainer_text_time}>    {endTime.hour}:00 {endTime.period} </div>
+                                <div className={styles.infoContainer_text_time}>    {endTime.hour}:00 {endTime.period} </div>
 
                             </>
                         ) : (
                             <>
-                                <span style={{ marginLeft: "12px" ,marginRight:"6px"}}>{" "}from{" "}</span>
-                                <div className={styles.nR_submitContainer_infoContainer_text_time}>00:00</div>
-                                <span style={{ marginLeft: "6px" ,marginRight:"6px"}}>{" "}to{" "}</span>
-                                <div className={styles.nR_submitContainer_infoContainer_text_time}>00:00</div>
+                                <span style={{ marginLeft: "12px", marginRight: "6px" }}>{" "}from{" "}</span>
+                                <div className={styles.infoContainer_text_time}>00:00</div>
+                                <span style={{ marginLeft: "6px", marginRight: "6px" }}>{" "}to{" "}</span>
+                                <div className={styles.infoContainer_text_time}>00:00</div>
                             </>
                         )}
                     </div>
-                    {/* <div className={styles.nR_submitContainer_infoContainer_text}><p>Alternative date:</p>
-                        {isAlternate ? format(alternateDate?.date as Date, "E, dd MMM, yyyy") : "Mon, 22 Nov, 2024"}
-                        {' '}
-                        {alternateDate?.time !== DEFAULT && endTime ? (
-                            <>
-                                <span style={{ marginLeft: "12px" }}>{" "}from{" "}</span>
-                                <div className={styles.nR_submitContainer_infoContainer_text_time} >{alternateDate?.time.hour}:00 </div>
-                                <span>{" "}to{" "}</span>
-                                <div className={styles.nR_submitContainer_infoContainer_text_time} >{endTime.hour}:00 {endTime.period}</div>
-
-                            </>
-                        ) : (
-                            <>
-                                <span style={{ marginLeft: "12px" }}>{" "}from{" "}</span>
-                                <div className={styles.nR_submitContainer_infoContainer_text_time} >00:00</div>
-                                <span>{" "}to{" "}</span>
-                                <div className={styles.nR_submitContainer_infoContainer_text_time} >00:00</div>
-                            </>
-                        )}
-                    </div> */}
                 </>
             }
             {isEdit && <>
-                <div className={styles.nR_submitContainer_infoContainer_text} >
+                <div className={styles.infoContainer_text} >
                     <p>Preferred date:</p>
-                    <div className={styles.nR_submitContainer_infoContainer_date}>
+                    <div className={styles.infoContainer_date}>
                         <div
-                            className={styles.nR_submitContainer_infoContainer_date_item}
+                            className={styles.infoContainer_date_item}
                             onClick={() => {
                                 setIsPopUpOpen(true);
                             }}
@@ -369,11 +349,11 @@ const LogisticInfo = () => {
                     </div>
 
                 </div>
-                {/* <div className={styles.nR_submitContainer_infoContainer_text} >
+                {/* <div className={styles.infoContainer_text} >
                     <p>Alternative date:</p>
-                    <div className={styles.nR_submitContainer_infoContainer_date}>
+                    <div className={styles.infoContainer_date}>
                         <div
-                            className={styles.nR_submitContainer_infoContainer_date_item}
+                            className={styles.infoContainer_date_item}
                             onClick={() => {
                                 setIsPopUpOpen(true);
                             }}

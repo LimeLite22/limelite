@@ -1,9 +1,8 @@
 
-import { ArrowBlue3, CheckBox, CheckBoxSelected, CloseRed, EditIcon, StatusApproved, StatusProgress, StatusUnavailable, Success2 } from "assets/images";
-import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
+import { CheckBox, CheckBoxSelected, CloseRed, EditIcon, Success2 } from "assets/images";
+import { PROFESSIONAL_SCRIPT } from "consts/consts";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { TTextStatus } from "types/types";
 import { selectRequestInfo, updateDraftField } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 import ScriptPersons from "./ScriptPersons";
@@ -11,13 +10,12 @@ const ScriptInfoProffScript = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const dispatch = useDispatch();
     const defaultState = {
-        name: selectedRequest?.scriptSettings.name,
+        expert: selectedRequest?.scriptSettings.name,
         phone: selectedRequest?.scriptSettings.phone,
         email: selectedRequest?.scriptSettings.email,
+        backgroundInfo: selectedRequest?.scriptSettings.backgroundInfo,
         teleprompter: selectedRequest?.scriptSettings.teleprompter,
-        persons: selectedRequest?.scriptSettings.persons,
-        backgroundInfo: selectedRequest?.scriptSettings.backgroundInfo
-
+        persons: selectedRequest?.scriptSettings.persons
     }
     const [isEdit, setIsEdit] = useState(false);
     const [isReady, setIsReady] = useState(false);
@@ -25,13 +23,14 @@ const ScriptInfoProffScript = () => {
 
     const readyToSave = () => {
         let ready = true;
-        if (current.name !== selectedRequest?.scriptSettings.name
+        if (current.expert !== selectedRequest?.scriptSettings.name
             || current.phone !== selectedRequest?.scriptSettings.phone
             || current.email !== selectedRequest?.scriptSettings.email
             || current.teleprompter !== selectedRequest?.scriptSettings.teleprompter
+            || current.backgroundInfo !== selectedRequest?.scriptSettings.backgroundInfo
             || current.persons !== selectedRequest?.scriptSettings.persons
         ) {
-            if (current.name?.length !== 0  && current.email?.length !== 0) {
+            if (current.expert?.length !== 0 && current.email?.length !== 0) {
                 ready = true
             } else {
                 ready = false
@@ -51,6 +50,42 @@ const ScriptInfoProffScript = () => {
     }
     const handleSave = () => {
         if (!isReady) return
+        dispatch(
+            updateDraftField({
+                path: "scriptSettings.name",
+                value: current.expert,
+            }),
+        );
+        dispatch(
+            updateDraftField({
+                path: "scriptSettings.phone",
+                value: current.phone,
+            })
+        )
+        dispatch(
+            updateDraftField({
+                path: "scriptSettings.email",
+                value: current.email,
+            })
+        )
+        dispatch(
+            updateDraftField({
+                path: "scriptSettings.backgroundInfo",
+                value: current.backgroundInfo,
+            })
+        )
+        dispatch(
+            updateDraftField({
+                path: "scriptSettings.teleprompter",
+                value: current.teleprompter,
+            })
+        )
+        dispatch(
+            updateDraftField({
+                path: "scriptSettings.persons",
+                value: current.persons,
+            })
+        )
         setCurrent(defaultState);
         setIsEdit(false);
     }
@@ -60,32 +95,69 @@ const ScriptInfoProffScript = () => {
     useEffect(() => {
         setCurrent(defaultState);
     }, [selectedRequest])
-
+    // if (selectedRequest?.scriptSettings.scriptWriter !== PROFESSIONAL_SCRIPT) return null
     return (
-        <div className={styles.nR_submitContainer_infoContainer}>
-            <div className={styles.nR_submitContainer_infoContainer_header}>Scripted Delivery
+        <div className={styles.infoContainer}>
+            <div className={styles.infoContainer_header}>Scripted Delivery
                 {!isEdit &&
-                    <div className={styles.nR_submitContainer_infoContainer_header_edit} onClick={handleOnEdit}>
+                    <div className={styles.infoContainer_header_edit} onClick={handleOnEdit}>
                         <img src={EditIcon} alt='' />
                         Edit</div>}
                 {isEdit &&
-                    <div className={styles.nR_submitContainer_infoContainer_header_buttons}>
+                    <div className={styles.infoContainer_header_buttons}>
                         <div
-                            className={styles.nR_submitContainer_infoContainer_header_decline}
+                            className={styles.infoContainer_header_decline}
                             onClick={handleDecline}><img src={CloseRed} alt='' />Decline</div>
                         <div
                             className={`
-                            ${styles.nR_submitContainer_infoContainer_header_save}
-                            ${!isReady ? styles.nR_submitContainer_infoContainer_header_save_notReady : ''}
+                            ${styles.infoContainer_header_save}
+                            ${!isReady ? styles.infoContainer_header_save_notReady : ''}
                             `}
                             onClick={handleSave}
                         ><img src={Success2} alt='' /> Save changes</div>
                     </div>}
             </div>
 
-        
-            <div className={styles.nR_submitContainer_infoContainer_text}><p>Subject matter expert :</p>
-                {isEdit ? <div className={styles.nR_submitContainer_infoContainer_telepromptOptions}>
+
+            <div className={styles.infoContainer_text}><p>Subject matter expert :</p>
+                {isEdit ?
+                    <input
+                        className={styles.infoContainer_input}
+                        value={current.expert}
+                        onChange={(e) => setCurrent({ ...current, expert: e.target.value })}
+                        type="text" /> : selectedRequest?.scriptSettings.name}
+
+            </div>
+
+            <div className={styles.infoContainer_text}><p>Phone:</p>
+                {isEdit ?
+                    <input
+                        className={styles.infoContainer_input}
+                        value={current.phone}
+
+                        onChange={(e) => setCurrent({ ...current, phone: Number(e.target.value) })}
+                        type="text" /> : selectedRequest?.scriptSettings.phone}
+            </div>
+
+            <div className={styles.infoContainer_text}><p>Email:</p>
+                {isEdit ?
+                    <input
+                        className={styles.infoContainer_input}
+                        value={current.email}
+                        onChange={(e) => setCurrent({ ...current, email: e.target.value })}
+                        type="text" /> : selectedRequest?.scriptSettings.email}
+            </div>
+
+            <div className={styles.infoContainer_text}><p>Background information for interview(s):</p>
+                {isEdit ?
+                    <input
+                        className={styles.infoContainer_input}
+                        value={current.backgroundInfo}
+                        onChange={(e) => setCurrent({ ...current, backgroundInfo: e.target.value })}
+                        type="text" /> : selectedRequest?.scriptSettings.backgroundInfo}
+            </div>
+            <div className={styles.infoContainer_text}><p>Teleprompter:</p>
+                {isEdit ? <div className={styles.infoContainer_telepromptOptions}>
                     <div
                         className={styles.teleprompter_option}
                         onClick={() => setCurrent({ ...current, teleprompter: true })}
@@ -110,114 +182,7 @@ const ScriptInfoProffScript = () => {
                     </div>
                 </div> : selectedRequest?.scriptSettings.teleprompter ? "Yes" : "No"}
             </div>
-                
-            <div className={styles.nR_submitContainer_infoContainer_text}><p>Phone:</p>
-                {isEdit ? <div className={styles.nR_submitContainer_infoContainer_telepromptOptions}>
-                    <div
-                        className={styles.teleprompter_option}
-                        onClick={() => setCurrent({ ...current, teleprompter: true })}
-                    >
-                        <img
-                            src={current.teleprompter === true ? CheckBoxSelected : CheckBox}
-                            alt="locationIcon"
-                        />
-                        Yes
-                    </div>
-                    <div
-                        className={styles.teleprompter_option}
-                        onClick={() =>
-                            setCurrent({ ...current, teleprompter: false })
-                        }
-                    >
-                        <img
-                            src={current.teleprompter === false ? CheckBoxSelected : CheckBox}
-                            alt="locationIcon"
-                        />
-                        No
-                    </div>
-                </div> : selectedRequest?.scriptSettings.teleprompter ? "Yes" : "No"}
-            </div>
-                
-            <div className={styles.nR_submitContainer_infoContainer_text}><p>Email:</p>
-                {isEdit ? <div className={styles.nR_submitContainer_infoContainer_telepromptOptions}>
-                    <div
-                        className={styles.teleprompter_option}
-                        onClick={() => setCurrent({ ...current, teleprompter: true })}
-                    >
-                        <img
-                            src={current.teleprompter === true ? CheckBoxSelected : CheckBox}
-                            alt="locationIcon"
-                        />
-                        Yes
-                    </div>
-                    <div
-                        className={styles.teleprompter_option}
-                        onClick={() =>
-                            setCurrent({ ...current, teleprompter: false })
-                        }
-                    >
-                        <img
-                            src={current.teleprompter === false ? CheckBoxSelected : CheckBox}
-                            alt="locationIcon"
-                        />
-                        No
-                    </div>
-                </div> : selectedRequest?.scriptSettings.teleprompter ? "Yes" : "No"}
-            </div>
-                
-            <div className={styles.nR_submitContainer_infoContainer_text}><p>Background information for interview(s):</p>
-                {isEdit ? <div className={styles.nR_submitContainer_infoContainer_telepromptOptions}>
-                    <div
-                        className={styles.teleprompter_option}
-                        onClick={() => setCurrent({ ...current, teleprompter: true })}
-                    >
-                        <img
-                            src={current.teleprompter === true ? CheckBoxSelected : CheckBox}
-                            alt="locationIcon"
-                        />
-                        Yes
-                    </div>
-                    <div
-                        className={styles.teleprompter_option}
-                        onClick={() =>
-                            setCurrent({ ...current, teleprompter: false })
-                        }
-                    >
-                        <img
-                            src={current.teleprompter === false ? CheckBoxSelected : CheckBox}
-                            alt="locationIcon"
-                        />
-                        No
-                    </div>
-                </div> : selectedRequest?.scriptSettings.teleprompter ? "Yes" : "No"}
-            </div>
-            <div className={styles.nR_submitContainer_infoContainer_text}><p>Teleprompter:</p>
-                {isEdit ? <div className={styles.nR_submitContainer_infoContainer_telepromptOptions}>
-                    <div
-                        className={styles.teleprompter_option}
-                        onClick={() => setCurrent({ ...current, teleprompter: true })}
-                    >
-                        <img
-                            src={current.teleprompter === true ? CheckBoxSelected : CheckBox}
-                            alt="locationIcon"
-                        />
-                        Yes
-                    </div>
-                    <div
-                        className={styles.teleprompter_option}
-                        onClick={() =>
-                            setCurrent({ ...current, teleprompter: false })
-                        }
-                    >
-                        <img
-                            src={current.teleprompter === false ? CheckBoxSelected : CheckBox}
-                            alt="locationIcon"
-                        />
-                        No
-                    </div>
-                </div> : selectedRequest?.scriptSettings.teleprompter ? "Yes" : "No"}
-            </div>
-            <div className={styles.nR_submitContainer_infoContainer_text}><p>Persons:</p>
+            <div className={styles.infoContainer_text}><p>Persons:</p>
 
                 {isEdit ? <ScriptPersons persons={current.persons} setPersons={(persons) => setCurrent({ ...current, persons: persons })} /> : <div>{selectedRequest?.scriptSettings.persons.map((person) => `${person.name}( ${person.title})`).join(", ")}</div>}
             </div>

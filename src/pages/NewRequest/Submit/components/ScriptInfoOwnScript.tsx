@@ -1,9 +1,8 @@
 
 import { ArrowBlue3, CheckBox, CheckBoxSelected, CloseRed, EditIcon, StatusApproved, StatusProgress, StatusUnavailable, Success2 } from "assets/images";
-import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
+import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { TTextStatus } from "types/types";
 import { selectRequestInfo, updateDraftField } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 import ScriptPersons from "./ScriptPersons";
@@ -90,36 +89,36 @@ const ScriptInfoOwnScript = () => {
     useEffect(() => {
         setCurrent(defaultState);
     }, [selectedRequest])
-
+    // if (selectedRequest?.scriptSettings.scriptWriter !== OWN_SCRIPT) return null
     return (
-        <div className={styles.nR_submitContainer_infoContainer}>
-            <div className={styles.nR_submitContainer_infoContainer_header}>Scripted Delivery
+        <div className={styles.infoContainer}>
+            <div className={styles.infoContainer_header}>Scripted Delivery
                 {!isEdit &&
-                    <div className={styles.nR_submitContainer_infoContainer_header_edit} onClick={handleOnEdit}>
+                    <div className={styles.infoContainer_header_edit} onClick={handleOnEdit}>
                         <img src={EditIcon} alt='' />
                         Edit</div>}
                 {isEdit &&
-                    <div className={styles.nR_submitContainer_infoContainer_header_buttons}>
+                    <div className={styles.infoContainer_header_buttons}>
                         <div
-                            className={styles.nR_submitContainer_infoContainer_header_decline}
+                            className={styles.infoContainer_header_decline}
                             onClick={handleDecline}><img src={CloseRed} alt='' />Decline</div>
                         <div
                             className={`
-                            ${styles.nR_submitContainer_infoContainer_header_save}
-                            ${!isReady ? styles.nR_submitContainer_infoContainer_header_save_notReady : ''}
+                            ${styles.infoContainer_header_save}
+                            ${!isReady ? styles.infoContainer_header_save_notReady : ''}
                             `}
                             onClick={handleSave}
                         ><img src={Success2} alt='' /> Save changes</div>
                     </div>}
             </div>
 
-            <div className={styles.nR_submitContainer_infoContainer_text}><p>Script Status:</p>
+            <div className={styles.infoContainer_text}><p>Script Status:</p>
                 {isEdit ?
-                    <div className={styles.nR_submitContainer_infoContainer_statuses}>
+                    <div className={styles.infoContainer_statuses}>
                         <div
                             className={`${styles.box_status} ${current.status === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
                             onClick={() => {
-                               setCurrent((prev) => ({ ...prev, status: APPROVED_TEXT_STATUS }))
+                                setCurrent((prev) => ({ ...prev, status: APPROVED_TEXT_STATUS }))
                             }}
                         >
                             <img src={StatusApproved} alt="status" />
@@ -145,33 +144,33 @@ const ScriptInfoOwnScript = () => {
                         </div>
                     </div> : selectedRequest?.scriptSettings.scriptStatus}
             </div>
-            <div className={styles.nR_submitContainer_infoContainer_text}><p className={`
-                ${styles.nR_submitContainer_infoContainer_detailsHeader}
-                ${isDetailTextBig ? styles.nR_submitContainer_infoContainer_detailsHeader_big : ''}
-                ${isDetailsExpanded ? styles.nR_submitContainer_infoContainer_detailsHeader_expanded : ''}
+            <div className={styles.infoContainer_text}><p className={`
+                ${styles.infoContainer_detailsHeader}
+                ${isDetailTextBig ? styles.infoContainer_detailsHeader_big : ''}
+                ${isDetailsExpanded ? styles.infoContainer_detailsHeader_expanded : ''}
                 `}
             >Script:</p>
                 {isEdit ?
-                    <textarea className={styles.nR_submitContainer_infoContainer_textarea}
+                    <textarea className={styles.infoContainer_textarea}
                         onChange={(e) => setCurrent({ ...current, text: e.target.value })}
                         value={current.text} /> :
                     <div>
                         <div className={`
-                   ${styles.nR_submitContainer_infoContainer_details} 
-                   ${isDetailsExpanded ? styles.nR_submitContainer_infoContainer_details_expanded : ''}`}
+                   ${styles.infoContainer_details} 
+                   ${isDetailsExpanded ? styles.infoContainer_details_expanded : ''}`}
                         >
                             {selectedRequest?.scriptSettings.ownText}
                         </div>
                         {isDetailTextBig &&
                             <>
                                 <div className={`
-                        ${styles.nR_submitContainer_infoContainer_details_shadow}
-                        ${isDetailsExpanded ? styles.nR_submitContainer_infoContainer_details_shadow_expanded : ''}
+                        ${styles.infoContainer_details_shadow}
+                        ${isDetailsExpanded ? styles.infoContainer_details_shadow_expanded : ''}
                         `}></div>
                                 <div
                                     className={`
-                           ${styles.nR_submitContainer_infoContainer_details_showAll}
-                           ${isDetailsExpanded ? styles.nR_submitContainer_infoContainer_details_showAll_expanded : ''}
+                           ${styles.infoContainer_details_showAll}
+                           ${isDetailsExpanded ? styles.infoContainer_details_showAll_expanded : ''}
                                `
                                     }
                                     onClick={() => setIsDetailsExpanded(!isDetailsExpanded)}
@@ -183,8 +182,8 @@ const ScriptInfoOwnScript = () => {
                         }
                     </div>}
             </div>
-            <div className={styles.nR_submitContainer_infoContainer_text}><p>Teleprompter:</p>
-                {isEdit ? <div className={styles.nR_submitContainer_infoContainer_telepromptOptions}>
+            <div className={styles.infoContainer_text}><p>Teleprompter:</p>
+                {isEdit ? <div className={styles.infoContainer_telepromptOptions}>
                     <div
                         className={styles.teleprompter_option}
                         onClick={() => setCurrent({ ...current, teleprompter: true })}
@@ -209,7 +208,7 @@ const ScriptInfoOwnScript = () => {
                     </div>
                 </div> : selectedRequest?.scriptSettings.teleprompter ? "Yes" : "No"}
             </div>
-            <div className={styles.nR_submitContainer_infoContainer_text}><p>Persons:</p>
+            <div className={styles.infoContainer_text}><p>Persons:</p>
 
                 {isEdit ? <ScriptPersons persons={current.persons} setPersons={(persons) => setCurrent({ ...current, persons: persons })} /> : <div>{selectedRequest?.scriptSettings.persons.map((person) => `${person.name}( ${person.title})`).join(", ")}</div>}
             </div>

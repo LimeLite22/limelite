@@ -1,5 +1,5 @@
 
-import { ArrowBlue, ArrowBlue3, CloseRed, EditIcon, Success2, User1Foto } from "assets/images";
+import { ArrowBlue3, CloseRed, EditIcon, Success2, User1Foto } from "assets/images";
 import { ProjectTone, ProjectType } from "pages/NewRequest/ProjectInfo/components";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -91,27 +91,27 @@ const ProjectInfo = () => {
     }, [selectedRequest])
 
     return (
-        <div className={styles.nR_submitContainer_infoContainer}>
-            <div className={styles.nR_submitContainer_infoContainer_header}>Project information
+        <div className={styles.infoContainer}>
+            <div className={styles.infoContainer_header}>Project information
                 {!isEdit &&
-                    <div className={styles.nR_submitContainer_infoContainer_header_edit} onClick={handleOnEdit}>
+                    <div className={styles.infoContainer_header_edit} onClick={handleOnEdit}>
                         <img src={EditIcon} alt='' />
                         Edit</div>}
                 {isEdit &&
-                    <div className={styles.nR_submitContainer_infoContainer_header_buttons}>
+                    <div className={styles.infoContainer_header_buttons}>
                         <div
-                            className={styles.nR_submitContainer_infoContainer_header_decline}
+                            className={styles.infoContainer_header_decline}
                             onClick={handleDecline}><img src={CloseRed} alt='' />Decline</div>
                         <div
                             className={`
-                            ${styles.nR_submitContainer_infoContainer_header_save}
-                            ${!isReady ? styles.nR_submitContainer_infoContainer_header_save_notReady : ''}
+                            ${styles.infoContainer_header_save}
+                            ${!isReady ? styles.infoContainer_header_save_notReady : ''}
                             `}
                             onClick={handleSave}
                         ><img src={Success2} alt='' /> Save changes</div>
                     </div>}
             </div>
-            <div className={styles.nR_submitContainer_infoContainer_text}>
+            <div className={styles.infoContainer_text}>
                 <p>Requested type:</p> <span>{option?.value}  {option?.credits && (
                     <div
                         className={
@@ -123,33 +123,33 @@ const ProjectInfo = () => {
                         {option?.credits > 1 ? "Credits" : "Credit"}{" "}
                     </div>
                 )}</span></div>
-            <div className={styles.nR_submitContainer_infoContainer_text}><p>Requested by:</p>
-                <div className={styles.nR_submitContainer_infoContainer_text_user}><img src={User1Foto} alt='' /> Clay Gerhold </div>
+            <div className={styles.infoContainer_text}><p>Requested by:</p>
+                <div className={styles.infoContainer_text_user}><img src={User1Foto} alt='' /> Clay Gerhold </div>
             </div>
-            <div className={styles.nR_submitContainer_infoContainer_text}><p>Name:</p>
+            <div className={styles.infoContainer_text}><p>Name:</p>
                 {isEdit ?
                     <input
-                        className={styles.nR_submitContainer_infoContainer_input}
+                        className={styles.infoContainer_input}
                         value={current.name}
                         onChange={(e) => setCurrent({ ...current, name: e.target.value })}
                         type="text" /> : selectedRequest?.projectName}
             </div>
 
-            <div className={styles.nR_submitContainer_infoContainer_text}><p>Audience:</p>
+            <div className={styles.infoContainer_text}><p>Audience:</p>
                 {isEdit ?
                     <input
-                        className={styles.nR_submitContainer_infoContainer_input}
+                        className={styles.infoContainer_input}
                         value={current.audience}
                         onChange={(e) => setCurrent({ ...current, audience: e.target.value })}
                         type="text" /> : selectedRequest?.targetAudience}</div>
-            <div className={styles.nR_submitContainer_infoContainer_text}><p>Type:</p>
+            <div className={styles.infoContainer_text}><p>Type:</p>
                 {isEdit ?
                     <ProjectType
                         isError={false}
                         setIsError={() => { }}
                         onChange={(type) => { setCurrent({ ...current, type: type }) }}
                         isSubmitMode={true} /> : selectedRequest?.projectType.header}</div>
-            <div className={styles.nR_submitContainer_infoContainer_text}><p>Tone:</p>
+            <div className={styles.infoContainer_text}><p>Tone:</p>
                 {isEdit ?
                     <ProjectTone
                         isError={false}
@@ -158,34 +158,34 @@ const ProjectInfo = () => {
                             setCurrent({ ...current, tone: tone })
                         }}
                         isSubmitMode /> : selectedRequest?.projectTone}</div>
-            <div className={styles.nR_submitContainer_infoContainer_text}><p>Approach:</p> {selectedRequest?.approachList.map((approach) => approach).join(", ") || "Voiceover, Scripted Delivery"}</div>
-            <div className={styles.nR_submitContainer_infoContainer_text}>
+            <div className={styles.infoContainer_text}><p>Approach:</p> {selectedRequest?.approachList.map((approach) => approach).join(", ") || "Voiceover, Scripted Delivery"}</div>
+            <div className={styles.infoContainer_text}>
                 <p className={`
-                ${styles.nR_submitContainer_infoContainer_detailsHeader}
-                ${isDetailTextBig ? styles.nR_submitContainer_infoContainer_detailsHeader_big : ''}
-                ${isDetailsExpanded ? styles.nR_submitContainer_infoContainer_detailsHeader_expanded : ''}
+                ${styles.infoContainer_detailsHeader}
+                ${isDetailTextBig ? styles.infoContainer_detailsHeader_big : ''}
+                ${isDetailsExpanded ? styles.infoContainer_detailsHeader_expanded : ''}
                 `}>Details</p>
                 {isEdit ?
-                    <textarea className={styles.nR_submitContainer_infoContainer_textarea}
+                    <textarea className={styles.infoContainer_textarea}
                         onChange={(e) => setCurrent({ ...current, details: e.target.value })}
                         value={current.details} /> :
                     <div>
                         <div className={`
-                    ${styles.nR_submitContainer_infoContainer_details} 
-                    ${isDetailsExpanded ? styles.nR_submitContainer_infoContainer_details_expanded : ''}`}
+                    ${styles.infoContainer_details} 
+                    ${isDetailsExpanded ? styles.infoContainer_details_expanded : ''}`}
                         >
                             {selectedRequest?.details}
                         </div>
                         {isDetailTextBig &&
                             <>
                                 <div className={`
-                         ${styles.nR_submitContainer_infoContainer_details_shadow}
-                         ${isDetailsExpanded ? styles.nR_submitContainer_infoContainer_details_shadow_expanded : ''}
+                         ${styles.infoContainer_details_shadow}
+                         ${isDetailsExpanded ? styles.infoContainer_details_shadow_expanded : ''}
                          `}></div>
                                 <div
                                     className={`
-                            ${styles.nR_submitContainer_infoContainer_details_showAll}
-                            ${isDetailsExpanded ? styles.nR_submitContainer_infoContainer_details_showAll_expanded : ''}
+                            ${styles.infoContainer_details_showAll}
+                            ${isDetailsExpanded ? styles.infoContainer_details_showAll_expanded : ''}
                                 `
                                     }
                                     onClick={() => setIsDetailsExpanded(!isDetailsExpanded)}
