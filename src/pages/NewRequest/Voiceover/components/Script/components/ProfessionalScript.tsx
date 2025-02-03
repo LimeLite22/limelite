@@ -29,14 +29,11 @@ const ProffessionalQuestions = ({
   const selectedRequest = useSelector(selectRequestInfo);
 
   const selection = selectedRequest?.voiceTrackSettings.scriptAuthor;
-  const subject =
-    selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings.subject;
-  const phone =
-    selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings.phone;
-  const email =
-    selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings.email;
-  const text =
-    selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings.text;
+  const profSettings = selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings;
+  const subject = profSettings?.subject;
+  const phone = profSettings?.phone;
+  const email = profSettings?.email;
+  const text = profSettings?.backgroundInfo;
 
   const dispatch = useDispatch();
   const handleUpdateField = (path: string, value: string) => {
@@ -185,7 +182,7 @@ const ProffessionalQuestions = ({
             value={text}
             onChange={(e) => {
               handleUpdateField(
-                "voiceTrackSettings.scriptAuthorProfSettings.text",
+                "voiceTrackSettings.scriptAuthorProfSettings.backgroundInfo",
                 e.target.value,
               );
             }}

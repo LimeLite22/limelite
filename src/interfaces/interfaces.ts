@@ -1,4 +1,4 @@
-import { TApproachValue, TCalendarType, TLocation, TOption, TPerson, TProjectTone, TQuestionAuthor, TQuestionLocation, TRush, TScriptWriter, TStep, TTextStatus,TThumbnail, TTimeValue, TTravel, TValue, TVideo, TVideoDuration, TVoiceAuthor } from "types/types";
+import { TApproachValue, TCalendarType, TLocation, TOption, TPerson, TProjectTone, TQuestionAuthor, TQuestionLocation, TRush, TScriptWriter, TStep, TTextStatus, TThumbnail, TTimeValue, TTravel, TValue, TVideo, TVideoDuration, TVoiceAuthor } from "types/types";
 
 export interface ILocation {
   type: TLocation;
@@ -117,9 +117,10 @@ export interface IRequest {
       subject: string;
       phone: number | "";
       email: string;
-      text: string;
+      backgroundInfo: string;
     };
     scriptAuthorOwnSettings: {
+      scriptStatus: TTextStatus;
       text: string;
     };
   };

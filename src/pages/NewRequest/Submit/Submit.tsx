@@ -11,6 +11,8 @@ import LogisticInfo from "./components/Logistic";
 import ProjectInfo from "./components/ProjectInfo";
 import ScriptInfoOwnScript from "./components/ScriptInfoOwnScript";
 import ScriptInfoProffScript from "./components/ScriptInfoProffScript";
+import VoiceoverProfScript from "./components/VoiceoverProfScript";
+import VoiceoverOwnScript from "./components/VoiceverOwnScript";
 
 const Submit = () => {
     return (
@@ -31,79 +33,10 @@ const Submit = () => {
                 <LogisticInfo />
                 <ScriptInfoOwnScript />
                 <ScriptInfoProffScript /> */}
-                <InterviewOwnScript />
-                <InterviewProffScript />
-                ----
-                <div className={styles.infoContainer}>
-                    <div className={styles.infoContainer_header}>About Your Interview(s) (V1)
-                        <div className={styles.infoContainer_header_edit}>
-                            <img src={EditIcon} alt='' />
-                            Edit</div>
-                    </div>
-                    <div className={styles.infoContainer_text}><p>Questions Status:</p> Approved</div>
-                    <div className={styles.infoContainer_text}><p>Questions:</p>
-                        1) What is your favorite color? 2) What is your favorite animal? 3) What is your favorite food?</div>
-                    <div className={styles.infoContainer_text}><p>Questions Status:</p> Approved</div>
-                    <div className={styles.infoContainer_text}><p>Interviewees?:</p>
-                        John Doe, Managerm  Mike Smith
-                    </div>
-                    <div className={styles.infoContainer_text}><p>Interview conduction:</p>
-                        On location
-                    </div>
-                    <div className={styles.infoContainer_text}><p>Full name:</p>
-                        John Doe
-                    </div>
-                    <div className={styles.infoContainer_text}><p>Phone:</p>
-                        123-456-7890
-                    </div>
-                    <div className={styles.infoContainer_text}><p>Email:</p>
-                        4V5dX@example.com
-                    </div>
-                </div>
-                ----
-                <div className={styles.infoContainer}>
-                    <div className={styles.infoContainer_header}>About Your Interview(s) (V2)
-                        <div className={styles.infoContainer_header_edit}>
-                            <img src={EditIcon} alt='' />
-                            Edit</div>
-                    </div>
-                    <div className={styles.infoContainer_text}><p>Questions Status:</p> Approved</div>
-                    <div className={styles.infoContainer_text}><p>Questions:</p>
-                        1) What is your favorite color? 2) What is your favorite animal? 3) What is your favorite food?</div>
-                    <div className={styles.infoContainer_text}><p>Questions Status:</p> Approved</div>
-                    <div className={styles.infoContainer_text}><p>Interviewees?:</p>
-                        John Doe, Managerm  Mike Smith
-                    </div>
-                    <div className={styles.infoContainer_text}><p>Interview conduction:</p>
-                        Virtual
-                    </div>
-                    <div className={styles.infoContainer_text}><p>Full name:</p>
-                        John Doe
-                    </div>
-                    <div className={styles.infoContainer_text}><p>Phone:</p>
-                        123-456-7890
-                    </div>
-                    <div className={styles.infoContainer_text}><p>Email:</p>
-                        4V5dX@example.com
-                    </div>
-                </div>
-                <div className={styles.infoContainer}>
-                    <div className={styles.infoContainer_header}>About Your Interview(s) (V3)
-                        <div className={styles.infoContainer_header_edit}>
-                            <img src={EditIcon} alt='' />
-                            Edit</div>
-                    </div>
-                    <div className={styles.infoContainer_text}><p>Questions Status:</p> Approved</div>
-                    <div className={styles.infoContainer_text}><p>Questions:</p>
-                        1) What is your favorite color? 2) What is your favorite animal? 3) What is your favorite food?</div>
-                    <div className={styles.infoContainer_text}><p>Questions Status:</p> Approved</div>
-                    <div className={styles.infoContainer_text}><p>Interviewees?:</p>
-                        John Doe, Managerm  Mike Smith
-                    </div>
-                    <div className={styles.infoContainer_text}><p>Interview conduction:</p>
-                        Proffesional recording
-                    </div>
-                </div>
+                {/* <InterviewOwnScript />
+                <InterviewProffScript /> */}
+                <VoiceoverOwnScript />
+                <VoiceoverProfScript />
                 <div className={styles.infoContainer}>
                     <div className={styles.infoContainer_header}>About Your Voiceover (V1)
                         <div className={styles.infoContainer_header_edit}>

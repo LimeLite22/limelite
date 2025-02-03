@@ -7,7 +7,7 @@ import styles from "../../../NewRequest.module.scss";
 import LearnMorePopUp from "../LearnMorePopUp";
 import OwnScript from "./components/OwnScript";
 import ProffessionalScript from "./components/ProfessionalScript";
-
+// додати статуси вв  ерор hanndlinggg error
 const InterviewScriptBox = () => {
   const selectedRequest = useSelector(selectRequestInfo);
   const [isError, setIsError] = useState({
@@ -18,16 +18,13 @@ const InterviewScriptBox = () => {
     proffessionalScript: false,
   });
   const selection = selectedRequest?.voiceTrackSettings.scriptAuthor;
-  const subject =
-    selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings.subject;
-  const phone =
-    selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings.phone;
-  const email =
-    selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings.email;
-  const proffessionalText =
-    selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings.text;
-  const ownText =
-    selectedRequest?.voiceTrackSettings.scriptAuthorOwnSettings?.text;
+  const profSettings = selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings;
+  const ownSettings = selectedRequest?.voiceTrackSettings.scriptAuthorOwnSettings;
+  const subject = profSettings?.subject;
+  const phone = profSettings?.phone;
+  const email = profSettings?.email;
+  const profText = profSettings?.backgroundInfo;
+  const ownText = ownSettings?.text;
 
   const [isOwnExpanded, setIsOwnExpanded] = useState(false);
   const [isProffessionalExpanded, setIsProffessionalExpanded] = useState(false);
@@ -62,8 +59,8 @@ const InterviewScriptBox = () => {
       if (
         !email ||
         email.length === 0 ||
-        !proffessionalText ||
-        proffessionalText.length === 0 ||
+        !profText ||
+        profText.length === 0 ||
         !subject ||
         subject.length === 0 ||
         phone === ""
@@ -75,7 +72,7 @@ const InterviewScriptBox = () => {
           email: !email || email.length === 0,
           ownScript: false,
           proffessionalScript:
-            !proffessionalText || proffessionalText.length === 0,
+            !profText || profText.length === 0,
         };
         setIsError(errors);
       } else {
@@ -115,11 +112,11 @@ const InterviewScriptBox = () => {
         email: !email || email.length === 0,
         ownScript: false,
         proffessionalScript:
-          !proffessionalText || proffessionalText.length === 0,
+          !profText || profText.length === 0,
       };
       setIsError(errors);
     }
-  }, [subject, phone, email, ownText, proffessionalText]);
+  }, [subject, phone, email, ownText, profText]);
 
   return (
     <div ref={containerRef} tabIndex={-1} onBlur={handleBlur}>

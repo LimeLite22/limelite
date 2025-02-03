@@ -1,5 +1,4 @@
 import { HOME, LEARN, NOTIFICATIONS, PROJECTS } from "consts/consts";
-import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { TSelectedMobPages } from "types/types";
 
@@ -43,20 +42,20 @@ const BottomMenu = ({ isOpened }: IProps) => {
         />
       </Link>
       <Link to="/projects">
-      <BottomMenuItem
-        isPageSelected={selectedPage === PROJECTS}
-        value="Projects"
-        Icon={`${Projects}#Projects`}
-        isOpened={isOpened}
-      />
+        <BottomMenuItem
+          isPageSelected={selectedPage === PROJECTS}
+          value="Projects"
+          Icon={`${Projects}#Projects`}
+          isOpened={isOpened}
+        />
       </Link>
-      <Link  to="/new-request/start">
+      <Link to="/new-request/start">
         <div className={styles.bottomMenu_item}>
           <img src={BottomNewRequestIcon} alt="NewRequestIcon" />
           New Request
         </div>
       </Link>
-      <Link  to="/learn/faqs">
+      <Link to="/learn/faqs">
         <BottomMenuItem
           isPageSelected={selectedPage === LEARN}
           value="Learn"
@@ -64,7 +63,7 @@ const BottomMenu = ({ isOpened }: IProps) => {
           isOpened={isOpened}
         />
       </Link>
-      <Link  to="/notifications">
+      <Link to="/notifications">
         <BottomMenuItem
           isPageSelected={selectedPage === NOTIFICATIONS}
           value="Notifications"

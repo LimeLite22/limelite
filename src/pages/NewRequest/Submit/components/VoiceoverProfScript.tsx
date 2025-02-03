@@ -1,22 +1,19 @@
 
-import { CheckBox, CheckBoxSelected, CloseRed, EditIcon, Success2 } from "assets/images";
+import { CloseRed, EditIcon, Success2 } from "assets/images";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import ScriptPersons from "./ScriptPersons";
 import { selectRequestInfo, updateDraftField } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
-const ScriptInfoProffScript = () => {
+const VoiceoverProfScript = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const dispatch = useDispatch();
-    const scriptSettings = selectedRequest?.scriptSettings
+    const voiceTrackSettings = selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings
     const defaultState = {
-        expert: scriptSettings?.name,
-        phone: scriptSettings?.phone,
-        email: scriptSettings?.email,
-        backgroundInfo: scriptSettings?.backgroundInfo,
-        teleprompter: scriptSettings?.teleprompter,
-        persons: scriptSettings?.persons
+        expert: voiceTrackSettings?.subject,
+        phone: voiceTrackSettings?.phone,
+        email: voiceTrackSettings?.email,
+        backgroundInfo: voiceTrackSettings?.backgroundInfo,
     }
     const [isEdit, setIsEdit] = useState(false);
     const [isReady, setIsReady] = useState(false);
@@ -24,12 +21,10 @@ const ScriptInfoProffScript = () => {
 
     const readyToSave = () => {
         let ready = true;
-        if (current.expert !== scriptSettings?.name
-            || current.phone !== scriptSettings?.phone
-            || current.email !== scriptSettings?.email
-            || current.teleprompter !== scriptSettings?.teleprompter
-            || current.backgroundInfo !== scriptSettings?.backgroundInfo
-            || current.persons !== scriptSettings?.persons
+        if (current.expert !== selectedRequest?.scriptSettings.name
+            || current.phone !== selectedRequest?.scriptSettings.phone
+            || current.email !== selectedRequest?.scriptSettings.email
+            || current.backgroundInfo !== selectedRequest?.scriptSettings.backgroundInfo
         ) {
             if (current.expert?.length !== 0 && current.email?.length !== 0) {
                 ready = true
@@ -75,18 +70,6 @@ const ScriptInfoProffScript = () => {
                 value: current.backgroundInfo,
             })
         )
-        dispatch(
-            updateDraftField({
-                path: "scriptSettings.teleprompter",
-                value: current.teleprompter,
-            })
-        )
-        dispatch(
-            updateDraftField({
-                path: "scriptSettings.persons",
-                value: current.persons,
-            })
-        )
         setCurrent(defaultState);
         setIsEdit(false);
     }
@@ -99,7 +82,8 @@ const ScriptInfoProffScript = () => {
     // if (selectedRequest?.scriptSettings.scriptWriter !== PROFESSIONAL_SCRIPT) return null
     return (
         <div className={styles.infoContainer}>
-            <div className={styles.infoContainer_header}>Scripted Delivery
+            <div className={styles.infoContainer_header}>About Your Voiceover
+
                 {!isEdit &&
                     <div className={styles.infoContainer_header_edit} onClick={handleOnEdit}>
                         <img src={EditIcon} alt='' />
@@ -126,7 +110,7 @@ const ScriptInfoProffScript = () => {
                         className={styles.infoContainer_input}
                         value={current.expert}
                         onChange={(e) => setCurrent({ ...current, expert: e.target.value })}
-                        type="text" /> : scriptSettings?.name}
+                        type="text" /> : selectedRequest?.scriptSettings.name}
 
             </div>
 
@@ -137,7 +121,7 @@ const ScriptInfoProffScript = () => {
                         value={current.phone}
 
                         onChange={(e) => setCurrent({ ...current, phone: Number(e.target.value) })}
-                        type="text" /> : scriptSettings?.phone}
+                        type="text" /> : selectedRequest?.scriptSettings.phone}
             </div>
 
             <div className={styles.infoContainer_text}><p>Email:</p>
@@ -146,7 +130,7 @@ const ScriptInfoProffScript = () => {
                         className={styles.infoContainer_input}
                         value={current.email}
                         onChange={(e) => setCurrent({ ...current, email: e.target.value })}
-                        type="text" /> : scriptSettings?.email}
+                        type="text" /> : selectedRequest?.scriptSettings.email}
             </div>
 
             <div className={styles.infoContainer_text}><p>Background information for interview(s):</p>
@@ -155,42 +139,10 @@ const ScriptInfoProffScript = () => {
                         className={styles.infoContainer_input}
                         value={current.backgroundInfo}
                         onChange={(e) => setCurrent({ ...current, backgroundInfo: e.target.value })}
-                        type="text" /> : scriptSettings?.backgroundInfo}
+                        type="text" /> : selectedRequest?.scriptSettings.backgroundInfo}
             </div>
-            <div className={styles.infoContainer_text}><p>Teleprompter:</p>
-                {isEdit ? <div className={styles.infoContainer_telepromptOptions}>
-                    <div
-                        className={styles.teleprompter_option}
-                        onClick={() => setCurrent({ ...current, teleprompter: true })}
-                    >
-                        <img
-                            src={current.teleprompter === true ? CheckBoxSelected : CheckBox}
-                            alt="locationIcon"
-                        />
-                        Yes
-                    </div>
-                    <div
-                        className={styles.teleprompter_option}
-                        onClick={() =>
-                            setCurrent({ ...current, teleprompter: false })
-                        }
-                    >
-                        <img
-                            src={current.teleprompter === false ? CheckBoxSelected : CheckBox}
-                            alt="locationIcon"
-                        />
-                        No
-                    </div>
-                </div> : scriptSettings?.teleprompter ? "Yes" : "No"}
-            </div>
-            <div className={styles.infoContainer_text}><p>Persons:</p>
-
-                {isEdit ? <ScriptPersons persons={current.persons} setPersons={(persons) => setCurrent({ ...current, persons: persons })} /> : <div>{selectedRequest?.scriptSettings.persons.map((person) => `${person.name}( ${person.title})`).join(", ")}</div>}
-            </div>
-
-
         </div >
     )
 }
 
-export default ScriptInfoProffScript;
+export default VoiceoverProfScript;

@@ -169,10 +169,11 @@ const initialState: IRequestState = {
           subject: "",
           phone: "",
           email: "",
-          text: "",
+          backgroundInfo: "",
         },
         scriptAuthorOwnSettings: {
           text: "",
+          scriptStatus: DEFAULT,
         },
       },
       videoSettings: {
@@ -287,10 +288,11 @@ const initialState: IRequestState = {
           subject: "",
           phone: "",
           email: "",
-          text: "",
+          backgroundInfo: "",
         },
         scriptAuthorOwnSettings: {
           text: "",
+          scriptStatus: DEFAULT,
         },
       },
       videoSettings: {
@@ -417,10 +419,11 @@ const requestReducer = createSlice({
             subject: "",
             phone: "",
             email: "",
-            text: "",
+            backgroundInfo: "",
           },
           scriptAuthorOwnSettings: {
             text: "",
+            scriptStatus: DEFAULT,
           },
         },
         videoSettings: {
