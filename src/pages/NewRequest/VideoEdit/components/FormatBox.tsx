@@ -41,7 +41,7 @@ const FormatBox = () => {
                     ${format === VIDEO_STANDARD ? styles.box_videoTypeSelected : ""} 
                     ${styles.box_videoType}`}
         >
-          Standard <div className={styles.box_videoType_dot}></div> 16:9
+          {VIDEO_STANDARD} <div className={styles.box_videoType_dot}></div> 16:9
         </div>
         <div
           onClick={() => handleClick(VIDEO_STORY)}
@@ -49,7 +49,7 @@ const FormatBox = () => {
                     ${format === VIDEO_STORY ? styles.box_videoTypeSelected : ""}  
                     ${styles.box_videoType}`}
         >
-          Story <div className={styles.box_videoType_dot}></div> 9:16
+          {VIDEO_STORY} <div className={styles.box_videoType_dot}></div> 9:16
         </div>
         <div
           onClick={() => handleClick(VIDEO_SQUARE)}
@@ -57,7 +57,7 @@ const FormatBox = () => {
                     ${format === VIDEO_SQUARE ? styles.box_videoTypeSelected : ""}  
                     ${styles.box_videoType}`}
         >
-          Square <div className={styles.box_videoType_dot}></div> 1:1
+          {VIDEO_SQUARE}<div className={styles.box_videoType_dot}></div> 1:1
         </div>
         <div
           onClick={() => handleClick(VIDEO_VERTICAL)}
@@ -65,7 +65,7 @@ const FormatBox = () => {
                     ${format === VIDEO_VERTICAL ? styles.box_videoTypeSelected : ""}  
                     ${styles.box_videoType}`}
         >
-          Vertical <div className={styles.box_videoType_dot}></div> 4:5
+          {VIDEO_VERTICAL}<div className={styles.box_videoType_dot}></div> 4:5
         </div>
       </div>
     </div>

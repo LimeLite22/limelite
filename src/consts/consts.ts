@@ -41,14 +41,14 @@ export const SETTINGS = "Settings";
 export const SUPPORT = "Support";
 
 // video formats
-export const VIDEO_STANDARD = "standard";
-export const VIDEO_STORY = "story";
-export const VIDEO_SQUARE = "square";
-export const VIDEO_VERTICAL = "vertical";
+export const VIDEO_STANDARD = "Standard";
+export const VIDEO_STORY = "Story";
+export const VIDEO_SQUARE = "Square";
+export const VIDEO_VERTICAL = "Vertical";
 
-export const N0_THUMBNAIL = "no thumbnail";
-export const BASIC_THUMBNAIL = "default thumbnail";
-export const CUSTOM_THUMBNAIL = "custom thumbnail";
+export const NO_THUMBNAIL = "No thumbnail";
+export const BASIC_THUMBNAIL = "Basic thumbnail";
+export const CUSTOM_THUMBNAIL = "Custom thumbnail";
 
 export const RUSH_TIME = "rush time";
 export const STANDARD_TIME = "standard time";

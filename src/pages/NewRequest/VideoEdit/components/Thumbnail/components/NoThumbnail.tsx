@@ -1,6 +1,6 @@
 
 import { CheckBox, CheckBoxSelected } from "assets/images";
-import { N0_THUMBNAIL } from "consts/consts";
+import { NO_THUMBNAIL } from "consts/consts";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -30,15 +30,15 @@ const NoThumbnail = () => {
     <div
       className={`
     ${styles.box}
-    ${selection === N0_THUMBNAIL ? styles.box_selected : ""} `}
+    ${selection === NO_THUMBNAIL ? styles.box_selected : ""} `}
       onClick={() => {
-        handleUpdateField("videoSettings.thumbnail", N0_THUMBNAIL);
+        handleUpdateField("videoSettings.thumbnail", NO_THUMBNAIL);
       }}
     >
       <div className={styles.box_header}>
         <img
           className={styles.box_circle}
-          src={selection === N0_THUMBNAIL ? CheckBoxSelected : CheckBox}
+          src={selection === NO_THUMBNAIL ? CheckBoxSelected : CheckBox}
           alt="CheckBox"
         />
         <span className={styles.box_title}>No</span>

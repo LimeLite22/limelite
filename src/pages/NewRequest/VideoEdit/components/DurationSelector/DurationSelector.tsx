@@ -10,51 +10,61 @@ interface IProps {
   value: TVideoDuration;
   onChange: (value: TVideoDuration) => void;
   isError?: boolean;
+  isSubmit?: boolean;
 }
-const DurationSelector: FC<IProps> = ({ isError, value, onChange }) => {
+// dd = duration dropdown
+const DurationSelector: FC<IProps> = ({ isError, value, onChange, isSubmit }) => {
   const duration = value;
   const [isOpened, setOpened] = useState(false);
   const showError = isError && !isOpened;
 
   return (
-    <div className={`duration_dropdown ${showError ? "duration_dropdown_error" : ""}`}>
+    <div className={`
+    dd 
+    ${showError ? "dd_error" : ""}
+    ${isSubmit ? "dd_submit" : ""}
+    `}>
       <div
-        className={`duration_dropdown__selected ${showError ? "duration_dropdown__selected_error" : ""}`}
+        className={`
+        dd_selected 
+        ${showError ? "dd_selected_error" : ""}
+        ${isSubmit ? "dd_selected_submit" : ""}
+        `}
         onClick={() => {
           setOpened(!isOpened);
         }}
       >
-        <div className="duration_dropdown__selected_name">
+        <div className="dd_selected_name">
           {duration !== DEFAULT ? duration : <span>Select</span>}
         </div>
         {isError && !isOpened && (
-          <div className="duration_dropdown__selected_errorMessage">
+          <div className="dd_selected_errorMessage">
             Select a zone to continue
           </div>
         )}
         <img
-          className={`duration_dropdown__selected_collapseIcon ${isOpened ? "duration_dropdown__selected_collapseIcon_opened" : ""}`}
+          className={`dd_selected_collapseIcon ${isOpened ? "dd_selected_collapseIcon_opened" : ""}`}
           src={GrayArrow}
           alt="collapse"
         />
       </div>
 
       {isOpened && (
-        <div className="duration_dropdown__itemsContainer">
+        <div className="dd_itemsContainer">
           {videoDurationsList.map((option, index) => (
             <div
               style={{
                 borderTopLeftRadius: index === 0 ? "4px" : "",
                 borderTopRightRadius: index === 0 ? "4px" : "",
               }}
-              className="duration_dropdown__item"
+              className="dd_item"
               key={index}
               onClick={() => {
                 onChange(option?.value);
                 setOpened(false);
               }}
             >
-              <div className="duration_dropdown__item_name">{option?.value}</div>
+              <div className="dd_item_name">{option?.value}</div>
             </div>
           ))}{" "}
         </div>

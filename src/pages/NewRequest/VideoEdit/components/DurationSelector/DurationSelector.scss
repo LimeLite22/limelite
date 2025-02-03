@@ -1,9 +1,8 @@
-.duration_dropdown {
+// duration dropdown
+.dd {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  min-height: 63px;
-  height: 63px;
   cursor: pointer;
   transition-duration: 0.2s;
   user-select: none;
@@ -37,7 +36,12 @@
       margin-bottom: 3px;
     }
   }
-  &__selected {
+  &_submit {
+    min-height: unset;
+    height: unset;
+    margin-top: 0px;
+  }
+  &_selected {
     z-index: 5;
     min-height: 41px;
     width: 100%;
@@ -51,8 +55,10 @@
     color: var(--gray-dark);
     position: relative;
     padding-right: 15px;
+    &_submit {
+      margin-bottom: 0px;
+    }
     @media screen and (max-width: 768px) {
-
       margin-bottom: 0px;
     }
     &_error {
@@ -73,7 +79,7 @@
         color: var(--gray-light5);
       }
     }
-    &__itemArrow {
+    &_itemArrow {
       height: 25px;
       width: 25px;
       position: absolute;
@@ -103,15 +109,16 @@
     }
     &_collapseIcon {
       position: absolute;
-      top: 10px;
+      top: 50%;
+      transform: translateY(-50%);
       right: 8px;
       transition-duration: 0.3s;
       &_opened {
-        transform: rotate(180deg);
+        transform: rotate(180deg) translateY(50%);
       }
     }
   }
-  &__itemsContainer {
+  &_itemsContainer {
     background-color: var(--white);
     min-height: 330px;
     max-height: 330px;
@@ -121,8 +128,12 @@
 
     border-radius: 6px;
     border: 1px solid var(--gray-light3);
+    position: absolute;
+    left: 0;
+    bottom: -335px;
+    width: 100%;
   }
-  &__item {
+  &_item {
     z-index: 6;
     min-height: 41px;
     width: 100%;
@@ -144,14 +155,14 @@
       line-height: 16.8px;
       text-align: left;
     }
-    &__itemArrow {
+    &_itemArrow {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translateY(-50%) translateX(-50%);
     }
   }
-  &__item:hover {
+  &_item:hover {
     background: var(--gray-light8);
   }
 }

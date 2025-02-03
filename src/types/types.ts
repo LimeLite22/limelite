@@ -96,11 +96,11 @@ export type TOptionsList = TOption[];
 
 export type TSelection = 'yes' | 'no';
 export type TLocation = "default" | 1 | 2 | 3;
-export type TVideo = "default" | "standard" | "story" | "square" | "vertical";
+export type TVideo = "default" | "Standard" | "Story" | "Square" | "Vertical";
 export type TQuestionAuthor = "default" | "client" | "professional";
 export type TQuestionLocation = "default" | "questions on location" | "questions virtualy" | "virtual interview";
 export type TVoiceAuthor = "default" | "client" | "professional";
-export type TThumbnail = "default" | "custom thumbnail" | "default thumbnail" | "no thumbnail";
+export type TThumbnail = "default" | "Custom thumbnail" | "Basic thumbnail" | "No thumbnail";
 export type TRush = "rush time" | "standard time" | "default";
 export type TTextStatus = 'default' | 'Approved' | 'In Progress' | 'Unavailable';
 export type TDraftFieldUpdate = {
