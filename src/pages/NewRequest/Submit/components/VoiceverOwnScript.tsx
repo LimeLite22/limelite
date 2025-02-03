@@ -1,7 +1,7 @@
 
-import { ArrowBlue3, CloseRed, EditIcon, StatusApproved, StatusProgress, StatusUnavailable, Success2 } from "assets/images";
-import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, QUESTIONS_ON_LOCATION, UNAVAILABLE_TEXT_STATUS, VIRTUAL_INTERVIEW } from "consts/consts";
-import { useEffect, useState } from "react";
+import { ArrowBlue3, CloseRed, EditIcon, StatusApproved, StatusProgress, StatusUnavailable, Success2, Audio, Delete, Download } from "assets/images";
+import { APPROVED_TEXT_STATUS, DEFAULT, IN_PROGRESS_TEXT_STATUS, QUESTIONS_ON_LOCATION, TRACK_AUTHOR_CLIENT, UNAVAILABLE_TEXT_STATUS, VIRTUAL_INTERVIEW } from "consts/consts";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { selectRequestInfo, updateDraftField } from "../../../../redux/requests/reducer";
@@ -14,11 +14,14 @@ const VoiceoverOwnScript = () => {
     const defaultState = {
         status,
         text,
+        file: selectedRequest?.voiceTrackSettings.track
     }
     const [isEdit, setIsEdit] = useState(false);
     const [isReady, setIsReady] = useState(false);
     const [current, setCurrent] = useState(defaultState);
+    const [error, setError] = useState<string | null>(null);
     const [isDetailsExpanded, setIsDetailsExpanded] = useState(false);
+    const fileInputRef = useRef<HTMLInputElement>(null);
     const isDetailTextBig = text
         && text.length > 200;
 
@@ -45,20 +48,43 @@ const VoiceoverOwnScript = () => {
         setIsEdit(false);
         setCurrent(defaultState);
     }
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const uploadedFile = event.target.files?.[0];
+
+        if (uploadedFile) {
+            const allowedExtensions = ["audio/mpeg", "audio/wav", "audio/aiff"];
+            if (allowedExtensions.includes(uploadedFile.type)) {
+                setError(null);
+                setCurrent((prev) => ({ ...prev, file: uploadedFile }))
+            } else {
+                setError("Файл повинен бути формату MP3, WAV або AIFF");
+                setCurrent((prev) => ({ ...prev, file: DEFAULT }))
+            }
+        }
+    };
+    const handleDivClick = () => {
+        fileInputRef.current?.click();
+    };
     const handleSave = () => {
         if (!isReady) return
         dispatch(
             updateDraftField({
-                path: "interviewSettings.questionsAuthorOwnSettings.scriptAuthorOwnSettings.text",
+                path: "voiceTrackSettings.scriptAuthorOwnSettings.text",
                 value: current.text,
             }),
         );
         dispatch(
             updateDraftField({
-                path: "interviewSettings.questionsAuthorOwnSettings.scriptAuthorOwnSettings.scriptStatus",
+                path: "voiceTrackSettings.scriptAuthorOwnSettings.scriptStatus",
                 value: current.status,
             })
         )
+        dispatch(
+            updateDraftField({
+                path: 'voiceTrackSettings.track',
+                value: current.file,
+            }),
+        );
 
 
         setCurrent(defaultState);
@@ -93,6 +119,71 @@ const VoiceoverOwnScript = () => {
                         ><img src={Success2} alt='' /> Save changes</div>
                     </div>}
             </div>
+            {/* {selectedRequest?.voiceTrackSettings.trackAuthor === TRACK_AUTHOR_CLIENT && */}
+            <div className={styles.infoContainer_text}>
+                <p>Script Status:</p>
+                {isEdit ? <div className={`${styles.box_container} ${styles.box_container_submit}`}>
+                    {current.file === DEFAULT &&
+                        <>
+                            <div className={styles.box_title}>
+                                Upload a high quality voice track:
+                            </div>
+                            <div className={`${styles.box_title2} ${styles.box_title2_submit} `} style={{ whiteSpace: "wrap" }}>
+                                Please upload high quality, uncompressed audio files (e.g., WAV or
+                                AIFF). MP3 files are acceptable but are lower quality.
+                            </div>
+                        </>
+                    }
+
+                    <input
+                        type="file"
+                        accept=".mp3, .wav, .aiff"
+                        ref={fileInputRef}
+                        style={{ display: "none" }}
+                        onChange={handleFileChange}
+                    />
+                    {current.file !== DEFAULT && (
+                        <div className={`${styles.box_audioFile} ${styles.box_audioFile_submit}`}>
+                            <img src={Audio} alt="" />
+                            <div style={{ flex: 1 }}>
+                                <div>{current.file?.name}</div>
+                                <div>{current.file?.size && Number(current.file?.size / 1000000).toFixed(2)} mb</div>
+                            </div>
+                            <img
+                                onClick={() => {
+                                    setCurrent((prev) => ({ ...prev, file: DEFAULT }))
+                                }}
+                                src={Delete}
+                                alt=""
+                            />
+                        </div>
+                    )}
+                    {error && <p style={{ color: "red" }}>{error}</p>}
+                    {current.file === DEFAULT &&
+                        <div onClick={handleDivClick} className={styles.box_audioFileButton}>
+                            <img
+                                src={Download}
+                                alt="Download icon"
+                                style={{ width: "24px", height: "24px" }}
+                            />
+                            <span >
+                                Upload WAV or MP3 file
+                            </span>
+                        </div>
+                    }
+
+                </div> : <div className={styles.box_audioFileSubmit}>
+                    <img src={Audio} alt="" />
+                    <div>
+                        <div className={styles.box_audioFileSubmit_text}>{current.file !== DEFAULT && current.file?.name}</div>
+                        <div className={styles.box_audioFileSubmit_text}>{current.file !== DEFAULT && current.file?.size && Number(current.file?.size / 1000000).toFixed(2)} mb</div>
+                    </div>
+                </div>
+
+                }
+
+            </div>
+            {/*   }  */}
 
             <div className={styles.infoContainer_text}><p>Script Status:</p>
                 {isEdit ?
@@ -124,7 +215,7 @@ const VoiceoverOwnScript = () => {
                             <img src={StatusUnavailable} alt="status" />
                             {UNAVAILABLE_TEXT_STATUS}
                         </div>
-                    </div> : selectedRequest?.interviewSettings.questionsAuthorOwnSettings.scriptStatus}
+                    </div> : status}
             </div>
             <div className={styles.infoContainer_text}><p className={`
                 ${styles.infoContainer_detailsHeader}
