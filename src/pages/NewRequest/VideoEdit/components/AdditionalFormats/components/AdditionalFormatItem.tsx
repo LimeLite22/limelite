@@ -9,7 +9,7 @@ import {
 import { IAdditionalVideoFormat } from "interfaces/interfaces";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { TVideoDuration } from "types/types";
+import { TVideo, TVideoDuration } from "types/types";
 
 import {
   deleteAdditionalVideoFormat,
@@ -22,9 +22,12 @@ import DurationSelector from "../../DurationSelector/DurationSelector";
 interface IProps {
   index: number;
   item: IAdditionalVideoFormat;
-  isError: boolean
+  isError: boolean,
+  isSubmit?: boolean,
+  onChange?: (duration: TVideoDuration, format: TVideo) => void,
+  onDelete?: (index: number) => void
 }
-const AdditionalFormatItem = ({ item, index, isError }: IProps) => {
+const AdditionalFormatItem = ({ item, index, isError, isSubmit, onChange, onDelete }: IProps) => {
   const dispatch = useDispatch();
   const selection = useSelector(selectRequestInfo)?.videoSettings.additionalFormats;
   const [formatError, setFormatError] = useState(false);
@@ -53,6 +56,15 @@ const AdditionalFormatItem = ({ item, index, isError }: IProps) => {
       setMarkFormatError(false);
     }
   }, [selection])
+  const handleSelect = (value: TVideo) => {
+    dispatch(
+      updateAdditionalVideoFormat({
+        ...item,
+        format: value,
+      }),
+    );
+    setFormatError(false);
+  }
 
   return (
     <div className={styles.videoFormat_item} key={item.id} ref={containerRef} tabIndex={-1} onBlur={handleBlur}>
@@ -64,7 +76,11 @@ const AdditionalFormatItem = ({ item, index, isError }: IProps) => {
               src={Remove}
               alt="Remove"
               onClick={() => {
-                dispatch(deleteAdditionalVideoFormat(item.id));
+                if (onDelete) {
+                  onDelete(index);
+                } else {
+                  dispatch(deleteAdditionalVideoFormat(item.id));
+                }
               }}
             />
           ) : (
@@ -79,81 +95,83 @@ const AdditionalFormatItem = ({ item, index, isError }: IProps) => {
                ${styles.videoFormat_formatItem}`}
           style={{ border: markFormatError ? "1px solid var(--red-dark)" : "" }}
           onClick={() => {
-            dispatch(
-              updateAdditionalVideoFormat({
-                ...item,
-                format: VIDEO_STANDARD,
-              }),
-            );
-            setFormatError(false);
+            if (onChange) {
+              onChange(item.duration, VIDEO_STANDARD);
+              setFormatError(false);
+            } else {
+              handleSelect(VIDEO_STANDARD);
+            }
           }}
         >
-          Standard <div className={styles.box_videoType_dot}></div> 16:9
+          {VIDEO_STANDARD}<div className={styles.box_videoType_dot}></div> 16:9
         </div>
-          <div
-            className={`
+        <div
+          className={`
                ${item.format === VIDEO_STORY ? styles.videoFormat_formatItemSelected : ""}  
                ${styles.videoFormat_formatItem}`}
-            style={{ border: markFormatError ? "1px solid var(--red-dark)" : "" }}
-            onClick={() => {
-              dispatch(
-                updateAdditionalVideoFormat({
-                  ...item,
-                  format: VIDEO_STORY,
-                }),
-              );
+          style={{ border: markFormatError ? "1px solid var(--red-dark)" : "" }}
+          onClick={() => {
+            if (onChange) {
+              onChange(item.duration, VIDEO_STORY);
               setFormatError(false);
-            }}
-          >
-            Story <div className={styles.box_videoType_dot}></div> 9:16
-          </div>
-          <div
-            className={`
+            } else {
+              handleSelect(VIDEO_STORY);
+            }
+          }}
+        >
+          {VIDEO_STORY} <div className={styles.box_videoType_dot}></div> 9:16
+        </div>
+        <div
+          className={`
                 ${item.format === VIDEO_SQUARE ? styles.videoFormat_formatItemSelected : ""}  
                 ${styles.videoFormat_formatItem}`}
-            style={{ border: markFormatError ? "1px solid var(--red-dark)" : "" }}
-            onClick={() => {
-              dispatch(
-                updateAdditionalVideoFormat({
-                  ...item,
-                  format: VIDEO_SQUARE,
-                }),
-              );
+          style={{ border: markFormatError ? "1px solid var(--red-dark)" : "" }}
+          onClick={() => {
+            if (onChange) {
+              onChange(item.duration, VIDEO_SQUARE);
               setFormatError(false);
-            }}
-          >
-            Square <div className={styles.box_videoType_dot}></div> 1:1
+            } else {
+              handleSelect(VIDEO_SQUARE);
+            }
+          }}
+        >
+          {VIDEO_SQUARE} <div className={styles.box_videoType_dot}></div> 1:1
         </div>
-          <div
-            className={`    
+        <div
+          className={`    
                 ${item.format === VIDEO_VERTICAL ? styles.videoFormat_formatItemSelected : ""}  
                 ${styles.videoFormat_formatItem}`}
-            style={{ border: markFormatError ? "1px solid var(--red-dark)" : "" }}
-            onClick={() => {
-              dispatch(
-                updateAdditionalVideoFormat({
-                  ...item,
-                  format: VIDEO_VERTICAL,
-                }),
-              );
+          style={{ border: markFormatError ? "1px solid var(--red-dark)" : "" }}
+          onClick={() => {
+            if (onChange) {
+              onChange(item.duration, VIDEO_VERTICAL);
               setFormatError(false);
-            }}
-          >
-            Vertical <div className={styles.box_videoType_dot}></div> 4:5
-          </div>
+            } else {
+              handleSelect(VIDEO_VERTICAL);
+            }
+          }}
+        >
+          {VIDEO_VERTICAL} <div className={styles.box_videoType_dot}></div> 4:5
+        </div>
       </div>
 
       <div className={styles.videoFormat_header} style={{ color: durationError || (item.duration === DEFAULT && isError) ? "var(--red-dark)" : "" }}>Target duration </div>
       <DurationSelector
         value={item.duration}
         onChange={(duration: TVideoDuration) => {
-          dispatch(
-            updateAdditionalVideoFormat({
-              ...item,
-              duration: duration,
-            }),
-          );
-          setDurationError(false);
+          if (onChange) {
+            onChange(duration, item.format);
+            setDurationError(false);
+          } else {
+            dispatch(
+              updateAdditionalVideoFormat({
+                ...item,
+                duration: duration,
+              }),
+            );
+            setDurationError(false);
+          }
+
         }}
       />
     </div>

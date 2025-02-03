@@ -30,14 +30,14 @@ const Submit = () => {
                     Your request will not be submitted until you click ‘Submit’. To make edits,
                     click ‘Go back’ or ‘Edit’ below.
                 </div>
-                <ProjectInfo />
+                {/* <ProjectInfo />
                 <LogisticInfo />
                 <ScriptInfoOwnScript />
                 <ScriptInfoProffScript />
                 <InterviewOwnScript />
                 <InterviewProffScript />
                 <VoiceoverOwnScript />
-                <VoiceoverProfScript />
+                <VoiceoverProfScript /> */}
                 <VideoEdit />
                 <AddOnsContainer />
 

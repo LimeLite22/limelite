@@ -57,6 +57,7 @@
     padding-right: 15px;
     &_submit {
       margin-bottom: 0px;
+      border: 1px solid var(--gray-light7);
     }
     @media screen and (max-width: 768px) {
       margin-bottom: 0px;

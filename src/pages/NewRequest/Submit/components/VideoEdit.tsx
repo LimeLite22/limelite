@@ -1,10 +1,11 @@
 
-import { CloseRed, EditIcon, Success2, } from "assets/images";
+import { Add2, CloseRed, EditIcon, Success2, } from "assets/images";
 import { BASIC_THUMBNAIL, CUSTOM_THUMBNAIL, DEFAULT, NO_THUMBNAIL, VIDEO_SQUARE, VIDEO_STANDARD, VIDEO_STORY, VIDEO_VERTICAL } from "consts/consts";
+import AdditionalFormatItem from "pages/NewRequest/VideoEdit/components/AdditionalFormats/components/AdditionalFormatItem";
 import DurationSelector from "pages/NewRequest/VideoEdit/components/DurationSelector/DurationSelector";
-import NoThumbnail from "pages/NewRequest/VideoEdit/components/Thumbnail/components/NoThumbnail";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { generateUniqueId } from "utils/generateId";
 
 import { selectRequestInfo, updateDraftField } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
@@ -16,7 +17,8 @@ const VideoEdit = () => {
         format: videoSettings?.format,
         targetDuration: videoSettings?.targetDuration,
         captions: videoSettings?.captions,
-        thumbnail: videoSettings?.thumbnail
+        thumbnail: videoSettings?.thumbnail,
+        additionalFormats: videoSettings?.selectedAdditionalFormats
     }
     const [isEdit, setIsEdit] = useState(false);
     const [isReady, setIsReady] = useState(false);
@@ -75,9 +77,23 @@ const VideoEdit = () => {
                 value: current.thumbnail,
             }),
         );
+        dispatch(
+            updateDraftField({
+                path: "videoSettings.selectedAdditionalFormats",
+                value: current.additionalFormats,
+            }),
+        );
         setCurrent(defaultState);
         setIsEdit(false);
     }
+    const handleAddFormat = () => {
+        if (current?.additionalFormats) {
+            const newFormats = [...current?.additionalFormats];
+            newFormats.push({ id: generateUniqueId(), duration: DEFAULT, format: DEFAULT });
+            setCurrent({ ...current, additionalFormats: newFormats })
+        }
+    }
+
     useEffect(() => {
         readyToSave();
     }, [current])
@@ -223,77 +239,51 @@ const VideoEdit = () => {
                 }
 
             </div>
-            {/* 
-            <div className={styles.infoContainer_text}><p>Script Status:</p>
-                {isEdit ?
-                    <div className={styles.infoContainer_statuses}>
-                        <div
-                            className={`${styles.box_status} ${current.status === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
-                            onClick={() => {
-                                setCurrent((prev) => ({ ...prev, status: APPROVED_TEXT_STATUS }))
-                            }}
-                        >
-                            <img src={StatusApproved} alt="status" />
-                            {APPROVED_TEXT_STATUS}
-                        </div>
-                        <div
-                            className={`${styles.box_status} ${current.status === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
-                            onClick={() => {
-                                setCurrent((prev) => ({ ...prev, status: IN_PROGRESS_TEXT_STATUS }))
-                            }}
-                        >
-                            <img src={StatusProgress} alt="status" />
-                            {IN_PROGRESS_TEXT_STATUS}
-                        </div>
-                        <div
-                            className={`${styles.box_status} ${current.status === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
-                            onClick={() => {
-                                setCurrent((prev) => ({ ...prev, status: UNAVAILABLE_TEXT_STATUS }))
-                            }}
-                        >
-                            <img src={StatusUnavailable} alt="status" />
-                            {UNAVAILABLE_TEXT_STATUS}
-                        </div>
-                    </div> : status}
-            </div>
-            <div className={styles.infoContainer_text}><p className={`
-                ${styles.infoContainer_detailsHeader}
-                ${isDetailTextBig ? styles.infoContainer_detailsHeader_big : ''}
-                ${isDetailsExpanded ? styles.infoContainer_detailsHeader_expanded : ''}
-                `}
-            >Script:</p>
-                {isEdit ?
-                    <textarea className={styles.infoContainer_textarea}
-                        onChange={(e) => setCurrent({ ...current, text: e.target.value })}
-                        value={current.text} /> :
-                    <div>
-                        <div className={`
-                   ${styles.infoContainer_details} 
-                   ${isDetailsExpanded ? styles.infoContainer_details_expanded : ''}`}
-                        >
-                            {text}
-                        </div>
-                        {isDetailTextBig &&
-                            <>
-                                <div className={`
-                        ${styles.infoContainer_details_shadow}
-                        ${isDetailsExpanded ? styles.infoContainer_details_shadow_expanded : ''}
-                        `}></div>
-                                <div
-                                    className={`
-                           ${styles.infoContainer_details_showAll}
-                           ${isDetailsExpanded ? styles.infoContainer_details_showAll_expanded : ''}
-                               `
-                                    }
-                                    onClick={() => setIsDetailsExpanded(!isDetailsExpanded)}
-                                >
-                                    <>{isDetailsExpanded ? "Show less" : "Show all text"}<img src={ArrowBlue3} alt='' /></>
 
-                                </div>
-                            </>
-                        }
+            <div className={styles.infoContainer_text}>
+                <p>Additional/social formats</p>
+                {isEdit ?
+                    <div>
+                        <div className={styles.videoFormat}>
+                            {current?.additionalFormats?.map(
+                                (item, index) => {
+                                    return (
+                                        <AdditionalFormatItem key={item.id} item={item} index={index} isError={false}
+                                            onChange={(duration, format) => {
+                                                if (current?.additionalFormats) {
+                                                    const newFormats = [...current?.additionalFormats];
+                                                    newFormats[index] = { ...newFormats[index], duration, format };
+                                                    setCurrent({ ...current, additionalFormats: newFormats })
+                                                }
+
+                                            }}
+                                            onDelete={(index) => {
+                                                if (current?.additionalFormats) {
+                                                    const newFormats = [...current?.additionalFormats];
+                                                    newFormats.splice(index, 1);
+                                                    setCurrent({ ...current, additionalFormats: newFormats })
+                                                }
+                                            }}
+                                        />
+                                    );
+                                },
+                            )}
+                        </div>
+                        <div
+                            className={styles.videoFormat_addFormat}
+                            onClick={handleAddFormat}
+                        >
+                            <img src={Add2} alt="locationIcon" /> Add an additional format
+                        </div>
+                    </div>
+                    : <div>
+                        {videoSettings?.selectedAdditionalFormats?.map((item, index) => {
+                            return (
+                                `${item.format} (${item.duration}) ${index + 1 === videoSettings?.selectedAdditionalFormats?.length ? "" : ","}`
+                            )
+                        })}
                     </div>}
-            </div> */}
+            </div>
 
         </div >
     )
