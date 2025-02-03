@@ -8,8 +8,8 @@ import { isDateInRange } from "utils/dateRange";
 import { generateUniqueId } from "utils/generateId";
 import { statusColor } from "utils/statusColors";
 import { truncateString } from "utils/truncateString";
-import DateFilter from "./components/DateFilter";
 
+import DateFilter from "./components/DateFilter";
 import ProjectFilter from "./components/Filter";
 import styles from "./ProjectsPage.module.scss";
 export const TestUsers = [

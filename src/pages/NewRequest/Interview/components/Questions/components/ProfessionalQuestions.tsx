@@ -29,14 +29,11 @@ const ProffessionalQuestions = ({
   const selectedRequest = useSelector(selectRequestInfo);
 
   const selection = selectedRequest?.interviewSettings.questionsAuthor;
-  const subject =
-    selectedRequest?.interviewSettings.questionsAuthorProfSettings?.subject;
-  const phone =
-    selectedRequest?.interviewSettings.questionsAuthorProfSettings?.phone;
-  const email =
-    selectedRequest?.interviewSettings.questionsAuthorProfSettings?.email;
-  const text =
-    selectedRequest?.interviewSettings.questionsAuthorProfSettings?.backgroundInfo;
+  const profSettings = selectedRequest?.interviewSettings.questionsAuthorProfSettings;
+  const subject = profSettings?.subject;
+  const phone = profSettings?.phone;
+  const email = profSettings?.email;
+  const text = profSettings?.backgroundInfo;
 
   const dispatch = useDispatch();
   const handleUpdateField = (path: string, value: string) => {
@@ -198,7 +195,7 @@ const ProffessionalQuestions = ({
             value={text}
             onChange={(e) => {
               handleUpdateField(
-                "interviewSettings.questionsAuthorProfSettings.text",
+                "interviewSettings.questionsAuthorProfSettings.backgroundInfo",
                 e.target.value,
               );
             }}

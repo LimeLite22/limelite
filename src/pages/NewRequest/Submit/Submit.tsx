@@ -1,4 +1,5 @@
 import { EditIcon } from "assets/images";
+
 import BackButton from "../components/BackButton";
 import NextButton from "../components/NextButton"
 import StepsNavigation from "../components/StepsNavigation";
@@ -26,10 +27,10 @@ const Submit = () => {
                     Your request will not be submitted until you click ‘Submit’. To make edits,
                     click ‘Go back’ or ‘Edit’ below.
                 </div>
-                <ProjectInfo />
+                {/* <ProjectInfo />
                 <LogisticInfo />
                 <ScriptInfoOwnScript />
-                <ScriptInfoProffScript />
+                <ScriptInfoProffScript /> */}
                 <InterviewOwnScript />
                 <InterviewProffScript />
                 ----

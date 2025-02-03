@@ -1,11 +1,12 @@
 
-import { CheckBox, CheckBoxSelected, CloseRed, EditIcon, Success2 } from "assets/images";
+import { CloseRed, EditIcon, Success2 } from "assets/images";
 import { QUESTIONS_ON_LOCATION, VIRTUAL_INTERVIEW } from "consts/consts";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import ScriptPersons from "./ScriptPersons";
 import { selectRequestInfo, updateDraftField } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
-import ScriptPersons from "./ScriptPersons";
 const InterviewProffScript = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const dispatch = useDispatch();

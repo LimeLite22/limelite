@@ -3,9 +3,10 @@ import { ArrowBlue3, CloseRed, EditIcon, StatusApproved, StatusProgress, StatusU
 import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, QUESTIONS_ON_LOCATION, UNAVAILABLE_TEXT_STATUS, VIRTUAL_INTERVIEW } from "consts/consts";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import ScriptPersons from "./ScriptPersons";
 import { selectRequestInfo, updateDraftField } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
-import ScriptPersons from "./ScriptPersons";
 const InterviewOwnScript = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const dispatch = useDispatch();

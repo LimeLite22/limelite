@@ -1,8 +1,9 @@
 import { Add2 } from "assets/images";
 import { TPerson } from "types/types";
 import { generateUniqueId } from "utils/generateId";
-import styles from "../../NewRequest.module.scss";
+
 import ScriptPerson from "./ScriptPerson";
+import styles from "../../NewRequest.module.scss";
 
 interface IProps {
   persons: TPerson[] | undefined;

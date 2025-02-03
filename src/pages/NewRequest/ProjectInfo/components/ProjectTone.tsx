@@ -1,5 +1,3 @@
-import styles from "../ProjectInfo.module.scss";
-
 import { GrayArrow } from "assets/images";
 import { projectTones } from "consts/consts";
 import { useState } from "react";
@@ -9,13 +7,13 @@ import {
   selectRequestInfo,
   updateDraftField,
 } from "../../../../redux/requests/reducer";
-import { is } from "immutable";
+import styles from "../ProjectInfo.module.scss";
 
 interface IProps {
   isError: boolean;
   setIsError: React.Dispatch<React.SetStateAction<boolean>>;
   isSubmitMode?: boolean;
-  onChange?: ( value: string) => void;
+  onChange?: (value: string) => void;
 }
 
 const ToneSelector = ({ isError, setIsError, isSubmitMode, onChange }: IProps) => {

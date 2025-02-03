@@ -2,9 +2,10 @@ import { CheckBox, CheckBoxSelected, CloseRed, LastDays } from "assets/images";
 import { CURRENT_MONTH_RANGE, CURRENT_YEAR_RANGE, DEFAULT, LAST_12_MONTHS, LAST_30_DAYS, LAST_WEEK_RANGE } from "consts/consts";
 import useWindowWidth from "hooks/useWindowWidth";
 import { useState } from "react";
-import { TRange } from "types/types";
 import { Sheet } from "react-modal-sheet";
+import { TRange } from "types/types";
 import { getDatesInRange } from "utils/dateRange";
+
 import styles from "../ProjectsPage.module.scss";
 
 interface IProps {

@@ -1,14 +1,15 @@
 
 import { CalendarIcon2, CloseRed, EditIcon, LocationBlack, Success2 } from "assets/images";
+import axios from "axios";
 import { DEFAULT } from "consts/consts";
 import { format } from "date-fns";
+import Calendar from "pages/NewRequest/Logistics/components/Calendar/Calendar";
+import TimeSelector from "pages/NewRequest/Logistics/components/Calendar/TimeSelector";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { selectRequestInfo, updateDraftField } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
-import axios from "axios";
-import TimeSelector from "pages/NewRequest/Logistics/components/Calendar/TimeSelector";
-import Calendar from "pages/NewRequest/Logistics/components/Calendar/Calendar";
 interface Suggestion {
     text: string;
 }

@@ -6,8 +6,7 @@ import {
   StatusProgress,
   StatusUnavailable,
 } from "assets/images";
-import { QUESTIONS_AUTHOR_CLIENT } from "consts/consts";
-import { useState } from "react";
+import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, QUESTIONS_AUTHOR_CLIENT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -26,9 +25,9 @@ interface IProps {
 const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
   const selectedRequest = useSelector(selectRequestInfo);
   const selection = selectedRequest?.interviewSettings.questionsAuthor;
-  const [textStatus, setTextStatus] = useState(0);
-  const text =
-    selectedRequest?.interviewSettings.questionsAuthorOwnSettings.text;
+  const ownSettings = selectedRequest?.interviewSettings.questionsAuthorOwnSettings;
+  const text = ownSettings?.text;
+  const status = ownSettings?.scriptStatus;
   const dispatch = useDispatch();
   const handleUpdateField = (path: string, value: string) => {
     dispatch(
@@ -79,22 +78,37 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
         <div className={styles.box_text}>Script Status</div>
         <div className={styles.box_statuses}>
           <div
-            className={`${styles.box_status} ${textStatus === 0 ? styles.box_status_approved : ""} `}
-            onClick={() => setTextStatus(0)}
+            className={`${styles.box_status} ${status === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
+            onClick={() => {
+              handleUpdateField(
+                `interviewSettings.questionsAuthorOwnSettings.scriptStatus`,
+                APPROVED_TEXT_STATUS
+              )
+            }}
           >
             <img src={StatusApproved} alt="status" />
             Approved
           </div>
           <div
-            className={`${styles.box_status} ${textStatus === 1 ? styles.box_status_approved : ""} `}
-            onClick={() => setTextStatus(1)}
+            className={`${styles.box_status} ${status === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
+            onClick={() => {
+              handleUpdateField(
+                `interviewSettings.questionsAuthorOwnSettings.scriptStatus`,
+                IN_PROGRESS_TEXT_STATUS
+              )
+            }}
           >
             <img src={StatusProgress} alt="status" />
             In Progress
           </div>
           <div
-            className={`${styles.box_status} ${textStatus === 2 ? styles.box_status_approved : ""} `}
-            onClick={() => setTextStatus(2)}
+            className={`${styles.box_status} ${status === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
+            onClick={() => {
+              handleUpdateField(
+                `interviewSettings.questionsAuthorOwnSettings.scriptStatus`,
+                UNAVAILABLE_TEXT_STATUS
+              )
+            }}
           >
             <img src={StatusUnavailable} alt="status" />
             Unavailable

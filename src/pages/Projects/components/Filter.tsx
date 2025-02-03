@@ -1,14 +1,14 @@
 import { ArrowGray, CloseRed, Filter, GapCheck, GapUnCheck } from "assets/images";
 import { CANCELED_REQUEST_STATUS, COMPLETE_REQUEST_STATUS, FILTER_REQUEST_TYPE, FILTER_REQUESTED_BY, FILTER_START, FILTER_STATUS, FILTER_VIDEO_TYPE, IN_EDITING_REQUEST_STATUS, ON_HOLD_REQUEST_STATUS, optionsList, projectTypes, REQUESTED_REQUEST_STATUS, SCHEDULED_REQUEST_STATUS } from "consts/consts";
+import useWindowWidth from "hooks/useWindowWidth";
 import { useEffect, useState } from "react";
+import { Sheet } from "react-modal-sheet";
 import { TFilterMenu } from "types/types";
 import { statusColor } from "utils/statusColors";
 import { truncateString } from "utils/truncateString";
-import { Sheet } from "react-modal-sheet";
 
 import { TestUsers } from "../Projects";
 import styles from "../ProjectsPage.module.scss";
-import useWindowWidth from "hooks/useWindowWidth";
 const statusList = [COMPLETE_REQUEST_STATUS, IN_EDITING_REQUEST_STATUS, REQUESTED_REQUEST_STATUS, SCHEDULED_REQUEST_STATUS, ON_HOLD_REQUEST_STATUS, CANCELED_REQUEST_STATUS,];
 interface IProps {
     videoTypes: string[];
@@ -293,7 +293,7 @@ const ProjectFilter = ({ videoTypes, requestTypes, users, statuses, setVideoType
                             ${styles.filter_container_item} 
                             ${styles.filter_container_videoItem}`}
                         key={item}
-                        onClick={() => {toggleSelectStatus(item)}
+                        onClick={() => { toggleSelectStatus(item) }
                         }
                     >
                         <img src={statuses.includes(item) ? GapCheck : GapUnCheck} alt={'GapUnCheck'} />

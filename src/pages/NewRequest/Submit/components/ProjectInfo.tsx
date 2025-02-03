@@ -3,6 +3,7 @@ import { ArrowBlue3, CloseRed, EditIcon, Success2, User1Foto } from "assets/imag
 import { ProjectTone, ProjectType } from "pages/NewRequest/ProjectInfo/components";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { selectRequestInfo, updateDraftField } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 const ProjectInfo = () => {
