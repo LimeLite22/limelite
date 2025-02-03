@@ -1,6 +1,6 @@
 
 import { ArrowBlue3, CloseRed, EditIcon, StatusApproved, StatusProgress, StatusUnavailable, Success2, Audio, Delete, Download } from "assets/images";
-import { APPROVED_TEXT_STATUS, DEFAULT, IN_PROGRESS_TEXT_STATUS, QUESTIONS_ON_LOCATION, TRACK_AUTHOR_CLIENT, UNAVAILABLE_TEXT_STATUS, VIRTUAL_INTERVIEW } from "consts/consts";
+import { APPROVED_TEXT_STATUS, DEFAULT, IN_PROGRESS_TEXT_STATUS, QUESTIONS_ON_LOCATION, TRACK_AUTHOR_CLIENT, TRACK_AUTHOR_PROFESSIONAL, UNAVAILABLE_TEXT_STATUS, VIRTUAL_INTERVIEW } from "consts/consts";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -96,7 +96,7 @@ const VoiceoverOwnScript = () => {
     useEffect(() => {
         setCurrent(defaultState);
     }, [selectedRequest])
-    // if (selectedRequest?.interviewSettings.scriptWriter !== OWN_SCRIPT) return null
+    // if (selectedRequest?.voiceTrackSettings.trackAuthor !== TRACK_AUTHOR_PROFESSIONAL) return null
     return (
         <div className={styles.infoContainer}>
             <div className={styles.infoContainer_header}>About Your Voiceover

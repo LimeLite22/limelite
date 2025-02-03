@@ -1,5 +1,6 @@
 
 import { CloseRed, EditIcon, Success2 } from "assets/images";
+import { TRACK_AUTHOR_CLIENT } from "consts/consts";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -21,10 +22,10 @@ const VoiceoverProfScript = () => {
 
     const readyToSave = () => {
         let ready = true;
-        if (current.expert !== selectedRequest?.scriptSettings.name
-            || current.phone !== selectedRequest?.scriptSettings.phone
-            || current.email !== selectedRequest?.scriptSettings.email
-            || current.backgroundInfo !== selectedRequest?.scriptSettings.backgroundInfo
+        if (current.expert !== voiceTrackSettings?.subject
+            || current.phone !== voiceTrackSettings?.phone
+            || current.email !== voiceTrackSettings?.email
+            || current.backgroundInfo !== voiceTrackSettings?.backgroundInfo
         ) {
             if (current.expert?.length !== 0 && current.email?.length !== 0) {
                 ready = true
@@ -48,25 +49,25 @@ const VoiceoverProfScript = () => {
         if (!isReady) return
         dispatch(
             updateDraftField({
-                path: "scriptSettings.name",
+                path: "voiceTrackSettings.scriptAuthorProfSettings.subject",
                 value: current.expert,
             }),
         );
         dispatch(
             updateDraftField({
-                path: "scriptSettings.phone",
+                path: "voiceTrackSettings.scriptAuthorProfSettings.phone",
                 value: current.phone,
             })
         )
         dispatch(
             updateDraftField({
-                path: "scriptSettings.email",
+                path: "voiceTrackSettings.scriptAuthorProfSettings.email",
                 value: current.email,
             })
         )
         dispatch(
             updateDraftField({
-                path: "scriptSettings.backgroundInfo",
+                path: "voiceTrackSettings.scriptAuthorProfSettings.backgroundInfo",
                 value: current.backgroundInfo,
             })
         )
@@ -79,7 +80,7 @@ const VoiceoverProfScript = () => {
     useEffect(() => {
         setCurrent(defaultState);
     }, [selectedRequest])
-    // if (selectedRequest?.scriptSettings.scriptWriter !== PROFESSIONAL_SCRIPT) return null
+    // if (selectedRequest?.voiceTrackSettings.trackAuthor !== TRACK_AUTHOR_CLIENT) return null
     return (
         <div className={styles.infoContainer}>
             <div className={styles.infoContainer_header}>About Your Voiceover
@@ -110,7 +111,7 @@ const VoiceoverProfScript = () => {
                         className={styles.infoContainer_input}
                         value={current.expert}
                         onChange={(e) => setCurrent({ ...current, expert: e.target.value })}
-                        type="text" /> : selectedRequest?.scriptSettings.name}
+                        type="text" /> : voiceTrackSettings?.subject}
 
             </div>
 
@@ -121,7 +122,7 @@ const VoiceoverProfScript = () => {
                         value={current.phone}
 
                         onChange={(e) => setCurrent({ ...current, phone: Number(e.target.value) })}
-                        type="text" /> : selectedRequest?.scriptSettings.phone}
+                        type="text" /> : voiceTrackSettings?.phone}
             </div>
 
             <div className={styles.infoContainer_text}><p>Email:</p>
@@ -130,7 +131,7 @@ const VoiceoverProfScript = () => {
                         className={styles.infoContainer_input}
                         value={current.email}
                         onChange={(e) => setCurrent({ ...current, email: e.target.value })}
-                        type="text" /> : selectedRequest?.scriptSettings.email}
+                        type="text" /> : voiceTrackSettings?.email}
             </div>
 
             <div className={styles.infoContainer_text}><p>Background information for interview(s):</p>
@@ -139,7 +140,7 @@ const VoiceoverProfScript = () => {
                         className={styles.infoContainer_input}
                         value={current.backgroundInfo}
                         onChange={(e) => setCurrent({ ...current, backgroundInfo: e.target.value })}
-                        type="text" /> : selectedRequest?.scriptSettings.backgroundInfo}
+                        type="text" /> : voiceTrackSettings?.backgroundInfo}
             </div>
         </div >
     )
