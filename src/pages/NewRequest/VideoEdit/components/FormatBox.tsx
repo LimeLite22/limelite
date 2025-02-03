@@ -5,6 +5,7 @@ import {
   VIDEO_VERTICAL,
 } from "consts/consts";
 import { useDispatch, useSelector } from "react-redux";
+import { TVideo } from "types/types";
 
 import {
   selectRequestInfo,
@@ -17,13 +18,8 @@ const FormatBox = () => {
   const requestInfo = useSelector(selectRequestInfo);
   const dispatch = useDispatch();
   const format = requestInfo?.videoSettings.format;
-
   const handleClick = (
-    value:
-      | typeof VIDEO_STANDARD
-      | typeof VIDEO_STORY
-      | typeof VIDEO_SQUARE
-      | typeof VIDEO_VERTICAL,
+    value: TVideo,
   ) => {
     dispatch(
       updateDraftField({
@@ -47,29 +43,29 @@ const FormatBox = () => {
         >
           Standard <div className={styles.box_videoType_dot}></div> 16:9
         </div>
-          <div
-             onClick={() => handleClick(VIDEO_STORY)}
-            className={`
+        <div
+          onClick={() => handleClick(VIDEO_STORY)}
+          className={`
                     ${format === VIDEO_STORY ? styles.box_videoTypeSelected : ""}  
                     ${styles.box_videoType}`}
-          >
-            Story <div className={styles.box_videoType_dot}></div> 9:16
-          </div>
-          <div
-              onClick={() => handleClick(VIDEO_SQUARE)}
-            className={`
+        >
+          Story <div className={styles.box_videoType_dot}></div> 9:16
+        </div>
+        <div
+          onClick={() => handleClick(VIDEO_SQUARE)}
+          className={`
                     ${format === VIDEO_SQUARE ? styles.box_videoTypeSelected : ""}  
                     ${styles.box_videoType}`}
-          >
-            Square <div className={styles.box_videoType_dot}></div> 1:1
-          </div>
-          <div
+        >
+          Square <div className={styles.box_videoType_dot}></div> 1:1
+        </div>
+        <div
           onClick={() => handleClick(VIDEO_VERTICAL)}
-            className={`    
+          className={`    
                     ${format === VIDEO_VERTICAL ? styles.box_videoTypeSelected : ""}  
                     ${styles.box_videoType}`}
-          >
-            Vertical <div className={styles.box_videoType_dot}></div> 4:5
+        >
+          Vertical <div className={styles.box_videoType_dot}></div> 4:5
         </div>
       </div>
     </div>

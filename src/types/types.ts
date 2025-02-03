@@ -92,10 +92,9 @@ export interface TPerson {
   title: string;
 }
 export type TVideoDuration = "default" | "≤ :15" | "≤ :30" | "≤ :60" | "≤ 1:30" | "≤ 2:00" | "≤ 2:30" | "≤ 3:00" | "> 3:00";
-
 export type TOptionsList = TOption[];
 
-
+export type TSelection = 'yes' | 'no';
 export type TLocation = "default" | 1 | 2 | 3;
 export type TVideo = "default" | "standard" | "story" | "square" | "vertical";
 export type TQuestionAuthor = "default" | "client" | "professional";

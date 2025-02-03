@@ -25,6 +25,7 @@ import {
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 import CustomFontSizeDropDown from "./ZoneSelector/ZoneSelector";
+import { TSelection } from "types/types";
 
 const IsTravelRequired = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -70,7 +71,7 @@ const IsTravelRequired = () => {
       swiperRef.current.slideTo(index);
     }
   };
-  const handleSelect = (selection: typeof YES | typeof NO) => {
+  const handleSelect = (selection: TSelection) => {
     if (selection === YES) {
       !isExpanded && setIsExpanded(true);
     } else {

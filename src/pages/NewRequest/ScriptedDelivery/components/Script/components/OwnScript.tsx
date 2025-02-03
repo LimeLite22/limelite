@@ -32,7 +32,7 @@ const OwnScript = ({ isExpanded, setIsExpanded, isError }: IProps) => {
   const [wordCount, setWordCount] = useState(0);
   const handleUpdateField = (
     path: string,
-    value: typeof OWN_SCRIPT | string,
+    value: string,
   ) => {
     dispatch(
       updateDraftField({

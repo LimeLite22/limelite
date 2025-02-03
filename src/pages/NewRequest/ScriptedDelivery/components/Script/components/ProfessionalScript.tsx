@@ -36,7 +36,7 @@ const ProffessionalScript = ({
   const dispatch = useDispatch();
   const handleUpdateField = (
     path: string,
-    value: typeof PROFESSIONAL_SCRIPT | string,
+    value: string,
   ) => {
     dispatch(
       updateDraftField({
@@ -144,16 +144,16 @@ const ProffessionalScript = ({
             />
             {((isError.phone && !phoneRegex.test(String(phone))) ||
               isError.email) && (
-              <div className={styles.box_addressContainer_input_errorText}>
-                {!phoneRegex.test(String(phone)) &&
-                  phone !== "" &&
-                  phone !== 0 &&
-                  "Invalid phone number"}
-                {!phoneRegex.test(String(phone)) &&
-                  (phone === "" || phone === 0) &&
-                  "Please complete number"}
-              </div>
-            )}
+                <div className={styles.box_addressContainer_input_errorText}>
+                  {!phoneRegex.test(String(phone)) &&
+                    phone !== "" &&
+                    phone !== 0 &&
+                    "Invalid phone number"}
+                  {!phoneRegex.test(String(phone)) &&
+                    (phone === "" || phone === 0) &&
+                    "Please complete number"}
+                </div>
+              )}
           </div>
           <div className={styles.box_addressContainer}>
             <div className={styles.box_addressContainer_text}>Email</div>

@@ -32,44 +32,11 @@ const Submit = () => {
                 {/* <ProjectInfo />
                 <LogisticInfo />
                 <ScriptInfoOwnScript />
-                <ScriptInfoProffScript /> */}
-                {/* <InterviewOwnScript />
-                <InterviewProffScript /> */}
+                <ScriptInfoProffScript />
+                <InterviewOwnScript />
+                <InterviewProffScript />
                 <VoiceoverOwnScript />
-                <VoiceoverProfScript />
-                <div className={styles.infoContainer}>
-                    <div className={styles.infoContainer_header}>About Your Voiceover (V1)
-                        <div className={styles.infoContainer_header_edit}>
-                            <img src={EditIcon} alt='' />
-                            Edit</div>
-                    </div>
-                    <div className={styles.infoContainer_text}><p>Voice Track:</p>  Track-For-Interview.mp3</div>
-                    <div className={styles.infoContainer_text}><p>Script Status</p> Approved</div>
-                    <div className={styles.infoContainer_text}><p>Script</p> Opening Scene:
-                        Visuals: Close-up shots of employees at work, a bustling office environment, and people collaborating.
-
-                        Narrator:
-                        "Welcome to Foundations of Excellence—a program dedicated to building the skills, values, and knowledge that drive our organization forward."</div>
-                </div>
-                <div className={styles.infoContainer}>
-                    <div className={styles.infoContainer_header}>About Your Voiceover (V2)
-                        <div className={styles.infoContainer_header_edit}>
-                            <img src={EditIcon} alt='' />
-                            Edit</div>
-                    </div>
-                    <div className={styles.infoContainer_text}><p>Voice Track:</p> https://music.youtube.com</div>
-                    <div className={styles.infoContainer_text}><p>Script</p> A professional scriptwriter</div>
-                    <div className={styles.infoContainer_text}><p>Full name:</p>
-                        John Doe
-                    </div>
-                    <div className={styles.infoContainer_text}><p>Phone:</p>
-                        123-456-7890
-                    </div>
-                    <div className={styles.infoContainer_text}><p>Email:</p>
-                        4V5dX@example.com
-                    </div>
-                    <div className={styles.infoContainer_text}><p>Background information:</p> A professional scriptwriter with a background in film and TV production. </div>
-                </div>
+                <VoiceoverProfScript /> */}
 
                 <div className={styles.infoContainer}>
                     <div className={styles.infoContainer_header}>About Your Video Edit (V1)

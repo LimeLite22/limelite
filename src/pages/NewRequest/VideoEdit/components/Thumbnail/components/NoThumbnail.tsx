@@ -1,6 +1,6 @@
 
 import { CheckBox, CheckBoxSelected } from "assets/images";
-import { DEFAULT, N0_THUMBNAIL } from "consts/consts";
+import { N0_THUMBNAIL } from "consts/consts";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -14,7 +14,7 @@ const NoThumbnail = () => {
   const selection = selectedRequest?.videoSettings.thumbnail;
   const handleUpdateField = (
     path: string,
-    value: string | File | typeof DEFAULT,
+    value: string | File,
   ) => {
     dispatch(
       updateDraftField({

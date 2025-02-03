@@ -14,7 +14,7 @@ const BasicThumbnail = () => {
   const selection = selectedRequest?.videoSettings.thumbnail;
   const handleUpdateField = (
     path: string,
-    value: string | File | typeof DEFAULT,
+    value: string,
   ) => {
     dispatch(
       updateDraftField({
@@ -41,7 +41,7 @@ const BasicThumbnail = () => {
           src={selection === BASIC_THUMBNAIL ? CheckBoxSelected : CheckBox}
           alt="CheckBox"
         />
-        <span className={styles.box_title}>Yes,a basic thumbnial</span>
+        <span className={styles.box_title}>Yes,a basic thumbnail</span>
         <div className={styles.box_title2}>
           Thank you, this video does require a basic thumbnail.
         </div>

@@ -31,7 +31,7 @@ const OwnTrack = ({ isExpanded, setIsExpanded, isError }: IProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const handleUpdateField = (
     path: string,
-    value: string | File | typeof DEFAULT,
+    value: string | File,
   ) => {
     dispatch(
       updateDraftField({

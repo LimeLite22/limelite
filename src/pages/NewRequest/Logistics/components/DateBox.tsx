@@ -49,7 +49,7 @@ const Date = () => {
   const dispatch = useDispatch();
   const handleUpdateField = (
     path: string,
-    value: boolean | typeof DEFAULT | TTimeValue,
+    value: boolean | 'default' | TTimeValue,
   ) => {
     dispatch(
       updateDraftField({
