@@ -23,6 +23,7 @@
     flex-direction: column;
     @media screen and (max-width: 768px) {
       width: 100%;
+      padding: 68px 16px 48px 16px;
     }
     &_text {
       font-family: Inter;
@@ -1636,7 +1637,7 @@
   margin-bottom: 12px;
   @media screen and (max-width: 768px) {
     border: none;
-    padding: 0px 16px;
+    padding: 0px;
     border-bottom: 1px solid var(--gray-light7);
     border-radius: 0px;
     padding-bottom: 24px;
