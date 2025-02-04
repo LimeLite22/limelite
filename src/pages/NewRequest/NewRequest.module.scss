@@ -1860,6 +1860,9 @@
     display: flex;
     justify-content: space-between;
     gap: 12px;
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
     &_item {
       position: relative;
       width: 100%;
