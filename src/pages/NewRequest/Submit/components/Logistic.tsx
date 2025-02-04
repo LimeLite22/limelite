@@ -305,7 +305,6 @@ const LogisticInfo = () => {
                                     <span style={{ marginLeft: "12px", marginRight: "6px" }}>{" "}from{" "}</span>
                                     <div className={styles.infoContainer_text_time}> {preferredDate?.time.hour}:00</div>
                                     <span style={{ marginLeft: "6px", marginRight: "6px" }}>{" "}to{" "}</span>
-
                                     <div className={styles.infoContainer_text_time}>    {endTime.hour}:00 {endTime.period} </div>
 
                                 </>

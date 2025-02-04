@@ -1772,7 +1772,11 @@
     }
 
     &_time {
+      font-family: Inter;
       font-size: 14px;
+      font-family: Inter;
+      font-weight: 400;
+      line-height: 19.2px;
     }
     &_user {
       display: flex;
@@ -1783,7 +1787,7 @@
       min-width: 180px;
       width: 180px;
       font-family: Inter;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 400;
       line-height: 19.2px;
       text-align: left;
@@ -1792,7 +1796,7 @@
     }
     span {
       font-family: Inter;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 500;
       line-height: 19.2px;
       text-align: left;
