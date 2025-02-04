@@ -1803,6 +1803,9 @@
   &_detailsHeader {
     transition-duration: 0.3s;
     height: 60px;
+    @media screen and (max-width: 768px) {
+      height: unset;
+    }
     &_big {
       height: 94px;
       @media screen and (max-width: 768px) {
