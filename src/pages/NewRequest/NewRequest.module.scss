@@ -1805,9 +1805,15 @@
     height: 60px;
     &_big {
       height: 94px;
+      @media screen and (max-width: 768px) {
+        height: unset;
+      }
     }
     &_expanded {
       height: 228px;
+      @media screen and (max-width: 768px) {
+        height: unset;
+      }
     }
   }
   &_details {

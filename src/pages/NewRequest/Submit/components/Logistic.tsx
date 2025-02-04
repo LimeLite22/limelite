@@ -294,27 +294,31 @@ const LogisticInfo = () => {
             }
             {!isEdit &&
                 <>
-                    <div className={styles.infoContainer_text}><p>Preferred date:</p>{preferredDate?.date !== DEFAULT
-                        ? format(preferredDate?.date as Date, "E, dd MMM, yyyy")
-                        : "Mon, November 22, 2024"}
-                        {' '}
-                        {preferredDate?.time !== DEFAULT && endTime ? (
-                            <>
-                                <span style={{ marginLeft: "12px", marginRight: "6px" }}>{" "}from{" "}</span>
-                                <div className={styles.infoContainer_text_time}> {preferredDate?.time.hour}:00</div>
-                                <span style={{ marginLeft: "6px", marginRight: "6px" }}>{" "}to{" "}</span>
+                    <div className={styles.infoContainer_text}><p>Preferred date:</p>
+                        <div style={{ display: "flex" }}>
+                            {preferredDate?.date !== DEFAULT
+                                ? format(preferredDate?.date as Date, "E, dd MMM, yyyy")
+                                : "Mon, November 22, 2024"}
+                            {' '}
+                            {preferredDate?.time !== DEFAULT && endTime ? (
+                                <>
+                                    <span style={{ marginLeft: "12px", marginRight: "6px" }}>{" "}from{" "}</span>
+                                    <div className={styles.infoContainer_text_time}> {preferredDate?.time.hour}:00</div>
+                                    <span style={{ marginLeft: "6px", marginRight: "6px" }}>{" "}to{" "}</span>
 
-                                <div className={styles.infoContainer_text_time}>    {endTime.hour}:00 {endTime.period} </div>
+                                    <div className={styles.infoContainer_text_time}>    {endTime.hour}:00 {endTime.period} </div>
 
-                            </>
-                        ) : (
-                            <>
-                                <span style={{ marginLeft: "12px", marginRight: "6px" }}>{" "}from{" "}</span>
-                                <div className={styles.infoContainer_text_time}>00:00</div>
-                                <span style={{ marginLeft: "6px", marginRight: "6px" }}>{" "}to{" "}</span>
-                                <div className={styles.infoContainer_text_time}>00:00</div>
-                            </>
-                        )}
+                                </>
+
+                            ) : (
+                                <>
+                                    <span style={{ marginLeft: "12px", marginRight: "6px" }}>{" "}from{" "}</span>
+                                    <div className={styles.infoContainer_text_time}>00:00</div>
+                                    <span style={{ marginLeft: "6px", marginRight: "6px" }}>{" "}to{" "}</span>
+                                    <div className={styles.infoContainer_text_time}>00:00</div>
+                                </>
+                            )}
+                        </div>
                     </div>
                 </>
             }
@@ -350,32 +354,6 @@ const LogisticInfo = () => {
                     </div>
 
                 </div>
-                {/* <div className={styles.infoContainer_text} >
-                    <p>Alternative date:</p>
-                    <div className={styles.infoContainer_date}>
-                        <div
-                            className={styles.infoContainer_date_item}
-                            onClick={() => {
-                                setIsPopUpOpen(true);
-                            }}
-                        >
-                            {preferredDate?.date !== DEFAULT
-                                ? format(preferredDate?.date as Date, "MMM dd, yyyy")
-                                : "00-00-0000"}
-                            <img
-                                src={CalendarIcon2}
-                                alt="calendar"
-                            />
-                        </div>
-                        <TimeSelector
-                            time={preferredDate?.time || DEFAULT}
-                            selectTime={(time) => {
-     
-                            }}
-                            isError={false}
-                        />
-                    </div>
-                </div> */}
             </>}
             <Calendar
                 isOpened={isPopUpOpen}
