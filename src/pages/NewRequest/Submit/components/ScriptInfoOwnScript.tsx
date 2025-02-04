@@ -215,7 +215,17 @@ const ScriptInfoOwnScript = () => {
                 </div> : selectedRequest?.scriptSettings.teleprompter ? "Yes" : "No"}
             </div>
             <div className={styles.infoContainer_text}><p>Persons:</p>
-                {(isEdit && selectedRequest?.scriptSettings?.persons) ? <ScriptPersons persons={current.persons} setPersons={(persons) => setCurrent({ ...current, persons: persons })} /> : <div>{selectedRequest?.scriptSettings?.persons?.map((person, index) => <div>{person.name}( {person.title} {selectedRequest?.scriptSettings?.persons?.length - 1 === index ? ',' : ''} )</div>)}</div>}
+                {(isEdit && selectedRequest?.scriptSettings?.persons) ?
+                    <ScriptPersons persons={current.persons} setPersons={(persons) => setCurrent({ ...current, persons: persons })} />
+                    : <div>
+                        {selectedRequest?.scriptSettings?.persons?.map((person, index) => {
+
+                            return <div>
+                                {person.name}({person.title})
+                                {(selectedRequest?.scriptSettings?.persons?.length - 1 === index &&
+                                    selectedRequest?.scriptSettings?.persons.length > 1) ? ',' : ''}</div>
+                        })}
+                    </div>}
             </div>
 
         </div >
