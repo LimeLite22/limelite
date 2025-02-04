@@ -44,6 +44,11 @@ const InterviewProffScript = () => {
             } else {
                 ready = false
             }
+            current.persons?.forEach((item) => {
+                if (item.name.length === 0 || item.title.length === 0) {
+                    ready = false
+                }
+            })
 
         } else {
             ready = false

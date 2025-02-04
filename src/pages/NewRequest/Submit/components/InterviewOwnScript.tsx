@@ -37,12 +37,18 @@ const InterviewOwnScript = () => {
         if (current.text !== text
             || current.status !== selectedRequest?.interviewSettings.questionsAuthorOwnSettings.scriptStatus
             || current.persons !== selectedRequest?.interviewSettings.persons
+
         ) {
             if (current.text?.length !== 0) {
                 ready = true
             } else {
                 ready = false
             }
+            current.persons?.forEach((item) => {
+                if (item.name.length === 0 || item.title.length === 0) {
+                    ready = false
+                }
+            })
 
         } else {
             ready = false
