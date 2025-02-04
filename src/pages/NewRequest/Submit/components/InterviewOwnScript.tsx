@@ -127,7 +127,7 @@ const InterviewOwnScript = () => {
     // if (selectedRequest?.interviewSettings.scriptWriter !== OWN_SCRIPT) return null
     return (
         <div className={styles.infoContainer}>
-            <div className={styles.infoContainer_header}>About Your Interview(s) -----
+            <div className={styles.infoContainer_header}>About Your Interview(s)
                 {!isEdit &&
                     <div className={styles.infoContainer_header_edit} onClick={handleOnEdit}>
                         <img src={EditIcon} alt='' />
