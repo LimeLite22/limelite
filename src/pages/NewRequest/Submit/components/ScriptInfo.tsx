@@ -1,41 +1,42 @@
 
 import { ArrowBlue3, CheckBox, CheckBoxSelected, CloseRed, EditIcon, StatusApproved, StatusProgress, StatusUnavailable, Success2 } from "assets/images";
-import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import ScriptPersons from "./ScriptPersons";
-import { selectRequestInfo, updateDraftField } from "../../../../redux/requests/reducer";
+import { selectRequestInfo, updateScriptSettings } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
-const ScriptInfoOwnScript = () => {
+import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, PROFESSIONAL_SCRIPT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
+import { IScriptSettings } from "interfaces/interfaces";
+const ScriptInfo = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const dispatch = useDispatch();
-    const defaultState = {
-        status: selectedRequest?.scriptSettings.scriptStatus,
-        text: selectedRequest?.scriptSettings.ownText,
-        teleprompter: selectedRequest?.scriptSettings.teleprompter,
-        persons: selectedRequest?.scriptSettings.persons,
-    }
+    const scriptSettings = { ...selectedRequest?.scriptSettings }
     const [isEdit, setIsEdit] = useState(false);
     const [isReady, setIsReady] = useState(false);
-    const [current, setCurrent] = useState(defaultState);
+    const [current, setCurrent] = useState(scriptSettings);
     const [isDetailsExpanded, setIsDetailsExpanded] = useState(false);
     const isDetailTextBig = selectedRequest?.scriptSettings.ownText
         && selectedRequest?.scriptSettings.ownText.length > 200;
 
     const readyToSave = () => {
         let ready = true;
-        if (current.text !== selectedRequest?.scriptSettings.ownText
-            || current.status !== selectedRequest?.scriptSettings.scriptStatus
-            || current.teleprompter !== selectedRequest?.scriptSettings.teleprompter
-            || current.persons !== selectedRequest?.scriptSettings.persons
+        if (
+            current?.ownText !== selectedRequest?.scriptSettings.ownText
+            || current?.scriptStatus !== selectedRequest?.scriptSettings.scriptStatus
+            || current?.name !== scriptSettings?.name
+            || current?.phone !== scriptSettings?.phone
+            || current?.email !== scriptSettings?.email
+            || current?.teleprompter !== scriptSettings?.teleprompter
+            || current?.backgroundInfo !== scriptSettings?.backgroundInfo
+            || current?.persons !== scriptSettings?.persons
         ) {
-            if (current.text?.length !== 0) {
+            if (current?.name?.length !== 0 && current?.email?.length !== 0 && current?.ownText?.length !== 0) {
                 ready = true
             } else {
                 ready = false
             }
-            current.persons?.forEach((item) => {
+            current?.persons?.forEach((item) => {
                 if (item.name.length === 0 || item.title.length === 0) {
                     ready = false
                 }
@@ -51,50 +52,24 @@ const ScriptInfoOwnScript = () => {
     }
     const handleDecline = () => {
         setIsEdit(false);
-        setCurrent(defaultState);
+        setCurrent(scriptSettings);
     }
     const handleSave = () => {
         if (!isReady) return
-        dispatch(
-            updateDraftField({
-                path: "scriptSettings.ownText",
-                value: current.text,
-            }),
-        );
-        dispatch(
-            updateDraftField({
-                path: "scriptSettings.scriptStatus",
-                value: current.status,
-            })
+        current && dispatch(
+            updateScriptSettings(current as IScriptSettings),
         )
-        dispatch(
-            updateDraftField({
-                path: "scriptSettings.teleprompter",
-                value: current.teleprompter,
-            })
-        )
-        dispatch(
-            updateDraftField({
-                path: "scriptSettings.persons",
-                value: current.persons,
-            })
-        )
-        dispatch(
-            updateDraftField({
-                path: "scriptSettings.scriptStatus",
-                value: current.status,
-            })
-        )
-
-        setCurrent(defaultState);
+        setCurrent(scriptSettings);
         setIsEdit(false);
     }
     useEffect(() => {
         readyToSave();
     }, [current])
     useEffect(() => {
-        setCurrent(defaultState);
+        setCurrent(scriptSettings);
     }, [selectedRequest])
+    //  зробити логіку роздлення відображення після тесту
+    // if (selectedRequest?.scriptSettings.scriptWriter !== PROFESSIONAL_SCRIPT) return null
     // if (selectedRequest?.scriptSettings.scriptWriter !== OWN_SCRIPT) return null
     return (
         <div className={styles.infoContainer}>
@@ -117,32 +92,31 @@ const ScriptInfoOwnScript = () => {
                         ><img src={Success2} alt='' /><div>Save changes</div></div>
                     </div>}
             </div>
-
             <div className={styles.infoContainer_text}><p>Script Status:</p>
                 {isEdit ?
                     <div className={styles.infoContainer_statuses}>
                         <div
-                            className={`${styles.box_status} ${current.status === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
+                            className={`${styles.box_status} ${current?.scriptStatus === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
                             onClick={() => {
-                                setCurrent((prev) => ({ ...prev, status: APPROVED_TEXT_STATUS }))
+                                setCurrent((prev) => ({ ...prev, scriptStatus: APPROVED_TEXT_STATUS }))
                             }}
                         >
                             <img src={StatusApproved} alt="status" />
                             {APPROVED_TEXT_STATUS}
                         </div>
                         <div
-                            className={`${styles.box_status} ${current.status === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
+                            className={`${styles.box_status} ${current?.scriptStatus === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
                             onClick={() => {
-                                setCurrent((prev) => ({ ...prev, status: IN_PROGRESS_TEXT_STATUS }))
+                                setCurrent((prev) => ({ ...prev, scriptStatus: IN_PROGRESS_TEXT_STATUS }))
                             }}
                         >
                             <img src={StatusProgress} alt="status" />
                             {IN_PROGRESS_TEXT_STATUS}
                         </div>
                         <div
-                            className={`${styles.box_status} ${current.status === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
+                            className={`${styles.box_status} ${current?.scriptStatus === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
                             onClick={() => {
-                                setCurrent((prev) => ({ ...prev, status: UNAVAILABLE_TEXT_STATUS }))
+                                setCurrent((prev) => ({ ...prev, scriptStatus: UNAVAILABLE_TEXT_STATUS }))
                             }}
                         >
                             <img src={StatusUnavailable} alt="status" />
@@ -158,8 +132,8 @@ const ScriptInfoOwnScript = () => {
             >Script:</p>
                 {isEdit ?
                     <textarea className={styles.infoContainer_textarea}
-                        onChange={(e) => setCurrent({ ...current, text: e.target.value })}
-                        value={current.text} /> :
+                        onChange={(e) => setCurrent({ ...current, ownText: e.target.value })}
+                        value={current?.ownText} /> :
                     <div>
                         <div className={`
                    ${styles.infoContainer_details} 
@@ -188,6 +162,44 @@ const ScriptInfoOwnScript = () => {
                         }
                     </div>}
             </div>
+
+            <div className={styles.infoContainer_text}><p>Subject matter expert :</p>
+                {isEdit ?
+                    <input
+                        className={styles.infoContainer_input}
+                        value={current.name}
+                        onChange={(e) => setCurrent({ ...current, name: e.target.value })}
+                        type="text" /> : scriptSettings?.name}
+
+            </div>
+
+            <div className={styles.infoContainer_text}><p>Phone:</p>
+                {isEdit ?
+                    <input
+                        className={styles.infoContainer_input}
+                        value={current.phone}
+
+                        onChange={(e) => setCurrent({ ...current, phone: Number(e.target.value) })}
+                        type="text" /> : scriptSettings?.phone}
+            </div>
+
+            <div className={styles.infoContainer_text}><p>Email:</p>
+                {isEdit ?
+                    <input
+                        className={styles.infoContainer_input}
+                        value={current.email}
+                        onChange={(e) => setCurrent({ ...current, email: e.target.value })}
+                        type="text" /> : scriptSettings?.email}
+            </div>
+
+            <div className={styles.infoContainer_text}><p>Background information for interview(s):</p>
+                {isEdit ?
+                    <input
+                        className={styles.infoContainer_input}
+                        value={current.backgroundInfo}
+                        onChange={(e) => setCurrent({ ...current, backgroundInfo: e.target.value })}
+                        type="text" /> : scriptSettings?.backgroundInfo}
+            </div>
             <div className={styles.infoContainer_text}><p>Teleprompter:</p>
                 {isEdit ? <div className={styles.infoContainer_telepromptOptions}>
                     <div
@@ -212,9 +224,10 @@ const ScriptInfoOwnScript = () => {
                         />
                         No
                     </div>
-                </div> : selectedRequest?.scriptSettings.teleprompter ? "Yes" : "No"}
+                </div> : scriptSettings?.teleprompter ? "Yes" : "No"}
             </div>
             <div className={styles.infoContainer_text}><p>Persons:</p>
+
                 {(isEdit && selectedRequest?.scriptSettings?.persons) ?
                     <ScriptPersons persons={current.persons} setPersons={(persons) => setCurrent({ ...current, persons: persons })} />
                     : <div>
@@ -226,10 +239,12 @@ const ScriptInfoOwnScript = () => {
                                     selectedRequest?.scriptSettings?.persons.length > 1) ? ',' : ''}</div>
                         })}
                     </div>}
+
             </div>
+
 
         </div >
     )
 }
 
-export default ScriptInfoOwnScript;
+export default ScriptInfo;

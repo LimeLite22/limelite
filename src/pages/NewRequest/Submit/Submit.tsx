@@ -1,4 +1,4 @@
-import { ArrowGray3, ArrowGray4, EditIcon } from "assets/images";
+import { ArrowGray3, ArrowGray4 } from "assets/images";
 import { Link } from "react-router-dom";
 
 import BackButton from "../components/BackButton";
@@ -6,12 +6,10 @@ import NextButton from "../components/NextButton"
 import StepsNavigation from "../components/StepsNavigation";
 import styles from "../NewRequest.module.scss";
 import AddOnsContainer from "./components/AddOnsContainer";
-import InterviewOwnScript from "./components/InterviewOwnScript";
-import InterviewProffScript from "./components/InterviewProffScript";
+import InterviewProffScript from "./components/Interview";
 import LogisticInfo from "./components/Logistic";
 import ProjectInfo from "./components/ProjectInfo";
-import ScriptInfoOwnScript from "./components/ScriptInfoOwnScript";
-import ScriptInfoProffScript from "./components/ScriptInfoProffScript";
+import ScriptInfo from "./components/ScriptInfo";
 import VideoEdit from "./components/VideoEdit";
 import VoiceoverProfScript from "./components/VoiceoverProfScript";
 import VoiceoverOwnScript from "./components/VoiceverOwnScript";
@@ -43,9 +41,7 @@ const Submit = () => {
                 </div>
                 <ProjectInfo />
                 <LogisticInfo />
-                <ScriptInfoOwnScript />
-                <ScriptInfoProffScript />
-                <InterviewOwnScript />
+                <ScriptInfo />
                 <InterviewProffScript />
                 <VoiceoverOwnScript />
                 <VoiceoverProfScript />

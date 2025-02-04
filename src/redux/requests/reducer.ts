@@ -1,7 +1,7 @@
 import { APPROVED_TEXT_STATUS, projectTypes, LESS_1_30, BASIC_THUMBNAIL, VIDEO_SQUARE } from './../../consts/consts';
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { DEFAULT, optionsList, projectTones } from "consts/consts";
-import { IAdditionalVideoFormat, IRequestState } from "interfaces/interfaces";
+import { IAdditionalVideoFormat, IInterviewSettings, IRequestState, IScriptSettings } from "interfaces/interfaces";
 import set from "lodash/set";
 import { IRootState } from "redux/rootReducer";
 import { TDraftFieldUpdate, TStep } from "types/types";
@@ -9,64 +9,6 @@ import { generateUniqueId } from "utils/generateId";
 
 import { IRequest } from "./../../interfaces/interfaces";
 
-// const loadStateFromLocalStorage = (): IRequestState | undefined => {
-//   try {
-//     const serializedState = localStorage.getItem("requestState");
-//     if (serializedState === null) {
-//       return undefined;
-//     }
-//     return JSON.parse(serializedState);
-//   } catch (e) {
-//     return undefined;
-//   }
-// };
-// const loadStateFromLocalStorage = (): IRequestState | undefined => {
-//   try {
-//     const serializedState = localStorage.getItem("requestState");
-//     if (serializedState === null) return undefined;
-
-//     let state = JSON.parse(serializedState);
-
-//     // Check if it's the old format and migrate if necessary
-//     if ("isTravelRequired" in state) {
-//       state = {
-//         ...state,
-//         travel: {
-//           selection: state.isTravelRequired.selection,
-//           zoneCode: {
-//             name: state.isTravelRequired.zoneCode.name,
-//             value: state.isTravelRequired.zoneCode.value,
-//           },
-//         },
-//       };
-//       delete state.isTravelRequired; // Remove the old property
-
-//       // Update localStorage with the new format
-//       localStorage.setItem("requestState", JSON.stringify(state));
-//     }
-//     if ("alternateDate" in state) {
-//       if (state.alternateDate.date === null) {
-//         state.alternateDate.date = DEFAULT;
-//       }
-//       if (state.alternateDate.time === null) {
-//         state.alternateDate.time = DEFAULT;
-//       }
-//     }
-//     if ("preferredDate" in state) {
-//       if (state.preferredDate.date === null) {
-//         state.preferredDate.date = DEFAULT;
-//       }
-//       if (state.preferredDate.time === null) {
-//         state.preferredDate.time = DEFAULT;
-//       }
-//     }
-
-//     return state;
-//   } catch (e) {
-//     return undefined;
-//   }
-// };
-// const persistedState = loadStateFromLocalStorage();
 localStorage.removeItem("requestState");
 
 const initialState: IRequestState = {
@@ -538,6 +480,22 @@ const requestReducer = createSlice({
         }
 
       }
+    },
+    updateScriptSettings: (state, action: PayloadAction<IScriptSettings>) => {
+      const draft = state.drafts.find(
+        (draft) => draft.id === state.selectedRequest,
+      );
+      if (draft) {
+        draft.scriptSettings = action.payload;
+      }
+    },
+    updateInteviewSettings: (state, action: PayloadAction<IInterviewSettings>) => {
+      const draft = state.drafts.find(
+        (draft) => draft.id === state.selectedRequest,
+      );
+      if (draft) {
+        draft.interviewSettings = action.payload;
+      }
     }
   },
 });
@@ -551,7 +509,9 @@ export const {
   updateAdditionalVideoFormat,
   updateAddOnSelectionStatus,
   updateDraftField,
-  updateStepsList
+  updateStepsList,
+  updateScriptSettings,
+  updateInteviewSettings
 } = requestReducer.actions;
 
 export const selectRequestInfo = (state: IRootState) => {

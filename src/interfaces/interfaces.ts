@@ -39,7 +39,7 @@ export interface IAdditionalVideoFormat {
   format: TVideo;
   duration: TVideoDuration;
 }
-interface IInterviewSettings {
+export interface IInterviewSettings {
   questionsAuthor: TQuestionAuthor;
   questionsAuthorProfSettings: {
     subject: string;
@@ -66,6 +66,17 @@ interface IInterviewSettings {
     };
   };
 };
+export interface IScriptSettings {
+  scriptWriter: TScriptWriter;
+  scriptStatus: TTextStatus;
+  name: string;
+  phone: number | "";
+  email: string;
+  backgroundInfo: string;
+  ownText: string;
+  teleprompter: boolean | 'default';
+  persons: TPerson[];
+}
 
 export interface ITileClassNameProps {
   date: Date;
@@ -97,17 +108,7 @@ export interface IRequest {
     date: 'default' | TValue;
     time: TTimeValue;
   };
-  scriptSettings: {
-    scriptWriter: TScriptWriter;
-    scriptStatus: TTextStatus;
-    name: string;
-    phone: number | "";
-    email: string;
-    backgroundInfo: string;
-    ownText: string;
-    teleprompter: boolean | 'default';
-    persons: TPerson[];
-  };
+  scriptSettings: IScriptSettings;
   interviewSettings: IInterviewSettings;
   voiceTrackSettings: {
     trackAuthor: TVoiceAuthor;
