@@ -21,6 +21,9 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
     &_text {
       font-family: Inter;
       font-size: 16px;
@@ -29,6 +32,15 @@
       text-align: left;
       color: var(--gray-dark3);
       margin-bottom: 48px;
+      @media screen and (max-width: 768px) {
+        font-family: Inter;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 14.4px;
+        letter-spacing: 0.01em;
+        text-align: center;
+        margin-bottom: 24px;
+      }
     }
     &_text2 {
       font-family: Poppins;
@@ -1622,6 +1634,10 @@
   border: 1px solid var(--gray-light7);
   padding: 16px 16px 24px 16px;
   margin-bottom: 12px;
+  @media screen and (max-width: 768px) {
+    border: none;
+    padding: 0px 16px;
+  }
   img {
     width: 24px;
     height: 24px;
@@ -1646,6 +1662,9 @@
     text-align: left;
     color: var(--gray-dark);
     margin-bottom: 24px;
+    @media screen and (max-width: 768px) {
+      margin-bottom: 12px;
+    }
     &_edit {
       width: 88px;
       height: 100%;
@@ -1679,6 +1698,13 @@
       color: var(--red-dark);
       border-radius: 10px;
       cursor: pointer;
+
+      @media screen and (max-width: 768px) {
+        padding: 6px 12px;
+        div {
+          display: none;
+        }
+      }
       &:hover {
         cursor: pointer;
         background-color: var(--gray-light);
@@ -1698,6 +1724,12 @@
       color: var(--green-dark);
       border-radius: 10px;
       cursor: pointer;
+      @media screen and (max-width: 768px) {
+        padding: 6px 12px;
+        div {
+          display: none;
+        }
+      }
       &:hover {
         cursor: pointer;
         background-color: var(--gray-light);
@@ -1727,6 +1759,11 @@
     color: var(--black);
     margin-bottom: 12px;
     position: relative;
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
 
     &_time {
       font-size: 14px;

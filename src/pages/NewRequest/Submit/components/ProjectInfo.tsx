@@ -50,7 +50,7 @@ const ProjectInfo = () => {
         setCurrent(defaultState);
     }
     const handleSave = () => {
-        if(!isReady) return
+        if (!isReady) return
         dispatch(
             updateDraftField({
                 path: "projectName",
@@ -102,14 +102,14 @@ const ProjectInfo = () => {
                     <div className={styles.infoContainer_header_buttons}>
                         <div
                             className={styles.infoContainer_header_decline}
-                            onClick={handleDecline}><img src={CloseRed} alt='' />Decline</div>
+                            onClick={handleDecline}><img src={CloseRed} alt='' /><div>Decline</div></div>
                         <div
                             className={`
                             ${styles.infoContainer_header_save}
                             ${!isReady ? styles.infoContainer_header_save_notReady : ''}
                             `}
                             onClick={handleSave}
-                        ><img src={Success2} alt='' /> Save changes</div>
+                        ><img src={Success2} alt='' /><div>Save changes</div></div>
                     </div>}
             </div>
             <div className={styles.infoContainer_text}>
