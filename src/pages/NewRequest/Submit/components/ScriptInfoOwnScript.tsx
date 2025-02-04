@@ -95,9 +95,6 @@ const ScriptInfoOwnScript = () => {
     useEffect(() => {
         setCurrent(defaultState);
     }, [selectedRequest])
-    useEffect(() => {
-        setCurrent(({ ...current, persons: selectedRequest?.scriptSettings.persons }))
-    }, [selectedRequest?.scriptSettings.persons])
     // if (selectedRequest?.scriptSettings.scriptWriter !== OWN_SCRIPT) return null
     return (
         <div className={styles.infoContainer}>
@@ -219,7 +216,7 @@ const ScriptInfoOwnScript = () => {
             </div>
             <div className={styles.infoContainer_text}><p>Persons:</p>
 
-                {isEdit ? <ScriptPersons persons={current.persons} setPersons={(persons) => setCurrent({ ...current, persons: persons })} /> : <div>{selectedRequest?.scriptSettings.persons.map((person) => `${person.name}( ${person.title})`).join(", ")}</div>}
+                {(isEdit && selectedRequest?.scriptSettings?.persons) ? <ScriptPersons persons={current.persons} setPersons={(persons) => setCurrent({ ...current, persons: persons })} /> : <div>{selectedRequest?.scriptSettings?.persons.map((person) => `${person.name}( ${person.title})`).join(", ")}</div>}
             </div>
 
         </div >
