@@ -95,6 +95,9 @@ const ScriptInfoOwnScript = () => {
     useEffect(() => {
         setCurrent(defaultState);
     }, [selectedRequest])
+    useEffect(() => {
+        setCurrent(({ ...current, persons: selectedRequest?.scriptSettings.persons }))
+    }, [selectedRequest?.scriptSettings.persons])
     // if (selectedRequest?.scriptSettings.scriptWriter !== OWN_SCRIPT) return null
     return (
         <div className={styles.infoContainer}>

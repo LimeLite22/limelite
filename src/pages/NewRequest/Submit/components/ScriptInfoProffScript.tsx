@@ -101,6 +101,9 @@ const ScriptInfoProffScript = () => {
     useEffect(() => {
         setCurrent(defaultState);
     }, [selectedRequest])
+    useEffect(() => {
+        setCurrent(({ ...current, persons: selectedRequest?.scriptSettings.persons }))
+    }, [selectedRequest?.scriptSettings.persons])
     // if (selectedRequest?.scriptSettings.scriptWriter !== PROFESSIONAL_SCRIPT) return null
     return (
         <div className={styles.infoContainer}>
