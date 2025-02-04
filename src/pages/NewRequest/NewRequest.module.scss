@@ -1637,6 +1637,10 @@
   @media screen and (max-width: 768px) {
     border: none;
     padding: 0px 16px;
+    border-bottom: 1px solid var(--gray-light7);
+    border-radius: 0px;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
   }
   img {
     width: 24px;

@@ -78,7 +78,7 @@ const AddOnsContainer = () => {
         }
         {
             list.videoFormats > 0 &&
-            <div className={styles.infoContainer_text}>
+            <div className={styles.infoContainer_priceItem}>
                 Video Formats <p>{list.videoFormats}<span>.00</span></p></div>
         }
         {
