@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ScriptPersons from "./ScriptPersons";
 import { selectRequestInfo, updateDraftField } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
+import { PROFESSIONAL_SCRIPT } from "consts/consts";
 const ScriptInfoProffScript = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const dispatch = useDispatch();
@@ -190,7 +191,7 @@ const ScriptInfoProffScript = () => {
             </div>
             <div className={styles.infoContainer_text}><p>Persons:</p>
 
-                {(isEdit && selectedRequest?.scriptSettings?.persons) ? <ScriptPersons persons={current.persons} setPersons={(persons) => setCurrent({ ...current, persons: persons })} /> : <div>{selectedRequest?.scriptSettings?.persons?.map((person) => `${person.name}( ${person.title})`).join(", ")}</div>}
+                {(isEdit && selectedRequest?.scriptSettings?.persons) ? <ScriptPersons persons={current.persons} setPersons={(persons) => setCurrent({ ...current, persons: persons })} /> : <div>{selectedRequest?.scriptSettings?.persons?.map((person, index) => <div>{person.name}( {person.title} {selectedRequest?.scriptSettings?.persons?.length - 1 === index ? ',' : ''} )</div>)}</div>}
             </div>
 
 
