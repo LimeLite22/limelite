@@ -1,5 +1,6 @@
+import { APPROVED_TEXT_STATUS, projectTypes, LESS_1_30, BASIC_THUMBNAIL, VIDEO_SQUARE } from './../../consts/consts';
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { DEFAULT, optionsList } from "consts/consts";
+import { DEFAULT, optionsList, projectTones } from "consts/consts";
 import { IAdditionalVideoFormat, IRequestState } from "interfaces/interfaces";
 import set from "lodash/set";
 import { IRootState } from "redux/rootReducer";
@@ -76,18 +77,9 @@ const initialState: IRequestState = {
       id: "1",
       option: optionsList[0],
       projectName: "No Fear Testimonial",
-      targetAudience: "",
-      projectType: {
-        id: generateUniqueId(),
-        img: '',
-        header: "",
-        subHeader: ``,
-        description: ``,
-        price: 0,
-        addOns: [
-        ]
-      },
-      projectTone: "",
+      targetAudience: "happy clients",
+      projectType: projectTypes[0],
+      projectTone: projectTones[0],
       approachList: [],
       details:
         `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. 
@@ -119,45 +111,48 @@ const initialState: IRequestState = {
       },
       scriptSettings: {
         scriptWriter: DEFAULT,
-        scriptStatus: DEFAULT,
-        name: "",
-        phone: "",
-        email: "",
-        backgroundInfo: "",
-        ownText: "",
+        scriptStatus: APPROVED_TEXT_STATUS,
+        name: "Alex Smith",
+        phone: 232323233,
+        email: "wM9M3@example.com",
+        backgroundInfo: "Basic info about the client",
+        ownText: " Establish a connection with the client",
         teleprompter: DEFAULT,
-        persons: [{ id: generateUniqueId(), name: "", title: "" }],
+        persons: [{
+          id: generateUniqueId(), name: "Smith",
+          title: "Director",
+        }],
       },
       interviewSettings: {
         questionsAuthor: DEFAULT,
         questionsAuthorProfSettings: {
-          subject: "",
-          phone: "",
-          email: "",
-          backgroundInfo: "",
+          subject: "Setting up an interview",
+          phone: 23232323,
+          email: "bUH0E@example.com",
+          backgroundInfo: " Establish a connection with the client",
         },
         questionsAuthorOwnSettings: {
-          text: "",
-          scriptStatus: DEFAULT,
+          text: " Establish a connection with the client",
+          scriptStatus: APPROVED_TEXT_STATUS,
         },
         persons: [
           {
             id: generateUniqueId(),
-            name: "",
-            title: "",
+            name: "Smith",
+            title: "Director",
           },
         ],
         questionSettings: {
           type: DEFAULT,
           locationSettings: {
-            name: "",
-            phone: "",
-            email: "",
+            name: "Smith",
+            phone: 2132322323,
+            email: "bUH0E@example.com",
           },
           virtualSettings: {
-            name: "",
-            phone: "",
-            email: "",
+            name: "wewewewewe",
+            phone: 23232323323,
+            email: "bUH0E@example.com",
           },
         },
       },
@@ -166,21 +161,21 @@ const initialState: IRequestState = {
         track: DEFAULT,
         scriptAuthor: DEFAULT,
         scriptAuthorProfSettings: {
-          subject: "",
-          phone: "",
-          email: "",
-          backgroundInfo: "",
+          subject: "Setting up an interview",
+          phone: 23232323,
+          email: "bUH0E@example.com",
+          backgroundInfo: " Establish a connection with the client",
         },
         scriptAuthorOwnSettings: {
-          text: "",
-          scriptStatus: DEFAULT,
+          text: " Establish a connection with the client",
+          scriptStatus: APPROVED_TEXT_STATUS,
         },
       },
       videoSettings: {
-        format: DEFAULT,
-        targetDuration: DEFAULT,
+        format: VIDEO_SQUARE,
+        targetDuration: LESS_1_30,
         captions: false,
-        thumbnail: DEFAULT,
+        thumbnail: BASIC_THUMBNAIL,
         additionalFormats: DEFAULT,
         selectedAdditionalFormats: [
           {
