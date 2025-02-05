@@ -1,22 +1,44 @@
-import { Divider, EditIcon } from "assets/images";
+import { CloseRed, Divider, EditIcon, Success2 } from "assets/images";
+import { useState } from "react";
 import { useCalculateFinalPrice } from "utils/priceCalculator";
 
 import styles from "../../NewRequest.module.scss";
-
+import AddOnLocation from "./AddOnLocation";
+// isready  не потрібно використовувати бо в контенйнерах буде власна перевірка
 const AddOnsContainer = () => {
+    const [isEdit, setIsEdit] = useState(false);
 
     const { list } = useCalculateFinalPrice();
+    const handleOnEdit = () => {
+        setIsEdit(true);
+    }
+    const handleDecline = () => {
+        setIsEdit(false);
+    }
+    const handleSave = () => {
+        setIsEdit(false);
+    }
 
     return <div className={styles.infoContainer}>
         <div className={styles.infoContainer_header}>Requested Add-ons
-            <div className={styles.infoContainer_header_edit}>
-                <img src={EditIcon} alt='' />
-                Edit</div>
+            {!isEdit &&
+                <div className={styles.infoContainer_header_edit} onClick={handleOnEdit}>
+                    <img src={EditIcon} alt='' />
+                    Edit</div>}
+            {isEdit &&
+                <div className={styles.infoContainer_header_buttons}>
+                    <div
+                        className={styles.infoContainer_header_decline}
+                        onClick={handleDecline}><img src={CloseRed} alt='' /><div>Decline</div></div>
+                    <div
+                        className={`
+                            ${styles.infoContainer_header_save}
+                            `}
+                        onClick={handleSave}
+                    ><img src={Success2} alt='' /><div>Save changes</div></div>
+                </div>}
         </div>
-        {list.location > 0 &&
-            <div className={styles.infoContainer_priceItem}>
-                Location <p>{list.location}<span>.00</span></p></div>
-        }
+        <AddOnLocation isEdit={isEdit} setIsEdit={setIsEdit} />
         {
             list.rushDay > 0 &&
             <div className={styles.infoContainer_priceItem}>

@@ -1,4 +1,4 @@
-import { CUSTOM_THUMBNAIL, DEFAULT, PROFESSIONAL_SCRIPT, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTIONS_VIRTUALLY, TRACK_AUTHOR_PROFESSIONAL, VIRTUAL_INTERVIEW } from "consts/consts";
+import { CUSTOM_THUMBNAIL, DEFAULT, HOME_RENTAL, PROFESSIONAL_SCRIPT, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTIONS_VIRTUALLY, STUDIO_RENTAL, TRACK_AUTHOR_PROFESSIONAL, VIRTUAL_INTERVIEW } from "consts/consts";
 import { useSelector } from "react-redux";
 
 import { selectRequestInfo } from "./../redux/requests/reducer";
@@ -78,12 +78,12 @@ export const useCalculateFinalPrice = () => {
       addOnsCount += 1
     }
   }
-  if (request?.location.type === 2) {
+  if (request?.location.type === STUDIO_RENTAL) {
     price += 795;
     locationType2 += 795;
     addOnsCount += 1
   }
-  if (request?.location.type === 3) {
+  if (request?.location.type === HOME_RENTAL) {
     price += 695;
     locationType3 += 695;
     addOnsCount += 1

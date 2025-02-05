@@ -95,7 +95,7 @@ export type TVideoDuration = "default" | "≤ :15" | "≤ :30" | "≤ :60" | "�
 export type TOptionsList = TOption[];
 
 export type TSelection = 'yes' | 'no';
-export type TLocation = "default" | 1 | 2 | 3;
+export type TLocation = "default" | "Own Address" | "Studio Rental" | "Home Rental";
 export type TVideo = "default" | "Standard" | "Story" | "Square" | "Vertical";
 export type TQuestionAuthor = "default" | "client" | "professional";
 export type TQuestionLocation = "default" | "questions on location" | "questions virtualy" | "virtual interview";

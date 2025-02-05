@@ -14,13 +14,13 @@ import { selectRequestInfo } from "../../../../redux/requests/reducer";
 
 const Location = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const selectedRequest = useSelector(selectRequestInfo);
-  const type = selectedRequest?.location?.type;
-  const city = selectedRequest?.location?.city;
-  const state = selectedRequest?.location?.state;
-  const street = selectedRequest?.location?.street;
-  const zip = selectedRequest?.location?.zip;
-  const company = selectedRequest?.location?.company;
+  const selectedRequest = useSelector(selectRequestInfo)?.location;
+  const type = selectedRequest?.type;
+  const city = selectedRequest?.city;
+  const state = selectedRequest?.state;
+  const street = selectedRequest?.street;
+  const zip = selectedRequest?.zip;
+  const company = selectedRequest?.company;
   const [isStudioExpanded, setIsStudioExpanded] = useState(false);
   const [isHomeExpanded, setIsHomeExpanded] = useState(false);
   const [isAddressExpanded, setIsAddressExpanded] = useState(false);

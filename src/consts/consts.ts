@@ -272,9 +272,9 @@ export const optionsList: TOptionsList = [
 export const YES = "yes";
 export const NO = "no";
 export const EMPTY = "empty";
-export const OWN_ADDRESS = 1;
-export const STUDIO_RENTAL = 2;
-export const HOME_RENTAL = 3;
+export const OWN_ADDRESS = "Own Address";
+export const STUDIO_RENTAL = "Studio Rental";
+export const HOME_RENTAL = "Home Rental";
 export const hoursList: ITimeItem[] = [
   {
     id: generateUniqueId(),

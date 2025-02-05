@@ -1,4 +1,4 @@
-import { TApproachValue, TCalendarType, TLocation, TOption, TPerson, TProjectTone, TQuestionAuthor, TQuestionLocation, TRush, TScriptWriter, TStep, TTextStatus, TThumbnail, TTimeValue, TTravel, TValue, TVideo, TVideoDuration, TVoiceAuthor } from "types/types";
+import { TApproachValue, TLocation, TOption, TPerson, TProjectTone, TQuestionAuthor, TQuestionLocation, TRush, TScriptWriter, TStep, TTextStatus, TThumbnail, TTimeValue, TTravel, TValue, TVideo, TVideoDuration, TVoiceAuthor } from "types/types";
 
 export interface ILocation {
   type: TLocation;
@@ -99,6 +99,7 @@ export interface IRequest {
   details: string;
   travel: TTravel;
   location: ILocation;
+  addOnLocation: ILocation;
   preferredDate: {
     date: 'default' | TValue;
     time: TTimeValue;
@@ -142,6 +143,7 @@ export interface IRequestState {
   selectedRequest: string;
   stepsList: TStep[];
   drafts: IRequest[];
+  editDraft: IRequest
 }
 export interface IStudioRentalProps {
   isExpanded: boolean;
