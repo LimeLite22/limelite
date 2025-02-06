@@ -171,7 +171,7 @@ const ProjectsPage = () => {
             option: { value: projectOption },
             user: { name: userName },
             status: projectStatus,
-            name: projectName,
+            name: name,
             date: projectDate,
         } = project;
 
@@ -180,7 +180,7 @@ const ProjectsPage = () => {
         const matchesUser = users.length === 0 || users.includes(userName);
         const matchesStatus = statuses.length === 0 || statuses.includes(projectStatus);
         const matchesSearch = searchQuery.length === 0 ||
-            [projectName, userName, projectType, projectStatus].some((field) =>
+            [name, userName, projectType, projectStatus].some((field) =>
                 field.toLowerCase().includes(searchQuery.toLowerCase())
             );
         const matchesDate = dateRange === DEFAULT || isDateInRange(projectDate, dateRange);

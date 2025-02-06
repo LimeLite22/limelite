@@ -88,17 +88,18 @@ export interface ICalendarProps {
   isOpened: boolean;
   onChange?: (date: Date) => void;
 }
+export interface IProjectInfoSettings {
+  option: undefined | TOption;
+  name: string;
+  targetAudience: string;
+  type: IProjectTypeInfo;
+  projectTone: TProjectTone | string;
+  approachList: TApproachValue[];
+  details: string;
+}
 export interface IRequest {
   id: string;
-  projectInfoSettings: {
-    option: undefined | TOption;
-    projectName: string;
-    targetAudience: string;
-    projectType: IProjectTypeInfo;
-    projectTone: TProjectTone | string;
-    approachList: TApproachValue[];
-    details: string;
-  }
+  projectInfoSettings: IProjectInfoSettings,
   travel: TTravel;
   location: ILocation;
   addOnLocation: ILocation;

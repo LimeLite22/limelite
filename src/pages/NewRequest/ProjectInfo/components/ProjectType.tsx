@@ -23,8 +23,8 @@ const ProjectType: FC<IProps> = ({ isError, setIsError, isSubmitMode, onChange }
   const showError = isError && !isOpened;
 
   const selectedRequest = useSelector(selectRequestInfo);
-  const projectType = selectedRequest?.projectInfoSettings?.projectType;
-  const [currentType, setCurrentType] = useState(projectType);
+  const type = selectedRequest?.projectInfoSettings?.type;
+  const [currentType, setCurrentType] = useState(type);
   const handleType = (option: IProjectTypeInfo) => {
     if (isSubmitMode) {
       setCurrentType(option);
@@ -32,7 +32,7 @@ const ProjectType: FC<IProps> = ({ isError, setIsError, isSubmitMode, onChange }
     } else {
       dispatch(
         updateDraftField({
-          path: "projectInfoSettings.projectType",
+          path: "projectInfoSettings.type",
           value: option,
         }),
       );
@@ -42,7 +42,7 @@ const ProjectType: FC<IProps> = ({ isError, setIsError, isSubmitMode, onChange }
     setOpened(false);
   }
   const handleBlur = () => {
-    if (!projectType) {
+    if (!type) {
       setOpened(false);
       setIsError(true);
     }
@@ -78,7 +78,7 @@ const ProjectType: FC<IProps> = ({ isError, setIsError, isSubmitMode, onChange }
           `}
           style={{ borderColor: isError ? "var(--red-dark)" : "" }}
         >
-          {isSubmitMode ? currentType?.header : projectType?.header !== '' ? projectType?.header : <span>Select your project type...</span>}{" "}
+          {isSubmitMode ? currentType?.header : type?.header !== '' ? type?.header : <span>Select your project type...</span>}{" "}
         </div>
         {isError && !isOpened && (
           <div className={`${styles.typeDropdown__selected_errorMessage}`}>

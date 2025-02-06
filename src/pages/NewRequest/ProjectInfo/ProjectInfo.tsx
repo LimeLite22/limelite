@@ -27,16 +27,16 @@ import styles from "./ProjectInfo.module.scss";
 
 const ProjectInfo = () => {
   const selectedRequest = useSelector(selectRequestInfo)?.projectInfoSettings;
-  const projectType = selectedRequest?.projectType;
+  const type = selectedRequest?.type;
   const projectTone = selectedRequest?.projectTone;
-  const projectName = selectedRequest?.projectName;
+  const name = selectedRequest?.name;
   const approachList = selectedRequest?.approachList;
   const targetAudience = selectedRequest?.targetAudience;
 
   const isNextDisabled =
-    !projectName ||
+    !name ||
     !projectTone ||
-    !projectType ||
+    !type ||
     (approachList?.length === 0
       && (
         selectedRequest.option?.value === SHOOT_EDIT ||
@@ -52,13 +52,13 @@ const ProjectInfo = () => {
   const customPadding = useCustomPadding();
 
   const handleErrors = () => {
-    if (!projectName) {
+    if (!name) {
       setIsNameError(true);
     }
     if (!projectTone) {
       setIsToneError(true);
     }
-    if (!projectType) {
+    if (!type) {
       setIsTypeError(true);
     }
     if (approachList?.length === 0) {

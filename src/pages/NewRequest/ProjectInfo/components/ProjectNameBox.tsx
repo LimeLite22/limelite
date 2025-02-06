@@ -14,14 +14,14 @@ interface IProps {
 const ProjectNameBox = ({ isError, setIsError }: IProps) => {
   const dispatch = useDispatch();
   const selectedRequest = useSelector(selectRequestInfo);
-  const projectName = selectedRequest?.projectInfoSettings?.projectName;
+  const name = selectedRequest?.projectInfoSettings?.name;
   return (
     <div
       className={styles.nR_inputContainer}
-      id="projectNameInput"
+      id="nameInput"
       tabIndex={0}
       onBlur={() => {
-        if (!projectName) {
+        if (!name) {
           setIsError(true);
         }
       }}
@@ -32,12 +32,12 @@ const ProjectNameBox = ({ isError, setIsError }: IProps) => {
       </div>
       <input
         style={{ borderColor: isError ? "var(--red-dark)" : "" }}
-        value={projectName}
+        value={name}
         onChange={(e) => {
           setIsError(false);
           dispatch(
             updateDraftField({
-              path: "projectInfoSettings.projectName",
+              path: "projectInfoSettings.name",
               value: e.target.value,
             }),
           );

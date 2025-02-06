@@ -21,7 +21,7 @@ import AddOnBox from "./components/AddOnBox";
 const AddOns = () => {
   const voiceSettings = useSelector(selectRequestVoiceSettings);
   const selectedRequest = useSelector(selectRequestInfo);
-  const projectType = selectedRequest?.projectInfoSettings?.projectType;
+  const type = selectedRequest?.projectInfoSettings?.type;
   const [isDisabled, setIsDisabled] = useState(true);
   const [showBottomMessage, setShowBottomMessage] = useState(false);
   const customPadding = useCustomPadding();
@@ -37,7 +37,7 @@ const AddOns = () => {
     handleNextDisabled();
   }, [voiceSettings]);
   const handleSelect = () => {
-    projectType?.addOns[0]?.id && dispatch(updateAddOnSelectionStatus({ id: projectType?.addOns[0].id }))
+    type?.addOns[0]?.id && dispatch(updateAddOnSelectionStatus({ id: type?.addOns[0].id }))
     navigate("/new-request/submit");
   };
 
@@ -77,7 +77,7 @@ const AddOns = () => {
         <div className={styles.nR_formContainer}>
           <div >
             {
-              projectType !== undefined && projectType?.addOns.map((item, index) => {
+              type !== undefined && type?.addOns.map((item, index) => {
                 if (index !== 0) return <AddOnBox key={index} item={item} />
               })
 

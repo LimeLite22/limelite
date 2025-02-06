@@ -1,3 +1,4 @@
+import { IProjectInfoSettings } from './../../interfaces/interfaces';
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { DEFAULT } from "consts/consts";
 import { IAdditionalVideoFormat, IInterviewSettings, ILocation, IRequestState, IScriptSettings } from "interfaces/interfaces";
@@ -9,11 +10,13 @@ import { requestsInitialState } from './consts';
 
 localStorage.removeItem("requestState");
 
+const selectedRequest = requestsInitialState[0].id;
+
 const initialState: IRequestState = {
-  selectedRequest: "1",
+  selectedRequest,
   stepsList: [],
   drafts: requestsInitialState,
-  editDraft: requestsInitialState[0],
+  editDraft: requestsInitialState.find((draft) => draft.id === selectedRequest) || requestsInitialState[0],
 };
 
 const requestReducer = createSlice({
@@ -26,9 +29,9 @@ const requestReducer = createSlice({
         id: id,
         projectInfoSettings: {
           option: action.payload,
-          projectName: `Request ${state.drafts.length + 1}`,
+          name: `Request ${state.drafts.length + 1}`,
           targetAudience: "",
-          projectType: {
+          type: {
             id: generateUniqueId(),
             img: '',
             header: "",
@@ -235,17 +238,17 @@ const requestReducer = createSlice({
       );
       if (draft) {
         const projectInfoSettings = draft?.projectInfoSettings;
-        if (action.payload.id === projectInfoSettings.projectType.addOns[0].id) {
-          projectInfoSettings.projectType.addOns[0].isSelected = true
-          for (let i = 1; i < projectInfoSettings.projectType.addOns.length; i++) {
-            projectInfoSettings.projectType.addOns[i].isSelected = false
+        if (action.payload.id === projectInfoSettings.type.addOns[0].id) {
+          projectInfoSettings.type.addOns[0].isSelected = true
+          for (let i = 1; i < projectInfoSettings.type.addOns.length; i++) {
+            projectInfoSettings.type.addOns[i].isSelected = false
           }
         } else {
-          const addOn = projectInfoSettings.projectType.addOns.find(
+          const addOn = projectInfoSettings.type.addOns.find(
             (addOn) => addOn.id === action.payload.id
           )
           if (addOn) {
-            projectInfoSettings.projectType.addOns[0].isSelected = false
+            projectInfoSettings.type.addOns[0].isSelected = false
             addOn.isSelected = !addOn.isSelected
           }
         }
@@ -275,6 +278,18 @@ const requestReducer = createSlice({
       if (draft) {
         draft.addOnLocation = action.payload
       }
+    },
+    updateProjectInfoSettings: (state, action: PayloadAction<{ projectInfoSettings: IProjectInfoSettings, isEdit: boolean }>) => {
+      const { projectInfoSettings, isEdit } = action.payload;
+      const draft = state.drafts.find(
+        (draft) => draft.id === state.selectedRequest,
+      );
+      if (draft && !isEdit) {
+        draft.projectInfoSettings = projectInfoSettings;
+      }
+      if (isEdit) {
+        state.editDraft.projectInfoSettings = projectInfoSettings;
+      }
     }
   },
 });
@@ -291,7 +306,8 @@ export const {
   updateStepsList,
   updateScriptSettings,
   updateInteviewSettings,
-  updateAddOnLocation
+  updateAddOnLocation,
+  updateProjectInfoSettings
 } = requestReducer.actions;
 
 export const selectRequestInfo = (state: IRootState) => {

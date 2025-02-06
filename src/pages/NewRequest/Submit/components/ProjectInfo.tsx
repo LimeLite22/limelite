@@ -3,40 +3,37 @@ import { ArrowBlue3, CloseRed, EditIcon, Success2, User1Foto } from "assets/imag
 import { ProjectTone, ProjectType } from "pages/NewRequest/ProjectInfo/components";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { IRootState } from "redux/rootReducer";
 
-import { selectRequestInfo, updateDraftField } from "../../../../redux/requests/reducer";
+import { selectRequestInfo, updateProjectInfoSettings } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 const ProjectInfo = () => {
-    const selectedRequest = useSelector(selectRequestInfo)?.projectInfoSettings;
     const dispatch = useDispatch();
-    const defaultState = {
-        name: selectedRequest?.projectName,
-        tone: selectedRequest?.projectTone,
-        type: selectedRequest?.projectType,
-        audience: selectedRequest?.targetAudience,
-        details: selectedRequest?.details
-    }
-    const option = selectedRequest?.option;
     const [isEdit, setIsEdit] = useState(false);
     const [isReady, setIsReady] = useState(false);
-    const [current, setCurrent] = useState(defaultState);
+    // projectInfoSettings = pIS
+    // editProjectInfoSettings = ePIS
+    const pIS = useSelector(selectRequestInfo)?.projectInfoSettings;
+    const ePIS = useSelector((state: IRootState) => state.request.editDraft)?.projectInfoSettings;
+
+
     const [isDetailsExpanded, setIsDetailsExpanded] = useState(false);
-    const isDetailTextBig = selectedRequest?.details && selectedRequest?.details?.length > 200;
+    const isDetailTextBig = pIS?.details && pIS?.details?.length > 200;
 
     const readyToSave = () => {
         let ready = true;
-        if (current.name !== selectedRequest?.projectName
-            || current.tone !== selectedRequest?.projectTone
-            || current.type !== selectedRequest?.projectType
-            || current.audience !== selectedRequest?.targetAudience
-            || current.details !== selectedRequest?.details
+        if (pIS?.name !== ePIS?.name
+            || pIS?.projectTone !== ePIS?.projectTone
+            || pIS?.type !== ePIS?.type
+            || pIS?.targetAudience !== ePIS?.targetAudience
+            || pIS?.details !== ePIS?.details
         ) {
-            if (current.name?.length !== 0 && current.audience?.length !== 0 && current.details?.length !== 0) {
+            ready = pIS?.name.length !== 0 && pIS?.targetAudience.length !== 0 && pIS?.details?.length !== 0
+            if (pIS?.name.length !== 0 && pIS?.targetAudience.length !== 0 && pIS?.details?.length !== 0) {
                 ready = true
             } else {
                 ready = false
             }
-
         } else {
             ready = false
         }
@@ -47,49 +44,19 @@ const ProjectInfo = () => {
     }
     const handleDecline = () => {
         setIsEdit(false);
-        setCurrent(defaultState);
+        // setCurrent(defaultState);
     }
     const handleSave = () => {
         if (!isReady) return
+        // setCurrent(defaultState);
         dispatch(
-            updateDraftField({
-                path: "projectInfoSettings.projectName",
-                value: current.name,
-            }),
-        );
-        dispatch(
-            updateDraftField({
-                path: "projectInfoSettings.projectTone",
-                value: current.tone,
-            }),
-        );
-        dispatch(
-            updateDraftField({
-                path: "projectInfoSettings.projectType",
-                value: current.type,
-            }),
-        );
-        dispatch(
-            updateDraftField({
-                path: "projectInfoSettings.targetAudience",
-                value: current.audience,
-            }),
-        );
-        dispatch(
-            updateDraftField({
-                path: "projectInfoSettings.details",
-                value: current.details,
-            }),
+            updateProjectInfoSettings({ projectInfoSettings: ePIS, isEdit: false }),
         )
-        setCurrent(defaultState);
         setIsEdit(false);
     }
     useEffect(() => {
         readyToSave();
-    }, [current])
-    useEffect(() => {
-        setCurrent(defaultState);
-    }, [selectedRequest])
+    }, [ePIS])
 
     return (
         <div className={styles.infoContainer}>
@@ -113,15 +80,15 @@ const ProjectInfo = () => {
                     </div>}
             </div>
             <div className={styles.infoContainer_text}>
-                <p>Requested type:</p> <span>{option?.value}  {option?.credits && (
+                <p>Requested type:</p> <span>{pIS?.option?.value}  {pIS?.option?.credits && (
                     <div
                         className={
                             `${styles.footer_container_typeContainer_text_title1_tag}
                 `
                         }
                     >
-                        {option?.credits}{" "}
-                        {option?.credits > 1 ? "Credits" : "Credit"}{" "}
+                        {pIS?.option?.credits}{" "}
+                        {pIS?.option?.credits > 1 ? "Credits" : "Credit"}{" "}
                     </div>
                 )}</span></div>
             <div className={styles.infoContainer_text}><p>Requested by:</p>
@@ -131,35 +98,50 @@ const ProjectInfo = () => {
                 {isEdit ?
                     <input
                         className={styles.infoContainer_input}
-                        value={current.name}
-                        onChange={(e) => setCurrent({ ...current, name: e.target.value })}
-                        type="text" /> : selectedRequest?.projectName}
+                        value={ePIS?.name}
+                        onChange={(e) => {
+                            dispatch(
+                                updateProjectInfoSettings({ projectInfoSettings: { ...ePIS, name: e.target.value }, isEdit: true })
+                            )
+                        }}
+                        type="text" /> : pIS?.name}
             </div>
 
             <div className={styles.infoContainer_text}><p>Audience:</p>
                 {isEdit ?
                     <input
                         className={styles.infoContainer_input}
-                        value={current.audience}
-                        onChange={(e) => setCurrent({ ...current, audience: e.target.value })}
-                        type="text" /> : selectedRequest?.targetAudience}</div>
+                        value={ePIS?.targetAudience}
+                        onChange={(e) => {
+                            dispatch(
+                                updateProjectInfoSettings({ projectInfoSettings: { ...ePIS, targetAudience: e.target.value }, isEdit: true })
+                            )
+                        }}
+                        type="text" /> : pIS?.targetAudience}</div>
             <div className={styles.infoContainer_text}><p>Type:</p>
                 {isEdit ?
                     <ProjectType
                         isError={false}
                         setIsError={() => { }}
-                        onChange={(type) => { setCurrent({ ...current, type: type }) }}
-                        isSubmitMode={true} /> : selectedRequest?.projectType.header}</div>
+                        onChange={(type) => {
+                            dispatch(
+                                updateProjectInfoSettings({ projectInfoSettings: { ...ePIS, type: type }, isEdit: true })
+                            )
+                        }
+                        }
+                        isSubmitMode={true} /> : pIS?.type.header}</div>
             <div className={styles.infoContainer_text}><p>Tone:</p>
                 {isEdit ?
                     <ProjectTone
                         isError={false}
                         setIsError={() => { }}
                         onChange={(tone) => {
-                            setCurrent({ ...current, tone: tone })
+                            dispatch(
+                                updateProjectInfoSettings({ projectInfoSettings: { ...ePIS, projectTone: tone }, isEdit: true })
+                            )
                         }}
-                        isSubmitMode /> : selectedRequest?.projectTone}</div>
-            <div className={styles.infoContainer_text}><p>Approach:</p> {selectedRequest?.approachList.map((approach) => approach).join(", ") || "Voiceover, Scripted Delivery"}</div>
+                        isSubmitMode /> : pIS?.projectTone}</div>
+            <div className={styles.infoContainer_text}><p>Approach:</p> {pIS?.approachList.map((approach) => approach).join(", ") || "Voiceover, Scripted Delivery"}</div>
             <div className={styles.infoContainer_text}>
                 <p className={`
                 ${styles.infoContainer_detailsHeader}
@@ -168,14 +150,19 @@ const ProjectInfo = () => {
                 `}>Details</p>
                 {isEdit ?
                     <textarea className={styles.infoContainer_textarea}
-                        onChange={(e) => setCurrent({ ...current, details: e.target.value })}
-                        value={current.details} /> :
+                        onChange={(e) => {
+                            dispatch(
+                                updateProjectInfoSettings({ projectInfoSettings: { ...ePIS, details: e.target.value }, isEdit: true })
+                            )
+                        }
+                        }
+                        value={ePIS?.details} /> :
                     <div>
                         <div className={`
                     ${styles.infoContainer_details} 
                     ${isDetailsExpanded ? styles.infoContainer_details_expanded : ''}`}
                         >
-                            {selectedRequest?.details}
+                            {pIS?.details}
                         </div>
                         {isDetailTextBig &&
                             <>

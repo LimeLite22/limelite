@@ -137,8 +137,8 @@ export const useCalculateFinalPrice = () => {
     videoFormats += 75
     addOnsCount += 1
   }
-  if (request?.projectInfoSettings?.projectType?.addOns?.length && request?.projectInfoSettings?.projectType?.addOns?.length > 0) {
-    request?.projectInfoSettings?.projectType.addOns.forEach((addOn, index) => {
+  if (request?.projectInfoSettings?.type?.addOns?.length && request?.projectInfoSettings?.type?.addOns?.length > 0) {
+    request?.projectInfoSettings?.type.addOns.forEach((addOn, index) => {
       if (addOn.isSelected && index !== 0) {
         price += addOn.price;
         addOns += addOn.price;

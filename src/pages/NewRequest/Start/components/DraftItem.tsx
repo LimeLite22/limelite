@@ -72,12 +72,12 @@ const DraftItem = ({ draft }: IProps) => {
           }}
         />
         <div className={styles.nR_content_projects_content_projectItem_header}>
-          {draft.projectInfoSettings.projectName.length > 30
-            ? draft.projectInfoSettings.projectName.substring(0, 30) + "..."
-            : draft.projectInfoSettings.projectName}
+          {draft.projectInfoSettings.name.length > 30
+            ? draft.projectInfoSettings.name.substring(0, 30) + "..."
+            : draft.projectInfoSettings.name}
         </div>
         <div className={styles.nR_content_projects_content_projectItem_type}>
-          {draft.projectInfoSettings.projectType.header !== '' ? draft.projectInfoSettings.projectType.header : "Project type"}
+          {draft.projectInfoSettings.type.header !== '' ? draft.projectInfoSettings.type.header : "Project type"}
         </div>
         <div className={styles.nR_content_projects_content_projectItem_subText}>
           {draft.projectInfoSettings.option?.value || ""}{" "}

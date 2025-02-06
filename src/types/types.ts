@@ -28,7 +28,7 @@ export type TProjectTone =
   | "Inspirational"
   | "Professional"
   | "Urgent";
-// export type TProjectType =
+// export type Ttype =
 //   | "Announcement Videos"
 //   | "Company Overview Video"
 //   | "Demo Video"

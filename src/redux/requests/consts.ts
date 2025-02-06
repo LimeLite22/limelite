@@ -7,9 +7,9 @@ export const requestsInitialState: IRequest[] = [
         id: "1",
         projectInfoSettings: {
             option: optionsList[0],
-            projectName: "No Fear Testimonial",
+            name: "No Fear Testimonial",
             targetAudience: "happy clients",
-            projectType: projectTypes[0],
+            type: projectTypes[0],
             projectTone: projectTones[0],
             approachList: [],
             details:
@@ -134,9 +134,9 @@ export const requestsInitialState: IRequest[] = [
         id: "2",
         projectInfoSettings: {
             option: optionsList[0],
-            projectName: "Vesper Institute",
+            name: "Vesper Institute",
             targetAudience: "",
-            projectType: {
+            type: {
                 id: generateUniqueId(),
                 img: '',
                 header: "",
