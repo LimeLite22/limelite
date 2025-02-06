@@ -23,8 +23,33 @@ const ProjectType: FC<IProps> = ({ isError, setIsError, isSubmitMode, onChange }
   const showError = isError && !isOpened;
 
   const selectedRequest = useSelector(selectRequestInfo);
-  const projectType = selectedRequest?.projectType;
+  const projectType = selectedRequest?.projectInfoSettings?.projectType;
   const [currentType, setCurrentType] = useState(projectType);
+  const handleType = (option: IProjectTypeInfo) => {
+    if (isSubmitMode) {
+      setCurrentType(option);
+      onChange && onChange(option);
+    } else {
+      dispatch(
+        updateDraftField({
+          path: "projectInfoSettings.projectType",
+          value: option,
+        }),
+      );
+    }
+
+    setIsError(false);
+    setOpened(false);
+  }
+  const handleBlur = () => {
+    if (!projectType) {
+      setOpened(false);
+      setIsError(true);
+    }
+  }
+  const handleToggler = () => {
+    setOpened(!isOpened);
+  }
   return (
     <div
       className={`
@@ -33,12 +58,7 @@ const ProjectType: FC<IProps> = ({ isError, setIsError, isSubmitMode, onChange }
       ${isSubmitMode ? styles.typeDropdown_submit : ""}
        `}
       tabIndex={0}
-      onBlur={() => {
-        if (!projectType) {
-          setOpened(false);
-          setIsError(true);
-        }
-      }}
+      onBlur={handleBlur}
     >
       {!isSubmitMode && <div className={styles.typeDropdown_header}>
         {" "}
@@ -49,9 +69,7 @@ const ProjectType: FC<IProps> = ({ isError, setIsError, isSubmitMode, onChange }
         ${styles.typeDropdown__selected}
         ${isSubmitMode ? styles.typeDropdown__selected_submit : ""}
          ${showError ? styles.typeDropdown__selected_error : ""}`}
-        onClick={() => {
-          setOpened(!isOpened);
-        }}
+        onClick={handleToggler}
       >
         <div
           className={`
@@ -86,22 +104,7 @@ const ProjectType: FC<IProps> = ({ isError, setIsError, isSubmitMode, onChange }
               }}
               className={styles.typeDropdown__item}
               key={index}
-              onClick={() => {
-                if (isSubmitMode) {
-                  setCurrentType(option);
-                  onChange && onChange(option);
-                } else {
-                  dispatch(
-                    updateDraftField({
-                      path: "projectType",
-                      value: option,
-                    }),
-                  );
-                }
-
-                setIsError(false);
-                setOpened(false);
-              }}
+              onClick={() => handleType(option)}
             >
               <div className={styles.typeDropdown__item_name}>{option.header}</div>
             </div>

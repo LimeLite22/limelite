@@ -90,13 +90,15 @@ export interface ICalendarProps {
 }
 export interface IRequest {
   id: string;
-  option: undefined | TOption;
-  projectName: string;
-  targetAudience: string;
-  projectType: IProjectTypeInfo;
-  projectTone: TProjectTone | string;
-  approachList: TApproachValue[];
-  details: string;
+  projectInfoSettings: {
+    option: undefined | TOption;
+    projectName: string;
+    targetAudience: string;
+    projectType: IProjectTypeInfo;
+    projectTone: TProjectTone | string;
+    approachList: TApproachValue[];
+    details: string;
+  }
   travel: TTravel;
   location: ILocation;
   addOnLocation: ILocation;

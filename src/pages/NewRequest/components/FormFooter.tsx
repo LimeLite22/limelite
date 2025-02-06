@@ -17,13 +17,14 @@ import styles from "../NewRequest.module.scss";
 
 const FormFooter = () => {
   const selectedRequest = useSelector(selectRequestInfo);
-  const option = selectedRequest?.option;
+  const option = selectedRequest?.projectInfoSettings.option;
+  const location = selectedRequest?.location;
   const preferredDate = selectedRequest?.preferredDate;
-  const company = selectedRequest?.location.company;
-  const street = selectedRequest?.location.street;
-  const city = selectedRequest?.location.city;
-  const state = selectedRequest?.location.state;
-  const zip = selectedRequest?.location.zip;
+  const company = location?.company;
+  const street = location?.street;
+  const city = location?.city;
+  const state = location?.state;
+  const zip = location?.zip;
   const { price, addOnsCount } = useCalculateFinalPrice();
   const calculateEndTime = (
     hour: number | undefined,
@@ -174,7 +175,7 @@ const FormFooter = () => {
                 src={Basket}
                 alt=""
               />
-             {addOnsCount > 0 && <div className={styles.footer_container_priceContainer_count}>{addOnsCount > 9 ? "+9" : addOnsCount}</div>}
+              {addOnsCount > 0 && <div className={styles.footer_container_priceContainer_count}>{addOnsCount > 9 ? "+9" : addOnsCount}</div>}
             </div>
 
             <div className={styles.footer_container_priceContainer_text}>
@@ -213,7 +214,7 @@ const FormFooter = () => {
             </div>
           </div>
           <div className={styles.footer_mobContainer_imgContainer}>
-          <div style={{ position: "relative" }}>
+            <div style={{ position: "relative" }}>
               <img
                 className={styles.footer_container_priceContainer_img}
                 src={Basket}

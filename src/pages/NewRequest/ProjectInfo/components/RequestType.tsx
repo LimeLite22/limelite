@@ -1,6 +1,7 @@
 import { optionsList } from "consts/consts";
 import { type FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { TOption } from "types/types";
 import { generateUniqueId } from "utils/generateId";
 
 import {
@@ -13,9 +14,17 @@ const RequestType: FC = () => {
   const dispatch = useDispatch();
 
   const selectedRequest = useSelector(selectRequestInfo);
-  const requestType = selectedRequest?.option;
+  const requestType = selectedRequest?.projectInfoSettings?.option;
+  const handleSelectOption = (option: TOption) => {
+    dispatch(
+      updateDraftField({
+        path: "projectInfoSettings.option",
+        value: option,
+      }),
+    );
+  }
   return (
-    <div className={`${styles.requestType}`} tabIndex={0} onBlur={() => { }}>
+    <div className={styles.requestType}>
       <div className={styles.typeDropdown_header}> Type of your request*</div>
       <div className={styles.requestTypeContainer}>
         {optionsList.map((option) => {
@@ -32,14 +41,7 @@ const RequestType: FC = () => {
                   }
                   : {}
               }
-              onClick={() => {
-                dispatch(
-                  updateDraftField({
-                    path: "option",
-                    value: option,
-                  }),
-                );
-              }}
+              onClick={() => handleSelectOption(option)}
             >
               {option.value}
             </div>

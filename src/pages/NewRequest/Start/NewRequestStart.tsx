@@ -1,8 +1,8 @@
 import { GrayArrow } from "assets/images";
 import { optionsList } from "consts/consts";
-import { IRequest } from "interfaces/interfaces";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
+import { TOption } from "types/types";
 import { generateUniqueId } from "utils/generateId";
 
 import { createDraft } from "../../../redux/requests/reducer";
@@ -13,7 +13,7 @@ import TipsPopUp from "./components/TipsPopUp";
 const NewRequestStart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleCardClick = (option: IRequest["option"]) => {
+  const handleCardClick = (option: TOption) => {
     dispatch(createDraft(option));
     navigate("/new-request/project");
   };

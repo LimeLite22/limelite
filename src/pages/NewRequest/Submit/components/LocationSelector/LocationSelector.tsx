@@ -4,19 +4,23 @@ import "./LocationSelector.scss";
 import { GrayArrow } from "assets/images";
 import { DEFAULT, videoDurationsList } from "consts/consts";
 import { type FC, useState } from "react";
-import { TVideoDuration } from "types/types";
 
 interface IProps {
-  value: TVideoDuration;
-  onChange: (value: TVideoDuration) => void;
-  isError?: boolean;
-  isSubmit?: boolean;
+  // value: TVideoDuration;
+  // onChange: (value: TVideoDuration) => void;
+  // isError?: boolean;
+  // isSubmit?: boolean;
 }
 // dd = duration dropdown
-const LocationSelector: FC<IProps> = ({ isError, value, onChange, isSubmit }) => {
+const LocationSelector: FC<IProps> = () => {
+  const value = "Location";
+  const isError = false;
+  const isSubmit = false;
+  const onChange = () => { };
   const duration = value;
   const [isOpened, setOpened] = useState(false);
   const showError = isError && !isOpened;
+
 
   return (
     <div className={`
@@ -35,7 +39,7 @@ const LocationSelector: FC<IProps> = ({ isError, value, onChange, isSubmit }) =>
         }}
       >
         <div className="dd_selected_name">
-          {duration !== DEFAULT ? duration : <span>Select</span>}
+          {/* {duration !== DEFAULT ? duration : <span>Select</span>} */}
         </div>
         {isError && !isOpened && (
           <div className="dd_selected_errorMessage">
@@ -60,7 +64,7 @@ const LocationSelector: FC<IProps> = ({ isError, value, onChange, isSubmit }) =>
               className="dd_item"
               key={index}
               onClick={() => {
-                onChange(option?.value);
+                // onChange(option?.value);
                 setOpened(false);
               }}
             >

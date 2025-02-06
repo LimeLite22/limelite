@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectRequestInfo, updateDraftField } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 const ProjectInfo = () => {
-    const selectedRequest = useSelector(selectRequestInfo);
+    const selectedRequest = useSelector(selectRequestInfo)?.projectInfoSettings;
     const dispatch = useDispatch();
     const defaultState = {
         name: selectedRequest?.projectName,
@@ -53,31 +53,31 @@ const ProjectInfo = () => {
         if (!isReady) return
         dispatch(
             updateDraftField({
-                path: "projectName",
+                path: "projectInfoSettings.projectName",
                 value: current.name,
             }),
         );
         dispatch(
             updateDraftField({
-                path: "projectTone",
+                path: "projectInfoSettings.projectTone",
                 value: current.tone,
             }),
         );
         dispatch(
             updateDraftField({
-                path: "projectType",
+                path: "projectInfoSettings.projectType",
                 value: current.type,
             }),
         );
         dispatch(
             updateDraftField({
-                path: "targetAudience",
+                path: "projectInfoSettings.targetAudience",
                 value: current.audience,
             }),
         );
         dispatch(
             updateDraftField({
-                path: "details",
+                path: "projectInfoSettings.details",
                 value: current.details,
             }),
         )

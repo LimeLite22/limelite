@@ -15,16 +15,27 @@ const TargetAudienceBox = ({ isError, setIsError }: IProps) => {
   const dispatch = useDispatch();
 
   const selectedRequest = useSelector(selectRequestInfo);
-  const targetAudience = selectedRequest?.targetAudience;
+  const targetAudience = selectedRequest?.projectInfoSettings?.targetAudience;
+
+  const handleSelectAudience = (audience: string) => {
+    setIsError(false);
+    dispatch(
+      updateDraftField({
+        path: "projectInfoSettings.targetAudience",
+        value: audience,
+      }),
+    );
+  }
+  const handleBlur = () => {
+    if (!targetAudience) {
+      setIsError(true);
+    }
+  }
   return (
     <div
       className={styles.nR_inputContainer}
       tabIndex={0}
-      onBlur={() => {
-        if (!targetAudience) {
-          setIsError(true);
-        }
-      }}
+      onBlur={handleBlur}
     >
       <div className={styles.nR_inputContainer_header}>
         {" "}
@@ -34,13 +45,7 @@ const TargetAudienceBox = ({ isError, setIsError }: IProps) => {
         style={{ borderColor: isError ? "var(--red-dark)" : "" }}
         value={targetAudience}
         onChange={(e) => {
-          setIsError(false);
-          dispatch(
-            updateDraftField({
-              path: "targetAudience",
-              value: e.target.value,
-            }),
-          );
+          handleSelectAudience(e.target.value);
         }}
         className={styles.nR_inputContainer_input}
         type="text"

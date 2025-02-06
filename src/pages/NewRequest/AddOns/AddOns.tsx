@@ -21,7 +21,7 @@ import AddOnBox from "./components/AddOnBox";
 const AddOns = () => {
   const voiceSettings = useSelector(selectRequestVoiceSettings);
   const selectedRequest = useSelector(selectRequestInfo);
-  const projectType = selectedRequest?.projectType;
+  const projectType = selectedRequest?.projectInfoSettings?.projectType;
   const [isDisabled, setIsDisabled] = useState(true);
   const [showBottomMessage, setShowBottomMessage] = useState(false);
   const customPadding = useCustomPadding();

@@ -21,7 +21,7 @@ const ToneSelector = ({ isError, setIsError, isSubmitMode, onChange }: IProps) =
   const dispatch = useDispatch();
   const showError = isError && !isOpened;
   const selectedRequest = useSelector(selectRequestInfo);
-  const projectTone = selectedRequest?.projectTone;
+  const projectTone = selectedRequest?.projectInfoSettings.projectTone;
   const [currentTone, setCurrentTone] = useState(projectTone);
   return (
     <div
@@ -88,7 +88,7 @@ const ToneSelector = ({ isError, setIsError, isSubmitMode, onChange }: IProps) =
                 if (!isSubmitMode) {
                   dispatch(
                     updateDraftField({
-                      path: "projectTone",
+                      path: "projectInfoSettings.projectTone",
                       value: option,
                     }),
                   );

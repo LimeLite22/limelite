@@ -27,8 +27,6 @@ const Drafts = () => {
   const drafts = useSelector(selectDrafts);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log('position', position)
-//styleName: Mobile/Heading/Heading 1;
   const ChangeSlide = ({ position }: { position: number }) => {
     const swiper = useSwiper();
     useEffect(() => {
@@ -62,7 +60,7 @@ const Drafts = () => {
             className={styles.nR_content_projects_content_projectsList_swiper}
           >
             <ChangeSlide position={position} />
-            {drafts.map((draft, index) => {
+            {drafts.map((draft) => {
               return (
                 <SwiperSlide
                   key={generateUniqueId()}
@@ -78,7 +76,6 @@ const Drafts = () => {
                 >
                   <DraftItem
                     draft={draft}
-                    index={index}
                     key={generateUniqueId()}
                   />
                 </SwiperSlide>

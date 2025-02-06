@@ -10,9 +10,8 @@ import styles from "../../NewRequest.module.scss";
 
 interface IProps {
   draft: IRequest;
-  index: number;
 }
-const DraftItem = ({ draft, index }: IProps) => {
+const DraftItem = ({ draft }: IProps) => {
   const dispatch = useDispatch();
   const [isSettingsMenuOpened, setIsSettingsMenuOpened] = useState(false);
   // const handleRightClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -73,15 +72,15 @@ const DraftItem = ({ draft, index }: IProps) => {
           }}
         />
         <div className={styles.nR_content_projects_content_projectItem_header}>
-          {draft.projectName.length > 30 
-                  ? draft.projectName.substring(0, 30) + "..."
-                  : draft.projectName}
+          {draft.projectInfoSettings.projectName.length > 30
+            ? draft.projectInfoSettings.projectName.substring(0, 30) + "..."
+            : draft.projectInfoSettings.projectName}
         </div>
         <div className={styles.nR_content_projects_content_projectItem_type}>
-          { draft.projectType.header !== '' ? draft.projectType.header : "Project type"}
+          {draft.projectInfoSettings.projectType.header !== '' ? draft.projectInfoSettings.projectType.header : "Project type"}
         </div>
         <div className={styles.nR_content_projects_content_projectItem_subText}>
-          {draft.option?.value || ""}{" "}
+          {draft.projectInfoSettings.option?.value || ""}{" "}
           <div
             className={styles.nR_content_projects_content_projectItem_dot}
           ></div>{" "}
@@ -115,13 +114,6 @@ const DraftItem = ({ draft, index }: IProps) => {
             }
           ></div>
         </div>
-        {/* <div
-                className={
-                    styles.nR_content_projects_content_projectItem_credit
-                }
-            >
-                {draft.option?.credits} { draft.option?.credits === 1 ? "credit" : "credits"}
-             </div>  */}
         <div></div>
         <img
           className={styles.nR_content_projects_content_projectItem_userIcon}

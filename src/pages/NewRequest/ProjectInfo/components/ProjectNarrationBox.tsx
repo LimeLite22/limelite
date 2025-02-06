@@ -17,7 +17,7 @@ interface IProps {
 
 const ProjectNarrationBox = ({ isError, setIsError }: IProps) => {
   const selectedRequest = useSelector(selectRequestInfo);
-  const approachList = selectedRequest?.approachList;
+  const approachList = selectedRequest?.projectInfoSettings?.approachList;
   const dispatch = useDispatch();
   const width = useWindowWidth();
   const [isWarning, setIsWarning] = useState(false);
@@ -34,7 +34,7 @@ const ProjectNarrationBox = ({ isError, setIsError }: IProps) => {
       setIsError(false);
       dispatch(
         updateDraftField({
-          path: "approachList",
+          path: "projectInfoSettings.approachList",
           value: [NO_APPROACH],
         }),
       );
@@ -59,7 +59,7 @@ const ProjectNarrationBox = ({ isError, setIsError }: IProps) => {
       }),
     );
   };
-  if (selectedRequest?.option?.value === EDIT_ONLY) {
+  if (selectedRequest?.projectInfoSettings?.option?.value === EDIT_ONLY) {
     return <></>
   }
 

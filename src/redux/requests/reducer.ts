@@ -3,10 +3,8 @@ import { DEFAULT } from "consts/consts";
 import { IAdditionalVideoFormat, IInterviewSettings, ILocation, IRequestState, IScriptSettings } from "interfaces/interfaces";
 import set from "lodash/set";
 import { IRootState } from "redux/rootReducer";
-import { TDraftFieldUpdate, TStep } from "types/types";
+import { TDraftFieldUpdate, TOption, TStep } from "types/types";
 import { generateUniqueId } from "utils/generateId";
-
-import { IRequest } from "./../../interfaces/interfaces";
 import { requestsInitialState } from './consts';
 
 localStorage.removeItem("requestState");
@@ -22,26 +20,28 @@ const requestReducer = createSlice({
   name: "request",
   initialState,
   reducers: {
-    createDraft: (state, action: PayloadAction<IRequest["option"]>) => {
+    createDraft: (state, action: PayloadAction<TOption>) => {
       const id = generateUniqueId();
       state.drafts.unshift({
         id: id,
-        option: action.payload,
-        projectName: `Request ${state.drafts.length + 1}`,
-        targetAudience: "",
-        projectType: {
-          id: generateUniqueId(),
-          img: '',
-          header: "",
-          subHeader: ``,
-          description: ``,
-          price: 0,
-          addOns: [
-          ]
+        projectInfoSettings: {
+          option: action.payload,
+          projectName: `Request ${state.drafts.length + 1}`,
+          targetAudience: "",
+          projectType: {
+            id: generateUniqueId(),
+            img: '',
+            header: "",
+            subHeader: ``,
+            description: ``,
+            price: 0,
+            addOns: [
+            ]
+          },
+          projectTone: "",
+          approachList: [],
+          details: '',
         },
-        projectTone: "",
-        approachList: [],
-        details: '',
         travel: {
           selection: null,
           zoneCode: {
@@ -234,18 +234,18 @@ const requestReducer = createSlice({
         (draft) => draft.id === state.selectedRequest,
       );
       if (draft) {
-
-        if (action.payload.id === draft.projectType.addOns[0].id) {
-          draft.projectType.addOns[0].isSelected = true
-          for (let i = 1; i < draft.projectType.addOns.length; i++) {
-            draft.projectType.addOns[i].isSelected = false
+        const projectInfoSettings = draft?.projectInfoSettings;
+        if (action.payload.id === projectInfoSettings.projectType.addOns[0].id) {
+          projectInfoSettings.projectType.addOns[0].isSelected = true
+          for (let i = 1; i < projectInfoSettings.projectType.addOns.length; i++) {
+            projectInfoSettings.projectType.addOns[i].isSelected = false
           }
         } else {
-          const addOn = draft.projectType.addOns.find(
+          const addOn = projectInfoSettings.projectType.addOns.find(
             (addOn) => addOn.id === action.payload.id
           )
           if (addOn) {
-            draft.projectType.addOns[0].isSelected = false
+            projectInfoSettings.projectType.addOns[0].isSelected = false
             addOn.isSelected = !addOn.isSelected
           }
         }

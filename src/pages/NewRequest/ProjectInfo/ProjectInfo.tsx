@@ -26,7 +26,7 @@ import {
 import styles from "./ProjectInfo.module.scss";
 
 const ProjectInfo = () => {
-  const selectedRequest = useSelector(selectRequestInfo);
+  const selectedRequest = useSelector(selectRequestInfo)?.projectInfoSettings;
   const projectType = selectedRequest?.projectType;
   const projectTone = selectedRequest?.projectTone;
   const projectName = selectedRequest?.projectName;

@@ -1,20 +1,22 @@
 import { APPROVED_TEXT_STATUS, BASIC_THUMBNAIL, DEFAULT, LESS_1_30, optionsList, projectTones, projectTypes, VIDEO_SQUARE } from "consts/consts"
-import { IRequest, IRequestState } from "interfaces/interfaces";
+import { IRequest } from "interfaces/interfaces";
 import { generateUniqueId } from "utils/generateId";
 
 export const requestsInitialState: IRequest[] = [
     {
         id: "1",
-        option: optionsList[0],
-        projectName: "No Fear Testimonial",
-        targetAudience: "happy clients",
-        projectType: projectTypes[0],
-        projectTone: projectTones[0],
-        approachList: [],
-        details:
-            `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. 
-      Integer vel metus ut libero fermentum gravida. Aenean sit amet sapien nec purus 
-      cursus faucibus at vel elit`,
+        projectInfoSettings: {
+            option: optionsList[0],
+            projectName: "No Fear Testimonial",
+            targetAudience: "happy clients",
+            projectType: projectTypes[0],
+            projectTone: projectTones[0],
+            approachList: [],
+            details:
+                `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. 
+          Integer vel metus ut libero fermentum gravida. Aenean sit amet sapien nec purus 
+          cursus faucibus at vel elit`,
+        },
         travel: {
             selection: null,
             zoneCode: {
@@ -130,23 +132,24 @@ export const requestsInitialState: IRequest[] = [
     },
     {
         id: "2",
-        option: optionsList[0],
-        projectName: "Vesper Institute",
-        targetAudience: "",
-        projectType: {
-            id: generateUniqueId(),
-            img: '',
-            header: "",
-            subHeader: ``,
-            description: ``,
-            price: 0,
-            addOns: [
-            ]
+        projectInfoSettings: {
+            option: optionsList[0],
+            projectName: "Vesper Institute",
+            targetAudience: "",
+            projectType: {
+                id: generateUniqueId(),
+                img: '',
+                header: "",
+                subHeader: ``,
+                description: ``,
+                price: 0,
+                addOns: [
+                ]
+            },
+            projectTone: "",
+            approachList: [],
+            details: '',
         },
-        projectTone: "",
-        details: '',
-        approachList: [],
-
         travel: {
             selection: null,
             zoneCode: {

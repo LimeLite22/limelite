@@ -14,7 +14,7 @@ interface IProps {
 const ProjectNameBox = ({ isError, setIsError }: IProps) => {
   const dispatch = useDispatch();
   const selectedRequest = useSelector(selectRequestInfo);
-  const projectName = selectedRequest?.projectName;
+  const projectName = selectedRequest?.projectInfoSettings?.projectName;
   return (
     <div
       className={styles.nR_inputContainer}
@@ -37,7 +37,7 @@ const ProjectNameBox = ({ isError, setIsError }: IProps) => {
           setIsError(false);
           dispatch(
             updateDraftField({
-              path: "projectName",
+              path: "projectInfoSettings.projectName",
               value: e.target.value,
             }),
           );

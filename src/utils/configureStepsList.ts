@@ -1,4 +1,4 @@
-import { ADD_ONS_STEP, CANDID_APPROACH, EDIT_ONLY, FINAL_STEP, INTERVIEW_STEP, LOGISTICS_STEP, OTHER,PROJECT_STEP, SCRIPT_STEP, SCRIPTED_APPROACH, SHOOT_EDIT, SHOOT_ONLY, SUBMIT_STEP, VIDEO_EDIT_STEP, VOICEOVER_APPROACH, VOICEOVER_STEP } from "consts/consts";
+import { ADD_ONS_STEP, CANDID_APPROACH, EDIT_ONLY, FINAL_STEP, INTERVIEW_STEP, LOGISTICS_STEP, OTHER, PROJECT_STEP, SCRIPT_STEP, SCRIPTED_APPROACH, SHOOT_EDIT, SHOOT_ONLY, SUBMIT_STEP, VIDEO_EDIT_STEP, VOICEOVER_APPROACH, VOICEOVER_STEP } from "consts/consts";
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TStep } from "types/types";
@@ -7,7 +7,7 @@ import { selectRequestInfo, updateStepsList } from '../redux/requests/reducer';
 
 
 export const useConfigureStepsList = () => {
-    const request = useSelector(selectRequestInfo);
+    const request = useSelector(selectRequestInfo)?.projectInfoSettings;
     const dispatch = useDispatch();
 
     useEffect(() => {
