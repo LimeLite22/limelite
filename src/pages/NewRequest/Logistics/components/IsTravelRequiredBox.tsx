@@ -1,22 +1,12 @@
-import "swiper/css";
-import "swiper/css/pagination";
-
 import {
   CheckBox,
   CheckBoxSelected,
   Expand,
   Note,
-  SwiperFoto1,
-  SwiperFoto2,
-  SwiperFoto3,
 } from "assets/images";
 import { NO, YES } from "consts/consts";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import type { Swiper as SwiperType } from "swiper";
-import { Navigation, Pagination } from "swiper/modules";
-import { Autoplay } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 
 import LearnMorePopUp from "./LearnMorePopUp";
 import {
@@ -26,18 +16,15 @@ import {
 import styles from "../../NewRequest.module.scss";
 import CustomFontSizeDropDown from "./ZoneSelector/ZoneSelector";
 import { TSelection } from "types/types";
+import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
 
 const IsTravelRequired = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [slideNumber, setSlideNumber] = useState(0);
-
   const selectedRequest = useSelector(selectRequestInfo);
-  const travel = selectedRequest?.travel;
+  const travel = selectedRequest?.logisticSettings.travel;
   const selection = travel?.selection;
   const zoneCode = travel?.zoneCode;
-
-  const swiperRef = useRef<SwiperType>();
   const containerRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
 
@@ -66,11 +53,6 @@ const IsTravelRequired = () => {
       setIsExpanded(false);
     }
   };
-  const handleCustomSlide = (index: number) => {
-    if (swiperRef.current) {
-      swiperRef.current.slideTo(index);
-    }
-  };
   const handleSelect = (selection: TSelection) => {
     if (selection === YES) {
       !isExpanded && setIsExpanded(true);
@@ -79,7 +61,7 @@ const IsTravelRequired = () => {
     }
     dispatch(
       updateDraftField({
-        path: "travel.selection",
+        path: "logisticSettings.travel.selection",
         value: selection,
       }),
     );
@@ -90,20 +72,6 @@ const IsTravelRequired = () => {
   const handleToggleExpanded = () => {
     setIsExpanded(!isExpanded);
   };
-  useEffect(() => {
-    const swiperInstance = swiperRef.current?.swiper;
-    if (swiperInstance) {
-      const handleTransitionStart = () => {
-        swiperInstance.update();
-      };
-
-      swiperInstance.on("slideChangeTransitionStart", handleTransitionStart);
-
-      return () => {
-        swiperInstance.off("slideChangeTransitionStart", handleTransitionStart);
-      };
-    }
-  }, []);
   const addCommas = (num: number) => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
@@ -175,74 +143,10 @@ const IsTravelRequired = () => {
         </div>
         <div className={styles.box_container}>
           <div className={styles.box_content}>
-            <div className={styles.box_content_swiper}>
-              <Swiper
-                spaceBetween={8}
-                autoplay={{
-                  delay: 4000,
-                  disableOnInteraction: false,
-                }}
-                centeredSlides={true}
-                onBeforeInit={(swiper: SwiperType) => {
-                  swiperRef.current = swiper;
-                }}
-                onSlideChange={(swiper: SwiperType) => {
-                  setSlideNumber(swiper.realIndex);
-                }}
-                loop={true}
-                navigation={true}
-                className={styles.box_content_swiper_container}
-                modules={[Autoplay, Pagination, Navigation]}
-              >
-                <SwiperSlide>
-                  <img
-                    className={styles.box_content_swiper_img}
-                    src={SwiperFoto1}
-                    alt={"SwiperFoto1"}
-                  />
-                </SwiperSlide>
-                <SwiperSlide>
-                  {" "}
-                  <img
-                    className={styles.box_content_swiper_img}
-                    src={SwiperFoto2}
-                    alt={"SwiperFoto1"}
-                  />
-                </SwiperSlide>
-                <SwiperSlide>
-                  {" "}
-                  <img
-                    className={styles.box_content_swiper_img}
-                    src={SwiperFoto3}
-                    alt={"SwiperFoto1"}
-                  />
-                </SwiperSlide>
-              </Swiper>
-              <div className={styles.box_content_swiper_dots}>
-                <div
-                  className={`
-                ${styles.box_content_swiper_dots_dot} 
-                ${slideNumber === 0 ? styles.box_content_swiper_dots_dot_active : ""}`}
-                  onClick={() => handleCustomSlide(0)}
-                ></div>
-                <div
-                  className={`
-                   ${styles.box_content_swiper_dots_dot} 
-                   ${slideNumber === 1 ? styles.box_content_swiper_dots_dot_active : ""}`}
-                  onClick={() => handleCustomSlide(1)}
-                ></div>
-                <div
-                  className={`
-                   ${styles.box_content_swiper_dots_dot} 
-                   ${slideNumber === 2 ? styles.box_content_swiper_dots_dot_active : ""}`}
-                  onClick={() => handleCustomSlide(2)}
-                ></div>
-              </div>
-            </div>
+            <DefaultSlider />
             <div className={styles.box_content_info}>
               <div
                 className={styles.box_content_info_header}
-                onClick={() => handleCustomSlide(0)}
               >
                 Premium Add-on:
                 <span className={styles.box_content_info_header_addOn}>

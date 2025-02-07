@@ -21,7 +21,7 @@ import Location from "./components/LocationBox";
 import ShotList from "./components/ShotListBox";
 
 const Logistics = () => {
-  const selectedRequest = useSelector(selectRequestInfo);
+  const selectedRequest = useSelector(selectRequestInfo)?.logisticSettings;
   const [isNextDisabled, setIsNextDisabled] = useState(false);
   const [showBottomMessage, setShowBottomMessage] = useState(false);
   const customPadding = useCustomPadding();

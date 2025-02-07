@@ -16,9 +16,9 @@ import LearnMorePopUp from "./LearnMorePopUp";
 
 const Date = () => {
   const selectedRequest = useSelector(selectRequestInfo);
-  const preferredDate = selectedRequest?.preferredDate;
-  const alternateDate = selectedRequest?.alternateDate;
-  const isAlternate = selectedRequest?.isAlternate;
+  const preferredDate = selectedRequest?.logisticSettings.preferredDate;
+  const alternateDate = selectedRequest?.logisticSettings.alternateDate;
+  const isAlternate = selectedRequest?.logisticSettings.isAlternate;
 
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
   const [isPrefferedCalendar, setIsPrefferedCalendar] = useState(false);
@@ -114,7 +114,7 @@ const Date = () => {
             <TimeSelector
               time={preferredDate?.time || DEFAULT}
               selectTime={(time) => {
-                handleUpdateField("preferredDate.time", time);
+                handleUpdateField("logisticSettings.preferredDate.time", time);
               }}
               isError={isPTError}
             />
@@ -158,7 +158,7 @@ const Date = () => {
                 <TimeSelector
                   time={alternateDate?.time || DEFAULT}
                   selectTime={(time) => {
-                    handleUpdateField("alternateDate.time", time);
+                    handleUpdateField("logisticSettings.alternateDate.time", time);
                   }}
                   isError={isPTError}
                 />

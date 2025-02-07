@@ -5,7 +5,7 @@ import { selectRequestInfo } from "./../redux/requests/reducer";
 
 export const useCalculateFinalPrice = () => {
   const request = useSelector(selectRequestInfo);
-  const preferredDate = request?.preferredDate;
+  const preferredDate = request?.logisticSettings?.preferredDate;
   const savedPrefferedDate = preferredDate?.date;
   const savedPrefferedTime = preferredDate?.time;
 
@@ -78,18 +78,18 @@ export const useCalculateFinalPrice = () => {
       addOnsCount += 1
     }
   }
-  if (request?.location.type === STUDIO_RENTAL) {
+  if (request?.logisticSettings?.location.type === STUDIO_RENTAL) {
     price += 795;
     locationType2 += 795;
     addOnsCount += 1
   }
-  if (request?.location.type === HOME_RENTAL) {
+  if (request?.logisticSettings?.location.type === HOME_RENTAL) {
     price += 695;
     locationType3 += 695;
     addOnsCount += 1
   }
-  if (request?.travel?.zoneCode?.value) {
-    const number = request?.travel?.zoneCode?.value || 0;
+  if (request?.logisticSettings?.travel?.zoneCode?.value) {
+    const number = request?.logisticSettings?.travel?.zoneCode?.value || 0;
     price += number;
     location += number;
     addOnsCount += 1

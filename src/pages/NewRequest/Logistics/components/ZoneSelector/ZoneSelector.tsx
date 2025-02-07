@@ -16,7 +16,7 @@ interface IProps {
 }
 const ZoneSelector: FC<IProps> = ({ onChange, isError }) => {
   const selectedRequest = useSelector(selectRequestInfo);
-  const travel = selectedRequest?.travel;
+  const travel = selectedRequest?.logisticSettings.travel;
   const zoneCode = travel?.zoneCode;
   const [isOpened, setOpened] = useState(false);
   const dispatch = useDispatch();
@@ -60,7 +60,7 @@ const ZoneSelector: FC<IProps> = ({ onChange, isError }) => {
                 onChange({ name: option?.name, value: option?.value });
                 dispatch(
                   updateDraftField({
-                    path: "travel.zoneCode",
+                    path: "logisticSettings.travel.zoneCode",
                     value: {
                       name: option?.name,
                       value: option?.value,

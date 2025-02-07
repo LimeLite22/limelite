@@ -86,8 +86,8 @@ const DraftItem = ({ draft }: IProps) => {
           ></div>{" "}
           <div>
             Shoot:{" "}
-            {draft.preferredDate.date !== DEFAULT ? (
-              <>{format(draft.preferredDate.date as Date, "MM/dd/yyyy")}</>
+            {draft.logisticSettings.preferredDate.date !== DEFAULT ? (
+              <>{format(draft.logisticSettings.preferredDate.date as Date, "MM/dd/yyyy")}</>
             ) : (
               "00/00/0000"
             )}{" "}

@@ -1,5 +1,4 @@
 
-import { CloseRed, Success2 } from "assets/images";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -14,7 +13,7 @@ interface IProps {
 
 const AddOnLocation = ({ isEdit, setIsEdit }: IProps) => {
     const selectedRequest = useSelector(selectRequestInfo);
-    const [current, setCurrent] = useState(selectedRequest?.location);
+    const [current, setCurrent] = useState(selectedRequest?.logisticSettings.location);
     const [isReady, setIsReady] = useState(false);
 
 

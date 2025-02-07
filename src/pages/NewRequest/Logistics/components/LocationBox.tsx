@@ -14,7 +14,7 @@ import { selectRequestInfo } from "../../../../redux/requests/reducer";
 
 const Location = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const selectedRequest = useSelector(selectRequestInfo)?.location;
+  const selectedRequest = useSelector(selectRequestInfo)?.logisticSettings?.location;
   const type = selectedRequest?.type;
   const city = selectedRequest?.city;
   const state = selectedRequest?.state;

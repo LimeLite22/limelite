@@ -1,43 +1,26 @@
-import "swiper/css";
-import "swiper/css/pagination";
-
 import {
   CheckBox,
   CheckBoxSelected,
   Expand,
   Note,
-  SwiperFoto1,
-  SwiperFoto2,
-  SwiperFoto3,
 } from "assets/images";
 import { STUDIO_RENTAL } from "consts/consts";
 import useWindowWidth from "hooks/useWindowWidth";
 import { IStudioRentalProps } from "interfaces/interfaces";
-import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import type { Swiper as SwiperType } from "swiper";
-import { Navigation, Pagination } from "swiper/modules";
-import { Autoplay } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 
 import {
   selectRequestInfo,
   updateDraftField,
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
+import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
 
 const StudioRental = ({ isExpanded, setIsExpanded }: IStudioRentalProps) => {
-  const [slideNumber, setSlideNumber] = useState(0);
   const selectedRequest = useSelector(selectRequestInfo);
-  const type = selectedRequest?.location?.type;
-  const swiperRef = useRef<SwiperType>();
+  const type = selectedRequest?.logisticSettings?.location?.type;
   const dispatch = useDispatch();
   const windowWidth = useWindowWidth();
-  const handleCustomSlide = (index: number) => {
-    if (swiperRef.current) {
-      swiperRef.current.slideTo(index); // Use slideTo method
-    }
-  };
   return (
     <div
       className={`
@@ -48,7 +31,7 @@ const StudioRental = ({ isExpanded, setIsExpanded }: IStudioRentalProps) => {
       onClick={() => {
         dispatch(
           updateDraftField({
-            path: "location.type",
+            path: "logisticSettings.location.type",
             value: STUDIO_RENTAL,
           }),
         );
@@ -84,74 +67,10 @@ const StudioRental = ({ isExpanded, setIsExpanded }: IStudioRentalProps) => {
       <div className={styles.box_container}>
         {" "}
         <div className={styles.box_content}>
-          <div className={styles.box_content_swiper}>
-            <Swiper
-              spaceBetween={8}
-              centeredSlides={true}
-              autoplay={{
-                delay: 4000,
-                disableOnInteraction: false,
-              }}
-              onBeforeInit={(swiper: SwiperType) => {
-                swiperRef.current = swiper;
-              }}
-              onSlideChange={(swiper: SwiperType) => {
-                setSlideNumber(swiper.realIndex);
-              }}
-              loop={true}
-              navigation={true}
-              className={styles.box_content_swiper_container}
-              modules={[Autoplay, Pagination, Navigation]}
-            >
-              <SwiperSlide>
-                <img
-                  className={styles.box_content_swiper_img}
-                  src={SwiperFoto1}
-                  alt={"SwiperFoto1"}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                {" "}
-                <img
-                  className={styles.box_content_swiper_img}
-                  src={SwiperFoto2}
-                  alt={"SwiperFoto1"}
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                {" "}
-                <img
-                  className={styles.box_content_swiper_img}
-                  src={SwiperFoto3}
-                  alt={"SwiperFoto1"}
-                />
-              </SwiperSlide>
-            </Swiper>
-            <div className={styles.box_content_swiper_dots}>
-              <div
-                className={`
-            ${styles.box_content_swiper_dots_dot} 
-            ${slideNumber === 0 ? styles.box_content_swiper_dots_dot_active : ""}`}
-                onClick={() => handleCustomSlide(0)}
-              ></div>
-              <div
-                className={`
-               ${styles.box_content_swiper_dots_dot} 
-               ${slideNumber === 1 ? styles.box_content_swiper_dots_dot_active : ""}`}
-                onClick={() => handleCustomSlide(1)}
-              ></div>
-              <div
-                className={`
-               ${styles.box_content_swiper_dots_dot} 
-               ${slideNumber === 2 ? styles.box_content_swiper_dots_dot_active : ""}`}
-                onClick={() => handleCustomSlide(2)}
-              ></div>
-            </div>
-          </div>
+          <DefaultSlider />
           <div className={styles.box_content_info}>
             <div
               className={styles.box_content_info_header}
-              onClick={() => handleCustomSlide(0)}
             >
               Premium Add-on:
               <span className={styles.box_content_info_header_addOn}>

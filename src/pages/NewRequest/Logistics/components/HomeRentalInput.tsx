@@ -15,7 +15,7 @@ import styles from "../../NewRequest.module.scss";
 const HomeRental = ({ isExpanded, setIsExpanded }: IHomeRentalProps) => {
   const dispatch = useDispatch();
   const selectedRequest = useSelector(selectRequestInfo);
-  const type = selectedRequest?.location?.type;
+  const type = selectedRequest?.logisticSettings?.location?.type;
   const windowWidth = useWindowWidth();
   return (
     <div
@@ -26,7 +26,7 @@ const HomeRental = ({ isExpanded, setIsExpanded }: IHomeRentalProps) => {
       onClick={() => {
         dispatch(
           updateDraftField({
-            path: "location.type",
+            path: "logisticSettings.location.type",
             value: HOME_RENTAL,
           }),
         );

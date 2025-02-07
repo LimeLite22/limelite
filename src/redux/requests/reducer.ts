@@ -45,20 +45,31 @@ const requestReducer = createSlice({
           approachList: [],
           details: '',
         },
-        travel: {
-          selection: null,
-          zoneCode: {
-            name: null,
-            value: 0,
+        logisticSettings: {
+          travel: {
+            selection: null,
+            zoneCode: {
+              name: null,
+              value: 0,
+            },
           },
-        },
-        location: {
-          type: DEFAULT,
-          street: "",
-          company: "",
-          city: "",
-          state: "",
-          zip: "",
+          location: {
+            type: DEFAULT,
+            street: "",
+            company: "",
+            city: "",
+            state: "",
+            zip: "",
+          },
+          preferredDate: {
+            date: DEFAULT,
+            time: DEFAULT,
+          },
+          isAlternate: false,
+          alternateDate: {
+            date: DEFAULT,
+            time: DEFAULT,
+          },
         },
         addOnLocation: {
           type: DEFAULT,
@@ -67,15 +78,6 @@ const requestReducer = createSlice({
           city: "City",
           state: "State",
           zip: "12345",
-        },
-        preferredDate: {
-          date: DEFAULT,
-          time: DEFAULT,
-        },
-        isAlternate: false,
-        alternateDate: {
-          date: DEFAULT,
-          time: DEFAULT,
         },
         scriptSettings: {
           scriptWriter: DEFAULT,

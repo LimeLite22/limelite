@@ -14,7 +14,7 @@ interface Suggestion {
     text: string;
 }
 const LogisticInfo = () => {
-    const selectedRequest = useSelector(selectRequestInfo);
+    const selectedRequest = useSelector(selectRequestInfo)?.logisticSettings;
     const dispatch = useDispatch();
     const defaultState = {
         company: selectedRequest?.location.company,
@@ -109,37 +109,37 @@ const LogisticInfo = () => {
         if (!isReady) return
         dispatch(
             updateDraftField({
-                path: "location.company",
+                path: "logisticSettings.location.company",
                 value: current.company,
             }),
         );
         dispatch(
             updateDraftField({
-                path: "location.street",
+                path: "logisticSettings.location.street",
                 value: current.street,
             }),
         );
         dispatch(
             updateDraftField({
-                path: "location.city",
+                path: "logisticSettings.location.city",
                 value: current.city,
             }),
         );
         dispatch(
             updateDraftField({
-                path: "location.state",
+                path: "logisticSettings.location.state",
                 value: current.state,
             }),
         );
         dispatch(
             updateDraftField({
-                path: "location.zip",
+                path: "logisticSettings.location.zip",
                 value: current.zip,
             }),
         );
         dispatch(
             updateDraftField({
-                path: "preferredDate",
+                path: "logisticSettings.preferredDate",
                 value: current.preferredDate,
             }),
         );

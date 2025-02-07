@@ -18,8 +18,8 @@ import styles from "../NewRequest.module.scss";
 const FormFooter = () => {
   const selectedRequest = useSelector(selectRequestInfo);
   const option = selectedRequest?.projectInfoSettings.option;
-  const location = selectedRequest?.location;
-  const preferredDate = selectedRequest?.preferredDate;
+  const location = selectedRequest?.logisticSettings?.location;
+  const preferredDate = selectedRequest?.logisticSettings?.preferredDate;
   const company = location?.company;
   const street = location?.street;
   const city = location?.city;

@@ -17,20 +17,31 @@ export const requestsInitialState: IRequest[] = [
           Integer vel metus ut libero fermentum gravida. Aenean sit amet sapien nec purus 
           cursus faucibus at vel elit`,
         },
-        travel: {
-            selection: null,
-            zoneCode: {
-                name: null,
-                value: 0,
+        logisticSettings: {
+            travel: {
+                selection: null,
+                zoneCode: {
+                    name: null,
+                    value: 0,
+                },
             },
-        },
-        location: {
-            type: DEFAULT,
-            company: "ABC Company",
-            street: "123 Main Street",
-            city: "City",
-            state: "State",
-            zip: "12345",
+            location: {
+                type: DEFAULT,
+                company: "ABC Company",
+                street: "123 Main Street",
+                city: "City",
+                state: "State",
+                zip: "12345",
+            },
+            preferredDate: {
+                date: new Date("2025-01-18"),
+                time: DEFAULT,
+            },
+            isAlternate: false,
+            alternateDate: {
+                date: DEFAULT,
+                time: DEFAULT,
+            },
         },
         addOnLocation: {
             type: DEFAULT,
@@ -39,15 +50,6 @@ export const requestsInitialState: IRequest[] = [
             city: "City",
             state: "State",
             zip: "12345",
-        },
-        preferredDate: {
-            date: new Date("2025-01-18"),
-            time: DEFAULT,
-        },
-        isAlternate: false,
-        alternateDate: {
-            date: DEFAULT,
-            time: DEFAULT,
         },
         scriptSettings: {
             scriptWriter: DEFAULT,
@@ -150,20 +152,31 @@ export const requestsInitialState: IRequest[] = [
             approachList: [],
             details: '',
         },
-        travel: {
-            selection: null,
-            zoneCode: {
-                name: null,
-                value: 0,
+        logisticSettings: {
+            travel: {
+                selection: null,
+                zoneCode: {
+                    name: null,
+                    value: 0,
+                },
             },
-        },
-        location: {
-            type: DEFAULT,
-            street: "",
-            company: "",
-            city: "",
-            state: "",
-            zip: "",
+            location: {
+                type: DEFAULT,
+                street: "",
+                company: "",
+                city: "",
+                state: "",
+                zip: "",
+            },
+            preferredDate: {
+                date: new Date("2025-01-18"),
+                time: DEFAULT,
+            },
+            isAlternate: false,
+            alternateDate: {
+                date: DEFAULT,
+                time: DEFAULT,
+            },
         },
         addOnLocation: {
             type: DEFAULT,
@@ -172,15 +185,6 @@ export const requestsInitialState: IRequest[] = [
             city: "City",
             state: "State",
             zip: "12345",
-        },
-        preferredDate: {
-            date: new Date("2025-01-18"),
-            time: DEFAULT,
-        },
-        isAlternate: false,
-        alternateDate: {
-            date: DEFAULT,
-            time: DEFAULT,
         },
         scriptSettings: {
             scriptWriter: DEFAULT,

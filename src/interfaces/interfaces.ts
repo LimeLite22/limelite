@@ -97,12 +97,9 @@ export interface IProjectInfoSettings {
   approachList: TApproachValue[];
   details: string;
 }
-export interface IRequest {
-  id: string;
-  projectInfoSettings: IProjectInfoSettings,
+export interface ILogisticSettings {
   travel: TTravel;
   location: ILocation;
-  addOnLocation: ILocation;
   preferredDate: {
     date: 'default' | TValue;
     time: TTimeValue;
@@ -112,6 +109,12 @@ export interface IRequest {
     date: 'default' | TValue;
     time: TTimeValue;
   };
+}
+export interface IRequest {
+  id: string;
+  projectInfoSettings: IProjectInfoSettings,
+  logisticSettings: ILogisticSettings;
+  addOnLocation: ILocation;
   scriptSettings: IScriptSettings;
   interviewSettings: IInterviewSettings;
   voiceTrackSettings: {

@@ -22,7 +22,7 @@ interface Suggestion {
 }
 
 const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
-  const selectedRequest = useSelector(selectRequestInfo);
+  const selectedRequest = useSelector(selectRequestInfo)?.logisticSettings;
   const type = selectedRequest?.location?.type;
   const city = selectedRequest?.location?.city;
   const state = selectedRequest?.location?.state;

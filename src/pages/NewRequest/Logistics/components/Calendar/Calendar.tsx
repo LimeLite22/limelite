@@ -22,8 +22,8 @@ import {
 
 const Calendar = ({ onClose, isPreferredDate, isOpened, onChange }: ICalendarProps) => {
   const selectedRequest = useSelector(selectRequestInfo);
-  const preferredDate = selectedRequest?.preferredDate;
-  const alternateDate = selectedRequest?.alternateDate;
+  const preferredDate = selectedRequest?.logisticSettings?.preferredDate;
+  const alternateDate = selectedRequest?.logisticSettings?.alternateDate;
   const date = isPreferredDate ? preferredDate?.date : alternateDate?.date;
   const [currentDate, setCurrentDate] = useState(date);
   const [isDateError, setIsDateError] = useState(false);
@@ -39,16 +39,16 @@ const Calendar = ({ onClose, isPreferredDate, isOpened, onChange }: ICalendarPro
       ".react-calendar__navigation__next-button",
     );
     if (prevButton) {
-      prevButton.innerHTML = 
-      `<img
+      prevButton.innerHTML =
+        `<img
         src=${BackCalendarArrow}
         class="popUp_content_close"
         alt="Close"
         />`;
     }
     if (nextButton) {
-      nextButton.innerHTML = 
-      `<img
+      nextButton.innerHTML =
+        `<img
        src=${ForwardCalendarArrow}
        class="popUp_content_close"
        alt="Close"
@@ -125,16 +125,16 @@ const Calendar = ({ onClose, isPreferredDate, isOpened, onChange }: ICalendarPro
       showCalendarError(2000);
       return;
     }
-    if(onChange){
+    if (onChange) {
       onChange(currentDate as Date);
-    }else{
+    } else {
       if (isPreferredDate) {
-        handleUpdateField("preferredDate.date", currentDate as Date);
+        handleUpdateField("logisticSettings.preferredDate.date", currentDate as Date);
       } else {
-        handleUpdateField("alternateDate.date", currentDate as Date);
+        handleUpdateField("logisticSettings.alternateDate.date", currentDate as Date);
       }
     }
- 
+
     onClose();
   };
   const currentAddOn = () => {
