@@ -56,17 +56,6 @@ const AddOnsContainer = () => {
                 Rush hour <p>{list.rushHour}<span>.00</span></p></div>
         }
         {
-            list.locationType2 > 0 &&
-            <div className={styles.infoContainer_priceItem}>
-                Location Type  2 <p>{list.locationType2}<span>.00</span></p></div>
-        }
-        {
-            list.locationType3 > 0 &&
-            <div className={styles.infoContainer_priceItem}>
-                Location Type 3 <p>{list.locationType3}<span>.00</span></p></div>
-
-        }
-        {
             list.professionalScriptWriter > 0 &&
             <div className={styles.infoContainer_priceItem}>
                 Professional Script Writer <p>{list.professionalScriptWriter}<span>.00</span></p></div>

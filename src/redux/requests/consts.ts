@@ -1,4 +1,4 @@
-import { APPROVED_TEXT_STATUS, BASIC_THUMBNAIL, DEFAULT, HOME_RENTAL, LESS_1_30, optionsList, projectTones, projectTypes, VIDEO_SQUARE } from "consts/consts"
+import { APPROVED_TEXT_STATUS, BASIC_THUMBNAIL, DEFAULT, HOME_RENTAL, LESS_1_30, optionsList, OWN_ADDRESS, projectTones, projectTypes, VIDEO_SQUARE } from "consts/consts"
 import { IRequest } from "interfaces/interfaces";
 import { generateUniqueId } from "utils/generateId";
 
@@ -26,7 +26,7 @@ export const requestsInitialState: IRequest[] = [
                 },
             },
             location: {
-                type: HOME_RENTAL,
+                type: OWN_ADDRESS,
                 company: "ABC Company",
                 street: "123 Main Street",
                 city: "City",

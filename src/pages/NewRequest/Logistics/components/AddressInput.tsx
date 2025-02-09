@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectRequestInfo,
   updateDraftField,
+  updateLogisticInfoSettings,
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 
@@ -22,13 +23,13 @@ interface Suggestion {
 }
 
 const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
-  const selectedRequest = useSelector(selectRequestInfo)?.logisticSettings;
-  const type = selectedRequest?.location?.type;
-  const city = selectedRequest?.location?.city;
-  const state = selectedRequest?.location?.state;
-  const street = selectedRequest?.location?.street;
-  const zip = selectedRequest?.location?.zip;
-  const company = selectedRequest?.location?.company;
+  const lIS = useSelector(selectRequestInfo)?.logisticSettings;
+  const type = lIS?.location.type;
+  const city = lIS?.location.city;
+  const state = lIS?.location.state;
+  const street = lIS?.location.street;
+  const zip = lIS?.location.zip;
+  const company = lIS?.location.company;
 
   const containerRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
@@ -54,7 +55,8 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
   };
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    handleUpdateField("logisticSettings.location.street", value);
+    lIS && dispatch(updateLogisticInfoSettings(
+      { logisticInfoSettings: { ...lIS, location: { ...lIS.location, street: value } }, isEdit: false }));
     if (value?.length > 1) {
       try {
         const response = await axios.get<{ suggestions: Suggestion[] }>(
@@ -84,7 +86,8 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
       ${isExpanded ? styles.box_expanded : ""}
       `}
       onClick={() => {
-        handleUpdateField("logisticSettings.location.type", OWN_ADDRESS);
+        lIS && dispatch(updateLogisticInfoSettings(
+          { logisticInfoSettings: { ...lIS, location: { ...lIS.location, type: OWN_ADDRESS } }, isEdit: false }));
 
         !isExpanded && setIsExpanded(true);
       }}
@@ -114,7 +117,8 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
           <input
             value={company}
             onChange={(e) => {
-              handleUpdateField("logisticSettings.location.company", e.target.value);
+              lIS && dispatch(updateLogisticInfoSettings(
+                { logisticInfoSettings: { ...lIS, location: { ...lIS.location, company: e.target.value } }, isEdit: false }));
             }}
             placeholder="Enter company name"
             type="company"
@@ -155,13 +159,18 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
                     className={styles.box_addressContainer_suggestion}
                     key={index}
                     onClick={() => {
-                      handleUpdateField(
-                        "logisticSettings.location.street",
-                        suggestion.street_line,
-                      );
-                      handleUpdateField("logisticSettings.location.city", suggestion.city);
-                      handleUpdateField("logisticSettings.location.state", suggestion.state);
-                      handleUpdateField("logisticSettings.location.zip", suggestion.zipcode);
+                      lIS && dispatch(updateLogisticInfoSettings(
+                        {
+                          logisticInfoSettings: {
+                            ...lIS, location: {
+                              ...lIS.location,
+                              street: suggestion.street_line,
+                              city: suggestion.city,
+                              state: suggestion.state,
+                              zip: suggestion.zipcode
+                            }
+                          }, isEdit: false
+                        }));
                       setSuggestions([]);
                     }}
                   >
@@ -197,7 +206,8 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
                     `}
               value={city}
               onChange={(e) => {
-                handleUpdateField("logisticSettings.location.city", e.target?.value);
+                lIS && dispatch(updateLogisticInfoSettings(
+                  { logisticInfoSettings: { ...lIS, location: { ...lIS.location, city: e.target.value } }, isEdit: false }));
               }}
               placeholder="Enter city"
               name="city"
@@ -213,7 +223,8 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
                 `}
               value={state}
               onChange={(e) => {
-                handleUpdateField("logisticSettings.location.state", e.target?.value);
+                lIS && dispatch(updateLogisticInfoSettings(
+                  { logisticInfoSettings: { ...lIS, location: { ...lIS.location, state: e.target.value } }, isEdit: false }));
               }}
               placeholder="Enter state"
               name="state"
@@ -229,7 +240,8 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
             `}
               value={zip}
               onChange={(e) => {
-                handleUpdateField("logisticSettings.location.zip", e.target?.value);
+                lIS && dispatch(updateLogisticInfoSettings(
+                  { logisticInfoSettings: { ...lIS, location: { ...lIS.location, zip: e.target.value } }, isEdit: false }));
               }}
               placeholder="Enter zip"
               name="zip"

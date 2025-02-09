@@ -107,42 +107,6 @@ const LogisticInfo = () => {
     const handleSave = () => {
         console.log(current.company);
         if (!isReady) return
-        dispatch(
-            updateDraftField({
-                path: "logisticSettings.location.company",
-                value: current.company,
-            }),
-        );
-        dispatch(
-            updateDraftField({
-                path: "logisticSettings.location.street",
-                value: current.street,
-            }),
-        );
-        dispatch(
-            updateDraftField({
-                path: "logisticSettings.location.city",
-                value: current.city,
-            }),
-        );
-        dispatch(
-            updateDraftField({
-                path: "logisticSettings.location.state",
-                value: current.state,
-            }),
-        );
-        dispatch(
-            updateDraftField({
-                path: "logisticSettings.location.zip",
-                value: current.zip,
-            }),
-        );
-        dispatch(
-            updateDraftField({
-                path: "logisticSettings.preferredDate",
-                value: current.preferredDate,
-            }),
-        );
         lIS && current.preferredDate && dispatch(updateLogisticInfoSettings(
             {
                 logisticInfoSettings:
@@ -156,6 +120,7 @@ const LogisticInfo = () => {
                         city: current.city || '',
                         state: current.state || '',
                         zip: current.zip || '',
+                        company: current.company || ''
                     }
                 },
                 isEdit: true
@@ -172,7 +137,8 @@ const LogisticInfo = () => {
                         street: current.street || '',
                         city: current.city || '',
                         state: current.state || '',
-                        zip: current.zip || ''
+                        zip: current.zip || '',
+                        company: current.company || ''
                     }
                 },
                 isEdit: false
