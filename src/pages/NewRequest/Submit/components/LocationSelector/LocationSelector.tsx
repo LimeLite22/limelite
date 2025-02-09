@@ -143,6 +143,7 @@ const LocationSelector: FC<IProps> = () => {
               <div className={styles.popUp_header}>Modify selected Add-ons
                 <div className={styles.popUp_closeContainer}>
                   <img
+                    onClick={handleCancel}
                     src={CloseCalendar}
                     className={"popUp_content_close"}
                     alt="Close"
