@@ -41,10 +41,13 @@ const AddOnLocation = ({ isEdit, setIsEdit }: IProps) => {
 
 
     return (
-        <div className={styles.infoContainer}>
-            <div className={styles.infoContainer_text}>
-                {isEdit ?
-                    <div>Location({OWN_ADDRESS})</div> : <LocationSelector />}
+        <div>
+            <div >
+                {!isEdit ?
+                    <div className={styles.infoContainer_priceItem}>
+                        Location({selectedRequest?.logisticSettings.location.type}) <p>695<span>.00</span></p></div>
+
+                    : <LocationSelector />}
             </div>
         </div >
     )

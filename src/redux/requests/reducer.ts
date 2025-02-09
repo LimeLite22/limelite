@@ -1,6 +1,6 @@
-import { IProjectInfoSettings } from './../../interfaces/interfaces';
+import { IProjectInfoSettings, ILogisticSettings } from './../../interfaces/interfaces';
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { DEFAULT } from "consts/consts";
+import { DEFAULT, HOME_RENTAL } from "consts/consts";
 import { IAdditionalVideoFormat, IInterviewSettings, ILocation, IRequestState, IScriptSettings } from "interfaces/interfaces";
 import set from "lodash/set";
 import { IRootState } from "redux/rootReducer";
@@ -54,7 +54,7 @@ const requestReducer = createSlice({
             },
           },
           location: {
-            type: DEFAULT,
+            type: HOME_RENTAL,
             street: "",
             company: "",
             city: "",
@@ -292,6 +292,19 @@ const requestReducer = createSlice({
       if (isEdit) {
         state.editDraft.projectInfoSettings = projectInfoSettings;
       }
+    },
+    updateLogisticInfoSettings: (state, action: PayloadAction<{ logisticInfoSettings: ILogisticSettings, isEdit: boolean }>) => {
+      const { logisticInfoSettings, isEdit } = action.payload;
+      const draft = state.drafts.find(
+        (draft) => draft.id === state.selectedRequest,
+      );
+      if (draft && !isEdit) {
+        draft.logisticSettings = logisticInfoSettings;
+      }
+      if (isEdit) {
+        console.log(logisticInfoSettings);
+        state.editDraft.logisticSettings = logisticInfoSettings;
+      }
     }
   },
 });
@@ -309,7 +322,8 @@ export const {
   updateScriptSettings,
   updateInteviewSettings,
   updateAddOnLocation,
-  updateProjectInfoSettings
+  updateProjectInfoSettings,
+  updateLogisticInfoSettings
 } = requestReducer.actions;
 
 export const selectRequestInfo = (state: IRootState) => {

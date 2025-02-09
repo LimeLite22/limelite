@@ -8,27 +8,27 @@ import TimeSelector from "pages/NewRequest/Logistics/components/Calendar/TimeSel
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectRequestInfo, updateDraftField } from "../../../../redux/requests/reducer";
+import { selectRequestInfo, updateDraftField, updateLogisticInfoSettings } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 interface Suggestion {
     text: string;
 }
 const LogisticInfo = () => {
-    const selectedRequest = useSelector(selectRequestInfo)?.logisticSettings;
+    const lIS = useSelector(selectRequestInfo)?.logisticSettings;
     const dispatch = useDispatch();
     const defaultState = {
-        company: selectedRequest?.location.company,
-        street: selectedRequest?.location.street,
-        city: selectedRequest?.location.city,
-        state: selectedRequest?.location.state,
-        zip: selectedRequest?.location.zip,
-        preferredDate: selectedRequest?.preferredDate
+        company: lIS?.location.company,
+        street: lIS?.location.street,
+        city: lIS?.location.city,
+        state: lIS?.location.state,
+        zip: lIS?.location.zip,
+        preferredDate: lIS?.preferredDate
     }
     const [current, setCurrent] = useState(defaultState);
     const [suggestions, setSuggestions] = useState<string[]>([]);
     const [isPopUpOpen, setIsPopUpOpen] = useState(false);
 
-    const preferredDate = selectedRequest?.preferredDate;
+    const preferredDate = lIS?.preferredDate;
 
     const [isEdit, setIsEdit] = useState(false);
     const [isReady, setIsReady] = useState(false);
@@ -73,12 +73,12 @@ const LogisticInfo = () => {
 
     const readyToSave = () => {
         let ready = true;
-        if (current.company !== selectedRequest?.location.company
-            || current.street !== selectedRequest?.location.street
-            || current.city !== selectedRequest?.location.city
-            || current.state !== selectedRequest?.location.state
-            || current.zip !== selectedRequest?.location.zip
-            || current.preferredDate !== selectedRequest?.preferredDate
+        if (current.company !== lIS?.location.company
+            || current.street !== lIS?.location.street
+            || current.city !== lIS?.location.city
+            || current.state !== lIS?.location.state
+            || current.zip !== lIS?.location.zip
+            || current.preferredDate !== lIS?.preferredDate
         ) {
             if (
                 current.company?.length !== 0 &&
@@ -143,8 +143,40 @@ const LogisticInfo = () => {
                 value: current.preferredDate,
             }),
         );
-
-
+        lIS && current.preferredDate && dispatch(updateLogisticInfoSettings(
+            {
+                logisticInfoSettings:
+                {
+                    ...lIS,
+                    preferredDate: current.preferredDate,
+                    location:
+                    {
+                        ...lIS.location,
+                        street: current.street || '',
+                        city: current.city || '',
+                        state: current.state || '',
+                        zip: current.zip || '',
+                    }
+                },
+                isEdit: true
+            }))
+        lIS && current.preferredDate && dispatch(updateLogisticInfoSettings(
+            {
+                logisticInfoSettings:
+                {
+                    ...lIS,
+                    preferredDate: current.preferredDate,
+                    location:
+                    {
+                        ...lIS.location,
+                        street: current.street || '',
+                        city: current.city || '',
+                        state: current.state || '',
+                        zip: current.zip || ''
+                    }
+                },
+                isEdit: false
+            }))
         setCurrent(defaultState);
         setIsEdit(false);
     }
@@ -153,7 +185,7 @@ const LogisticInfo = () => {
     }, [current])
     useEffect(() => {
         setCurrent(defaultState);
-    }, [selectedRequest])
+    }, [lIS])
 
     return (
         <div className={styles.infoContainer}>

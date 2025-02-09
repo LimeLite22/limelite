@@ -1,39 +1,31 @@
 import {
-  CheckBox,
-  CheckBoxSelected,
-  Expand,
   LocationBlack,
 } from "assets/images";
 import axios from "axios";
 import { OWN_ADDRESS } from "consts/consts";
-import useWindowWidth from "hooks/useWindowWidth";
-import { IAddressProps } from "interfaces/interfaces";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { IRootState } from "redux/rootReducer";
 
 import {
-  selectRequestInfo,
-  updateDraftField,
-} from "../../../../redux/requests/reducer";
-import styles from "../../NewRequest.module.scss";
-
+  updateLogisticInfoSettings,
+} from "../../../../../redux/requests/reducer";
+import styles from "../../../NewRequest.module.scss";
 interface Suggestion {
   text: string;
 }
 
-const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
-  const selectedRequest = useSelector(selectRequestInfo)?.logisticSettings;
-  const type = selectedRequest?.location?.type;
-  const city = selectedRequest?.location?.city;
-  const state = selectedRequest?.location?.state;
-  const street = selectedRequest?.location?.street;
-  const zip = selectedRequest?.location?.zip;
-  const company = selectedRequest?.location?.company;
+const Address = () => {
+  const eLIS = useSelector((state: IRootState) => state.request.editDraft)?.logisticSettings;
+  const city = eLIS?.location?.city;
+  const state = eLIS?.location?.state;
+  const street = eLIS?.location?.street;
+  const zip = eLIS?.location?.zip;
+  const company = eLIS?.location?.company;
 
   const containerRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
   const [suggestions, setSuggestions] = useState<string[]>([]);
-  const width = useWindowWidth();
   const handleBlur = (event: React.FocusEvent<HTMLDivElement>) => {
     if (
       containerRef.current &&
@@ -42,19 +34,13 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
     ) {
       return;
     }
-    setIsExpanded(false);
   };
-  const handleUpdateField = (path: string, value: string | number) => {
-    dispatch(
-      updateDraftField({
-        path,
-        value,
-      }),
-    );
-  };
+
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    handleUpdateField("logisticSettings.location.street", value);
+
+    dispatch(updateLogisticInfoSettings(
+      { logisticInfoSettings: { ...eLIS, location: { ...eLIS.location, street: value } }, isEdit: true }))
     if (value?.length > 1) {
       try {
         const response = await axios.get<{ suggestions: Suggestion[] }>(
@@ -73,61 +59,48 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
     }
   };
   useEffect(() => {
-    !isExpanded && setSuggestions([]);
-  }, [isExpanded]);
+    console.log('elis', eLIS.location)
+  }, [eLIS])
   return (
     <div
       ref={containerRef}
       className={`
       ${styles.box}
-      ${type === OWN_ADDRESS ? styles.box_selected : ""}
-      ${isExpanded ? styles.box_expanded : ""}
+      ${styles.box_submit}
+      ${styles.box_xl}
+      ${styles.box_expanded}
       `}
       onClick={() => {
-        handleUpdateField("logisticSettings.location.type", OWN_ADDRESS);
-
-        !isExpanded && setIsExpanded(true);
+        dispatch(updateLogisticInfoSettings(
+          { logisticInfoSettings: { ...eLIS, location: { ...eLIS.location, type: OWN_ADDRESS } }, isEdit: true }))
       }}
       tabIndex={0}
       onBlur={handleBlur}
     >
-      <div
-        className={`
-        ${styles.box_header2} 
-        ${type === OWN_ADDRESS ? styles.box_header_selected : ""} `}
-      >
-        <img
-          className={styles.box_circle}
-          src={type === OWN_ADDRESS ? CheckBoxSelected : CheckBox}
-          alt="CheckBox"
-        />
-        <div className={styles.box_title}>We'll provide the address</div>
-        <div className={styles.box_title2}>
-          We already have an approved address/
-          <br /> location for this shoot.
-        </div>
-      </div>
-      <div className={styles.box_container}>
+      <div className={`${styles.box_container} ${styles.box_containerSubmit} `}>
         {" "}
         <div className={styles.box_companyContainer}>
           <div className={styles.box_companyContainer_text}>Company name</div>
           <input
             value={company}
             onChange={(e) => {
-              handleUpdateField("logisticSettings.location.company", e.target.value);
+              dispatch(updateLogisticInfoSettings(
+                {
+                  logisticInfoSettings: {
+                    ...eLIS,
+                    location: { ...eLIS.location, company: e.target.value }
+                  }, isEdit: true
+                }))
+              e.stopPropagation();
+              e.preventDefault();
+
             }}
             placeholder="Enter company name"
             type="company"
             className={`
             ${styles.box_companyContainer_input} 
-            ${isError && company?.trim() === "" ? styles.box_companyContainer_input_error : ""}
             `}
           />
-          {isError && width > 768 && company?.trim() === "" && (
-            <div className={styles.box_companyContainer_input_errorText}>
-              Kindly complete the address fields before moving to the next step
-            </div>
-          )}
         </div>
         <div className={styles.box_addressContainer}>
           <div className={styles.box_addressContainer_text}>Address</div>
@@ -138,7 +111,6 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
             type="street"
             className={`
             ${styles.box_addressContainer_input} 
-            ${isError && street?.trim() === "" ? styles.box_addressContainer_input_error : ""}
             `}
           />
           {suggestions?.length > 0 && (
@@ -154,14 +126,23 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
                   <div
                     className={styles.box_addressContainer_suggestion}
                     key={index}
-                    onClick={() => {
-                      handleUpdateField(
-                        "logisticSettings.location.street",
-                        suggestion.street_line,
-                      );
-                      handleUpdateField("logisticSettings.location.city", suggestion.city);
-                      handleUpdateField("logisticSettings.location.state", suggestion.state);
-                      handleUpdateField("logisticSettings.location.zip", suggestion.zipcode);
+                    onClick={(e) => {
+                      console.log(suggestion.street_line, suggestion.city, suggestion.state, suggestion.zipcode);
+                      dispatch(updateLogisticInfoSettings(
+                        {
+                          logisticInfoSettings:
+                          {
+                            ...eLIS, location:
+                            {
+                              ...eLIS.location,
+                              street: suggestion.street_line, city: suggestion.city,
+                              state: suggestion.state, zip: suggestion.zipcode
+                            }
+                          },
+                          isEdit: true
+                        }))
+                      e.stopPropagation();
+                      e.preventDefault();
                       setSuggestions([]);
                     }}
                   >
@@ -181,11 +162,6 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
               })}
             </div>
           )}
-          {isError && width > 768 && street?.trim() === "" && (
-            <div className={styles.box_addressContainer_input_errorText}>
-              Kindly complete the address fields before moving to the next step
-            </div>
-          )}
         </div>
         <div className={styles.box_inputsContainer}>
           <div className={styles.box_addressContainer}>
@@ -193,11 +169,16 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
             <input
               className={`
                     ${styles.box_addressContainer_input} 
-                    ${isError && city?.trim() === "" ? styles.box_addressContainer_input_error : ""}
                     `}
               value={city}
               onChange={(e) => {
-                handleUpdateField("logisticSettings.location.city", e.target?.value);
+                dispatch(updateLogisticInfoSettings(
+                  {
+                    logisticInfoSettings:
+                      { ...eLIS, location: { ...eLIS.location, city: e.target.value } }, isEdit: true
+                  }))
+                e.stopPropagation();
+                e.preventDefault();
               }}
               placeholder="Enter city"
               name="city"
@@ -209,11 +190,16 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
             <input
               className={`
                 ${styles.box_addressContainer_input} 
-                ${isError && isError && state?.trim() === "" ? styles.box_addressContainer_input_error : ""}
                 `}
               value={state}
               onChange={(e) => {
-                handleUpdateField("logisticSettings.location.state", e.target?.value);
+                dispatch(updateLogisticInfoSettings(
+                  {
+                    logisticInfoSettings:
+                      { ...eLIS, location: { ...eLIS.location, state: e.target.value } }, isEdit: true
+                  }))
+                e.stopPropagation();
+                e.preventDefault();
               }}
               placeholder="Enter state"
               name="state"
@@ -225,49 +211,24 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
             <input
               className={`
             ${styles.box_addressContainer_input} 
-            ${isError && zip?.trim() === "" ? styles.box_addressContainer_input_error : ""}
             `}
               value={zip}
               onChange={(e) => {
-                handleUpdateField("logisticSettings.location.zip", e.target?.value);
+                dispatch(updateLogisticInfoSettings(
+                  {
+                    logisticInfoSettings:
+                      { ...eLIS, location: { ...eLIS.location, zip: e.target.value } }, isEdit: true
+                  }))
+                e.stopPropagation();
+                e.preventDefault();
               }}
               placeholder="Enter zip"
               name="zip"
               type="text"
             />
           </div>
-          {isError &&
-            width > 768 &&
-            (city?.trim() === "" ||
-              state?.trim() === "" ||
-              zip?.trim() === "") && (
-              <div className={styles.box_addressContainer_input_errorText}>
-                Kindly complete the fields before moving to the next step
-              </div>
-            )}
         </div>
       </div>
-
-      <img
-        onClick={() => setIsExpanded(!isExpanded)}
-        src={Expand}
-        alt="Expand"
-        className={styles.box_expand}
-      />
-      {isError &&
-        width < 768 &&
-        (city?.trim() === "" ||
-          state?.trim() === "" ||
-          zip?.trim() === "" ||
-          street?.trim() === "" ||
-          company?.trim() === "") && (
-          <div
-            style={{ left: "8px", bottom: "10px" }}
-            className={styles.box_addressContainer_input_errorText}
-          >
-            Kindly complete the fields before moving to the next step
-          </div>
-        )}
     </div>
   );
 };
