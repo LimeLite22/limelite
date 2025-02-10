@@ -1,3 +1,4 @@
+import { NO, YES, zonesList } from './../../consts/consts';
 import { APPROVED_TEXT_STATUS, BASIC_THUMBNAIL, DEFAULT, HOME_RENTAL, LESS_1_30, optionsList, OWN_ADDRESS, projectTones, projectTypes, VIDEO_SQUARE } from "consts/consts"
 import { IRequest } from "interfaces/interfaces";
 import { generateUniqueId } from "utils/generateId";
@@ -19,11 +20,8 @@ export const requestsInitialState: IRequest[] = [
         },
         logisticSettings: {
             travel: {
-                selection: null,
-                zoneCode: {
-                    name: null,
-                    value: 0,
-                },
+                selection: YES,
+                zoneCode: zonesList[1],
             },
             location: {
                 type: OWN_ADDRESS,

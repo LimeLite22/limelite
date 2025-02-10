@@ -269,8 +269,8 @@ export const optionsList: TOptionsList = [
     img: OtherIcon,
   },
 ];
-export const YES = "yes";
-export const NO = "no";
+export const YES = "Yes";
+export const NO = "No";
 export const EMPTY = "empty";
 export const OWN_ADDRESS = "Own Address";
 export const STUDIO_RENTAL = "Studio Rental";
@@ -390,25 +390,25 @@ export const hoursList: ITimeItem[] = [
   },
 ];
 export const zonesList = [
-  { id: generateUniqueId(), name: "Zone 1 (< 50 Miles): $0", value: 0 },
+  { id: generateUniqueId(), name: "Zone 1 (< 50 Miles)", value: 0 },
   {
     id: generateUniqueId(),
-    name: "Zone 2 (51 - 150 Miles): $295",
+    name: "Zone 2 (51 - 150 Miles)",
     value: 295,
   },
   {
     id: generateUniqueId(),
-    name: "Zone 3 (151 - 250 Miles): $695",
+    name: "Zone 3 (151 - 250 Miles)",
     value: 695,
   },
   {
     id: generateUniqueId(),
-    name: "Zone 4 (251 - 500 Miles): $1,295",
+    name: "Zone 4 (251 - 500 Miles)",
     value: 1295,
   },
   {
     id: generateUniqueId(),
-    name: "Zone 5 (501+ Miles): $1,495",
+    name: "Zone 5 (501+ Miles)",
     value: 1495,
   },
 ];

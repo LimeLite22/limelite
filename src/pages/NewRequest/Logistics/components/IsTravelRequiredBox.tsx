@@ -14,9 +14,10 @@ import {
   updateDraftField,
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
-import CustomFontSizeDropDown from "./ZoneSelector/ZoneSelector";
 import { TSelection } from "types/types";
 import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
+import { addCommas } from "utils/truncateString";
+import ZoneSelector from "pages/NewRequest/components/ZoneSelector/ZoneSelector";
 
 const IsTravelRequired = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -71,9 +72,6 @@ const IsTravelRequired = () => {
   };
   const handleToggleExpanded = () => {
     setIsExpanded(!isExpanded);
-  };
-  const addCommas = (num: number) => {
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
   return (
@@ -164,9 +162,10 @@ const IsTravelRequired = () => {
                 and related expenses.
               </div>
               <div className={styles.box_zone}>
-                <CustomFontSizeDropDown
+                <ZoneSelector
                   onChange={handleZoneCode}
                   isError={isError}
+                  isEdit={false}
                 />
               </div>
             </div>

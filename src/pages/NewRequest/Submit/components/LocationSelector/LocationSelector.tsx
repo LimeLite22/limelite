@@ -19,7 +19,7 @@ interface IProps {
   // isSubmit?: boolean;
 }
 // dd = duration dropdown
-const LocationSelector: FC<IProps> = () => {
+const ZoneSelector: FC<IProps> = () => {
   const isSubmit = false;
   const dispatch = useDispatch();
   const lIS = useSelector(selectRequestInfo)?.logisticSettings;
@@ -168,4 +168,4 @@ const LocationSelector: FC<IProps> = () => {
   );
 };
 
-export default LocationSelector;
+export default ZoneSelector;

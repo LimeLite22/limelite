@@ -70,7 +70,7 @@ export type TOption = {
 };
 
 export type TTravel = {
-  selection: null | "yes" | "no";
+  selection: null | "Yes" | "No";
   zoneCode: {
     name: string | null;
     value: number;
@@ -94,7 +94,7 @@ export interface TPerson {
 export type TVideoDuration = "default" | "≤ :15" | "≤ :30" | "≤ :60" | "≤ 1:30" | "≤ 2:00" | "≤ 2:30" | "≤ 3:00" | "> 3:00";
 export type TOptionsList = TOption[];
 
-export type TSelection = 'yes' | 'no';
+export type TSelection = 'Yes' | 'No';
 export type TLocation = "default" | "Own Address" | "Studio Rental" | "Home Rental";
 export type TVideo = "default" | "Standard" | "Story" | "Square" | "Vertical";
 export type TQuestionAuthor = "default" | "client" | "professional";

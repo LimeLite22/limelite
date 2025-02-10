@@ -3,6 +3,7 @@ import { CalendarIcon2, CloseRed, EditIcon, LocationBlack, Success2 } from "asse
 import axios from "axios";
 import { DEFAULT } from "consts/consts";
 import { format } from "date-fns";
+import ZoneSelector from "pages/NewRequest/components/ZoneSelector/ZoneSelector";
 import Calendar from "pages/NewRequest/Logistics/components/Calendar/Calendar";
 import TimeSelector from "pages/NewRequest/Logistics/components/Calendar/TimeSelector";
 import { useEffect, useState } from "react";
@@ -10,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { selectRequestInfo, updateDraftField, updateLogisticInfoSettings } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
+import ZoneDropdown from "./ZoneDropdown";
 interface Suggestion {
     text: string;
 }
@@ -22,7 +24,8 @@ const LogisticInfo = () => {
         city: lIS?.location.city,
         state: lIS?.location.state,
         zip: lIS?.location.zip,
-        preferredDate: lIS?.preferredDate
+        preferredDate: lIS?.preferredDate,
+        zone: lIS?.travel.zoneCode,
     }
     const [current, setCurrent] = useState(defaultState);
     const [suggestions, setSuggestions] = useState<string[]>([]);
@@ -79,6 +82,7 @@ const LogisticInfo = () => {
             || current.state !== lIS?.location.state
             || current.zip !== lIS?.location.zip
             || current.preferredDate !== lIS?.preferredDate
+            || current.zone?.value !== lIS?.travel.zoneCode.value
         ) {
             if (
                 current.company?.length !== 0 &&
@@ -107,7 +111,7 @@ const LogisticInfo = () => {
     const handleSave = () => {
         console.log(current.company);
         if (!isReady) return
-        lIS && current.preferredDate && dispatch(updateLogisticInfoSettings(
+        lIS && current.preferredDate && current.zone && dispatch(updateLogisticInfoSettings(
             {
                 logisticInfoSettings:
                 {
@@ -120,12 +124,18 @@ const LogisticInfo = () => {
                         city: current.city || '',
                         state: current.state || '',
                         zip: current.zip || '',
-                        company: current.company || ''
+                        company: current.company || '',
+
+                    },
+                    travel:
+                    {
+                        ...lIS.travel,
+                        zoneCode: current.zone
                     }
                 },
                 isEdit: true
             }))
-        lIS && current.preferredDate && dispatch(updateLogisticInfoSettings(
+        lIS && current.preferredDate && current.zone && dispatch(updateLogisticInfoSettings(
             {
                 logisticInfoSettings:
                 {
@@ -139,8 +149,14 @@ const LogisticInfo = () => {
                         state: current.state || '',
                         zip: current.zip || '',
                         company: current.company || ''
-                    }
+                    },
+                    travel:
+                    {
+                        ...lIS.travel,
+                        zoneCode: current.zone
+                    },
                 },
+
                 isEdit: false
             }))
         setCurrent(defaultState);
@@ -174,6 +190,15 @@ const LogisticInfo = () => {
                         ><img src={Success2} alt='' /><div>Save changes</div></div>
                     </div>}
             </div>
+            {!isEdit ?
+                <div className={styles.infoContainer_text}>
+                    <p>Zone</p> {lIS?.travel.zoneCode?.name}</div>
+                : <div className={styles.infoContainer_text}>
+                    <p>Zone</p>
+                    <ZoneDropdown onChange={(e) => {
+                        setCurrent({ ...current, zone: { name: e.name, value: e.value } });
+                    }} />
+                </div>}
             {!isEdit &&
                 <div className={styles.infoContainer_text}>
                     <p>Address:</p>

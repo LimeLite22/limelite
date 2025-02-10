@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { selectRequestInfo, updateAddOnLocation } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
-import LocationSelector from "./LocationSelector/LocationSelector";
+import ZoneSelector from "./ZoneSelector/ZoneSelector";
 interface IProps {
     isEdit: boolean;
     setIsEdit: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const AddOnLocation = ({ isEdit, setIsEdit }: IProps) => {
+const AddOnZone = ({ isEdit, setIsEdit }: IProps) => {
     const selectedRequest = useSelector(selectRequestInfo);
     const [current, setCurrent] = useState(selectedRequest?.logisticSettings.location);
     const dispatch = useDispatch();
@@ -28,12 +28,11 @@ const AddOnLocation = ({ isEdit, setIsEdit }: IProps) => {
             <div >
                 {!isEdit ?
                     <div className={styles.infoContainer_priceItem}>
-                        Location({selectedRequest?.logisticSettings.location.type}) <p>695<span>.00</span></p></div>
-
-                    : <LocationSelector />}
+                        {selectedRequest?.logisticSettings.travel.zoneCode?.name} <p>{selectedRequest?.logisticSettings.travel.zoneCode?.value}<span>.00</span></p></div>
+                    : <ZoneSelector />}
             </div>
         </div >
     )
 }
 
-export default AddOnLocation;
+export default AddOnZone;

@@ -4,6 +4,7 @@ import { useCalculateFinalPrice } from "utils/priceCalculator";
 
 import styles from "../../NewRequest.module.scss";
 import AddOnLocation from "./AddOnLocation";
+import AddOnZone from "./AddOnZone";
 // isready  не потрібно використовувати бо в контенйнерах буде власна перевірка
 const AddOnsContainer = () => {
     const [isEdit, setIsEdit] = useState(false);
@@ -30,15 +31,10 @@ const AddOnsContainer = () => {
                     <div
                         className={styles.infoContainer_header_decline}
                         onClick={handleDecline}><img src={CloseRed} alt='' /><div>Decline</div></div>
-                    <div
-                        className={`
-                            ${styles.infoContainer_header_save}
-                            `}
-                        onClick={handleSave}
-                    ><img src={Success2} alt='' /><div>Save changes</div></div>
                 </div>}
         </div>
         <AddOnLocation isEdit={isEdit} setIsEdit={setIsEdit} />
+        <AddOnZone isEdit={isEdit} setIsEdit={setIsEdit} />
         {
             list.rushDay > 0 &&
             <div className={styles.infoContainer_priceItem}>
