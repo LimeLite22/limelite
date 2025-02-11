@@ -58,9 +58,9 @@ export const OWN_SCRIPT = "Own script";
 export const PROFESSIONAL_SCRIPT = "Professional script";
 export const QUESTIONS_AUTHOR_CLIENT = "Client";
 export const QUESTIONS_AUTHOR_PROFESSIONAL = "Professional Author";
-export const QUESTIONS_ON_LOCATION = "questions on location";
-export const QUESTIONS_VIRTUALLY = "questions virtualy";
-export const VIRTUAL_INTERVIEW = "virtual interview";
+export const QUESTIONS_ON_LOCATION = "Questions on location";
+export const QUESTIONS_VIRTUALLY = "Questions virtually";
+export const VIRTUAL_INTERVIEW = "Virtual interview";
 export const TRACK_AUTHOR_CLIENT = "client";
 export const TRACK_AUTHOR_PROFESSIONAL = "professional";
 

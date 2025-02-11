@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useCalculateFinalPrice } from "utils/priceCalculator";
 
 import styles from "../../NewRequest.module.scss";
+import AddOnInterviewConduction from "./AddOnInterviewConduction";
 import AddOnInterviewQuestions from "./AddOnInterviewQuestions";
 import AddOnLocation from "./AddOnLocation";
 import AddOnScript from "./AddOnScript";
@@ -39,6 +40,7 @@ const AddOnsContainer = () => {
         <AddOnZone isEdit={isEdit} setIsEdit={setIsEdit} />
         <AddOnScript isEdit={isEdit} setIsEdit={setIsEdit} />
         <AddOnInterviewQuestions isEdit={isEdit} setIsEdit={setIsEdit} />
+        <AddOnInterviewConduction isEdit={isEdit} setIsEdit={setIsEdit} />
         {
             list.rushDay > 0 &&
             <div className={styles.infoContainer_priceItem}>
@@ -54,14 +56,6 @@ const AddOnsContainer = () => {
             list.rushHour > 0 &&
             <div className={styles.infoContainer_priceItem}>
                 Rush hour <p>{list.rushHour}<span>.00</span></p></div>
-        }{
-            list.virtualQuestion > 0 &&
-            <div className={styles.infoContainer_priceItem}>
-                Virtual  Question <p>{list.virtualQuestion}<span>.00</span></p></div>
-        }{
-            list.virtualInterview > 0 &&
-            <div className={styles.infoContainer_priceItem}>
-                Virtual Interview <p>{list.virtualInterview}<span>.00</span></p></div>
         }
         {
             list.professionalTruckAuthor > 0 &&
