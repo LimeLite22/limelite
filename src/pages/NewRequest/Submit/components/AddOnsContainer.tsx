@@ -4,6 +4,7 @@ import { useCalculateFinalPrice } from "utils/priceCalculator";
 
 import styles from "../../NewRequest.module.scss";
 import AddOnLocation from "./AddOnLocation";
+import AddOnScript from "./AddOnScript";
 import AddOnZone from "./AddOnZone";
 // isready  не потрібно використовувати бо в контенйнерах буде власна перевірка
 const AddOnsContainer = () => {
@@ -35,6 +36,7 @@ const AddOnsContainer = () => {
         </div>
         <AddOnLocation isEdit={isEdit} setIsEdit={setIsEdit} />
         <AddOnZone isEdit={isEdit} setIsEdit={setIsEdit} />
+        <AddOnScript isEdit={isEdit} setIsEdit={setIsEdit} />
         {
             list.rushDay > 0 &&
             <div className={styles.infoContainer_priceItem}>
@@ -50,15 +52,6 @@ const AddOnsContainer = () => {
             list.rushHour > 0 &&
             <div className={styles.infoContainer_priceItem}>
                 Rush hour <p>{list.rushHour}<span>.00</span></p></div>
-        }
-        {
-            list.professionalScriptWriter > 0 &&
-            <div className={styles.infoContainer_priceItem}>
-                Professional Script Writer <p>{list.professionalScriptWriter}<span>.00</span></p></div>
-        }{
-            list.professionalQuestionWriter > 0 &&
-            <div className={styles.infoContainer_priceItem}>
-                Professional Question Writer <p>{list.professionalQuestionWriter}<span>.00</span></p></div>
         }{
             list.virtualQuestion > 0 &&
             <div className={styles.infoContainer_priceItem}>

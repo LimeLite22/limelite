@@ -4605,14 +4605,16 @@
   &_content {
     width: 652px;
     padding: 25px 36px 36px 36px;
+    max-height: 90%;
+    overflow: scroll;
     background-color: var(--white);
     border-radius: 20px;
     position: relative;
     @media screen and (max-width: 768px) {
       width: 100%;
       height: 100%;
+      max-height: unset;
       border-radius: 0px;
-      overflow: scroll;
       padding: 25px 10px 36px 10px;
     }
   }

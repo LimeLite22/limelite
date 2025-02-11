@@ -83,8 +83,8 @@ export type TValue = ValuePiece | [ValuePiece, ValuePiece];
 
 export type TTimeValue = "default" | ITimeItem;
 export type TScriptWriter =
-  | "professional script"
-  | "own script"
+  | "Professional script"
+  | "Own script"
   | "default";
 export interface TPerson {
   id: string;

@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import ScriptPersons from "./ScriptPersons";
-import { selectRequestInfo, updateScriptSettings } from "../../../../redux/requests/reducer";
+import { selectRequestInfo, updateScriptInfoSettings } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
-import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, PROFESSIONAL_SCRIPT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
+import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import { IScriptSettings } from "interfaces/interfaces";
 const ScriptInfo = () => {
     const selectedRequest = useSelector(selectRequestInfo);
@@ -56,8 +56,11 @@ const ScriptInfo = () => {
     }
     const handleSave = () => {
         if (!isReady) return
-        current && dispatch(
-            updateScriptSettings(current as IScriptSettings),
+        dispatch(
+            updateScriptInfoSettings({
+                scriptInfoSettings: current as IScriptSettings,
+                isEdit: false
+            }),
         )
         setCurrent(scriptSettings);
         setIsEdit(false);

@@ -54,8 +54,8 @@ export const RUSH_TIME = "rush time";
 export const STANDARD_TIME = "standard time";
 
 export const DEFAULT = "default";
-export const OWN_SCRIPT = "own script";
-export const PROFESSIONAL_SCRIPT = "professional script";
+export const OWN_SCRIPT = "Own script";
+export const PROFESSIONAL_SCRIPT = "Professional script";
 export const QUESTIONS_AUTHOR_CLIENT = "client";
 export const QUESTIONS_AUTHOR_PROFESSIONAL = "professional";
 export const QUESTIONS_ON_LOCATION = "questions on location";
