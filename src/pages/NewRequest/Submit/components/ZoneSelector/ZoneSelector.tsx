@@ -2,7 +2,7 @@
 import styles from "../../../NewRequest.module.scss";
 
 import { CheckBox, CheckBoxSelected, CloseCalendar, GrayArrow, Note } from "assets/images";
-import { NO, OWN_ADDRESS, STUDIO_RENTAL, YES } from "consts/consts";
+import { NO, OWN_ADDRESS, YES } from "consts/consts";
 import { type FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectRequestInfo, updateLogisticInfoSettings } from "../../../../../redux/requests/reducer";
@@ -12,14 +12,10 @@ import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
 import { addCommas } from "utils/truncateString";
 import ZoneSelector from "pages/NewRequest/components/ZoneSelector/ZoneSelector";
 
-interface IProps {
-}
-// dd = duration dropdown
-const ZoneSubmitSelector: FC<IProps> = () => {
+const ZoneSubmitSelector = () => {
   const isSubmit = false;
   const dispatch = useDispatch();
   const lIS = useSelector(selectRequestInfo)?.logisticSettings;
-  const zoneCode = lIS?.travel.zoneCode;
   const eLIS = useSelector((state: IRootState) => state.request.editDraft)?.logisticSettings;
   const [isOpened, setOpened] = useState(false);
   const isOwnAdressNotReady = eLIS.travel.zoneCode.name === null;
@@ -40,13 +36,17 @@ const ZoneSubmitSelector: FC<IProps> = () => {
       isEdit: true
     }))
   }
-  console.log('-0-0-0-0-0-0', lIS?.travel.selection, eLIS?.travel.selection)
 
   return (
     <div className={`
     ${styles.dd}
     ${isSubmit ? styles.dd_submit : ""}
-    `}>
+    `}
+      tabIndex={0}
+      onBlur={() => {
+        setOpened(false);
+      }}
+    >
       <div className={styles.dd_header}>Is travel required for this shoot?</div>
       <div
         className={`
@@ -114,7 +114,7 @@ const ZoneSubmitSelector: FC<IProps> = () => {
       {lIS?.travel.selection !== eLIS?.travel.selection &&
         ReactDOM.createPortal(
           <div className={styles.popUp}>
-            <div className={styles.popUp_content}>
+            <div className={styles.popUp_content} style={{ overflow: 'visible' }}>
               <div className={styles.popUp_header}>Modify selected Add-ons
                 <div className={styles.popUp_closeContainer}>
                   <img

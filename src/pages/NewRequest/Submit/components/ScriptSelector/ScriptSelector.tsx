@@ -41,7 +41,12 @@ const ScriptSelector = () => {
   return (
     <div className={`
     ${styles.dd}
-    `}>
+    `}
+      tabIndex={0}
+      onBlur={() => {
+        setOpened(false);
+      }}
+    >
       <div className={styles.dd_header}>Who will write the script?</div>
       <div
         className={`

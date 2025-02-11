@@ -50,7 +50,12 @@ const ZoneSelector: FC<IProps> = () => {
     <div className={`
     ${styles.dd}
     ${isSubmit ? styles.dd_submit : ""}
-    `}>
+    `}
+      tabIndex={0}
+      onBlur={() => {
+        setOpened(false);
+      }}
+    >
       <div className={styles.dd_header}>What is the location for this shoot?</div>
       <div
         className={`

@@ -257,14 +257,14 @@ const requestReducer = createSlice({
 
       }
     },
-    updateInteviewSettings: (state, action: PayloadAction<IInterviewSettings>) => {
-      const draft = state.drafts.find(
-        (draft) => draft.id === state.selectedRequest,
-      );
-      if (draft) {
-        draft.interviewSettings = action.payload;
-      }
-    },
+    // updateInteviewSettings: (state, action: PayloadAction<IInterviewSettings>) => {
+    //   const draft = state.drafts.find(
+    //     (draft) => draft.id === state.selectedRequest,
+    //   );
+    //   if (draft) {
+    //     draft.interviewSettings = action.payload;
+    //   }
+    // },
     updateAddOnLocation: (state, action: PayloadAction<ILocation>) => {
       const draft = state.drafts.find(
         (draft) => draft.id === state.selectedRequest,
@@ -310,6 +310,18 @@ const requestReducer = createSlice({
         state.editDraft.scriptSettings = scriptInfoSettings;
       }
     },
+    updateInterviewInfoSettings: (state, action: PayloadAction<{ interviewInfoSettings: IInterviewSettings, isEdit: boolean }>) => {
+      const { interviewInfoSettings, isEdit } = action.payload;
+      const draft = state.drafts.find(
+        (draft) => draft.id === state.selectedRequest,
+      );
+      if (draft && !isEdit) {
+        draft.interviewSettings = interviewInfoSettings;
+      }
+      if (isEdit) {
+        state.editDraft.interviewSettings = interviewInfoSettings;
+      }
+    },
   },
 });
 
@@ -323,11 +335,11 @@ export const {
   updateAddOnSelectionStatus,
   updateDraftField,
   updateStepsList,
-  updateInteviewSettings,
   updateAddOnLocation,
   updateProjectInfoSettings,
   updateLogisticInfoSettings,
-  updateScriptInfoSettings
+  updateScriptInfoSettings,
+  updateInterviewInfoSettings
 } = requestReducer.actions;
 
 export const selectRequestInfo = (state: IRootState) => {

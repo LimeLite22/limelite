@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useCalculateFinalPrice } from "utils/priceCalculator";
 
 import styles from "../../NewRequest.module.scss";
+import AddOnInterviewQuestions from "./AddOnInterviewQuestions";
 import AddOnLocation from "./AddOnLocation";
 import AddOnScript from "./AddOnScript";
 import AddOnZone from "./AddOnZone";
@@ -37,6 +38,7 @@ const AddOnsContainer = () => {
         <AddOnLocation isEdit={isEdit} setIsEdit={setIsEdit} />
         <AddOnZone isEdit={isEdit} setIsEdit={setIsEdit} />
         <AddOnScript isEdit={isEdit} setIsEdit={setIsEdit} />
+        <AddOnInterviewQuestions isEdit={isEdit} setIsEdit={setIsEdit} />
         {
             list.rushDay > 0 &&
             <div className={styles.infoContainer_priceItem}>

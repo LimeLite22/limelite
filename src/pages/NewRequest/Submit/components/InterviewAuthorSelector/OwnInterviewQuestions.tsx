@@ -1,0 +1,163 @@
+import {
+  StatusApproved,
+  StatusProgress,
+  StatusUnavailable,
+} from "assets/images";
+import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { IRootState } from "redux/rootReducer";
+
+import {
+  updateInterviewInfoSettings,
+  updateScriptInfoSettings,
+} from "../../../../../redux/requests/reducer";
+import styles from "../../../NewRequest.module.scss";
+
+
+const OwnScript = () => {
+  const selectedRequest = useSelector((state: IRootState) => state.request.editDraft);
+  const text = selectedRequest?.interviewSettings.questionsAuthorOwnSettings?.text;
+  const status = selectedRequest?.interviewSettings.questionsAuthorOwnSettings?.scriptStatus;
+  const dispatch = useDispatch();
+  const [wordCount, setWordCount] = useState(0);
+  const calculateTime = (wordCount: number) => {
+    const minutes = Math.floor(wordCount / 150);
+    const seconds = Math.floor(((wordCount % 150) * 60) / 150);
+    return { minutes, seconds };
+  };
+  const { minutes, seconds } = calculateTime(wordCount);
+  useEffect(() => {
+    const words = text
+      ?.trim()
+      .split(/\s+/)
+      .filter((word) => word.length > 0).length;
+    setWordCount(words || 0);
+  }, [text]);
+
+  return (
+    <div
+      className={`
+      ${styles.box}
+      ${styles.box_submit}
+      ${styles.box_xl}
+      ${styles.box_expanded}
+  `}
+    >
+      <div className={`${styles.box_container} ${styles.box_containerSubmit} `}>
+        <div className={styles.box_text}>Script Status</div>
+        <div className={styles.box_statuses}>
+          <div
+            className={`${styles.box_status} ${status === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
+            onClick={() => {
+              selectedRequest?.scriptSettings && dispatch(updateInterviewInfoSettings({
+                interviewInfoSettings: {
+                  ...selectedRequest?.interviewSettings,
+                  questionsAuthorOwnSettings: {
+                    ...selectedRequest?.interviewSettings.questionsAuthorOwnSettings,
+                    scriptStatus: APPROVED_TEXT_STATUS
+                  }
+                },
+                isEdit: true
+              })
+              )
+            }}
+          >
+            <img src={StatusApproved} alt="status" />
+            Approved
+          </div>
+          <div
+            className={`${styles.box_status} ${status === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
+            onClick={() => {
+              selectedRequest?.scriptSettings && dispatch(updateInterviewInfoSettings({
+                interviewInfoSettings: {
+                  ...selectedRequest?.interviewSettings,
+                  questionsAuthorOwnSettings: {
+                    ...selectedRequest?.interviewSettings.questionsAuthorOwnSettings,
+                    scriptStatus: IN_PROGRESS_TEXT_STATUS
+                  }
+                },
+                isEdit: true
+              })
+              )
+            }}
+          >
+            <img src={StatusProgress} alt="status" />
+            In Progress
+          </div>
+          <div
+            className={`${styles.box_status} ${status === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
+            onClick={() => {
+              selectedRequest?.scriptSettings && dispatch(updateScriptInfoSettings({
+                scriptInfoSettings: {
+                  ...selectedRequest?.scriptSettings,
+                  scriptWriter: OWN_SCRIPT,
+                  scriptStatus: UNAVAILABLE_TEXT_STATUS
+                },
+                isEdit: true
+              })
+              )
+            }}
+          >
+            <img src={StatusUnavailable} alt="status" />
+            Unavailable
+          </div>
+        </div>
+        <div className={styles.box_text}>Please paste your script below</div>
+
+        <textarea
+          className={styles.textarea}
+          style={{
+            resize: "none",
+          }}
+          placeholder={`Paste any details or web page URL' s with background information here...`}
+          value={text}
+          onChange={(e) => {
+            selectedRequest?.scriptSettings && dispatch(updateScriptInfoSettings({
+              scriptInfoSettings: {
+                ...selectedRequest?.scriptSettings,
+                scriptWriter: OWN_SCRIPT,
+                ownText: e.target.value
+              },
+              isEdit: true
+            })
+            )
+          }}
+        ></textarea>
+
+        <div className={styles.textareaContainer}>
+          <div className={styles.textarea_estimate}>
+            <div>
+              Estimated narration time:
+              <span style={{ color: minutes > 2 ? "var(--red-dark)" : "" }}>
+                <span className={styles.textarea_estimate_number}>
+                  {" "}
+                  {minutes}{" "}
+                </span>{" "}
+                Min and
+                <span className={styles.textarea_estimate_number}>
+                  {" "}
+                  {seconds}{" "}
+                </span>{" "}
+                Sec
+              </span>
+            </div>
+            <div className={styles.textarea_estimate_words}>
+              <span style={{ color: minutes > 2 ? "var(--red-dark)" : "" }}>
+                {wordCount}
+              </span>
+              /450 words
+            </div>
+          </div>
+          {minutes > 2 && (
+            <div className={styles.box_addressContainer_input_errorText}>
+              Your text is over the suggested word limit.
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default OwnScript;

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import ScriptPersons from "./ScriptPersons";
-import { selectRequestInfo, updateInteviewSettings } from "../../../../redux/requests/reducer";
+import { selectRequestInfo, updateInterviewInfoSettings } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 import { IInterviewSettings } from "interfaces/interfaces";
 const InterviewProffScript = () => {
@@ -59,7 +59,10 @@ const InterviewProffScript = () => {
     }
     const handleSave = () => {
         if (!isReady) return
-        dispatch(updateInteviewSettings(current as IInterviewSettings))
+        dispatch(updateInterviewInfoSettings({
+            interviewInfoSettings: current as IInterviewSettings,
+            isEdit: false
+        }))
         setCurrent(interviewSettings);
         setIsEdit(false);
     }
