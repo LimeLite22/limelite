@@ -110,6 +110,21 @@ export interface ILogisticSettings {
     time: TTimeValue;
   };
 }
+export interface IVoiceoverSettings {
+  trackAuthor: TVoiceAuthor;
+  track: File | 'default';
+  scriptAuthor: TScriptWriter;
+  scriptAuthorProfSettings: {
+    subject: string;
+    phone: number | "";
+    email: string;
+    backgroundInfo: string;
+  };
+  scriptAuthorOwnSettings: {
+    scriptStatus: TTextStatus;
+    text: string;
+  };
+}
 export interface IRequest {
   id: string;
   projectInfoSettings: IProjectInfoSettings,
@@ -117,21 +132,7 @@ export interface IRequest {
   addOnLocation: ILocation;
   scriptSettings: IScriptSettings;
   interviewSettings: IInterviewSettings;
-  voiceTrackSettings: {
-    trackAuthor: TVoiceAuthor;
-    track: File | 'default';
-    scriptAuthor: TScriptWriter;
-    scriptAuthorProfSettings: {
-      subject: string;
-      phone: number | "";
-      email: string;
-      backgroundInfo: string;
-    };
-    scriptAuthorOwnSettings: {
-      scriptStatus: TTextStatus;
-      text: string;
-    };
-  };
+  voiceTrackSettings: IVoiceoverSettings;
   videoSettings: {
     format: TVideo;
     targetDuration: TVideoDuration;

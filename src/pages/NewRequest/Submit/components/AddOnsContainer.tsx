@@ -7,6 +7,7 @@ import AddOnInterviewConduction from "./AddOnInterviewConduction";
 import AddOnInterviewQuestions from "./AddOnInterviewQuestions";
 import AddOnLocation from "./AddOnLocation";
 import AddOnScript from "./AddOnScript";
+import AddOnVoiceoverScript from "./AddOnVoiceoverScript";
 import AddOnZone from "./AddOnZone";
 // isready  не потрібно використовувати бо в контенйнерах буде власна перевірка
 const AddOnsContainer = () => {
@@ -41,6 +42,7 @@ const AddOnsContainer = () => {
         <AddOnScript isEdit={isEdit} setIsEdit={setIsEdit} />
         <AddOnInterviewQuestions isEdit={isEdit} setIsEdit={setIsEdit} />
         <AddOnInterviewConduction isEdit={isEdit} setIsEdit={setIsEdit} />
+        <AddOnVoiceoverScript isEdit={isEdit} setIsEdit={setIsEdit} />
         {
             list.rushDay > 0 &&
             <div className={styles.infoContainer_priceItem}>
@@ -56,16 +58,6 @@ const AddOnsContainer = () => {
             list.rushHour > 0 &&
             <div className={styles.infoContainer_priceItem}>
                 Rush hour <p>{list.rushHour}<span>.00</span></p></div>
-        }
-        {
-            list.professionalTruckAuthor > 0 &&
-            <div className={styles.infoContainer_priceItem}>
-                Professional Truck Author <p>{list.professionalTruckAuthor}<span>.00</span></p></div>
-        }
-        {
-            list.professionalVoiceWriter > 0 &&
-            <div className={styles.infoContainer_priceItem}>
-                Professional Voice Writer <p>{list.professionalVoiceWriter}<span>.00</span></p></div>
         }
         {
             list.customThumbnail > 0 &&
