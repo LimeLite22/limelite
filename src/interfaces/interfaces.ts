@@ -125,6 +125,18 @@ export interface IVoiceoverSettings {
     text: string;
   };
 }
+export interface IVideoSettings {
+  format: TVideo;
+  targetDuration: TVideoDuration;
+  captions: boolean;
+  thumbnail: TThumbnail;
+  additionalFormats: boolean | 'default';
+  selectedAdditionalFormats: IAdditionalVideoFormat[];
+  additionalVisualAssets: boolean | 'default';
+  additionalVisualAssetFile: File | 'default';
+  additionalVisualAssetUrl: string;
+  resultTime: TRush;
+}
 export interface IRequest {
   id: string;
   projectInfoSettings: IProjectInfoSettings,
@@ -133,18 +145,7 @@ export interface IRequest {
   scriptSettings: IScriptSettings;
   interviewSettings: IInterviewSettings;
   voiceTrackSettings: IVoiceoverSettings;
-  videoSettings: {
-    format: TVideo;
-    targetDuration: TVideoDuration;
-    captions: boolean;
-    thumbnail: TThumbnail;
-    additionalFormats: boolean | 'default';
-    selectedAdditionalFormats: IAdditionalVideoFormat[];
-    additionalVisualAssets: boolean | 'default';
-    additionalVisualAssetFile: File | 'default';
-    additionalVisualAssetUrl: string;
-    resultTime: TRush;
-  };
+  videoSettings: IVideoSettings;
 }
 export interface IRequestState {
   selectedRequest: string;

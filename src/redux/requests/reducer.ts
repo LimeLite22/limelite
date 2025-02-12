@@ -1,4 +1,4 @@
-import { IProjectInfoSettings, ILogisticSettings, IVoiceoverSettings } from './../../interfaces/interfaces';
+import { IProjectInfoSettings, ILogisticSettings, IVoiceoverSettings, IVideoSettings } from './../../interfaces/interfaces';
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { DEFAULT, HOME_RENTAL } from "consts/consts";
 import { IAdditionalVideoFormat, IInterviewSettings, ILocation, IRequestState, IScriptSettings } from "interfaces/interfaces";
@@ -333,6 +333,18 @@ const requestReducer = createSlice({
       if (isEdit) {
         state.editDraft.voiceTrackSettings = voiceTrackSettings;
       }
+    },
+    updateVideoEditSettings: (state, action: PayloadAction<{ videoSettings: IVideoSettings, isEdit: boolean }>) => {
+      const { videoSettings, isEdit } = action.payload;
+      const draft = state.drafts.find(
+        (draft) => draft.id === state.selectedRequest,
+      );
+      if (draft && !isEdit) {
+        draft.videoSettings = videoSettings;
+      }
+      if (isEdit) {
+        state.editDraft.videoSettings = videoSettings;
+      }
     }
   },
 });
@@ -352,7 +364,8 @@ export const {
   updateLogisticInfoSettings,
   updateScriptInfoSettings,
   updateInterviewInfoSettings,
-  updateVoiceoverSettings
+  updateVoiceoverSettings,
+  updateVideoEditSettings
 } = requestReducer.actions;
 
 export const selectRequestInfo = (state: IRootState) => {

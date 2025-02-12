@@ -7,6 +7,7 @@ import AddOnInterviewConduction from "./AddOnInterviewConduction";
 import AddOnInterviewQuestions from "./AddOnInterviewQuestions";
 import AddOnLocation from "./AddOnLocation";
 import AddOnScript from "./AddOnScript";
+import AddOnThumbnail from "./AddOnThumbnail";
 import AddOnVoiceoverScript from "./AddOnVoiceoverScript";
 import AddOnVoiceoverTrack from "./AddOnVoiceoverTrack";
 import AddOnZone from "./AddOnZone";
@@ -45,6 +46,7 @@ const AddOnsContainer = () => {
         <AddOnInterviewConduction isEdit={isEdit} setIsEdit={setIsEdit} />
         <AddOnVoiceoverScript isEdit={isEdit} setIsEdit={setIsEdit} />
         <AddOnVoiceoverTrack isEdit={isEdit} setIsEdit={setIsEdit} />
+        <AddOnThumbnail isEdit={isEdit} setIsEdit={setIsEdit} />
         {
             list.rushDay > 0 &&
             <div className={styles.infoContainer_priceItem}>
