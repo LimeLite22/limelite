@@ -1,4 +1,4 @@
-import { CUSTOM_THUMBNAIL, DEFAULT, HOME_RENTAL, PROFESSIONAL_SCRIPT, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTIONS_VIRTUALLY, STUDIO_RENTAL, TRACK_AUTHOR_PROFESSIONAL, VIRTUAL_INTERVIEW } from "consts/consts";
+import { CUSTOM_THUMBNAIL, DEFAULT, HOME_RENTAL, PROFESSIONAL_SCRIPT, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTIONS_VIRTUALLY, STUDIO_RENTAL, TRACK_AUTHOR_PROFESSIONAL, VIRTUAL_INTERVIEW, YES } from "consts/consts";
 import { useSelector } from "react-redux";
 
 import { selectRequestInfo } from "./../redux/requests/reducer";
@@ -12,21 +12,21 @@ export const useCalculateFinalPrice = () => {
   let price = 0;
   let addOnsCount = 0
 
-  let rushDay = 595;
-  let rushHour = 595;
-  let weekEnd = 595;
-  let locationType2 = 595;
-  let locationType3 = 595;
-  let location = 595;
-  let professionalScriptWriter = 595;
-  let professionalQuestionWriter = 595;
-  let virtualQuestion = 595;
-  let virtualInterview = 595;
-  let professionalTruckAuthor = 595;
-  let professionalVoiceWriter = 595;
-  let customThumbnail = 595;
-  let videoFormats = 595;
-  let addOns = 595;
+  let rushDay = 0;
+  let rushHour = 0;
+  let weekEnd = 0;
+  let locationType2 = 0;
+  let locationType3 = 0;
+  let location = 0;
+  let professionalScriptWriter = 0;
+  let professionalQuestionWriter = 0;
+  let virtualQuestion = 0;
+  let virtualInterview = 0;
+  let professionalTruckAuthor = 0;
+  let professionalVoiceWriter = 0;
+  let customThumbnail = 0;
+  let videoFormats = 0;
+  let addOns = 0;
 
   if (savedPrefferedDate && savedPrefferedTime) {
     const today = new Date();
@@ -88,7 +88,7 @@ export const useCalculateFinalPrice = () => {
     locationType3 += 695;
     addOnsCount += 1
   }
-  if (request?.logisticSettings?.travel?.zoneCode?.value) {
+  if (request?.logisticSettings?.travel?.zoneCode?.value && request?.logisticSettings?.travel.selection === YES) {
     const number = request?.logisticSettings?.travel?.zoneCode?.value || 0;
     price += number;
     location += number;

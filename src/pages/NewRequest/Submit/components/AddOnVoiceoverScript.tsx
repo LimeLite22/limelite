@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useCalculateFinalPrice } from "utils/priceCalculator";
 
 import { selectRequestInfo, updateAddOnLocation } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
@@ -13,6 +14,7 @@ interface IProps {
 const AddOnVoiceoverScript = ({ isEdit, setIsEdit }: IProps) => {
     const selectedRequest = useSelector(selectRequestInfo);
     const [current, setCurrent] = useState(selectedRequest?.logisticSettings.location);
+    const { list } = useCalculateFinalPrice();
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -28,8 +30,7 @@ const AddOnVoiceoverScript = ({ isEdit, setIsEdit }: IProps) => {
             <div >
                 {!isEdit ?
                     <div className={styles.infoContainer_priceItem}>
-                        Voiceover script <p>695<span>.00</span></p></div>
-
+                        Voiceover script <p>{list.professionalVoiceWriter}<span>.00</span></p></div>
                     : <VoiceoverScriptSelector />}
             </div>
         </div >

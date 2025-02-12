@@ -8,12 +8,13 @@ import AddOnInterviewQuestions from "./AddOnInterviewQuestions";
 import AddOnLocation from "./AddOnLocation";
 import AddOnScript from "./AddOnScript";
 import AddOnVoiceoverScript from "./AddOnVoiceoverScript";
+import AddOnVoiceoverTrack from "./AddOnVoiceoverTrack";
 import AddOnZone from "./AddOnZone";
 // isready  не потрібно використовувати бо в контенйнерах буде власна перевірка
 const AddOnsContainer = () => {
     const [isEdit, setIsEdit] = useState(false);
 
-    const { list } = useCalculateFinalPrice();
+    const { list, price } = useCalculateFinalPrice();
     const handleOnEdit = () => {
         setIsEdit(true);
     }
@@ -43,6 +44,7 @@ const AddOnsContainer = () => {
         <AddOnInterviewQuestions isEdit={isEdit} setIsEdit={setIsEdit} />
         <AddOnInterviewConduction isEdit={isEdit} setIsEdit={setIsEdit} />
         <AddOnVoiceoverScript isEdit={isEdit} setIsEdit={setIsEdit} />
+        <AddOnVoiceoverTrack isEdit={isEdit} setIsEdit={setIsEdit} />
         {
             list.rushDay > 0 &&
             <div className={styles.infoContainer_priceItem}>
@@ -76,7 +78,7 @@ const AddOnsContainer = () => {
         }
         <img src={Divider} alt='' className={styles.infoContainer_divider} />
         <div className={styles.infoContainer_totalPrice}>
-            Estimated Price:   <p>1,390<span>.00</span></p>
+            Estimated Price:   <p>{price}<span>.00</span></p>
         </div>
 
 

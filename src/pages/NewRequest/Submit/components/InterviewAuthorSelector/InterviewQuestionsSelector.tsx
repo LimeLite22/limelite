@@ -64,7 +64,7 @@ const InterviewQuestionsSelector = () => {
       >
         <div className={styles.dd_name}>
           {eiIS?.questionsAuthor === QUESTIONS_AUTHOR_CLIENT && <> We'll write the questions</>}
-          {eiIS?.questionsAuthor === QUESTIONS_AUTHOR_PROFESSIONAL && <>A professional interviewer<div className={styles.dd_addOn} >+795</div></>}
+          {eiIS?.questionsAuthor === QUESTIONS_AUTHOR_PROFESSIONAL && <>A professional interviewer<div className={styles.dd_addOn} >+895</div></>}
         </div>
         <img
           className={`${styles.dd_selected_collapseIcon} ${isOpened ? styles.dd_selected_collapseIcon_opened : ""}`}

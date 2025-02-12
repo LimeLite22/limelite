@@ -68,8 +68,8 @@ const InterviewConductionSelector = () => {
       >
         <div className={styles.dd_name}>
           {eiIS?.questionSettings.type === QUESTIONS_ON_LOCATION && <> We'll do it on location</>}
-          {eiIS?.questionSettings.type === QUESTIONS_VIRTUALLY && <>We'll do it virtually<div className={styles.dd_addOn} >+795</div></>}
-          {eiIS?.questionSettings.type === VIRTUAL_INTERVIEW && <>A proffessional interview<div className={styles.dd_addOn} >+795</div></>}
+          {eiIS?.questionSettings.type === QUESTIONS_VIRTUALLY && <>We'll do it virtually<div className={styles.dd_addOn} >+695</div></>}
+          {eiIS?.questionSettings.type === VIRTUAL_INTERVIEW && <>A proffessional interview<div className={styles.dd_addOn} >+695</div></>}
         </div>
         <img
           className={`${styles.dd_selected_collapseIcon} ${isOpened ? styles.dd_selected_collapseIcon_opened : ""}`}
@@ -118,7 +118,7 @@ const InterviewConductionSelector = () => {
           >
             <div className={styles.dd_name}>
               <img src={eiIS?.questionSettings.type === QUESTIONS_VIRTUALLY ? CheckBoxSelected : CheckBox} alt="" />
-              We'll do it virtually<div className={styles.dd_addOn} >+795</div></div>
+              We'll do it virtually<div className={styles.dd_addOn} >+695</div></div>
           </div>
           <div
             className={styles.dd_item}
@@ -138,7 +138,7 @@ const InterviewConductionSelector = () => {
           >
             <div className={styles.dd_name}>
               <img src={eiIS?.questionSettings.type === VIRTUAL_INTERVIEW ? CheckBoxSelected : CheckBox} alt="" />
-              A proffessional interview<div className={styles.dd_addOn} >+795</div></div>
+              A proffessional interview<div className={styles.dd_addOn} >+695</div></div>
           </div>
         </div>
       )}

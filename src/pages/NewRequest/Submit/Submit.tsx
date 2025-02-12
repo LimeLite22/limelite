@@ -47,11 +47,22 @@ const Submit = () => {
                 <VoiceoverProfScript />
                 <VideoEdit />
                 <AddOnsContainer />
+                <div className={styles.nR_submitContainer_agreement} >
 
-                <div className={styles.nR_submitContainer_text2}>Agreement </div>
-                <div className={styles.nR_submitContainer_text3}>Mauris ipsum maecenas nunc risus. Adipiscing suscipit massa amet nulla arcu sed. Commodo
-                    massa commodo et consequat. Mauris neque sed consectetur porta. Tempor tristique malesuada
-                    fringilla pulvinar sagittis neque elit sed mus. Lobortis.</div>
+                    <div className={styles.nR_submitContainer_text2}>Agreement </div>
+                    <div className={styles.nR_submitContainer_text3}>Mauris ipsum maecenas nunc risus. Adipiscing suscipit massa amet nulla arcu sed. Commodo
+                        massa commodo et consequat. Mauris neque sed consectetur porta. Tempor tristique malesuada
+                        fringilla pulvinar sagittis neque elit sed mus. Lobortis.Mauris ipsum maecenas nunc risus. Adipiscing suscipit massa amet nulla arcu sed. Commodo
+                        massa commodo et consequat. Mauris neque sed consectetur porta. Tempor tristique malesuada
+                        fringilla pulvinar sagittis neque elit sed mus. Lobortis.Mauris ipsum maecenas nunc risus. Adipiscing suscipit massa amet nulla arcu sed. Commodo
+                        massa commodo et consequat. Mauris neque sed consectetur porta. Tempor tristique malesuada
+                        fringilla pulvinar sagittis neque elit sed mus. Lobortis.Mauris ipsum maecenas nunc risus. Adipiscing suscipit massa amet nulla arcu sed. Commodo
+                        massa commodo et consequat. Mauris neque sed consectetur porta. Tempor tristique malesuada
+                        fringilla pulvinar sagittis neque elit sed mus. Lobortis.
+                    </div>
+                </div>
+
+
                 <div className={styles.nR_submitContainer_buttons}>
                     <BackButton />
                     <NextButton isDisabled={false} onClick={() => { }} />

@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useCalculateFinalPrice } from "utils/priceCalculator";
 
 import { selectRequestInfo, updateAddOnLocation } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
@@ -14,6 +15,7 @@ const AddOnInterviewConduction = ({ isEdit, setIsEdit }: IProps) => {
     const selectedRequest = useSelector(selectRequestInfo);
     const [current, setCurrent] = useState(selectedRequest?.logisticSettings.location);
     const dispatch = useDispatch();
+    const { list } = useCalculateFinalPrice();
 
     useEffect(() => {
         current && dispatch(updateAddOnLocation(current))
@@ -28,7 +30,7 @@ const AddOnInterviewConduction = ({ isEdit, setIsEdit }: IProps) => {
             <div >
                 {!isEdit ?
                     <div className={styles.infoContainer_priceItem}>
-                        Interview conduction <p>695<span>.00</span></p></div>
+                        Interview conduction <p>{list.virtualQuestion || list.virtualInterview}<span>.00</span></p></div>
 
                     : <InterviewConductionSelector />}
             </div>

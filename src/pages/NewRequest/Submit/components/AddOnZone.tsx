@@ -1,4 +1,5 @@
 
+import { NO } from "consts/consts";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -22,7 +23,7 @@ const AddOnZone = ({ isEdit, setIsEdit }: IProps) => {
     // if (selectedRequest?.scriptSettings.scriptWriter !== PROFESSIONAL_SCRIPT) return null
     // if (selectedRequest?.scriptSettings.scriptWriter !== OWN_SCRIPT) return null
 
-
+    if (selectedRequest?.logisticSettings.travel.selection === NO) return null
     return (
         <div>
             <div >

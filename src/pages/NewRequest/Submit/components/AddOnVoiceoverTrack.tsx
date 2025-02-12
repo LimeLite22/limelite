@@ -1,20 +1,20 @@
+
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useCalculateFinalPrice } from "utils/priceCalculator";
 
 import { selectRequestInfo, updateAddOnLocation } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
-import LocationSelector from "./LocationSelector/LocationSelector";
+import VoiceoverTrackSelector from "./VoiceTrackSelector/VoiceoverTrackSelector";
 interface IProps {
     isEdit: boolean;
     setIsEdit: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const AddOnLocation = ({ isEdit, setIsEdit }: IProps) => {
+const AddOnVoiceoverTrack = ({ isEdit, setIsEdit }: IProps) => {
     const selectedRequest = useSelector(selectRequestInfo);
     const [current, setCurrent] = useState(selectedRequest?.logisticSettings.location);
     const { list } = useCalculateFinalPrice();
-    const price = list.locationType2 || list.locationType3 || 0;
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -30,11 +30,12 @@ const AddOnLocation = ({ isEdit, setIsEdit }: IProps) => {
             <div >
                 {!isEdit ?
                     <div className={styles.infoContainer_priceItem}>
-                        Location({selectedRequest?.logisticSettings.location.type}) <p>{price}<span>.00</span></p></div>
-                    : <LocationSelector />}
+                        Voiceover track <p>{list.professionalTruckAuthor}<span>.00</span></p></div>
+
+                    : <VoiceoverTrackSelector />}
             </div>
         </div >
     )
 }
 
-export default AddOnLocation;
+export default AddOnVoiceoverTrack;

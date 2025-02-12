@@ -61,8 +61,8 @@ export const QUESTIONS_AUTHOR_PROFESSIONAL = "Professional Author";
 export const QUESTIONS_ON_LOCATION = "Questions on location";
 export const QUESTIONS_VIRTUALLY = "Questions virtually";
 export const VIRTUAL_INTERVIEW = "Virtual interview";
-export const TRACK_AUTHOR_CLIENT = "client";
-export const TRACK_AUTHOR_PROFESSIONAL = "professional";
+export const TRACK_AUTHOR_CLIENT = "Own track";
+export const TRACK_AUTHOR_PROFESSIONAL = "Professional track";
 
 
 export const NO_ADD_ONS = "NO_ADD_ONS";
