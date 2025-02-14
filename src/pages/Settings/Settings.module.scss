@@ -1,5 +1,6 @@
 .settings {
     width: 100%;
+
     &_header {
         font-family: Poppins;
         font-size: 28px;
@@ -8,6 +9,14 @@
         text-align: left;
         color: var(--black);
         margin-bottom: 12px;
+        @media screen and (max-width: 768px) {
+            font-family: Poppins;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 22px;
+            letter-spacing: 0%;
+            margin-bottom: 16px;
+        }
     }
     &_title {
         font-family: Poppins;
@@ -17,6 +26,13 @@
         text-align: left;
         color: var(--gray-dark);
         margin-bottom: 8px;
+        @media screen and (max-width: 768px) {
+            font-family: Poppins;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 17.6px;
+            letter-spacing: 2%;
+        }
     }
     &_subTitle {
         font-family: Inter;
@@ -28,6 +44,13 @@
         text-decoration-skip-ink: none;
         color: var(--gray-dark3);
         margin-bottom: 8px;
+        @media screen and (max-width: 768px) {
+            font-family: Inter;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 15.4px;
+            letter-spacing: 0%;
+        }
     }
     &_navigation {
         display: flex;
@@ -38,6 +61,9 @@
         margin-bottom: 24px;
         padding-bottom: 3px;
         width: 100%;
+        @media screen and (max-width: 768px) {
+            overflow: scroll;
+        }
 
         &_item {
             padding: 6px 16px;
@@ -48,6 +74,7 @@
             line-height: 16.8px;
             text-align: left;
             cursor: pointer;
+            white-space: nowrap;
         }
         &_selected {
             padding: 6px 16px;
@@ -139,6 +166,10 @@
         display: flex;
         justify-content: space-between;
         gap: 16px;
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+            padding: 12px;
+        }
         &_column {
             flex: 1;
         }
@@ -347,10 +378,21 @@
         align-items: center;
         justify-content: space-between;
         margin-bottom: 24px;
+        @media screen and (max-width: 768px) {
+            gap: 12px;
+            flex-direction: column;
+            height: unset;
+        }
         &_container {
             display: flex;
             align-items: center;
             gap: 16px;
+            @media screen and (max-width: 768px) {
+                align-items: unset;
+                width: 100%;
+                flex-direction: column;
+                gap: 12px;
+            }
         }
         &_delete {
             width: 158px;
@@ -366,6 +408,10 @@
             justify-content: center;
             gap: 6px;
             cursor: pointer;
+            @media screen and (max-width: 768px) {
+                flex: 1;
+                min-height: 42px;
+            }
         }
         &_cancel {
             padding: 0px 22px;
@@ -383,6 +429,10 @@
             justify-content: center;
             color: var(--gray-dark);
             cursor: pointer;
+            @media screen and (max-width: 768px) {
+                flex: 1;
+                min-height: 42px;
+            }
         }
         &_save {
             padding: 0px 22px;
@@ -402,9 +452,13 @@
             justify-content: center;
             color: var(--white);
             cursor: pointer;
+            @media screen and (max-width: 768px) {
+                flex: 1;
+                min-height: 42px;
+            }
         }
     }
-    &_closeButton{
+    &_closeButton {
         width: 36px;
         height: 36px;
         border-radius: 50%;
@@ -417,6 +471,22 @@
         right: 36px;
         margin-bottom: 0 !important;
         cursor: pointer;
+    }
+    &_fotoContainer {
+        @media screen and (max-width: 768px) {
+            display: flex;
+        }
+    }
+    &_hideMob {
+        @media screen and (max-width: 768px) {
+            display: none;
+        }
+    }
+    &_hideDesc {
+        display: none;
+        @media screen and (max-width: 768px) {
+            display: block;
+        }
     }
 }
 .team {
@@ -791,7 +861,7 @@
             }
         }
     }
-    &_closeButton{
+    &_closeButton {
         width: 36px;
         height: 36px;
         border-radius: 50%;
@@ -805,5 +875,4 @@
         margin-bottom: 0 !important;
         cursor: pointer;
     }
-    
 }
