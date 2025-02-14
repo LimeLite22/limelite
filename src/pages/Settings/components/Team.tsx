@@ -1,9 +1,11 @@
 import { Add, Close, GapCheck, GapUnCheck, InviteUser, User1Foto, User2Foto, User3Foto, } from "assets/images";
+import useWindowWidth from "hooks/useWindowWidth";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 
 import styles from "../Settings.module.scss";
 import TeamItem from "./TeamItem";
+import { Sheet } from "react-modal-sheet";
 
 
 
@@ -64,6 +66,7 @@ const Team = () => {
     ]);
     const [isInviteOpened, setIsInviteOpened] = useState(false);
     const [transferRights, setTransferRights] = useState(false);
+    const width = useWindowWidth();
     const handleTransferRights = () => {
         setTransferRights(!transferRights);
     }
@@ -105,7 +108,7 @@ const Team = () => {
                 }
             </div>
             {
-                isInviteOpened && createPortal(
+                isInviteOpened && width > 768 && createPortal(
                     <div className={styles.invite} tabIndex={-1} onClick={handleCloseInvite}>
                         <div className={styles.invite_wrapper} onClick={(e) => e.stopPropagation()}>
                             <div className={styles.invite_wrapper_header}>Invite your team members<div
@@ -132,6 +135,47 @@ const Team = () => {
                     </div>,
                     document.body
                 )
+            }
+            {
+                isInviteOpened && width < 768 &&
+                <Sheet
+                    isOpen={isInviteOpened}
+                    onClose={() => setIsInviteOpened(false)}
+                    dragVelocityThreshold={500}
+                    detent="full-height"
+                    style={{
+                        backdropFilter: "blur(3px)",
+                        WebkitBackdropFilter: "blur(3px)",
+                        background: "#11100E99",
+                    }}
+                    className={styles.settings_sheetMain}
+                >
+                    <div
+                        className={styles.settings_closeArea}
+                        onClick={() => setIsInviteOpened(false)}
+                    ></div>
+                    <Sheet.Container className={`${styles.settings_sheetInvite} `}>
+                        <Sheet.Content className={styles.settings_sheetContainer}>
+                            <div className={styles.settings_sheetLine}></div>
+                            <div className={styles.invite_wrapper_header}>Invite your team members</div>
+                            <div className={styles.invite_wrapper_subHeader}>Add your colleagues to Limelite space and assign them a role.</div>
+                            <div className={styles.invite_wrapper_title}>Email </div>
+                            <input className={styles.invite_wrapper_input} type='text' />
+                            <div className={styles.invite_wrapper_title2} onClick={handleTransferRights} >
+                                <img src={transferRights ? GapCheck : GapUnCheck} alt="" />
+                                Transfer administrator rights</div>
+                            <div className={styles.invite_wrapper_add}>
+                                <img src={Add} alt="" />
+                                Add another</div>
+                            <div className={styles.invite_wrapper_buttons}>
+                                <div className={styles.invite_wrapper_buttons_cancel} onClick={() => { setIsInviteOpened(false) }} >Cancel</div>
+                                <div className={styles.invite_wrapper_buttons_save} onClick={() => { setIsInviteOpened(false) }} >Save changes</div>
+
+                            </div>
+
+                        </Sheet.Content>
+                    </Sheet.Container>
+                </Sheet>
             }
         </>
     )

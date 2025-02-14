@@ -218,7 +218,28 @@
         margin-bottom: 24px;
         display: flex;
         justify-content: space-between;
+        flex-direction: column;
+        gap: 24px;
+        &_forgot {
+            font-family: Inter;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 16.8px;
+            letter-spacing: 0%;
+            color: var(--blue-dark);
+        }
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+            padding: 12px;
+            padding-bottom: 24px;
+        }
+    }
+    &_passwords {
+        display: flex;
         gap: 16px;
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+        }
     }
     &_communicationContainer {
         margin-top: 24px;
@@ -231,6 +252,9 @@
         justify-content: space-between;
         flex-direction: column;
         gap: 16px;
+        @media screen and (max-width: 768px) {
+            padding: 12px;
+        }
     }
     &_drop {
         position: relative;
@@ -386,6 +410,7 @@
             gap: 12px;
             flex-direction: column-reverse;
             height: unset;
+            margin-bottom: 0px;
         }
         &_container {
             display: flex;
@@ -501,7 +526,6 @@
         left: 0;
         width: 100%;
         height: calc(100% - 360px);
-        border: 1px solid red;
     }
     &_sheetLine {
         width: 80px;
@@ -528,6 +552,10 @@
         &_transfer {
             height: 560px !important;
         }
+    }
+    &_sheetInvite {
+        pointer-events: auto !important;
+        height: 440px !important;
     }
     &_sheetContainer {
         pointer-events: auto !important;
@@ -955,6 +983,7 @@
         &_input {
             width: 100%;
             height: 40px;
+            min-height: 40px;
             padding: 0px 16px;
             display: flex;
             align-items: center;

@@ -15,6 +15,7 @@ const TeamItem = ({ member, index }: any) => {
         setIsTransferOpened(true);
     }
     const handleCloseTransfer = () => {
+        setIsMenuOpen(false);
         setIsTransferOpened(false);
     }
     console.log(width, isMenuOpen);
@@ -171,7 +172,7 @@ const TeamItem = ({ member, index }: any) => {
                                     </div>
                                     <div className={styles.invite_wrapper_buttons}>
                                         <div className={styles.invite_wrapper_buttons_cancel} onClick={handleCloseTransfer}>No, Keep my role</div>
-                                        <div className={styles.invite_wrapper_buttons_save}>Yes, Transfer rights</div>
+                                        <div className={styles.invite_wrapper_buttons_save} onClick={handleCloseTransfer} >Yes, Transfer rights</div>
                                     </div>
                                 </>
 
