@@ -588,6 +588,7 @@
         margin-bottom: 12px;
         span {
             color: var(--gray-dark);
+            text-decoration: none;
         }
     }
     &_sheetTransfer {
@@ -631,7 +632,7 @@
         justify-content: space-between;
         height: 50px;
         margin-bottom: 24px;
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 990px) {
             flex-direction: column;
             height: unset;
             align-items: flex-start;
@@ -651,7 +652,7 @@
             color: var(--gray-dark);
             display: flex;
             align-items: center;
-            @media screen and (max-width: 768px) {
+            @media screen and (max-width: 990px) {
                 font-family: Poppins;
                 font-weight: 500;
                 font-size: 16px;
@@ -667,7 +668,7 @@
                 color: var(--gray-dark3);
                 margin: 0;
                 margin-left: 30px;
-                @media screen and (max-width: 768px) {
+                @media screen and (max-width: 990px) {
                     font-family: Inter;
                     font-weight: 400;
                     font-size: 14px;
@@ -683,7 +684,7 @@
             line-height: 19.2px;
             text-align: left;
             color: var(--gray-dark3);
-            @media screen and (max-width: 768px) {
+            @media screen and (max-width: 990px) {
                 font-family: Inter;
                 font-weight: 400;
                 font-size: 14px;
@@ -706,7 +707,7 @@
         text-align: center;
         color: var(--green-dark);
         cursor: pointer;
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 990px) {
             height: 40px;
             padding: 0;
         }
@@ -725,7 +726,7 @@
         text-align: left;
         color: var(--gray-dark3);
         gap: 24px;
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 990px) {
             display: none;
         }
         &_1fr {
@@ -748,7 +749,7 @@
         line-height: 19.2px;
         text-align: left;
         color: var(--gray-dark);
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 990px) {
             height: 60px;
             border-bottom: 1px solid var(--gray-light7);
             padding: 12px 0px;
@@ -781,7 +782,7 @@
                 width: 100%;
                 max-width: 56px;
             }
-            @media screen and (max-width: 768px) {
+            @media screen and (max-width: 990px) {
                 width: 36px;
                 height: 36px;
                 min-width: 36px;
@@ -796,7 +797,7 @@
             line-height: 19.2px;
             text-align: left;
             color: var(--gray-dark);
-            @media screen and (max-width: 768px) {
+            @media screen and (max-width: 990px) {
                 display: none;
             }
         }
@@ -806,7 +807,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            @media screen and (max-width: 768px) {
+            @media screen and (max-width: 990px) {
                 flex: unset;
             }
         }
@@ -863,7 +864,7 @@
     }
     &_basicInfo {
         display: none;
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 990px) {
             display: flex;
             flex-direction: column;
             flex: 1;
