@@ -185,6 +185,9 @@
             justify-content: center;
             position: relative;
             margin-bottom: 7px;
+            @media screen and (max-width: 768px) {
+                margin-bottom: 0px;
+            }
             img {
                 width: 64px;
                 height: 64px;
@@ -378,9 +381,10 @@
         align-items: center;
         justify-content: space-between;
         margin-bottom: 24px;
+
         @media screen and (max-width: 768px) {
             gap: 12px;
-            flex-direction: column;
+            flex-direction: column-reverse;
             height: unset;
         }
         &_container {
@@ -475,6 +479,9 @@
     &_fotoContainer {
         @media screen and (max-width: 768px) {
             display: flex;
+            align-items: center;
+            height: 80px;
+            gap: 24px;
         }
     }
     &_hideMob {
@@ -488,6 +495,106 @@
             display: block;
         }
     }
+    &_closeArea {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100% - 360px);
+        border: 1px solid red;
+    }
+    &_sheetLine {
+        width: 80px;
+        height: 5px;
+        background-color: var(--gray-light3);
+        border-radius: 45px;
+        position: absolute;
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    &_sheetMain {
+        position: relative;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 100px;
+        left: 0;
+        pointer-events: auto !important;
+    }
+    &_sheet {
+        pointer-events: auto !important;
+        height: 360px !important;
+        &_transfer {
+            height: 560px !important;
+        }
+    }
+    &_sheetContainer {
+        pointer-events: auto !important;
+        border-top-left-radius: 20px !important;
+        border-top-right-radius: 20px !important;
+        padding: 32px 16px 16px 16px;
+    }
+    &_sheetFotoContainer {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        height: 56px;
+        margin-bottom: 24px;
+        img {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+    }
+    &_sheetInfoLine {
+        display: flex;
+        justify-content: space-between;
+        font-family: Inter;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 15.4px;
+        letter-spacing: 0%;
+        color: var(--gray-dark3);
+        margin-bottom: 12px;
+        span {
+            color: var(--gray-dark);
+        }
+    }
+    &_sheetTransfer {
+        font-family: Poppins;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 17.6px;
+        letter-spacing: 2%;
+        text-align: center;
+        width: 100%;
+        height: 48px;
+        border-radius: 10px;
+        border: 1px solid var(--gray-light7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 12px;
+        color: var(--gray-dark);
+    }
+    &_sheetDelete {
+        font-family: Poppins;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 17.6px;
+        letter-spacing: 2%;
+        text-align: center;
+        width: 100%;
+        height: 48px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 12px;
+        color: var(--red-dark);
+    }
 }
 .team {
     &_header {
@@ -496,6 +603,12 @@
         justify-content: space-between;
         height: 50px;
         margin-bottom: 24px;
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+            height: unset;
+            align-items: flex-start;
+            gap: 8px;
+        }
         &_container {
             display: flex;
             flex-direction: column;
@@ -510,6 +623,13 @@
             color: var(--gray-dark);
             display: flex;
             align-items: center;
+            @media screen and (max-width: 768px) {
+                font-family: Poppins;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 17.6px;
+                letter-spacing: 2%;
+            }
             ul {
                 font-family: Inter;
                 font-size: 16px;
@@ -519,6 +639,13 @@
                 color: var(--gray-dark3);
                 margin: 0;
                 margin-left: 30px;
+                @media screen and (max-width: 768px) {
+                    font-family: Inter;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 16.8px;
+                    letter-spacing: 0%;
+                }
             }
         }
         &_subTitle {
@@ -528,6 +655,13 @@
             line-height: 19.2px;
             text-align: left;
             color: var(--gray-dark3);
+            @media screen and (max-width: 768px) {
+                font-family: Inter;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 15.4px;
+                letter-spacing: 0%;
+            }
         }
     }
     &_invite {
@@ -544,6 +678,10 @@
         text-align: center;
         color: var(--green-dark);
         cursor: pointer;
+        @media screen and (max-width: 768px) {
+            height: 40px;
+            padding: 0;
+        }
     }
     &_navigation {
         width: 100%;
@@ -559,6 +697,9 @@
         text-align: left;
         color: var(--gray-dark3);
         gap: 24px;
+        @media screen and (max-width: 768px) {
+            display: none;
+        }
         &_1fr {
             flex: 1;
         }
@@ -579,6 +720,11 @@
         line-height: 19.2px;
         text-align: left;
         color: var(--gray-dark);
+        @media screen and (max-width: 768px) {
+            height: 60px;
+            border-bottom: 1px solid var(--gray-light7);
+            padding: 12px 0px;
+        }
         &_container {
             display: flex;
             flex-direction: column;
@@ -601,11 +747,17 @@
             }
         }
 
-        &_1fr {
+        &_foto {
             flex: 1;
             img {
                 width: 100%;
                 max-width: 56px;
+            }
+            @media screen and (max-width: 768px) {
+                width: 36px;
+                height: 36px;
+                min-width: 36px;
+                flex: unset;
             }
         }
         &_3fr {
@@ -616,6 +768,19 @@
             line-height: 19.2px;
             text-align: left;
             color: var(--gray-dark);
+            @media screen and (max-width: 768px) {
+                display: none;
+            }
+        }
+        &_06fr {
+            flex: 0.625;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            @media screen and (max-width: 768px) {
+                flex: unset;
+            }
         }
         &_settings {
             position: relative;
@@ -667,12 +832,26 @@
                 }
             }
         }
-        &_06fr {
-            flex: 0.625;
+    }
+    &_basicInfo {
+        display: none;
+        @media screen and (max-width: 768px) {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: 4px;
+        }
+        &_header {
             display: flex;
             align-items: center;
-            justify-content: center;
-            cursor: pointer;
+            gap: 8px;
+        }
+        &_title {
+            font-family: Inter;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 15.4px;
+            letter-spacing: 0%;
         }
     }
 }
@@ -706,6 +885,15 @@
             color: var(--gray-dark);
             width: 100%;
             margin-bottom: 34px;
+            @media screen and (max-width: 768px) {
+                font-family: Poppins;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 21.6px;
+                letter-spacing: 0%;
+                text-align: center;
+                margin-bottom: 12px;
+            }
         }
         &_subHeader {
             font-family: Inter;
@@ -715,6 +903,13 @@
             text-align: left;
             color: var(--gray-dark);
             margin-bottom: 24px;
+            @media screen and (max-width: 768px) {
+                font-family: Inter;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 15.4px;
+                letter-spacing: 0%;
+            }
             span {
                 font-family: Inter;
                 font-size: 16px;
@@ -722,6 +917,13 @@
                 line-height: 19.2px;
                 text-align: left;
                 color: var(--blue-dark);
+                @media screen and (max-width: 768px) {
+                    font-family: Inter;
+                    font-weight: 700;
+                    font-size: 14px;
+                    line-height: 15.4px;
+                    letter-spacing: 0%;
+                }
             }
         }
         &_title {
@@ -790,6 +992,12 @@
             display: flex;
             justify-content: space-between;
             margin-bottom: 48px;
+            @media screen and (max-width: 768px) {
+                flex-direction: column;
+                align-items: center;
+                gap: 24px;
+                margin-bottom: 24px;
+            }
             img {
                 width: 56px;
                 height: 56px;
@@ -825,6 +1033,9 @@
             display: flex;
             align-items: center;
             gap: 16px;
+            @media screen and (max-width: 768px) {
+                flex-direction: column-reverse;
+            }
             &_cancel {
                 flex: 1;
                 height: 48px;
@@ -841,6 +1052,10 @@
                 justify-content: center;
                 border-radius: 10px;
                 cursor: pointer;
+                @media screen and (max-width: 768px) {
+                    width: 100%;
+                    min-height: 48px;
+                }
             }
             &_save {
                 flex: 1;
@@ -858,6 +1073,10 @@
                 align-items: center;
                 justify-content: center;
                 cursor: pointer;
+                @media screen and (max-width: 768px) {
+                    width: 100%;
+                    min-height: 48px;
+                }
             }
         }
     }

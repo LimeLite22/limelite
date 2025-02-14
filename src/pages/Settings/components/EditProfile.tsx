@@ -47,28 +47,31 @@ const EditProfile = () => {
     }
 
     const dragInput = <>
-        <div className={styles.settings_container_section}>
-            <FileDrop
-                className={`${styles.settings_drop}`}
-                onDrop={(files, event) => {
-                    if (files && files[0]) {
-                        setCurrentValues({ ...currentValues, foto: files[0] });
-                    }
-                }}
-            >
-                <div className={styles.settings_drop_text}>
-                    Drag & Drop or <span onClick={handleDivClick}>
-                        <input
-                            type="file"
-                            ref={fileInputRef}
-                            style={{ display: "none" }}
-                            onChange={handleFileChange}
-                        />
-                        Choose file </span>to upload
-                </div>
-                <div className={styles.settings_drop_text3} >PNG or JPG (max. 400x400px) </div>
-            </FileDrop>
-        </div>
+
+        {currentValues.foto === NoUser &&
+            <div className={styles.settings_container_section}>
+                <FileDrop
+                    className={`${styles.settings_drop}`}
+                    onDrop={(files, event) => {
+                        if (files && files[0]) {
+                            setCurrentValues({ ...currentValues, foto: files[0] });
+                        }
+                    }}
+                >
+                    <div className={styles.settings_drop_text}>
+                        Drag & Drop or <span onClick={handleDivClick}>
+                            <input
+                                type="file"
+                                ref={fileInputRef}
+                                style={{ display: "none" }}
+                                onChange={handleFileChange}
+                            />
+                            Choose file </span>to upload
+                    </div>
+                    <div className={styles.settings_drop_text3} >PNG or JPG (max. 400x400px) </div>
+                </FileDrop>
+            </div>
+        }
     </>
     const firstNameInput = <>
         <div className={styles.settings_inputContainer}>
@@ -114,7 +117,7 @@ const EditProfile = () => {
         </div>
     </>
     const fotoSettings = <>
-        <div className={styles.settings_container_section}>
+        <div className={`${styles.settings_container_section} ${styles.settings_fotoContainer}`}>
             <div className={styles.settings_container_img}>
                 <div className={styles.settings_container_img_remove} onClick={() => {
                     setCurrentValues({ ...currentValues, foto: NoUser })
@@ -125,9 +128,8 @@ const EditProfile = () => {
             </div>
             <div>
                 <div className={styles.settings_text}>Your photo</div>
-                <div className={styles.settings_subText}>This will be displayed  o your profile.</div>
+                <div className={styles.settings_subText}>This will be displayed  on your profile.</div>
             </div>
-
         </div>
     </>
 
