@@ -84,25 +84,40 @@ const EditProfile = () => {
     const jobTitle = <>
         <div className={styles.settings_inputContainer}>
             <div className={styles.settings_text}> Job Title *</div>
-            <input type="text" value={currentValues.jobTitle} placeholder="First Name" />
+            <input type="text" value={currentValues.jobTitle}
+                onChange={(e) => {
+                    setCurrentValues({ ...currentValues, jobTitle: e.target.value })
+                }}
+                placeholder="Job title" />
         </div>
     </>
     const mobile = <>
         <div className={styles.settings_inputContainer}>
             <div className={styles.settings_text}>  Mobile *</div>
-            <input value={currentValues.phone} type="text" placeholder="First Name" />
+            <input value={currentValues.phone}
+                onChange={(e) => {
+                    setCurrentValues({ ...currentValues, phone: e.target.value })
+                }}
+                type="text" placeholder="Phone" />
         </div>
     </>
     const lastName = <>
         <div className={styles.settings_inputContainer}>
             <div className={styles.settings_text}> Last Name *</div>
-            <input value={currentValues.lastName} type="text" placeholder="First Name" />
+            <input value={currentValues.lastName} onChange={(e) => {
+                setCurrentValues({ ...currentValues, lastName: e.target.value })
+            }} type="text" placeholder="Last Name" />
         </div>
     </>
     const email = <>
         <div className={styles.settings_inputContainer}>
             <div className={styles.settings_text}> Email *</div>
-            <input value={currentValues.email} type="text" placeholder="First Name" />
+            <input value={currentValues.email}
+                onChange={(e) => {
+                    setCurrentValues({ ...currentValues, email: e.target.value })
+                }}
+
+                type="text" placeholder="Email" />
         </div>
     </>
     const tshirtSize = <>
