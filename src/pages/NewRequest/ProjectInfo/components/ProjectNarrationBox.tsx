@@ -52,9 +52,10 @@ const ProjectNarrationBox = ({ isError, setIsError }: IProps) => {
 
     list = list.filter((i) => i !== NO_APPROACH);
     setIsError(false);
+    console.log(list);
     dispatch(
       updateDraftField({
-        path: "approachList",
+        path: "projectInfoSettings.approachList",
         value: list,
       }),
     );
