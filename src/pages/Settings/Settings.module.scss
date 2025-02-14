@@ -904,6 +904,15 @@
         border-radius: 20px;
         padding: 34px 36px 36px 36px;
         position: relative;
+        &_forgot {
+            font-family: Inter;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 16.8px;
+            letter-spacing: 0%;
+            color: var(--blue-dark);
+            margin: 24px 0px;
+        }
         &_header {
             font-family: Poppins;
             font-size: 28px;
@@ -987,13 +996,15 @@
             padding: 0px 16px;
             display: flex;
             align-items: center;
-            margin-bottom: 8px;
             border-radius: 8px;
             border: 1px solid var(--gray-light7);
             outline: none;
             margin-bottom: 8px;
             &:focus {
                 border: 1px solid var(--black);
+            }
+            @media screen and (max-width: 768px) {
+                margin-bottom: 0px;
             }
         }
         &_add {
