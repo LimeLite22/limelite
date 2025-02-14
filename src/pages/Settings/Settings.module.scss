@@ -150,6 +150,11 @@
             display: flex;
             align-items: center;
             padding: 0 16px;
+            font-family: Inter;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 19.2px;
+            letter-spacing: 0%;
         }
         input:focus {
             border: 1px solid var(--black);
@@ -989,6 +994,9 @@
             margin-bottom: 24px;
             cursor: pointer;
             user-select: none;
+            @media screen and (max-width: 768px) {
+                margin-top: 8px;
+            }
         }
         &_input {
             width: 100%;
@@ -1001,6 +1009,12 @@
             border: 1px solid var(--gray-light7);
             outline: none;
             margin-bottom: 8px;
+            font-family: Inter;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 19.2px;
+            letter-spacing: 0%;
+
             &:focus {
                 border: 1px solid var(--black);
             }
