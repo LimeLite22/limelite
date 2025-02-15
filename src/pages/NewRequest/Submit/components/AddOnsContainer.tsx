@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useCalculateFinalPrice } from "utils/priceCalculator";
 
 import styles from "../../NewRequest.module.scss";
+import AddOnAdditionalFormats from "./AddOnAdditionalFormats";
 import AddOnInterviewConduction from "./AddOnInterviewConduction";
 import AddOnInterviewQuestions from "./AddOnInterviewQuestions";
 import AddOnLocation from "./AddOnLocation";
@@ -47,6 +48,7 @@ const AddOnsContainer = () => {
         <AddOnVoiceoverScript isEdit={isEdit} setIsEdit={setIsEdit} />
         <AddOnVoiceoverTrack isEdit={isEdit} setIsEdit={setIsEdit} />
         <AddOnThumbnail isEdit={isEdit} setIsEdit={setIsEdit} />
+        <AddOnAdditionalFormats isEdit={isEdit} setIsEdit={setIsEdit} />
         {
             list.rushDay > 0 &&
             <div className={styles.infoContainer_priceItem}>
