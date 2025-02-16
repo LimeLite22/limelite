@@ -11,6 +11,7 @@ import AddOnLocation from "./AddOnLocation";
 import AddOnScript from "./AddOnScript";
 import AddOnThumbnail from "./AddOnThumbnail";
 import AddOnTime from "./AddOnTime";
+import AddOnTypeAddOns from "./AddOnTypeAddOns";
 import AddOnVoiceoverScript from "./AddOnVoiceoverScript";
 import AddOnVoiceoverTrack from "./AddOnVoiceoverTrack";
 import AddOnZone from "./AddOnZone";
@@ -50,16 +51,7 @@ const AddOnsContainer = () => {
         <AddOnVoiceoverTrack isEdit={isEdit} />
         <AddOnThumbnail isEdit={isEdit} />
         <AddOnAdditionalFormats isEdit={isEdit} />
-        {
-            list.rushHour > 0 &&
-            <div className={styles.infoContainer_priceItem}>
-                Rush hour <p>{list.rushHour}<span>.00</span></p></div>
-        }
-        {
-            list.addOns > 0 &&
-            <div className={styles.infoContainer_priceItem}>
-                Add-ons <p>{list.addOns}<span>.00</span></p></div>
-        }
+        <AddOnTypeAddOns isEdit={isEdit} />
         <img src={Divider} alt='' className={styles.infoContainer_divider} />
         <div className={styles.infoContainer_totalPrice}>
             Estimated Price:   <p>{price}<span>.00</span></p>

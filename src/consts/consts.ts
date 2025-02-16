@@ -73,7 +73,7 @@ export const NO_ADD_ONS_ADD_ON = {
   header: "No Add Ons",
   subHeader: "No Add Ons",
   description: ``,
-  isSelected: false
+  isSelected: true
 }
 export const IDEATION_SESSION_ADD_ON = {
   id: generateUniqueId(),
@@ -83,7 +83,7 @@ export const IDEATION_SESSION_ADD_ON = {
   subHeader: "We will have an ideation session",
   description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
 Price includes 2-3 concepts and three rounds of revision. , ` ,
-  isSelected: false
+  isSelected: true
 }
 export const PAID_TALENT_ADD_ON = {
   id: generateUniqueId(),
@@ -93,7 +93,7 @@ export const PAID_TALENT_ADD_ON = {
   subHeader: "We will have a paid talent",
   description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
 Price includes 2-3 concepts and three rounds of revision. , ` ,
-  isSelected: false
+  isSelected: true
 };
 export const HOST_PAID_TALENT_ADD_ON = {
   id: generateUniqueId(),
@@ -103,7 +103,7 @@ export const HOST_PAID_TALENT_ADD_ON = {
   subHeader: "We will have a paid talent",
   description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
 Price includes 2-3 concepts and three rounds of revision. , ` ,
-  isSelected: false
+  isSelected: true
 };
 export const MUA_ADD_ON = {
   id: generateUniqueId(),
@@ -113,7 +113,7 @@ export const MUA_ADD_ON = {
   subHeader: "We will have a MUA",
   description: `An animated logo is a dynamic way to present your brand mark in video format. From company logos to brand names, animation adds depth and professionalism to your video.
 Price includes 2-3 concepts and three rounds of revision. , ` ,
-  isSelected: false
+  isSelected: true
 };
 export const GREEN_SCREEN_ADD_ON = {
   id: generateUniqueId(),
