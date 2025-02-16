@@ -20,6 +20,7 @@ import AdditionalFormatsBox from "./components/AdditionalFormats/AdditionalForma
 import AdditionalVisualAssetsBox from "./components/AdditionalVisualAssets/AdditionalVisualAssets";
 import CaptionBox from "./components/CaptionBox";
 import FormatBox from "./components/FormatBox";
+import IsTravelRequired from "./components/IsTravelRequiredBox";
 import ThumbnailBox from "./components/Thumbnail/ThumbnailBox";
 import VideoTargetDurationBox from "./components/VideoTargetDuration";
 
@@ -37,7 +38,7 @@ const VideoEdit = () => {
     if (videoSettings?.targetDuration === DEFAULT) {
       disabled = true
     }
-    if(videoSettings?.additionalVisualAssets === DEFAULT){
+    if (videoSettings?.additionalVisualAssets === DEFAULT) {
       disabled = true
     }
     if (videoSettings?.additionalVisualAssets === true
@@ -63,62 +64,63 @@ const VideoEdit = () => {
   }, [videoSettings]);
 
   return (
-        <div
-          className={styles.nR_container}
-          style={{
-            paddingBottom: customPadding,
-          }}
-        >
-          <Link to="/new-request/start">
-            <div className={styles.nR_backButton}>
-              <img src={ArrowGray3} alt="" /> Back to New Request{" "}
+    <div
+      className={styles.nR_container}
+      style={{
+        paddingBottom: customPadding,
+      }}
+    >
+      <Link to="/new-request/start">
+        <div className={styles.nR_backButton}>
+          <img src={ArrowGray3} alt="" /> Back to New Request{" "}
+        </div>
+      </Link>
+      <div className={styles.nR_subContainer}>
+        <StepsNavigation />
+        <div className={styles.nR_header}>
+          <div className={styles.nR_header_text}>
+            <Link to="/new-request/start">
+              <div className={styles.nR_header_text_button}>
+                <img src={ArrowGray4} alt="" />
+              </div>
+            </Link>
+            About Your Video Edit
+          </div>
+          <div className={styles.nR_header_subText}>
+            Please provide important information below regarding your
+            completed video
+          </div>
+        </div>
+        <div className={styles.nR_formContainer}>
+          <FormatBox />
+          <VideoTargetDurationBox />
+          <CaptionBox />
+          <ThumbnailBox />
+          <AdditionalFormatsBox />
+          <AdditionalVisualAssetsBox />
+          <IsTravelRequired />
+          {isDisabled && showBottomMessage && (
+            <div className={styles.nR_formContainer_error}>
+              Please ensure all required fields are filled out before
+              submitting the form. Each section must be completed to
+              proceed.
             </div>
-          </Link>
-          <div className={styles.nR_subContainer}>
-            <StepsNavigation />
-            <div className={styles.nR_header}>
-              <div className={styles.nR_header_text}>
-              <Link to="/new-request/start">
-                  <div className={styles.nR_header_text_button}>
-                    <img src={ArrowGray4} alt="" />
-                  </div>
-                </Link>
-                About Your Video Edit
-              </div>
-              <div className={styles.nR_header_subText}>
-                Please provide important information below regarding your
-                completed video
-              </div>
-            </div>
-            <div className={styles.nR_formContainer}>
-              <FormatBox />
-              <VideoTargetDurationBox />
-              <CaptionBox />
-              <ThumbnailBox />
-              <AdditionalFormatsBox />
-              <AdditionalVisualAssetsBox />
-              {isDisabled && showBottomMessage && (
-                <div className={styles.nR_formContainer_error}>
-                  Please ensure all required fields are filled out before
-                  submitting the form. Each section must be completed to
-                  proceed.
-                </div>
-              )}
-              <div className={styles.nR_formContainer_buttons}>
-              <BackButton />
-                <div className={styles.nR_buttons_container}>
-                  <button className={styles.nR_buttons_save}>
-                    <img src={DetailsGreen} alt="" />
-                  </button>
-                  <NextButton isDisabled={isDisabled} onClick={() => {
-                    isDisabled && setShowBottomMessage(true)
-                  }} />
-                </div>
-              </div>
+          )}
+          <div className={styles.nR_formContainer_buttons}>
+            <BackButton />
+            <div className={styles.nR_buttons_container}>
+              <button className={styles.nR_buttons_save}>
+                <img src={DetailsGreen} alt="" />
+              </button>
+              <NextButton isDisabled={isDisabled} onClick={() => {
+                isDisabled && setShowBottomMessage(true)
+              }} />
             </div>
           </div>
-          <FormFooter />
         </div>
+      </div>
+      <FormFooter />
+    </div>
   );
 };
 

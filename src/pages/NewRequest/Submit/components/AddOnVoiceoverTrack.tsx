@@ -26,15 +26,13 @@ const AddOnVoiceoverTrack = ({ isEdit, setIsEdit }: IProps) => {
 
 
     return (
-        <div>
-            <div >
-                {!isEdit ?
-                    <div className={styles.infoContainer_priceItem}>
-                        Voiceover track <p>{list.professionalTruckAuthor}<span>.00</span></p></div>
+        <>
+            {!isEdit ?
+                <div className={styles.infoContainer_priceItem}>
+                    Voiceover track <p>{list.professionalTruckAuthor}<span>.00</span></p></div>
 
-                    : <VoiceoverTrackSelector />}
-            </div>
-        </div >
+                : <VoiceoverTrackSelector />}
+        </>
     )
 }
 

@@ -13,42 +13,56 @@ interface IProps {
   selectTime: (time: TTimeValue) => void;
   isError: boolean;
   isSubmit?: boolean;
+  darkBorder?: boolean;
 }
 
-const TimeSelector = ({ time, selectTime, isError, isSubmit }: IProps) => {
+const TimeSelector = ({ time, selectTime, isError, isSubmit, darkBorder }: IProps) => {
   const [isOpened, setIsOpened] = useState(false);
+  const getBorderRadiusStyles = (index: number) => ({
+    borderTopLeftRadius: index === 0 || index === 11 ? "4px" : "",
+    borderTopRightRadius: index === 0 || index === 11 ? "4px" : "",
+    borderBottomLeftRadius: index === 2 || index === 15 ? "4px" : "",
+    borderBottomRightRadius: index === 2 || index === 15 ? "4px" : "",
+  });
+  const getTimeContainerStyles = {
+    color: isError
+      ? "var(--red)"
+      : time === DEFAULT
+        ? "var(--gray-light5)"
+        : "",
+    border: isError
+      ? "1px solid var(--red)"
+      : darkBorder
+        ? "1px solid var(--gray-light3)"
+        : "",
+    height: darkBorder ? '41px' : ''
+  }
+    ;
   return (
     <div
-      className={`popUp_content_selectionBox_timeContainer
+      className={`timeContainer
       `}
       tabIndex={0}
       onBlur={() => setIsOpened(false)}
     >
       <div
-        className={`popUp_content_selectionBox_timeContainer_time
-        ${isSubmit ? "popUp_content_selectionBox_timeContainer_time_submit" : ""}
+        className={`timeContainer_time
+        ${isSubmit ? "timeContainer_time_submit" : ""}
         `}
-        style={{
-          color: isError
-            ? "var(--red)"
-            : time === DEFAULT
-              ? "var(--gray-light5)"
-              : "",
-          border: isError ? "1px solid var(--red)" : "",
-        }}
+        style={getTimeContainerStyles}
         onClick={() => setIsOpened(!isOpened)}
       >
         {" "}
         {time !== DEFAULT ? `${time?.hour}:00 ${time?.type}` : "00:00"}
         <img
-          className="popUp_content_selectionBox_timeContainer_arrow"
+          className="timeContainer_arrow"
           style={{ transform: isOpened ? "rotate(180deg)" : "" }}
           src={ArrowGray2}
           alt={"ArrowGray2"}
         />
       </div>
       {isOpened && (
-        <div className="popUp_content_selectionBox_timeContainer_dropDown scrollbar">
+        <div className="timeContainer_dropDown scrollbar">
           {hoursList.map((hour, index) => {
             return (
               <div
@@ -56,19 +70,11 @@ const TimeSelector = ({ time, selectTime, isError, isSubmit }: IProps) => {
                   selectTime(hour);
                   setIsOpened(false);
                 }}
-                style={{
-                  borderTopLeftRadius: index === 0 || index === 11 ? "4px" : "",
-                  borderTopRightRadius:
-                    index === 0 || index === 11 ? "4px" : "",
-                  borderBottomLeftRadius:
-                    index === 2 || index === 15 ? "4px" : "",
-                  borderBottomRightRadius:
-                    index === 2 || index === 15 ? "4px" : "",
-                }}
+                style={getBorderRadiusStyles(index)}
                 key={generateUniqueId()}
                 className={`
-              popUp_content_selectionBox_timeContainer_item 
-              ${hour.isAddon ? "popUp_content_selectionBox_timeContainer_itemAddOn" : ""}`}
+              timeContainer_item 
+              ${hour.isAddon ? "timeContainer_itemAddOn" : ""}`}
               >
                 {hour.hour}:00 {hour.type}
               </div>

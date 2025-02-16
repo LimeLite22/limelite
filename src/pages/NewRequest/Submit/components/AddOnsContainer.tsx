@@ -4,11 +4,13 @@ import { useCalculateFinalPrice } from "utils/priceCalculator";
 
 import styles from "../../NewRequest.module.scss";
 import AddOnAdditionalFormats from "./AddOnAdditionalFormats";
+import AddOnDate from "./AddOnDate";
 import AddOnInterviewConduction from "./AddOnInterviewConduction";
 import AddOnInterviewQuestions from "./AddOnInterviewQuestions";
 import AddOnLocation from "./AddOnLocation";
 import AddOnScript from "./AddOnScript";
 import AddOnThumbnail from "./AddOnThumbnail";
+import AddOnTime from "./AddOnTime";
 import AddOnVoiceoverScript from "./AddOnVoiceoverScript";
 import AddOnVoiceoverTrack from "./AddOnVoiceoverTrack";
 import AddOnZone from "./AddOnZone";
@@ -21,9 +23,6 @@ const AddOnsContainer = () => {
         setIsEdit(true);
     }
     const handleDecline = () => {
-        setIsEdit(false);
-    }
-    const handleSave = () => {
         setIsEdit(false);
     }
 
@@ -42,6 +41,8 @@ const AddOnsContainer = () => {
         </div>
         <AddOnLocation isEdit={isEdit} setIsEdit={setIsEdit} />
         <AddOnZone isEdit={isEdit} setIsEdit={setIsEdit} />
+        <AddOnDate isEdit={isEdit} setIsEdit={setIsEdit} />
+        <AddOnTime isEdit={isEdit} setIsEdit={setIsEdit} />
         <AddOnScript isEdit={isEdit} setIsEdit={setIsEdit} />
         <AddOnInterviewQuestions isEdit={isEdit} setIsEdit={setIsEdit} />
         <AddOnInterviewConduction isEdit={isEdit} setIsEdit={setIsEdit} />
@@ -50,30 +51,9 @@ const AddOnsContainer = () => {
         <AddOnThumbnail isEdit={isEdit} setIsEdit={setIsEdit} />
         <AddOnAdditionalFormats isEdit={isEdit} setIsEdit={setIsEdit} />
         {
-            list.rushDay > 0 &&
-            <div className={styles.infoContainer_priceItem}>
-                Rush day <p>{list.rushDay}<span>.00</span></p></div>
-
-        }
-        {
-            list.weekEnd > 0 &&
-            <div className={styles.infoContainer_priceItem}>
-                Weekend day <p>{list.weekEnd}<span>.00</span></p></div>
-        }
-        {
             list.rushHour > 0 &&
             <div className={styles.infoContainer_priceItem}>
                 Rush hour <p>{list.rushHour}<span>.00</span></p></div>
-        }
-        {
-            list.customThumbnail > 0 &&
-            <div className={styles.infoContainer_priceItem}>
-                Custom Thumbnail <p>{list.customThumbnail}<span>.00</span></p></div>
-        }
-        {
-            list.videoFormats > 0 &&
-            <div className={styles.infoContainer_priceItem}>
-                Video Formats <p>{list.videoFormats}<span>.00</span></p></div>
         }
         {
             list.addOns > 0 &&

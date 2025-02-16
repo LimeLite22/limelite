@@ -25,14 +25,12 @@ const AddOnZone = ({ isEdit, setIsEdit }: IProps) => {
 
     if (selectedRequest?.logisticSettings.travel.selection === NO) return null
     return (
-        <div>
-            <div >
-                {!isEdit ?
-                    <div className={styles.infoContainer_priceItem}>
-                        {selectedRequest?.logisticSettings.travel.zoneCode?.name} <p>{selectedRequest?.logisticSettings.travel.zoneCode?.value}<span>.00</span></p></div>
-                    : <ZoneSelector />}
-            </div>
-        </div >
+        <>
+            {!isEdit ?
+                <div className={styles.infoContainer_priceItem}>
+                    {selectedRequest?.logisticSettings.travel.zoneCode?.name} <p>{selectedRequest?.logisticSettings.travel.zoneCode?.value}<span>.00</span></p></div>
+                : <ZoneSelector />}
+        </>
     )
 }
 
