@@ -4,36 +4,36 @@ import {
   Expand,
   Note,
 } from "assets/images";
-import { NO, YES } from "consts/consts";
+import { NO, RUSH_TIME, STANDARD_TIME, YES } from "consts/consts";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import LearnMorePopUp from "./LearnMorePopUp";
 import {
   selectRequestInfo,
-  updateDraftField,
+  updateVideoEditSettings,
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
-import { TSelection } from "types/types";
+import { TRush } from "types/types";
 import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
 import { addCommas } from "utils/truncateString";
 import ZoneSelector from "pages/NewRequest/components/ZoneSelector/ZoneSelector";
+import RushTimeSelector from "pages/NewRequest/components/RushTimeSelector/RushTimeSelector";
 
-const IsTravelRequired = () => {
+const ResultTime = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isError, setIsError] = useState(false);
   const selectedRequest = useSelector(selectRequestInfo);
-  const travel = selectedRequest?.logisticSettings.travel;
-  const selection = travel?.selection;
-  const zoneCode = travel?.zoneCode;
+  const resultTime = selectedRequest?.videoSettings.resultTime;
+  const time = selectedRequest?.videoSettings.time;
   const containerRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (selection === NO || (selection === YES && zoneCode?.name !== null)) {
+    if (resultTime === STANDARD_TIME || (resultTime === RUSH_TIME && time?.name !== null)) {
       setIsError(false);
     }
-  }, [selection]);
+  }, [resultTime]);
   const handleBlur = (event: React.FocusEvent<HTMLDivElement>) => {
     if (
       containerRef.current &&
@@ -42,29 +42,32 @@ const IsTravelRequired = () => {
     ) {
       return;
     }
-    if (selection === YES && zoneCode?.name === null) {
+    if (resultTime === RUSH_TIME && time?.name === null) {
       setIsError(true);
       setIsExpanded(true);
     }
-    if (selection === YES && zoneCode?.name !== null) {
+    if (resultTime === RUSH_TIME && time?.name !== null) {
       setIsError(false);
       setIsExpanded(false);
     }
-    if (selection === NO) {
+    if (resultTime === STANDARD_TIME) {
       setIsExpanded(false);
     }
   };
-  const handleSelect = (selection: TSelection) => {
-    if (selection === YES) {
+  const handleSelect = (selection: TRush) => {
+    if (selection === RUSH_TIME) {
       !isExpanded && setIsExpanded(true);
     } else {
       setIsExpanded(false);
     }
-    dispatch(
-      updateDraftField({
-        path: "logisticSettings.travel.selection",
-        value: selection,
-      }),
+    selectedRequest?.videoSettings && dispatch(
+      updateVideoEditSettings({
+        videoSettings: {
+          ...selectedRequest?.videoSettings,
+          resultTime: selection
+        },
+        isEdit: false
+      })
     );
   };
   const handleZoneCode = () => {
@@ -89,9 +92,9 @@ const IsTravelRequired = () => {
       <div
         className={`
         ${styles.box} 
-        ${selection === NO ? styles.box_selected : ""}`}
+        ${resultTime === STANDARD_TIME ? styles.box_selected : ""}`}
         onClick={() => {
-          handleSelect(NO);
+          handleSelect(STANDARD_TIME);
         }}
       >
         <div
@@ -101,7 +104,7 @@ const IsTravelRequired = () => {
         >
           <img
             className={styles.box_circle}
-            src={selection === NO ? CheckBoxSelected : CheckBox}
+            src={resultTime === STANDARD_TIME ? CheckBoxSelected : CheckBox}
             alt="CheckBox"
           />
           <div className={styles.box_title}>Lightning Fast (Standard)</div>
@@ -114,20 +117,20 @@ const IsTravelRequired = () => {
         className={`
         ${styles.box}
         ${styles.box_xl}
-        ${selection === YES ? styles.box_selected : ""} 
+        ${resultTime === RUSH_TIME ? styles.box_selected : ""} 
         ${isExpanded ? styles.box_expanded : ""}`}
         onClick={() => {
-          handleSelect(YES);
+          handleSelect(RUSH_TIME);
         }}
       >
         <div
           className={`
           ${styles.box_header2} 
-          ${selection === YES ? styles.box_header_selected : ""} `}
+          ${resultTime === RUSH_TIME ? styles.box_header_selected : ""} `}
         >
           <img
             className={styles.box_circle}
-            src={selection === YES ? CheckBoxSelected : CheckBox}
+            src={resultTime === RUSH_TIME ? CheckBoxSelected : CheckBox}
             alt="CheckBox"
           />
           <span className={styles.box_title}>
@@ -148,9 +151,9 @@ const IsTravelRequired = () => {
                 Premium Add-on:
                 <span className={styles.box_content_info_header_addOn}>
                   +$
-                  {zoneCode?.value === 0
+                  {time?.value === 0
                     ? "TBD"
-                    : zoneCode?.value && addCommas(zoneCode?.value)}
+                    : time?.value && addCommas(time?.value)}
                 </span>
               </div>
               <div className={styles.box_content_info_text}>
@@ -161,7 +164,7 @@ const IsTravelRequired = () => {
                 and related expenses.
               </div>
               <div className={styles.box_zone}>
-                <ZoneSelector
+                <RushTimeSelector
                   onChange={handleZoneCode}
                   isError={isError}
                   isEdit={false}
@@ -187,4 +190,4 @@ const IsTravelRequired = () => {
   );
 };
 
-export default IsTravelRequired;
+export default ResultTime;

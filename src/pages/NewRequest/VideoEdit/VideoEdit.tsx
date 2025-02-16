@@ -1,5 +1,4 @@
 import {
-  ArrowGray,
   ArrowGray3,
   ArrowGray4,
   DetailsGreen,
@@ -20,7 +19,7 @@ import AdditionalFormatsBox from "./components/AdditionalFormats/AdditionalForma
 import AdditionalVisualAssetsBox from "./components/AdditionalVisualAssets/AdditionalVisualAssets";
 import CaptionBox from "./components/CaptionBox";
 import FormatBox from "./components/FormatBox";
-import IsTravelRequired from "./components/IsTravelRequiredBox";
+import IsTravelRequired from "./components/ResultTime";
 import ThumbnailBox from "./components/Thumbnail/ThumbnailBox";
 import VideoTargetDurationBox from "./components/VideoTargetDuration";
 

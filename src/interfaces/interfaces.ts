@@ -136,6 +136,10 @@ export interface IVideoSettings {
   additionalVisualAssetFile: File | 'default';
   additionalVisualAssetUrl: string;
   resultTime: TRush;
+  time: {
+    name: string | null;
+    value: number;
+  };
 }
 export interface IRequest {
   id: string;

@@ -50,8 +50,8 @@ export const NO_THUMBNAIL = "No thumbnail";
 export const BASIC_THUMBNAIL = "Basic thumbnail";
 export const CUSTOM_THUMBNAIL = "Custom thumbnail";
 
-export const RUSH_TIME = "rush time";
-export const STANDARD_TIME = "standard time";
+export const RUSH_TIME = "Rush time";
+export const STANDARD_TIME = "Standard time";
 
 export const DEFAULT = "default";
 export const OWN_SCRIPT = "Own script";
@@ -410,6 +410,23 @@ export const zonesList = [
     id: generateUniqueId(),
     name: "Zone 5 (501+ Miles)",
     value: 1495,
+  },
+];
+export const rushTimeList = [
+  {
+    id: generateUniqueId(),
+    name: "3-7 Days",
+    value: 195,
+  },
+  {
+    id: generateUniqueId(),
+    name: "1-3 Days",
+    value: 395,
+  },
+  {
+    id: generateUniqueId(),
+    name: "Next Day (Guaranteed)",
+    value: 795,
   },
 ];
 

@@ -128,6 +128,10 @@ export const requestsInitialState: IRequest[] = [
             additionalVisualAssetFile: DEFAULT,
             additionalVisualAssetUrl: '',
             resultTime: DEFAULT,
+            time: {
+                name: null,
+                value: 0,
+            },
         },
     },
     {
@@ -259,6 +263,10 @@ export const requestsInitialState: IRequest[] = [
             additionalVisualAssetFile: DEFAULT,
             additionalVisualAssetUrl: '',
             resultTime: DEFAULT,
+            time: {
+                name: null,
+                value: 0,
+            },
         },
     },
 ]

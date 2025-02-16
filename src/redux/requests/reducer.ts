@@ -156,6 +156,10 @@ const requestReducer = createSlice({
           additionalVisualAssetFile: DEFAULT,
           additionalVisualAssetUrl: '',
           resultTime: DEFAULT,
+          time: {
+            name: null,
+            value: 0,
+          },
         },
       });
       state.selectedRequest = id;

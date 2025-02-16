@@ -4247,13 +4247,12 @@
   justify-content: space-between;
 }
 .videoFormat {
-
   display: flex;
   align-items: baseline;
   flex-direction: column;
   gap: 16px;
   @media screen and (max-width: 768px) {
-    width:100%;
+    width: 100%;
     margin-top: 12px;
   }
   &_header {
@@ -4849,6 +4848,180 @@
     position: absolute;
     right: 0;
     bottom: -215px;
+    width: 100%;
+
+    border-radius: 6px;
+    border: 1px solid var(--gray-light3);
+  }
+  &__item {
+    z-index: 6;
+    min-height: 41px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--gray-dark);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: relative;
+    &_name {
+      width: 100%;
+      text-align: left;
+      padding: 0px 10px;
+      font-family: Inter;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16.8px;
+      text-align: left;
+    }
+    &__itemArrow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateY(-50%) translateX(-50%);
+    }
+  }
+  &__item:hover {
+    background: var(--gray-light8);
+  }
+}
+.rushDropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  transition-duration: 0.2s;
+  user-select: none;
+  width: 100%;
+  position: relative;
+  min-width: 257px;
+  @media screen and (max-width: 768px) {
+    min-width: unset;
+    height: unset;
+  }
+  &_error {
+    min-height: 80px;
+  }
+  &_headerSubmit {
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 19.2px;
+    text-align: left;
+    color: var(--gray-dark3);
+    margin: 0;
+  }
+  &_header {
+    font-family: Poppins;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+    text-align: left;
+    color: var(--gray-dark3);
+    @media screen and (max-width: 768px) {
+      font-family: Inter;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 16.8px;
+      letter-spacing: 0.02em;
+      text-align: left;
+      margin-top: 10px;
+      margin-bottom: 3px;
+    }
+  }
+  &__selected {
+    z-index: 5;
+    min-height: 41px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 6px;
+    position: relative;
+    margin-bottom: 5px;
+    border: 1px solid var(--gray-light3);
+    color: var(--gray-dark);
+    position: relative;
+    padding-right: 15px;
+    &_submit {
+      border: 1px solid var(--gray-light7);
+      min-height: 35px;
+    }
+    &_error {
+      border: 1px solid var(--red);
+      margin-bottom: 30px;
+    }
+    &_name {
+      width: 100%;
+      text-align: left;
+      padding: 0px 10px;
+      font-family: Inter;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16.8px;
+      text-align: left;
+
+      &_submit {
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19.2px;
+      }
+
+      span {
+        color: var(--gray-light5);
+      }
+    }
+    &__itemArrow {
+      height: 25px;
+      width: 25px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateY(-50%) translateX(-50%);
+    }
+    &_arrow {
+      top: 50%;
+      right: 5px;
+      position: absolute;
+      transform: translateY(-50%);
+      transition-duration: 0.3s;
+    }
+    &_arrowOpened {
+      transform: translateY(-50%) rotate(180deg);
+    }
+    &_errorMessage {
+      position: absolute;
+      bottom: -25px;
+      font-family: Inter;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16.8px;
+      text-align: left;
+      color: var(--red);
+    }
+    &_collapseIcon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 8px;
+      transition-duration: 0.3s;
+      &_opened {
+        transform: translateY(-50%) rotate(180deg);
+      }
+    }
+  }
+  &__itemsContainer {
+    background-color: var(--white);
+    min-height: 123px;
+    max-height: 123px;
+    height: 123px;
+    z-index: 10;
+    overflow: scroll;
+    position: absolute;
+    right: 0;
+    bottom: -123px;
     width: 100%;
 
     border-radius: 6px;

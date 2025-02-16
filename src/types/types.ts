@@ -101,7 +101,7 @@ export type TQuestionAuthor = "default" | "Client" | "Professional Author";
 export type TQuestionLocation = "default" | "Questions on location" | "Questions virtually" | "Virtual interview";
 export type TVoiceAuthor = "default" | "Own track" | "Professional track";
 export type TThumbnail = "default" | "Custom thumbnail" | "Basic thumbnail" | "No thumbnail";
-export type TRush = "rush time" | "standard time" | "default";
+export type TRush = "Rush time" | "Standard time" | "default";
 export type TTextStatus = 'default' | 'Approved' | 'In Progress' | 'Unavailable';
 export type TDraftFieldUpdate = {
   path: string;
