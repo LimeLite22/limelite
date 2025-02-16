@@ -2,28 +2,22 @@ import { CalendarIcon2 } from "assets/images";
 import { DEFAULT } from "consts/consts";
 import { format } from "date-fns";
 import Calendar from "pages/NewRequest/Logistics/components/Calendar/Calendar";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useCalculateFinalPrice } from "utils/priceCalculator";
 
-import { selectRequestInfo, updateAddOnLocation, updateLogisticInfoSettings } from "../../../../redux/requests/reducer";
+import { selectRequestInfo, updateLogisticInfoSettings } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 interface IProps {
     isEdit: boolean;
-    setIsEdit: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const AddOnDate = ({ isEdit, setIsEdit }: IProps) => {
+const AddOnDate = ({ isEdit }: IProps) => {
     const selectedRequest = useSelector(selectRequestInfo);
     const [isOpen, setIsOpen] = useState(false);
-    const [current, setCurrent] = useState(selectedRequest?.logisticSettings.location);
     const { list } = useCalculateFinalPrice();
     const price = (list.rushDay + list.weekEnd);
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        current && dispatch(updateAddOnLocation(current))
-    }, [])
     //  зробити логіку роздлення відображення після тесту
     // if (selectedRequest?.scriptSettings.scriptWriter !== PROFESSIONAL_SCRIPT) return null
     // if (selectedRequest?.scriptSettings.scriptWriter !== OWN_SCRIPT) return null

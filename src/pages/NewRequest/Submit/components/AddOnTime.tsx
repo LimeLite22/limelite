@@ -1,26 +1,19 @@
 
 import { DEFAULT } from "consts/consts";
 import TimeSelector from "pages/NewRequest/Logistics/components/Calendar/TimeSelector";
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useCalculateFinalPrice } from "utils/priceCalculator";
 
-import { selectRequestInfo, updateAddOnLocation, updateLogisticInfoSettings } from "../../../../redux/requests/reducer";
+import { selectRequestInfo, updateLogisticInfoSettings } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 interface IProps {
     isEdit: boolean;
-    setIsEdit: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const AddOnTime = ({ isEdit, setIsEdit }: IProps) => {
+const AddOnTime = ({ isEdit }: IProps) => {
     const selectedRequest = useSelector(selectRequestInfo);
-    const [current, setCurrent] = useState(selectedRequest?.logisticSettings.location);
     const { list } = useCalculateFinalPrice();
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        current && dispatch(updateAddOnLocation(current))
-    }, [])
     //  зробити логіку роздлення відображення після тесту
     // if (selectedRequest?.scriptSettings.scriptWriter !== PROFESSIONAL_SCRIPT) return null
     // if (selectedRequest?.scriptSettings.scriptWriter !== OWN_SCRIPT) return null

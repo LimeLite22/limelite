@@ -1,25 +1,17 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useCalculateFinalPrice } from "utils/priceCalculator";
 
-import { selectRequestInfo, updateAddOnLocation } from "../../../../redux/requests/reducer";
+import { selectRequestInfo } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 import LocationSelector from "./LocationSelector/LocationSelector";
 interface IProps {
     isEdit: boolean;
-    setIsEdit: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const AddOnLocation = ({ isEdit, setIsEdit }: IProps) => {
+const AddOnLocation = ({ isEdit }: IProps) => {
     const selectedRequest = useSelector(selectRequestInfo);
-    const [current, setCurrent] = useState(selectedRequest?.logisticSettings.location);
     const { list } = useCalculateFinalPrice();
     const price = list.locationType2 || list.locationType3 || 0;
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        current && dispatch(updateAddOnLocation(current))
-    }, [])
     //  зробити логіку роздлення відображення після тесту
     // if (selectedRequest?.scriptSettings.scriptWriter !== PROFESSIONAL_SCRIPT) return null
     // if (selectedRequest?.scriptSettings.scriptWriter !== OWN_SCRIPT) return null

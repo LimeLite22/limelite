@@ -1,4 +1,4 @@
-import { CloseRed, Divider, EditIcon, Success2 } from "assets/images";
+import { CloseRed, Divider, EditIcon } from "assets/images";
 import { useState } from "react";
 import { useCalculateFinalPrice } from "utils/priceCalculator";
 
@@ -39,17 +39,17 @@ const AddOnsContainer = () => {
                         onClick={handleDecline}><img src={CloseRed} alt='' /><div>Decline</div></div>
                 </div>}
         </div>
-        <AddOnLocation isEdit={isEdit} setIsEdit={setIsEdit} />
-        <AddOnZone isEdit={isEdit} setIsEdit={setIsEdit} />
-        <AddOnDate isEdit={isEdit} setIsEdit={setIsEdit} />
-        <AddOnTime isEdit={isEdit} setIsEdit={setIsEdit} />
-        <AddOnScript isEdit={isEdit} setIsEdit={setIsEdit} />
-        <AddOnInterviewQuestions isEdit={isEdit} setIsEdit={setIsEdit} />
-        <AddOnInterviewConduction isEdit={isEdit} setIsEdit={setIsEdit} />
-        <AddOnVoiceoverScript isEdit={isEdit} setIsEdit={setIsEdit} />
-        <AddOnVoiceoverTrack isEdit={isEdit} setIsEdit={setIsEdit} />
-        <AddOnThumbnail isEdit={isEdit} setIsEdit={setIsEdit} />
-        <AddOnAdditionalFormats isEdit={isEdit} setIsEdit={setIsEdit} />
+        <AddOnLocation isEdit={isEdit} />
+        <AddOnZone isEdit={isEdit} />
+        <AddOnDate isEdit={isEdit} />
+        <AddOnTime isEdit={isEdit} />
+        <AddOnScript isEdit={isEdit} />
+        <AddOnInterviewQuestions isEdit={isEdit} />
+        <AddOnInterviewConduction isEdit={isEdit} />
+        <AddOnVoiceoverScript isEdit={isEdit} />
+        <AddOnVoiceoverTrack isEdit={isEdit} />
+        <AddOnThumbnail isEdit={isEdit} />
+        <AddOnAdditionalFormats isEdit={isEdit} />
         {
             list.rushHour > 0 &&
             <div className={styles.infoContainer_priceItem}>

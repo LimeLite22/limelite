@@ -1,26 +1,13 @@
-
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useCalculateFinalPrice } from "utils/priceCalculator";
 
-import { selectRequestInfo, updateAddOnLocation } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 import InterviewQuestionsSelector from "./InterviewAuthorSelector/InterviewQuestionsSelector";
-import ScriptSelector from "./ScriptSelector/ScriptSelector";
 interface IProps {
     isEdit: boolean;
-    setIsEdit: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const AddOnInterviewQuestions = ({ isEdit, setIsEdit }: IProps) => {
-    const selectedRequest = useSelector(selectRequestInfo);
-    const [current, setCurrent] = useState(selectedRequest?.logisticSettings.location);
-    const dispatch = useDispatch();
+const AddOnInterviewQuestions = ({ isEdit }: IProps) => {
     const { list } = useCalculateFinalPrice();
-
-    useEffect(() => {
-        current && dispatch(updateAddOnLocation(current))
-    }, [])
     //  зробити логіку роздлення відображення після тесту
     // if (selectedRequest?.scriptSettings.scriptWriter !== PROFESSIONAL_SCRIPT) return null
     // if (selectedRequest?.scriptSettings.scriptWriter !== OWN_SCRIPT) return null
