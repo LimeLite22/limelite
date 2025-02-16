@@ -24,7 +24,7 @@ const AddOnTypeAddOn = ({ addOn }: IProps) => {
         <>
 
             <>
-                <div className={styles.infoContainer_priceItem}>
+                <div className={styles.infoContainer_priceItem} style={{ marginBottom: '15px' }}>
                     {addOn.header}  <img
                         onClick={() => setOpened(!isOpened)}
                         src={CloseCalendar}
