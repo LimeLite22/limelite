@@ -1,6 +1,5 @@
 
-import { useDispatch, useSelector } from "react-redux";
-import { useCalculateFinalPrice } from "utils/priceCalculator";
+import { useSelector } from "react-redux";
 
 import { selectRequestInfo } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
@@ -10,12 +9,6 @@ interface IProps {
 }
 const AddOnTypeAddOns = ({ isEdit }: IProps) => {
     const selectedRequest = useSelector(selectRequestInfo);
-    const { list } = useCalculateFinalPrice();
-    const dispatch = useDispatch();
-    //  зробити логіку роздлення відображення після тесту
-    // if (selectedRequest?.scriptSettings.scriptWriter !== PROFESSIONAL_SCRIPT) return null
-    // if (selectedRequest?.scriptSettings.scriptWriter !== OWN_SCRIPT) return null
-
 
     return (
         <>

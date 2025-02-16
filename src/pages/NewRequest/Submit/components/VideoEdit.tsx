@@ -243,7 +243,7 @@ const VideoEdit = () => {
             <div className={styles.infoContainer_text}>
                 <p>Additional/social formats</p>
                 {isEdit ?
-                    <div>
+                    <>
                         <div className={styles.videoFormat}>
                             {current?.additionalFormats?.map(
                                 (item, index) => {
@@ -275,7 +275,7 @@ const VideoEdit = () => {
                         >
                             <img src={Add2} alt="locationIcon" /> Add an additional format
                         </div>
-                    </div>
+                    </>
                     : <div>
                         {videoSettings?.selectedAdditionalFormats?.map((item, index) => {
                             return (

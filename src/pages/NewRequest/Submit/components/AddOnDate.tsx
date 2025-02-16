@@ -18,19 +18,19 @@ const AddOnDate = ({ isEdit }: IProps) => {
     const { list } = useCalculateFinalPrice();
     const price = (list.rushDay + list.weekEnd);
     const dispatch = useDispatch();
-    //  зробити логіку роздлення відображення після тесту
-    // if (selectedRequest?.scriptSettings.scriptWriter !== PROFESSIONAL_SCRIPT) return null
-    // if (selectedRequest?.scriptSettings.scriptWriter !== OWN_SCRIPT) return null
 
+    if (price === 0) return null
 
     return (
         <>
             {!isEdit ?
                 <>
-                    <div className={styles.infoContainer_priceItem}>
+                    {list.weekEnd > 0 && <div className={styles.infoContainer_priceItem}>
                         Weekend date <p>{list.weekEnd}<span>.00</span></p></div>
-                    <div className={styles.infoContainer_priceItem}>
-                        Rush date <p>{list.rushDay}<span>.00</span></p></div>
+                    }
+                    {list.rushDay > 0 &&
+                        <div className={styles.infoContainer_priceItem}>
+                            Rush date <p>{list.rushDay}<span>.00</span></p></div>}
                 </>
                 :
                 <div className={`

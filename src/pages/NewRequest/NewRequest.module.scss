@@ -4247,13 +4247,15 @@
   justify-content: space-between;
 }
 .videoFormat {
-  @media screen and (max-width: 768px) {
-    margin-top: 12px;
-  }
+
   display: flex;
   align-items: baseline;
   flex-direction: column;
   gap: 16px;
+  @media screen and (max-width: 768px) {
+    width:100%;
+    margin-top: 12px;
+  }
   &_header {
     font-family: Inter;
     font-size: 14px;

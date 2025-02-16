@@ -14,10 +14,9 @@ const AddOnTime = ({ isEdit }: IProps) => {
     const selectedRequest = useSelector(selectRequestInfo);
     const { list } = useCalculateFinalPrice();
     const dispatch = useDispatch();
-    //  зробити логіку роздлення відображення після тесту
-    // if (selectedRequest?.scriptSettings.scriptWriter !== PROFESSIONAL_SCRIPT) return null
-    // if (selectedRequest?.scriptSettings.scriptWriter !== OWN_SCRIPT) return null
 
+
+    if (list.rushHour === 0) return null
 
     return (
         <>

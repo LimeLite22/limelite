@@ -28,31 +28,34 @@ const AddOnsContainer = () => {
     }
 
     return <div className={styles.infoContainer}>
-        <div className={styles.infoContainer_header}>Requested Add-ons
-            {!isEdit &&
-                <div className={styles.infoContainer_header_edit} onClick={handleOnEdit}>
-                    <img src={EditIcon} alt='' />
-                    Edit</div>}
-            {isEdit &&
-                <div className={styles.infoContainer_header_buttons}>
-                    <div
-                        className={styles.infoContainer_header_decline}
-                        onClick={handleDecline}><img src={CloseRed} alt='' /><div>Decline</div></div>
-                </div>}
-        </div>
-        <AddOnLocation isEdit={isEdit} />
-        <AddOnZone isEdit={isEdit} />
-        <AddOnDate isEdit={isEdit} />
-        <AddOnTime isEdit={isEdit} />
-        <AddOnScript isEdit={isEdit} />
-        <AddOnInterviewQuestions isEdit={isEdit} />
-        <AddOnInterviewConduction isEdit={isEdit} />
-        <AddOnVoiceoverScript isEdit={isEdit} />
-        <AddOnVoiceoverTrack isEdit={isEdit} />
-        <AddOnThumbnail isEdit={isEdit} />
-        <AddOnAdditionalFormats isEdit={isEdit} />
-        <AddOnTypeAddOns isEdit={isEdit} />
-        <img src={Divider} alt='' className={styles.infoContainer_divider} />
+        {price > 0 &&
+            <>
+                <div className={styles.infoContainer_header}>Requested Add-ons
+                    {!isEdit &&
+                        <div className={styles.infoContainer_header_edit} onClick={handleOnEdit}>
+                            <img src={EditIcon} alt='' />
+                            Edit</div>}
+                    {isEdit &&
+                        <div className={styles.infoContainer_header_buttons}>
+                            <div
+                                className={styles.infoContainer_header_decline}
+                                onClick={handleDecline}><img src={CloseRed} alt='' /><div>Decline</div></div>
+                        </div>}
+                </div>
+                <AddOnLocation isEdit={isEdit} />
+                <AddOnZone isEdit={isEdit} />
+                <AddOnDate isEdit={isEdit} />
+                <AddOnTime isEdit={isEdit} />
+                <AddOnScript isEdit={isEdit} />
+                <AddOnInterviewQuestions isEdit={isEdit} />
+                <AddOnInterviewConduction isEdit={isEdit} />
+                <AddOnVoiceoverScript isEdit={isEdit} />
+                <AddOnVoiceoverTrack isEdit={isEdit} />
+                <AddOnThumbnail isEdit={isEdit} />
+                <AddOnAdditionalFormats isEdit={isEdit} />
+                <AddOnTypeAddOns isEdit={isEdit} />
+                <img src={Divider} style={{ width: "100%" }} alt='' className={styles.infoContainer_divider} />
+            </>}
         <div className={styles.infoContainer_totalPrice}>
             Estimated Price:   <p>{price}<span>.00</span></p>
         </div>
