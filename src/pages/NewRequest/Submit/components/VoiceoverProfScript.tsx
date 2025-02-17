@@ -4,30 +4,24 @@ import { TRACK_AUTHOR_CLIENT } from "consts/consts";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectRequestInfo, updateDraftField } from "../../../../redux/requests/reducer";
+import { selectRequestInfo, updateDraftField, updateVoiceoverSettings } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 const VoiceoverProfScript = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const dispatch = useDispatch();
-    const voiceTrackSettings = selectedRequest?.voiceTrackSettings.scriptAuthorProfSettings
-    const defaultState = {
-        expert: voiceTrackSettings?.subject,
-        phone: voiceTrackSettings?.phone,
-        email: voiceTrackSettings?.email,
-        backgroundInfo: voiceTrackSettings?.backgroundInfo,
-    }
+    const voiceTrackSettings = selectedRequest!.voiceTrackSettings;
     const [isEdit, setIsEdit] = useState(false);
     const [isReady, setIsReady] = useState(false);
-    const [current, setCurrent] = useState(defaultState);
+    const [current, setCurrent] = useState(selectedRequest!.voiceTrackSettings);
 
     const readyToSave = () => {
         let ready = true;
-        if (current.expert !== voiceTrackSettings?.subject
-            || current.phone !== voiceTrackSettings?.phone
-            || current.email !== voiceTrackSettings?.email
-            || current.backgroundInfo !== voiceTrackSettings?.backgroundInfo
+        if (current?.scriptAuthorProfSettings.subject !== voiceTrackSettings?.scriptAuthorProfSettings.subject
+            || current?.scriptAuthorProfSettings.phone !== voiceTrackSettings?.scriptAuthorProfSettings.phone
+            || current?.scriptAuthorProfSettings.email !== voiceTrackSettings?.scriptAuthorProfSettings.email
+            || current?.scriptAuthorProfSettings.backgroundInfo !== voiceTrackSettings?.scriptAuthorProfSettings.backgroundInfo
         ) {
-            if (current.expert?.length !== 0 && current.email?.length !== 0) {
+            if (current?.scriptAuthorProfSettings.subject?.length !== 0 && current?.scriptAuthorProfSettings.email?.length !== 0) {
                 ready = true
             } else {
                 ready = false
@@ -43,44 +37,26 @@ const VoiceoverProfScript = () => {
     }
     const handleDecline = () => {
         setIsEdit(false);
-        setCurrent(defaultState);
+        setCurrent(selectedRequest!.voiceTrackSettings);
     }
     const handleSave = () => {
         if (!isReady) return
+
         dispatch(
-            updateDraftField({
-                path: "voiceTrackSettings.scriptAuthorProfSettings.subject",
-                value: current.expert,
-            }),
-        );
-        dispatch(
-            updateDraftField({
-                path: "voiceTrackSettings.scriptAuthorProfSettings.phone",
-                value: current.phone,
-            })
+            updateVoiceoverSettings({
+                voiceTrackSettings: current,
+                isEdit: false
+            }
+            )
         )
-        dispatch(
-            updateDraftField({
-                path: "voiceTrackSettings.scriptAuthorProfSettings.email",
-                value: current.email,
-            })
-        )
-        dispatch(
-            updateDraftField({
-                path: "voiceTrackSettings.scriptAuthorProfSettings.backgroundInfo",
-                value: current.backgroundInfo,
-            })
-        )
-        setCurrent(defaultState);
         setIsEdit(false);
     }
+
     useEffect(() => {
         readyToSave();
     }, [current])
-    useEffect(() => {
-        setCurrent(defaultState);
-    }, [selectedRequest])
-    // if (selectedRequest?.voiceTrackSettings.trackAuthor !== TRACK_AUTHOR_CLIENT) return null
+
+    if (selectedRequest?.voiceTrackSettings.trackAuthor !== TRACK_AUTHOR_CLIENT) return null
     return (
         <div className={styles.infoContainer}>
             <div className={styles.infoContainer_header}>About Your Voiceover
@@ -109,9 +85,9 @@ const VoiceoverProfScript = () => {
                 {isEdit ?
                     <input
                         className={styles.infoContainer_input}
-                        value={current.expert}
-                        onChange={(e) => setCurrent({ ...current, expert: e.target.value })}
-                        type="text" /> : voiceTrackSettings?.subject}
+                        value={current.scriptAuthorProfSettings.subject}
+                        onChange={(e) => setCurrent({ ...current, scriptAuthorProfSettings: { ...current.scriptAuthorProfSettings, subject: e.target.value } })}
+                        type="text" /> : voiceTrackSettings?.scriptAuthorProfSettings.subject}
 
             </div>
 
@@ -119,28 +95,28 @@ const VoiceoverProfScript = () => {
                 {isEdit ?
                     <input
                         className={styles.infoContainer_input}
-                        value={current.phone}
+                        value={current.scriptAuthorProfSettings.phone}
 
-                        onChange={(e) => setCurrent({ ...current, phone: Number(e.target.value) })}
-                        type="text" /> : voiceTrackSettings?.phone}
+                        onChange={(e) => setCurrent({ ...current, scriptAuthorProfSettings: { ...current.scriptAuthorProfSettings, phone: Number(e.target.value) } })}
+                        type="text" /> : voiceTrackSettings?.scriptAuthorProfSettings.phone}
             </div>
 
             <div className={styles.infoContainer_text}><p>Email:</p>
                 {isEdit ?
                     <input
                         className={styles.infoContainer_input}
-                        value={current.email}
-                        onChange={(e) => setCurrent({ ...current, email: e.target.value })}
-                        type="text" /> : voiceTrackSettings?.email}
+                        value={current.scriptAuthorProfSettings.email}
+                        onChange={(e) => setCurrent({ ...current, scriptAuthorProfSettings: { ...current.scriptAuthorProfSettings, email: e.target.value } })}
+                        type="text" /> : voiceTrackSettings?.scriptAuthorProfSettings.email}
             </div>
 
             <div className={styles.infoContainer_text}><p>Background information for interview(s):</p>
                 {isEdit ?
                     <input
                         className={styles.infoContainer_input}
-                        value={current.backgroundInfo}
-                        onChange={(e) => setCurrent({ ...current, backgroundInfo: e.target.value })}
-                        type="text" /> : voiceTrackSettings?.backgroundInfo}
+                        value={current.scriptAuthorProfSettings.backgroundInfo}
+                        onChange={(e) => setCurrent({ ...current, scriptAuthorProfSettings: { ...current.scriptAuthorProfSettings, backgroundInfo: e.target.value } })}
+                        type="text" /> : voiceTrackSettings?.scriptAuthorProfSettings.backgroundInfo}
             </div>
         </div >
     )

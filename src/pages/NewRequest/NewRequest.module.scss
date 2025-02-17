@@ -2721,7 +2721,6 @@
   &_drop {
     position: relative;
     height: 100%;
-    width: 100%;
     padding: 24px 12px 24px 12px;
     width: 512px;
     height: 203px;
@@ -2732,6 +2731,13 @@
     @media screen and (max-width: 768px) {
       width: 100%;
       margin-bottom: 12px;
+    }
+    &_submit {
+      width: 100%;
+    }
+    &_icon {
+      width: 100px !important;
+      height: unset !important;
     }
     &_error {
       border: 2px dashed var(--red-dark);
@@ -2756,6 +2762,11 @@
 
       color: var(--gray-dark);
       margin: 12px 0px;
+      &_submit {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
       span {
         color: var(--blue-dark);
       }

@@ -44,11 +44,9 @@ const ProjectInfo = () => {
     }
     const handleDecline = () => {
         setIsEdit(false);
-        // setCurrent(defaultState);
     }
     const handleSave = () => {
         if (!isReady) return
-        // setCurrent(defaultState);
         dispatch(
             updateProjectInfoSettings({ projectInfoSettings: ePIS, isEdit: false }),
         )

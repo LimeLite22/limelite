@@ -1,5 +1,8 @@
 import { ArrowGray3, ArrowGray4 } from "assets/images";
+import { INTERVIEW_STEP, LOGISTICS_STEP, SCRIPT_STEP, VIDEO_EDIT_STEP, VOICEOVER_STEP } from "consts/consts";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { selectSteps } from "../../../redux/requests/reducer";
 
 import BackButton from "../components/BackButton";
 import NextButton from "../components/NextButton"
@@ -15,6 +18,7 @@ import VoiceoverProfScript from "./components/VoiceoverProfScript";
 import VoiceoverOwnScript from "./components/VoiceverOwnScript";
 
 const Submit = () => {
+    const steps = useSelector(selectSteps);
     return (
         <>
             <StepsNavigation />
@@ -40,12 +44,12 @@ const Submit = () => {
                     click ‘Go back’ or ‘Edit’ below.
                 </div>
                 <ProjectInfo />
-                <LogisticInfo />
-                <ScriptInfo />
-                <InterviewProffScript />
-                <VoiceoverOwnScript />
-                <VoiceoverProfScript />
-                <VideoEdit />
+                {steps.includes(LOGISTICS_STEP) && <LogisticInfo />}
+                {steps.includes(SCRIPT_STEP) && <ScriptInfo />}
+                {steps.includes(INTERVIEW_STEP) && <InterviewProffScript />}
+                {steps.includes(VOICEOVER_STEP) && <VoiceoverOwnScript />}
+                {steps.includes(VOICEOVER_STEP) && <VoiceoverProfScript />}
+                {steps.includes(VIDEO_EDIT_STEP) && <VideoEdit />}
                 <AddOnsContainer />
                 <div className={styles.nR_submitContainer_agreement} >
 

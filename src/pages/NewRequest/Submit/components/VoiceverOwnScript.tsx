@@ -1,36 +1,28 @@
 
 import { ArrowBlue3, CloseRed, EditIcon, StatusApproved, StatusProgress, StatusUnavailable, Success2, Audio, Delete, Download } from "assets/images";
-import { APPROVED_TEXT_STATUS, DEFAULT, IN_PROGRESS_TEXT_STATUS, QUESTIONS_ON_LOCATION, TRACK_AUTHOR_CLIENT, TRACK_AUTHOR_PROFESSIONAL, UNAVAILABLE_TEXT_STATUS, VIRTUAL_INTERVIEW } from "consts/consts";
+import { APPROVED_TEXT_STATUS, DEFAULT, IN_PROGRESS_TEXT_STATUS, TRACK_AUTHOR_PROFESSIONAL, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectRequestInfo, updateDraftField } from "../../../../redux/requests/reducer";
+import { selectRequestInfo, updateVoiceoverSettings } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 const VoiceoverOwnScript = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const dispatch = useDispatch();
-    const text = selectedRequest?.voiceTrackSettings.scriptAuthorOwnSettings.text;
-    const status = selectedRequest?.voiceTrackSettings.scriptAuthorOwnSettings.scriptStatus;
-    const defaultState = {
-        status,
-        text,
-        file: selectedRequest?.voiceTrackSettings.track
-    }
     const [isEdit, setIsEdit] = useState(false);
     const [isReady, setIsReady] = useState(false);
-    const [current, setCurrent] = useState(defaultState);
+    const [current, setCurrent] = useState(selectedRequest!.voiceTrackSettings);
     const [error, setError] = useState<string | null>(null);
     const [isDetailsExpanded, setIsDetailsExpanded] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
-    const isDetailTextBig = text
-        && text.length > 200;
+    const isDetailTextBig = selectedRequest!.voiceTrackSettings.scriptAuthorOwnSettings.text.length > 200;
 
     const readyToSave = () => {
         let ready = true;
-        if (current.text !== text
-            || current.status !== status
+        if (selectedRequest!.voiceTrackSettings.scriptAuthorOwnSettings.text !== current.scriptAuthorOwnSettings.text
+            || selectedRequest!.voiceTrackSettings.scriptAuthorOwnSettings.scriptStatus !== current.scriptAuthorOwnSettings.scriptStatus
         ) {
-            if (current.text?.length !== 0) {
+            if (current.scriptAuthorOwnSettings.text?.length !== 0) {
                 ready = true
             } else {
                 ready = false
@@ -46,7 +38,7 @@ const VoiceoverOwnScript = () => {
     }
     const handleDecline = () => {
         setIsEdit(false);
-        setCurrent(defaultState);
+        setCurrent(selectedRequest!.voiceTrackSettings);
     }
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const uploadedFile = event.target.files?.[0];
@@ -55,10 +47,10 @@ const VoiceoverOwnScript = () => {
             const allowedExtensions = ["audio/mpeg", "audio/wav", "audio/aiff"];
             if (allowedExtensions.includes(uploadedFile.type)) {
                 setError(null);
-                setCurrent((prev) => ({ ...prev, file: uploadedFile }))
+                setCurrent({ ...current, track: uploadedFile })
             } else {
                 setError("Файл повинен бути формату MP3, WAV або AIFF");
-                setCurrent((prev) => ({ ...prev, file: DEFAULT }))
+                setCurrent({ ...current, track: DEFAULT })
             }
         }
     };
@@ -67,36 +59,20 @@ const VoiceoverOwnScript = () => {
     };
     const handleSave = () => {
         if (!isReady) return
+
+
         dispatch(
-            updateDraftField({
-                path: "voiceTrackSettings.scriptAuthorOwnSettings.text",
-                value: current.text,
-            }),
-        );
-        dispatch(
-            updateDraftField({
-                path: "voiceTrackSettings.scriptAuthorOwnSettings.scriptStatus",
-                value: current.status,
-            })
+            updateVoiceoverSettings({
+                voiceTrackSettings: current,
+                isEdit: false
+            }
+            )
         )
-        dispatch(
-            updateDraftField({
-                path: 'voiceTrackSettings.track',
-                value: current.file,
-            }),
-        );
-
-
-        setCurrent(defaultState);
-        setIsEdit(false);
     }
     useEffect(() => {
         readyToSave();
     }, [current])
-    useEffect(() => {
-        setCurrent(defaultState);
-    }, [selectedRequest])
-    // if (selectedRequest?.voiceTrackSettings.trackAuthor !== TRACK_AUTHOR_PROFESSIONAL) return null
+    if (selectedRequest?.voiceTrackSettings.trackAuthor !== TRACK_AUTHOR_PROFESSIONAL) return null
     return (
         <div className={styles.infoContainer}>
             <div className={styles.infoContainer_header}>About Your Voiceover
@@ -121,9 +97,9 @@ const VoiceoverOwnScript = () => {
             </div>
             {/* {selectedRequest?.voiceTrackSettings.trackAuthor === TRACK_AUTHOR_CLIENT && */}
             <div className={styles.infoContainer_text}>
-                <p>Script Status:</p>
+                <p>Track:</p>
                 {isEdit ? <div className={`${styles.box_container} ${styles.box_container_submit}`}>
-                    {current.file === DEFAULT &&
+                    {current.track === DEFAULT &&
                         <>
                             <div className={styles.box_title}>
                                 Upload a high quality voice track:
@@ -142,16 +118,16 @@ const VoiceoverOwnScript = () => {
                         style={{ display: "none" }}
                         onChange={handleFileChange}
                     />
-                    {current.file !== DEFAULT && (
+                    {current.track !== DEFAULT && (
                         <div className={`${styles.box_audioFile} ${styles.box_audioFile_submit}`}>
                             <img src={Audio} alt="" />
                             <div style={{ flex: 1 }}>
-                                <div>{current.file?.name}</div>
-                                <div>{current.file?.size && Number(current.file?.size / 1000000).toFixed(2)} mb</div>
+                                <div>{current.track?.name}</div>
+                                <div>{current.track?.size && Number(current.track?.size / 1000000).toFixed(2)} mb</div>
                             </div>
                             <img
                                 onClick={() => {
-                                    setCurrent((prev) => ({ ...prev, file: DEFAULT }))
+                                    setCurrent({ ...current, track: DEFAULT })
                                 }}
                                 src={Delete}
                                 alt=""
@@ -159,7 +135,7 @@ const VoiceoverOwnScript = () => {
                         </div>
                     )}
                     {error && <p style={{ color: "red" }}>{error}</p>}
-                    {current.file === DEFAULT &&
+                    {current.track === DEFAULT &&
                         <div onClick={handleDivClick} className={styles.box_audioFileButton}>
                             <img
                                 src={Download}
@@ -175,8 +151,8 @@ const VoiceoverOwnScript = () => {
                 </div> : <div className={styles.box_audioFileSubmit}>
                     <img src={Audio} alt="" />
                     <div>
-                        <div className={styles.box_audioFileSubmit_text}>{current.file !== DEFAULT && current.file?.name}</div>
-                        <div className={styles.box_audioFileSubmit_text}>{current.file !== DEFAULT && current.file?.size && Number(current.file?.size / 1000000).toFixed(2)} mb</div>
+                        <div className={styles.box_audioFileSubmit_text}>{current.track !== DEFAULT && current.track?.name}</div>
+                        <div className={styles.box_audioFileSubmit_text}>{current.track !== DEFAULT && current.track?.size && Number(current.track?.size / 1000000).toFixed(2)} mb</div>
                     </div>
                 </div>
 
@@ -189,33 +165,33 @@ const VoiceoverOwnScript = () => {
                 {isEdit ?
                     <div className={styles.infoContainer_statuses}>
                         <div
-                            className={`${styles.box_status} ${current.status === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
+                            className={`${styles.box_status} ${current.scriptAuthorOwnSettings.scriptStatus === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
                             onClick={() => {
-                                setCurrent((prev) => ({ ...prev, status: APPROVED_TEXT_STATUS }))
+                                setCurrent({ ...current, scriptAuthorOwnSettings: { ...current.scriptAuthorOwnSettings, scriptStatus: APPROVED_TEXT_STATUS } })
                             }}
                         >
                             <img src={StatusApproved} alt="status" />
                             {APPROVED_TEXT_STATUS}
                         </div>
                         <div
-                            className={`${styles.box_status} ${current.status === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
+                            className={`${styles.box_status} ${current.scriptAuthorOwnSettings.scriptStatus === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
                             onClick={() => {
-                                setCurrent((prev) => ({ ...prev, status: IN_PROGRESS_TEXT_STATUS }))
+                                setCurrent({ ...current, scriptAuthorOwnSettings: { ...current.scriptAuthorOwnSettings, scriptStatus: IN_PROGRESS_TEXT_STATUS } })
                             }}
                         >
                             <img src={StatusProgress} alt="status" />
                             {IN_PROGRESS_TEXT_STATUS}
                         </div>
                         <div
-                            className={`${styles.box_status} ${current.status === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
+                            className={`${styles.box_status} ${current.scriptAuthorOwnSettings.scriptStatus === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
                             onClick={() => {
-                                setCurrent((prev) => ({ ...prev, status: UNAVAILABLE_TEXT_STATUS }))
+                                setCurrent({ ...current, scriptAuthorOwnSettings: { ...current.scriptAuthorOwnSettings, scriptStatus: UNAVAILABLE_TEXT_STATUS } })
                             }}
                         >
                             <img src={StatusUnavailable} alt="status" />
                             {UNAVAILABLE_TEXT_STATUS}
                         </div>
-                    </div> : status}
+                    </div> : current.scriptAuthorOwnSettings.scriptStatus}
             </div>
             <div className={styles.infoContainer_text}><p className={`
                 ${styles.infoContainer_detailsHeader}
@@ -225,14 +201,20 @@ const VoiceoverOwnScript = () => {
             >Script:</p>
                 {isEdit ?
                     <textarea className={styles.infoContainer_textarea}
-                        onChange={(e) => setCurrent({ ...current, text: e.target.value })}
-                        value={current.text} /> :
+                        onChange={(e) => setCurrent({
+                            ...current,
+                            scriptAuthorOwnSettings: {
+                                ...current.scriptAuthorOwnSettings,
+                                text: e.target.value
+                            }
+                        })}
+                        value={current.scriptAuthorOwnSettings.text} /> :
                     <div>
                         <div className={`
                    ${styles.infoContainer_details} 
                    ${isDetailsExpanded ? styles.infoContainer_details_expanded : ''}`}
                         >
-                            {text}
+                            {current.scriptAuthorOwnSettings.text}
                         </div>
                         {isDetailTextBig &&
                             <>
