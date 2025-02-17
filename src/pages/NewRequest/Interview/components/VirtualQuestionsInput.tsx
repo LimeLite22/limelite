@@ -24,7 +24,7 @@ const VirtualQuestionsInput = ({
   const phone =
     selectedRequest?.interviewSettings.questionSettings.virtualSettings.phone;
   const email =
-    selectedRequest?.interviewSettings.questionSettings.locationSettings.email;
+    selectedRequest?.interviewSettings.questionSettings.virtualSettings.email;
 
   const containerRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
@@ -155,7 +155,7 @@ const VirtualQuestionsInput = ({
               value={email}
               onChange={(e) => {
                 handleUpdateField(
-                  "interviewSettings.questionSettings.locationSettings.email",
+                  "interviewSettings.questionSettings.virtualSettings.email",
                   e.target?.value,
                 );
               }}

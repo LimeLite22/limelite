@@ -1,6 +1,6 @@
 
 import { ArrowBlue3, CloseRed, EditIcon, StatusApproved, StatusProgress, StatusUnavailable, Success2 } from "assets/images";
-import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, QUESTIONS_ON_LOCATION, UNAVAILABLE_TEXT_STATUS, VIRTUAL_INTERVIEW } from "consts/consts";
+import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, PROFESSIONAL_SCRIPT, QUESTIONS_AUTHOR_CLIENT, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTIONS_ON_LOCATION, QUESTIONS_VIRTUALLY, UNAVAILABLE_TEXT_STATUS, VIRTUAL_INTERVIEW } from "consts/consts";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -94,131 +94,138 @@ const InterviewProffScript = () => {
                         ><img src={Success2} alt='' /><div>Save changes</div></div>
                     </div>}
             </div>
-
-            <div className={styles.infoContainer_text}><p>Script Status:</p>
-                {isEdit ?
-                    <div className={styles.infoContainer_statuses}>
-                        <div
-                            className={`${styles.box_status} ${current.questionsAuthorOwnSettings?.scriptStatus === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
-                            onClick={() => {
-                                setCurrent((prev) => ({ ...prev, status: APPROVED_TEXT_STATUS }))
-                            }}
-                        >
-                            <img src={StatusApproved} alt="status" />
-                            {APPROVED_TEXT_STATUS}
-                        </div>
-                        <div
-                            className={`${styles.box_status} ${current.questionsAuthorOwnSettings?.scriptStatus === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
-                            onClick={() => {
-                                setCurrent((prev) => ({ ...prev, status: IN_PROGRESS_TEXT_STATUS }))
-                            }}
-                        >
-                            <img src={StatusProgress} alt="status" />
-                            {IN_PROGRESS_TEXT_STATUS}
-                        </div>
-                        <div
-                            className={`${styles.box_status} ${current.questionsAuthorOwnSettings?.scriptStatus === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
-                            onClick={() => {
-                                setCurrent((prev) => ({ ...prev, status: UNAVAILABLE_TEXT_STATUS }))
-                            }}
-                        >
-                            <img src={StatusUnavailable} alt="status" />
-                            {UNAVAILABLE_TEXT_STATUS}
-                        </div>
-                    </div> : selectedRequest?.interviewSettings.questionsAuthorOwnSettings.scriptStatus}
-            </div>
-            <div className={styles.infoContainer_text}><p className={`
+            {interviewSettings?.questionsAuthor === QUESTIONS_AUTHOR_CLIENT &&
+                <>
+                    <div className={styles.infoContainer_text}><p>Script Status:</p>
+                        {isEdit ?
+                            <div className={styles.infoContainer_statuses}>
+                                <div
+                                    className={`${styles.box_status} ${current.questionsAuthorOwnSettings?.scriptStatus === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
+                                    onClick={() => {
+                                        setCurrent((prev) => ({ ...prev, status: APPROVED_TEXT_STATUS }))
+                                    }}
+                                >
+                                    <img src={StatusApproved} alt="status" />
+                                    {APPROVED_TEXT_STATUS}
+                                </div>
+                                <div
+                                    className={`${styles.box_status} ${current.questionsAuthorOwnSettings?.scriptStatus === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
+                                    onClick={() => {
+                                        setCurrent((prev) => ({ ...prev, status: IN_PROGRESS_TEXT_STATUS }))
+                                    }}
+                                >
+                                    <img src={StatusProgress} alt="status" />
+                                    {IN_PROGRESS_TEXT_STATUS}
+                                </div>
+                                <div
+                                    className={`${styles.box_status} ${current.questionsAuthorOwnSettings?.scriptStatus === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
+                                    onClick={() => {
+                                        setCurrent((prev) => ({ ...prev, status: UNAVAILABLE_TEXT_STATUS }))
+                                    }}
+                                >
+                                    <img src={StatusUnavailable} alt="status" />
+                                    {UNAVAILABLE_TEXT_STATUS}
+                                </div>
+                            </div> : selectedRequest?.interviewSettings.questionsAuthorOwnSettings.scriptStatus}
+                    </div>
+                    <div className={styles.infoContainer_text}><p className={`
                 ${styles.infoContainer_detailsHeader}
                 ${isDetailTextBig ? styles.infoContainer_detailsHeader_big : ''}
                 ${isDetailsExpanded ? styles.infoContainer_detailsHeader_expanded : ''}
                 `}
-            >Script:</p>
-                {isEdit ?
-                    <textarea className={styles.infoContainer_textarea}
-                        onChange={(e) => {
-                            return current.questionsAuthorOwnSettings && setCurrent({ ...current || {}, questionsAuthorOwnSettings: { ...current?.questionsAuthorOwnSettings || {}, text: e.target.value } })
-                        }
-                        }
-                        value={current?.questionsAuthorOwnSettings?.text} /> :
-                    <div>
-                        <div className={`
+                    >Script:</p>
+                        {isEdit ?
+                            <textarea className={styles.infoContainer_textarea}
+                                onChange={(e) => {
+                                    return current.questionsAuthorOwnSettings && setCurrent({ ...current || {}, questionsAuthorOwnSettings: { ...current?.questionsAuthorOwnSettings || {}, text: e.target.value } })
+                                }
+                                }
+                                value={current?.questionsAuthorOwnSettings?.text} /> :
+                            <div>
+                                <div className={`
                    ${styles.infoContainer_details} 
                    ${isDetailsExpanded ? styles.infoContainer_details_expanded : ''}`}
-                        >
-                            {interviewSettings?.questionsAuthorOwnSettings?.text}
-                        </div>
-                        {isDetailTextBig &&
-                            <>
-                                <div className={`
+                                >
+                                    {interviewSettings?.questionsAuthorOwnSettings?.text}
+                                </div>
+                                {isDetailTextBig &&
+                                    <>
+                                        <div className={`
                         ${styles.infoContainer_details_shadow}
                         ${isDetailsExpanded ? styles.infoContainer_details_shadow_expanded : ''}
                         `}></div>
-                                <div
-                                    className={`
+                                        <div
+                                            className={`
                            ${styles.infoContainer_details_showAll}
                            ${isDetailsExpanded ? styles.infoContainer_details_showAll_expanded : ''}
                                `
-                                    }
-                                    onClick={() => setIsDetailsExpanded(!isDetailsExpanded)}
-                                >
-                                    <>{isDetailsExpanded ? "Show less" : "Show all text"}<img src={ArrowBlue3} alt='' /></>
+                                            }
+                                            onClick={() => setIsDetailsExpanded(!isDetailsExpanded)}
+                                        >
+                                            <>{isDetailsExpanded ? "Show less" : "Show all text"}<img src={ArrowBlue3} alt='' /></>
 
-                                </div>
-                            </>
-                        }
-                    </div>}
-            </div>
-            <div className={styles.infoContainer_text}><p>Subject matter expert :</p>
-                {isEdit ?
-                    <input
-                        className={styles.infoContainer_input}
-                        value={current?.questionsAuthorProfSettings?.subject}
-                        onChange={(e) => {
-                            return current.questionsAuthorProfSettings && setCurrent({ ...current, questionsAuthorProfSettings: { ...current?.questionsAuthorProfSettings || {}, subject: e.target.value } })
-                        }
-                        }
-                        type="text" /> : interviewSettings?.questionsAuthorProfSettings?.subject}
+                                        </div>
+                                    </>
+                                }
+                            </div>}
+                    </div>
+                </>
+            }
+            {interviewSettings?.questionsAuthor === QUESTIONS_AUTHOR_PROFESSIONAL &&
+                <>
+                    <div className={styles.infoContainer_text}><p>Subject matter expert:</p>
+                        {isEdit ?
+                            <input
+                                className={styles.infoContainer_input}
+                                value={current?.questionsAuthorProfSettings?.subject}
+                                onChange={(e) => {
+                                    return current.questionsAuthorProfSettings && setCurrent({ ...current, questionsAuthorProfSettings: { ...current?.questionsAuthorProfSettings || {}, subject: e.target.value } })
+                                }
+                                }
+                                type="text" /> : interviewSettings?.questionsAuthorProfSettings?.subject}
 
-            </div>
+                    </div>
 
-            <div className={styles.infoContainer_text}><p>Phone:</p>
-                {isEdit ?
-                    <input
-                        className={styles.infoContainer_input}
-                        value={current.questionsAuthorProfSettings?.phone}
+                    <div className={styles.infoContainer_text}><p>Phone:</p>
+                        {isEdit ?
+                            <input
+                                className={styles.infoContainer_input}
+                                value={current.questionsAuthorProfSettings?.phone}
 
-                        onChange={(e) => {
-                            return current.questionsAuthorProfSettings && setCurrent({ ...current, questionsAuthorProfSettings: { ...current?.questionsAuthorProfSettings || {}, phone: Number(e.target.value) } })
-                        }}
-                        type="text" /> : interviewSettings?.questionsAuthorProfSettings?.phone}
-            </div>
+                                onChange={(e) => {
+                                    return current.questionsAuthorProfSettings && setCurrent({ ...current, questionsAuthorProfSettings: { ...current?.questionsAuthorProfSettings || {}, phone: Number(e.target.value) } })
+                                }}
+                                type="text" /> : interviewSettings?.questionsAuthorProfSettings?.phone}
+                    </div>
 
-            <div className={styles.infoContainer_text}><p>Email:</p>
-                {isEdit ?
-                    <input
-                        className={styles.infoContainer_input}
-                        value={current.questionsAuthorProfSettings?.email}
-                        onChange={(e) => {
-                            return current.questionsAuthorProfSettings && setCurrent({ ...current, questionsAuthorProfSettings: { ...current?.questionsAuthorProfSettings || {}, email: e.target.value } })
-                        }}
-                        type="text" /> : interviewSettings?.questionsAuthorProfSettings?.email}
-            </div>
+                    <div className={styles.infoContainer_text}><p>Email:</p>
+                        {isEdit ?
+                            <input
+                                className={styles.infoContainer_input}
+                                value={current.questionsAuthorProfSettings?.email}
+                                onChange={(e) => {
+                                    return current.questionsAuthorProfSettings && setCurrent({ ...current, questionsAuthorProfSettings: { ...current?.questionsAuthorProfSettings || {}, email: e.target.value } })
+                                }}
+                                type="text" /> : interviewSettings?.questionsAuthorProfSettings?.email}
+                    </div>
 
-            <div className={styles.infoContainer_text}><p>Background information for interview(s):</p>
-                {isEdit ?
-                    <input
-                        className={styles.infoContainer_input}
-                        value={current.questionsAuthorProfSettings?.backgroundInfo}
-                        onChange={(e) => {
-                            return current.questionsAuthorProfSettings && setCurrent({ ...current, questionsAuthorProfSettings: { ...current?.questionsAuthorProfSettings || {}, backgroundInfo: e.target.value } })
-                        }}
-                        type="text" /> : interviewSettings?.questionsAuthorProfSettings?.backgroundInfo}
-            </div>
+                    <div className={styles.infoContainer_text}><p>Background information for interview(s):</p>
+                        {isEdit ?
+                            <input
+                                className={styles.infoContainer_input}
+                                value={current.questionsAuthorProfSettings?.backgroundInfo}
+                                onChange={(e) => {
+                                    return current.questionsAuthorProfSettings && setCurrent({ ...current, questionsAuthorProfSettings: { ...current?.questionsAuthorProfSettings || {}, backgroundInfo: e.target.value } })
+                                }}
+                                type="text" /> : interviewSettings?.questionsAuthorProfSettings?.backgroundInfo}
+                    </div>
+                </>
+            }
             <div className={styles.infoContainer_text}><p>Persons:</p>
 
                 {isEdit ? <ScriptPersons persons={current.persons} setPersons={(persons) => setCurrent({ ...current, persons: persons })} /> : <div>{selectedRequest?.interviewSettings.persons.map((person) => `${person.name}( ${person.title})`).join(", ")}</div>}
             </div>
-            {interviewSettings?.questionSettings?.type === VIRTUAL_INTERVIEW &&
+            {interviewSettings?.questionSettings?.type === QUESTIONS_ON_LOCATION &&
                 <>
                     <div className={styles.infoContainer_text}><p>Name(Location):</p>
                         {isEdit ?
@@ -286,7 +293,7 @@ const InterviewProffScript = () => {
                     </div>
                 </>
             }
-            {interviewSettings?.questionSettings?.type === QUESTIONS_ON_LOCATION &&
+            {interviewSettings?.questionSettings?.type === QUESTIONS_VIRTUALLY &&
                 <>
                     <div className={styles.infoContainer_text}><p>Name(Virtual):</p>
                         {isEdit ?

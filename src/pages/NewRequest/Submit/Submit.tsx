@@ -1,8 +1,9 @@
 import { ArrowGray3, ArrowGray4 } from "assets/images";
 import { INTERVIEW_STEP, LOGISTICS_STEP, SCRIPT_STEP, VIDEO_EDIT_STEP, VOICEOVER_STEP } from "consts/consts";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { selectSteps } from "../../../redux/requests/reducer";
+import { selectRequestInfo, selectSteps, updateFullEditRequest, updateInterviewInfoSettings, updateLogisticInfoSettings } from "../../../redux/requests/reducer";
 
 import BackButton from "../components/BackButton";
 import NextButton from "../components/NextButton"
@@ -19,6 +20,11 @@ import VoiceoverOwnScript from "./components/VoiceverOwnScript";
 
 const Submit = () => {
     const steps = useSelector(selectSteps);
+    const selectedRequest = useSelector(selectRequestInfo);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(updateFullEditRequest())
+    }, [])
     return (
         <>
             <StepsNavigation />

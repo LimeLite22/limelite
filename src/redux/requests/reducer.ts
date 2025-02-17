@@ -349,6 +349,14 @@ const requestReducer = createSlice({
       if (isEdit) {
         state.editDraft.videoSettings = videoSettings;
       }
+    },
+    updateFullEditRequest: (state) => {
+      const editDraft = state.drafts.find(
+        (draft) => draft.id === state.selectedRequest,
+      )
+      if (editDraft) {
+        state.editDraft = editDraft
+      }
     }
   },
 });
@@ -369,7 +377,8 @@ export const {
   updateScriptInfoSettings,
   updateInterviewInfoSettings,
   updateVoiceoverSettings,
-  updateVideoEditSettings
+  updateVideoEditSettings,
+  updateFullEditRequest
 } = requestReducer.actions;
 
 export const selectRequestInfo = (state: IRootState) => {
