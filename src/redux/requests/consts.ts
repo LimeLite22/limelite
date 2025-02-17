@@ -20,11 +20,11 @@ export const requestsInitialState: IRequest[] = [
         },
         logisticSettings: {
             travel: {
-                selection: YES,
+                selection: NO,
                 zoneCode: zonesList[1],
             },
             location: {
-                type: OWN_ADDRESS,
+                type: DEFAULT,
                 company: "ABC Company",
                 street: "123 Main Street",
                 city: "City",

@@ -1,33 +1,23 @@
 
 import { CalendarIcon2, CloseRed, EditIcon, LocationBlack, Success2 } from "assets/images";
 import axios from "axios";
-import { DEFAULT } from "consts/consts";
+import { DEFAULT, OWN_ADDRESS, YES } from "consts/consts";
 import { format } from "date-fns";
-import ZoneSelector from "pages/NewRequest/components/ZoneSelector/ZoneSelector";
 import Calendar from "pages/NewRequest/Logistics/components/Calendar/Calendar";
 import TimeSelector from "pages/NewRequest/Logistics/components/Calendar/TimeSelector";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectRequestInfo, updateDraftField, updateLogisticInfoSettings } from "../../../../redux/requests/reducer";
+import { selectRequestInfo, updateLogisticInfoSettings } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 import ZoneDropdown from "./ZoneDropdown";
 interface Suggestion {
     text: string;
 }
 const LogisticInfo = () => {
-    const lIS = useSelector(selectRequestInfo)?.logisticSettings;
+    const lIS = useSelector(selectRequestInfo)!.logisticSettings;
     const dispatch = useDispatch();
-    const defaultState = {
-        company: lIS?.location.company,
-        street: lIS?.location.street,
-        city: lIS?.location.city,
-        state: lIS?.location.state,
-        zip: lIS?.location.zip,
-        preferredDate: lIS?.preferredDate,
-        zone: lIS?.travel.zoneCode,
-    }
-    const [current, setCurrent] = useState(defaultState);
+    const [current, setCurrent] = useState(lIS);
     const [suggestions, setSuggestions] = useState<string[]>([]);
     const [isPopUpOpen, setIsPopUpOpen] = useState(false);
 
@@ -55,7 +45,7 @@ const LogisticInfo = () => {
         calculateEndTime(preferredDate?.time?.hour, preferredDate?.time?.type);
     const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
-        setCurrent({ ...current, street: value });
+        setCurrent({ ...current, location: { ...current.location, street: e.target.value } });
         if (value?.length > 1) {
             try {
                 const response = await axios.get<{ suggestions: Suggestion[] }>(
@@ -76,20 +66,20 @@ const LogisticInfo = () => {
 
     const readyToSave = () => {
         let ready = true;
-        if (current.company !== lIS?.location.company
-            || current.street !== lIS?.location.street
-            || current.city !== lIS?.location.city
-            || current.state !== lIS?.location.state
-            || current.zip !== lIS?.location.zip
+        if (current.location.company !== lIS?.location.company
+            || current.location.street !== lIS?.location.street
+            || current.location.city !== lIS?.location.city
+            || current.location.state !== lIS?.location.state
+            || current.location.zip !== lIS?.location.zip
             || current.preferredDate !== lIS?.preferredDate
-            || current.zone?.value !== lIS?.travel.zoneCode.value
+            || current.travel.zoneCode?.value !== lIS?.travel.zoneCode.value
         ) {
             if (
-                current.company?.length !== 0 &&
-                current.street?.length !== 0 &&
-                current.city?.length !== 0 &&
-                current.state?.length !== 0 &&
-                current.zip?.length !== 0
+                current.location.company?.length !== 0 &&
+                current.location.street?.length !== 0 &&
+                current.location.city?.length !== 0 &&
+                current.location.state?.length !== 0 &&
+                current.location.zip?.length !== 0
             ) {
                 ready = true
             } else {
@@ -106,12 +96,11 @@ const LogisticInfo = () => {
     }
     const handleDecline = () => {
         setIsEdit(false);
-        setCurrent(defaultState);
+        setCurrent(lIS);
     }
     const handleSave = () => {
-        console.log(current.company);
         if (!isReady) return
-        lIS && current.preferredDate && current.zone && dispatch(updateLogisticInfoSettings(
+        dispatch(updateLogisticInfoSettings(
             {
                 logisticInfoSettings:
                 {
@@ -120,54 +109,26 @@ const LogisticInfo = () => {
                     location:
                     {
                         ...lIS.location,
-                        street: current.street || '',
-                        city: current.city || '',
-                        state: current.state || '',
-                        zip: current.zip || '',
-                        company: current.company || '',
+                        street: current.location.street,
+                        city: current.location.city || '',
+                        state: current.location.state || '',
+                        zip: current.location.zip || '',
+                        company: current.location.company || '',
 
                     },
                     travel:
                     {
                         ...lIS.travel,
-                        zoneCode: current.zone
+                        zoneCode: current.travel.zoneCode
                     }
                 },
-                isEdit: true
-            }))
-        lIS && current.preferredDate && current.zone && dispatch(updateLogisticInfoSettings(
-            {
-                logisticInfoSettings:
-                {
-                    ...lIS,
-                    preferredDate: current.preferredDate,
-                    location:
-                    {
-                        ...lIS.location,
-                        street: current.street || '',
-                        city: current.city || '',
-                        state: current.state || '',
-                        zip: current.zip || '',
-                        company: current.company || ''
-                    },
-                    travel:
-                    {
-                        ...lIS.travel,
-                        zoneCode: current.zone
-                    },
-                },
-
                 isEdit: false
             }))
-        setCurrent(defaultState);
         setIsEdit(false);
     }
     useEffect(() => {
         readyToSave();
     }, [current])
-    useEffect(() => {
-        setCurrent(defaultState);
-    }, [lIS])
 
     return (
         <div className={styles.infoContainer}>
@@ -190,31 +151,35 @@ const LogisticInfo = () => {
                         ><img src={Success2} alt='' /><div>Save changes</div></div>
                     </div>}
             </div>
-            {!isEdit ?
+            {!isEdit && lIS.travel.selection === YES &&
                 <div className={styles.infoContainer_text}>
                     <p>Zone</p> {lIS?.travel.zoneCode?.name}</div>
-                : <div className={styles.infoContainer_text}>
+
+            }
+            {isEdit && lIS.travel.selection === YES &&
+                <div className={styles.infoContainer_text}>
                     <p>Zone</p>
                     <ZoneDropdown onChange={(e) => {
-                        setCurrent({ ...current, zone: { name: e.name, value: e.value } });
+                        setCurrent({ ...current, travel: { ...current.travel, zoneCode: e } });
                     }} />
-                </div>}
-            {!isEdit &&
+                </div>
+            }
+            {!isEdit && lIS.location.type === OWN_ADDRESS &&
                 <div className={styles.infoContainer_text}>
                     <p>Address:</p>
-                    {current.company}{" "}
-                    {current.street}{" "}
-                    {current.city}{" "}
-                    {current.zip}
+                    {current.location.company}{" "}
+                    {current.location.street}{" "}
+                    {current.location.city}{" "}
+                    {current.location.zip}
                 </div>}
             {
-                isEdit && <>
+                isEdit && lIS.location.type === OWN_ADDRESS && <>
                     <div className={styles.infoContainer_text} >
                         <p>Company Name:</p>
                         <input
-                            value={current.company}
+                            value={current.location.company}
                             onChange={(e) => {
-                                setCurrent({ ...current, company: e.target.value });
+                                setCurrent({ ...current, location: { ...current.location, company: e.target.value } });
                             }}
                             placeholder="Enter company name"
                             type="company"
@@ -225,7 +190,7 @@ const LogisticInfo = () => {
                         <p>Address:</p>
                         <div style={{ position: "relative", width: "100%" }}>
                             <input
-                                value={current.street}
+                                value={current.location.street}
                                 onChange={handleChange}
                                 placeholder="Enter street address"
                                 type="street"
@@ -234,7 +199,7 @@ const LogisticInfo = () => {
                             {suggestions?.length > 0 && (
                                 <div className={styles.box_addressContainer_suggestions}>
                                     {suggestions.map((suggestion: any, index) => {
-                                        const regex = new RegExp(`(${current.street})`, "gi");
+                                        const regex = new RegExp(`(${current.location.street})`, "gi");
                                         const highlightedText = suggestion?.street_line?.replace(
                                             regex,
                                             `<span style="color: var(--black); font-weight: 700">$1</span>`,
@@ -247,11 +212,15 @@ const LogisticInfo = () => {
                                                 onClick={() => {
                                                     setCurrent({
                                                         ...current,
-                                                        street: suggestion.street_line,
-                                                        city: suggestion.city,
-                                                        state: suggestion.state,
-                                                        zip: suggestion.zipcode,
-                                                    })
+                                                        location: {
+                                                            ...current.location,
+                                                            street: suggestion?.street_line,
+                                                            city: suggestion.city,
+                                                            state: suggestion.state,
+                                                            zip: suggestion.zipcode,
+                                                        },
+                                                    });
+
                                                     setSuggestions([]);
                                                 }}
                                             >
@@ -277,9 +246,9 @@ const LogisticInfo = () => {
                         <p>City:</p>
                         <input
                             className={styles.infoContainer_input}
-                            value={current.city}
+                            value={current.location.city}
                             onChange={(e) => {
-                                setCurrent({ ...current, city: e.target?.value });
+                                setCurrent({ ...current, location: { ...current.location, city: e.target.value } });
                             }}
                             placeholder="Enter city"
                             name="city"
@@ -290,9 +259,9 @@ const LogisticInfo = () => {
                         <p>State:</p>
                         <input
                             className={styles.infoContainer_input}
-                            value={current.state}
+                            value={current.location.state}
                             onChange={(e) => {
-                                setCurrent({ ...current, state: e.target?.value });
+                                setCurrent({ ...current, location: { ...current.location, state: e.target.value } });
                             }}
                             placeholder="Enter state"
                             name="state"
@@ -303,9 +272,9 @@ const LogisticInfo = () => {
                         <p>Zip:</p>
                         <input
                             className={styles.infoContainer_input}
-                            value={current.zip}
+                            value={current.location.zip}
                             onChange={(e) => {
-                                setCurrent({ ...current, zip: e.target?.value });
+                                setCurrent({ ...current, location: { ...current.location, zip: e.target.value } });
                             }}
                             placeholder="Enter zip"
                             name="zip"
