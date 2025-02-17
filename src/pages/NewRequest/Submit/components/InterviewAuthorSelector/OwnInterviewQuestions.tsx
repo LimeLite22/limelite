@@ -1,7 +1,10 @@
 import {
   StatusApproved,
+  StatusApprovedBlack,
   StatusProgress,
+  StatusProgressBlack,
   StatusUnavailable,
+  StatusUnavailableBlack,
 } from "assets/images";
 import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import { useEffect, useState } from "react";
@@ -63,7 +66,7 @@ const OwnScript = () => {
               )
             }}
           >
-            <img src={StatusApproved} alt="status" />
+            <img src={status === APPROVED_TEXT_STATUS ? StatusApprovedBlack : StatusApproved} alt="status" />
             Approved
           </div>
           <div
@@ -82,7 +85,7 @@ const OwnScript = () => {
               )
             }}
           >
-            <img src={StatusProgress} alt="status" />
+            <img src={status === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress} alt="status" />
             In Progress
           </div>
           <div
@@ -99,7 +102,7 @@ const OwnScript = () => {
               )
             }}
           >
-            <img src={StatusUnavailable} alt="status" />
+            <img src={status === UNAVAILABLE_TEXT_STATUS ? StatusUnavailableBlack : StatusUnavailable} alt="status" />
             Unavailable
           </div>
         </div>

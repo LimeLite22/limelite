@@ -1,5 +1,5 @@
 
-import { ArrowBlue3, CheckBox, CheckBoxSelected, CloseRed, EditIcon, StatusApproved, StatusProgress, StatusUnavailable, Success2 } from "assets/images";
+import { ArrowBlue3, CheckBox, CheckBoxSelected, CloseRed, EditIcon, StatusApproved, StatusApprovedBlack, StatusProgress, StatusProgressBlack, StatusUnavailable, StatusUnavailableBlack, Success2 } from "assets/images";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -106,7 +106,7 @@ const ScriptInfo = () => {
                                         setCurrent((prev) => ({ ...prev, scriptStatus: APPROVED_TEXT_STATUS }))
                                     }}
                                 >
-                                    <img src={StatusApproved} alt="status" />
+                                    <img src={current?.scriptStatus === APPROVED_TEXT_STATUS ? StatusApprovedBlack : StatusApproved} alt="status" />
                                     {APPROVED_TEXT_STATUS}
                                 </div>
                                 <div
@@ -115,7 +115,7 @@ const ScriptInfo = () => {
                                         setCurrent((prev) => ({ ...prev, scriptStatus: IN_PROGRESS_TEXT_STATUS }))
                                     }}
                                 >
-                                    <img src={StatusProgress} alt="status" />
+                                    <img src={current?.scriptStatus === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress} alt="status" />
                                     {IN_PROGRESS_TEXT_STATUS}
                                 </div>
                                 <div
@@ -124,7 +124,7 @@ const ScriptInfo = () => {
                                         setCurrent((prev) => ({ ...prev, scriptStatus: UNAVAILABLE_TEXT_STATUS }))
                                     }}
                                 >
-                                    <img src={StatusUnavailable} alt="status" />
+                                    <img src={current?.scriptStatus === UNAVAILABLE_TEXT_STATUS ? StatusUnavailableBlack : StatusUnavailable} alt="status" />
                                     {UNAVAILABLE_TEXT_STATUS}
                                 </div>
                             </div> : selectedRequest?.scriptSettings.scriptStatus}

@@ -102,7 +102,7 @@ export type TQuestionLocation = "default" | "Questions on location" | "Questions
 export type TVoiceAuthor = "default" | "Own track" | "Professional track";
 export type TThumbnail = "default" | "Custom thumbnail" | "Basic thumbnail" | "No thumbnail";
 export type TRush = "Rush time" | "Standard time" | "default";
-export type TTextStatus = 'default' | 'Approved' | 'In Progress' | 'Unavailable';
+export type TTextStatus = 'default' | 'Approved' | 'Work in Progress' | 'Unavailable';
 export type TDraftFieldUpdate = {
   path: string;
   value: unknown;

@@ -3,8 +3,11 @@ import {
   CheckBoxSelected,
   Expand,
   StatusApproved,
+  StatusApprovedBlack,
   StatusProgress,
+  StatusProgressBlack,
   StatusUnavailable,
+  StatusUnavailableBlack,
 } from "assets/images";
 import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, QUESTIONS_AUTHOR_CLIENT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import { useDispatch, useSelector } from "react-redux";
@@ -86,7 +89,7 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
               )
             }}
           >
-            <img src={StatusApproved} alt="status" />
+            <img src={status === APPROVED_TEXT_STATUS ? StatusApprovedBlack : StatusApproved} alt="status" />
             Approved
           </div>
           <div
@@ -98,8 +101,8 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
               )
             }}
           >
-            <img src={StatusProgress} alt="status" />
-            In Progress
+            <img src={status === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress} alt="status" />
+            Work in Progress
           </div>
           <div
             className={`${styles.box_status} ${status === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
@@ -110,7 +113,7 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
               )
             }}
           >
-            <img src={StatusUnavailable} alt="status" />
+            <img src={status === UNAVAILABLE_TEXT_STATUS ? StatusUnavailableBlack : StatusUnavailable} alt="status" />
             Unavailable
           </div>
         </div>

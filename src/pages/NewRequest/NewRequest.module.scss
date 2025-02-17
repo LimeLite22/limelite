@@ -3066,17 +3066,20 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 24px;
+    background-color: var(--gray-light9);
+    border-radius: 10px;
+    padding: 3px;
     @media screen and (max-width: 768px) {
       flex-wrap: wrap;
       align-items: flex-start;
       justify-content: flex-start;
-      gap: 8px;
+      gap: 0px;
       margin-bottom: 12px;
     }
   }
   &_status {
     flex: 1;
-    height: 40px;
+    height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3085,21 +3088,24 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 19.2px;
-    color: var(--gray-light5);
+    color: var(--gray-dark3);
     border-radius: 6px;
     cursor: pointer;
+
     @media screen and (max-width: 768px) {
-      width: calc(50% - 4px);
+      width: 50%;
       flex: unset;
       font-family: Inter;
       font-size: 14px;
       font-weight: 400;
       line-height: 15.4px;
       text-align: left;
+      gap: 8px;
     }
     &_approved {
       color: var(--black);
-      background-color: var(--gray-light9);
+      box-shadow: 0px 1px 16px 0px rgba(55, 55, 61, 0.1);
+      background-color: var(--white);
       @media screen and (max-width: 768px) {
         font-family: Inter;
         font-size: 14px;

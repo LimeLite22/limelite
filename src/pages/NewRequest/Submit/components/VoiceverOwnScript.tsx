@@ -1,5 +1,5 @@
 
-import { ArrowBlue3, CloseRed, EditIcon, StatusApproved, StatusProgress, StatusUnavailable, Success2, Audio, Delete, Download } from "assets/images";
+import { ArrowBlue3, CloseRed, EditIcon, StatusApproved, StatusProgress, StatusUnavailable, Success2, Audio, Delete, Download, StatusApprovedBlack, StatusProgressBlack, StatusUnavailableBlack } from "assets/images";
 import { APPROVED_TEXT_STATUS, DEFAULT, IN_PROGRESS_TEXT_STATUS, TRACK_AUTHOR_PROFESSIONAL, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -170,7 +170,7 @@ const VoiceoverOwnScript = () => {
                                 setCurrent({ ...current, scriptAuthorOwnSettings: { ...current.scriptAuthorOwnSettings, scriptStatus: APPROVED_TEXT_STATUS } })
                             }}
                         >
-                            <img src={StatusApproved} alt="status" />
+                            <img src={current.scriptAuthorOwnSettings.scriptStatus === APPROVED_TEXT_STATUS ? StatusApprovedBlack : StatusApproved} alt="status" />
                             {APPROVED_TEXT_STATUS}
                         </div>
                         <div
@@ -179,7 +179,7 @@ const VoiceoverOwnScript = () => {
                                 setCurrent({ ...current, scriptAuthorOwnSettings: { ...current.scriptAuthorOwnSettings, scriptStatus: IN_PROGRESS_TEXT_STATUS } })
                             }}
                         >
-                            <img src={StatusProgress} alt="status" />
+                            <img src={current.scriptAuthorOwnSettings.scriptStatus === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress} alt="status" />
                             {IN_PROGRESS_TEXT_STATUS}
                         </div>
                         <div
@@ -188,7 +188,7 @@ const VoiceoverOwnScript = () => {
                                 setCurrent({ ...current, scriptAuthorOwnSettings: { ...current.scriptAuthorOwnSettings, scriptStatus: UNAVAILABLE_TEXT_STATUS } })
                             }}
                         >
-                            <img src={StatusUnavailable} alt="status" />
+                            <img src={current.scriptAuthorOwnSettings.scriptStatus === UNAVAILABLE_TEXT_STATUS ? StatusUnavailableBlack : StatusUnavailable} alt="status" />
                             {UNAVAILABLE_TEXT_STATUS}
                         </div>
                     </div> : current.scriptAuthorOwnSettings.scriptStatus}

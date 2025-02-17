@@ -1,5 +1,5 @@
 
-import { ArrowBlue3, CloseRed, EditIcon, StatusApproved, StatusProgress, StatusUnavailable, Success2 } from "assets/images";
+import { ArrowBlue3, CloseRed, EditIcon, StatusApproved, StatusApprovedBlack, StatusProgress, StatusProgressBlack, StatusUnavailable, StatusUnavailableBlack, Success2 } from "assets/images";
 import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, PROFESSIONAL_SCRIPT, QUESTIONS_AUTHOR_CLIENT, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTIONS_ON_LOCATION, QUESTIONS_VIRTUALLY, UNAVAILABLE_TEXT_STATUS, VIRTUAL_INTERVIEW } from "consts/consts";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -105,7 +105,7 @@ const InterviewProffScript = () => {
                                         setCurrent((prev) => ({ ...prev, status: APPROVED_TEXT_STATUS }))
                                     }}
                                 >
-                                    <img src={StatusApproved} alt="status" />
+                                    <img src={current.questionsAuthorOwnSettings?.scriptStatus === APPROVED_TEXT_STATUS ? StatusApprovedBlack : StatusApproved} alt="status" />
                                     {APPROVED_TEXT_STATUS}
                                 </div>
                                 <div
@@ -114,7 +114,7 @@ const InterviewProffScript = () => {
                                         setCurrent((prev) => ({ ...prev, status: IN_PROGRESS_TEXT_STATUS }))
                                     }}
                                 >
-                                    <img src={StatusProgress} alt="status" />
+                                    <img src={current.questionsAuthorOwnSettings?.scriptStatus === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress} alt="status" />
                                     {IN_PROGRESS_TEXT_STATUS}
                                 </div>
                                 <div
@@ -123,7 +123,7 @@ const InterviewProffScript = () => {
                                         setCurrent((prev) => ({ ...prev, status: UNAVAILABLE_TEXT_STATUS }))
                                     }}
                                 >
-                                    <img src={StatusUnavailable} alt="status" />
+                                    <img src={current.questionsAuthorOwnSettings?.scriptStatus === UNAVAILABLE_TEXT_STATUS ? StatusUnavailableBlack : StatusUnavailable} alt="status" />
                                     {UNAVAILABLE_TEXT_STATUS}
                                 </div>
                             </div> : selectedRequest?.interviewSettings.questionsAuthorOwnSettings.scriptStatus}

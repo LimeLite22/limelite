@@ -767,6 +767,6 @@ export const LAST_12_MONTHS = 'Last 12 months';
 
 
 export const APPROVED_TEXT_STATUS = 'Approved';
-export const IN_PROGRESS_TEXT_STATUS = 'In Progress';
+export const IN_PROGRESS_TEXT_STATUS = 'Work in Progress';
 export const UNAVAILABLE_TEXT_STATUS = 'Unavailable';
 

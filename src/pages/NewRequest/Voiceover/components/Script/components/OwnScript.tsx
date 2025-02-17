@@ -3,11 +3,12 @@ import {
   CheckBoxSelected,
   Expand,
   StatusApproved,
+  StatusApprovedBlack,
   StatusProgress,
+  StatusProgressBlack,
   StatusUnavailable,
 } from "assets/images";
-import { OWN_SCRIPT } from "consts/consts";
-import { useState } from "react";
+import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -26,7 +27,7 @@ interface IProps {
 const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
   const selectedRequest = useSelector(selectRequestInfo);
   const selection = selectedRequest?.voiceTrackSettings.scriptAuthor;
-  const [textStatus, setTextStatus] = useState(0);
+  const textStatus = selectedRequest?.voiceTrackSettings.scriptAuthorOwnSettings.scriptStatus;
   const text = selectedRequest?.voiceTrackSettings.scriptAuthorOwnSettings.text;
   const dispatch = useDispatch();
   const handleUpdateField = (path: string, value: string) => {
@@ -70,24 +71,24 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
         <div className={styles.box_text}>Script Status</div>
         <div className={styles.box_statuses}>
           <div
-            className={`${styles.box_status} ${textStatus === 0 ? styles.box_status_approved : ""} `}
-            onClick={() => setTextStatus(0)}
+            className={`${styles.box_status} ${textStatus === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
+            onClick={() => handleUpdateField("voiceTrackSettings.scriptAuthorOwnSettings.scriptStatus", APPROVED_TEXT_STATUS)}
           >
-            <img src={StatusApproved} alt="status" />
+            <img src={textStatus === APPROVED_TEXT_STATUS ? StatusApprovedBlack : StatusApproved} alt="status" />
             Approved
           </div>
           <div
-            className={`${styles.box_status} ${textStatus === 1 ? styles.box_status_approved : ""} `}
-            onClick={() => setTextStatus(1)}
+            className={`${styles.box_status} ${textStatus === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
+            onClick={() => handleUpdateField("voiceTrackSettings.scriptAuthorOwnSettings.scriptStatus", IN_PROGRESS_TEXT_STATUS)}
           >
-            <img src={StatusProgress} alt="status" />
+            <img src={textStatus === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress} alt="status" />
             In Progress
           </div>
           <div
-            className={`${styles.box_status} ${textStatus === 2 ? styles.box_status_approved : ""} `}
-            onClick={() => setTextStatus(2)}
+            className={`${styles.box_status} ${textStatus === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
+            onClick={() => handleUpdateField("voiceTrackSettings.scriptAuthorOwnSettings.scriptStatus", UNAVAILABLE_TEXT_STATUS)}
           >
-            <img src={StatusUnavailable} alt="status" />
+            <img src={textStatus === UNAVAILABLE_TEXT_STATUS ? StatusProgressBlack : StatusUnavailable} alt="status" />
             Unavailable
           </div>
         </div>

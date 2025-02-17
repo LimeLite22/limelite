@@ -3,8 +3,11 @@ import {
   CheckBoxSelected,
   Expand,
   StatusApproved,
+  StatusApprovedBlack,
   StatusProgress,
+  StatusProgressBlack,
   StatusUnavailable,
+  StatusUnavailableBlack,
 } from "assets/images";
 import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import React, { useEffect, useState } from "react";
@@ -95,7 +98,7 @@ const OwnScript = ({ isExpanded, setIsExpanded, isError }: IProps) => {
               handleUpdateField("scriptSettings.scriptStatus", APPROVED_TEXT_STATUS)
             }}
           >
-            <img src={StatusApproved} alt="status" />
+            <img src={status === APPROVED_TEXT_STATUS ? StatusApprovedBlack : StatusApproved} alt="status" />
             Approved
           </div>
           <div
@@ -104,7 +107,7 @@ const OwnScript = ({ isExpanded, setIsExpanded, isError }: IProps) => {
               handleUpdateField("scriptSettings.scriptStatus", IN_PROGRESS_TEXT_STATUS)
             }}
           >
-            <img src={StatusProgress} alt="status" />
+            <img src={status === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress} alt="status" />
             In Progress
           </div>
           <div
@@ -113,7 +116,7 @@ const OwnScript = ({ isExpanded, setIsExpanded, isError }: IProps) => {
               handleUpdateField("scriptSettings.scriptStatus", UNAVAILABLE_TEXT_STATUS)
             }}
           >
-            <img src={StatusUnavailable} alt="status" />
+            <img src={status === UNAVAILABLE_TEXT_STATUS ? StatusUnavailableBlack : StatusUnavailable} alt="status" />
             Unavailable
           </div>
         </div>
