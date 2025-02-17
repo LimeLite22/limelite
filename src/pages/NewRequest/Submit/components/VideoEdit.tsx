@@ -1,6 +1,6 @@
 
 import { Add2, CloseRed, Delete, Drop, EditIcon, PNG, Success2, } from "assets/images";
-import { BASIC_THUMBNAIL, CUSTOM_THUMBNAIL, DEFAULT, NO_THUMBNAIL, VIDEO_SQUARE, VIDEO_STANDARD, VIDEO_STORY, VIDEO_VERTICAL } from "consts/consts";
+import { BASIC_THUMBNAIL, CUSTOM_THUMBNAIL, DEFAULT, NO_THUMBNAIL, RUSH_TIME, VIDEO_SQUARE, VIDEO_STANDARD, VIDEO_STORY, VIDEO_VERTICAL } from "consts/consts";
 import { IVideoSettings } from "interfaces/interfaces";
 import AdditionalFormatItem from "pages/NewRequest/VideoEdit/components/AdditionalFormats/components/AdditionalFormatItem";
 import DurationSelector from "pages/NewRequest/VideoEdit/components/DurationSelector/DurationSelector";
@@ -9,8 +9,9 @@ import { FileDrop } from "react-file-drop";
 import { useDispatch, useSelector } from "react-redux";
 import { generateUniqueId } from "utils/generateId";
 
-import { selectRequestInfo, updateDraftField, updateVideoEditSettings } from "../../../../redux/requests/reducer";
+import { selectRequestInfo, updateVideoEditSettings } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
+import RushTimeSelector from "./RushTimeSubmitSelector/RushTimeSelector";
 const VideoEdit = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const dispatch = useDispatch();
@@ -82,7 +83,9 @@ const VideoEdit = () => {
     useEffect(() => {
         readyToSave();
     }, [current])
-    // if (selectedRequest?.voiceTrackSettings.trackAuthor !== TRACK_AUTHOR_PROFESSIONAL) return null
+    useEffect(() => {
+        setCurrent(videoSettings)
+    }, [selectedRequest])
     return (
         <div className={styles.infoContainer}>
             <div className={styles.infoContainer_header}>Video edit
@@ -339,6 +342,21 @@ const VideoEdit = () => {
                         {current?.additionalVisualAssetFile !== DEFAULT ? current?.additionalVisualAssetFile?.name : 'No file'}
                     </div>}
             </div>
+            {!isEdit &&
+                <div className={styles.infoContainer_text}>
+                    <p>Turnaround</p> {current?.resultTime}</div>
+
+            }
+            {isEdit && current?.resultTime === RUSH_TIME &&
+                <div className={styles.infoContainer_text}>
+                    <p>Turnaround</p>
+                    <RushTimeSelector onChange={(e) => {
+                        setCurrent({ ...current, time: e });
+                    }}
+                        isEdit={true}
+                    />
+                </div>
+            }
 
         </div >
     )

@@ -1,4 +1,4 @@
-import { CUSTOM_THUMBNAIL, DEFAULT, HOME_RENTAL, PROFESSIONAL_SCRIPT, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTIONS_VIRTUALLY, STUDIO_RENTAL, TRACK_AUTHOR_PROFESSIONAL, VIRTUAL_INTERVIEW, YES } from "consts/consts";
+import { CUSTOM_THUMBNAIL, DEFAULT, HOME_RENTAL, PROFESSIONAL_SCRIPT, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTIONS_VIRTUALLY, RUSH_TIME, STUDIO_RENTAL, TRACK_AUTHOR_PROFESSIONAL, VIRTUAL_INTERVIEW, YES } from "consts/consts";
 import { useSelector } from "react-redux";
 
 import { selectRequestInfo } from "./../redux/requests/reducer";
@@ -27,6 +27,7 @@ export const useCalculateFinalPrice = () => {
   let customThumbnail = 0;
   let videoFormats = 0;
   let addOns = 0;
+  let turnAround = 0;
 
   if (savedPrefferedDate && savedPrefferedTime) {
     const today = new Date();
@@ -146,6 +147,9 @@ export const useCalculateFinalPrice = () => {
       }
     });
   }
+  if (request?.videoSettings?.resultTime === RUSH_TIME) {
+    turnAround = request?.videoSettings?.time.value || 0;
+  }
   return {
     price: price || 0, addOnsCount: addOnsCount || 0,
     list: {
@@ -163,8 +167,8 @@ export const useCalculateFinalPrice = () => {
       professionalVoiceWriter: professionalVoiceWriter,
       customThumbnail: customThumbnail,
       videoFormats: videoFormats,
+      turnAround: turnAround,
       addOns: addOns
-
     }
   };
 };

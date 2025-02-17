@@ -11,6 +11,7 @@ import AddOnLocation from "./AddOnLocation";
 import AddOnScript from "./AddOnScript";
 import AddOnThumbnail from "./AddOnThumbnail";
 import AddOnTime from "./AddOnTime";
+import AddOnTurnAround from "./AddOnTurnAround";
 import AddOnTypeAddOns from "./AddOnTypeAddOns";
 import AddOnVoiceoverScript from "./AddOnVoiceoverScript";
 import AddOnVoiceoverTrack from "./AddOnVoiceoverTrack";
@@ -53,6 +54,7 @@ const AddOnsContainer = () => {
                 <AddOnVoiceoverTrack isEdit={isEdit} />
                 <AddOnThumbnail isEdit={isEdit} />
                 <AddOnAdditionalFormats isEdit={isEdit} />
+                <AddOnTurnAround isEdit={isEdit} />
                 <AddOnTypeAddOns isEdit={isEdit} />
                 <img src={Divider} style={{ width: "100%" }} alt='' className={styles.infoContainer_divider} />
             </>}
