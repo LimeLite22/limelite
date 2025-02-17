@@ -1,6 +1,6 @@
 
 import { ArrowBlue3, CloseRed, EditIcon, StatusApproved, StatusProgress, StatusUnavailable, Success2, Audio, Delete, Download, StatusApprovedBlack, StatusProgressBlack, StatusUnavailableBlack } from "assets/images";
-import { APPROVED_TEXT_STATUS, DEFAULT, IN_PROGRESS_TEXT_STATUS, TRACK_AUTHOR_PROFESSIONAL, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
+import { APPROVED_TEXT_STATUS, DEFAULT, IN_PROGRESS_TEXT_STATUS, TRACK_AUTHOR_CLIENT, TRACK_AUTHOR_PROFESSIONAL, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -95,148 +95,149 @@ const VoiceoverOwnScript = () => {
                         ><img src={Success2} alt='' /><div>Save changes</div></div>
                     </div>}
             </div>
-            {/* {selectedRequest?.voiceTrackSettings.trackAuthor === TRACK_AUTHOR_CLIENT && */}
-            <div className={styles.infoContainer_text}>
-                <p>Track:</p>
-                {isEdit ? <div className={`${styles.box_container} ${styles.box_container_submit}`}>
-                    {current.track === DEFAULT &&
-                        <>
-                            <div className={styles.box_title}>
-                                Upload a high quality voice track:
-                            </div>
-                            <div className={`${styles.box_title2} ${styles.box_title2_submit} `} style={{ whiteSpace: "wrap" }}>
-                                Please upload high quality, uncompressed audio files (e.g., WAV or
-                                AIFF). MP3 files are acceptable but are lower quality.
-                            </div>
-                        </>
-                    }
+            {current.trackAuthor === TRACK_AUTHOR_CLIENT &&
+                <div className={styles.infoContainer_text}>
+                    <p>Track:</p>
+                    {isEdit ? <div className={`${styles.box_container} ${styles.box_container_submit}`}>
+                        {current.track === DEFAULT &&
+                            <>
+                                <div className={styles.box_title}>
+                                    Upload a high quality voice track:
+                                </div>
+                                <div className={`${styles.box_title2} ${styles.box_title2_submit} `} style={{ whiteSpace: "wrap" }}>
+                                    Please upload high quality, uncompressed audio files (e.g., WAV or
+                                    AIFF). MP3 files are acceptable but are lower quality.
+                                </div>
+                            </>
+                        }
 
-                    <input
-                        type="file"
-                        accept=".mp3, .wav, .aiff"
-                        ref={fileInputRef}
-                        style={{ display: "none" }}
-                        onChange={handleFileChange}
-                    />
-                    {current.track !== DEFAULT && (
-                        <div className={`${styles.box_audioFile} ${styles.box_audioFile_submit}`}>
-                            <img src={Audio} alt="" />
-                            <div style={{ flex: 1 }}>
-                                <div>{current.track?.name}</div>
-                                <div>{current.track?.size && Number(current.track?.size / 1000000).toFixed(2)} mb</div>
+                        <input
+                            type="file"
+                            accept=".mp3, .wav, .aiff"
+                            ref={fileInputRef}
+                            style={{ display: "none" }}
+                            onChange={handleFileChange}
+                        />
+                        {current.track !== DEFAULT && (
+                            <div className={`${styles.box_audioFile} ${styles.box_audioFile_submit}`}>
+                                <img src={Audio} alt="" />
+                                <div style={{ flex: 1 }}>
+                                    <div>{current.track?.name}</div>
+                                    <div>{current.track?.size && Number(current.track?.size / 1000000).toFixed(2)} mb</div>
+                                </div>
+                                <img
+                                    onClick={() => {
+                                        setCurrent({ ...current, track: DEFAULT })
+                                    }}
+                                    src={Delete}
+                                    alt=""
+                                />
                             </div>
-                            <img
-                                onClick={() => {
-                                    setCurrent({ ...current, track: DEFAULT })
-                                }}
-                                src={Delete}
-                                alt=""
-                            />
-                        </div>
-                    )}
-                    {error && <p style={{ color: "red" }}>{error}</p>}
-                    {current.track === DEFAULT &&
-                        <div onClick={handleDivClick} className={styles.box_audioFileButton}>
-                            <img
-                                src={Download}
-                                alt="Download icon"
-                                style={{ width: "24px", height: "24px" }}
-                            />
-                            <span >
-                                Upload WAV or MP3 file
-                            </span>
-                        </div>
-                    }
+                        )}
+                        {error && <p style={{ color: "red" }}>{error}</p>}
+                        {current.track === DEFAULT &&
+                            <div onClick={handleDivClick} className={styles.box_audioFileButton}>
+                                <img
+                                    src={Download}
+                                    alt="Download icon"
+                                    style={{ width: "24px", height: "24px" }}
+                                />
+                                <span >
+                                    Upload WAV or MP3 file
+                                </span>
+                            </div>
+                        }
 
-                </div> : <div className={styles.box_audioFileSubmit}>
-                    <img src={Audio} alt="" />
-                    <div>
-                        <div className={styles.box_audioFileSubmit_text}>{current.track !== DEFAULT && current.track?.name}</div>
-                        <div className={styles.box_audioFileSubmit_text}>{current.track !== DEFAULT && current.track?.size && Number(current.track?.size / 1000000).toFixed(2)} mb</div>
+                    </div> : <div className={styles.box_audioFileSubmit}>
+                        <img src={Audio} alt="" />
+                        <div>
+                            <div className={styles.box_audioFileSubmit_text}>{current.track !== DEFAULT && current.track?.name}</div>
+                            <div className={styles.box_audioFileSubmit_text}>{current.track !== DEFAULT && current.track?.size && Number(current.track?.size / 1000000).toFixed(2)} mb</div>
+                        </div>
                     </div>
-                </div>
 
-                }
+                    }
 
-            </div>
-            {/*   }  */}
-
-            <div className={styles.infoContainer_text}><p>Script Status:</p>
-                {isEdit ?
-                    <div className={styles.infoContainer_statuses}>
-                        <div
-                            className={`${styles.box_status} ${current.scriptAuthorOwnSettings.scriptStatus === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
-                            onClick={() => {
-                                setCurrent({ ...current, scriptAuthorOwnSettings: { ...current.scriptAuthorOwnSettings, scriptStatus: APPROVED_TEXT_STATUS } })
-                            }}
-                        >
-                            <img src={current.scriptAuthorOwnSettings.scriptStatus === APPROVED_TEXT_STATUS ? StatusApprovedBlack : StatusApproved} alt="status" />
-                            {APPROVED_TEXT_STATUS}
-                        </div>
-                        <div
-                            className={`${styles.box_status} ${current.scriptAuthorOwnSettings.scriptStatus === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
-                            onClick={() => {
-                                setCurrent({ ...current, scriptAuthorOwnSettings: { ...current.scriptAuthorOwnSettings, scriptStatus: IN_PROGRESS_TEXT_STATUS } })
-                            }}
-                        >
-                            <img src={current.scriptAuthorOwnSettings.scriptStatus === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress} alt="status" />
-                            {IN_PROGRESS_TEXT_STATUS}
-                        </div>
-                        <div
-                            className={`${styles.box_status} ${current.scriptAuthorOwnSettings.scriptStatus === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
-                            onClick={() => {
-                                setCurrent({ ...current, scriptAuthorOwnSettings: { ...current.scriptAuthorOwnSettings, scriptStatus: UNAVAILABLE_TEXT_STATUS } })
-                            }}
-                        >
-                            <img src={current.scriptAuthorOwnSettings.scriptStatus === UNAVAILABLE_TEXT_STATUS ? StatusUnavailableBlack : StatusUnavailable} alt="status" />
-                            {UNAVAILABLE_TEXT_STATUS}
-                        </div>
-                    </div> : current.scriptAuthorOwnSettings.scriptStatus}
-            </div>
-            <div className={styles.infoContainer_text}><p className={`
+                </div>}
+            {current.trackAuthor === TRACK_AUTHOR_PROFESSIONAL &&
+                <>
+                    <div className={styles.infoContainer_text}><p>Script Status:</p>
+                        {isEdit ?
+                            <div className={styles.infoContainer_statuses}>
+                                <div
+                                    className={`${styles.box_status} ${current.scriptAuthorOwnSettings.scriptStatus === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
+                                    onClick={() => {
+                                        setCurrent({ ...current, scriptAuthorOwnSettings: { ...current.scriptAuthorOwnSettings, scriptStatus: APPROVED_TEXT_STATUS } })
+                                    }}
+                                >
+                                    <img src={current.scriptAuthorOwnSettings.scriptStatus === APPROVED_TEXT_STATUS ? StatusApprovedBlack : StatusApproved} alt="status" />
+                                    {APPROVED_TEXT_STATUS}
+                                </div>
+                                <div
+                                    className={`${styles.box_status} ${current.scriptAuthorOwnSettings.scriptStatus === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
+                                    onClick={() => {
+                                        setCurrent({ ...current, scriptAuthorOwnSettings: { ...current.scriptAuthorOwnSettings, scriptStatus: IN_PROGRESS_TEXT_STATUS } })
+                                    }}
+                                >
+                                    <img src={current.scriptAuthorOwnSettings.scriptStatus === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress} alt="status" />
+                                    {IN_PROGRESS_TEXT_STATUS}
+                                </div>
+                                <div
+                                    className={`${styles.box_status} ${current.scriptAuthorOwnSettings.scriptStatus === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
+                                    onClick={() => {
+                                        setCurrent({ ...current, scriptAuthorOwnSettings: { ...current.scriptAuthorOwnSettings, scriptStatus: UNAVAILABLE_TEXT_STATUS } })
+                                    }}
+                                >
+                                    <img src={current.scriptAuthorOwnSettings.scriptStatus === UNAVAILABLE_TEXT_STATUS ? StatusUnavailableBlack : StatusUnavailable} alt="status" />
+                                    {UNAVAILABLE_TEXT_STATUS}
+                                </div>
+                            </div> : current.scriptAuthorOwnSettings.scriptStatus}
+                    </div>
+                    <div className={styles.infoContainer_text}><p className={`
                 ${styles.infoContainer_detailsHeader}
                 ${isDetailTextBig ? styles.infoContainer_detailsHeader_big : ''}
                 ${isDetailsExpanded ? styles.infoContainer_detailsHeader_expanded : ''}
                 `}
-            >Script:</p>
-                {isEdit ?
-                    <textarea className={styles.infoContainer_textarea}
-                        onChange={(e) => setCurrent({
-                            ...current,
-                            scriptAuthorOwnSettings: {
-                                ...current.scriptAuthorOwnSettings,
-                                text: e.target.value
-                            }
-                        })}
-                        value={current.scriptAuthorOwnSettings.text} /> :
-                    <div>
-                        <div className={`
+                    >Script:</p>
+                        {isEdit ?
+                            <textarea className={styles.infoContainer_textarea}
+                                onChange={(e) => setCurrent({
+                                    ...current,
+                                    scriptAuthorOwnSettings: {
+                                        ...current.scriptAuthorOwnSettings,
+                                        text: e.target.value
+                                    }
+                                })}
+                                value={current.scriptAuthorOwnSettings.text} /> :
+                            <div>
+                                <div className={`
                    ${styles.infoContainer_details} 
                    ${isDetailsExpanded ? styles.infoContainer_details_expanded : ''}`}
-                        >
-                            {current.scriptAuthorOwnSettings.text}
-                        </div>
-                        {isDetailTextBig &&
-                            <>
-                                <div className={`
+                                >
+                                    {current.scriptAuthorOwnSettings.text}
+                                </div>
+                                {isDetailTextBig &&
+                                    <>
+                                        <div className={`
                         ${styles.infoContainer_details_shadow}
                         ${isDetailsExpanded ? styles.infoContainer_details_shadow_expanded : ''}
                         `}></div>
-                                <div
-                                    className={`
+                                        <div
+                                            className={`
                            ${styles.infoContainer_details_showAll}
                            ${isDetailsExpanded ? styles.infoContainer_details_showAll_expanded : ''}
                                `
-                                    }
-                                    onClick={() => setIsDetailsExpanded(!isDetailsExpanded)}
-                                >
-                                    <>{isDetailsExpanded ? "Show less" : "Show all text"}<img src={ArrowBlue3} alt='' /></>
+                                            }
+                                            onClick={() => setIsDetailsExpanded(!isDetailsExpanded)}
+                                        >
+                                            <>{isDetailsExpanded ? "Show less" : "Show all text"}<img src={ArrowBlue3} alt='' /></>
 
-                                </div>
-                            </>
-                        }
-                    </div>}
-            </div>
+                                        </div>
+                                    </>
+                                }
+                            </div>}
+                    </div>
+                </>}
 
         </div >
     )
