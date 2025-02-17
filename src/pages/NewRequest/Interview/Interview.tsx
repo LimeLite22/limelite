@@ -82,7 +82,6 @@ const Interview = () => {
         questionSettings?.virtualSettings.email === "" ||
         questionSettings?.virtualSettings.phone === "")
     ) {
-      console.log('ddddd', questionSettings?.virtualSettings)
       disabled = true;
     }
     setIsDisabled(disabled);

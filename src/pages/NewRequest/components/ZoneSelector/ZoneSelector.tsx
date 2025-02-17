@@ -17,7 +17,7 @@ interface IProps {
   isEdit: boolean
 }
 const ZoneSelector: FC<IProps> = ({ onChange, isError, isEdit }) => {
-  const lIS = useSelector(selectRequestInfo)?.logisticSettings
+  const lIS = useSelector(selectRequestInfo)!.logisticSettings
   const eLIS = useSelector((state: IRootState) => state.request.editDraft)?.logisticSettings;
   const travel = isEdit ? eLIS.travel : lIS?.travel;
   const [isOpened, setOpened] = useState(false);
@@ -33,7 +33,7 @@ const ZoneSelector: FC<IProps> = ({ onChange, isError, isEdit }) => {
         }}
       >
         <div className={styles.zoneDropdown__selected_name}>
-          {<>{travel?.zoneCode?.name} :${travel?.zoneCode?.value}</> || <span>Select</span>}{" "}
+          {travel?.zoneCode?.value > 0 ? <>{travel?.zoneCode?.name} :${travel?.zoneCode?.value}</> : <span>Select</span>}{" "}
         </div>
         {isError && !isOpened && (
           <div className={styles.zoneDropdown__selected_errorMessage}>

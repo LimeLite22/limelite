@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ScriptPersons from "./ScriptPersons";
 import { selectRequestInfo, updateScriptInfoSettings } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
-import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
+import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, PROFESSIONAL_SCRIPT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import { IScriptSettings } from "interfaces/interfaces";
 const ScriptInfo = () => {
     const selectedRequest = useSelector(selectRequestInfo);
@@ -95,114 +95,125 @@ const ScriptInfo = () => {
                         ><img src={Success2} alt='' /><div>Save changes</div></div>
                     </div>}
             </div>
-            <div className={styles.infoContainer_text}><p>Script Status:</p>
-                {isEdit ?
-                    <div className={styles.infoContainer_statuses}>
-                        <div
-                            className={`${styles.box_status} ${current?.scriptStatus === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
-                            onClick={() => {
-                                setCurrent((prev) => ({ ...prev, scriptStatus: APPROVED_TEXT_STATUS }))
-                            }}
-                        >
-                            <img src={StatusApproved} alt="status" />
-                            {APPROVED_TEXT_STATUS}
-                        </div>
-                        <div
-                            className={`${styles.box_status} ${current?.scriptStatus === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
-                            onClick={() => {
-                                setCurrent((prev) => ({ ...prev, scriptStatus: IN_PROGRESS_TEXT_STATUS }))
-                            }}
-                        >
-                            <img src={StatusProgress} alt="status" />
-                            {IN_PROGRESS_TEXT_STATUS}
-                        </div>
-                        <div
-                            className={`${styles.box_status} ${current?.scriptStatus === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
-                            onClick={() => {
-                                setCurrent((prev) => ({ ...prev, scriptStatus: UNAVAILABLE_TEXT_STATUS }))
-                            }}
-                        >
-                            <img src={StatusUnavailable} alt="status" />
-                            {UNAVAILABLE_TEXT_STATUS}
-                        </div>
-                    </div> : selectedRequest?.scriptSettings.scriptStatus}
-            </div>
-            <div className={styles.infoContainer_text}><p className={`
+            {selectedRequest?.scriptSettings.scriptWriter === OWN_SCRIPT &&
+                <>
+                    <div className={styles.infoContainer_text}><p>Script Status:</p>
+                        {isEdit ?
+                            <div className={styles.infoContainer_statuses}>
+                                <div
+                                    className={`${styles.box_status} ${current?.scriptStatus === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
+                                    onClick={() => {
+                                        setCurrent((prev) => ({ ...prev, scriptStatus: APPROVED_TEXT_STATUS }))
+                                    }}
+                                >
+                                    <img src={StatusApproved} alt="status" />
+                                    {APPROVED_TEXT_STATUS}
+                                </div>
+                                <div
+                                    className={`${styles.box_status} ${current?.scriptStatus === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
+                                    onClick={() => {
+                                        setCurrent((prev) => ({ ...prev, scriptStatus: IN_PROGRESS_TEXT_STATUS }))
+                                    }}
+                                >
+                                    <img src={StatusProgress} alt="status" />
+                                    {IN_PROGRESS_TEXT_STATUS}
+                                </div>
+                                <div
+                                    className={`${styles.box_status} ${current?.scriptStatus === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
+                                    onClick={() => {
+                                        setCurrent((prev) => ({ ...prev, scriptStatus: UNAVAILABLE_TEXT_STATUS }))
+                                    }}
+                                >
+                                    <img src={StatusUnavailable} alt="status" />
+                                    {UNAVAILABLE_TEXT_STATUS}
+                                </div>
+                            </div> : selectedRequest?.scriptSettings.scriptStatus}
+                    </div>
+                    <div className={styles.infoContainer_text}><p className={`
                 ${styles.infoContainer_detailsHeader}
                 ${isDetailTextBig ? styles.infoContainer_detailsHeader_big : ''}
                 ${isDetailsExpanded ? styles.infoContainer_detailsHeader_expanded : ''}
                 `}
-            >Script:</p>
-                {isEdit ?
-                    <textarea className={styles.infoContainer_textarea}
-                        onChange={(e) => setCurrent({ ...current, ownText: e.target.value })}
-                        value={current?.ownText} /> :
-                    <div>
-                        <div className={`
+                    >Script:</p>
+                        {isEdit ?
+                            <textarea className={styles.infoContainer_textarea}
+                                onChange={(e) => setCurrent({ ...current, ownText: e.target.value })}
+                                value={current?.ownText} /> :
+                            <div>
+                                <div className={`
                    ${styles.infoContainer_details} 
                    ${isDetailsExpanded ? styles.infoContainer_details_expanded : ''}`}
-                        >
-                            {selectedRequest?.scriptSettings.ownText}
-                        </div>
-                        {isDetailTextBig &&
-                            <>
-                                <div className={`
+                                >
+                                    {selectedRequest?.scriptSettings.ownText}
+                                </div>
+                                {isDetailTextBig &&
+                                    <>
+                                        <div className={`
                         ${styles.infoContainer_details_shadow}
                         ${isDetailsExpanded ? styles.infoContainer_details_shadow_expanded : ''}
                         `}></div>
-                                <div
-                                    className={`
+                                        <div
+                                            className={`
                            ${styles.infoContainer_details_showAll}
                            ${isDetailsExpanded ? styles.infoContainer_details_showAll_expanded : ''}
                                `
-                                    }
-                                    onClick={() => setIsDetailsExpanded(!isDetailsExpanded)}
-                                >
-                                    <>{isDetailsExpanded ? "Show less" : "Show all text"}<img src={ArrowBlue3} alt='' /></>
+                                            }
+                                            onClick={() => setIsDetailsExpanded(!isDetailsExpanded)}
+                                        >
+                                            <>{isDetailsExpanded ? "Show less" : "Show all text"}<img src={ArrowBlue3} alt='' /></>
 
-                                </div>
-                            </>
-                        }
-                    </div>}
-            </div>
+                                        </div>
+                                    </>
+                                }
+                            </div>}
+                    </div>
+                </>
+            }
 
-            <div className={styles.infoContainer_text}><p>Subject matter expert :</p>
-                {isEdit ?
-                    <input
-                        className={styles.infoContainer_input}
-                        value={current.name}
-                        onChange={(e) => setCurrent({ ...current, name: e.target.value })}
-                        type="text" /> : scriptSettings?.name}
 
-            </div>
+            {selectedRequest?.scriptSettings.scriptWriter === PROFESSIONAL_SCRIPT &&
+                <>
+                    <div className={styles.infoContainer_text}><p>Subject matter expert :</p>
+                        {isEdit ?
+                            <input
+                                className={styles.infoContainer_input}
+                                value={current.name}
+                                onChange={(e) => setCurrent({ ...current, name: e.target.value })}
+                                type="text" /> : scriptSettings?.name}
 
-            <div className={styles.infoContainer_text}><p>Phone:</p>
-                {isEdit ?
-                    <input
-                        className={styles.infoContainer_input}
-                        value={current.phone}
+                    </div>
 
-                        onChange={(e) => setCurrent({ ...current, phone: Number(e.target.value) })}
-                        type="text" /> : scriptSettings?.phone}
-            </div>
+                    <div className={styles.infoContainer_text}><p>Phone:</p>
+                        {isEdit ?
+                            <input
+                                className={styles.infoContainer_input}
+                                value={current.phone}
 
-            <div className={styles.infoContainer_text}><p>Email:</p>
-                {isEdit ?
-                    <input
-                        className={styles.infoContainer_input}
-                        value={current.email}
-                        onChange={(e) => setCurrent({ ...current, email: e.target.value })}
-                        type="text" /> : scriptSettings?.email}
-            </div>
+                                onChange={(e) => setCurrent({ ...current, phone: Number(e.target.value) })}
+                                type="text" /> : scriptSettings?.phone}
+                    </div>
 
-            <div className={styles.infoContainer_text}><p>Background information for interview(s):</p>
-                {isEdit ?
-                    <input
-                        className={styles.infoContainer_input}
-                        value={current.backgroundInfo}
-                        onChange={(e) => setCurrent({ ...current, backgroundInfo: e.target.value })}
-                        type="text" /> : scriptSettings?.backgroundInfo}
-            </div>
+                    <div className={styles.infoContainer_text}><p>Email:</p>
+                        {isEdit ?
+                            <input
+                                className={styles.infoContainer_input}
+                                value={current.email}
+                                onChange={(e) => setCurrent({ ...current, email: e.target.value })}
+                                type="text" /> : scriptSettings?.email}
+                    </div>
+
+                    <div className={styles.infoContainer_text}><p>Background information for interview(s):</p>
+                        {isEdit ?
+                            <input
+                                className={styles.infoContainer_input}
+                                value={current.backgroundInfo}
+                                onChange={(e) => setCurrent({ ...current, backgroundInfo: e.target.value })}
+                                type="text" /> : scriptSettings?.backgroundInfo}
+                    </div>
+                </>
+            }
+
+
             <div className={styles.infoContainer_text}><p>Teleprompter:</p>
                 {isEdit ? <div className={styles.infoContainer_telepromptOptions}>
                     <div
