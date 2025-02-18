@@ -4,6 +4,7 @@ import {
   DetailsGreen,
 } from "assets/images";
 import {
+  APPROVED_TEXT_STATUS,
   DEFAULT,
   QUESTIONS_AUTHOR_CLIENT,
   QUESTIONS_AUTHOR_PROFESSIONAL,
@@ -45,6 +46,21 @@ const Interview = () => {
     ) {
       disabled = true;
     }
+    if (
+      selectedRequest?.interviewSettings.questionsAuthor ===
+      QUESTIONS_AUTHOR_CLIENT &&
+      selectedRequest?.interviewSettings.questionsAuthorOwnSettings.text
+        .length === 0
+      && selectedRequest?.interviewSettings.questionsAuthorOwnSettings.scriptStatus === APPROVED_TEXT_STATUS
+    ) {
+      disabled = true;
+    }
+    if (
+      selectedRequest?.interviewSettings.questionsAuthorOwnSettings.scriptStatus === DEFAULT) {
+      disabled = true;
+    }
+
+
     const profSettings =
       selectedRequest?.interviewSettings.questionsAuthorProfSettings;
     if (

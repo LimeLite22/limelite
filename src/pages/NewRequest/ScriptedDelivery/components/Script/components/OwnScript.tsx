@@ -92,7 +92,7 @@ const OwnScript = ({ isExpanded, setIsExpanded, isError }: IProps) => {
       </div>
       <div className={styles.box_container}>
         <div className={styles.box_text}>Script Status</div>
-        <div className={styles.box_statuses}>
+        <div className={styles.box_statuses} style={{ border: isError.status ? "1px solid var(--red-dark)" : "" }}>
           <div
             className={`${styles.box_status} ${status === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
             onClick={() => {

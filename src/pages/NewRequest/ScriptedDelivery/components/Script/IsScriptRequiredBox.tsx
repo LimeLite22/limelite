@@ -39,14 +39,14 @@ const IsScriptRequired = () => {
       return;
     }
     if (selection === OWN_SCRIPT) {
-      if (ownTextStatus === APPROVED_TEXT_STATUS && (!ownText || ownText.length === 0)) {
+      if (ownTextStatus !== APPROVED_TEXT_STATUS || (!ownText || ownText.length === 0)) {
         setIsOwnExpanded(true);
         const errors = {
           name: false,
           phone: false,
           email: false,
           ownScript: ownTextStatus === APPROVED_TEXT_STATUS ? (!ownText || ownText.length === 0) : false,
-          ownScriptStatus: false,
+          ownScriptStatus: ownTextStatus === DEFAULT,
           proffessionalScript: false,
         };
         setIsError(errors);
@@ -126,7 +126,7 @@ const IsScriptRequired = () => {
       };
       setIsError(errors);
     }
-  }, [name, phone, email, ownText, proffessionalText]);
+  }, [name, phone, email, ownText, proffessionalText, ownTextStatus]);
 
   return (
     <div ref={containerRef} tabIndex={-1} onBlur={handleBlur}>

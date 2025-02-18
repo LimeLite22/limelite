@@ -5,6 +5,7 @@ import {
   DetailsGreen,
 } from "assets/images";
 import {
+  APPROVED_TEXT_STATUS,
   DEFAULT,
   OWN_SCRIPT,
   PROFESSIONAL_SCRIPT,
@@ -45,6 +46,18 @@ const Voiceover = () => {
     if (
       voiceSettings?.scriptAuthor === OWN_SCRIPT && ownSettings?.text.length === 0
     ) {
+      disabled = true;
+    }
+    if (
+      voiceSettings?.scriptAuthor === OWN_SCRIPT &&
+      voiceSettings?.scriptAuthorOwnSettings?.text.length === 0
+      && voiceSettings?.scriptAuthorOwnSettings?.scriptStatus === APPROVED_TEXT_STATUS
+
+    ) {
+      disabled = true;
+    }
+    if (
+      voiceSettings?.scriptAuthorOwnSettings?.scriptStatus === DEFAULT) {
       disabled = true;
     }
     if (

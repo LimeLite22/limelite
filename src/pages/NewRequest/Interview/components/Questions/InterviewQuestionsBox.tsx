@@ -20,6 +20,7 @@ const InterviewQuestionsBox = () => {
     phone: false,
     email: false,
     ownScript: false,
+    status: false,
     proffessionalScript: false,
   });
   const selection = selectedRequest?.interviewSettings.questionsAuthor;
@@ -46,13 +47,14 @@ const InterviewQuestionsBox = () => {
       return;
     }
     if (selection === QUESTIONS_AUTHOR_CLIENT) {
-      if (ownTextStatus === APPROVED_TEXT_STATUS && (!ownText || ownText.length === 0)) {
+      if (ownTextStatus !== APPROVED_TEXT_STATUS || (!ownText || ownText.length === 0)) {
         setIsOwnExpanded(true);
         const errors = {
           subject: false,
           phone: false,
           email: false,
           ownScript: ownTextStatus === APPROVED_TEXT_STATUS ? (!ownText || ownText.length === 0) : false,
+          status: ownTextStatus === DEFAULT,
           proffessionalScript: false,
         };
         setIsError(errors);
@@ -77,6 +79,7 @@ const InterviewQuestionsBox = () => {
           phone: phone === "",
           email: !email || email.length === 0,
           ownScript: false,
+          status: false,
           proffessionalScript:
             !proffessionalText || proffessionalText.length === 0,
         };
@@ -98,6 +101,7 @@ const InterviewQuestionsBox = () => {
         phone: false,
         email: false,
         ownScript: false,
+        status: false,
         proffessionalScript: false,
       });
     }
@@ -109,6 +113,7 @@ const InterviewQuestionsBox = () => {
         phone: false,
         email: false,
         ownScript: ownTextStatus === APPROVED_TEXT_STATUS ? (!ownText || ownText.length === 0) : false,
+        status: ownTextStatus === DEFAULT,
         proffessionalScript: false,
       };
       setIsError(errors);
@@ -119,12 +124,13 @@ const InterviewQuestionsBox = () => {
         phone: phone === "",
         email: !email || email.length === 0,
         ownScript: false,
+        status: false,
         proffessionalScript:
           !proffessionalText || proffessionalText.length === 0,
       };
       setIsError(errors);
     }
-  }, [subject, phone, email, ownText, proffessionalText]);
+  }, [subject, phone, email, ownText, proffessionalText, ownTextStatus]);
 
   return (
     <div ref={containerRef} tabIndex={-1} onBlur={handleBlur}>
@@ -133,7 +139,7 @@ const InterviewQuestionsBox = () => {
       </div>
       <LearnMorePopUp />
       <OwnQuestions
-        isError={{ text: isError.ownScript }}
+        isError={{ text: isError.ownScript, status: isError.status }}
         isExpanded={isOwnExpanded}
         setIsExpanded={setIsOwnExpanded}
       />

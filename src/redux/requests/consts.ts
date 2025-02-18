@@ -51,7 +51,7 @@ export const requestsInitialState: IRequest[] = [
         },
         scriptSettings: {
             scriptWriter: DEFAULT,
-            scriptStatus: APPROVED_TEXT_STATUS,
+            scriptStatus: DEFAULT,
             name: "Alex Smith",
             phone: 232323233,
             email: "wM9M3@example.com",
@@ -73,7 +73,7 @@ export const requestsInitialState: IRequest[] = [
             },
             questionsAuthorOwnSettings: {
                 text: " Establish a connection with the client",
-                scriptStatus: APPROVED_TEXT_STATUS,
+                scriptStatus: DEFAULT,
             },
             persons: [
                 {
@@ -108,7 +108,7 @@ export const requestsInitialState: IRequest[] = [
             },
             scriptAuthorOwnSettings: {
                 text: " Establish a connection with the client",
-                scriptStatus: APPROVED_TEXT_STATUS,
+                scriptStatus: DEFAULT,
             },
         },
         videoSettings: {

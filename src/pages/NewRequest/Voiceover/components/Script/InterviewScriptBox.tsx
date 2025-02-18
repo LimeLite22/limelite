@@ -15,6 +15,7 @@ const InterviewScriptBox = () => {
     phone: false,
     email: false,
     ownScript: false,
+    ownScriptStatus: false,
     proffessionalScript: false,
   });
   const selection = selectedRequest?.voiceTrackSettings.scriptAuthor;
@@ -41,13 +42,14 @@ const InterviewScriptBox = () => {
       return;
     }
     if (selection === OWN_SCRIPT) {
-      if (!ownText || ownText.length === 0) {
+      if (ownTextStatus !== APPROVED_TEXT_STATUS || (!ownText || ownText.length === 0)) {
         setIsOwnExpanded(true);
         const errors = {
           subject: false,
           phone: false,
           email: false,
           ownScript: ownTextStatus === APPROVED_TEXT_STATUS ? (!ownText || ownText.length === 0) : false,
+          ownScriptStatus: ownTextStatus === DEFAULT,
           proffessionalScript: false,
         };
         setIsError(errors);
@@ -58,12 +60,9 @@ const InterviewScriptBox = () => {
     }
     if (selection === PROFESSIONAL_SCRIPT) {
       if (
-        !email ||
-        email.length === 0 ||
-        !profText ||
-        profText.length === 0 ||
-        !subject ||
-        subject.length === 0 ||
+        !email || email.length === 0 ||
+        !profText || profText.length === 0 ||
+        !subject || subject.length === 0 ||
         phone === ""
       ) {
         setIsProffessionalExpanded(true);
@@ -72,6 +71,7 @@ const InterviewScriptBox = () => {
           phone: phone === "",
           email: !email || email.length === 0,
           ownScript: false,
+          ownScriptStatus: false,
           proffessionalScript:
             !profText || profText.length === 0,
         };
@@ -92,6 +92,7 @@ const InterviewScriptBox = () => {
       phone: false,
       email: false,
       ownScript: false,
+      ownScriptStatus: false,
       proffessionalScript: false,
     });
   }, [selection]);
@@ -102,6 +103,7 @@ const InterviewScriptBox = () => {
         phone: false,
         email: false,
         ownScript: ownTextStatus === APPROVED_TEXT_STATUS ? (!ownText || ownText.length === 0) : false,
+        ownScriptStatus: ownTextStatus === DEFAULT,
         proffessionalScript: false,
       };
       setIsError(errors);
@@ -112,12 +114,13 @@ const InterviewScriptBox = () => {
         phone: phone === "",
         email: !email || email.length === 0,
         ownScript: false,
+        ownScriptStatus: false,
         proffessionalScript:
           !profText || profText.length === 0,
       };
       setIsError(errors);
     }
-  }, [subject, phone, email, ownText, profText]);
+  }, [subject, phone, email, ownText, profText, ownTextStatus]);
 
   return (
     <div ref={containerRef} tabIndex={-1} onBlur={handleBlur}>
@@ -126,7 +129,7 @@ const InterviewScriptBox = () => {
       </div>
       <LearnMorePopUp />
       <OwnScript
-        isError={{ text: isError.ownScript }}
+        isError={{ text: isError.ownScript, status: isError.ownScriptStatus }}
         isExpanded={isOwnExpanded}
         setIsExpanded={setIsOwnExpanded}
       />
