@@ -1,5 +1,6 @@
 
-import { ArrowBlue3, CloseRed, EditIcon, Success2, User1Foto } from "assets/images";
+import { CloseRed, EditIcon, Success2, User1Foto } from "assets/images";
+import DivRowCount from "pages/NewRequest/components/TextArea";
 import { ProjectTone, ProjectType } from "pages/NewRequest/ProjectInfo/components";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,10 +16,6 @@ const ProjectInfo = () => {
     // editProjectInfoSettings = ePIS
     const pIS = useSelector(selectRequestInfo)?.projectInfoSettings;
     const ePIS = useSelector((state: IRootState) => state.request.editDraft)?.projectInfoSettings;
-
-
-    const [isDetailsExpanded, setIsDetailsExpanded] = useState(false);
-    const isDetailTextBig = pIS?.details && pIS?.details?.length > 200;
 
     const readyToSave = () => {
         let ready = true;
@@ -143,9 +140,7 @@ const ProjectInfo = () => {
             <div className={styles.infoContainer_text}>
                 <p className={`
                 ${styles.infoContainer_detailsHeader}
-                ${isDetailTextBig ? styles.infoContainer_detailsHeader_big : ''}
-                ${isDetailsExpanded ? styles.infoContainer_detailsHeader_expanded : ''}
-                `}>Details</p>
+                `}>Details:</p>
                 {isEdit ?
                     <textarea className={styles.infoContainer_textarea}
                         onChange={(e) => {
@@ -155,33 +150,7 @@ const ProjectInfo = () => {
                         }
                         }
                         value={ePIS?.details} /> :
-                    <div>
-                        <div className={`
-                    ${styles.infoContainer_details} 
-                    ${isDetailsExpanded ? styles.infoContainer_details_expanded : ''}`}
-                        >
-                            {pIS?.details}
-                        </div>
-                        {isDetailTextBig &&
-                            <>
-                                <div className={`
-                         ${styles.infoContainer_details_shadow}
-                         ${isDetailsExpanded ? styles.infoContainer_details_shadow_expanded : ''}
-                         `}></div>
-                                <div
-                                    className={`
-                            ${styles.infoContainer_details_showAll}
-                            ${isDetailsExpanded ? styles.infoContainer_details_showAll_expanded : ''}
-                                `
-                                    }
-                                    onClick={() => setIsDetailsExpanded(!isDetailsExpanded)}
-                                >
-                                    <>{isDetailsExpanded ? "Show less" : "Show all text"}<img src={ArrowBlue3} alt='' /></>
-
-                                </div>
-                            </>
-                        }
-                    </div>
+                    <DivRowCount text={pIS?.details ? pIS?.details : ''} />
                 }
 
             </div>

@@ -42,8 +42,8 @@ const ProjectType: FC<IProps> = ({ isError, setIsError, isSubmitMode, onChange }
     setOpened(false);
   }
   const handleBlur = () => {
+    setOpened(false);
     if (!type) {
-      setOpened(false);
       setIsError(true);
     }
   }

@@ -1,6 +1,6 @@
 
-import { ArrowBlue3, CloseRed, EditIcon, StatusApproved, StatusApprovedBlack, StatusProgress, StatusProgressBlack, StatusUnavailable, StatusUnavailableBlack, Success2 } from "assets/images";
-import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, PROFESSIONAL_SCRIPT, QUESTIONS_AUTHOR_CLIENT, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTIONS_ON_LOCATION, QUESTIONS_VIRTUALLY, UNAVAILABLE_TEXT_STATUS, VIRTUAL_INTERVIEW } from "consts/consts";
+import { CloseRed, EditIcon, StatusApproved, StatusApprovedBlack, StatusProgress, StatusProgressBlack, StatusUnavailable, StatusUnavailableBlack, Success2 } from "assets/images";
+import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, QUESTIONS_AUTHOR_CLIENT, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTIONS_ON_LOCATION, QUESTIONS_VIRTUALLY, UNAVAILABLE_TEXT_STATUS, } from "consts/consts";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -8,37 +8,57 @@ import ScriptPersons from "./ScriptPersons";
 import { selectRequestInfo, updateInterviewInfoSettings } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 import { IInterviewSettings } from "interfaces/interfaces";
+import DivRowCount from "pages/NewRequest/components/TextArea";
 const InterviewProffScript = () => {
     const selectedRequest = useSelector(selectRequestInfo);
-    const interviewSettings = { ...selectedRequest?.interviewSettings }
+    const interviewSettings = { ...selectedRequest!.interviewSettings };
+    const proffSettings = { ...interviewSettings?.questionsAuthorProfSettings };
+    const ownSettings = { ...interviewSettings?.questionsAuthorOwnSettings };
+
     const dispatch = useDispatch();
     const [isEdit, setIsEdit] = useState(false);
     const [isReady, setIsReady] = useState(false);
 
     const [current, setCurrent] = useState(interviewSettings);
-    const [isDetailsExpanded, setIsDetailsExpanded] = useState(false);
-    const isDetailTextBig = interviewSettings?.questionsAuthorOwnSettings?.text
-        && interviewSettings?.questionsAuthorOwnSettings?.text.length > 200;
+    const curProffSettings = current?.questionsAuthorProfSettings;
+    const curOwnSettings = current?.questionsAuthorOwnSettings;
+
 
     const readyToSave = () => {
         let ready = true;
         if (
-            current?.questionsAuthorOwnSettings?.text !== interviewSettings?.questionsAuthorOwnSettings?.text
-            || current?.questionsAuthorOwnSettings?.scriptStatus !== interviewSettings?.questionsAuthorOwnSettings?.scriptStatus
-            || current.persons !== selectedRequest?.interviewSettings?.persons ||
-            current?.questionsAuthorProfSettings?.subject !== interviewSettings?.questionsAuthorProfSettings?.subject ||
-            current?.questionsAuthorProfSettings?.phone !== interviewSettings?.questionsAuthorProfSettings?.phone ||
-            current?.questionsAuthorProfSettings?.email !== interviewSettings?.questionsAuthorProfSettings?.email ||
-            current?.questionsAuthorProfSettings?.backgroundInfo !== interviewSettings?.questionsAuthorProfSettings?.backgroundInfo
+            curOwnSettings.text !== ownSettings?.text
+            || curOwnSettings.scriptStatus !== ownSettings?.scriptStatus
+            || current.persons !== interviewSettings?.persons ||
+            curProffSettings.subject !== proffSettings.subject ||
+            curProffSettings.phone !== proffSettings.phone ||
+            curProffSettings.email !== proffSettings.email ||
+            curProffSettings.backgroundInfo !== proffSettings.backgroundInfo
         ) {
-            if (current?.questionsAuthorOwnSettings?.text.length !== 0 &&
-                current?.questionsAuthorProfSettings?.subject.length !== 0 &&
-                current?.questionsAuthorProfSettings?.email.length !== 0
-            ) {
-                ready = true
-            } else {
-                ready = false
+
+            if (interviewSettings.questionsAuthor === QUESTIONS_AUTHOR_CLIENT) {
+                if (curOwnSettings.text.length !== 0) {
+                    ready = true
+                } else {
+                    ready = false
+                }
             }
+            if (interviewSettings.questionsAuthor === QUESTIONS_AUTHOR_PROFESSIONAL) {
+                if (curProffSettings?.subject.length !== 0
+                    && curProffSettings?.email.length !== 0
+                    && String(curProffSettings?.phone).length !== 0
+                    && curProffSettings?.backgroundInfo.length !== 0
+                ) {
+                    ready = true
+                } else {
+                    ready = false
+                }
+            }
+
+
+
+
+
             current.persons?.forEach((item) => {
                 if (item.name.length === 0 || item.title.length === 0) {
                     ready = false
@@ -100,74 +120,58 @@ const InterviewProffScript = () => {
                         {isEdit ?
                             <div className={styles.infoContainer_statuses}>
                                 <div
-                                    className={`${styles.box_status} ${current.questionsAuthorOwnSettings?.scriptStatus === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
+                                    className={`
+                                    ${styles.box_status} 
+                                    ${curOwnSettings.scriptStatus === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
                                     onClick={() => {
                                         setCurrent((prev) => ({ ...prev, status: APPROVED_TEXT_STATUS }))
                                     }}
                                 >
-                                    <img src={current.questionsAuthorOwnSettings?.scriptStatus === APPROVED_TEXT_STATUS ? StatusApprovedBlack : StatusApproved} alt="status" />
+                                    <img
+                                        src={curOwnSettings.scriptStatus === APPROVED_TEXT_STATUS ? StatusApprovedBlack : StatusApproved}
+                                        alt="status"
+                                    />
                                     {APPROVED_TEXT_STATUS}
                                 </div>
                                 <div
-                                    className={`${styles.box_status} ${current.questionsAuthorOwnSettings?.scriptStatus === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
+                                    className={`
+                                    ${styles.box_status} 
+                                    ${curOwnSettings.scriptStatus === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
                                     onClick={() => {
                                         setCurrent((prev) => ({ ...prev, status: IN_PROGRESS_TEXT_STATUS }))
                                     }}
                                 >
-                                    <img src={current.questionsAuthorOwnSettings?.scriptStatus === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress} alt="status" />
+                                    <img
+                                        src={curOwnSettings.scriptStatus === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress}
+                                        alt="status"
+                                    />
                                     {IN_PROGRESS_TEXT_STATUS}
                                 </div>
                                 <div
-                                    className={`${styles.box_status} ${current.questionsAuthorOwnSettings?.scriptStatus === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
+                                    className={`
+                                    ${styles.box_status} 
+                                    ${curOwnSettings.scriptStatus === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
                                     onClick={() => {
                                         setCurrent((prev) => ({ ...prev, status: UNAVAILABLE_TEXT_STATUS }))
                                     }}
                                 >
-                                    <img src={current.questionsAuthorOwnSettings?.scriptStatus === UNAVAILABLE_TEXT_STATUS ? StatusUnavailableBlack : StatusUnavailable} alt="status" />
+                                    <img src={curOwnSettings.scriptStatus === UNAVAILABLE_TEXT_STATUS ? StatusUnavailableBlack : StatusUnavailable} alt="status" />
                                     {UNAVAILABLE_TEXT_STATUS}
                                 </div>
-                            </div> : selectedRequest?.interviewSettings.questionsAuthorOwnSettings.scriptStatus}
+                            </div> : ownSettings.scriptStatus}
                     </div>
                     <div className={styles.infoContainer_text}><p className={`
-                ${styles.infoContainer_detailsHeader}
-                ${isDetailTextBig ? styles.infoContainer_detailsHeader_big : ''}
-                ${isDetailsExpanded ? styles.infoContainer_detailsHeader_expanded : ''}
                 `}
                     >Script:</p>
                         {isEdit ?
                             <textarea className={styles.infoContainer_textarea}
                                 onChange={(e) => {
-                                    return current.questionsAuthorOwnSettings && setCurrent({ ...current || {}, questionsAuthorOwnSettings: { ...current?.questionsAuthorOwnSettings || {}, text: e.target.value } })
+                                    return curOwnSettings && setCurrent({ ...current || {}, questionsAuthorOwnSettings: { ...current?.questionsAuthorOwnSettings || {}, text: e.target.value } })
                                 }
                                 }
-                                value={current?.questionsAuthorOwnSettings?.text} /> :
-                            <div>
-                                <div className={`
-                   ${styles.infoContainer_details} 
-                   ${isDetailsExpanded ? styles.infoContainer_details_expanded : ''}`}
-                                >
-                                    {interviewSettings?.questionsAuthorOwnSettings?.text}
-                                </div>
-                                {isDetailTextBig &&
-                                    <>
-                                        <div className={`
-                        ${styles.infoContainer_details_shadow}
-                        ${isDetailsExpanded ? styles.infoContainer_details_shadow_expanded : ''}
-                        `}></div>
-                                        <div
-                                            className={`
-                           ${styles.infoContainer_details_showAll}
-                           ${isDetailsExpanded ? styles.infoContainer_details_showAll_expanded : ''}
-                               `
-                                            }
-                                            onClick={() => setIsDetailsExpanded(!isDetailsExpanded)}
-                                        >
-                                            <>{isDetailsExpanded ? "Show less" : "Show all text"}<img src={ArrowBlue3} alt='' /></>
-
-                                        </div>
-                                    </>
-                                }
-                            </div>}
+                                value={curOwnSettings?.text} /> :
+                            <DivRowCount text={ownSettings.text} />
+                        }
                     </div>
                 </>
             }
@@ -177,12 +181,17 @@ const InterviewProffScript = () => {
                         {isEdit ?
                             <input
                                 className={styles.infoContainer_input}
-                                value={current?.questionsAuthorProfSettings?.subject}
+                                value={curProffSettings?.subject}
                                 onChange={(e) => {
-                                    return current.questionsAuthorProfSettings && setCurrent({ ...current, questionsAuthorProfSettings: { ...current?.questionsAuthorProfSettings || {}, subject: e.target.value } })
+                                    return curProffSettings
+                                        && setCurrent({
+                                            ...current,
+                                            questionsAuthorProfSettings:
+                                                { ...current?.questionsAuthorProfSettings || {}, subject: e.target.value }
+                                        })
                                 }
                                 }
-                                type="text" /> : interviewSettings?.questionsAuthorProfSettings?.subject}
+                                type="text" /> : proffSettings.subject}
 
                     </div>
 
@@ -190,34 +199,49 @@ const InterviewProffScript = () => {
                         {isEdit ?
                             <input
                                 className={styles.infoContainer_input}
-                                value={current.questionsAuthorProfSettings?.phone}
+                                value={curProffSettings.phone}
 
                                 onChange={(e) => {
-                                    return current.questionsAuthorProfSettings && setCurrent({ ...current, questionsAuthorProfSettings: { ...current?.questionsAuthorProfSettings || {}, phone: Number(e.target.value) } })
+                                    return current.questionsAuthorProfSettings
+                                        && setCurrent({
+                                            ...current,
+                                            questionsAuthorProfSettings:
+                                                { ...current?.questionsAuthorProfSettings || {}, phone: Number(e.target.value) }
+                                        })
                                 }}
-                                type="text" /> : interviewSettings?.questionsAuthorProfSettings?.phone}
+                                type="text" /> : proffSettings.phone}
                     </div>
 
                     <div className={styles.infoContainer_text}><p>Email:</p>
                         {isEdit ?
                             <input
                                 className={styles.infoContainer_input}
-                                value={current.questionsAuthorProfSettings?.email}
+                                value={curProffSettings.email}
                                 onChange={(e) => {
-                                    return current.questionsAuthorProfSettings && setCurrent({ ...current, questionsAuthorProfSettings: { ...current?.questionsAuthorProfSettings || {}, email: e.target.value } })
+                                    return curProffSettings
+                                        && setCurrent({
+                                            ...current,
+                                            questionsAuthorProfSettings:
+                                                { ...current?.questionsAuthorProfSettings || {}, email: e.target.value }
+                                        })
                                 }}
-                                type="text" /> : interviewSettings?.questionsAuthorProfSettings?.email}
+                                type="text" /> : proffSettings.email}
                     </div>
 
                     <div className={styles.infoContainer_text}><p>Background information for interview(s):</p>
                         {isEdit ?
                             <input
                                 className={styles.infoContainer_input}
-                                value={current.questionsAuthorProfSettings?.backgroundInfo}
+                                value={curProffSettings.backgroundInfo}
                                 onChange={(e) => {
-                                    return current.questionsAuthorProfSettings && setCurrent({ ...current, questionsAuthorProfSettings: { ...current?.questionsAuthorProfSettings || {}, backgroundInfo: e.target.value } })
+                                    return curProffSettings
+                                        && setCurrent({
+                                            ...current,
+                                            questionsAuthorProfSettings:
+                                                { ...current?.questionsAuthorProfSettings || {}, backgroundInfo: e.target.value }
+                                        })
                                 }}
-                                type="text" /> : interviewSettings?.questionsAuthorProfSettings?.backgroundInfo}
+                                type="text" /> : <DivRowCount text={proffSettings.backgroundInfo} />}
                     </div>
                 </>
             }

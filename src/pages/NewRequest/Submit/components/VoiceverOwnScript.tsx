@@ -1,6 +1,7 @@
 
-import { ArrowBlue3, CloseRed, EditIcon, StatusApproved, StatusProgress, StatusUnavailable, Success2, Audio, Delete, Download, StatusApprovedBlack, StatusProgressBlack, StatusUnavailableBlack } from "assets/images";
+import { CloseRed, EditIcon, StatusApproved, StatusProgress, StatusUnavailable, Success2, Audio, Delete, Download, StatusApprovedBlack, StatusProgressBlack, StatusUnavailableBlack } from "assets/images";
 import { APPROVED_TEXT_STATUS, DEFAULT, IN_PROGRESS_TEXT_STATUS, TRACK_AUTHOR_CLIENT, TRACK_AUTHOR_PROFESSIONAL, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
+import DivRowCount from "pages/NewRequest/components/TextArea";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -13,9 +14,7 @@ const VoiceoverOwnScript = () => {
     const [isReady, setIsReady] = useState(false);
     const [current, setCurrent] = useState(selectedRequest!.voiceTrackSettings);
     const [error, setError] = useState<string | null>(null);
-    const [isDetailsExpanded, setIsDetailsExpanded] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
-    const isDetailTextBig = selectedRequest!.voiceTrackSettings.scriptAuthorOwnSettings.text.length > 200;
 
     const readyToSave = () => {
         let ready = true;
@@ -72,7 +71,7 @@ const VoiceoverOwnScript = () => {
     useEffect(() => {
         readyToSave();
     }, [current])
-    if (selectedRequest?.voiceTrackSettings.trackAuthor !== TRACK_AUTHOR_PROFESSIONAL) return null
+    if (selectedRequest?.voiceTrackSettings.trackAuthor === TRACK_AUTHOR_PROFESSIONAL) return null
     return (
         <div className={styles.infoContainer}>
             <div className={styles.infoContainer_header}>About Your Voiceover
@@ -195,8 +194,6 @@ const VoiceoverOwnScript = () => {
                     </div>
                     <div className={styles.infoContainer_text}><p className={`
                 ${styles.infoContainer_detailsHeader}
-                ${isDetailTextBig ? styles.infoContainer_detailsHeader_big : ''}
-                ${isDetailsExpanded ? styles.infoContainer_detailsHeader_expanded : ''}
                 `}
                     >Script:</p>
                         {isEdit ?
@@ -209,33 +206,8 @@ const VoiceoverOwnScript = () => {
                                     }
                                 })}
                                 value={current.scriptAuthorOwnSettings.text} /> :
-                            <div>
-                                <div className={`
-                   ${styles.infoContainer_details} 
-                   ${isDetailsExpanded ? styles.infoContainer_details_expanded : ''}`}
-                                >
-                                    {current.scriptAuthorOwnSettings.text}
-                                </div>
-                                {isDetailTextBig &&
-                                    <>
-                                        <div className={`
-                        ${styles.infoContainer_details_shadow}
-                        ${isDetailsExpanded ? styles.infoContainer_details_shadow_expanded : ''}
-                        `}></div>
-                                        <div
-                                            className={`
-                           ${styles.infoContainer_details_showAll}
-                           ${isDetailsExpanded ? styles.infoContainer_details_showAll_expanded : ''}
-                               `
-                                            }
-                                            onClick={() => setIsDetailsExpanded(!isDetailsExpanded)}
-                                        >
-                                            <>{isDetailsExpanded ? "Show less" : "Show all text"}<img src={ArrowBlue3} alt='' /></>
-
-                                        </div>
-                                    </>
-                                }
-                            </div>}
+                            <DivRowCount text={current.scriptAuthorOwnSettings.text} />
+                        }
                     </div>
                 </>}
 

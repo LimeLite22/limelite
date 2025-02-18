@@ -36,7 +36,6 @@ const Submit = () => {
             <div
                 className={styles.nR_submitContainer}
             >
-                <StepsNavigation />
                 <div className={styles.nR_header_text}>
                     <Link to="/new-request/start">
                         <div className={styles.nR_header_text_button}>

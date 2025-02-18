@@ -1,10 +1,11 @@
 
 import { CloseRed, EditIcon, Success2 } from "assets/images";
-import { TRACK_AUTHOR_CLIENT } from "consts/consts";
+import { OWN_SCRIPT } from "consts/consts";
+import DivRowCount from "pages/NewRequest/components/TextArea";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectRequestInfo, updateDraftField, updateVoiceoverSettings } from "../../../../redux/requests/reducer";
+import { selectRequestInfo, updateVoiceoverSettings } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 const VoiceoverProfScript = () => {
     const selectedRequest = useSelector(selectRequestInfo);
@@ -56,7 +57,7 @@ const VoiceoverProfScript = () => {
         readyToSave();
     }, [current])
 
-    if (selectedRequest?.voiceTrackSettings.trackAuthor !== TRACK_AUTHOR_CLIENT) return null
+    if (selectedRequest?.voiceTrackSettings.scriptAuthor !== OWN_SCRIPT) return null
     return (
         <div className={styles.infoContainer}>
             <div className={styles.infoContainer_header}>About Your Voiceover
@@ -116,7 +117,7 @@ const VoiceoverProfScript = () => {
                         className={styles.infoContainer_input}
                         value={current.scriptAuthorProfSettings.backgroundInfo}
                         onChange={(e) => setCurrent({ ...current, scriptAuthorProfSettings: { ...current.scriptAuthorProfSettings, backgroundInfo: e.target.value } })}
-                        type="text" /> : voiceTrackSettings?.scriptAuthorProfSettings.backgroundInfo}
+                        type="text" /> : <DivRowCount text={voiceTrackSettings?.scriptAuthorProfSettings.backgroundInfo} />}
             </div>
         </div >
     )

@@ -24,6 +24,7 @@ interface IProps {
   setIsExpanded: (value: boolean) => void;
   isError: {
     text: boolean;
+    status: boolean;
   };
 }
 const OwnScript = ({ isExpanded, setIsExpanded, isError }: IProps) => {

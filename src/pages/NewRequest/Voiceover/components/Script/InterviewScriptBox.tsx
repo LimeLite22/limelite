@@ -1,4 +1,4 @@
-import { DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT } from "consts/consts";
+import { APPROVED_TEXT_STATUS, DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT } from "consts/consts";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -25,6 +25,7 @@ const InterviewScriptBox = () => {
   const email = profSettings?.email;
   const profText = profSettings?.backgroundInfo;
   const ownText = ownSettings?.text;
+  const ownTextStatus = ownSettings?.scriptStatus;
 
   const [isOwnExpanded, setIsOwnExpanded] = useState(false);
   const [isProffessionalExpanded, setIsProffessionalExpanded] = useState(false);
@@ -46,7 +47,7 @@ const InterviewScriptBox = () => {
           subject: false,
           phone: false,
           email: false,
-          ownScript: !ownText || ownText.length === 0,
+          ownScript: ownTextStatus === APPROVED_TEXT_STATUS ? (!ownText || ownText.length === 0) : false,
           proffessionalScript: false,
         };
         setIsError(errors);
@@ -100,7 +101,7 @@ const InterviewScriptBox = () => {
         subject: false,
         phone: false,
         email: false,
-        ownScript: !ownText || ownText.length === 0,
+        ownScript: ownTextStatus === APPROVED_TEXT_STATUS ? (!ownText || ownText.length === 0) : false,
         proffessionalScript: false,
       };
       setIsError(errors);

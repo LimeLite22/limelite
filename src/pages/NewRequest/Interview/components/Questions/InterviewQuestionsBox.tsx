@@ -1,4 +1,5 @@
 import {
+  APPROVED_TEXT_STATUS,
   DEFAULT,
   QUESTIONS_AUTHOR_CLIENT,
   QUESTIONS_AUTHOR_PROFESSIONAL,
@@ -22,16 +23,15 @@ const InterviewQuestionsBox = () => {
     proffessionalScript: false,
   });
   const selection = selectedRequest?.interviewSettings.questionsAuthor;
-  const subject =
-    selectedRequest?.interviewSettings.questionsAuthorProfSettings?.subject;
-  const phone =
-    selectedRequest?.interviewSettings.questionsAuthorProfSettings?.phone;
-  const email =
-    selectedRequest?.interviewSettings.questionsAuthorProfSettings?.email;
-  const ownText =
-    selectedRequest?.interviewSettings.questionsAuthorOwnSettings?.text;
-  const proffessionalText =
-    selectedRequest?.interviewSettings.questionsAuthorProfSettings?.backgroundInfo;
+  const profSettings = selectedRequest?.interviewSettings.questionsAuthorProfSettings;
+  const ownSettings = selectedRequest?.interviewSettings.questionsAuthorOwnSettings;
+  const subject = profSettings?.subject;
+  const phone = profSettings?.phone;
+  const email = profSettings?.email;
+  const proffessionalText = profSettings?.backgroundInfo;
+  const ownText = ownSettings?.text;
+  const ownTextStatus = ownSettings?.scriptStatus;
+
   const [isOwnExpanded, setIsOwnExpanded] = useState(false);
   const [isProffessionalExpanded, setIsProffessionalExpanded] = useState(false);
 
@@ -46,13 +46,13 @@ const InterviewQuestionsBox = () => {
       return;
     }
     if (selection === QUESTIONS_AUTHOR_CLIENT) {
-      if (!ownText || ownText.length === 0) {
+      if (ownTextStatus === APPROVED_TEXT_STATUS && (!ownText || ownText.length === 0)) {
         setIsOwnExpanded(true);
         const errors = {
           subject: false,
           phone: false,
           email: false,
-          ownScript: !ownText || ownText.length === 0,
+          ownScript: ownTextStatus === APPROVED_TEXT_STATUS ? (!ownText || ownText.length === 0) : false,
           proffessionalScript: false,
         };
         setIsError(errors);
@@ -91,15 +91,16 @@ const InterviewQuestionsBox = () => {
   useEffect(() => {
     if (selection === DEFAULT) return;
     if (selection === QUESTIONS_AUTHOR_CLIENT) setIsOwnExpanded(true);
-    if (selection === QUESTIONS_AUTHOR_PROFESSIONAL)
+    if (selection === QUESTIONS_AUTHOR_PROFESSIONAL) {
       setIsProffessionalExpanded(true);
-    setIsError({
-      subject: false,
-      phone: false,
-      email: false,
-      ownScript: false,
-      proffessionalScript: false,
-    });
+      setIsError({
+        subject: false,
+        phone: false,
+        email: false,
+        ownScript: false,
+        proffessionalScript: false,
+      });
+    }
   }, [selection]);
   useEffect(() => {
     if (selection === QUESTIONS_AUTHOR_CLIENT) {
@@ -107,7 +108,7 @@ const InterviewQuestionsBox = () => {
         subject: false,
         phone: false,
         email: false,
-        ownScript: !ownText || ownText.length === 0,
+        ownScript: ownTextStatus === APPROVED_TEXT_STATUS ? (!ownText || ownText.length === 0) : false,
         proffessionalScript: false,
       };
       setIsError(errors);

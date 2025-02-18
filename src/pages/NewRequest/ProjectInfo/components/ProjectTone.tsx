@@ -32,8 +32,8 @@ const ToneSelector = ({ isError, setIsError, isSubmitMode, onChange }: IProps) =
       `}
       tabIndex={0}
       onBlur={() => {
+        setOpened(false);
         if (!projectTone) {
-          setOpened(false);
           setIsError(true);
         }
       }}

@@ -1,5 +1,5 @@
 
-import { ArrowBlue3, CheckBox, CheckBoxSelected, CloseRed, EditIcon, StatusApproved, StatusApprovedBlack, StatusProgress, StatusProgressBlack, StatusUnavailable, StatusUnavailableBlack, Success2 } from "assets/images";
+import { CheckBox, CheckBoxSelected, CloseRed, EditIcon, StatusApproved, StatusApprovedBlack, StatusProgress, StatusProgressBlack, StatusUnavailable, StatusUnavailableBlack, Success2 } from "assets/images";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -8,6 +8,7 @@ import { selectRequestInfo, updateScriptInfoSettings } from "../../../../redux/r
 import styles from "../../NewRequest.module.scss";
 import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, PROFESSIONAL_SCRIPT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import { IScriptSettings } from "interfaces/interfaces";
+import DivRowCount from "pages/NewRequest/components/TextArea";
 const ScriptInfo = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const dispatch = useDispatch();
@@ -15,9 +16,6 @@ const ScriptInfo = () => {
     const [isEdit, setIsEdit] = useState(false);
     const [isReady, setIsReady] = useState(false);
     const [current, setCurrent] = useState(scriptSettings);
-    const [isDetailsExpanded, setIsDetailsExpanded] = useState(false);
-    const isDetailTextBig = selectedRequest?.scriptSettings.ownText
-        && selectedRequest?.scriptSettings.ownText.length > 200;
 
     const readyToSave = () => {
         let ready = true;
@@ -31,10 +29,21 @@ const ScriptInfo = () => {
             || current?.backgroundInfo !== scriptSettings?.backgroundInfo
             || current?.persons !== scriptSettings?.persons
         ) {
-            if (current?.name?.length !== 0 && current?.email?.length !== 0 && current?.ownText?.length !== 0) {
-                ready = true
-            } else {
-                ready = false
+
+            if (scriptSettings.scriptWriter === PROFESSIONAL_SCRIPT) {
+                if (current?.name?.length !== 0 && current?.email?.length && String(current?.phone).length !== 0 && current?.backgroundInfo?.length !== 0) {
+                    ready = true
+                } else {
+                    ready = false
+                }
+            }
+            if (scriptSettings.scriptWriter === OWN_SCRIPT) {
+                if (current?.ownText?.length !== 0) {
+                    ready = true
+                } else {
+                    ready = false
+                }
+
             }
             current?.persons?.forEach((item) => {
                 if (item.name.length === 0 || item.title.length === 0) {
@@ -131,41 +140,14 @@ const ScriptInfo = () => {
                     </div>
                     <div className={styles.infoContainer_text}><p className={`
                 ${styles.infoContainer_detailsHeader}
-                ${isDetailTextBig ? styles.infoContainer_detailsHeader_big : ''}
-                ${isDetailsExpanded ? styles.infoContainer_detailsHeader_expanded : ''}
                 `}
                     >Script:</p>
                         {isEdit ?
                             <textarea className={styles.infoContainer_textarea}
                                 onChange={(e) => setCurrent({ ...current, ownText: e.target.value })}
                                 value={current?.ownText} /> :
-                            <div>
-                                <div className={`
-                   ${styles.infoContainer_details} 
-                   ${isDetailsExpanded ? styles.infoContainer_details_expanded : ''}`}
-                                >
-                                    {selectedRequest?.scriptSettings.ownText}
-                                </div>
-                                {isDetailTextBig &&
-                                    <>
-                                        <div className={`
-                        ${styles.infoContainer_details_shadow}
-                        ${isDetailsExpanded ? styles.infoContainer_details_shadow_expanded : ''}
-                        `}></div>
-                                        <div
-                                            className={`
-                           ${styles.infoContainer_details_showAll}
-                           ${isDetailsExpanded ? styles.infoContainer_details_showAll_expanded : ''}
-                               `
-                                            }
-                                            onClick={() => setIsDetailsExpanded(!isDetailsExpanded)}
-                                        >
-                                            <>{isDetailsExpanded ? "Show less" : "Show all text"}<img src={ArrowBlue3} alt='' /></>
-
-                                        </div>
-                                    </>
-                                }
-                            </div>}
+                            <DivRowCount text={selectedRequest?.scriptSettings.ownText} />
+                        }
                     </div>
                 </>
             }
@@ -201,14 +183,13 @@ const ScriptInfo = () => {
                                 onChange={(e) => setCurrent({ ...current, email: e.target.value })}
                                 type="text" /> : scriptSettings?.email}
                     </div>
-
                     <div className={styles.infoContainer_text}><p>Background information for interview(s):</p>
                         {isEdit ?
                             <input
                                 className={styles.infoContainer_input}
                                 value={current.backgroundInfo}
                                 onChange={(e) => setCurrent({ ...current, backgroundInfo: e.target.value })}
-                                type="text" /> : scriptSettings?.backgroundInfo}
+                                type="text" /> : <DivRowCount text={scriptSettings?.backgroundInfo ? scriptSettings?.backgroundInfo : ''} />}
                     </div>
                 </>
             }

@@ -1,4 +1,4 @@
-import { DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT } from "consts/consts";
+import { APPROVED_TEXT_STATUS, DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT } from "consts/consts";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -15,6 +15,7 @@ const IsScriptRequired = () => {
     phone: false,
     email: false,
     ownScript: false,
+    ownScriptStatus: false,
     proffessionalScript: false,
   });
   const selection = selectedRequest?.scriptSettings.scriptWriter;
@@ -22,6 +23,7 @@ const IsScriptRequired = () => {
   const phone = selectedRequest?.scriptSettings?.phone;
   const email = selectedRequest?.scriptSettings?.email;
   const ownText = selectedRequest?.scriptSettings?.ownText;
+  const ownTextStatus = selectedRequest?.scriptSettings?.scriptStatus;
   const proffessionalText = selectedRequest?.scriptSettings?.backgroundInfo;
   const [isOwnExpanded, setIsOwnExpanded] = useState(false);
   const [isProffessionalExpanded, setIsProffessionalExpanded] = useState(false);
@@ -37,13 +39,14 @@ const IsScriptRequired = () => {
       return;
     }
     if (selection === OWN_SCRIPT) {
-      if (!ownText || ownText.length === 0) {
+      if (ownTextStatus === APPROVED_TEXT_STATUS && (!ownText || ownText.length === 0)) {
         setIsOwnExpanded(true);
         const errors = {
           name: false,
           phone: false,
           email: false,
-          ownScript: !ownText || ownText.length === 0,
+          ownScript: ownTextStatus === APPROVED_TEXT_STATUS ? (!ownText || ownText.length === 0) : false,
+          ownScriptStatus: false,
           proffessionalScript: false,
         };
         setIsError(errors);
@@ -75,6 +78,7 @@ const IsScriptRequired = () => {
             (phone && !phoneRegex.test(String(phone)) ? true : false),
           email: email?.length === 0 || !emailRegex.test(String(email)),
           ownScript: false,
+          ownScriptStatus: false,
           proffessionalScript:
             !proffessionalText || proffessionalText.length === 0,
         };
@@ -95,6 +99,7 @@ const IsScriptRequired = () => {
       phone: false,
       email: false,
       ownScript: false,
+      ownScriptStatus: false,
       proffessionalScript: false,
     });
   }, [selection]);
@@ -104,7 +109,8 @@ const IsScriptRequired = () => {
         name: false,
         phone: false,
         email: false,
-        ownScript: !ownText || ownText.length === 0,
+        ownScript: ownTextStatus === APPROVED_TEXT_STATUS ? (!ownText || ownText.length === 0) : false,
+        ownScriptStatus: ownTextStatus === DEFAULT,
         proffessionalScript: false,
       };
       setIsError(errors);
@@ -115,6 +121,7 @@ const IsScriptRequired = () => {
         phone: false,
         email: false,
         ownScript: false,
+        ownScriptStatus: false,
         proffessionalScript: false,
       };
       setIsError(errors);
@@ -128,7 +135,7 @@ const IsScriptRequired = () => {
       </div>
       <LearnMorePopUp />
       <OwnScript
-        isError={{ text: isError.ownScript }}
+        isError={{ text: isError.ownScript, status: isError.ownScriptStatus }}
         isExpanded={isOwnExpanded}
         setIsExpanded={setIsOwnExpanded}
       />

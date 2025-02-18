@@ -23,7 +23,7 @@ const ShotList = () => {
         placeholder="Add a brief overview of the project here..."
         value={text}
         onChange={(e) => {
-          handleUpdateField("details", e.target.value);
+          handleUpdateField("projectInfoSettings.details", e.target.value);
           setText(e.target.value)
         }}
       />
