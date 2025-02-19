@@ -3,7 +3,7 @@ import {
   ArrowGray4,
   DetailsGreen,
 } from "assets/images";
-import { DEFAULT } from "consts/consts";
+import { DEFAULT, RUSH_TIME } from "consts/consts";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -55,6 +55,12 @@ const VideoEdit = () => {
           disabled = true
         }
       });
+    }
+    if (videoSettings?.resultTime === DEFAULT) {
+      disabled = true
+    }
+    if (videoSettings?.resultTime === RUSH_TIME && videoSettings?.time.value === 0) {
+      disabled = true
     }
     setIsDisabled(disabled);
   };

@@ -57,6 +57,7 @@ const Voiceover = () => {
       disabled = true;
     }
     if (
+      voiceSettings?.scriptAuthor === OWN_SCRIPT &&
       voiceSettings?.scriptAuthorOwnSettings?.scriptStatus === DEFAULT) {
       disabled = true;
     }

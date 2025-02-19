@@ -1,4 +1,6 @@
-import { TApproachValue, TLocation, TOption, TPerson, TProjectTone, TQuestionAuthor, TQuestionLocation, TRush, TScriptWriter, TStep, TTextStatus, TThumbnail, TTimeValue, TTravel, TValue, TVideo, TVideoDuration, TVoiceAuthor } from "types/types";
+import { DEFAULT } from 'consts/consts';
+import { selectUnreadNotificationsNumber } from './../redux/notifications/reducer';
+import { RequestStatusType, TApproachValue, TLocation, TOption, TPerson, TProjectTone, TQuestionAuthor, TQuestionLocation, TRush, TScriptWriter, TStep, TTextStatus, TThumbnail, TTimeValue, TTravel, TValue, TVideo, TVideoDuration, TVoiceAuthor } from "types/types";
 
 export interface ILocation {
   type: TLocation;
@@ -109,6 +111,8 @@ export interface ILogisticSettings {
     date: 'default' | TValue;
     time: TTimeValue;
   };
+  safetyEquipment: boolean | 'default';
+  safetyEquipmentDescription: string;
 }
 export interface IVoiceoverSettings {
   trackAuthor: TVoiceAuthor;
@@ -141,11 +145,31 @@ export interface IVideoSettings {
     value: number;
   };
 }
+interface IPerson {
+  id: string,
+  name: string,
+  lasName: string,
+  email: string,
+  foto: string
+}
+export interface IOverviewInfoSettings {
+  status: RequestStatusType,
+  reviewLink: string,
+  downloadLink: string,
+  requester: IPerson,
+  contributors: IPerson[],
+  projectStartImage: string,
+  credits: number,
+  requestDate: Date,
+  shootDate: Date,
+  editDate: Date,
+  completeDate: Date,
+  completnessPercent: number
+}
 export interface IRequest {
   id: string;
   projectInfoSettings: IProjectInfoSettings,
   logisticSettings: ILogisticSettings;
-  addOnLocation: ILocation;
   scriptSettings: IScriptSettings;
   interviewSettings: IInterviewSettings;
   voiceTrackSettings: IVoiceoverSettings;

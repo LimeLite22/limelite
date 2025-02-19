@@ -39,6 +39,7 @@ const ScriptedDelivery = () => {
       disabled = true;
     }
     if (
+      selectedRequest?.scriptSettings?.scriptWriter === OWN_SCRIPT &&
       selectedRequest?.scriptSettings?.scriptStatus === DEFAULT) {
       disabled = true;
     }

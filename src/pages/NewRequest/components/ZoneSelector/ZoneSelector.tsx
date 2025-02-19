@@ -33,7 +33,7 @@ const ZoneSelector: FC<IProps> = ({ onChange, isError, isEdit }) => {
         }}
       >
         <div className={styles.zoneDropdown__selected_name}>
-          {travel?.zoneCode?.value > 0 ? <>{travel?.zoneCode?.name} :${travel?.zoneCode?.value}</> : <span>Select</span>}{" "}
+          {travel?.zoneCode?.name !== null ? <>{travel?.zoneCode?.name} :${travel?.zoneCode?.value}</> : <span>Select</span>}{" "}
         </div>
         {isError && !isOpened && (
           <div className={styles.zoneDropdown__selected_errorMessage}>

@@ -20,7 +20,7 @@ const StepsNavigation = () => {
     <>
       <div className={styles.navigation} >
         {steps.map((stepItem, index) => {
-          if (getStepName(stepItem) === 'Final' || getStepName(stepItem) === 'Submit') return
+          if (getStepName(stepItem) === 'Final' || getStepName(stepItem) === 'Submit') return null
           return <>
             <div
               className={`${styles.navigation_item} ${index + 1 === Number(stepIndex) && styles.navigation_item_selected}`}

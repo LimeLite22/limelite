@@ -1,7 +1,7 @@
 import { IProjectInfoSettings, ILogisticSettings, IVoiceoverSettings, IVideoSettings } from './../../interfaces/interfaces';
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { DEFAULT, HOME_RENTAL } from "consts/consts";
-import { IAdditionalVideoFormat, IInterviewSettings, ILocation, IRequestState, IScriptSettings } from "interfaces/interfaces";
+import { IAdditionalVideoFormat, IInterviewSettings, IRequestState, IScriptSettings } from "interfaces/interfaces";
 import set from "lodash/set";
 import { IRootState } from "redux/rootReducer";
 import { TDraftFieldUpdate, TOption, TStep } from "types/types";
@@ -70,14 +70,8 @@ const requestReducer = createSlice({
             date: DEFAULT,
             time: DEFAULT,
           },
-        },
-        addOnLocation: {
-          type: DEFAULT,
-          company: "ABC Company",
-          street: "123 Main Street",
-          city: "City",
-          state: "State",
-          zip: "12345",
+          safetyEquipment: DEFAULT,
+          safetyEquipmentDescription: ''
         },
         scriptSettings: {
           scriptWriter: DEFAULT,
@@ -261,22 +255,6 @@ const requestReducer = createSlice({
 
       }
     },
-    // updateInteviewSettings: (state, action: PayloadAction<IInterviewSettings>) => {
-    //   const draft = state.drafts.find(
-    //     (draft) => draft.id === state.selectedRequest,
-    //   );
-    //   if (draft) {
-    //     draft.interviewSettings = action.payload;
-    //   }
-    // },
-    updateAddOnLocation: (state, action: PayloadAction<ILocation>) => {
-      const draft = state.drafts.find(
-        (draft) => draft.id === state.selectedRequest,
-      );
-      if (draft) {
-        draft.addOnLocation = action.payload
-      }
-    },
     updateProjectInfoSettings: (state, action: PayloadAction<{ projectInfoSettings: IProjectInfoSettings, isEdit: boolean }>) => {
       const { projectInfoSettings, isEdit } = action.payload;
       const draft = state.drafts.find(
@@ -371,7 +349,6 @@ export const {
   updateAddOnSelectionStatus,
   updateDraftField,
   updateStepsList,
-  updateAddOnLocation,
   updateProjectInfoSettings,
   updateLogisticInfoSettings,
   updateScriptInfoSettings,

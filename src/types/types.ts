@@ -91,6 +91,7 @@ export interface TPerson {
   name: string;
   title: string;
 }
+export type RequestStatusType = "Complete" | "In Editing" | "Scheduled" | "Requested" | "On Hold" | "Canceled";
 export type TVideoDuration = "default" | "≤ :15" | "≤ :30" | "≤ :60" | "≤ 1:30" | "≤ 2:00" | "≤ 2:30" | "≤ 3:00" | "> 3:00";
 export type TOptionsList = TOption[];
 

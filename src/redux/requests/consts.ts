@@ -1,5 +1,5 @@
-import { NO, YES, zonesList } from './../../consts/consts';
-import { APPROVED_TEXT_STATUS, BASIC_THUMBNAIL, DEFAULT, HOME_RENTAL, LESS_1_30, optionsList, OWN_ADDRESS, projectTones, projectTypes, VIDEO_SQUARE } from "consts/consts"
+import { NO, zonesList } from './../../consts/consts';
+import { BASIC_THUMBNAIL, DEFAULT, LESS_1_30, optionsList, projectTones, projectTypes, VIDEO_SQUARE } from "consts/consts"
 import { IRequest } from "interfaces/interfaces";
 import { generateUniqueId } from "utils/generateId";
 
@@ -40,14 +40,8 @@ export const requestsInitialState: IRequest[] = [
                 date: DEFAULT,
                 time: DEFAULT,
             },
-        },
-        addOnLocation: {
-            type: DEFAULT,
-            company: "ABC Company",
-            street: "123 Main Street",
-            city: "City",
-            state: "State",
-            zip: "12345",
+            safetyEquipment: DEFAULT,
+            safetyEquipmentDescription: ''
         },
         scriptSettings: {
             scriptWriter: DEFAULT,
@@ -179,14 +173,8 @@ export const requestsInitialState: IRequest[] = [
                 date: DEFAULT,
                 time: DEFAULT,
             },
-        },
-        addOnLocation: {
-            type: DEFAULT,
-            company: "ABC Company",
-            street: "123 Main Street",
-            city: "City",
-            state: "State",
-            zip: "12345",
+            safetyEquipment: DEFAULT,
+            safetyEquipmentDescription: ''
         },
         scriptSettings: {
             scriptWriter: DEFAULT,

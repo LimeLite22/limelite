@@ -56,7 +56,8 @@ const Interview = () => {
       disabled = true;
     }
     if (
-      selectedRequest?.interviewSettings.questionsAuthorOwnSettings.scriptStatus === DEFAULT) {
+      selectedRequest?.interviewSettings.questionsAuthor ===
+      QUESTIONS_AUTHOR_CLIENT && selectedRequest?.interviewSettings.questionsAuthorOwnSettings.scriptStatus === DEFAULT) {
       disabled = true;
     }
 
