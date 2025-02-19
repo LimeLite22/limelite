@@ -11,6 +11,7 @@ const StepsNavigation = () => {
   const stepItem = location.pathname.slice(1);
   const stepIndex = steps.findIndex(step => step === stepItem) + 1;
   const getStepName = (step: string) => {
+    if (step === 'new-request/add-ons') return 'Other Add-ons'
     if (step === 'new-request/video-edit') return 'Video Edit'
     return step.replace(/^new-request\//, "").replace(/^./, match => match.toUpperCase())
   }
