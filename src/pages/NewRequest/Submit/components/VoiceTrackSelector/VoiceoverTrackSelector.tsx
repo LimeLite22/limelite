@@ -3,7 +3,7 @@ import styles from "../../../NewRequest.module.scss";
 
 import { CheckBox, CheckBoxSelected, CloseCalendar, GrayArrow } from "assets/images";
 import { DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT, TRACK_AUTHOR_CLIENT, TRACK_AUTHOR_PROFESSIONAL } from "consts/consts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectRequestInfo, updateVoiceoverSettings } from "../../../../../redux/requests/reducer";
 import { IRootState } from "redux/rootReducer";
@@ -15,7 +15,7 @@ const VoiceoverTrackSelector = () => {
   const vIS = useSelector(selectRequestInfo)?.voiceTrackSettings;
   const eVIS = useSelector((state: IRootState) => state?.request.editDraft)?.voiceTrackSettings;
   const [isOpened, setOpened] = useState(false);
-  const isOwnTrackNotReady = eVIS?.scriptAuthorOwnSettings.text.length === 0 || eVIS?.scriptAuthorOwnSettings.scriptStatus === DEFAULT;
+  const isOwnTrackNotReady = eVIS?.track === DEFAULT;
   const handleSave = () => {
 
     if (eVIS?.trackAuthor === TRACK_AUTHOR_CLIENT && isOwnTrackNotReady) {
@@ -33,6 +33,9 @@ const VoiceoverTrackSelector = () => {
       isEdit: true
     }))
   }
+  useEffect(() => {
+  }
+    , [])
 
   return (
     <div className={`

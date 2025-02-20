@@ -15,8 +15,8 @@ import LogisticInfo from "./components/Logistic";
 import ProjectInfo from "./components/ProjectInfo";
 import ScriptInfo from "./components/ScriptInfo";
 import VideoEdit from "./components/VideoEdit";
-import VoiceoverProfScript from "./components/VoiceoverProfScript";
-import VoiceoverOwnScript from "./components/VoiceverOwnScript";
+import VoiceoverOwnScript from "./components/VoiceoverProffScript";
+import VoiceoverProfScript from "./components/VoiceoverOwnScript";
 
 const Submit = () => {
     const steps = useSelector(selectSteps);

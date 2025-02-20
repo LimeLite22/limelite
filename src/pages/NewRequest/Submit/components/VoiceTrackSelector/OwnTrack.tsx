@@ -1,7 +1,7 @@
 
 
 import { Audio, Delete, Download } from "assets/images";
-import { DEFAULT, TRACK_AUTHOR_PROFESSIONAL } from "consts/consts";
+import { DEFAULT, TRACK_AUTHOR_CLIENT, TRACK_AUTHOR_PROFESSIONAL } from "consts/consts";
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateVoiceoverSettings } from "../../../../../redux/requests/reducer";
@@ -10,7 +10,6 @@ import { IRootState } from "../../../../../redux/rootReducer";
 import styles from "../../../NewRequest.module.scss";
 const OwnTrack = () => {
   const eVIS = useSelector((state: IRootState) => state.request.editDraft)?.voiceTrackSettings;
-  const [file, setFile] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
@@ -22,18 +21,16 @@ const OwnTrack = () => {
       const allowedExtensions = ["audio/mpeg", "audio/wav", "audio/aiff"];
       if (allowedExtensions.includes(uploadedFile.type)) {
         setError(null);
-        setFile(uploadedFile);
         dispatch(updateVoiceoverSettings({
           voiceTrackSettings: {
             ...eVIS,
-            trackAuthor: TRACK_AUTHOR_PROFESSIONAL,
+            trackAuthor: TRACK_AUTHOR_CLIENT,
             track: uploadedFile
           },
-          isEdit: false
+          isEdit: true
         }))
       } else {
         setError("Файл повинен бути формату MP3, WAV або AIFF");
-        setFile(null);
       }
     }
   };
@@ -65,23 +62,22 @@ const OwnTrack = () => {
             style={{ display: "none" }}
             onChange={handleFileChange}
           />
-          {file && (
+          {eVIS?.track !== DEFAULT && (
             <div className={styles.box_audioFile}>
               <img src={Audio} alt="" />
               <div style={{ flex: 1 }}>
-                <div>{file.name}</div>
-                <div>{Number(file.size / 1000000).toFixed(2)} mb</div>
+                <div>{eVIS.track?.name}</div>
+                <div>{Number(eVIS.track?.size / 1000000).toFixed(2)} mb</div>
               </div>
               <img
                 onClick={() => {
-                  setFile(null);
                   dispatch(updateVoiceoverSettings({
                     voiceTrackSettings: {
                       ...eVIS,
-                      trackAuthor: TRACK_AUTHOR_PROFESSIONAL,
+                      trackAuthor: TRACK_AUTHOR_CLIENT,
                       track: DEFAULT
                     },
-                    isEdit: false
+                    isEdit: true
                   }))
 
                 }}
@@ -90,7 +86,7 @@ const OwnTrack = () => {
               />
             </div>
           )}
-          {!file &&
+          {eVIS?.track === DEFAULT &&
             <div onClick={handleDivClick} className={styles.box_audioFileButton}>
               <img
                 src={Download}

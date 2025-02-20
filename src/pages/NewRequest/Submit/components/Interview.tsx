@@ -9,7 +9,7 @@ import { selectRequestInfo, updateInterviewInfoSettings } from "../../../../redu
 import styles from "../../NewRequest.module.scss";
 import { IInterviewSettings } from "interfaces/interfaces";
 import DivRowCount from "pages/NewRequest/components/TextArea";
-const InterviewProffScript = () => {
+const Interview = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const interviewSettings = { ...selectedRequest!.interviewSettings };
     const proffSettings = { ...interviewSettings?.questionsAuthorProfSettings };
@@ -392,4 +392,4 @@ const InterviewProffScript = () => {
     )
 }
 
-export default InterviewProffScript;
+export default Interview;

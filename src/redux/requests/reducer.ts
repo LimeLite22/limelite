@@ -1,6 +1,6 @@
 import { IProjectInfoSettings, ILogisticSettings, IVoiceoverSettings, IVideoSettings } from './../../interfaces/interfaces';
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { DEFAULT, HOME_RENTAL } from "consts/consts";
+import { DEFAULT, HOME_RENTAL, NO } from "consts/consts";
 import { IAdditionalVideoFormat, IInterviewSettings, IRequestState, IScriptSettings } from "interfaces/interfaces";
 import set from "lodash/set";
 import { IRootState } from "redux/rootReducer";
@@ -47,7 +47,7 @@ const requestReducer = createSlice({
         },
         logisticSettings: {
           travel: {
-            selection: null,
+            selection: NO,
             zoneCode: {
               name: null,
               value: 0,

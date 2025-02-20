@@ -1,15 +1,16 @@
 
-import { CloseRed, EditIcon, StatusApproved, StatusProgress, StatusUnavailable, Success2, Audio, Delete, Download, StatusApprovedBlack, StatusProgressBlack, StatusUnavailableBlack } from "assets/images";
-import { APPROVED_TEXT_STATUS, DEFAULT, IN_PROGRESS_TEXT_STATUS, TRACK_AUTHOR_CLIENT, TRACK_AUTHOR_PROFESSIONAL, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
+import { Audio, CloseRed, Delete, Download, EditIcon, Success2 } from "assets/images";
+import { DEFAULT, OWN_SCRIPT, TRACK_AUTHOR_CLIENT } from "consts/consts";
 import DivRowCount from "pages/NewRequest/components/TextArea";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { selectRequestInfo, updateVoiceoverSettings } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
-const VoiceoverOwnScript = () => {
+const VoiceoverProffScript = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const dispatch = useDispatch();
+    const voiceTrackSettings = selectedRequest!.voiceTrackSettings;
     const [isEdit, setIsEdit] = useState(false);
     const [isReady, setIsReady] = useState(false);
     const [current, setCurrent] = useState(selectedRequest!.voiceTrackSettings);
@@ -18,10 +19,12 @@ const VoiceoverOwnScript = () => {
 
     const readyToSave = () => {
         let ready = true;
-        if (selectedRequest!.voiceTrackSettings.scriptAuthorOwnSettings.text !== current.scriptAuthorOwnSettings.text
-            || selectedRequest!.voiceTrackSettings.scriptAuthorOwnSettings.scriptStatus !== current.scriptAuthorOwnSettings.scriptStatus
+        if (current?.scriptAuthorProfSettings.subject !== voiceTrackSettings?.scriptAuthorProfSettings.subject
+            || current?.scriptAuthorProfSettings.phone !== voiceTrackSettings?.scriptAuthorProfSettings.phone
+            || current?.scriptAuthorProfSettings.email !== voiceTrackSettings?.scriptAuthorProfSettings.email
+            || current?.scriptAuthorProfSettings.backgroundInfo !== voiceTrackSettings?.scriptAuthorProfSettings.backgroundInfo
         ) {
-            if (current.scriptAuthorOwnSettings.text?.length !== 0) {
+            if (current?.scriptAuthorProfSettings.subject?.length !== 0 && current?.scriptAuthorProfSettings.email?.length !== 0) {
                 ready = true
             } else {
                 ready = false
@@ -38,6 +41,18 @@ const VoiceoverOwnScript = () => {
     const handleDecline = () => {
         setIsEdit(false);
         setCurrent(selectedRequest!.voiceTrackSettings);
+    }
+    const handleSave = () => {
+        if (!isReady) return
+
+        dispatch(
+            updateVoiceoverSettings({
+                voiceTrackSettings: current,
+                isEdit: false
+            }
+            )
+        )
+        setIsEdit(false);
     }
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const uploadedFile = event.target.files?.[0];
@@ -56,24 +71,19 @@ const VoiceoverOwnScript = () => {
     const handleDivClick = () => {
         fileInputRef.current?.click();
     };
-    const handleSave = () => {
-        if (!isReady) return
 
-
-        dispatch(
-            updateVoiceoverSettings({
-                voiceTrackSettings: current,
-                isEdit: false
-            }
-            )
-        )
-    }
     useEffect(() => {
         readyToSave();
     }, [current])
-    if (selectedRequest?.voiceTrackSettings.trackAuthor === TRACK_AUTHOR_PROFESSIONAL) return null
+
+    useEffect(() => {
+        setCurrent(selectedRequest!.voiceTrackSettings)
+    }, [selectedRequest])
+
+    if (selectedRequest?.voiceTrackSettings.scriptAuthor === OWN_SCRIPT) return null
     return (
         <div className={styles.infoContainer}>
+
             <div className={styles.infoContainer_header}>About Your Voiceover
 
                 {!isEdit &&
@@ -94,6 +104,7 @@ const VoiceoverOwnScript = () => {
                         ><img src={Success2} alt='' /><div>Save changes</div></div>
                     </div>}
             </div>
+            <div className={styles.infoContainer_text}><p>Track author</p>{current.trackAuthor}</div>
             {current.trackAuthor === TRACK_AUTHOR_CLIENT &&
                 <div className={styles.infoContainer_text}>
                     <p>Track:</p>
@@ -158,61 +169,45 @@ const VoiceoverOwnScript = () => {
                     }
 
                 </div>}
-            {current.trackAuthor === TRACK_AUTHOR_PROFESSIONAL &&
-                <>
-                    <div className={styles.infoContainer_text}><p>Script Status:</p>
-                        {isEdit ?
-                            <div className={styles.infoContainer_statuses}>
-                                <div
-                                    className={`${styles.box_status} ${current.scriptAuthorOwnSettings.scriptStatus === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
-                                    onClick={() => {
-                                        setCurrent({ ...current, scriptAuthorOwnSettings: { ...current.scriptAuthorOwnSettings, scriptStatus: APPROVED_TEXT_STATUS } })
-                                    }}
-                                >
-                                    <img src={current.scriptAuthorOwnSettings.scriptStatus === APPROVED_TEXT_STATUS ? StatusApprovedBlack : StatusApproved} alt="status" />
-                                    {APPROVED_TEXT_STATUS}
-                                </div>
-                                <div
-                                    className={`${styles.box_status} ${current.scriptAuthorOwnSettings.scriptStatus === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
-                                    onClick={() => {
-                                        setCurrent({ ...current, scriptAuthorOwnSettings: { ...current.scriptAuthorOwnSettings, scriptStatus: IN_PROGRESS_TEXT_STATUS } })
-                                    }}
-                                >
-                                    <img src={current.scriptAuthorOwnSettings.scriptStatus === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress} alt="status" />
-                                    {IN_PROGRESS_TEXT_STATUS}
-                                </div>
-                                <div
-                                    className={`${styles.box_status} ${current.scriptAuthorOwnSettings.scriptStatus === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
-                                    onClick={() => {
-                                        setCurrent({ ...current, scriptAuthorOwnSettings: { ...current.scriptAuthorOwnSettings, scriptStatus: UNAVAILABLE_TEXT_STATUS } })
-                                    }}
-                                >
-                                    <img src={current.scriptAuthorOwnSettings.scriptStatus === UNAVAILABLE_TEXT_STATUS ? StatusUnavailableBlack : StatusUnavailable} alt="status" />
-                                    {UNAVAILABLE_TEXT_STATUS}
-                                </div>
-                            </div> : current.scriptAuthorOwnSettings.scriptStatus}
-                    </div>
-                    <div className={styles.infoContainer_text}><p className={`
-                ${styles.infoContainer_detailsHeader}
-                `}
-                    >Script:</p>
-                        {isEdit ?
-                            <textarea className={styles.infoContainer_textarea}
-                                onChange={(e) => setCurrent({
-                                    ...current,
-                                    scriptAuthorOwnSettings: {
-                                        ...current.scriptAuthorOwnSettings,
-                                        text: e.target.value
-                                    }
-                                })}
-                                value={current.scriptAuthorOwnSettings.text} /> :
-                            <DivRowCount text={current.scriptAuthorOwnSettings.text} />
-                        }
-                    </div>
-                </>}
+            <div className={styles.infoContainer_text}><p>Subject matter expert :</p>
+                {isEdit ?
+                    <input
+                        className={styles.infoContainer_input}
+                        value={current.scriptAuthorProfSettings.subject}
+                        onChange={(e) => setCurrent({ ...current, scriptAuthorProfSettings: { ...current.scriptAuthorProfSettings, subject: e.target.value } })}
+                        type="text" /> : voiceTrackSettings?.scriptAuthorProfSettings.subject}
 
+            </div>
+
+            <div className={styles.infoContainer_text}><p>Phone:</p>
+                {isEdit ?
+                    <input
+                        className={styles.infoContainer_input}
+                        value={current.scriptAuthorProfSettings.phone}
+
+                        onChange={(e) => setCurrent({ ...current, scriptAuthorProfSettings: { ...current.scriptAuthorProfSettings, phone: Number(e.target.value) } })}
+                        type="text" /> : voiceTrackSettings?.scriptAuthorProfSettings.phone}
+            </div>
+
+            <div className={styles.infoContainer_text}><p>Email:</p>
+                {isEdit ?
+                    <input
+                        className={styles.infoContainer_input}
+                        value={current.scriptAuthorProfSettings.email}
+                        onChange={(e) => setCurrent({ ...current, scriptAuthorProfSettings: { ...current.scriptAuthorProfSettings, email: e.target.value } })}
+                        type="text" /> : voiceTrackSettings?.scriptAuthorProfSettings.email}
+            </div>
+
+            <div className={styles.infoContainer_text}><p>Background information for interview(s):</p>
+                {isEdit ?
+                    <input
+                        className={styles.infoContainer_input}
+                        value={current.scriptAuthorProfSettings.backgroundInfo}
+                        onChange={(e) => setCurrent({ ...current, scriptAuthorProfSettings: { ...current.scriptAuthorProfSettings, backgroundInfo: e.target.value } })}
+                        type="text" /> : <DivRowCount text={voiceTrackSettings?.scriptAuthorProfSettings.backgroundInfo} />}
+            </div>
         </div >
     )
 }
 
-export default VoiceoverOwnScript;
+export default VoiceoverProffScript;

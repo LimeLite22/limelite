@@ -104,7 +104,7 @@ const Project = ({ project, index, searchQuery }: IProps) => {
                 <img className={styles.mobOnly} src={Settings} alt="" />
             </div>
             <div id={`${index}divider`} className={styles.projectsPage_projects_divider}></div>
-            {isOverviewOpen && <ProjectOverView />}
+            {isOverviewOpen && <ProjectOverView close={() => setIsOverviewOpen(false)} />}
         </>
     )
 }
