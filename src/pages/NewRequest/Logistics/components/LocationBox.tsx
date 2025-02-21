@@ -1,7 +1,7 @@
 import "swiper/css";
 import "swiper/css/pagination";
 
-import { OWN_ADDRESS } from "consts/consts";
+import { DEFAULT, OWN_ADDRESS } from "consts/consts";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -14,13 +14,16 @@ import { selectRequestInfo } from "../../../../redux/requests/reducer";
 
 const Location = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const selectedRequest = useSelector(selectRequestInfo)?.logisticSettings?.location;
-  const type = selectedRequest?.type;
-  const city = selectedRequest?.city;
-  const state = selectedRequest?.state;
-  const street = selectedRequest?.street;
-  const zip = selectedRequest?.zip;
-  const company = selectedRequest?.company;
+  const selectedRequest = useSelector(selectRequestInfo);;
+  const logisticInfoSettings = selectedRequest?.logisticSettings;
+  const type = logisticInfoSettings?.location.type;
+  const city = logisticInfoSettings?.location.city;
+  const state = logisticInfoSettings?.location.state;
+  const street = logisticInfoSettings?.location.street;
+  const zip = logisticInfoSettings?.location.zip;
+  const company = logisticInfoSettings?.location.company;
+  const healthCareStatus = logisticInfoSettings?.safetyEquipment;
+  const healthCareText = logisticInfoSettings?.safetyEquipmentDescription;
   const [isStudioExpanded, setIsStudioExpanded] = useState(false);
   const [isHomeExpanded, setIsHomeExpanded] = useState(false);
   const [isAddressExpanded, setIsAddressExpanded] = useState(false);
@@ -39,7 +42,10 @@ const Location = () => {
         city?.trim() === "" ||
         state?.trim() === "" ||
         company?.trim() === "" ||
-        zip?.trim() === "")
+        zip?.trim() === "" ||
+        healthCareStatus === DEFAULT ||
+        (healthCareStatus === true && healthCareText?.length === 0)
+      )
     ) {
       setIsError(true);
       setIsHomeExpanded(false);
@@ -58,11 +64,14 @@ const Location = () => {
         city?.trim() !== "" &&
         state?.trim() !== "" &&
         company?.trim() !== "" &&
-        zip?.trim() !== "")
+        zip?.trim() !== "" ||
+        healthCareStatus === DEFAULT ||
+        (healthCareStatus === true && healthCareText?.length === 0)
+      )
     ) {
       setIsError(false);
     }
-  }, [type, street, city, state, zip, company]);
+  }, [type, street, city, state, zip, company, healthCareStatus, healthCareText]);
 
   return (
     <div ref={containerRef} tabIndex={-1} onBlur={handleBlur}>

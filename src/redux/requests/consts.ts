@@ -1,4 +1,4 @@
-import { NO, PROFESSIONAL_SCRIPT, QUESTIONS_AUTHOR_PROFESSIONAL, STUDIO_RENTAL, YES, zonesList, VIRTUAL_INTERVIEW, QUESTIONS_VIRTUALLY, TRACK_AUTHOR_PROFESSIONAL } from './../../consts/consts';
+import { NO, PROFESSIONAL_SCRIPT, QUESTIONS_AUTHOR_PROFESSIONAL, STUDIO_RENTAL, YES, zonesList, VIRTUAL_INTERVIEW, QUESTIONS_VIRTUALLY, TRACK_AUTHOR_PROFESSIONAL, OWN_ADDRESS } from './../../consts/consts';
 import { BASIC_THUMBNAIL, DEFAULT, LESS_1_30, optionsList, projectTones, projectTypes, VIDEO_SQUARE } from "consts/consts"
 import { IRequest } from "interfaces/interfaces";
 import { generateUniqueId } from "utils/generateId";
@@ -279,7 +279,7 @@ export const testRequest: IRequest =
             zoneCode: zonesList[1],
         },
         location: {
-            type: STUDIO_RENTAL,
+            type: OWN_ADDRESS,
             company: "ABC Company",
             street: "123 Main Street",
             city: "City",

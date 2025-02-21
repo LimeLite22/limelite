@@ -3,9 +3,13 @@ import {
   CheckBoxSelected,
   Expand,
   LocationBlack,
+  NoNeed,
+  NoNeedBlack,
+  StatusApproved,
+  StatusApprovedBlack,
 } from "assets/images";
 import axios from "axios";
-import { OWN_ADDRESS } from "consts/consts";
+import { DEFAULT, OWN_ADDRESS } from "consts/consts";
 import useWindowWidth from "hooks/useWindowWidth";
 import { IAddressProps } from "interfaces/interfaces";
 import { useEffect, useRef, useState } from "react";
@@ -13,7 +17,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import {
   selectRequestInfo,
-  updateDraftField,
   updateLogisticInfoSettings,
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
@@ -44,14 +47,6 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
       return;
     }
     setIsExpanded(false);
-  };
-  const handleUpdateField = (path: string, value: string | number) => {
-    dispatch(
-      updateDraftField({
-        path,
-        value,
-      }),
-    );
   };
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -86,6 +81,7 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
       ${isExpanded ? styles.box_expanded : ""}
       `}
       onClick={() => {
+        console.log(';;www')
         lIS && dispatch(updateLogisticInfoSettings(
           { logisticInfoSettings: { ...lIS, location: { ...lIS.location, type: OWN_ADDRESS } }, isEdit: false }));
 
@@ -117,6 +113,7 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
           <input
             value={company}
             onChange={(e) => {
+              e.stopPropagation();
               lIS && dispatch(updateLogisticInfoSettings(
                 { logisticInfoSettings: { ...lIS, location: { ...lIS.location, company: e.target.value } }, isEdit: false }));
             }}
@@ -158,7 +155,8 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
                   <div
                     className={styles.box_addressContainer_suggestion}
                     key={index}
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       lIS && dispatch(updateLogisticInfoSettings(
                         {
                           logisticInfoSettings: {
@@ -206,6 +204,7 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
                     `}
               value={city}
               onChange={(e) => {
+                e.stopPropagation();
                 lIS && dispatch(updateLogisticInfoSettings(
                   { logisticInfoSettings: { ...lIS, location: { ...lIS.location, city: e.target.value } }, isEdit: false }));
               }}
@@ -223,6 +222,7 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
                 `}
               value={state}
               onChange={(e) => {
+                e.stopPropagation();
                 lIS && dispatch(updateLogisticInfoSettings(
                   { logisticInfoSettings: { ...lIS, location: { ...lIS.location, state: e.target.value } }, isEdit: false }));
               }}
@@ -240,6 +240,7 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
             `}
               value={zip}
               onChange={(e) => {
+                e.stopPropagation();
                 lIS && dispatch(updateLogisticInfoSettings(
                   { logisticInfoSettings: { ...lIS, location: { ...lIS.location, zip: e.target.value } }, isEdit: false }));
               }}
@@ -252,12 +253,58 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
             width > 768 &&
             (city?.trim() === "" ||
               state?.trim() === "" ||
-              zip?.trim() === "") && (
+              zip?.trim() === ""
+
+            ) && (
               <div className={styles.box_addressContainer_input_errorText}>
                 Kindly complete the fields before moving to the next step
               </div>
             )}
         </div>
+        <div className={styles.box_title}>Health & Safety</div>
+        <div className={styles.box_title3}>Is personal protective equipment (PPE) and/or safety training required at this shoot
+          location? If so, you agree to provide the appropriate PPE and/or safety training to the Video
+          Creator, based on the nature of the work and the associated risks.</div>
+        <div className={`${styles.box_statuses} ${styles.box_statuses_health} `}
+          style={{ border: isError && lIS?.safetyEquipment === DEFAULT ? '1px solid var(--red-dark)' : '' }}
+        >
+          <div className={`${styles.box_status} ${lIS?.safetyEquipment === true ? styles.box_status_approved : ""} `}
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              lIS && dispatch(updateLogisticInfoSettings(
+                { logisticInfoSettings: { ...lIS, safetyEquipment: true }, isEdit: false }));
+            }}>
+            <img src={lIS?.safetyEquipment === true ? StatusApprovedBlack : StatusApproved} alt="status" />
+            Provide</div>
+          <div className={`${styles.box_status} ${lIS?.safetyEquipment === false ? styles.box_status_approved : ""} `}
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              lIS && dispatch(updateLogisticInfoSettings(
+                { logisticInfoSettings: { ...lIS, safetyEquipment: false }, isEdit: false }));
+            }}>
+            <img src={lIS?.safetyEquipment === false ? NoNeedBlack : NoNeed} alt="status" />
+            Not Needed</div>
+        </div>
+        {lIS?.safetyEquipment === true &&
+          <>
+            <div className={styles.box_title3}>If "Yes", please describe the required safety training and/or PPE requirements for
+              the filming site/location. Please note, all LimeLite Video Creators are required to follow
+              all applicable federal, state, and local laws, regulations, ordinances, policies, and procedures
+              related to safety and health at work while on assignment at customer locations.</div>
+            <textarea className={styles.textarea}
+              value={lIS?.safetyEquipmentDescription}
+              onChange={(e) => {
+                lIS && dispatch(updateLogisticInfoSettings(
+                  { logisticInfoSettings: { ...lIS, safetyEquipmentDescription: e.target.value }, isEdit: false }));
+              }}
+              style={{ border: isError && lIS?.safetyEquipmentDescription.length === 0 ? '1px solid var(--red-dark)' : '' }}
+              placeholder='Write here...'></textarea>
+          </>
+        }
+
+
       </div>
 
       <img

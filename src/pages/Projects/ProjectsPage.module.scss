@@ -918,9 +918,11 @@
     justify-content: center;
     z-index: 12;
     &_general {
-        margin-top: 36px;
+        // margin-top: 36px;
         display: flex;
-        gap: 36px;
+        flex-direction: column;
+        gap: 0px;
+        padding: 16px 16px 24px 16px;
         @media screen and (max-width: 768px) {
             flex-direction: column;
         }

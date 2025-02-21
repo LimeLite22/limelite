@@ -3045,6 +3045,41 @@
       margin-left: 4px;
     }
   }
+  &_title3 {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 25.2px;
+    text-align: left;
+    color: var(--gray-dark);
+    &_submit {
+      text-align: center;
+    }
+    br {
+      display: none;
+    }
+
+    @media screen and (max-width: 768px) {
+      font-family: Inter;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16.8px;
+      text-align: left;
+      white-space: unset;
+      br {
+        display: block;
+      }
+    }
+    span {
+      font-family: Inter;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16.8px;
+      text-align: left;
+      color: var(--gray);
+      margin-left: 4px;
+    }
+  }
   &_text {
     font-family: Inter;
     font-size: 14px;
@@ -3058,6 +3093,22 @@
       margin-bottom: 4px;
     }
   }
+  &_healthStatuses {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    background-color: var(--gray-light9);
+    border-radius: 10px;
+    padding: 3px;
+    @media screen and (max-width: 768px) {
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 0px;
+      margin-bottom: 12px;
+    }
+  }
   &_statuses {
     display: flex;
     align-items: center;
@@ -3066,6 +3117,9 @@
     background-color: var(--gray-light9);
     border-radius: 10px;
     padding: 3px;
+    &_health {
+      margin-top: 24px;
+    }
     @media screen and (max-width: 768px) {
       flex-wrap: wrap;
       align-items: flex-start;

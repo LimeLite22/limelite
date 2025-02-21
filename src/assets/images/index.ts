@@ -164,6 +164,8 @@ export { default as Valid } from "./Сommon/Valid.svg";
 export { default as VisiblePassword } from "./Сommon/VisiblePassword.svg";
 export { default as Youtube } from "./Сommon/Youtube.svg";
 export { default as ProjectOverviewImg } from "./Сommon/ProjectOverview.png";
+export { default as NoNeed } from "./Сommon/NoNeed.svg";
+export { default as NoNeedBlack } from "./Сommon/NoNeedBlack.svg";
 // what is new
 
 export { default as CompanyType } from "./WhatIsNew/CompanyType.svg";

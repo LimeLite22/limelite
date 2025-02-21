@@ -40,13 +40,20 @@ const LogisticSettings = () => {
 
             }
             {lIS.location.type === OWN_ADDRESS &&
-                <div className={styles.infoContainer_text}>
-                    <p>Address:</p>
-                    {current.location.company}{" "}
-                    {current.location.street}{" "}
-                    {current.location.city}{" "}
-                    {current.location.zip}
-                </div>}
+                <>
+                    <div className={styles.infoContainer_text}>
+                        <p>Address:</p>
+                        {current.location.company}{" "}
+                        {current.location.street}{" "}
+                        {current.location.city}{" "}
+                        {current.location.zip}
+                    </div>
+                    <div className={styles.infoContainer_text} >
+                        <p>Protective equipment</p>
+                        {current.safetyEquipment === true ? 'Provide' : 'Not Needed'}
+                    </div>
+                </>
+            }
             <div className={styles.infoContainer_text}><p>Preferred date:</p>
                 <div style={{ display: "flex" }}>
                     {preferredDate?.date !== DEFAULT

@@ -1,5 +1,5 @@
 
-import { CalendarIcon2, CloseRed, EditIcon, LocationBlack, Success2 } from "assets/images";
+import { CalendarIcon2, CloseRed, EditIcon, LocationBlack, NoNeed, NoNeedBlack, StatusApproved, StatusApprovedBlack, Success2 } from "assets/images";
 import axios from "axios";
 import { DEFAULT, OWN_ADDRESS, YES } from "consts/consts";
 import { format } from "date-fns";
@@ -73,6 +73,8 @@ const LogisticInfo = () => {
             || current.location.zip !== lIS?.location.zip
             || current.preferredDate !== lIS?.preferredDate
             || current.travel.zoneCode?.value !== lIS?.travel.zoneCode.value
+            || current.safetyEquipment !== lIS?.safetyEquipment
+            || (current.safetyEquipment === true && current.safetyEquipmentDescription !== lIS.safetyEquipmentDescription)
         ) {
             if (
                 current.location.company?.length !== 0 &&
@@ -115,7 +117,10 @@ const LogisticInfo = () => {
                         zip: current.location.zip || '',
                         company: current.location.company || '',
 
+
                     },
+                    safetyEquipment: current.safetyEquipment,
+                    safetyEquipmentDescription: current.safetyEquipmentDescription,
                     travel:
                     {
                         ...lIS.travel,
@@ -165,13 +170,25 @@ const LogisticInfo = () => {
                 </div>
             }
             {!isEdit && lIS.location.type === OWN_ADDRESS &&
-                <div className={styles.infoContainer_text}>
-                    <p>Address:</p>
-                    {current.location.company}{" "}
-                    {current.location.street}{" "}
-                    {current.location.city}{" "}
-                    {current.location.zip}
-                </div>}
+                <>
+                    <div className={styles.infoContainer_text}>
+                        <p>Address:</p>
+                        {current.location.company}{" "}
+                        {current.location.street}{" "}
+                        {current.location.city}{" "}
+                        {current.location.zip}
+                    </div>
+                    <div className={styles.infoContainer_text} >
+                        <p>Protective equipment</p>
+                        {current.safetyEquipment === true ? 'Provide' : 'Not Needed'}
+                    </div>
+                    <div className={styles.infoContainer_text} >
+                        <p>Protective equipment description</p>
+                        {current.safetyEquipmentDescription}
+                    </div>
+
+                </>
+            }
             {
                 isEdit && lIS.location.type === OWN_ADDRESS && <>
                     <div className={styles.infoContainer_text} >
@@ -281,6 +298,39 @@ const LogisticInfo = () => {
                             type="text"
                         />
                     </div>
+                    <div className={`${styles.box_statuses} ${styles.box_statuses_health} `}
+                    >
+                        <div className={`${styles.box_status} ${current?.safetyEquipment === true ? styles.box_status_approved : ""} `}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                e.preventDefault();
+                                setCurrent({ ...current, safetyEquipment: true })
+                            }}>
+                            <img src={current?.safetyEquipment === true ? StatusApprovedBlack : StatusApproved} alt="status" />
+                            Provide</div>
+                        <div className={`${styles.box_status} ${current?.safetyEquipment === false ? styles.box_status_approved : ""} `}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                e.preventDefault();
+                                setCurrent({ ...current, safetyEquipment: false })
+                            }}>
+                            <img src={current?.safetyEquipment === false ? NoNeedBlack : NoNeed} alt="status" />
+                            Not Needed</div>
+                    </div>
+                    {lIS?.safetyEquipment === true &&
+                        <>
+                            <div className={styles.box_title3}>If "Yes", please describe the required safety training and/or PPE requirements for
+                                the filming site/location. Please note, all LimeLite Video Creators are required to follow
+                                all applicable federal, state, and local laws, regulations, ordinances, policies, and procedures
+                                related to safety and health at work while on assignment at customer locations.</div>
+                            <textarea className={styles.textarea}
+                                value={current.safetyEquipmentDescription}
+                                onChange={(e) => {
+                                    setCurrent({ ...current, safetyEquipmentDescription: e.target.value })
+                                }}
+                                placeholder='Write here...'></textarea>
+                        </>
+                    }
 
                 </>
             }
