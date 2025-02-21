@@ -1,7 +1,7 @@
 import styles from "../ProjectsPage.module.scss";
 import useWindowWidth from "hooks/useWindowWidth";
 import ReactDOM from "react-dom";
-import { CloseCalendar, Copy, ProjectOverviewImg } from "assets/images";
+import { CloseCalendar, Copy, ProjectOverviewImg, QuestionIcon, ThumbnailPurple } from "assets/images";
 import { useState } from "react";
 import ProjectSettings from "./ProjectSettings";
 import LogisticSettings from "./LogisticSettings";
@@ -26,7 +26,12 @@ const ProjectOverView = ({ close }: IProps) => {
             Why They Chose Us: Honest feedback from our clients
         </div>
         <div className={styles.overview_info}>
-            <img className={styles.overview_info_image} src={ProjectOverviewImg} alt={"ProjectOverviewImg"} />
+            <div className={styles.overview_info_image}>
+                <img src={ThumbnailPurple} alt={"ProjectOverviewImg"} />
+                <div className={styles.overview_info_image_header} >Project Thumbnail</div>
+                <div className={styles.overview_info_image_title}>(Coming soon)</div>
+            </div>
+
 
             <div className={styles.overview_info_content}>
                 <div className={styles.overview_info_content_item} >
@@ -75,10 +80,10 @@ const ProjectOverView = ({ close }: IProps) => {
             >Logistics</div>
             <div className={`${styles.overview_stepsList_item} ${selectedStep === 3 ? styles.overview_stepsList_item_selected : ''}`}
                 onClick={() => setSelectedStep(3)}
-            >Scripted Delivery</div>
+            >Script</div>
             <div className={`${styles.overview_stepsList_item} ${selectedStep === 4 ? styles.overview_stepsList_item_selected : ''}`}
                 onClick={() => setSelectedStep(4)}
-            >Candid Interview</div>
+            >Interview</div>
             <div className={`${styles.overview_stepsList_item} ${selectedStep === 5 ? styles.overview_stepsList_item_selected : ''}`}
                 onClick={() => setSelectedStep(5)}
             >Voiceover</div>
@@ -107,6 +112,7 @@ const ProjectOverView = ({ close }: IProps) => {
                 </div>
                 <div>
                     <div className={styles.infoContainer_header}>Project Notes
+                        <img src={QuestionIcon} />
                     </div>
                     <div className={styles.infoContainer_text} >Cursus tortor eu interdum cras. Nunc non ornare
                         dui consectetur pretium. Risus eu sed diam et sed odio in. Arcu diam varius egestas eu odio

@@ -166,6 +166,7 @@ export { default as Youtube } from "./Сommon/Youtube.svg";
 export { default as ProjectOverviewImg } from "./Сommon/ProjectOverview.png";
 export { default as NoNeed } from "./Сommon/NoNeed.svg";
 export { default as NoNeedBlack } from "./Сommon/NoNeedBlack.svg";
+export { default as ThumbnailPurple } from "./Сommon/Thumbnail.svg";
 // what is new
 
 export { default as CompanyType } from "./WhatIsNew/CompanyType.svg";
