@@ -11,6 +11,7 @@ const ProjectSettings = () => {
         <div className={styles.infoContainer}>
             <div className={styles.infoContainer_header}>Project information
             </div>
+            <div className={styles.infoContainer_text} ><p>Project #:</p>2025-MM-101 </div>
             <div className={styles.infoContainer_text}>
                 <p>Requested type:</p> <span>{pIS?.option?.value}  {pIS?.option?.credits && (
                     <div

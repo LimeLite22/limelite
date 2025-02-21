@@ -1,4 +1,4 @@
-import { NO, PROFESSIONAL_SCRIPT, QUESTIONS_AUTHOR_PROFESSIONAL, STUDIO_RENTAL, YES, zonesList, VIRTUAL_INTERVIEW, QUESTIONS_VIRTUALLY } from './../../consts/consts';
+import { NO, PROFESSIONAL_SCRIPT, QUESTIONS_AUTHOR_PROFESSIONAL, STUDIO_RENTAL, YES, zonesList, VIRTUAL_INTERVIEW, QUESTIONS_VIRTUALLY, TRACK_AUTHOR_PROFESSIONAL } from './../../consts/consts';
 import { BASIC_THUMBNAIL, DEFAULT, LESS_1_30, optionsList, projectTones, projectTypes, VIDEO_SQUARE } from "consts/consts"
 import { IRequest } from "interfaces/interfaces";
 import { generateUniqueId } from "utils/generateId";
@@ -346,9 +346,9 @@ export const testRequest: IRequest =
         },
     },
     voiceTrackSettings: {
-        trackAuthor: DEFAULT,
+        trackAuthor: TRACK_AUTHOR_PROFESSIONAL,
         track: DEFAULT,
-        scriptAuthor: DEFAULT,
+        scriptAuthor: PROFESSIONAL_SCRIPT,
         scriptAuthorProfSettings: {
             subject: "Setting up an interview",
             phone: 23232323,

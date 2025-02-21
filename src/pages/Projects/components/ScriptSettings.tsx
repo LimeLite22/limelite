@@ -1,7 +1,4 @@
 
-
-import { useSelector } from "react-redux";
-import { selectRequestInfo } from "../../../redux/requests/reducer";
 import styles from "../ProjectsPage.module.scss";
 import { OWN_SCRIPT, PROFESSIONAL_SCRIPT } from "consts/consts";
 import DivRowCount from "pages/NewRequest/components/TextArea";
