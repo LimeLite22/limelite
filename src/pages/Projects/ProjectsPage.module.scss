@@ -921,9 +921,17 @@
         margin-top: 36px;
         display: flex;
         gap: 36px;
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+        }
+
         &_timeline {
             width: 310px;
             min-width: 310px;
+            @media screen and (max-width: 768px) {
+                width: 100%;
+                min-width: 100%;
+            }
         }
         &_text {
             display: flex;
@@ -1963,7 +1971,7 @@
         overflow: hidden !important;
         padding: 0px 16px 0px 16px;
         @media screen and (max-width: 768px) {
-            overflow: scroll !important;
+            overflow-y: scroll !important;
         }
         @media screen and (max-width: 375px) {
             padding: 0px 12px 0px 12px;
