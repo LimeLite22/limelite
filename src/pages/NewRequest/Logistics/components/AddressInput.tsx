@@ -276,7 +276,7 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
                 { logisticInfoSettings: { ...lIS, safetyEquipment: true }, isEdit: false }));
             }}>
             <img src={lIS?.safetyEquipment === true ? StatusApprovedBlack : StatusApproved} alt="status" />
-            Provide</div>
+            Required</div>
           <div className={`${styles.box_status} ${lIS?.safetyEquipment === false ? styles.box_status_approved : ""} `}
             onClick={(e) => {
               e.stopPropagation();
@@ -285,7 +285,7 @@ const Address = ({ isExpanded, setIsExpanded, isError }: IAddressProps) => {
                 { logisticInfoSettings: { ...lIS, safetyEquipment: false }, isEdit: false }));
             }}>
             <img src={lIS?.safetyEquipment === false ? NoNeedBlack : NoNeed} alt="status" />
-            Not Needed</div>
+            Not Required</div>
         </div>
         {lIS?.safetyEquipment === true &&
           <>

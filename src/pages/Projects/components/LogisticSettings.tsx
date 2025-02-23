@@ -50,7 +50,7 @@ const LogisticSettings = () => {
                     </div>
                     <div className={styles.infoContainer_text} >
                         <p>Protective equipment</p>
-                        {current.safetyEquipment === true ? 'Provide' : 'Not Needed'}
+                        {current.safetyEquipment === true ? 'Required' : 'Not Required'}
                     </div>
                 </>
             }
