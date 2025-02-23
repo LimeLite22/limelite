@@ -1,6 +1,6 @@
 
 import { CloseRed, EditIcon, StatusApproved, StatusProgress, StatusUnavailable, Success2, Audio, Delete, Download, StatusApprovedBlack, StatusProgressBlack, StatusUnavailableBlack } from "assets/images";
-import { APPROVED_TEXT_STATUS, DEFAULT, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, TRACK_AUTHOR_CLIENT, TRACK_AUTHOR_PROFESSIONAL, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
+import { APPROVED_TEXT_STATUS, DEFAULT, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, PROFESSIONAL_SCRIPT, TRACK_AUTHOR_CLIENT, TRACK_AUTHOR_PROFESSIONAL, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import DivRowCount from "pages/NewRequest/components/TextArea";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,12 +22,15 @@ const VoiceoverOwnScript = () => {
             || selectedRequest!.voiceTrackSettings.scriptAuthorOwnSettings.scriptStatus !== current.scriptAuthorOwnSettings.scriptStatus
         ) {
             if (current.scriptAuthorOwnSettings.text?.length !== 0) {
+                console.log('------')
                 ready = true
             } else {
+                console.log('1------')
                 ready = false
             }
 
         } else {
+            console.log('2------')
             ready = false
         }
         setIsReady(ready);
@@ -67,14 +70,15 @@ const VoiceoverOwnScript = () => {
             }
             )
         )
+        setIsEdit(false);
     }
     useEffect(() => {
         readyToSave();
-    }, [current])
+    }, [current, selectedRequest?.voiceTrackSettings])
     useEffect(() => {
         setCurrent(selectedRequest!.voiceTrackSettings)
-    }, [selectedRequest])
-    if (selectedRequest?.voiceTrackSettings.trackAuthor === TRACK_AUTHOR_PROFESSIONAL) return null
+    }, [selectedRequest?.voiceTrackSettings])
+    if (selectedRequest?.voiceTrackSettings.scriptAuthor === PROFESSIONAL_SCRIPT) return null
     return (
         <div className={styles.infoContainer}>
             <div className={styles.infoContainer_header}>About Your Voiceover
@@ -183,7 +187,7 @@ const VoiceoverOwnScript = () => {
                                     }}
                                 >
                                     <img src={current.scriptAuthorOwnSettings.scriptStatus === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress} alt="status" />
-                                    {IN_PROGRESS_TEXT_STATUS}
+                                    In Progress
                                 </div>
                                 <div
                                     className={`${styles.box_status} ${current.scriptAuthorOwnSettings.scriptStatus === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}

@@ -7,8 +7,10 @@ import {
   StatusProgress,
   StatusProgressBlack,
   StatusUnavailable,
+  StatusUnavailableBlack,
 } from "assets/images";
 import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
+import useWindowWidth from "hooks/useWindowWidth";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -30,6 +32,7 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
   const selection = selectedRequest?.voiceTrackSettings.scriptAuthor;
   const textStatus = selectedRequest?.voiceTrackSettings.scriptAuthorOwnSettings.scriptStatus;
   const text = selectedRequest?.voiceTrackSettings.scriptAuthorOwnSettings.text;
+  const width = useWindowWidth();
   const dispatch = useDispatch();
   const handleUpdateField = (path: string, value: string) => {
     dispatch(
@@ -83,13 +86,13 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
             onClick={() => handleUpdateField("voiceTrackSettings.scriptAuthorOwnSettings.scriptStatus", IN_PROGRESS_TEXT_STATUS)}
           >
             <img src={textStatus === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress} alt="status" />
-            In Progress
+            {width > 768 ? "Work in Progress" : "In Progress"}
           </div>
           <div
             className={`${styles.box_status} ${textStatus === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
             onClick={() => handleUpdateField("voiceTrackSettings.scriptAuthorOwnSettings.scriptStatus", UNAVAILABLE_TEXT_STATUS)}
           >
-            <img src={textStatus === UNAVAILABLE_TEXT_STATUS ? StatusProgressBlack : StatusUnavailable} alt="status" />
+            <img src={textStatus === UNAVAILABLE_TEXT_STATUS ? StatusUnavailableBlack : StatusUnavailable} alt="status" />
             Unavailable
           </div>
         </div>

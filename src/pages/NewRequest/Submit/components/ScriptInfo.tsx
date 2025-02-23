@@ -125,7 +125,7 @@ const ScriptInfo = () => {
                                     }}
                                 >
                                     <img src={current?.scriptStatus === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress} alt="status" />
-                                    {IN_PROGRESS_TEXT_STATUS}
+                                    In Progress
                                 </div>
                                 <div
                                     className={`${styles.box_status} ${current?.scriptStatus === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}

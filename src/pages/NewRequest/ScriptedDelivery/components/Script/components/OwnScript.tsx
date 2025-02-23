@@ -10,6 +10,7 @@ import {
   StatusUnavailableBlack,
 } from "assets/images";
 import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
+import useWindowWidth from "hooks/useWindowWidth";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -33,6 +34,7 @@ const OwnScript = ({ isExpanded, setIsExpanded, isError }: IProps) => {
   const text = selectedRequest?.scriptSettings?.ownText;
   const status = selectedRequest?.scriptSettings?.scriptStatus;
   const dispatch = useDispatch();
+  const width = useWindowWidth();
   const [wordCount, setWordCount] = useState(0);
   const handleUpdateField = (
     path: string,
@@ -109,7 +111,7 @@ const OwnScript = ({ isExpanded, setIsExpanded, isError }: IProps) => {
             }}
           >
             <img src={status === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress} alt="status" />
-            In Progress
+            {width > 768 ? "Work in Progress" : "In Progress"}
           </div>
           <div
             className={`${styles.box_status} ${status === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}

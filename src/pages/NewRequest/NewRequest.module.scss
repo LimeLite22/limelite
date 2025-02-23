@@ -2046,10 +2046,23 @@
     }
   }
   &_statuses {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    margin-bottom: 24px;
+    background-color: var(--gray-light9);
+    border-radius: 10px;
+    padding: 3px;
+    &_health {
+      margin-top: 24px;
+    }
+    @media screen and (max-width: 768px) {
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 0px;
+      margin-bottom: 12px;
+    }
   }
   &_telepromptOptions {
     width: 100%;
@@ -3121,7 +3134,6 @@
       margin-top: 24px;
     }
     @media screen and (max-width: 768px) {
-      flex-wrap: wrap;
       align-items: flex-start;
       justify-content: flex-start;
       gap: 0px;
@@ -3147,11 +3159,17 @@
       width: 50%;
       flex: unset;
       font-family: Inter;
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 400;
       line-height: 15.4px;
       text-align: left;
       gap: 8px;
+      height: 32px;
+      gap: 6px;
+      img {
+        width: 18px;
+        height: 18px;
+      }
     }
     &_approved {
       color: var(--black);
@@ -3159,10 +3177,14 @@
       background-color: var(--white);
       @media screen and (max-width: 768px) {
         font-family: Inter;
-        font-size: 14px;
+        font-size: 12px;
         font-weight: 400;
         line-height: 15.4px;
         text-align: left;
+        img {
+          width: 18px;
+          height: 18px;
+        }
       }
     }
   }

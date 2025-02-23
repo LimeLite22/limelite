@@ -10,6 +10,7 @@ import {
   StatusUnavailableBlack,
 } from "assets/images";
 import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, QUESTIONS_AUTHOR_CLIENT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
+import useWindowWidth from "hooks/useWindowWidth";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -33,6 +34,7 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
   const text = ownSettings?.text;
   const status = ownSettings?.scriptStatus;
   const dispatch = useDispatch();
+  const width = useWindowWidth();
   const handleUpdateField = (path: string, value: string) => {
     dispatch(
       updateDraftField({
@@ -103,7 +105,7 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
             }}
           >
             <img src={status === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress} alt="status" />
-            Work in Progress
+            {width > 768 ? "Work in Progress" : "In Progress"}
           </div>
           <div
             className={`${styles.box_status} ${status === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}

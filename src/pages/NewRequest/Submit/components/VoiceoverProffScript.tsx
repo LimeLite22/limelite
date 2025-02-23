@@ -80,7 +80,7 @@ const VoiceoverProffScript = () => {
         setCurrent(selectedRequest!.voiceTrackSettings)
     }, [selectedRequest])
 
-    if (selectedRequest?.voiceTrackSettings.scriptAuthor === OWN_SCRIPT) return null
+    if (selectedRequest?.voiceTrackSettings.scriptAuthor == OWN_SCRIPT) return null
     return (
         <div className={styles.infoContainer}>
 

@@ -124,7 +124,7 @@ const Interview = () => {
                                     ${styles.box_status} 
                                     ${curOwnSettings.scriptStatus === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
                                     onClick={() => {
-                                        setCurrent((prev) => ({ ...prev, status: APPROVED_TEXT_STATUS }))
+                                        setCurrent({ ...current, questionsAuthorOwnSettings: { ...curOwnSettings, scriptStatus: APPROVED_TEXT_STATUS } })
                                     }}
                                 >
                                     <img
@@ -138,21 +138,21 @@ const Interview = () => {
                                     ${styles.box_status} 
                                     ${curOwnSettings.scriptStatus === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
                                     onClick={() => {
-                                        setCurrent((prev) => ({ ...prev, status: IN_PROGRESS_TEXT_STATUS }))
+                                        setCurrent({ ...current, questionsAuthorOwnSettings: { ...curOwnSettings, scriptStatus: IN_PROGRESS_TEXT_STATUS } })
                                     }}
                                 >
                                     <img
                                         src={curOwnSettings.scriptStatus === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress}
                                         alt="status"
                                     />
-                                    {IN_PROGRESS_TEXT_STATUS}
+                                    In Progress
                                 </div>
                                 <div
                                     className={`
                                     ${styles.box_status} 
                                     ${curOwnSettings.scriptStatus === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
                                     onClick={() => {
-                                        setCurrent((prev) => ({ ...prev, status: UNAVAILABLE_TEXT_STATUS }))
+                                        setCurrent({ ...current, questionsAuthorOwnSettings: { ...curOwnSettings, scriptStatus: UNAVAILABLE_TEXT_STATUS } })
                                     }}
                                 >
                                     <img src={curOwnSettings.scriptStatus === UNAVAILABLE_TEXT_STATUS ? StatusUnavailableBlack : StatusUnavailable} alt="status" />
