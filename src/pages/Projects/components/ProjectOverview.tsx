@@ -155,9 +155,7 @@ const ProjectOverView = ({ close }: IProps) => {
                 <Sheet
                     isOpen={true}
                     onClose={close}
-                    snapPoints={[span1, span2]}
                     dragVelocityThreshold={500}
-                    initialSnap={1}
                     detent="full-height"
                     style={{
                         backdropFilter: "blur(3px)",
@@ -172,8 +170,13 @@ const ProjectOverView = ({ close }: IProps) => {
                     ></div>
                     <Sheet.Container className={styles.learnMore_sheet}>
                         <Sheet.Content className={styles.learnMore_sheetContainer}>
-                            <div className={styles.learnMore_container_line}></div>
-                            {content}
+                            <div className={styles.learnMore_container_lineBox}>
+                                <div className={styles.learnMore_container_line}></div>
+                            </div>
+
+                            <Sheet.Scroller draggableAt="both">
+                                {content}
+                            </Sheet.Scroller>
 
                         </Sheet.Content>
                     </Sheet.Container>
