@@ -1,4 +1,4 @@
-import { Settings, SwiperFoto1 } from "assets/images";
+import { DetailsProject, DownloadProject, Settings, ShareProject, SwiperFoto1 } from "assets/images";
 import { format } from "date-fns";
 import useWindowWidth from "hooks/useWindowWidth";
 import { useState } from "react";
@@ -17,6 +17,7 @@ interface IProps {
 const Project = ({ project, index, searchQuery }: IProps) => {
     const windowWidth = useWindowWidth();
     const [isOverviewOpen, setIsOverviewOpen] = useState(false);
+    const [isSettingsOpen, setIsSettingsOpen] = useState(false);
     const highlightText = (text: string, query: string, maxLength: number) => {
         const truncatedText = truncateString(text, (windowWidth > 990 && windowWidth < 1250) ? maxLength : 40);
         if (!query) return truncatedText;
@@ -97,8 +98,17 @@ const Project = ({ project, index, searchQuery }: IProps) => {
                             __html: highlightText(project.status, searchQuery, 15),
                         }}
                         ></div></div>
-                    <div className={styles.project_info_settings}>
+                    <div className={styles.project_info_settings} onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        setIsSettingsOpen(true)
+                    }}>
                         <img src={Settings} alt="" />
+                        {isSettingsOpen && <div className={styles.project_info_settingsContainer} >
+                            <div className={styles.project_info_settingsContainer_item} ><img src={DetailsProject} alt="" /> View Project Details</div>
+                            <div className={styles.project_info_settingsContainer_item}><img src={ShareProject} alt="" />Provide Feedback</div>
+                            <div className={styles.project_info_settingsContainer_item}><img src={DownloadProject} alt="" />Download Video</div>
+                        </div>}
                     </div>
                 </div>
                 <img className={styles.mobOnly} src={Settings} alt="" />

@@ -167,6 +167,9 @@ export { default as ProjectOverviewImg } from "./Сommon/ProjectOverview.png";
 export { default as NoNeed } from "./Сommon/NoNeed.svg";
 export { default as NoNeedBlack } from "./Сommon/NoNeedBlack.svg";
 export { default as ThumbnailPurple } from "./Сommon/Thumbnail.svg";
+export { default as ShareProject } from "./Сommon/ShareProject.svg";
+export { default as DownloadProject } from "./Сommon/ProjectDownload.svg";
+export { default as DetailsProject } from "./Сommon/ProjectDetails.svg";
 // what is new
 
 export { default as CompanyType } from "./WhatIsNew/CompanyType.svg";

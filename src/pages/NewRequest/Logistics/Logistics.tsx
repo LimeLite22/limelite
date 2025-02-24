@@ -74,6 +74,7 @@ const Logistics = () => {
       style={{
         paddingBottom: customPadding,
       }}
+
     >
       <Link to="/new-request/start">
         <div className={styles.nR_backButton}>

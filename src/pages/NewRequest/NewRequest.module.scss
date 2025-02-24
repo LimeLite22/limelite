@@ -12,6 +12,11 @@
     @media screen and (max-width: 768px) {
       padding: 44px 16px 100px 16px;
     }
+    @media print {
+      height: auto !important;
+      overflow: visible !important;
+      flex-direction: column;
+    }
   }
   &_submitContainer {
     width: 656px;
@@ -2080,6 +2085,9 @@
   z-index: 10;
   border-top: 1px solid var(--gray-light7);
   background-color: var(--gray-light10);
+  @media print {
+    position: unset;
+  }
   &_chat {
     position: absolute;
     right: 25px;

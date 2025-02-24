@@ -12,6 +12,11 @@
     @media screen and (max-width: 768px) {
       padding: 44px 16px 100px 16px;
     }
+    @media print {
+      height: auto !important;
+      overflow: visible !important;
+      flex-direction: column;
+    }
   }
   &_backButton {
     position: absolute;
@@ -864,8 +869,8 @@
   &_error {
     min-height: 80px;
   }
-  &_submit{
-    min-height:35px;
+  &_submit {
+    min-height: 35px;
     height: 35px;
   }
   &_header {
@@ -924,9 +929,9 @@
     text-align: left;
     text-align: left;
     color: var(--gray-dark);
-    &_submit{
+    &_submit {
       min-height: 35px;
-      height:35px;
+      height: 35px;
       border-radius: 8px;
     }
     &_error {
@@ -985,7 +990,7 @@
     &_collapseIcon {
       position: absolute;
       right: 10px;
-      top:50%;
+      top: 50%;
       transform: translateY(-50%);
       transition-duration: 0.3s;
       transform-origin: center;

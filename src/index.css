@@ -10,10 +10,30 @@ body {
   overflow-x: hidden;
 }
 
+
 #root {
   height: 100%;
   overflow: scroll;
   overflow-x: hidden;
+}
+@media print {
+  body {
+    overflow-x: unset;
+  }
+  #root {
+    overflow: unset;
+    overflow-x: unset;
+  }
+  #pageContainer {
+    overflow: unset;
+    overflow-x: unset;
+  }
+  #PageHeader{
+    display: none;
+  }
+  a{
+    display: none;
+  }
 }
 * {
   box-sizing: border-box;

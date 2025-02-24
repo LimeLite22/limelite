@@ -23,7 +23,7 @@ const WelomeHeader = ({
   const account = useSelector(selectAccount);
   console.log(account);
   return (
-    <div className={styles.headerContainer}>
+    <div className={styles.headerContainer} id="PageHeader">
       <Swiper
         loop={true}
         autoplay={{
