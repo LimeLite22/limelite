@@ -10,6 +10,7 @@ import InterviewSettings from "./InterviewSettings";
 import VoiceoverSettings from "./VoiceoverSettings";
 import VideoEditSettings from "./VideoEditSettings";
 import AddOnsSettings from "./AddOns/AddOns";
+import copy from "copy-to-clipboard";
 import { Sheet } from "react-modal-sheet";
 interface IProps {
     close: () => void
@@ -19,8 +20,21 @@ interface IProps {
 const ProjectOverView = ({ close }: IProps) => {
     const width = useWindowWidth();
     const [selectedStep, setSelectedStep] = useState(0);
-    const span1 = window.innerHeight * 1;
-    const span2 = window.innerHeight * 0.63;
+    const [copied, setCopied] = useState(false);
+    const [copied2, setCopied2] = useState(false);
+    const link = "https://f.io/ltTc9gLk";
+    const link2 = "https://f.io/J9NcL36S";
+
+    const handleCopy = () => {
+        copy(link);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
+    const handleCopy2 = () => {
+        copy(link2);
+        setCopied2(true);
+        setTimeout(() => setCopied2(false), 2000);
+    };
     const content = <>
         <div className={styles.overview_header}>
             Why They Chose Us: Honest feedback from our clients
@@ -51,19 +65,19 @@ const ProjectOverView = ({ close }: IProps) => {
                     <div className={styles.overview_info_content_item_header}>Requested by:</div>
                     Clay Gerhold
                 </div>
-                <div className={styles.overview_info_content_item} style={{ marginTop: "12px" }}>
+                <div className={styles.overview_info_content_item} style={{ marginTop: width < 768 ? '' : "12px" }}>
                     <div className={styles.overview_info_content_item_header}>Review link:</div>
-                    <p>
-                        https://project_0123456...
-                        <div className={styles.overview_info_content_item_copy} ><img src={Copy} alt={"Copy"} /></div>
+                    <p onClick={handleCopy} style={{ cursor: "pointer" }}>
+                        https://f.io/ltTc9gLk
                     </p>
+                    {copied && <p className={styles.overview_info_content_item_copy}>Copied!</p>}
                 </div>
                 <div className={styles.overview_info_content_item}>
                     <div className={styles.overview_info_content_item_header}>Download link:</div>
-                    <p>
-                        https://project_0123456...
-                        <div className={styles.overview_info_content_item_copy}><img src={Copy} alt={"Copy"} /></div>
+                    <p onClick={handleCopy2} style={{ cursor: "pointer" }}>
+                        https://f.io/J9NcL36S
                     </p>
+                    {copied2 && <p className={styles.overview_info_content_item_copy}>Copied!</p>}
                 </div>
 
             </div>
