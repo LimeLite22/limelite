@@ -4649,6 +4649,16 @@
     text-overflow: ellipsis;
     overflow: hidden;
     position: relative;
+    &:hover {
+      background: var(--gray-light8);
+    }
+    &_selected {
+      opacity: 0.75;
+      &:hover {
+        background-color: var(--white);
+        cursor: not-allowed;
+      }
+    }
     &_itemArrow {
       position: absolute;
       top: 50%;
@@ -4683,9 +4693,6 @@
     span {
       color: var(--gray-light5);
     }
-  }
-  &_item:hover {
-    background: var(--gray-light8);
   }
 }
 .popUp {

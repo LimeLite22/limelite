@@ -81,7 +81,7 @@ const ZoneSelector: FC<IProps> = () => {
       {isOpened && (
         <div className={styles.dd_itemsContainer}>
           <div
-            className={styles.dd_item}
+            className={`${styles.dd_item} ${lIS?.location?.type === OWN_ADDRESS ? styles.dd_item_selected : ''}`}
             onClick={() => {
               setOpened(false);
               dispatch(updateLogisticInfoSettings({
@@ -100,7 +100,7 @@ const ZoneSelector: FC<IProps> = () => {
               <img src={lIS?.location?.type === OWN_ADDRESS ? CheckBoxSelected : CheckBox} alt="" /> We'll provide the address</div>
           </div>
           <div
-            className={styles.dd_item}
+            className={`${styles.dd_item} ${lIS?.location?.type === STUDIO_RENTAL ? styles.dd_item_selected : ''}`}
             onClick={() => {
               setOpened(false);
               dispatch(updateLogisticInfoSettings({
@@ -120,7 +120,7 @@ const ZoneSelector: FC<IProps> = () => {
               We'd like a studio rental<div className={styles.dd_addOn} >+795</div></div>
           </div>
           <div
-            className={styles.dd_item}
+            className={`${styles.dd_item} ${lIS?.location?.type === HOME_RENTAL ? styles.dd_item_selected : ''}`}
             onClick={() => {
               setOpened(false);
               dispatch(updateLogisticInfoSettings({

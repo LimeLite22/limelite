@@ -319,8 +319,7 @@ const LogisticInfo = () => {
                     </div>
                     {lIS?.safetyEquipment === true &&
                         <>
-                            <div className={styles.box_title3}>If "required", please describe the required safety training and/or PPE requirements for
-                                the filming site/location. Please note, all LimeLite Video Creators are required to follow
+                            <div className={styles.box_title3}>If "required", please describe the safety training and/or PPE requirements for the filming site/location. Please note, all LimeLite Video Creators are required to follow
                                 all applicable federal, state, and local laws, regulations, ordinances, policies, and procedures
                                 related to safety and health at work while on assignment at customer locations.</div>
                             <textarea className={styles.textarea}
