@@ -120,8 +120,8 @@ const Project = ({ project, index, searchQuery }: IProps) => {
                             }} ><img src={DetailsProject} alt="" /> View Project Details</div>
                             <div className={styles.project_info_settingsContainer_item} onClick={handleCopy}><img src={ShareProject} alt="" />Provide Feedback</div>
                             <div className={styles.project_info_settingsContainer_item} onClick={handleCopy2}><img src={DownloadProject} alt="" />Download Video</div>
-                            {copied && <p className={styles.overview_info_content_item_copy}>Feedback link copied!</p>}
-                            {copied2 && <p className={styles.overview_info_content_item_copy}>Download link copied!</p>}
+                            {copied && <p className={styles.overview_info_content_item_copy2}>Feedback link copied!</p>}
+                            {copied2 && <p className={styles.overview_info_content_item_copy2}>Download link copied!</p>}
                         </div>}
                     </div>
                 </div>
