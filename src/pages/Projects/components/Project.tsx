@@ -80,7 +80,31 @@ const Project = ({ project, index, searchQuery }: IProps) => {
                                 <div className={`${styles.project_credit}`} >
                                     {project.option?.credits}  Credit(s)
                                 </div>
-                            </div></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div className={`${styles.project_info_settings} ${styles.mobOnly} `}
+                        tabIndex={0}
+                        onBlur={() => setIsSettingsOpen(false)}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            setIsSettingsOpen(true)
+                        }}>
+                        <img src={Settings} alt="" />
+                        {isSettingsOpen && <div className={styles.project_info_settingsContainer}
+
+                        >
+                            <div className={styles.project_info_settingsContainer_item} onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                handleOpenDetails();
+                            }} ><img src={DetailsProject} alt="" /> View Project Details</div>
+                            <div className={styles.project_info_settingsContainer_item}><img src={ShareProject} alt="" />Provide Feedback</div>
+                            <div className={styles.project_info_settingsContainer_item}><img src={DownloadProject} alt="" />Download Video</div>
+                        </div>}
                     </div>
                 </div>
                 <div className={styles.project_info}>
@@ -124,7 +148,6 @@ const Project = ({ project, index, searchQuery }: IProps) => {
                         </div>}
                     </div>
                 </div>
-                <img className={styles.mobOnly} src={Settings} alt="" />
             </div>
             <div id={`${index}divider`} className={styles.projectsPage_projects_divider}></div>
             {isOverviewOpen && <ProjectOverView close={() => setIsOverviewOpen(false)} />}
