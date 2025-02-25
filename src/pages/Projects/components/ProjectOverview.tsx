@@ -13,28 +13,19 @@ import AddOnsSettings from "./AddOns/AddOns";
 import copy from "copy-to-clipboard";
 import { Sheet } from "react-modal-sheet";
 interface IProps {
-    close: () => void
+    close: () => void,
+    isCopied: boolean,
+    isCopied2: boolean,
+    showCopied: boolean,
+    showCopied2: boolean,
+    handleCopy: () => void,
+    handleCopy2: () => void,
 }
 
 
-const ProjectOverView = ({ close }: IProps) => {
+const ProjectOverView = ({ close, handleCopy, handleCopy2, isCopied, isCopied2, showCopied, showCopied2 }: IProps) => {
     const width = useWindowWidth();
     const [selectedStep, setSelectedStep] = useState(0);
-    const [copied, setCopied] = useState(false);
-    const [copied2, setCopied2] = useState(false);
-    const link = "https://f.io/ltTc9gLk";
-    const link2 = "https://f.io/J9NcL36S";
-
-    const handleCopy = () => {
-        copy(link);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-    };
-    const handleCopy2 = () => {
-        copy(link2);
-        setCopied2(true);
-        setTimeout(() => setCopied2(false), 2000);
-    };
     const content = <>
         <div className={styles.overview_header}>
             Why They Chose Us: Honest feedback from our clients
@@ -67,17 +58,17 @@ const ProjectOverView = ({ close }: IProps) => {
                 </div>
                 <div className={styles.overview_info_content_item}>
                     <div className={styles.overview_info_content_item_header}>Review link:</div>
-                    <p onClick={handleCopy} style={{ cursor: "pointer" }}>
+                    <p onClick={handleCopy} style={{ cursor: "pointer", color: !isCopied ? 'var(--blue)' : 'var(--purple)' }}>
                         https://f.io/ltTc9gLk
                     </p>
-                    {copied && <p className={styles.overview_info_content_item_copy}>Copied!</p>}
+                    {showCopied && <p className={styles.overview_info_content_item_copy}>Copied!</p>}
                 </div>
                 <div className={styles.overview_info_content_item}>
                     <div className={styles.overview_info_content_item_header}>Download link:</div>
-                    <p onClick={handleCopy2} style={{ cursor: "pointer" }}>
+                    <p onClick={handleCopy2} style={{ cursor: "pointer", color: !isCopied2 ? 'var(--blue)' : 'var(--purple)' }}>
                         https://f.io/J9NcL36S
                     </p>
-                    {copied2 && <p className={styles.overview_info_content_item_copy}>Copied!</p>}
+                    {showCopied2 && <p className={styles.overview_info_content_item_copy}>Copied!</p>}
                 </div>
 
             </div>

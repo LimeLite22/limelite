@@ -19,20 +19,25 @@ const Project = ({ project, index, searchQuery }: IProps) => {
     const windowWidth = useWindowWidth();
     const [isOverviewOpen, setIsOverviewOpen] = useState(false);
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-    const [copied, setCopied] = useState(false);
-    const [copied2, setCopied2] = useState(false);
+    const [showCopied, setShowCopied] = useState(false);
+    const [isCopied, setIsCopied] = useState(false);
+    const [showCopied2, setShowCopied2] = useState(false);
+    const [isCopied2, setIsCopied2] = useState(false);
+
     const link = "https://f.io/ltTc9gLk";
     const link2 = "https://f.io/J9NcL36S";
 
     const handleCopy = () => {
         copy(link);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+        setShowCopied(true);
+        setIsCopied(true);
+        setTimeout(() => setShowCopied(false), 2000);
     };
     const handleCopy2 = () => {
         copy(link2);
-        setCopied2(true);
-        setTimeout(() => setCopied2(false), 2000);
+        setIsCopied2(true);
+        setShowCopied2(true);
+        setTimeout(() => setShowCopied2(false), 2000);
     };
     const highlightText = (text: string, query: string, maxLength: number) => {
         const truncatedText = truncateString(text, (windowWidth > 990 && windowWidth < 1250) ? maxLength : 40);
@@ -117,11 +122,11 @@ const Project = ({ project, index, searchQuery }: IProps) => {
                                 e.preventDefault();
                                 e.stopPropagation();
                                 handleOpenDetails();
-                            }} ><img src={DetailsProject} alt="" /> View Project Details</div>
-                            <div className={styles.project_info_settingsContainer_item} onClick={handleCopy}><img src={ShareProject} alt="" />Provide Feedback</div>
-                            <div className={styles.project_info_settingsContainer_item} onClick={handleCopy2}><img src={DownloadProject} alt="" />Download Video</div>
-                            {copied && <p className={styles.overview_info_content_item_copy2}>Feedback link copied!</p>}
-                            {copied2 && <p className={styles.overview_info_content_item_copy2}>Download link copied!</p>}
+                            }} ><img src={DetailsProject} alt="" />Project Details</div>
+                            <div className={styles.project_info_settingsContainer_item} onClick={handleCopy}><img src={ShareProject} alt="" />Review Link</div>
+                            <div className={styles.project_info_settingsContainer_item} onClick={handleCopy2}><img src={DownloadProject} alt="" />Download Link</div>
+                            {showCopied && <p className={styles.overview_info_content_item_copy2}>Feedback link copied!</p>}
+                            {showCopied2 && <p className={styles.overview_info_content_item_copy2}>Download link copied!</p>}
                         </div>}
                     </div>
                 </div>
@@ -160,17 +165,25 @@ const Project = ({ project, index, searchQuery }: IProps) => {
                                 e.preventDefault();
                                 e.stopPropagation();
                                 handleOpenDetails();
-                            }} ><img src={DetailsProject} alt="" /> View Project Details</div>
-                            <div className={styles.project_info_settingsContainer_item} onClick={handleCopy}><img src={ShareProject} alt="" />Provide Feedback</div>
-                            <div className={styles.project_info_settingsContainer_item} onClick={handleCopy2}><img src={DownloadProject} alt="" />Download Video</div>
-                            {copied && <p className={styles.overview_info_content_item_copy2}>Feedback link copied!</p>}
-                            {copied2 && <p className={styles.overview_info_content_item_copy2}>Download link copied!</p>}
+                            }} ><img src={DetailsProject} alt="" />Project Details</div>
+                            <div className={styles.project_info_settingsContainer_item} onClick={handleCopy}><img src={ShareProject} alt="" />Review Link</div>
+                            <div className={styles.project_info_settingsContainer_item} onClick={handleCopy2}><img src={DownloadProject} alt="" />Download Link</div>
+                            {showCopied && <p className={styles.overview_info_content_item_copy2}>Feedback link copied!</p>}
+                            {showCopied2 && <p className={styles.overview_info_content_item_copy2}>Download link copied!</p>}
                         </div>}
                     </div>
                 </div>
             </div>
             <div id={`${index}divider`} className={styles.projectsPage_projects_divider}></div>
-            {isOverviewOpen && <ProjectOverView close={() => setIsOverviewOpen(false)} />}
+            {isOverviewOpen && <ProjectOverView
+                close={() => setIsOverviewOpen(false)}
+                isCopied={isCopied}
+                isCopied2={isCopied2}
+                showCopied={showCopied}
+                showCopied2={showCopied2}
+                handleCopy={handleCopy}
+                handleCopy2={handleCopy2}
+            />}
         </>
     )
 }
