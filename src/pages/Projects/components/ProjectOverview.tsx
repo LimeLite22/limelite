@@ -1,7 +1,7 @@
 import styles from "../ProjectsPage.module.scss";
 import useWindowWidth from "hooks/useWindowWidth";
 import ReactDOM from "react-dom";
-import { CloseCalendar, Copy, ProjectOverviewImg, QuestionIcon, ThumbnailPurple } from "assets/images";
+import { CloseCalendar, QuestionIcon, ThumbnailPurple } from "assets/images";
 import { useState } from "react";
 import ProjectSettings from "./ProjectSettings";
 import LogisticSettings from "./LogisticSettings";

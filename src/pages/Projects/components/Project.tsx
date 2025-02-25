@@ -6,6 +6,7 @@ import { statusColor } from "utils/statusColors";
 import { truncateString } from "utils/truncateString";
 import styles from "../ProjectsPage.module.scss";
 import ProjectOverView from "./ProjectOverview";
+import copy from "copy-to-clipboard";
 
 interface IProps {
     project: any;
@@ -18,6 +19,21 @@ const Project = ({ project, index, searchQuery }: IProps) => {
     const windowWidth = useWindowWidth();
     const [isOverviewOpen, setIsOverviewOpen] = useState(false);
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+    const [copied, setCopied] = useState(false);
+    const [copied2, setCopied2] = useState(false);
+    const link = "https://f.io/ltTc9gLk";
+    const link2 = "https://f.io/J9NcL36S";
+
+    const handleCopy = () => {
+        copy(link);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
+    const handleCopy2 = () => {
+        copy(link2);
+        setCopied2(true);
+        setTimeout(() => setCopied2(false), 2000);
+    };
     const highlightText = (text: string, query: string, maxLength: number) => {
         const truncatedText = truncateString(text, (windowWidth > 990 && windowWidth < 1250) ? maxLength : 40);
         if (!query) return truncatedText;
@@ -102,8 +118,10 @@ const Project = ({ project, index, searchQuery }: IProps) => {
                                 e.stopPropagation();
                                 handleOpenDetails();
                             }} ><img src={DetailsProject} alt="" /> View Project Details</div>
-                            <div className={styles.project_info_settingsContainer_item}><img src={ShareProject} alt="" />Provide Feedback</div>
-                            <div className={styles.project_info_settingsContainer_item}><img src={DownloadProject} alt="" />Download Video</div>
+                            <div className={styles.project_info_settingsContainer_item} onClick={handleCopy}><img src={ShareProject} alt="" />Provide Feedback</div>
+                            <div className={styles.project_info_settingsContainer_item} onClick={handleCopy2}><img src={DownloadProject} alt="" />Download Video</div>
+                            {copied && <p className={styles.overview_info_content_item_copy}>Feedback link copied!</p>}
+                            {copied2 && <p className={styles.overview_info_content_item_copy}>Download link copied!</p>}
                         </div>}
                     </div>
                 </div>
@@ -143,8 +161,10 @@ const Project = ({ project, index, searchQuery }: IProps) => {
                                 e.stopPropagation();
                                 handleOpenDetails();
                             }} ><img src={DetailsProject} alt="" /> View Project Details</div>
-                            <div className={styles.project_info_settingsContainer_item}><img src={ShareProject} alt="" />Provide Feedback</div>
-                            <div className={styles.project_info_settingsContainer_item}><img src={DownloadProject} alt="" />Download Video</div>
+                            <div className={styles.project_info_settingsContainer_item} onClick={handleCopy}><img src={ShareProject} alt="" />Provide Feedback</div>
+                            <div className={styles.project_info_settingsContainer_item} onClick={handleCopy2}><img src={DownloadProject} alt="" />Download Video</div>
+                            {copied && <p className={styles.overview_info_content_item_copy2}>Feedback link copied!</p>}
+                            {copied2 && <p className={styles.overview_info_content_item_copy2}>Download link copied!</p>}
                         </div>}
                     </div>
                 </div>
