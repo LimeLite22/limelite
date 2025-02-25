@@ -65,7 +65,7 @@ export type TOption = {
   id: string;
   text: string;
   value: "Shoot + Edit" | "Shoot only" | "Edit only" | "Other";
-  credits: number;
+  credits: number | 'TBD';
   img: string;
 };
 

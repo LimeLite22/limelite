@@ -264,7 +264,7 @@ export const optionsList: TOptionsList = [
   {
     id: generateUniqueId(),
     value: OTHER,
-    credits: 1,
+    credits: 'TBD',
     text: "We need assistance scheduling this project",
     img: OtherIcon,
   },
