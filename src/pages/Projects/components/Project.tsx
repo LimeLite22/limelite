@@ -41,6 +41,10 @@ const Project = ({ project, index, searchQuery }: IProps) => {
         const divider = document.getElementById(`${index - 1}divider`);
         divider?.style.setProperty('background-color', 'var(--gray-light7)');
     }
+    const handleOpenDetails = () => {
+        setIsOverviewOpen(true);
+        setIsSettingsOpen(false);
+    }
 
     return (
         <>
@@ -98,14 +102,23 @@ const Project = ({ project, index, searchQuery }: IProps) => {
                             __html: highlightText(project.status, searchQuery, 15),
                         }}
                         ></div></div>
-                    <div className={styles.project_info_settings} onClick={(e) => {
-                        e.stopPropagation();
-                        e.preventDefault();
-                        setIsSettingsOpen(true)
-                    }}>
+                    <div className={styles.project_info_settings}
+                        tabIndex={0}
+                        onBlur={() => setIsSettingsOpen(false)}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            setIsSettingsOpen(true)
+                        }}>
                         <img src={Settings} alt="" />
-                        {isSettingsOpen && <div className={styles.project_info_settingsContainer} >
-                            <div className={styles.project_info_settingsContainer_item} ><img src={DetailsProject} alt="" /> View Project Details</div>
+                        {isSettingsOpen && <div className={styles.project_info_settingsContainer}
+
+                        >
+                            <div className={styles.project_info_settingsContainer_item} onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                handleOpenDetails();
+                            }} ><img src={DetailsProject} alt="" /> View Project Details</div>
                             <div className={styles.project_info_settingsContainer_item}><img src={ShareProject} alt="" />Provide Feedback</div>
                             <div className={styles.project_info_settingsContainer_item}><img src={DownloadProject} alt="" />Download Video</div>
                         </div>}

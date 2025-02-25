@@ -127,7 +127,6 @@ const projects = [
     }
 
 ]
-
 const ProjectsPage = () => {
 
     const [searchQuery, setSearchQuery] = useState("");
