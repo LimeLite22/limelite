@@ -65,7 +65,7 @@ const ProjectOverView = ({ close }: IProps) => {
                     <div className={styles.overview_info_content_item_header}>Requested by:</div>
                     Clay Gerhold
                 </div>
-                <div className={styles.overview_info_content_item} style={{ marginTop: width < 768 ? '' : "12px" }}>
+                <div className={styles.overview_info_content_item}>
                     <div className={styles.overview_info_content_item_header}>Review link:</div>
                     <p onClick={handleCopy} style={{ cursor: "pointer" }}>
                         https://f.io/ltTc9gLk
@@ -128,7 +128,7 @@ const ProjectOverView = ({ close }: IProps) => {
                     <div className={styles.infoContainer_header}>Project Notes
                         <img src={QuestionIcon} />
                     </div>
-                    <div className={styles.infoContainer_text} >Cursus tortor eu interdum cras. Nunc non ornare
+                    <div className={styles.infoContainer_notes} >Cursus tortor eu interdum cras. Nunc non ornare
                         dui consectetur pretium. Risus eu sed diam et sed odio in. Arcu diam varius egestas eu odio
                         dictum.</div>
                 </div>
