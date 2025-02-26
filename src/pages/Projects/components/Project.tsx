@@ -125,7 +125,7 @@ const Project = ({ project, index, searchQuery }: IProps) => {
                             }} ><img src={DetailsProject} alt="" />Project Details</div>
                             <div className={styles.project_info_settingsContainer_item} onClick={handleCopy}><img src={ShareProject} alt="" />Review Link</div>
                             <div className={styles.project_info_settingsContainer_item} onClick={handleCopy2}><img src={DownloadProject} alt="" />Download Link</div>
-                            {showCopied && <p className={styles.overview_info_content_item_copy2}>Feedback link copied!</p>}
+                            {showCopied && <p className={styles.overview_info_content_item_copy2}>Review Link copied!</p>}
                             {showCopied2 && <p className={styles.overview_info_content_item_copy2}>Download link copied!</p>}
                         </div>}
                     </div>
@@ -168,7 +168,7 @@ const Project = ({ project, index, searchQuery }: IProps) => {
                             }} ><img src={DetailsProject} alt="" />Project Details</div>
                             <div className={styles.project_info_settingsContainer_item} onClick={handleCopy}><img src={ShareProject} alt="" />Review Link</div>
                             <div className={styles.project_info_settingsContainer_item} onClick={handleCopy2}><img src={DownloadProject} alt="" />Download Link</div>
-                            {showCopied && <p className={styles.overview_info_content_item_copy2}>Feedback link copied!</p>}
+                            {showCopied && <p className={styles.overview_info_content_item_copy2}>Review Link copied!</p>}
                             {showCopied2 && <p className={styles.overview_info_content_item_copy2}>Download link copied!</p>}
                         </div>}
                     </div>
