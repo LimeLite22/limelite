@@ -152,7 +152,7 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
               );
             }}
           ></textarea>
-          {status === IN_PROGRESS_TEXT_STATUS &&
+          {status === APPROVED_TEXT_STATUS &&
             <div className={styles.textareaContainer}>
               <div className={styles.textarea_estimate}>
                 <div>

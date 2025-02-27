@@ -130,36 +130,37 @@ const OwnScript = () => {
           }}
         ></textarea>
 
-        <div className={styles.textareaContainer}>
-          <div className={styles.textarea_estimate}>
-            <div>
-              Estimated narration time:
-              <span style={{ color: minutes > 2 ? "var(--red-dark)" : "" }}>
-                <span className={styles.textarea_estimate_number}>
-                  {" "}
-                  {minutes}{" "}
-                </span>{" "}
-                Min and
-                <span className={styles.textarea_estimate_number}>
-                  {" "}
-                  {seconds}{" "}
-                </span>{" "}
-                Sec
-              </span>
+        {status === APPROVED_TEXT_STATUS &&
+          <div className={styles.textareaContainer}>
+            <div className={styles.textarea_estimate}>
+              <div>
+                Estimated narration time:
+                <span style={{ color: minutes > 2 ? "var(--red-dark)" : "" }}>
+                  <span className={styles.textarea_estimate_number}>
+                    {" "}
+                    {minutes}{" "}
+                  </span>{" "}
+                  Min and
+                  <span className={styles.textarea_estimate_number}>
+                    {" "}
+                    {seconds}{" "}
+                  </span>{" "}
+                  Sec
+                </span>
+              </div>
+              <div className={styles.textarea_estimate_words}>
+                <span style={{ color: minutes > 2 ? "var(--red-dark)" : "" }}>
+                  {wordCount}
+                </span>
+                /450 words
+              </div>
             </div>
-            <div className={styles.textarea_estimate_words}>
-              <span style={{ color: minutes > 2 ? "var(--red-dark)" : "" }}>
-                {wordCount}
-              </span>
-              /450 words
-            </div>
-          </div>
-          {minutes > 2 && (
-            <div className={styles.box_addressContainer_input_errorText}>
-              Your text is over the suggested word limit.
-            </div>
-          )}
-        </div>
+            {minutes > 2 && (
+              <div className={styles.box_addressContainer_input_errorText}>
+                Your text is over the suggested word limit.
+              </div>
+            )}
+          </div>}
       </div>
     </div>
   );
