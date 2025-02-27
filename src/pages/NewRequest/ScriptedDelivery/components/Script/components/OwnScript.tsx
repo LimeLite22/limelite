@@ -102,7 +102,7 @@ const OwnScript = ({ isExpanded, setIsExpanded, isError }: IProps) => {
             }}
           >
             <img src={status === APPROVED_TEXT_STATUS ? StatusApprovedBlack : StatusApproved} alt="status" />
-            Approved
+            {width > 768 ? 'Approved' : status === APPROVED_TEXT_STATUS ? 'Approved' : ''}
           </div>
           <div
             className={`${styles.box_status} ${status === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
@@ -111,7 +111,7 @@ const OwnScript = ({ isExpanded, setIsExpanded, isError }: IProps) => {
             }}
           >
             <img src={status === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress} alt="status" />
-            {width > 768 ? "Work in Progress" : "In Progress"}
+            {width > 768 ? 'Work in Progress' : status === IN_PROGRESS_TEXT_STATUS ? 'In Progress' : ''}
           </div>
           <div
             className={`${styles.box_status} ${status === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
@@ -120,7 +120,7 @@ const OwnScript = ({ isExpanded, setIsExpanded, isError }: IProps) => {
             }}
           >
             <img src={status === UNAVAILABLE_TEXT_STATUS ? StatusUnavailableBlack : StatusUnavailable} alt="status" />
-            Unavailable
+            {width > 768 ? 'Unavailable' : status === UNAVAILABLE_TEXT_STATUS ? 'Unavailable' : ''}
           </div>
         </div>
         <div className={styles.box_text}>Please paste your script below</div>
@@ -138,41 +138,42 @@ const OwnScript = ({ isExpanded, setIsExpanded, isError }: IProps) => {
           }}
         ></textarea>
 
-        <div className={styles.textareaContainer}>
-          <div className={styles.textarea_estimate}>
-            <div>
-              Estimated narration time:
-              <span style={{ color: minutes > 2 ? "var(--red-dark)" : "" }}>
-                <span className={styles.textarea_estimate_number}>
-                  {" "}
-                  {minutes}{" "}
-                </span>{" "}
-                Min and
-                <span className={styles.textarea_estimate_number}>
-                  {" "}
-                  {seconds}{" "}
-                </span>{" "}
-                Sec
-              </span>
+        {status === IN_PROGRESS_TEXT_STATUS &&
+          <div className={styles.textareaContainer}>
+            <div className={styles.textarea_estimate}>
+              <div>
+                Estimated narration time:
+                <span style={{ color: minutes > 2 ? "var(--red-dark)" : "" }}>
+                  <span className={styles.textarea_estimate_number}>
+                    {" "}
+                    {minutes}{" "}
+                  </span>{" "}
+                  Min and
+                  <span className={styles.textarea_estimate_number}>
+                    {" "}
+                    {seconds}{" "}
+                  </span>{" "}
+                  Sec
+                </span>
+              </div>
+              <div className={styles.textarea_estimate_words}>
+                <span style={{ color: minutes > 2 ? "var(--red-dark)" : "" }}>
+                  {wordCount}
+                </span>
+                /450 words
+              </div>
             </div>
-            <div className={styles.textarea_estimate_words}>
-              <span style={{ color: minutes > 2 ? "var(--red-dark)" : "" }}>
-                {wordCount}
-              </span>
-              /450 words
-            </div>
-          </div>
-          {isError.text && (
-            <div className={styles.box_addressContainer_input_errorText}>
-              Please complete the fields before proceeding
-            </div>
-          )}
-          {minutes > 2 && (
-            <div className={styles.box_addressContainer_input_errorText}>
-              Your text is over the suggested word limit.
-            </div>
-          )}
-        </div>
+            {isError.text && (
+              <div className={styles.box_addressContainer_input_errorText}>
+                Please complete the fields before proceeding
+              </div>
+            )}
+            {minutes > 2 && (
+              <div className={styles.box_addressContainer_input_errorText}>
+                Your text is over the suggested word limit.
+              </div>
+            )}
+          </div>}
       </div>
       <img
         onClick={(e) => handleExpand(e)}

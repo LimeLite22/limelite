@@ -1088,8 +1088,8 @@
     cursor: pointer;
 
     @media screen and (max-width: 768px) {
-      width: calc(50% - 12px);
-      min-width: calc(50% - 12px);
+      width: calc(50% - 5px);
+      min-width: calc(50% - 5px);
       height: 42px;
     }
   }
