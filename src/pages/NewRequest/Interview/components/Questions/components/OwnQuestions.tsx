@@ -11,6 +11,7 @@ import {
 } from "assets/images";
 import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, QUESTIONS_AUTHOR_CLIENT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import useWindowWidth from "hooks/useWindowWidth";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -35,6 +36,7 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
   const status = ownSettings?.scriptStatus;
   const dispatch = useDispatch();
   const width = useWindowWidth();
+  const [wordCount, setWordCount] = useState(0);
   const handleUpdateField = (path: string, value: string) => {
     dispatch(
       updateDraftField({
@@ -52,6 +54,19 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
     );
     setIsExpanded(!isExpanded);
   };
+  const calculateTime = (wordCount: number) => {
+    const minutes = Math.floor(wordCount / 150);
+    const seconds = Math.floor(((wordCount % 150) * 60) / 150);
+    return { minutes, seconds };
+  };
+  const { minutes, seconds } = calculateTime(wordCount);
+  useEffect(() => {
+    const words = text
+      ?.trim()
+      .split(/\s+/)
+      .filter((word) => word.length > 0).length;
+    setWordCount(words || 0);
+  }, [text]);
 
   return (
     <div
@@ -93,7 +108,7 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
             }}
           >
             <img src={status === APPROVED_TEXT_STATUS ? StatusApprovedBlack : StatusApproved} alt="status" />
-            Approved
+            {width > 768 ? 'Approved' : status === APPROVED_TEXT_STATUS ? 'Approved' : ''}
           </div>
           <div
             className={`${styles.box_status} ${status === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
@@ -105,7 +120,7 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
             }}
           >
             <img src={status === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress} alt="status" />
-            {width > 768 ? "Work in Progress" : "In Progress"}
+            {width > 768 ? 'Work in Progress' : status === IN_PROGRESS_TEXT_STATUS ? 'In Progress' : ''}
           </div>
           <div
             className={`${styles.box_status} ${status === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
@@ -117,7 +132,7 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
             }}
           >
             <img src={status === UNAVAILABLE_TEXT_STATUS ? StatusUnavailableBlack : StatusUnavailable} alt="status" />
-            Unavailable
+            {width > 768 ? 'Unavailable' : status === UNAVAILABLE_TEXT_STATUS ? 'Unavailable' : ''}
           </div>
         </div>
         <div className={styles.box_text}>Please paste your script below</div>
@@ -137,11 +152,48 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
               );
             }}
           ></textarea>
+          {status === IN_PROGRESS_TEXT_STATUS &&
+            <div className={styles.textareaContainer}>
+              <div className={styles.textarea_estimate}>
+                <div>
+                  Estimated narration time:
+                  <span style={{ color: minutes > 2 ? "var(--red-dark)" : "" }}>
+                    <span className={styles.textarea_estimate_number}>
+                      {" "}
+                      {minutes}{" "}
+                    </span>{" "}
+                    Min and
+                    <span className={styles.textarea_estimate_number}>
+                      {" "}
+                      {seconds}{" "}
+                    </span>{" "}
+                    Sec
+                  </span>
+                </div>
+                <div className={styles.textarea_estimate_words}>
+                  <span style={{ color: minutes > 2 ? "var(--red-dark)" : "" }}>
+                    {wordCount}
+                  </span>
+                  /450 words
+                </div>
+              </div>
+              {isError.text && (
+                <div className={styles.box_addressContainer_input_errorText}>
+                  Please complete the fields before proceeding
+                </div>
+              )}
+              {minutes > 2 && (
+                <div className={styles.box_addressContainer_input_errorText}>
+                  Your text is over the suggested word limit.
+                </div>
+              )}
+            </div>}
           {isError.text && (
             <div className={styles.box_addressContainer_input_errorText}>
               Please complete the fields before proceeding
             </div>
           )}
+
         </div>
       </div>
       <img

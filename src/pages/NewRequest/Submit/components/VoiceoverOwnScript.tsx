@@ -1,6 +1,7 @@
 
 import { CloseRed, EditIcon, StatusApproved, StatusProgress, StatusUnavailable, Success2, Audio, Delete, Download, StatusApprovedBlack, StatusProgressBlack, StatusUnavailableBlack } from "assets/images";
 import { APPROVED_TEXT_STATUS, DEFAULT, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, PROFESSIONAL_SCRIPT, TRACK_AUTHOR_CLIENT, TRACK_AUTHOR_PROFESSIONAL, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
+import useWindowWidth from "hooks/useWindowWidth";
 import DivRowCount from "pages/NewRequest/components/TextArea";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +11,7 @@ import styles from "../../NewRequest.module.scss";
 const VoiceoverOwnScript = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const dispatch = useDispatch();
+    const width = useWindowWidth();
     const [isEdit, setIsEdit] = useState(false);
     const [isReady, setIsReady] = useState(false);
     const [current, setCurrent] = useState(selectedRequest!.voiceTrackSettings);
@@ -164,7 +166,7 @@ const VoiceoverOwnScript = () => {
                                     }}
                                 >
                                     <img src={current.scriptAuthorOwnSettings.scriptStatus === APPROVED_TEXT_STATUS ? StatusApprovedBlack : StatusApproved} alt="status" />
-                                    {APPROVED_TEXT_STATUS}
+                                    {width > 768 ? 'Approved' : current.scriptAuthorOwnSettings.scriptStatus === APPROVED_TEXT_STATUS ? 'Approved' : ''}
                                 </div>
                                 <div
                                     className={`${styles.box_status} ${current.scriptAuthorOwnSettings.scriptStatus === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
@@ -173,7 +175,7 @@ const VoiceoverOwnScript = () => {
                                     }}
                                 >
                                     <img src={current.scriptAuthorOwnSettings.scriptStatus === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress} alt="status" />
-                                    In Progress
+                                    {width > 768 ? 'Work in Progress' : current.scriptAuthorOwnSettings.scriptStatus === IN_PROGRESS_TEXT_STATUS ? 'In Progress' : ''}
                                 </div>
                                 <div
                                     className={`${styles.box_status} ${current.scriptAuthorOwnSettings.scriptStatus === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
@@ -182,7 +184,7 @@ const VoiceoverOwnScript = () => {
                                     }}
                                 >
                                     <img src={current.scriptAuthorOwnSettings.scriptStatus === UNAVAILABLE_TEXT_STATUS ? StatusUnavailableBlack : StatusUnavailable} alt="status" />
-                                    {UNAVAILABLE_TEXT_STATUS}
+                                    {width > 768 ? 'Unavailable' : current.scriptAuthorOwnSettings.scriptStatus === UNAVAILABLE_TEXT_STATUS ? 'Unavailable' : ''}
                                 </div>
                             </div> : current.scriptAuthorOwnSettings.scriptStatus}
                     </div>

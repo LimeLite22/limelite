@@ -79,21 +79,21 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
             onClick={() => handleUpdateField("voiceTrackSettings.scriptAuthorOwnSettings.scriptStatus", APPROVED_TEXT_STATUS)}
           >
             <img src={textStatus === APPROVED_TEXT_STATUS ? StatusApprovedBlack : StatusApproved} alt="status" />
-            Approved
+            {width > 768 ? 'Approved' : textStatus === APPROVED_TEXT_STATUS ? 'Approved' : ''}
           </div>
           <div
             className={`${styles.box_status} ${textStatus === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
             onClick={() => handleUpdateField("voiceTrackSettings.scriptAuthorOwnSettings.scriptStatus", IN_PROGRESS_TEXT_STATUS)}
           >
             <img src={textStatus === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress} alt="status" />
-            {width > 768 ? "Work in Progress" : "In Progress"}
+            {width > 768 ? 'Work in Progress' : textStatus === IN_PROGRESS_TEXT_STATUS ? 'In Progress' : ''}
           </div>
           <div
             className={`${styles.box_status} ${textStatus === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
             onClick={() => handleUpdateField("voiceTrackSettings.scriptAuthorOwnSettings.scriptStatus", UNAVAILABLE_TEXT_STATUS)}
           >
             <img src={textStatus === UNAVAILABLE_TEXT_STATUS ? StatusUnavailableBlack : StatusUnavailable} alt="status" />
-            Unavailable
+            {width > 768 ? 'Unavailable' : textStatus === UNAVAILABLE_TEXT_STATUS ? 'Unavailable' : ''}
           </div>
         </div>
         <div className={styles.box_text}>Please paste your script below</div>

@@ -6,6 +6,7 @@ import {
   StatusUnavailableBlack,
 } from "assets/images";
 import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
+import useWindowWidth from "hooks/useWindowWidth";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "redux/rootReducer";
@@ -21,6 +22,7 @@ const OwnScript = () => {
   const text = eVIS.scriptAuthorOwnSettings.text;
   const status = eVIS.scriptAuthorOwnSettings.scriptStatus;
   const dispatch = useDispatch();
+  const width = useWindowWidth();
   const [wordCount, setWordCount] = useState(0);
   const calculateTime = (wordCount: number) => {
     const minutes = Math.floor(wordCount / 150);
@@ -67,7 +69,7 @@ const OwnScript = () => {
             }}
           >
             <img src={status === APPROVED_TEXT_STATUS ? StatusApprovedBlack : StatusApproved} alt="status" />
-            Approved
+            {width > 768 ? 'Approved' : status === APPROVED_TEXT_STATUS ? 'Approved' : ''}
           </div>
           <div
             className={`${styles.box_status} ${status === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
@@ -88,7 +90,7 @@ const OwnScript = () => {
             }}
           >
             <img src={StatusProgress} alt="status" />
-            In Progress
+            {width > 768 ? 'Work in Progress' : status === IN_PROGRESS_TEXT_STATUS ? 'In Progress' : ''}
           </div>
           <div
             className={`${styles.box_status} ${status === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
@@ -108,7 +110,7 @@ const OwnScript = () => {
             }}
           >
             <img src={status === UNAVAILABLE_TEXT_STATUS ? StatusUnavailableBlack : StatusUnavailable} alt="status" />
-            Unavailable
+            {width > 768 ? 'Unavailable' : status === UNAVAILABLE_TEXT_STATUS ? 'Unavailable' : ''}
           </div>
         </div>
         <div className={styles.box_text}>Please paste your script below</div>

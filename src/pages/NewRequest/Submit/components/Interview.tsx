@@ -9,11 +9,13 @@ import { selectRequestInfo, updateInterviewInfoSettings } from "../../../../redu
 import styles from "../../NewRequest.module.scss";
 import { IInterviewSettings } from "interfaces/interfaces";
 import DivRowCount from "pages/NewRequest/components/TextArea";
+import useWindowWidth from "hooks/useWindowWidth";
 const Interview = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const interviewSettings = { ...selectedRequest!.interviewSettings };
     const proffSettings = { ...interviewSettings?.questionsAuthorProfSettings };
     const ownSettings = { ...interviewSettings?.questionsAuthorOwnSettings };
+    const width = useWindowWidth();
 
     const dispatch = useDispatch();
     const [isEdit, setIsEdit] = useState(false);
@@ -117,7 +119,7 @@ const Interview = () => {
                                         src={curOwnSettings.scriptStatus === APPROVED_TEXT_STATUS ? StatusApprovedBlack : StatusApproved}
                                         alt="status"
                                     />
-                                    {APPROVED_TEXT_STATUS}
+                                    {width > 768 ? 'Approved' : curOwnSettings.scriptStatus === APPROVED_TEXT_STATUS ? 'Approved' : ''}
                                 </div>
                                 <div
                                     className={`
@@ -131,7 +133,7 @@ const Interview = () => {
                                         src={curOwnSettings.scriptStatus === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress}
                                         alt="status"
                                     />
-                                    In Progress
+                                    {width > 768 ? 'Work in Progress' : curOwnSettings.scriptStatus === IN_PROGRESS_TEXT_STATUS ? 'In Progress' : ''}
                                 </div>
                                 <div
                                     className={`
@@ -142,7 +144,7 @@ const Interview = () => {
                                     }}
                                 >
                                     <img src={curOwnSettings.scriptStatus === UNAVAILABLE_TEXT_STATUS ? StatusUnavailableBlack : StatusUnavailable} alt="status" />
-                                    {UNAVAILABLE_TEXT_STATUS}
+                                    {width > 768 ? 'Unavailable' : curOwnSettings.scriptStatus === UNAVAILABLE_TEXT_STATUS ? 'Unavailable' : ''}
                                 </div>
                             </div> : ownSettings.scriptStatus}
                     </div>

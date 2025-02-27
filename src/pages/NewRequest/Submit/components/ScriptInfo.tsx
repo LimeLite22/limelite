@@ -9,10 +9,12 @@ import styles from "../../NewRequest.module.scss";
 import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, PROFESSIONAL_SCRIPT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import { IScriptSettings } from "interfaces/interfaces";
 import DivRowCount from "pages/NewRequest/components/TextArea";
+import useWindowWidth from "hooks/useWindowWidth";
 const ScriptInfo = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const dispatch = useDispatch();
     const scriptSettings = { ...selectedRequest?.scriptSettings }
+    const width = useWindowWidth();
     const [isEdit, setIsEdit] = useState(false);
     const [isReady, setIsReady] = useState(false);
     const [current, setCurrent] = useState(scriptSettings);
@@ -100,7 +102,7 @@ const ScriptInfo = () => {
                                     }}
                                 >
                                     <img src={current?.scriptStatus === APPROVED_TEXT_STATUS ? StatusApprovedBlack : StatusApproved} alt="status" />
-                                    {APPROVED_TEXT_STATUS}
+                                    {width > 768 ? 'Approved' : current?.scriptStatus === APPROVED_TEXT_STATUS ? 'Approved' : ''}
                                 </div>
                                 <div
                                     className={`${styles.box_status} ${current?.scriptStatus === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
@@ -109,7 +111,7 @@ const ScriptInfo = () => {
                                     }}
                                 >
                                     <img src={current?.scriptStatus === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress} alt="status" />
-                                    In Progress
+                                    {width > 768 ? 'Work in Progress' : current?.scriptStatus === IN_PROGRESS_TEXT_STATUS ? 'In Progress' : ''}
                                 </div>
                                 <div
                                     className={`${styles.box_status} ${current?.scriptStatus === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
@@ -118,7 +120,7 @@ const ScriptInfo = () => {
                                     }}
                                 >
                                     <img src={current?.scriptStatus === UNAVAILABLE_TEXT_STATUS ? StatusUnavailableBlack : StatusUnavailable} alt="status" />
-                                    {UNAVAILABLE_TEXT_STATUS}
+                                    {width > 768 ? 'Unavailable' : current?.scriptStatus === UNAVAILABLE_TEXT_STATUS ? 'Unavailable' : ''}
                                 </div>
                             </div> : selectedRequest?.scriptSettings.scriptStatus}
                     </div>
