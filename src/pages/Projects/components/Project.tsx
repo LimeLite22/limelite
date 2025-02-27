@@ -99,7 +99,8 @@ const Project = ({ project, index, searchQuery }: IProps) => {
 
                             <div className={`${styles.project_info_item} ${styles.mobOnly}`} >
                                 <div className={`${styles.project_credit}`} >
-                                    {project.option?.credits}  Credit(s)
+                                    {project.option?.credits !== 'TBD' ? project.option?.credits : ''}{" "}
+                                    {project.option?.credits === 'TBD' ? 'TBD' : project.option?.credits > 1 ? "Credits" : "Credit"}
                                 </div>
                             </div>
 
@@ -139,7 +140,8 @@ const Project = ({ project, index, searchQuery }: IProps) => {
                     </div>
                     <div className={`${styles.project_info_item}`} style={{ justifyContent: 'center' }}>
                         <div className={`${styles.project_credit}`} >
-                            {project.option?.credits}  Credit(s)
+                            {project.option?.credits !== 'TBD' ? project.option?.credits : ''}{" "}
+                            {project.option?.credits === 'TBD' ? 'TBD' : project.option?.credits > 1 ? "Credits" : "Credit"}
                         </div>
                     </div>
                     <div className={`${styles.project_info_item}  ${styles.project_info_date}`}>{format(project.date, "dd/MM/yyyy")}</div>
