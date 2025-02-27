@@ -119,7 +119,7 @@ export { default as CalendarIcon2 } from "./Сommon/Calendar.svg";
 export { default as CalendarBlack } from "./Сommon/CalendarBlack.svg";
 export { default as Chat2 } from "./Сommon/Chat.svg";
 export { default as ChatSupport } from "./Сommon/ChatSupport.svg";
-export { default as CloseRed } from "./Сommon/CloseRed.svg";
+export { default as CloseRed } from "./Сommon/RedClose.svg";
 export { default as Copy } from "./Сommon/Copy.svg";
 export { default as Delete } from "./Сommon/Delete.svg";
 export { default as DeleteRed } from "./Сommon/DeleteRed.svg";

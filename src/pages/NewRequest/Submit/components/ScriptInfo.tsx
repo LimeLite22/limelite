@@ -80,29 +80,13 @@ const ScriptInfo = () => {
     useEffect(() => {
         setCurrent(scriptSettings);
     }, [selectedRequest])
-    //  зробити логіку роздлення відображення після тесту
-    // if (selectedRequest?.scriptSettings.scriptWriter !== PROFESSIONAL_SCRIPT) return null
-    // if (selectedRequest?.scriptSettings.scriptWriter !== OWN_SCRIPT) return null
     return (
         <div className={styles.infoContainer}>
             <div className={styles.infoContainer_header}>Scripted Delivery
-                {!isEdit &&
+                {!isEdit ?
                     <div className={styles.infoContainer_header_edit} onClick={handleOnEdit}>
                         <img src={EditIcon} alt='' />
-                        Edit</div>}
-                {isEdit &&
-                    <div className={styles.infoContainer_header_buttons}>
-                        <div
-                            className={styles.infoContainer_header_decline}
-                            onClick={handleDecline}><img src={CloseRed} alt='' /><div>Decline</div></div>
-                        <div
-                            className={`
-                            ${styles.infoContainer_header_save}
-                            ${!isReady ? styles.infoContainer_header_save_notReady : ''}
-                            `}
-                            onClick={handleSave}
-                        ><img src={Success2} alt='' /><div>Save changes</div></div>
-                    </div>}
+                        Edit</div> : <div className={styles.infoContainer_header_editMode}>edit mode</div>}
             </div>
             {selectedRequest?.scriptSettings.scriptWriter === OWN_SCRIPT &&
                 <>
@@ -236,6 +220,19 @@ const ScriptInfo = () => {
                     </div>}
 
             </div>
+            {isEdit &&
+                <div className={styles.infoContainer_header_buttons}>
+                    <div
+                        className={styles.infoContainer_header_decline}
+                        onClick={handleDecline}><img src={CloseRed} alt='' /><div>Decline</div></div>
+                    <div
+                        className={`
+                            ${styles.infoContainer_header_save}
+                            ${!isReady ? styles.infoContainer_header_save_notReady : ''}
+                            `}
+                        onClick={handleSave}
+                    ><img src={Success2} alt='' /><div>Save changes</div></div>
+                </div>}
 
 
         </div >

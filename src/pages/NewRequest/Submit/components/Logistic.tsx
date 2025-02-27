@@ -138,23 +138,10 @@ const LogisticInfo = () => {
     return (
         <div className={styles.infoContainer}>
             <div className={styles.infoContainer_header}>Logistic
-                {!isEdit &&
+                {!isEdit ?
                     <div className={styles.infoContainer_header_edit} onClick={handleOnEdit}>
                         <img src={EditIcon} alt='' />
-                        Edit</div>}
-                {isEdit &&
-                    <div className={styles.infoContainer_header_buttons}>
-                        <div
-                            className={styles.infoContainer_header_decline}
-                            onClick={handleDecline}><img src={CloseRed} alt='' /><div>Decline</div></div>
-                        <div
-                            className={`
-                            ${styles.infoContainer_header_save}
-                            ${!isReady ? styles.infoContainer_header_save_notReady : ''}
-                            `}
-                            onClick={handleSave}
-                        ><img src={Success2} alt='' /><div>Save changes</div></div>
-                    </div>}
+                        Edit</div> : <div className={styles.infoContainer_header_editMode}>edit mode</div>}
             </div>
             {!isEdit && lIS.travel.selection === YES &&
                 <div className={styles.infoContainer_text}>
@@ -415,6 +402,19 @@ const LogisticInfo = () => {
                     setIsPopUpOpen(false);
                 }}
             />
+            {isEdit &&
+                <div className={styles.infoContainer_header_buttons}>
+                    <div
+                        className={styles.infoContainer_header_decline}
+                        onClick={handleDecline}><img src={CloseRed} alt='' /><div>Decline</div></div>
+                    <div
+                        className={`
+                            ${styles.infoContainer_header_save}
+                            ${!isReady ? styles.infoContainer_header_save_notReady : ''}
+                            `}
+                        onClick={handleSave}
+                    ><img src={Success2} alt='' /><div>Save changes</div></div>
+                </div>}
         </div>
     )
 }

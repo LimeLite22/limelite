@@ -92,27 +92,13 @@ const Interview = () => {
     useEffect(() => {
         setCurrent(interviewSettings);
     }, [selectedRequest])
-    // if (selectedRequest?.interviewSettings.scriptWriter !== PROFESSIONAL_SCRIPT) return null
     return (
         <div className={styles.infoContainer}>
             <div className={styles.infoContainer_header}>About Your Interview(s)
-                {!isEdit &&
+                {!isEdit ?
                     <div className={styles.infoContainer_header_edit} onClick={handleOnEdit}>
                         <img src={EditIcon} alt='' />
-                        Edit</div>}
-                {isEdit &&
-                    <div className={styles.infoContainer_header_buttons}>
-                        <div
-                            className={styles.infoContainer_header_decline}
-                            onClick={handleDecline}><img src={CloseRed} alt='' /><div>Decline</div></div>
-                        <div
-                            className={`
-                            ${styles.infoContainer_header_save}
-                            ${!isReady ? styles.infoContainer_header_save_notReady : ''}
-                            `}
-                            onClick={handleSave}
-                        ><img src={Success2} alt='' /><div>Save changes</div></div>
-                    </div>}
+                        Edit</div> : <div className={styles.infoContainer_header_editMode}>edit mode</div>}
             </div>
             {interviewSettings?.questionsAuthor === QUESTIONS_AUTHOR_CLIENT &&
                 <>
@@ -386,6 +372,19 @@ const Interview = () => {
                     </div>
                 </>
             }
+            {isEdit &&
+                <div className={styles.infoContainer_header_buttons}>
+                    <div
+                        className={styles.infoContainer_header_decline}
+                        onClick={handleDecline}><img src={CloseRed} alt='' /><div>Decline</div></div>
+                    <div
+                        className={`
+                            ${styles.infoContainer_header_save}
+                            ${!isReady ? styles.infoContainer_header_save_notReady : ''}
+                            `}
+                        onClick={handleSave}
+                    ><img src={Success2} alt='' /><div>Save changes</div></div>
+                </div>}
 
 
         </div >

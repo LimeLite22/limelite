@@ -56,23 +56,10 @@ const ProjectInfo = () => {
     return (
         <div className={styles.infoContainer}>
             <div className={styles.infoContainer_header}>Project information
-                {!isEdit &&
+                {!isEdit ?
                     <div className={styles.infoContainer_header_edit} onClick={handleOnEdit}>
                         <img src={EditIcon} alt='' />
-                        Edit</div>}
-                {isEdit &&
-                    <div className={styles.infoContainer_header_buttons}>
-                        <div
-                            className={styles.infoContainer_header_decline}
-                            onClick={handleDecline}><img src={CloseRed} alt='' /><div>Decline</div></div>
-                        <div
-                            className={`
-                            ${styles.infoContainer_header_save}
-                            ${!isReady ? styles.infoContainer_header_save_notReady : ''}
-                            `}
-                            onClick={handleSave}
-                        ><img src={Success2} alt='' /><div>Save changes</div></div>
-                    </div>}
+                        Edit</div> : <div className={styles.infoContainer_header_editMode}>edit mode</div>}
             </div>
             <div className={styles.infoContainer_text}>
                 <p>Requested type:</p> <span>{pIS?.option?.value}  {pIS?.option?.credits && (
@@ -154,6 +141,19 @@ const ProjectInfo = () => {
                 }
 
             </div>
+            {isEdit &&
+                <div className={styles.infoContainer_header_buttons}>
+                    <div
+                        className={styles.infoContainer_header_decline}
+                        onClick={handleDecline}><img src={CloseRed} alt='' /><div>Decline</div></div>
+                    <div
+                        className={`
+                            ${styles.infoContainer_header_save}
+                            ${!isReady ? styles.infoContainer_header_save_notReady : ''}
+                            `}
+                        onClick={handleSave}
+                    ><img src={Success2} alt='' /><div>Save changes</div></div>
+                </div>}
         </div >
     )
 }

@@ -1707,6 +1707,14 @@
         background-color: var(--gray-light);
       }
     }
+    &_editMode {
+      font-family: Inter;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 16.8px;
+      letter-spacing: 0%;
+      color: var(--gray-light5);
+    }
     &_decline {
       padding: 6px 18px 6px 12px;
       display: flex;
@@ -1768,6 +1776,7 @@
     }
     &_buttons {
       display: flex;
+      justify-content: flex-end;
       gap: 2px;
     }
   }

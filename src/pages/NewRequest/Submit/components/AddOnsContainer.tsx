@@ -32,16 +32,10 @@ const AddOnsContainer = () => {
         {price > 0 &&
             <>
                 <div className={styles.infoContainer_header}>Requested Add-ons
-                    {!isEdit &&
+                    {!isEdit ?
                         <div className={styles.infoContainer_header_edit} onClick={handleOnEdit}>
                             <img src={EditIcon} alt='' />
-                            Edit</div>}
-                    {isEdit &&
-                        <div className={styles.infoContainer_header_buttons}>
-                            <div
-                                className={styles.infoContainer_header_decline}
-                                onClick={handleDecline}><img src={CloseRed} alt='' /><div>Decline</div></div>
-                        </div>}
+                            Edit</div> : <div className={styles.infoContainer_header_editMode}>edit mode</div>}
                 </div>
                 <AddOnLocation isEdit={isEdit} />
                 <AddOnZone isEdit={isEdit} />
@@ -61,6 +55,12 @@ const AddOnsContainer = () => {
         <div className={styles.infoContainer_totalPrice}>
             Estimated Price:   <p>{price}<span>.00</span></p>
         </div>
+        {isEdit &&
+            <div className={styles.infoContainer_header_buttons}>
+                <div
+                    className={styles.infoContainer_header_decline}
+                    onClick={handleDecline}><img src={CloseRed} alt='' /><div>Decline</div></div>
+            </div>}
 
 
 

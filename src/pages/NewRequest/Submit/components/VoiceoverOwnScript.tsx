@@ -82,24 +82,10 @@ const VoiceoverOwnScript = () => {
     return (
         <div className={styles.infoContainer}>
             <div className={styles.infoContainer_header}>About Your Voiceover
-
-                {!isEdit &&
+                {!isEdit ?
                     <div className={styles.infoContainer_header_edit} onClick={handleOnEdit}>
                         <img src={EditIcon} alt='' />
-                        Edit</div>}
-                {isEdit &&
-                    <div className={styles.infoContainer_header_buttons}>
-                        <div
-                            className={styles.infoContainer_header_decline}
-                            onClick={handleDecline}><img src={CloseRed} alt='' /><div>Decline</div></div>
-                        <div
-                            className={`
-                            ${styles.infoContainer_header_save}
-                            ${!isReady ? styles.infoContainer_header_save_notReady : ''}
-                            `}
-                            onClick={handleSave}
-                        ><img src={Success2} alt='' /><div>Save changes</div></div>
-                    </div>}
+                        Edit</div> : <div className={styles.infoContainer_header_editMode}>edit mode</div>}
             </div>
             <div className={styles.infoContainer_text}><p>Track author</p>{current.trackAuthor}</div>
             {current.trackAuthor === TRACK_AUTHOR_CLIENT &&
@@ -218,6 +204,19 @@ const VoiceoverOwnScript = () => {
                         }
                     </div>
                 </>}
+            {isEdit &&
+                <div className={styles.infoContainer_header_buttons}>
+                    <div
+                        className={styles.infoContainer_header_decline}
+                        onClick={handleDecline}><img src={CloseRed} alt='' /><div>Decline</div></div>
+                    <div
+                        className={`
+                            ${styles.infoContainer_header_save}
+                            ${!isReady ? styles.infoContainer_header_save_notReady : ''}
+                            `}
+                        onClick={handleSave}
+                    ><img src={Success2} alt='' /><div>Save changes</div></div>
+                </div>}
 
         </div >
     )
