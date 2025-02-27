@@ -91,7 +91,7 @@ const VoiceoverProffScript = () => {
                         <img src={EditIcon} alt='' />
                         Edit</div> : <div className={styles.infoContainer_header_editMode}>edit mode</div>}
             </div>
-            <div className={styles.infoContainer_text}><p>Track author</p>{current.trackAuthor}</div>
+            <div className={styles.infoContainer_text}><p>Track author:</p>{current.trackAuthor}</div>
             {current.trackAuthor === TRACK_AUTHOR_CLIENT &&
                 <div className={styles.infoContainer_text}>
                     <p>Track:</p>

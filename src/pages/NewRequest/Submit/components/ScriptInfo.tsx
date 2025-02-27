@@ -16,6 +16,7 @@ const ScriptInfo = () => {
     const scriptSettings = { ...selectedRequest?.scriptSettings }
     const width = useWindowWidth();
     const [isEdit, setIsEdit] = useState(false);
+    const [wordCount, setWordCount] = useState(0);
     const [isReady, setIsReady] = useState(false);
     const [current, setCurrent] = useState(scriptSettings);
 
@@ -82,6 +83,19 @@ const ScriptInfo = () => {
     useEffect(() => {
         setCurrent(scriptSettings);
     }, [selectedRequest])
+    const calculateTime = (wordCount: number) => {
+        const minutes = Math.floor(wordCount / 150);
+        const seconds = Math.floor(((wordCount % 150) * 60) / 150);
+        return { minutes, seconds };
+    };
+    const { minutes, seconds } = calculateTime(wordCount);
+    useEffect(() => {
+        const words = selectedRequest?.scriptSettings.ownText
+            ?.trim()
+            .split(/\s+/)
+            .filter((word) => word.length > 0).length;
+        setWordCount(words || 0);
+    }, [selectedRequest?.scriptSettings.ownText]);
     return (
         <div className={styles.infoContainer}>
             <div className={styles.infoContainer_header}>Scripted Delivery
@@ -134,6 +148,37 @@ const ScriptInfo = () => {
                                 value={current?.ownText} /> :
                             <DivRowCount text={selectedRequest?.scriptSettings.ownText} />
                         }
+                        {selectedRequest?.scriptSettings.scriptStatus === APPROVED_TEXT_STATUS && isEdit &&
+                            <div className={styles.textareaContainer}>
+                                <div className={styles.textarea_estimate}>
+                                    <div>
+                                        Estimated narration time:
+                                        <span style={{ color: minutes > 2 ? "var(--red-dark)" : "" }}>
+                                            <span className={styles.textarea_estimate_number}>
+                                                {" "}
+                                                {minutes}{" "}
+                                            </span>{" "}
+                                            Min and
+                                            <span className={styles.textarea_estimate_number}>
+                                                {" "}
+                                                {seconds}{" "}
+                                            </span>{" "}
+                                            Sec
+                                        </span>
+                                    </div>
+                                    <div className={styles.textarea_estimate_words}>
+                                        <span style={{ color: minutes > 2 ? "var(--red-dark)" : "" }}>
+                                            {wordCount}
+                                        </span>
+                                        /450 words
+                                    </div>
+                                </div>
+                                {minutes > 2 && (
+                                    <div className={styles.box_addressContainer_input_errorText}>
+                                        Your text is over the suggested word limit.
+                                    </div>
+                                )}
+                            </div>}
                     </div>
                 </>
             }

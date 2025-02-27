@@ -11,6 +11,7 @@ import {
 } from "assets/images";
 import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import useWindowWidth from "hooks/useWindowWidth";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -32,6 +33,7 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
   const selection = selectedRequest?.voiceTrackSettings.scriptAuthor;
   const textStatus = selectedRequest?.voiceTrackSettings.scriptAuthorOwnSettings.scriptStatus;
   const text = selectedRequest?.voiceTrackSettings.scriptAuthorOwnSettings.text;
+  const [wordCount, setWordCount] = useState(0);
   const width = useWindowWidth();
   const dispatch = useDispatch();
   const handleUpdateField = (path: string, value: string) => {
@@ -48,6 +50,19 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
     handleUpdateField("voiceTrackSettings.scriptAuthor", OWN_SCRIPT);
     setIsExpanded(!isExpanded);
   };
+  const calculateTime = (wordCount: number) => {
+    const minutes = Math.floor(wordCount / 150);
+    const seconds = Math.floor(((wordCount % 150) * 60) / 150);
+    return { minutes, seconds };
+  };
+  const { minutes, seconds } = calculateTime(wordCount);
+  useEffect(() => {
+    const words = text
+      ?.trim()
+      .split(/\s+/)
+      .filter((word) => word.length > 0).length;
+    setWordCount(words || 0);
+  }, [text]);
 
   return (
     <div
@@ -113,6 +128,37 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
               );
             }}
           ></textarea>
+          {textStatus === APPROVED_TEXT_STATUS &&
+            <div className={styles.textareaContainer}>
+              <div className={styles.textarea_estimate}>
+                <div>
+                  Estimated narration time:
+                  <span style={{ color: minutes > 2 ? "var(--red-dark)" : "" }}>
+                    <span className={styles.textarea_estimate_number}>
+                      {" "}
+                      {minutes}{" "}
+                    </span>{" "}
+                    Min and
+                    <span className={styles.textarea_estimate_number}>
+                      {" "}
+                      {seconds}{" "}
+                    </span>{" "}
+                    Sec
+                  </span>
+                </div>
+                <div className={styles.textarea_estimate_words}>
+                  <span style={{ color: minutes > 2 ? "var(--red-dark)" : "" }}>
+                    {wordCount}
+                  </span>
+                  /450 words
+                </div>
+              </div>
+              {minutes > 2 && (
+                <div className={styles.box_addressContainer_input_errorText}>
+                  Your text is over the suggested word limit.
+                </div>
+              )}
+            </div>}
           {isError.text && (
             <div className={styles.box_addressContainer_input_errorText}>
               Please complete the fields before proceeding

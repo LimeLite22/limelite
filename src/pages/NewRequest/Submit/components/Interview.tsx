@@ -16,6 +16,7 @@ const Interview = () => {
     const proffSettings = { ...interviewSettings?.questionsAuthorProfSettings };
     const ownSettings = { ...interviewSettings?.questionsAuthorOwnSettings };
     const width = useWindowWidth();
+    const [wordCount, setWordCount] = useState(0);
 
     const dispatch = useDispatch();
     const [isEdit, setIsEdit] = useState(false);
@@ -24,6 +25,19 @@ const Interview = () => {
     const [current, setCurrent] = useState(interviewSettings);
     const curProffSettings = current?.questionsAuthorProfSettings;
     const curOwnSettings = current?.questionsAuthorOwnSettings;
+    const calculateTime = (wordCount: number) => {
+        const minutes = Math.floor(wordCount / 150);
+        const seconds = Math.floor(((wordCount % 150) * 60) / 150);
+        return { minutes, seconds };
+    };
+    const { minutes, seconds } = calculateTime(wordCount);
+    useEffect(() => {
+        const words = current?.questionsAuthorOwnSettings.text
+            ?.trim()
+            .split(/\s+/)
+            .filter((word) => word.length > 0).length;
+        setWordCount(words || 0);
+    }, [current?.questionsAuthorOwnSettings.text]);
 
 
     const readyToSave = () => {
@@ -133,7 +147,7 @@ const Interview = () => {
                                         src={curOwnSettings.scriptStatus === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress}
                                         alt="status"
                                     />
-                                    {width > 768 ? 'Work in Progress' : curOwnSettings.scriptStatus === IN_PROGRESS_TEXT_STATUS ? 'In Progress' : ''}
+                                    {width > 768 ? 'In Progress' : curOwnSettings.scriptStatus === IN_PROGRESS_TEXT_STATUS ? 'In Progress' : ''}
                                 </div>
                                 <div
                                     className={`
@@ -161,6 +175,37 @@ const Interview = () => {
                             <DivRowCount text={ownSettings.text} />
                         }
                     </div>
+                    {curOwnSettings.scriptStatus === APPROVED_TEXT_STATUS && isEdit &&
+                        <div className={styles.textareaContainer}>
+                            <div className={styles.textarea_estimate}>
+                                <div>
+                                    Estimated narration time:
+                                    <span style={{ color: minutes > 2 ? "var(--red-dark)" : "" }}>
+                                        <span className={styles.textarea_estimate_number}>
+                                            {" "}
+                                            {minutes}{" "}
+                                        </span>{" "}
+                                        Min and
+                                        <span className={styles.textarea_estimate_number}>
+                                            {" "}
+                                            {seconds}{" "}
+                                        </span>{" "}
+                                        Sec
+                                    </span>
+                                </div>
+                                <div className={styles.textarea_estimate_words}>
+                                    <span style={{ color: minutes > 2 ? "var(--red-dark)" : "" }}>
+                                        {wordCount}
+                                    </span>
+                                    /450 words
+                                </div>
+                            </div>
+                            {minutes > 2 && (
+                                <div className={styles.box_addressContainer_input_errorText}>
+                                    Your text is over the suggested word limit.
+                                </div>
+                            )}
+                        </div>}
                 </>
             }
             {interviewSettings?.questionsAuthor === QUESTIONS_AUTHOR_PROFESSIONAL &&
