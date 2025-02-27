@@ -46,7 +46,7 @@ const ProjectOverView = ({ close, handleCopy, handleCopy2, isCopied, isCopied2, 
                 </div>
                 <div className={styles.overview_info_content_item}>
                     <div className={styles.overview_info_content_item_header}>Credit usage:</div>
-                    1 credit
+                    1 Credit
                 </div>
                 <div className={styles.overview_info_content_item}>
                     <div className={styles.overview_info_content_item_header}>Status:</div>

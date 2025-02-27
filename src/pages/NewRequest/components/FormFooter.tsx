@@ -66,8 +66,9 @@ const FormFooter = () => {
                       styles.footer_container_typeContainer_text_title1_tag
                     }
                   >
-                    {option?.credits}{" "}
-                    {option?.credits > 1 ? "Credits" : "Credit"}{" "}
+
+                    {option?.credits !== 'TBD' ? option?.credits : ''}{" "}
+                    {option?.credits === 'TBD' ? 'TBD' : option?.credits > 1 ? "Credits" : "Credit"}
                   </div>
                 )}
               </div>

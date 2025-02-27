@@ -56,12 +56,12 @@ const TipsPopUp = () => {
                 </div>
                 <div className={styles.nR_tips_plan_text}>
                   <img src={Valid} alt="Valid" />
-                  You have up to <span>6 Credit(s)</span> available thru the end
+                  You have up to <span>6 Credits</span> available thru the end
                   of the month ⓘ
                 </div>
                 <div className={styles.nR_tips_plan_text}>
                   <img src={Valid} alt="Valid" />
-                  You have <span>28 Credit(s)</span> remaining thru{" "}
+                  You have <span>28 Credits</span> remaining thru{" "}
                   <span>October 31, 2025 </span>ⓘ
                 </div>
                 <div className={styles.nR_tips_subText}>
@@ -123,12 +123,12 @@ const TipsPopUp = () => {
                 </div>
                 <div className={styles.nR_tips_plan_text}>
                   <img src={Valid} alt="Valid" />
-                  You have up to <span>6 Credit(s)</span> available thru the end
+                  You have up to <span>6 Credits</span> available thru the end
                   of the month ⓘ
                 </div>
                 <div className={styles.nR_tips_plan_text}>
                   <img src={Valid} alt="Valid" />
-                  You have <span>28 Credit(s)</span> remaining thru{" "}
+                  You have <span>28 Credits</span> remaining thru{" "}
                   <span>October 31, 2025 </span>ⓘ
                 </div>
                 <div className={styles.nR_tips_subText}>

@@ -52,7 +52,8 @@ const NewRequestStart = () => {
                 <div className={styles.nR_content_card_divider}></div>
                 <div className={styles.nR_content_card_text}>{option.text}</div>
                 <div className={styles.nR_content_card_title}>
-                  {option.credits} credit{option.credits > 1 ? "s" : ""}
+                  {option?.credits !== 'TBD' ? option?.credits : ''}{" "}
+                  {option?.credits === 'TBD' ? 'TBD' : option?.credits > 1 ? "Credits" : "Credit"}
                 </div>
               </div>
             );

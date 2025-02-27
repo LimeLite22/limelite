@@ -82,8 +82,8 @@ const ProjectInfo = () => {
                 `
                         }
                     >
-                        {pIS?.option?.credits}{" "}
-                        {pIS?.option?.credits > 1 ? "Credits" : "Credit"}{" "}
+                        {pIS?.option?.credits !== 'TBD' ? pIS?.option?.credits : ''}{" "}
+                        {pIS?.option?.credits === 'TBD' ? 'TBD' : pIS?.option?.credits > 1 ? "Credits" : "Credit"}
                     </div>
                 )}</span></div>
             <div className={styles.infoContainer_text}><p>Requested by:</p>
