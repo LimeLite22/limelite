@@ -10,13 +10,9 @@ import {
 } from "../../../../redux/requests/reducer";
 import styles from "../ProjectInfo.module.scss";
 
-interface IProps {
-  isError: boolean;
-  setIsError: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const ProjectNarrationBox = ({ isError, setIsError }: IProps) => {
+const ProjectNarrationBox = () => {
   const selectedRequest = useSelector(selectRequestInfo);
+  const [isError, setIsError] = useState(false);
   const approachList = selectedRequest?.projectInfoSettings?.approachList;
   const dispatch = useDispatch();
   const width = useWindowWidth();

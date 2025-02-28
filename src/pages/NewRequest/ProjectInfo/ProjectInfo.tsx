@@ -4,7 +4,7 @@ import {
   DetailsGreen,
 } from "assets/images";
 import { OTHER, SHOOT_EDIT, SHOOT_ONLY } from "consts/consts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useCustomPadding } from "utils/customPadding";
@@ -27,48 +27,35 @@ import styles from "./ProjectInfo.module.scss";
 
 const ProjectInfo = () => {
   const selectedRequest = useSelector(selectRequestInfo)?.projectInfoSettings;
+  const customPadding = useCustomPadding();
   const type = selectedRequest?.type;
   const projectTone = selectedRequest?.projectTone;
   const name = selectedRequest?.name;
   const approachList = selectedRequest?.approachList;
   const targetAudience = selectedRequest?.targetAudience;
 
-  const isNextDisabled =
-    !name ||
-    !projectTone ||
-    !type ||
-    (approachList?.length === 0
-      && (
-        selectedRequest.option?.value === SHOOT_EDIT ||
-        selectedRequest.option?.value === SHOOT_ONLY ||
-        selectedRequest.option?.value === OTHER)) ||
-    !targetAudience;
+  const [isNextDisabled, setIsNextDisabled] = useState(false);
   const [showBottomMessage, setShowBottomMessage] = useState(false);
-  const [isNameError, setIsNameError] = useState(false);
-  const [isToneError, setIsToneError] = useState(false);
-  const [isTypeError, setIsTypeError] = useState(false);
-  const [isTargetError, setIsTargetError] = useState(false);
-  const [isApproachError, setIsApproachError] = useState(false);
-  const customPadding = useCustomPadding();
 
-  const handleErrors = () => {
-    if (!name) {
-      setIsNameError(true);
+  const handleNextDisabled = () => {
+    let isDisabled = false;
+    if (name?.length === 0 || !projectTone || !type || !targetAudience) {
+      isDisabled = true;
     }
-    if (!projectTone) {
-      setIsToneError(true);
+    if ((approachList?.length === 0
+      && (
+        selectedRequest?.option?.value === SHOOT_EDIT ||
+        selectedRequest?.option?.value === SHOOT_ONLY ||
+        selectedRequest?.option?.value === OTHER))) {
+      isDisabled = true;
+
     }
-    if (!type) {
-      setIsTypeError(true);
-    }
-    if (approachList?.length === 0) {
-      setIsApproachError(true);
-    }
-    if (!targetAudience) {
-      setIsTargetError(true);
-    }
-    setShowBottomMessage(true);
+    setIsNextDisabled(isDisabled);
   };
+
+  useEffect(() => {
+    handleNextDisabled();
+  }, [selectedRequest]);
 
   return (
     <div className={styles.nR_container}
@@ -99,26 +86,11 @@ const ProjectInfo = () => {
         <div className={styles.nR_content}>
           <div className={styles.nR_formContainer}>
             <RequestType />
-            <ProjectNameBox
-              isError={isNameError}
-              setIsError={setIsNameError}
-            />
-            <TargetAudienceBox
-              isError={isTargetError}
-              setIsError={setIsTargetError}
-            />
-            <ProjectType
-              isError={isTypeError}
-              setIsError={setIsTypeError}
-            />
-            <ProjectTone
-              isError={isToneError}
-              setIsError={setIsToneError}
-            />
-            <ProjectNarrationBox
-              isError={isApproachError}
-              setIsError={setIsApproachError}
-            />
+            <ProjectNameBox />
+            <TargetAudienceBox />
+            <ProjectType />
+            <ProjectTone />
+            <ProjectNarrationBox />
             <ShotListBox />
             {isNextDisabled && showBottomMessage && (
               <div className={styles.nR_formContainer_error}>
@@ -134,7 +106,7 @@ const ProjectInfo = () => {
                   <img src={DetailsGreen} alt="" />
                 </button>
                 <NextButton isDisabled={isNextDisabled} onClick={() => {
-                  isNextDisabled && handleErrors()
+                  isNextDisabled && setShowBottomMessage(true);
                 }} />
               </div>
             </div>

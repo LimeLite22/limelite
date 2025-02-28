@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -6,15 +7,11 @@ import {
 } from "../../../../redux/requests/reducer";
 import styles from "../ProjectInfo.module.scss";
 
-interface IProps {
-  isError: boolean;
-  setIsError: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const ProjectNameBox = ({ isError, setIsError }: IProps) => {
+const ProjectNameBox = () => {
   const dispatch = useDispatch();
   const selectedRequest = useSelector(selectRequestInfo);
   const name = selectedRequest?.projectInfoSettings?.name;
+  const [isError, setIsError] = useState(false);
   return (
     <div
       className={styles.nR_inputContainer}

@@ -103,8 +103,6 @@ const ProjectInfo = () => {
             <div className={styles.infoContainer_text}><p>Type:</p>
                 {isEdit ?
                     <ProjectType
-                        isError={false}
-                        setIsError={() => { }}
                         onChange={(type) => {
                             dispatch(
                                 updateProjectInfoSettings({ projectInfoSettings: { ...ePIS, type: type }, isEdit: true })
@@ -115,8 +113,6 @@ const ProjectInfo = () => {
             <div className={styles.infoContainer_text}><p>Tone:</p>
                 {isEdit ?
                     <ProjectTone
-                        isError={false}
-                        setIsError={() => { }}
                         onChange={(tone) => {
                             dispatch(
                                 updateProjectInfoSettings({ projectInfoSettings: { ...ePIS, projectTone: tone }, isEdit: true })

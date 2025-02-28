@@ -10,14 +10,13 @@ import {
 import styles from "../ProjectInfo.module.scss";
 
 interface IProps {
-  isError: boolean;
-  setIsError: React.Dispatch<React.SetStateAction<boolean>>;
   isSubmitMode?: boolean;
   onChange?: (value: string) => void;
 }
 
-const ToneSelector = ({ isError, setIsError, isSubmitMode, onChange }: IProps) => {
+const ToneSelector = ({ isSubmitMode, onChange }: IProps) => {
   const [isOpened, setOpened] = useState(false);
+  const [isError, setIsError] = useState(false);
   const dispatch = useDispatch();
   const showError = isError && !isOpened;
   const selectedRequest = useSelector(selectRequestInfo);

@@ -55,10 +55,7 @@ const AddOns = () => {
       </Link>
       <div className={styles.nR_subContainer}>
         <StepsNavigation />
-        <ProjectType
-          isError={false}
-          setIsError={() => { }}
-        />
+        <ProjectType />
         <div className={styles.nR_header}>
 
           <div className={styles.nR_header_text + " " + styles.nR_header_text_mobPadding} >

@@ -11,7 +11,6 @@ import {
 } from "assets/images";
 import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import useWindowWidth from "hooks/useWindowWidth";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { wordsCalculator } from "utils/wordCalculator";
 
@@ -34,7 +33,6 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
   const selection = selectedRequest?.voiceTrackSettings.scriptAuthor;
   const textStatus = selectedRequest?.voiceTrackSettings.scriptAuthorOwnSettings.scriptStatus;
   const text = selectedRequest?.voiceTrackSettings.scriptAuthorOwnSettings.text;
-  const [wordCount, setWordCount] = useState(0);
   const width = useWindowWidth();
   const dispatch = useDispatch();
   const handleUpdateField = (path: string, value: string) => {
@@ -50,11 +48,6 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
     e.preventDefault();
     handleUpdateField("voiceTrackSettings.scriptAuthor", OWN_SCRIPT);
     setIsExpanded(!isExpanded);
-  };
-  const calculateTime = (wordCount: number) => {
-    const minutes = Math.floor(wordCount / 150);
-    const seconds = Math.floor(((wordCount % 150) * 60) / 150);
-    return { minutes, seconds };
   };
   const { minutes, seconds, words } = wordsCalculator(text || '');
 
@@ -143,7 +136,7 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
                 </div>
                 <div className={styles.textarea_estimate_words}>
                   <span style={{ color: minutes > 2 ? "var(--red-dark)" : "" }}>
-                    {wordCount}
+                    {words}
                   </span>
                   /450 words
                 </div>
