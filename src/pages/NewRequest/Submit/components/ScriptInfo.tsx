@@ -10,13 +10,13 @@ import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, PROFESSIONAL
 import { IScriptSettings } from "interfaces/interfaces";
 import DivRowCount from "pages/NewRequest/components/TextArea";
 import useWindowWidth from "hooks/useWindowWidth";
+import { wordsCalculator } from "utils/wordCalculator";
 const ScriptInfo = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const dispatch = useDispatch();
     const scriptSettings = { ...selectedRequest?.scriptSettings }
     const width = useWindowWidth();
     const [isEdit, setIsEdit] = useState(false);
-    const [wordCount, setWordCount] = useState(0);
     const [isReady, setIsReady] = useState(false);
     const [current, setCurrent] = useState(scriptSettings);
 
@@ -83,19 +83,7 @@ const ScriptInfo = () => {
     useEffect(() => {
         setCurrent(scriptSettings);
     }, [selectedRequest])
-    const calculateTime = (wordCount: number) => {
-        const minutes = Math.floor(wordCount / 150);
-        const seconds = Math.floor(((wordCount % 150) * 60) / 150);
-        return { minutes, seconds };
-    };
-    const { minutes, seconds } = calculateTime(wordCount);
-    useEffect(() => {
-        const words = selectedRequest?.scriptSettings.ownText
-            ?.trim()
-            .split(/\s+/)
-            .filter((word) => word.length > 0).length;
-        setWordCount(words || 0);
-    }, [selectedRequest?.scriptSettings.ownText]);
+    const { minutes, seconds, words } = wordsCalculator(selectedRequest?.scriptSettings.ownText || '');
     return (
         <div className={styles.infoContainer}>
             <div className={styles.infoContainer_header}>Scripted Delivery
@@ -169,7 +157,7 @@ const ScriptInfo = () => {
                                 </div>
                                 <div className={styles.textarea_estimate_words}>
                                     <span style={{ color: minutes > 2 ? "var(--red-dark)" : "" }}>
-                                        {wordCount}
+                                        {words}
                                     </span>
                                     /450 words
                                 </div>

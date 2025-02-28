@@ -4,7 +4,7 @@ import styles from "./Header.module.scss";
 
 const Header = () => {
   const [openedNotification] = useState(true);
-  const [textToshow, setTextToshow] = useState(" Summer is here!☀️");
+  const [textToshow, setTextToshow] = useState(" Summer will be here soon!☀️");
   useEffect(() => {
     setTimeout(() => {
       setTextToshow(

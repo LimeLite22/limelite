@@ -35,7 +35,7 @@ const WelomeHeader = ({
         className={styles.notification}
       >
         <SwiperSlide>
-          <div className={styles.notification_text}>Summer is here!☀️</div>
+          <div className={styles.notification_text}>Summer will be here soon!☀️</div>
         </SwiperSlide>
         <SwiperSlide className={styles.notification_text}>
           <div className={styles.notification_text}>

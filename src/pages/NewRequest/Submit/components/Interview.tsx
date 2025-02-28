@@ -10,13 +10,13 @@ import styles from "../../NewRequest.module.scss";
 import { IInterviewSettings } from "interfaces/interfaces";
 import DivRowCount from "pages/NewRequest/components/TextArea";
 import useWindowWidth from "hooks/useWindowWidth";
+import { wordsCalculator } from "utils/wordCalculator";
 const Interview = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const interviewSettings = { ...selectedRequest!.interviewSettings };
     const proffSettings = { ...interviewSettings?.questionsAuthorProfSettings };
     const ownSettings = { ...interviewSettings?.questionsAuthorOwnSettings };
     const width = useWindowWidth();
-    const [wordCount, setWordCount] = useState(0);
 
     const dispatch = useDispatch();
     const [isEdit, setIsEdit] = useState(false);
@@ -25,19 +25,7 @@ const Interview = () => {
     const [current, setCurrent] = useState(interviewSettings);
     const curProffSettings = current?.questionsAuthorProfSettings;
     const curOwnSettings = current?.questionsAuthorOwnSettings;
-    const calculateTime = (wordCount: number) => {
-        const minutes = Math.floor(wordCount / 150);
-        const seconds = Math.floor(((wordCount % 150) * 60) / 150);
-        return { minutes, seconds };
-    };
-    const { minutes, seconds } = calculateTime(wordCount);
-    useEffect(() => {
-        const words = current?.questionsAuthorOwnSettings.text
-            ?.trim()
-            .split(/\s+/)
-            .filter((word) => word.length > 0).length;
-        setWordCount(words || 0);
-    }, [current?.questionsAuthorOwnSettings.text]);
+    const { minutes, seconds, words } = wordsCalculator(current?.questionsAuthorOwnSettings.text || '');
 
 
     const readyToSave = () => {
@@ -195,7 +183,7 @@ const Interview = () => {
                                 </div>
                                 <div className={styles.textarea_estimate_words}>
                                     <span style={{ color: minutes > 2 ? "var(--red-dark)" : "" }}>
-                                        {wordCount}
+                                        {words}
                                     </span>
                                     /450 words
                                 </div>

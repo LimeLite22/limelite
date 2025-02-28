@@ -8,9 +8,10 @@ import {
 } from "assets/images";
 import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import useWindowWidth from "hooks/useWindowWidth";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "redux/rootReducer";
+import { wordsCalculator } from "utils/wordCalculator";
 
 import {
   updateScriptInfoSettings,
@@ -24,20 +25,7 @@ const OwnScript = () => {
   const status = selectedRequest?.scriptSettings?.scriptStatus;
   const width = useWindowWidth();
   const dispatch = useDispatch();
-  const [wordCount, setWordCount] = useState(0);
-  const calculateTime = (wordCount: number) => {
-    const minutes = Math.floor(wordCount / 150);
-    const seconds = Math.floor(((wordCount % 150) * 60) / 150);
-    return { minutes, seconds };
-  };
-  const { minutes, seconds } = calculateTime(wordCount);
-  useEffect(() => {
-    const words = text
-      ?.trim()
-      .split(/\s+/)
-      .filter((word) => word.length > 0).length;
-    setWordCount(words || 0);
-  }, [text]);
+  const { minutes, seconds, words } = wordsCalculator(text);
 
   return (
     <div
@@ -145,7 +133,7 @@ const OwnScript = () => {
               </div>
               <div className={styles.textarea_estimate_words}>
                 <span style={{ color: minutes > 2 ? "var(--red-dark)" : "" }}>
-                  {wordCount}
+                  {words}
                 </span>
                 /450 words
               </div>

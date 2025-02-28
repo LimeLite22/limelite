@@ -1,10 +1,11 @@
 
 import { CloseRed, EditIcon, StatusApproved, StatusProgress, StatusUnavailable, Success2, Audio, Delete, Download, StatusApprovedBlack, StatusProgressBlack, StatusUnavailableBlack } from "assets/images";
-import { APPROVED_TEXT_STATUS, DEFAULT, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, PROFESSIONAL_SCRIPT, TRACK_AUTHOR_CLIENT, TRACK_AUTHOR_PROFESSIONAL, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
+import { APPROVED_TEXT_STATUS, DEFAULT, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, PROFESSIONAL_SCRIPT, TRACK_AUTHOR_CLIENT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import useWindowWidth from "hooks/useWindowWidth";
 import DivRowCount from "pages/NewRequest/components/TextArea";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { wordsCalculator } from "utils/wordCalculator";
 
 import { selectRequestInfo, updateVoiceoverSettings } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
@@ -14,7 +15,6 @@ const VoiceoverOwnScript = () => {
     const width = useWindowWidth();
     const [isEdit, setIsEdit] = useState(false);
     const [isReady, setIsReady] = useState(false);
-    const [wordCount, setWordCount] = useState(0);
     const [current, setCurrent] = useState(selectedRequest!.voiceTrackSettings);
     const [error, setError] = useState<string | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -81,19 +81,8 @@ const VoiceoverOwnScript = () => {
     useEffect(() => {
         setCurrent(selectedRequest!.voiceTrackSettings)
     }, [selectedRequest?.voiceTrackSettings])
-    const calculateTime = (wordCount: number) => {
-        const minutes = Math.floor(wordCount / 150);
-        const seconds = Math.floor(((wordCount % 150) * 60) / 150);
-        return { minutes, seconds };
-    };
-    const { minutes, seconds } = calculateTime(wordCount);
-    useEffect(() => {
-        const words = current.scriptAuthorOwnSettings.text
-            ?.trim()
-            .split(/\s+/)
-            .filter((word) => word.length > 0).length;
-        setWordCount(words || 0);
-    }, [current.scriptAuthorOwnSettings.text]);
+    const { minutes, seconds, words } = wordsCalculator(current.scriptAuthorOwnSettings.text || '');
+
 
 
     if (selectedRequest?.voiceTrackSettings.scriptAuthor === PROFESSIONAL_SCRIPT) return null
@@ -242,7 +231,7 @@ const VoiceoverOwnScript = () => {
                                 </div>
                                 <div className={styles.textarea_estimate_words}>
                                     <span style={{ color: minutes > 2 ? "var(--red-dark)" : "" }}>
-                                        {wordCount}
+                                        {words}
                                     </span>
                                     /450 words
                                 </div>

@@ -11,8 +11,8 @@ import {
 } from "assets/images";
 import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, QUESTIONS_AUTHOR_CLIENT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import useWindowWidth from "hooks/useWindowWidth";
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { wordsCalculator } from "utils/wordCalculator";
 
 import {
   selectRequestInfo,
@@ -36,7 +36,6 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
   const status = ownSettings?.scriptStatus;
   const dispatch = useDispatch();
   const width = useWindowWidth();
-  const [wordCount, setWordCount] = useState(0);
   const handleUpdateField = (path: string, value: string) => {
     dispatch(
       updateDraftField({
@@ -54,19 +53,7 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
     );
     setIsExpanded(!isExpanded);
   };
-  const calculateTime = (wordCount: number) => {
-    const minutes = Math.floor(wordCount / 150);
-    const seconds = Math.floor(((wordCount % 150) * 60) / 150);
-    return { minutes, seconds };
-  };
-  const { minutes, seconds } = calculateTime(wordCount);
-  useEffect(() => {
-    const words = text
-      ?.trim()
-      .split(/\s+/)
-      .filter((word) => word.length > 0).length;
-    setWordCount(words || 0);
-  }, [text]);
+  const { minutes, seconds, words } = wordsCalculator(text || '');
 
   return (
     <div
@@ -172,7 +159,7 @@ const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
                 </div>
                 <div className={styles.textarea_estimate_words}>
                   <span style={{ color: minutes > 2 ? "var(--red-dark)" : "" }}>
-                    {wordCount}
+                    {words}
                   </span>
                   /450 words
                 </div>
