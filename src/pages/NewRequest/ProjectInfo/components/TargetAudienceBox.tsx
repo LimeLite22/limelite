@@ -5,7 +5,7 @@ import {
   selectRequestInfo,
   updateDraftField,
 } from "../../../../redux/requests/reducer";
-import styles from "../ProjectInfo.module.scss";
+import styles from "../../NewRequest.module.scss";
 
 const TargetAudienceBox = () => {
   const dispatch = useDispatch();

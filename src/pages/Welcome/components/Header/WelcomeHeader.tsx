@@ -72,7 +72,7 @@ const WelomeHeader = ({
               Welcome,{account.name}!
             </div>
             <div className={styles.header_profile_content_text}>
-              Subscriber Since July, 2020
+              Subscriber since July, 2020
             </div>
           </div>
 

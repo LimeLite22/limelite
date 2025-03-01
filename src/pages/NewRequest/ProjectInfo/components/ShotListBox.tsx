@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { updateDraftField } from "../../../../redux/requests/reducer";
-import styles from "../ProjectInfo.module.scss";
+import styles from "../../NewRequest.module.scss";
 
 const ShotList = () => {
   const [text, setText] = useState<string>("");

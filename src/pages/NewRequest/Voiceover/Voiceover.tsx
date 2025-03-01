@@ -19,6 +19,7 @@ import { useCustomPadding } from "utils/customPadding";
 import { selectRequestVoiceSettings } from "../../../redux/requests/reducer";
 import FormFooter from "../components/FormFooter";
 import NextButton from "../components/NextButton";
+import StepErrorMessage from "../components/StepErrorMessage";
 import StepsNavigation from "../components/StepsNavigation";
 import styles from "../NewRequest.module.scss";
 import InterviewScriptBox from "./components/Script/InterviewScriptBox";
@@ -107,13 +108,7 @@ const Voiceover = () => {
         <div className={styles.nR_formContainer}>
           <VoiceTrackBox />
           <InterviewScriptBox />
-          {isDisabled && showBottomMessage && (
-            <div className={styles.nR_formContainer_error}>
-              Please ensure all required fields are filled out before
-              submitting the form. Each section must be completed to
-              proceed.
-            </div>
-          )}
+          {isDisabled && showBottomMessage && <StepErrorMessage />}
           <div className={styles.nR_formContainer_buttons}>
             <Link to="/new-request/interview">
               <button className={styles.nR_back}>

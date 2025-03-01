@@ -13,6 +13,7 @@ import { selectRequestInfo } from "../../../redux/requests/reducer";
 import BackButton from "../components/BackButton";
 import FormFooter from "../components/FormFooter";
 import NextButton from "../components/NextButton";
+import StepErrorMessage from "../components/StepErrorMessage";
 import StepsNavigation from "../components/StepsNavigation";
 import styles from "../NewRequest.module.scss";
 import Date from "./components/DateBox";
@@ -103,11 +104,7 @@ const Logistics = () => {
           <Date />
           <ShotList />
           {isNextDisabled && showBottomMessage && (
-            <div className={styles.nR_formContainer_error}>
-              Please ensure all required fields are filled out before
-              submitting the form. Each section must be completed to
-              proceed.
-            </div>
+            <StepErrorMessage />
           )}
           <div className={styles.nR_formContainer_buttons}>
             <BackButton />

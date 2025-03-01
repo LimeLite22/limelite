@@ -8,7 +8,7 @@ import {
   selectRequestInfo,
   updateDraftField,
 } from "../../../../redux/requests/reducer";
-import styles from "../ProjectInfo.module.scss";
+import styles from "../../NewRequest.module.scss";
 
 const ProjectNarrationBox = () => {
   const selectedRequest = useSelector(selectRequestInfo);
@@ -133,7 +133,7 @@ const ProjectNarrationBox = () => {
         </div>
       </div>
       {isError && (
-        <div className="typeDropdown__selected_errorMessage">
+        <div className={styles.typeDropdown__selected_errorMessage}>
           Please fill out all required fields to submit the form
         </div>
       )}

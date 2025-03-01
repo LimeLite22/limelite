@@ -13,6 +13,7 @@ import { selectRequestInfo, selectRequestVoiceSettings, updateAddOnSelectionStat
 import BackButton from "../components/BackButton";
 import FormFooter from "../components/FormFooter";
 import NextButton from "../components/NextButton";
+import StepErrorMessage from "../components/StepErrorMessage";
 import StepsNavigation from "../components/StepsNavigation";
 import styles from "../NewRequest.module.scss";
 import { ProjectType } from "../ProjectInfo/components";
@@ -80,13 +81,7 @@ const AddOns = () => {
 
             }
           </div>
-          {isDisabled && showBottomMessage && (
-            <div className={styles.nR_formContainer_error}>
-              Please ensure all required fields are filled out before
-              submitting the form. Each section must be completed to
-              proceed.
-            </div>
-          )}
+          {isDisabled && showBottomMessage && <StepErrorMessage />}
           <div className={styles.nR_formContainer_buttons}>
             <BackButton />
             <div className={styles.nR_buttons_container}>
