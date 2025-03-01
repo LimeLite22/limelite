@@ -12,7 +12,7 @@ import {
 interface IProps {
   onChange: (zone: { name: string; value: number }) => void;
 }
-const ZoneDropdown: FC<IProps> = ({ onChange }) => {
+const dropdownType4: FC<IProps> = ({ onChange }) => {
   const lIS = useSelector(selectRequestInfo)?.logisticSettings;
   const [current, setCurrent] = useState(lIS?.travel.zoneCode);
   const [isOpened, setOpened] = useState(false);
@@ -20,32 +20,32 @@ const ZoneDropdown: FC<IProps> = ({ onChange }) => {
     setCurrent(lIS?.travel.zoneCode);
   }, [lIS])
   return (
-    <div className={`${styles.zoneDropdown}`}>
+    <div className={`${styles.dropdownType4}`}>
       <div
-        className={`${styles.zoneDropdown__selected} ${styles.zoneDropdown__selected_submit}`}
+        className={`${styles.dropdownType4__selected} ${styles.dropdownType4__selected_submit}`}
         onClick={() => {
           setOpened(!isOpened);
         }}
       >
-        <div className={`${styles.zoneDropdown__selected_name} ${styles.zoneDropdown__selected_name_submit}`}>
+        <div className={`${styles.dropdownType4__selected_name} ${styles.dropdownType4__selected_name_submit}`}>
           {<>{current?.name} :${current?.value}</> || <span>Select</span>}{" "}
         </div>
         <img
-          className={`${styles.zoneDropdown__selected_collapseIcon} ${isOpened ? styles.zoneDropdown__selected_collapseIcon_opened : ""}`}
+          className={`${styles.dropdownType4__selected_collapseIcon} ${isOpened ? styles.dropdownType4__selected_collapseIcon_opened : ""}`}
           src={GrayArrow}
           alt="collapse"
         />
       </div>
 
       {isOpened && (
-        <div className={styles.zoneDropdown__itemsContainer}>
+        <div className={styles.dropdownType4__itemsContainer}>
           {zonesList.map((option, index) => (
             <div
               style={{
                 borderTopLeftRadius: index === 0 ? "4px" : "",
                 borderTopRightRadius: index === 0 ? "4px" : "",
               }}
-              className={styles.zoneDropdown__item}
+              className={styles.dropdownType4__item}
               key={index}
               onClick={() => {
                 onChange({ name: option?.name, value: option?.value });
@@ -53,7 +53,7 @@ const ZoneDropdown: FC<IProps> = ({ onChange }) => {
                 setOpened(false);
               }}
             >
-              <div className={styles.zoneDropdown__item_name}>{option?.name} :${option.value}</div>
+              <div className={styles.dropdownType4__item_name}>{option?.name} :${option.value}</div>
             </div>
           ))}{" "}
         </div>
@@ -62,4 +62,4 @@ const ZoneDropdown: FC<IProps> = ({ onChange }) => {
   );
 };
 
-export default ZoneDropdown;
+export default dropdownType4;

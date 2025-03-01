@@ -25,9 +25,9 @@ const ToneSelector = ({ isSubmitMode, onChange }: IProps) => {
   return (
     <div
       className={`
-      ${styles.toneDropdown}
-      ${showError ? styles.toneDropdown_error : ""}
-      ${isSubmitMode ? styles.toneDropdown_submit : ""}
+      ${styles.dropdownType5}
+      ${showError ? styles.dropdownType5_error : ""}
+      ${isSubmitMode ? styles.dropdownType5_submit : ""}
       `}
       tabIndex={0}
       onBlur={() => {
@@ -37,15 +37,15 @@ const ToneSelector = ({ isSubmitMode, onChange }: IProps) => {
         }
       }}
     >
-      {!isSubmitMode && <div className={styles.toneDropdown_header}>
+      {!isSubmitMode && <div className={styles.dropdownType5_header}>
         {" "}
         What is the tone for this project?*
       </div>}
       <div
         className={`
-         ${styles.toneDropdown__selected} 
-        ${showError ? styles.toneDropdown__selected_error : ""}
-        ${isSubmitMode ? styles.toneDropdown__selected_submit : ""}
+         ${styles.dropdownType5__selected} 
+        ${showError ? styles.dropdownType5__selected_error : ""}
+        ${isSubmitMode ? styles.dropdownType5__selected_submit : ""}
         `}
         onClick={() => {
           setOpened(!isOpened);
@@ -53,35 +53,35 @@ const ToneSelector = ({ isSubmitMode, onChange }: IProps) => {
       >
         <div
           className={`
-          ${styles.toneDropdown__selected_name}
-          ${isSubmitMode ? styles.toneDropdown__item_name_submit : ""}`}
+          ${styles.dropdownType5__selected_name}
+          ${isSubmitMode ? styles.dropdownType5__item_name_submit : ""}`}
           style={{ borderColor: isError ? "var(--red-dark)" : "" }}
         >
           {isSubmitMode ? currentTone : projectTone || <span>Select your project type...</span>}{" "}
         </div>
         {isError && !isOpened && (
-          <div className={styles.toneDropdown__selected_errorMessage}>
+          <div className={styles.dropdownType5__selected_errorMessage}>
             Please fill out all required fields to submit the form
           </div>
         )}
         <img
           className={`
-            ${styles.toneDropdown__selected_collapseIcon} 
-            ${isOpened ? styles.toneDropdown__selected_collapseIcon_opened : ""}`}
+            ${styles.dropdownType5__selected_collapseIcon} 
+            ${isOpened ? styles.dropdownType5__selected_collapseIcon_opened : ""}`}
           src={GrayArrow}
           alt="collapse"
         />
       </div>
 
       {isOpened && (
-        <div className={styles.toneDropdown__itemsContainer}>
+        <div className={styles.dropdownType5__itemsContainer}>
           {projectTones.map((option, index) => (
             <div
               style={{
                 borderTopLeftRadius: index === 0 ? "4px" : "",
                 borderTopRightRadius: index === 0 ? "4px" : "",
               }}
-              className={styles.toneDropdown__item}
+              className={styles.dropdownType5__item}
               key={index}
               onClick={() => {
                 if (!isSubmitMode) {
@@ -100,7 +100,7 @@ const ToneSelector = ({ isSubmitMode, onChange }: IProps) => {
                 setOpened(false);
               }}
             >
-              <div className={styles.toneDropdown__item_name}>{option}</div>
+              <div className={styles.dropdownType5__item_name}>{option}</div>
             </div>
           ))}{" "}
         </div>

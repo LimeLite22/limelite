@@ -52,60 +52,60 @@ const ProjectType: FC<IProps> = ({ isSubmitMode, onChange }) => {
   return (
     <div
       className={`
-      ${styles.typeDropdown} 
-      ${showError ? styles.typeDropdown_error : ""}
-      ${isSubmitMode ? styles.typeDropdown_submit : ""}
+      ${styles.dropdownType5} 
+      ${showError ? styles.dropdownType5_error : ""}
+      ${isSubmitMode ? styles.dropdownType5_submit : ""}
        `}
       tabIndex={0}
       onBlur={handleBlur}
     >
-      {!isSubmitMode && <div className={styles.typeDropdown_header}>
+      {!isSubmitMode && <div className={styles.dropdownType5_header}>
         {" "}
         What type of project do you need?*
       </div>}
       <div
         className={`
-        ${styles.typeDropdown__selected}
-        ${isSubmitMode ? styles.typeDropdown__selected_submit : ""}
-         ${showError ? styles.typeDropdown__selected_error : ""}`}
+        ${styles.dropdownType5__selected}
+        ${isSubmitMode ? styles.dropdownType5__selected_submit : ""}
+         ${showError ? styles.dropdownType5__selected_error : ""}`}
         onClick={handleToggler}
       >
         <div
           className={`
-          ${styles.typeDropdown__selected_name}
-          ${isSubmitMode ? styles.typeDropdown__selected_name_submit : ''}
+          ${styles.dropdownType5__selected_name}
+          ${isSubmitMode ? styles.dropdownType5__selected_name_submit : ''}
           `}
           style={{ borderColor: isError ? "var(--red-dark)" : "" }}
         >
           {isSubmitMode ? currentType?.header : type?.header !== '' ? type?.header : <span>Select your project type...</span>}{" "}
         </div>
         {isError && !isOpened && (
-          <div className={`${styles.typeDropdown__selected_errorMessage}`}>
+          <div className={`${styles.dropdownType5__selected_errorMessage}`}>
             Please fill out all required fields to submit the form
           </div>
         )}
         <img
           className={`
-          ${styles.typeDropdown__selected_collapseIcon} 
-          ${isOpened ? styles.typeDropdown__selected_collapseIcon_opened : ""} `}
+          ${styles.dropdownType5__selected_collapseIcon} 
+          ${isOpened ? styles.dropdownType5__selected_collapseIcon_opened : ""} `}
           src={GrayArrow}
           alt="collapse"
         />
       </div>
 
       {isOpened && (
-        <div className={styles.typeDropdown__itemsContainer}>
+        <div className={styles.dropdownType5__itemsContainer}>
           {projectTypes.map((option, index) => (
             <div
               style={{
                 borderTopLeftRadius: index === 0 ? "4px" : "",
                 borderTopRightRadius: index === 0 ? "4px" : "",
               }}
-              className={styles.typeDropdown__item}
+              className={styles.dropdownType5__item}
               key={index}
               onClick={() => handleType(option)}
             >
-              <div className={styles.typeDropdown__item_name}>{option.header}</div>
+              <div className={styles.dropdownType5__item_name}>{option.header}</div>
             </div>
           ))}{" "}
         </div>

@@ -24,38 +24,38 @@ const ZoneSelector: FC<IProps> = ({ onChange, isError, isEdit }) => {
   const dispatch = useDispatch();
   const showError = isError && !isOpened;
   return (
-    <div className={`${styles.zoneDropdown} ${showError ? styles.zoneDropdown_error : ""}`}>
-      <div className={styles.zoneDropdown_header}>Zone</div>
+    <div className={`${styles.dropdownType4} ${showError ? styles.dropdownType4_error : ""}`}>
+      <div className={styles.dropdownType4_header}>Zone</div>
       <div
-        className={`${styles.zoneDropdown__selected} ${showError ? styles.zoneDropdown__selected_error : ""}`}
+        className={`${styles.dropdownType4__selected} ${showError ? styles.dropdownType4__selected_error : ""}`}
         onClick={() => {
           setOpened(!isOpened);
         }}
       >
-        <div className={styles.zoneDropdown__selected_name}>
+        <div className={styles.dropdownType4__selected_name}>
           {travel?.zoneCode?.name !== null ? <>{travel?.zoneCode?.name} :${travel?.zoneCode?.value}</> : <span>Select</span>}{" "}
         </div>
         {isError && !isOpened && (
-          <div className={styles.zoneDropdown__selected_errorMessage}>
+          <div className={styles.dropdownType4__selected_errorMessage}>
             Select a zone to continue
           </div>
         )}
         <img
-          className={`${styles.zoneDropdown__selected_collapseIcon} ${isOpened ? styles.zoneDropdown__selected_collapseIcon_opened : ""}`}
+          className={`${styles.dropdownType4__selected_collapseIcon} ${isOpened ? styles.dropdownType4__selected_collapseIcon_opened : ""}`}
           src={GrayArrow}
           alt="collapse"
         />
       </div>
 
       {isOpened && (
-        <div className={styles.zoneDropdown__itemsContainer}>
+        <div className={styles.dropdownType4__itemsContainer}>
           {zonesList.map((option, index) => (
             <div
               style={{
                 borderTopLeftRadius: index === 0 ? "4px" : "",
                 borderTopRightRadius: index === 0 ? "4px" : "",
               }}
-              className={styles.zoneDropdown__item}
+              className={styles.dropdownType4__item}
               key={index}
               onClick={() => {
                 onChange({ name: option?.name, value: option?.value });
@@ -74,7 +74,7 @@ const ZoneSelector: FC<IProps> = ({ onChange, isError, isEdit }) => {
                 setOpened(false);
               }}
             >
-              <div className={styles.zoneDropdown__item_name}>{option?.name} :${option.value}</div>
+              <div className={styles.dropdownType4__item_name}>{option?.name} :${option.value}</div>
             </div>
           ))}{" "}
         </div>
