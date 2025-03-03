@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { selectRequestInfo, selectSteps, updateFullEditRequest, updateInterviewInfoSettings, updateLogisticInfoSettings } from "../../../redux/requests/reducer";
+import { selectSteps, updateFullEditRequest } from "../../../redux/requests/reducer";
 import BackButton from "../components/BackButton";
 import NextButton from "../components/NextButton"
 import StepsNavigation from "../components/StepsNavigation";
@@ -20,7 +20,6 @@ import VoiceoverOwnScript from "./components/VoiceoverProffScript";
 
 const Submit = () => {
     const steps = useSelector(selectSteps);
-    const selectedRequest = useSelector(selectRequestInfo);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(updateFullEditRequest())

@@ -4,39 +4,25 @@ import {
   ArrowGray4,
   DetailsGreen,
 } from "assets/images";
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useCustomPadding } from "utils/customPadding";
 
-import { selectRequestInfo, selectRequestVoiceSettings, updateAddOnSelectionStatus } from "../../../redux/requests/reducer";
+import { selectRequestInfo, updateAddOnSelectionStatus } from "../../../redux/requests/reducer";
 import BackButton from "../components/BackButton";
 import FormFooter from "../components/FormFooter";
 import NextButton from "../components/NextButton";
-import StepErrorMessage from "../components/StepErrorMessage";
 import StepsNavigation from "../components/StepsNavigation";
 import styles from "../NewRequest.module.scss";
 import { ProjectType } from "../ProjectInfo/components";
 import AddOnBox from "./components/AddOnBox";
 
 const AddOns = () => {
-  const voiceSettings = useSelector(selectRequestVoiceSettings);
   const selectedRequest = useSelector(selectRequestInfo);
   const type = selectedRequest?.projectInfoSettings?.type;
-  const [isDisabled, setIsDisabled] = useState(true);
-  const [showBottomMessage, setShowBottomMessage] = useState(false);
   const customPadding = useCustomPadding();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const handleNextDisabled = () => {
-    const disabled = false;
-
-    setIsDisabled(disabled);
-  };
-  useEffect(() => {
-    handleNextDisabled();
-  }, [voiceSettings]);
   const handleSelect = () => {
     type?.addOns[0]?.id && dispatch(updateAddOnSelectionStatus({ id: type?.addOns[0].id }))
     navigate("/new-request/submit");
@@ -81,16 +67,13 @@ const AddOns = () => {
 
             }
           </div>
-          {isDisabled && showBottomMessage && <StepErrorMessage />}
           <div className={styles.nR_formContainer_buttons}>
             <BackButton />
             <div className={styles.nR_buttons_container}>
               <button className={styles.nR_buttons_save}>
                 <img src={DetailsGreen} alt="" />
               </button>
-              <NextButton isDisabled={isDisabled} onClick={() => {
-                isDisabled && setShowBottomMessage(true)
-              }} />
+              <NextButton isDisabled={false} onClick={() => { }} />
             </div>
           </div>
         </div>

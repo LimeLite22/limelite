@@ -4,10 +4,9 @@ import {
   Expand,
   Note,
 } from "assets/images";
-import { NO, RUSH_TIME, STANDARD_TIME, YES } from "consts/consts";
+import { RUSH_TIME, STANDARD_TIME } from "consts/consts";
 import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
 import RushTimeSelector from "pages/NewRequest/components/RushTimeSelector/RushTimeSelector";
-import ZoneSelector from "pages/NewRequest/components/ZoneSelector/ZoneSelector";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TRush } from "types/types";

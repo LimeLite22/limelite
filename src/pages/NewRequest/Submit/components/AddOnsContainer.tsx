@@ -20,7 +20,7 @@ import AddOnZone from "./AddOnZone";
 const AddOnsContainer = () => {
     const [isEdit, setIsEdit] = useState(false);
 
-    const { list, price } = useCalculateFinalPrice();
+    const { price } = useCalculateFinalPrice();
     const handleOnEdit = () => {
         setIsEdit(true);
     }

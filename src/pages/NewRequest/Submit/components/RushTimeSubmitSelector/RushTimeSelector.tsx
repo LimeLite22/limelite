@@ -1,5 +1,5 @@
 import { GrayArrow } from "assets/images";
-import { rushTimeList, YES, } from "consts/consts";
+import { rushTimeList } from "consts/consts";
 import { type FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "redux/rootReducer";

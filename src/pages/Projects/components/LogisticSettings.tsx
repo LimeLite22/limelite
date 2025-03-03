@@ -6,7 +6,7 @@ import { testRequest } from "../../../redux/requests/consts";
 import styles from "../ProjectsPage.module.scss";
 const LogisticSettings = () => {
     const lIS = testRequest.logisticSettings;
-    const [current, setCurrent] = useState(lIS);
+    const [current] = useState(lIS);
 
     const preferredDate = lIS?.preferredDate;
     const calculateEndTime = (

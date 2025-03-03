@@ -1,5 +1,5 @@
 import { GrayArrow } from "assets/images";
-import { rushTimeList, YES, } from "consts/consts";
+import { rushTimeList } from "consts/consts";
 import { type FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "redux/rootReducer";
@@ -58,7 +58,6 @@ const RushTimeSelector: FC<IProps> = ({ onChange, isError, isEdit }) => {
               key={index}
               onClick={(e) => {
                 onChange({ name: option?.name, value: option?.value });
-                console.log('1111');
                 e.stopPropagation();
                 e.preventDefault();
                 rushTurnaround && dispatch(updateVideoEditSettings(

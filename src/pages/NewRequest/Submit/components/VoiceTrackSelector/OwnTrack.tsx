@@ -1,7 +1,7 @@
 
 
 import { Audio, Delete, Download } from "assets/images";
-import { DEFAULT, TRACK_AUTHOR_CLIENT, TRACK_AUTHOR_PROFESSIONAL } from "consts/consts";
+import { DEFAULT, TRACK_AUTHOR_CLIENT } from "consts/consts";
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -10,7 +10,7 @@ import { IRootState } from "../../../../../redux/rootReducer";
 import styles from "../../../NewRequest.module.scss";
 const OwnTrack = () => {
   const eVIS = useSelector((state: IRootState) => state.request.editDraft)?.voiceTrackSettings;
-  const [error, setError] = useState<string | null>(null);
+  // const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
 
@@ -20,7 +20,7 @@ const OwnTrack = () => {
     if (uploadedFile) {
       const allowedExtensions = ["audio/mpeg", "audio/wav", "audio/aiff"];
       if (allowedExtensions.includes(uploadedFile.type)) {
-        setError(null);
+        // setError(null);
         dispatch(updateVoiceoverSettings({
           voiceTrackSettings: {
             ...eVIS,
@@ -30,7 +30,7 @@ const OwnTrack = () => {
           isEdit: true
         }))
       } else {
-        setError("Файл повинен бути формату MP3, WAV або AIFF");
+        // setError("Файл повинен бути формату MP3, WAV або AIFF");
       }
     }
   };

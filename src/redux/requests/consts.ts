@@ -2,7 +2,7 @@ import { BASIC_THUMBNAIL, DEFAULT, LESS_1_30, optionsList, projectTones, project
 import { IRequest } from "interfaces/interfaces";
 import { generateUniqueId } from "utils/generateId";
 
-import { NO, OWN_ADDRESS,PROFESSIONAL_SCRIPT, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTIONS_VIRTUALLY, STUDIO_RENTAL, TRACK_AUTHOR_PROFESSIONAL, VIRTUAL_INTERVIEW, YES, zonesList } from './../../consts/consts';
+import { NO, OWN_ADDRESS, PROFESSIONAL_SCRIPT, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTIONS_VIRTUALLY, TRACK_AUTHOR_PROFESSIONAL, YES, zonesList } from './../../consts/consts';
 
 export const requestsInitialState: IRequest[] = [
     {

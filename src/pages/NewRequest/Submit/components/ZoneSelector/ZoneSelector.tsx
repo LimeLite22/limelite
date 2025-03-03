@@ -3,7 +3,7 @@ import { CheckBox, CheckBoxSelected, CloseCalendar, GrayArrow, Note } from "asse
 import { NO, OWN_ADDRESS, YES } from "consts/consts";
 import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
 import ZoneSelector from "pages/NewRequest/components/ZoneSelector/ZoneSelector";
-import { type FC, useState } from "react";
+import { useState } from "react";
 import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "redux/rootReducer";

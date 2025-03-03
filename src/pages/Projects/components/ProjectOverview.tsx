@@ -1,5 +1,4 @@
 import { CloseCalendar, QuestionIcon, ThumbnailPurple } from "assets/images";
-import copy from "copy-to-clipboard";
 import useWindowWidth from "hooks/useWindowWidth";
 import { useState } from "react";
 import ReactDOM from "react-dom";
@@ -33,7 +32,7 @@ const ProjectOverView = ({ close, handleCopy, handleCopy2, isCopied, isCopied2, 
         </div>
         <div className={styles.overview_info}>
             <div className={styles.overview_info_image}>
-                <img src={ThumbnailPurple} alt={"ProjectOverviewImg"} />
+                <img src={ThumbnailPurple} alt="ProjectOverviewImg" />
                 <div className={styles.overview_info_image_header} >Project Thumbnail</div>
                 <div className={styles.overview_info_image_title}>(Coming soon)</div>
             </div>
@@ -118,7 +117,7 @@ const ProjectOverView = ({ close, handleCopy, handleCopy2, isCopied, isCopied2, 
                 </div>
                 <div>
                     <div className={styles.infoContainer_header}>Project Notes
-                        <img src={QuestionIcon} />
+                        <img src={QuestionIcon} alt="" />
                     </div>
                     <div className={styles.infoContainer_notes} >Cursus tortor eu interdum cras. Nunc non ornare
                         dui consectetur pretium. Risus eu sed diam et sed odio in. Arcu diam varius egestas eu odio
