@@ -1,16 +1,16 @@
 
-import styles from "../../../NewRequest.module.scss";
-
 import { CheckBox, CheckBoxSelected, CloseCalendar, GrayArrow } from "assets/images";
 import { QUESTIONS_ON_LOCATION, QUESTIONS_VIRTUALLY, VIRTUAL_INTERVIEW } from "consts/consts";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectRequestInfo, updateInterviewInfoSettings } from "../../../../../redux/requests/reducer";
-import { IRootState } from "redux/rootReducer";
 import ReactDOM from "react-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { IRootState } from "redux/rootReducer";
+
+import styles from "../../../NewRequest.module.scss";
 import QuestionsOnLocation from "./InterviewOnLocation";
 import VirtualInterview from "./VirtualInterview";
 import VirtualQuestionsInput from "./VirtualQuestionsInput";
+import { selectRequestInfo, updateInterviewInfoSettings } from "../../../../../redux/requests/reducer";
 const InterviewConductionSelector = () => {
   const dispatch = useDispatch();
   const iIS = useSelector(selectRequestInfo)?.interviewSettings;

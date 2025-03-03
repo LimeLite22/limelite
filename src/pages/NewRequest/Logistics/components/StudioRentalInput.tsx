@@ -7,6 +7,7 @@ import {
 import { STUDIO_RENTAL } from "consts/consts";
 import useWindowWidth from "hooks/useWindowWidth";
 import { IStudioRentalProps } from "interfaces/interfaces";
+import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -14,7 +15,6 @@ import {
   updateDraftField,
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
-import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
 
 const StudioRental = ({ isExpanded, setIsExpanded }: IStudioRentalProps) => {
   const selectedRequest = useSelector(selectRequestInfo);

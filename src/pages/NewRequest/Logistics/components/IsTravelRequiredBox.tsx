@@ -5,8 +5,12 @@ import {
   Note,
 } from "assets/images";
 import { NO, YES } from "consts/consts";
+import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
+import ZoneSelector from "pages/NewRequest/components/ZoneSelector/ZoneSelector";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { TSelection } from "types/types";
+import { addCommas } from "utils/truncateString";
 
 import LearnMorePopUp from "./LearnMorePopUp";
 import {
@@ -14,10 +18,6 @@ import {
   updateDraftField,
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
-import { TSelection } from "types/types";
-import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
-import { addCommas } from "utils/truncateString";
-import ZoneSelector from "pages/NewRequest/components/ZoneSelector/ZoneSelector";
 
 const IsTravelRequired = () => {
   const [isExpanded, setIsExpanded] = useState(false);

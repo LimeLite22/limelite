@@ -1,12 +1,12 @@
 
-import styles from "../../../NewRequest.module.scss";
-
 import { CheckBox, CheckBoxSelected, CloseCalendar, GrayArrow } from "assets/images";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectRequestInfo, updateVideoEditSettings } from "../../../../../redux/requests/reducer";
-import { IRootState } from "redux/rootReducer";
 import ReactDOM from "react-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { IRootState } from "redux/rootReducer";
+
+import { selectRequestInfo, updateVideoEditSettings } from "../../../../../redux/requests/reducer";
+import styles from "../../../NewRequest.module.scss";
 const AdditionalFormatsSelector = () => {
   const dispatch = useDispatch();
   const vIS = useSelector(selectRequestInfo)?.videoSettings;

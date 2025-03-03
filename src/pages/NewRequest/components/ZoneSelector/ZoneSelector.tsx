@@ -1,15 +1,14 @@
-import styles from "../../NewRequest.module.scss";
-
 import { GrayArrow } from "assets/images";
 import { YES, zonesList } from "consts/consts";
 import { type FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { IRootState } from "redux/rootReducer";
 
 import {
   selectRequestInfo,
   updateLogisticInfoSettings,
 } from "../../../../redux/requests/reducer";
-import { IRootState } from "redux/rootReducer";
+import styles from "../../NewRequest.module.scss";
 
 interface IProps {
   onChange: (zone: { name: string; value: number }) => void;

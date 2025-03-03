@@ -11,7 +11,9 @@ import { useCustomPadding } from "utils/customPadding";
 import BackButton from "../components/BackButton";
 import FormFooter from "../components/FormFooter";
 import NextButton from "../components/NextButton";
+import StepErrorMessage from "../components/StepErrorMessage";
 import StepsNavigation from "../components/StepsNavigation";
+import styles from "../NewRequest.module.scss";
 import {
   ProjectNameBox,
   ProjectNarrationBox,
@@ -21,8 +23,6 @@ import {
   ShotListBox,
   TargetAudienceBox,
 } from "./components";
-import styles from "../NewRequest.module.scss";
-import StepErrorMessage from "../components/StepErrorMessage";
 
 const ProjectInfo = () => {
   const customPadding = useCustomPadding();

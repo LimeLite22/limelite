@@ -1,14 +1,14 @@
 
-import styles from "../../../NewRequest.module.scss";
-
 import { CheckBox, CheckBoxSelected, CloseCalendar, GrayArrow } from "assets/images";
 import { DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT } from "consts/consts";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectRequestInfo, updateVoiceoverSettings } from "../../../../../redux/requests/reducer";
-import { IRootState } from "redux/rootReducer";
 import ReactDOM from "react-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { IRootState } from "redux/rootReducer";
+
 import OwnScript from "./OwnScript";
+import { selectRequestInfo, updateVoiceoverSettings } from "../../../../../redux/requests/reducer";
+import styles from "../../../NewRequest.module.scss";
 import ProffessionalScript from "./ProfessionalScript";
 const VoiceoverScriptSelector = () => {
   const dispatch = useDispatch();

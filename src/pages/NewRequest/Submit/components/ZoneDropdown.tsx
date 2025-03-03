@@ -1,18 +1,17 @@
-import styles from "../../NewRequest.module.scss";
-
 import { GrayArrow } from "assets/images";
 import { zonesList } from "consts/consts";
-import { type FC, useState, useEffect } from "react";
+import { type FC, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import {
   selectRequestInfo,
 } from "../../../../redux/requests/reducer";
+import styles from "../../NewRequest.module.scss";
 
 interface IProps {
   onChange: (zone: { name: string; value: number }) => void;
 }
-const dropdownType4: FC<IProps> = ({ onChange }) => {
+const ZoneDropdown: FC<IProps> = ({ onChange }) => {
   const lIS = useSelector(selectRequestInfo)?.logisticSettings;
   const [current, setCurrent] = useState(lIS?.travel.zoneCode);
   const [isOpened, setOpened] = useState(false);
@@ -62,4 +61,4 @@ const dropdownType4: FC<IProps> = ({ onChange }) => {
   );
 };
 
-export default dropdownType4;
+export default ZoneDropdown;

@@ -1,7 +1,8 @@
-import { NO, PROFESSIONAL_SCRIPT, QUESTIONS_AUTHOR_PROFESSIONAL, STUDIO_RENTAL, YES, zonesList, VIRTUAL_INTERVIEW, QUESTIONS_VIRTUALLY, TRACK_AUTHOR_PROFESSIONAL, OWN_ADDRESS } from './../../consts/consts';
 import { BASIC_THUMBNAIL, DEFAULT, LESS_1_30, optionsList, projectTones, projectTypes, VIDEO_SQUARE } from "consts/consts"
 import { IRequest } from "interfaces/interfaces";
 import { generateUniqueId } from "utils/generateId";
+
+import { NO, OWN_ADDRESS,PROFESSIONAL_SCRIPT, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTIONS_VIRTUALLY, STUDIO_RENTAL, TRACK_AUTHOR_PROFESSIONAL, VIRTUAL_INTERVIEW, YES, zonesList } from './../../consts/consts';
 
 export const requestsInitialState: IRequest[] = [
     {

@@ -1,6 +1,7 @@
 
 import { Note } from "assets/images";
 import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
+
 import styles from "../../../NewRequest.module.scss";
 
 const VirtualInterview = () => {

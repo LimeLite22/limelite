@@ -1,17 +1,18 @@
-import styles from "../ProjectsPage.module.scss";
-import useWindowWidth from "hooks/useWindowWidth";
-import ReactDOM from "react-dom";
 import { CloseCalendar, QuestionIcon, ThumbnailPurple } from "assets/images";
-import { useState } from "react";
-import ProjectSettings from "./ProjectSettings";
-import LogisticSettings from "./LogisticSettings";
-import ScriptSettings from "./ScriptSettings";
-import InterviewSettings from "./InterviewSettings";
-import VoiceoverSettings from "./VoiceoverSettings";
-import VideoEditSettings from "./VideoEditSettings";
-import AddOnsSettings from "./AddOns/AddOns";
 import copy from "copy-to-clipboard";
+import useWindowWidth from "hooks/useWindowWidth";
+import { useState } from "react";
+import ReactDOM from "react-dom";
 import { Sheet } from "react-modal-sheet";
+
+import styles from "../ProjectsPage.module.scss";
+import AddOnsSettings from "./AddOns/AddOns";
+import InterviewSettings from "./InterviewSettings";
+import LogisticSettings from "./LogisticSettings";
+import ProjectSettings from "./ProjectSettings";
+import ScriptSettings from "./ScriptSettings";
+import VideoEditSettings from "./VideoEditSettings";
+import VoiceoverSettings from "./VoiceoverSettings";
 interface IProps {
     close: () => void,
     isCopied: boolean,

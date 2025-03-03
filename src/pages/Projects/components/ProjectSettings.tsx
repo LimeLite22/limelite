@@ -1,8 +1,8 @@
 
 import { User1Foto } from "assets/images";
 import DivRowCount from "pages/NewRequest/components/TextArea";
-import { testRequest } from "../../../redux/requests/consts";
 
+import { testRequest } from "../../../redux/requests/consts";
 import styles from "../ProjectsPage.module.scss";
 const ProjectSettings = () => {
     const pIS = testRequest.projectInfoSettings;

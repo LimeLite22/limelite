@@ -1,9 +1,9 @@
 
 import { QUESTIONS_AUTHOR_CLIENT, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTIONS_ON_LOCATION, QUESTIONS_VIRTUALLY } from "consts/consts";
-
-import styles from "../ProjectsPage.module.scss";
 import DivRowCount from "pages/NewRequest/components/TextArea";
+
 import { testRequest } from "../../../redux/requests/consts";
+import styles from "../ProjectsPage.module.scss";
 const InterviewSettings = () => {
     const selectedRequest = testRequest;
     const interviewSettings = { ...selectedRequest!.interviewSettings };

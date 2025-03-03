@@ -3,13 +3,11 @@ import {
   ArrowGray4,
   DetailsGreen,
 } from "assets/images";
-import { DEFAULT, OWN_ADDRESS, YES } from "consts/consts";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import useIsStepReady from "hooks/useCheckIsStepReady";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCustomPadding } from "utils/customPadding";
 
-import { selectRequestInfo } from "../../../redux/requests/reducer";
 import BackButton from "../components/BackButton";
 import FormFooter from "../components/FormFooter";
 import NextButton from "../components/NextButton";
@@ -22,52 +20,10 @@ import Location from "./components/LocationBox";
 import ShotList from "./components/ShotListBox";
 
 const Logistics = () => {
-  const selectedRequest = useSelector(selectRequestInfo)?.logisticSettings;
-  const [isNextDisabled, setIsNextDisabled] = useState(false);
   const [showBottomMessage, setShowBottomMessage] = useState(false);
   const customPadding = useCustomPadding();
 
-  const handleNextDisabled = () => {
-    let isDisabled = false;
-    if (
-      !selectedRequest?.travel?.selection ||
-      (selectedRequest?.travel?.selection === YES &&
-        !selectedRequest?.travel?.zoneCode.name)
-    ) {
-      isDisabled = true;
-    } else if (selectedRequest?.location?.type === DEFAULT) {
-      isDisabled = true;
-    } else if (
-      selectedRequest?.location?.type === OWN_ADDRESS &&
-      (selectedRequest?.location?.street.length === 0 ||
-        selectedRequest?.location?.city.length === 0 ||
-        selectedRequest?.location?.state.length === 0 ||
-        selectedRequest?.location?.zip.length === 0)
-    ) {
-      isDisabled = true;
-    }
-    if (!selectedRequest?.isAlternate) {
-      if (
-        selectedRequest?.preferredDate?.date === DEFAULT ||
-        selectedRequest?.preferredDate?.time === DEFAULT
-      ) {
-        isDisabled = true;
-      }
-    } else {
-      if (
-        selectedRequest?.preferredDate?.date === DEFAULT ||
-        selectedRequest?.preferredDate?.time === DEFAULT ||
-        selectedRequest?.alternateDate?.date === DEFAULT ||
-        selectedRequest?.alternateDate?.time === DEFAULT
-      ) {
-        isDisabled = true;
-      }
-    }
-    setIsNextDisabled(isDisabled);
-  };
-  useEffect(() => {
-    handleNextDisabled();
-  }, [selectedRequest]);
+  const { isLogisticReady } = useIsStepReady();
 
   return (
     <div
@@ -103,7 +59,7 @@ const Logistics = () => {
           <Location />
           <Date />
           <ShotList />
-          {isNextDisabled && showBottomMessage && (
+          {!isLogisticReady && showBottomMessage && (
             <StepErrorMessage />
           )}
           <div className={styles.nR_formContainer_buttons}>
@@ -112,8 +68,8 @@ const Logistics = () => {
               <button className={styles.nR_buttons_save}>
                 <img src={DetailsGreen} alt="" />
               </button>
-              <NextButton isDisabled={isNextDisabled} onClick={() => {
-                isNextDisabled && setShowBottomMessage(true);
+              <NextButton isDisabled={!isLogisticReady} onClick={() => {
+                !isLogisticReady && setShowBottomMessage(true);
               }} />
             </div>
           </div>

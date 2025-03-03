@@ -1,17 +1,16 @@
 
-import styles from "../../../NewRequest.module.scss";
-
 import { CheckBox, CheckBoxSelected, CloseCalendar, GrayArrow, Note } from "assets/images";
-import { NO, OWN_ADDRESS, RUSH_TIME, STANDARD_TIME, YES } from "consts/consts";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectRequestInfo, updateLogisticInfoSettings, updateVideoEditSettings } from "../../../../../redux/requests/reducer";
-import { IRootState } from "redux/rootReducer";
-import ReactDOM from "react-dom";
+import { RUSH_TIME, STANDARD_TIME, YES } from "consts/consts";
 import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
-import { addCommas } from "utils/truncateString";
-import ZoneSelector from "pages/NewRequest/components/ZoneSelector/ZoneSelector";
 import RushTimeSelector from "pages/NewRequest/components/RushTimeSelector/RushTimeSelector";
+import { useState } from "react";
+import ReactDOM from "react-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { IRootState } from "redux/rootReducer";
+import { addCommas } from "utils/truncateString";
+
+import { selectRequestInfo, updateVideoEditSettings } from "../../../../../redux/requests/reducer";
+import styles from "../../../NewRequest.module.scss";
 
 const TurnAroundSelector = () => {
   const isSubmit = false;

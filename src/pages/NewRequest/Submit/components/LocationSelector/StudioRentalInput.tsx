@@ -1,20 +1,15 @@
 import {
-  CheckBox,
-  CheckBoxSelected,
-  Expand,
   Note,
 } from "assets/images";
 import { STUDIO_RENTAL } from "consts/consts";
 import useWindowWidth from "hooks/useWindowWidth";
-import { IStudioRentalProps } from "interfaces/interfaces";
-import { useDispatch, useSelector } from "react-redux";
+import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
+import { useDispatch } from "react-redux";
 
 import {
-  selectRequestInfo,
   updateDraftField,
 } from "../../../../../redux/requests/reducer";
 import styles from "../../../NewRequest.module.scss";
-import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
 
 const StudioRental = () => {
   const dispatch = useDispatch();

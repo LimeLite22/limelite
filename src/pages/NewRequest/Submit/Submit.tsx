@@ -3,8 +3,8 @@ import { INTERVIEW_STEP, LOGISTICS_STEP, SCRIPT_STEP, VIDEO_EDIT_STEP, VOICEOVER
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { selectRequestInfo, selectSteps, updateFullEditRequest, updateInterviewInfoSettings, updateLogisticInfoSettings } from "../../../redux/requests/reducer";
 
+import { selectRequestInfo, selectSteps, updateFullEditRequest, updateInterviewInfoSettings, updateLogisticInfoSettings } from "../../../redux/requests/reducer";
 import BackButton from "../components/BackButton";
 import NextButton from "../components/NextButton"
 import StepsNavigation from "../components/StepsNavigation";
@@ -15,8 +15,8 @@ import LogisticInfo from "./components/Logistic";
 import ProjectInfo from "./components/ProjectInfo";
 import ScriptInfo from "./components/ScriptInfo";
 import VideoEdit from "./components/VideoEdit";
-import VoiceoverOwnScript from "./components/VoiceoverProffScript";
 import VoiceoverProfScript from "./components/VoiceoverOwnScript";
+import VoiceoverOwnScript from "./components/VoiceoverProffScript";
 
 const Submit = () => {
     const steps = useSelector(selectSteps);

@@ -1,5 +1,6 @@
 import { DEFAULT, VIDEO_SQUARE, VIDEO_STANDARD, VIDEO_VERTICAL } from "consts/consts";
 import { IVideoSettings } from "interfaces/interfaces";
+
 import { testRequest } from "../../../redux/requests/consts";
 import styles from "../ProjectsPage.module.scss";
 const VideoEditSettings = () => {

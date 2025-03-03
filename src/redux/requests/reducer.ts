@@ -1,4 +1,3 @@
-import { IProjectInfoSettings, ILogisticSettings, IVoiceoverSettings, IVideoSettings } from './../../interfaces/interfaces';
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { DEFAULT, HOME_RENTAL, NO } from "consts/consts";
 import { IAdditionalVideoFormat, IInterviewSettings, IRequestState, IScriptSettings } from "interfaces/interfaces";
@@ -6,6 +5,8 @@ import set from "lodash/set";
 import { IRootState } from "redux/rootReducer";
 import { TDraftFieldUpdate, TOption, TStep } from "types/types";
 import { generateUniqueId } from "utils/generateId";
+
+import { ILogisticSettings, IProjectInfoSettings, IVideoSettings,IVoiceoverSettings } from './../../interfaces/interfaces';
 import { requestsInitialState } from './consts';
 
 localStorage.removeItem("requestState");

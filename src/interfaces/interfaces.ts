@@ -1,6 +1,7 @@
 import { DEFAULT } from 'consts/consts';
-import { selectUnreadNotificationsNumber } from './../redux/notifications/reducer';
 import { RequestStatusType, TApproachValue, TLocation, TOption, TPerson, TProjectTone, TQuestionAuthor, TQuestionLocation, TRush, TScriptWriter, TStep, TTextStatus, TThumbnail, TTimeValue, TTravel, TValue, TVideo, TVideoDuration, TVoiceAuthor } from "types/types";
+
+import { selectUnreadNotificationsNumber } from './../redux/notifications/reducer';
 
 export interface ILocation {
   type: TLocation;

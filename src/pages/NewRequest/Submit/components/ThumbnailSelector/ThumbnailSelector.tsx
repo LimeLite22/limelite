@@ -1,14 +1,14 @@
 
-import styles from "../../../NewRequest.module.scss";
-
 import { CheckBox, CheckBoxSelected, CloseCalendar, GrayArrow, Note } from "assets/images";
 import { BASIC_THUMBNAIL, CUSTOM_THUMBNAIL, NO_THUMBNAIL } from "consts/consts";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectRequestInfo, updateVideoEditSettings } from "../../../../../redux/requests/reducer";
-import { IRootState } from "redux/rootReducer";
-import ReactDOM from "react-dom";
 import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
+import { useState } from "react";
+import ReactDOM from "react-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { IRootState } from "redux/rootReducer";
+
+import { selectRequestInfo, updateVideoEditSettings } from "../../../../../redux/requests/reducer";
+import styles from "../../../NewRequest.module.scss";
 const ThumbnailSelector = () => {
   const dispatch = useDispatch();
   const vIS = useSelector(selectRequestInfo)?.videoSettings;

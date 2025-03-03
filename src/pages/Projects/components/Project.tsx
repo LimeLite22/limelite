@@ -1,12 +1,13 @@
 import { DetailsProject, DownloadProject, Settings, ShareProject, SwiperFoto1 } from "assets/images";
+import copy from "copy-to-clipboard";
 import { format } from "date-fns";
 import useWindowWidth from "hooks/useWindowWidth";
 import { useState } from "react";
 import { statusColor } from "utils/statusColors";
 import { truncateString } from "utils/truncateString";
+
 import styles from "../ProjectsPage.module.scss";
 import ProjectOverView from "./ProjectOverview";
-import copy from "copy-to-clipboard";
 
 interface IProps {
     project: any;

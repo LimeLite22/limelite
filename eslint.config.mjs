@@ -1,9 +1,9 @@
 import pluginJs from "@eslint/js";
+import pluginImport from "eslint-plugin-import"; // Для налаштування порядку імпортів
 import pluginReact from "eslint-plugin-react";
+import simpleImportSort from "eslint-plugin-simple-import-sort"; // Для автоматичного сортування
 import globals from "globals";
 import tseslint from "typescript-eslint";
-import pluginImport from "eslint-plugin-import"; // Для налаштування порядку імпортів
-import simpleImportSort from "eslint-plugin-simple-import-sort"; // Для автоматичного сортування
 
 export default [
   {

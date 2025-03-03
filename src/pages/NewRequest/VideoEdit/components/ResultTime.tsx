@@ -5,8 +5,13 @@ import {
   Note,
 } from "assets/images";
 import { NO, RUSH_TIME, STANDARD_TIME, YES } from "consts/consts";
+import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
+import RushTimeSelector from "pages/NewRequest/components/RushTimeSelector/RushTimeSelector";
+import ZoneSelector from "pages/NewRequest/components/ZoneSelector/ZoneSelector";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { TRush } from "types/types";
+import { addCommas } from "utils/truncateString";
 
 import LearnMorePopUp from "./LearnMorePopUp";
 import {
@@ -14,11 +19,6 @@ import {
   updateVideoEditSettings,
 } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
-import { TRush } from "types/types";
-import DefaultSlider from "pages/NewRequest/components/DefaultSlider";
-import { addCommas } from "utils/truncateString";
-import ZoneSelector from "pages/NewRequest/components/ZoneSelector/ZoneSelector";
-import RushTimeSelector from "pages/NewRequest/components/RushTimeSelector/RushTimeSelector";
 
 const ResultTime = () => {
   const [isExpanded, setIsExpanded] = useState(false);

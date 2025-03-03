@@ -1,9 +1,10 @@
+import { Close } from "assets/images";
 import useWindowWidth from "hooks/useWindowWidth";
 import { useState } from "react";
-import styles from "../Settings.module.scss";
 import { createPortal } from "react-dom";
 import { Sheet } from "react-modal-sheet";
-import { Close } from "assets/images";
+
+import styles from "../Settings.module.scss";
 
 const PasswordUpdate = () => {
     const [forgotPasswordOpened, setForgotPasswordOpened] = useState(false)

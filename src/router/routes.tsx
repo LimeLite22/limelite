@@ -1,5 +1,3 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-
 import {
   Auth,
   ChatSupport,
@@ -15,21 +13,22 @@ import {
   WalkThrough,
   Welcome,
 } from "pages";
-
-import PrivateRoute from "./PrivateRouter";
-import ProjectInfo from "pages/NewRequest/ProjectInfo/ProjectInfo";
-import Logistics from "pages/NewRequest/Logistics/Logistics";
-import ScriptedDelivery from "pages/NewRequest/ScriptedDelivery/ScriptedDelivery";
-import Interview from "pages/NewRequest/Interview/Interview";
-import Voiceover from "pages/NewRequest/Voiceover/Voiceover";
-import VideoEdit from "pages/NewRequest/VideoEdit/VideoEdit";
-import AddOns from "pages/NewRequest/AddOns/AddOns";
-import Submit from "pages/NewRequest/Submit/Submit";
 import CreateProfile from "pages/CreateProfile/CreateProfile";
 import Login from "pages/Login/Login";
-import ProjectsPage from "pages/Projects/Projects";
-import PasswordReset from "pages/PasswordReset/PasswordReset";
+import AddOns from "pages/NewRequest/AddOns/AddOns";
+import Interview from "pages/NewRequest/Interview/Interview";
+import Logistics from "pages/NewRequest/Logistics/Logistics";
+import ProjectInfo from "pages/NewRequest/ProjectInfo/ProjectInfo";
+import ScriptedDelivery from "pages/NewRequest/ScriptedDelivery/ScriptedDelivery";
+import Submit from "pages/NewRequest/Submit/Submit";
+import VideoEdit from "pages/NewRequest/VideoEdit/VideoEdit";
+import Voiceover from "pages/NewRequest/Voiceover/Voiceover";
 import PasswordNew from "pages/PasswordNew/PasswordNew";
+import PasswordReset from "pages/PasswordReset/PasswordReset";
+import ProjectsPage from "pages/Projects/Projects";
+import { createBrowserRouter,RouterProvider } from "react-router-dom";
+
+import PrivateRoute from "./PrivateRouter";
 
 const routes = createBrowserRouter([
   {

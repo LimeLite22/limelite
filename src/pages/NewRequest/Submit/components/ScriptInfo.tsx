@@ -1,16 +1,16 @@
 
 import { CheckBox, CheckBoxSelected, CloseRed, EditIcon, StatusApproved, StatusApprovedBlack, StatusProgress, StatusProgressBlack, StatusUnavailable, StatusUnavailableBlack, Success2 } from "assets/images";
+import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, PROFESSIONAL_SCRIPT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
+import useWindowWidth from "hooks/useWindowWidth";
+import { IScriptSettings } from "interfaces/interfaces";
+import DivRowCount from "pages/NewRequest/components/TextArea";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { wordsCalculator } from "utils/wordCalculator";
 
 import ScriptPersons from "./ScriptPersons";
 import { selectRequestInfo, updateScriptInfoSettings } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
-import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, PROFESSIONAL_SCRIPT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
-import { IScriptSettings } from "interfaces/interfaces";
-import DivRowCount from "pages/NewRequest/components/TextArea";
-import useWindowWidth from "hooks/useWindowWidth";
-import { wordsCalculator } from "utils/wordCalculator";
 const ScriptInfo = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const dispatch = useDispatch();

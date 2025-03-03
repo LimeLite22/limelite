@@ -2,10 +2,10 @@ import { Add, Close, GapCheck, GapUnCheck, InviteUser, User1Foto, User2Foto, Use
 import useWindowWidth from "hooks/useWindowWidth";
 import { useState } from "react";
 import { createPortal } from "react-dom";
+import { Sheet } from "react-modal-sheet";
 
 import styles from "../Settings.module.scss";
 import TeamItem from "./TeamItem";
-import { Sheet } from "react-modal-sheet";
 
 
 

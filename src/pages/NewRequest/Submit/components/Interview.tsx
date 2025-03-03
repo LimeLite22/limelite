@@ -1,16 +1,16 @@
 
 import { CloseRed, EditIcon, StatusApproved, StatusApprovedBlack, StatusProgress, StatusProgressBlack, StatusUnavailable, StatusUnavailableBlack, Success2 } from "assets/images";
 import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, QUESTIONS_AUTHOR_CLIENT, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTIONS_ON_LOCATION, QUESTIONS_VIRTUALLY, UNAVAILABLE_TEXT_STATUS, } from "consts/consts";
+import useWindowWidth from "hooks/useWindowWidth";
+import { IInterviewSettings } from "interfaces/interfaces";
+import DivRowCount from "pages/NewRequest/components/TextArea";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { wordsCalculator } from "utils/wordCalculator";
 
 import ScriptPersons from "./ScriptPersons";
 import { selectRequestInfo, updateInterviewInfoSettings } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
-import { IInterviewSettings } from "interfaces/interfaces";
-import DivRowCount from "pages/NewRequest/components/TextArea";
-import useWindowWidth from "hooks/useWindowWidth";
-import { wordsCalculator } from "utils/wordCalculator";
 const Interview = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const interviewSettings = { ...selectedRequest!.interviewSettings };

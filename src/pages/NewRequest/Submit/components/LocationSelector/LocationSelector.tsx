@@ -1,16 +1,16 @@
 
-import styles from "../../../NewRequest.module.scss";
-
 import { CheckBox, CheckBoxSelected, CloseCalendar, GrayArrow } from "assets/images";
 import { HOME_RENTAL, OWN_ADDRESS, STUDIO_RENTAL } from "consts/consts";
 import { type FC, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectRequestInfo, updateLogisticInfoSettings } from "../../../../../redux/requests/reducer";
-import { IRootState } from "redux/rootReducer";
 import ReactDOM from "react-dom";
-import StudioRental from "./StudioRentalInput";
-import HomeRental from "./HomeRentalInput";
+import { useDispatch, useSelector } from "react-redux";
+import { IRootState } from "redux/rootReducer";
+
+import styles from "../../../NewRequest.module.scss";
 import Address from "./AddressInput";
+import HomeRental from "./HomeRentalInput";
+import StudioRental from "./StudioRentalInput";
+import { selectRequestInfo, updateLogisticInfoSettings } from "../../../../../redux/requests/reducer";
 
 interface IProps {
   // value: TVideoDuration;

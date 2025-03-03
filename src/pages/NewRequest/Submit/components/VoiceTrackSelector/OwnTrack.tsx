@@ -4,9 +4,9 @@ import { Audio, Delete, Download } from "assets/images";
 import { DEFAULT, TRACK_AUTHOR_CLIENT, TRACK_AUTHOR_PROFESSIONAL } from "consts/consts";
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { updateVoiceoverSettings } from "../../../../../redux/requests/reducer";
 import { IRootState } from "../../../../../redux/rootReducer";
-
 import styles from "../../../NewRequest.module.scss";
 const OwnTrack = () => {
   const eVIS = useSelector((state: IRootState) => state.request.editDraft)?.voiceTrackSettings;

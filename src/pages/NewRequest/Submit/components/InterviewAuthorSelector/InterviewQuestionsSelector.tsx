@@ -1,14 +1,14 @@
 
-import styles from "../../../NewRequest.module.scss";
-
 import { CheckBox, CheckBoxSelected, CloseCalendar, GrayArrow } from "assets/images";
 import { DEFAULT, QUESTIONS_AUTHOR_CLIENT, QUESTIONS_AUTHOR_PROFESSIONAL } from "consts/consts";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectRequestInfo, updateInterviewInfoSettings } from "../../../../../redux/requests/reducer";
-import { IRootState } from "redux/rootReducer";
 import ReactDOM from "react-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { IRootState } from "redux/rootReducer";
+
 import OwnInterviewQuestions from "./OwnInterviewQuestions";
+import { selectRequestInfo, updateInterviewInfoSettings } from "../../../../../redux/requests/reducer";
+import styles from "../../../NewRequest.module.scss";
 import ProffInterviewQuestion from "./ProffInterviewQuestions";
 const InterviewQuestionsSelector = () => {
   const dispatch = useDispatch();

@@ -1,4 +1,5 @@
 import { useCalculateFinalPrice } from "utils/priceCalculator";
+
 import styles from "../../NewRequest.module.scss";
 import ThumbnailSelector from "./ThumbnailSelector/ThumbnailSelector";
 interface IProps {

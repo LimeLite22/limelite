@@ -1,13 +1,13 @@
 
+import { CloseCalendar } from "assets/images";
 import { IAddOnsValue } from "interfaces/interfaces";
 import { useState } from "react";
+import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useCalculateFinalPrice } from "utils/priceCalculator";
-import ReactDOM from "react-dom";
 
 import { selectRequestInfo, updateAddOnSelectionStatus } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
-import { CloseCalendar } from "assets/images";
 interface IProps {
     addOn: IAddOnsValue
 }
