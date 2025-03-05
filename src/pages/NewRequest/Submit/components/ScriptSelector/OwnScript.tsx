@@ -8,7 +8,6 @@ import {
 } from "assets/images";
 import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import useWindowWidth from "hooks/useWindowWidth";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "redux/rootReducer";
 import { wordsCalculator } from "utils/wordCalculator";
@@ -21,8 +20,8 @@ import styles from "../../../NewRequest.module.scss";
 
 const OwnScript = () => {
   const selectedRequest = useSelector((state: IRootState) => state.request.editDraft);
-  const text = selectedRequest?.scriptSettings?.ownText;
-  const status = selectedRequest?.scriptSettings?.scriptStatus;
+  const text = selectedRequest?.script?.scriptText;
+  const status = selectedRequest?.script?.scriptStatus;
   const width = useWindowWidth();
   const dispatch = useDispatch();
   const { minutes, seconds, words } = wordsCalculator(text);
@@ -42,9 +41,9 @@ const OwnScript = () => {
           <div
             className={`${styles.box_status} ${status === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
             onClick={() => {
-              selectedRequest?.scriptSettings && dispatch(updateScriptInfoSettings({
+              selectedRequest?.script && dispatch(updateScriptInfoSettings({
                 scriptInfoSettings: {
-                  ...selectedRequest?.scriptSettings,
+                  ...selectedRequest?.script,
                   scriptWriter: OWN_SCRIPT,
                   scriptStatus: APPROVED_TEXT_STATUS
                 },
@@ -61,7 +60,7 @@ const OwnScript = () => {
             onClick={() => {
               selectedRequest?.scriptSettings && dispatch(updateScriptInfoSettings({
                 scriptInfoSettings: {
-                  ...selectedRequest?.scriptSettings,
+                  ...selectedRequest?.script,
                   scriptWriter: OWN_SCRIPT,
                   scriptStatus: IN_PROGRESS_TEXT_STATUS
                 },
@@ -78,7 +77,7 @@ const OwnScript = () => {
             onClick={() => {
               selectedRequest?.scriptSettings && dispatch(updateScriptInfoSettings({
                 scriptInfoSettings: {
-                  ...selectedRequest?.scriptSettings,
+                  ...selectedRequest?.script,
                   scriptWriter: OWN_SCRIPT,
                   scriptStatus: UNAVAILABLE_TEXT_STATUS
                 },
@@ -103,9 +102,9 @@ const OwnScript = () => {
           onChange={(e) => {
             selectedRequest?.scriptSettings && dispatch(updateScriptInfoSettings({
               scriptInfoSettings: {
-                ...selectedRequest?.scriptSettings,
+                ...selectedRequest?.script,
                 scriptWriter: OWN_SCRIPT,
-                ownText: e.target.value
+                scriptText: e.target.value
               },
               isEdit: true
             })

@@ -6,29 +6,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "redux/rootReducer";
 
 import {
-  updateDraftField,
   updateScriptInfoSettings,
 } from "../../../../../redux/requests/reducer";
 import styles from "../../../NewRequest.module.scss";
 const ProffessionalScript = () => {
-  const selectedRequest = useSelector((state: IRootState) => state.request.editDraft).scriptSettings
+  const selectedRequest = useSelector((state: IRootState) => state.request.editDraft).script
   const name = selectedRequest?.name;
   const email = selectedRequest?.email;
   const phone = selectedRequest?.phone;
   const text = selectedRequest?.backgroundInfo;
 
   const dispatch = useDispatch();
-  const handleUpdateField = (
-    path: string,
-    value: string,
-  ) => {
-    dispatch(
-      updateDraftField({
-        path,
-        value,
-      }),
-    );
-  };
 
   return (
     <div

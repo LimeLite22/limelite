@@ -217,9 +217,7 @@ export const OTHER = "Other";
 
 export const PROJECT_STEP = 'new-request/project';
 export const LOGISTICS_STEP = 'new-request/logistics';
-export const SCRIPT_STEP = 'new-request/script';
-export const INTERVIEW_STEP = 'new-request/interview';
-export const VOICEOVER_STEP = 'new-request/voiceover';
+export const NARRATION_STEP = 'new-request/narration';
 export const VIDEO_EDIT_STEP = 'new-request/video-edit';
 export const ADD_ONS_STEP = 'new-request/add-ons';
 export const SUBMIT_STEP = 'new-request/submit';

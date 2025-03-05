@@ -2,7 +2,7 @@ import { BASIC_THUMBNAIL, DEFAULT, LESS_1_30, optionsList, projectTones, project
 import { IRequest } from "interfaces/interfaces";
 import { generateUniqueId } from "utils/generateId";
 
-import { NO, OWN_ADDRESS, PROFESSIONAL_SCRIPT, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTIONS_VIRTUALLY, TRACK_AUTHOR_PROFESSIONAL, YES, zonesList } from './../../consts/consts';
+import { NO, OWN_ADDRESS, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTIONS_VIRTUALLY, TRACK_AUTHOR_PROFESSIONAL, YES, zonesList } from './../../consts/consts';
 
 export const requestsInitialState: IRequest[] = [
     {
@@ -45,18 +45,20 @@ export const requestsInitialState: IRequest[] = [
             safetyEquipmentDescription: ''
         },
         scriptSettings: {
-            scriptWriter: DEFAULT,
-            scriptStatus: DEFAULT,
-            name: "Alex Smith",
-            phone: 232323233,
-            email: "wM9M3@example.com",
-            backgroundInfo: "Basic info about the client",
-            ownText: " Establish a connection with the client",
             teleprompter: DEFAULT,
             persons: [{
                 id: generateUniqueId(), name: "Smith",
                 title: "Director",
             }],
+        },
+        script: {
+            scriptWriter: DEFAULT,
+            scriptStatus: DEFAULT,
+            scriptText: "",
+            name: "",
+            phone: "",
+            email: "",
+            backgroundInfo: "",
         },
         interviewSettings: {
             questionsAuthor: DEFAULT,
@@ -94,17 +96,6 @@ export const requestsInitialState: IRequest[] = [
         voiceTrackSettings: {
             trackAuthor: DEFAULT,
             track: DEFAULT,
-            scriptAuthor: DEFAULT,
-            scriptAuthorProfSettings: {
-                subject: "Setting up an interview",
-                phone: 23232323,
-                email: "bUH0E@example.com",
-                backgroundInfo: " Establish a connection with the client",
-            },
-            scriptAuthorOwnSettings: {
-                text: " Establish a connection with the client",
-                scriptStatus: DEFAULT,
-            },
         },
         videoSettings: {
             format: VIDEO_SQUARE,
@@ -178,15 +169,17 @@ export const requestsInitialState: IRequest[] = [
             safetyEquipmentDescription: ''
         },
         scriptSettings: {
+            teleprompter: DEFAULT,
+            persons: [{ id: generateUniqueId(), name: "", title: "" }],
+        },
+        script: {
             scriptWriter: DEFAULT,
             scriptStatus: DEFAULT,
+            scriptText: "",
             name: "",
             phone: "",
             email: "",
             backgroundInfo: "",
-            ownText: "",
-            teleprompter: DEFAULT,
-            persons: [{ id: generateUniqueId(), name: "", title: "" }],
         },
         interviewSettings: {
             questionsAuthor: DEFAULT,
@@ -222,17 +215,6 @@ export const requestsInitialState: IRequest[] = [
         voiceTrackSettings: {
             trackAuthor: DEFAULT,
             track: DEFAULT,
-            scriptAuthor: DEFAULT,
-            scriptAuthorProfSettings: {
-                subject: "",
-                phone: "",
-                email: "",
-                backgroundInfo: "",
-            },
-            scriptAuthorOwnSettings: {
-                text: "",
-                scriptStatus: DEFAULT,
-            },
         },
         videoSettings: {
             format: DEFAULT,
@@ -300,18 +282,20 @@ export const testRequest: IRequest =
         safetyEquipmentDescription: ''
     },
     scriptSettings: {
-        scriptWriter: PROFESSIONAL_SCRIPT,
-        scriptStatus: DEFAULT,
-        name: "Alex Smith",
-        phone: 232323233,
-        email: "wM9M3@example.com",
-        backgroundInfo: "Basic info about the client",
-        ownText: " Establish a connection with the client",
         teleprompter: DEFAULT,
         persons: [{
             id: generateUniqueId(), name: "Smith",
             title: "Director",
         }],
+    },
+    script: {
+        scriptWriter: DEFAULT,
+        scriptStatus: DEFAULT,
+        scriptText: "",
+        name: "",
+        phone: "",
+        email: "",
+        backgroundInfo: "",
     },
     interviewSettings: {
         questionsAuthor: QUESTIONS_AUTHOR_PROFESSIONAL,
@@ -349,17 +333,6 @@ export const testRequest: IRequest =
     voiceTrackSettings: {
         trackAuthor: TRACK_AUTHOR_PROFESSIONAL,
         track: DEFAULT,
-        scriptAuthor: PROFESSIONAL_SCRIPT,
-        scriptAuthorProfSettings: {
-            subject: "Setting up an interview",
-            phone: 23232323,
-            email: "bUH0E@example.com",
-            backgroundInfo: " Establish a connection with the client",
-        },
-        scriptAuthorOwnSettings: {
-            text: " Establish a connection with the client",
-            scriptStatus: DEFAULT,
-        },
     },
     videoSettings: {
         format: VIDEO_SQUARE,

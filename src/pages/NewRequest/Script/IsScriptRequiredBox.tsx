@@ -2,9 +2,9 @@ import { APPROVED_TEXT_STATUS, DEFAULT, OWN_SCRIPT, PROFESSIONAL_SCRIPT } from "
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
-import { selectRequestInfo } from "../../../../../redux/requests/reducer";
-import styles from "../../../NewRequest.module.scss";
-import LearnMorePopUp from "../LearnMorePopUp";
+import { selectRequestInfo } from "../../../redux/requests/reducer";
+import styles from "../NewRequest.module.scss";
+import LearnMorePopUp from "../ScriptedDelivery/components/LearnMorePopUp";
 import OwnScript from "./components/OwnScript";
 import ProffessionalScript from "./components/ProfessionalScript";
 
@@ -18,13 +18,13 @@ const IsScriptRequired = () => {
     ownScriptStatus: false,
     proffessionalScript: false,
   });
-  const selection = selectedRequest?.scriptSettings.scriptWriter;
-  const name = selectedRequest?.scriptSettings?.name;
-  const phone = selectedRequest?.scriptSettings?.phone;
-  const email = selectedRequest?.scriptSettings?.email;
-  const ownText = selectedRequest?.scriptSettings?.ownText;
-  const ownTextStatus = selectedRequest?.scriptSettings?.scriptStatus;
-  const proffessionalText = selectedRequest?.scriptSettings?.backgroundInfo;
+  const selection = selectedRequest?.script.scriptWriter;
+  const name = selectedRequest?.script?.name;
+  const phone = selectedRequest?.script?.phone;
+  const email = selectedRequest?.script?.email;
+  const ownText = selectedRequest?.script?.scriptText;
+  const ownTextStatus = selectedRequest?.script?.scriptStatus;
+  const proffessionalText = selectedRequest?.script?.backgroundInfo;
   const [isOwnExpanded, setIsOwnExpanded] = useState(false);
   const [isProffessionalExpanded, setIsProffessionalExpanded] = useState(false);
 

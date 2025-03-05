@@ -8,7 +8,8 @@ const useIsStepReady = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const projectSettings = selectedRequest?.projectInfoSettings;
     const logisticSettings = selectedRequest?.logisticSettings;
-    const scriptSettings = selectedRequest?.scriptSettings;
+    const scriptedDeliverySettings = selectedRequest?.scriptSettings;
+    const scriptSettings = selectedRequest?.script;
     const interviewSettings = selectedRequest?.interviewSettings;
     const voiceoverSettings = selectedRequest?.voiceTrackSettings;
     const videoEditSettings = selectedRequest?.videoSettings;
@@ -74,7 +75,7 @@ const useIsStepReady = () => {
         }
         if (
             scriptSettings?.scriptWriter === OWN_SCRIPT &&
-            (scriptSettings?.ownText.length === 0
+            (scriptSettings?.scriptText.length === 0
                 && scriptSettings?.scriptStatus === APPROVED_TEXT_STATUS)
         ) {
             return false
@@ -93,17 +94,20 @@ const useIsStepReady = () => {
         ) {
             return false
         }
-        if (scriptSettings?.teleprompter === DEFAULT) {
+        return true
+    }, [scriptSettings]);
+    const isScriptedDeliveryReady = useMemo(() => {
+        if (scriptedDeliverySettings?.teleprompter === DEFAULT) {
             return false
         }
-        const persons = scriptSettings?.persons;
+        const persons = scriptedDeliverySettings?.persons;
         persons?.forEach((person) => {
             if (person.name.length === 0 || person.title.length === 0) {
                 return false
             }
         });
         return true
-    }, [scriptSettings]);
+    }, [scriptedDeliverySettings]);
     const isInterviewReady = useMemo(() => {
         if (interviewSettings?.questionsAuthor === DEFAULT) {
             return false
@@ -185,35 +189,6 @@ const useIsStepReady = () => {
         ) {
             return false
         }
-        const profSettings = voiceoverSettings?.scriptAuthorProfSettings;
-        const ownSettings = voiceoverSettings?.scriptAuthorOwnSettings;
-        if (
-            voiceoverSettings?.scriptAuthor === OWN_SCRIPT && ownSettings?.text.length === 0
-        ) {
-            return false
-        }
-        if (
-            voiceoverSettings?.scriptAuthor === OWN_SCRIPT &&
-            voiceoverSettings?.scriptAuthorOwnSettings?.text.length === 0
-            && voiceoverSettings?.scriptAuthorOwnSettings?.scriptStatus === APPROVED_TEXT_STATUS
-
-        ) {
-            return false
-        }
-        if (
-            voiceoverSettings?.scriptAuthor === OWN_SCRIPT &&
-            voiceoverSettings?.scriptAuthorOwnSettings?.scriptStatus === DEFAULT) {
-            return false
-        }
-        if (
-            voiceoverSettings?.scriptAuthor === PROFESSIONAL_SCRIPT &&
-            (profSettings?.backgroundInfo.length === 0 ||
-                profSettings?.subject.length === 0 ||
-                profSettings?.phone === "" ||
-                profSettings?.email.length === 0)
-        ) {
-            return false
-        }
         return true
     }, [voiceoverSettings]);
     const isVideoEditReady = useMemo(() => {
@@ -253,7 +228,7 @@ const useIsStepReady = () => {
 
 
 
-    return { isProjectInfoReady, isLogisticReady, isScriptReady, isInterviewReady, isVoiceoverReady, isVideoEditReady };
+    return { isProjectInfoReady, isLogisticReady, isScriptReady, isScriptedDeliveryReady, isInterviewReady, isVoiceoverReady, isVideoEditReady };
 };
 
 export default useIsStepReady;

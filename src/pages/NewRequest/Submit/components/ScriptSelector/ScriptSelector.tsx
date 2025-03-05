@@ -12,10 +12,10 @@ import styles from "../../../NewRequest.module.scss";
 import ProffessionalScript from "./ProfessionalScript";
 const ScriptSelector = () => {
   const dispatch = useDispatch();
-  const lIS = useSelector(selectRequestInfo)?.scriptSettings;
-  const eLIS = useSelector((state: IRootState) => state.request.editDraft)?.scriptSettings;
+  const lIS = useSelector(selectRequestInfo)?.script;
+  const eLIS = useSelector((state: IRootState) => state.request.editDraft)?.script;
   const [isOpened, setOpened] = useState(false);
-  const isOwnScriptNotReady = eLIS?.ownText.length === 0 || eLIS?.scriptStatus === DEFAULT;
+  const isOwnScriptNotReady = eLIS?.scriptText.length === 0 || eLIS?.scriptStatus === DEFAULT;
   const isProffScriptNotReady = eLIS?.backgroundInfo.length === 0 || eLIS?.name.length === 0 || String(eLIS?.phone).length === 0 || eLIS?.email === "";
   const handleSave = () => {
 

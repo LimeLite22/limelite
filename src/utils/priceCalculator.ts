@@ -95,7 +95,7 @@ export const useCalculateFinalPrice = () => {
     location += number;
     addOnsCount += 1
   }
-  if (request?.scriptSettings.scriptWriter === PROFESSIONAL_SCRIPT) {
+  if (request?.script.scriptWriter === PROFESSIONAL_SCRIPT) {
     price += 895;
     professionalScriptWriter += 895;
     addOnsCount += 1
@@ -118,11 +118,6 @@ export const useCalculateFinalPrice = () => {
   if (request?.voiceTrackSettings.trackAuthor === TRACK_AUTHOR_PROFESSIONAL) {
     price += 895
     professionalTruckAuthor += 895
-    addOnsCount += 1
-  }
-  if (request?.voiceTrackSettings.scriptAuthor === PROFESSIONAL_SCRIPT) {
-    price += 895
-    professionalVoiceWriter += 895
     addOnsCount += 1
   }
   if (request?.videoSettings.thumbnail === CUSTOM_THUMBNAIL) {

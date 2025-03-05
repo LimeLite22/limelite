@@ -1,12 +1,12 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { DEFAULT, HOME_RENTAL, NO } from "consts/consts";
-import { IAdditionalVideoFormat, IInterviewSettings, IRequestState, IScriptSettings } from "interfaces/interfaces";
+import { IAdditionalVideoFormat, IInterviewSettings, IRequestState, IScriptedDeliverySettings, IScriptSettings } from "interfaces/interfaces";
 import set from "lodash/set";
 import { IRootState } from "redux/rootReducer";
 import { TDraftFieldUpdate, TOption, TStep } from "types/types";
 import { generateUniqueId } from "utils/generateId";
 
-import { ILogisticSettings, IProjectInfoSettings, IVideoSettings,IVoiceoverSettings } from './../../interfaces/interfaces';
+import { ILogisticSettings, IProjectInfoSettings, IVideoSettings, IVoiceoverSettings } from './../../interfaces/interfaces';
 import { requestsInitialState } from './consts';
 
 localStorage.removeItem("requestState");
@@ -75,15 +75,17 @@ const requestReducer = createSlice({
           safetyEquipmentDescription: ''
         },
         scriptSettings: {
+          teleprompter: DEFAULT,
+          persons: [{ id: generateUniqueId(), name: "", title: "" }],
+        },
+        script: {
           scriptWriter: DEFAULT,
           scriptStatus: DEFAULT,
+          scriptText: "",
           name: "",
           phone: "",
           email: "",
           backgroundInfo: "",
-          ownText: "",
-          teleprompter: DEFAULT,
-          persons: [{ id: generateUniqueId(), name: "", title: "" }],
         },
         interviewSettings: {
           questionsAuthor: DEFAULT,
@@ -122,17 +124,6 @@ const requestReducer = createSlice({
         voiceTrackSettings: {
           trackAuthor: DEFAULT,
           track: DEFAULT,
-          scriptAuthor: DEFAULT,
-          scriptAuthorProfSettings: {
-            subject: "",
-            phone: "",
-            email: "",
-            backgroundInfo: "",
-          },
-          scriptAuthorOwnSettings: {
-            text: "",
-            scriptStatus: DEFAULT,
-          },
         },
         videoSettings: {
           format: DEFAULT,
@@ -281,7 +272,7 @@ const requestReducer = createSlice({
         state.editDraft.logisticSettings = logisticInfoSettings;
       }
     },
-    updateScriptInfoSettings: (state, action: PayloadAction<{ scriptInfoSettings: IScriptSettings, isEdit: boolean }>) => {
+    updateScriptedDeliveryInfoSettings: (state, action: PayloadAction<{ scriptInfoSettings: IScriptedDeliverySettings, isEdit: boolean }>) => {
       const { scriptInfoSettings, isEdit } = action.payload;
       const draft = state.drafts.find(
         (draft) => draft.id === state.selectedRequest,
@@ -291,6 +282,18 @@ const requestReducer = createSlice({
       }
       if (isEdit) {
         state.editDraft.scriptSettings = scriptInfoSettings;
+      }
+    },
+    updateScriptInfoSettings: (state, action: PayloadAction<{ scriptInfoSettings: IScriptSettings, isEdit: boolean }>) => {
+      const { scriptInfoSettings, isEdit } = action.payload;
+      const draft = state.drafts.find(
+        (draft) => draft.id === state.selectedRequest,
+      );
+      if (draft && !isEdit) {
+        draft.script = scriptInfoSettings;
+      }
+      if (isEdit) {
+        state.editDraft.script = scriptInfoSettings;
       }
     },
     updateInterviewInfoSettings: (state, action: PayloadAction<{ interviewInfoSettings: IInterviewSettings, isEdit: boolean }>) => {
@@ -352,8 +355,9 @@ export const {
   updateStepsList,
   updateProjectInfoSettings,
   updateLogisticInfoSettings,
-  updateScriptInfoSettings,
+  updateScriptedDeliveryInfoSettings,
   updateInterviewInfoSettings,
+  updateScriptInfoSettings,
   updateVoiceoverSettings,
   updateVideoEditSettings,
   updateFullEditRequest

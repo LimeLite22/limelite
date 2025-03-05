@@ -37,7 +37,14 @@ const Interview = () => {
             curProffSettings.subject !== proffSettings.subject ||
             curProffSettings.phone !== proffSettings.phone ||
             curProffSettings.email !== proffSettings.email ||
-            curProffSettings.backgroundInfo !== proffSettings.backgroundInfo
+            curProffSettings.backgroundInfo !== proffSettings.backgroundInfo ||
+            current?.questionSettings.locationSettings.name !== interviewSettings.questionSettings.locationSettings.name ||
+            current.questionSettings.locationSettings.email !== interviewSettings.questionSettings.locationSettings.email ||
+            current.questionSettings.locationSettings.phone !== interviewSettings.questionSettings.locationSettings.phone ||
+            current.questionSettings.virtualSettings.name !== interviewSettings.questionSettings.virtualSettings.name ||
+            current.questionSettings.virtualSettings.email !== interviewSettings.questionSettings.virtualSettings.email ||
+            current.questionSettings.virtualSettings.phone !== interviewSettings.questionSettings.virtualSettings.phone
+
         ) {
 
             if (interviewSettings.questionsAuthor === QUESTIONS_AUTHOR_CLIENT) {
@@ -48,21 +55,73 @@ const Interview = () => {
                 }
             }
             if (interviewSettings.questionsAuthor === QUESTIONS_AUTHOR_PROFESSIONAL) {
-                if (curProffSettings?.subject.length !== 0
-                    && curProffSettings?.email.length !== 0
-                    && String(curProffSettings?.phone).length !== 0
-                    && curProffSettings?.backgroundInfo.length !== 0
+                if ((curProffSettings?.subject.length !== 0
+                    && (curProffSettings?.subject !== proffSettings?.subject
+                    ))
+                    ||
+                    (curProffSettings?.email.length !== 0
+                        && (curProffSettings?.email !== proffSettings?.email
+                        ))
+                    ||
+                    (String(curProffSettings?.phone).length !== 0
+                        && (curProffSettings?.phone !== proffSettings?.phone
+                        ))
+                    ||
+                    (curProffSettings?.backgroundInfo.length !== 0
+                        && (curProffSettings?.backgroundInfo !== proffSettings?.backgroundInfo
+                        ))
+
                 ) {
                     ready = true
                 } else {
                     ready = false
                 }
             }
+            if (interviewSettings?.questionSettings?.type === QUESTIONS_ON_LOCATION) {
+                if ((current.questionSettings.locationSettings.name.length !== 0 &&
+                    (
+                        current.questionSettings.locationSettings.name !==
+                        interviewSettings.questionSettings.locationSettings.name
+                    ))
+                    ||
+                    (current.questionSettings.locationSettings.email.length !== 0 &&
+                        (
+                            current.questionSettings.locationSettings.email !==
+                            interviewSettings.questionSettings.locationSettings.email
+                        )) ||
+                    (String(current.questionSettings.locationSettings.phone).length !== 0 &&
+                        (
+                            current.questionSettings.locationSettings.phone !==
+                            interviewSettings.questionSettings.locationSettings.phone
+                        ))) {
+                    ready = true
+                } else {
+                    ready = false
+                }
+            }
+            if (interviewSettings?.questionSettings?.type === QUESTIONS_VIRTUALLY) {
+                if ((current.questionSettings.virtualSettings.name.length !== 0 &&
+                    (
+                        current.questionSettings.virtualSettings.name !==
+                        interviewSettings.questionSettings.virtualSettings.name
+                    )) ||
+                    (current.questionSettings.virtualSettings.email.length !== 0 &&
+                        (
+                            current.questionSettings.virtualSettings.email !==
+                            interviewSettings.questionSettings.virtualSettings.email
+                        ))
+                    ||
+                    (String(current.questionSettings.virtualSettings.phone).length !== 0 &&
+                        (
+                            current.questionSettings.virtualSettings.phone !==
+                            interviewSettings.questionSettings.virtualSettings.phone
+                        ))) {
 
-
-
-
-
+                    ready = true
+                } else {
+                    ready = false
+                }
+            }
             current.persons?.forEach((item) => {
                 if (item.name.length === 0 || item.title.length === 0) {
                     ready = false

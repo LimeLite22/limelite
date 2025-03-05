@@ -13,10 +13,8 @@ import AddOnThumbnail from "./AddOnThumbnail";
 import AddOnTime from "./AddOnTime";
 import AddOnTurnAround from "./AddOnTurnAround";
 import AddOnTypeAddOns from "./AddOnTypeAddOns";
-import AddOnVoiceoverScript from "./AddOnVoiceoverScript";
 import AddOnVoiceoverTrack from "./AddOnVoiceoverTrack";
 import AddOnZone from "./AddOnZone";
-// isready  не потрібно використовувати бо в контенйнерах буде власна перевірка
 const AddOnsContainer = () => {
     const [isEdit, setIsEdit] = useState(false);
 
@@ -44,7 +42,6 @@ const AddOnsContainer = () => {
                 <AddOnScript isEdit={isEdit} />
                 <AddOnInterviewQuestions isEdit={isEdit} />
                 <AddOnInterviewConduction isEdit={isEdit} />
-                <AddOnVoiceoverScript isEdit={isEdit} />
                 <AddOnVoiceoverTrack isEdit={isEdit} />
                 <AddOnThumbnail isEdit={isEdit} />
                 <AddOnAdditionalFormats isEdit={isEdit} />

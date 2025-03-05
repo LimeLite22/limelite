@@ -133,7 +133,7 @@ const ProjectNarrationBox = () => {
         </div>
       </div>
       {isError && (
-        <div className={styles.typeDropdown__selected_errorMessage}>
+        <div className={styles.dropdownType5__selected_errorMessage}>
           Please fill out all required fields to submit the form
         </div>
       )}

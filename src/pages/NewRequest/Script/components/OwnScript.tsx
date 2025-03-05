@@ -1,58 +1,90 @@
 import {
+  CheckBox,
+  CheckBoxSelected,
+  Expand,
   StatusApproved,
   StatusApprovedBlack,
   StatusProgress,
+  StatusProgressBlack,
   StatusUnavailable,
   StatusUnavailableBlack,
 } from "assets/images";
 import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import useWindowWidth from "hooks/useWindowWidth";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IRootState } from "redux/rootReducer";
 import { wordsCalculator } from "utils/wordCalculator";
 
 import {
-  updateVoiceoverSettings,
-} from "../../../../../redux/requests/reducer";
-import styles from "../../../NewRequest.module.scss";
+  selectRequestInfo,
+  updateDraftField,
+} from "../../../../redux/requests/reducer";
+import styles from "../../NewRequest.module.scss";
 
-
-const OwnScript = () => {
-  const eVIS = useSelector((state: IRootState) => state.request.editDraft)?.voiceTrackSettings;
-  const text = eVIS.scriptAuthorOwnSettings.text;
-  const status = eVIS.scriptAuthorOwnSettings.scriptStatus;
+interface IProps {
+  isExpanded: boolean;
+  setIsExpanded: (value: boolean) => void;
+  isError: {
+    text: boolean;
+    status: boolean;
+  };
+}
+const OwnScript = ({ isExpanded, setIsExpanded, isError }: IProps) => {
+  const selectedRequest = useSelector(selectRequestInfo);
+  const selection = selectedRequest?.script?.scriptWriter;
+  const text = selectedRequest?.script?.scriptText;
+  const status = selectedRequest?.script?.scriptStatus;
   const dispatch = useDispatch();
   const width = useWindowWidth();
-  const { minutes, seconds, words } = wordsCalculator(text);
+  const handleUpdateField = (
+    path: string,
+    value: string,
+  ) => {
+    dispatch(
+      updateDraftField({
+        path,
+        value,
+      }),
+    );
+  };
 
+  const handleSelect = () => {
+    handleUpdateField("script.scriptWriter", OWN_SCRIPT);
+    setIsExpanded(true);
+  };
+  const handleExpand = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    handleUpdateField("script.scriptWriter", OWN_SCRIPT);
+    setIsExpanded(!isExpanded);
+  };
+  const { minutes, seconds, words } = wordsCalculator(text || "");
   return (
     <div
       className={`
-      ${styles.box}
-      ${styles.box_submit}
-      ${styles.box_xl}
-      ${styles.box_expanded}
-  `}
+    ${styles.box}
+    ${selection === OWN_SCRIPT ? styles.box_selected : ""} 
+    ${isExpanded ? styles.box_expanded : ""}`}
+      onClick={handleSelect}
     >
-      <div className={`${styles.box_container} ${styles.box_containerSubmit} `}>
+      <div className={styles.box_header}>
+        <img
+          className={styles.box_circle}
+          src={selection === OWN_SCRIPT ? CheckBoxSelected : CheckBox}
+          alt="CheckBox"
+        />
+        <span className={styles.box_title}>We'll write the script</span>
+        <div className={styles.box_title2}>
+          We will provide a script for this video that is 3 minutes
+        </div>
+      </div>
+      <div className={styles.box_container}>
         <div className={styles.box_text}>Script Status</div>
-        <div className={styles.box_statuses}>
+        <div className={styles.box_statuses} style={{ border: isError.status ? "1px solid var(--red-dark)" : "" }}>
           <div
             className={`${styles.box_status} ${status === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
             onClick={() => {
-              eVIS && dispatch(updateVoiceoverSettings({
-                voiceTrackSettings: {
-                  ...eVIS,
-                  scriptAuthor: OWN_SCRIPT,
-                  scriptAuthorOwnSettings: {
-                    ...eVIS.scriptAuthorOwnSettings,
-                    scriptStatus: APPROVED_TEXT_STATUS
-                  }
-
-                },
-                isEdit: true
-              })
-              )
+              handleUpdateField("script.scriptStatus", APPROVED_TEXT_STATUS)
             }}
           >
             <img src={status === APPROVED_TEXT_STATUS ? StatusApprovedBlack : StatusApproved} alt="status" />
@@ -61,39 +93,16 @@ const OwnScript = () => {
           <div
             className={`${styles.box_status} ${status === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
             onClick={() => {
-              eVIS && dispatch(updateVoiceoverSettings({
-                voiceTrackSettings: {
-                  ...eVIS,
-                  scriptAuthor: OWN_SCRIPT,
-                  scriptAuthorOwnSettings: {
-                    ...eVIS.scriptAuthorOwnSettings,
-                    scriptStatus: IN_PROGRESS_TEXT_STATUS
-                  }
-
-                },
-                isEdit: true
-              })
-              )
+              handleUpdateField("script.scriptStatus", IN_PROGRESS_TEXT_STATUS)
             }}
           >
-            <img src={StatusProgress} alt="status" />
+            <img src={status === IN_PROGRESS_TEXT_STATUS ? StatusProgressBlack : StatusProgress} alt="status" />
             {width > 768 ? 'Work in Progress' : status === IN_PROGRESS_TEXT_STATUS ? 'In Progress' : ''}
           </div>
           <div
             className={`${styles.box_status} ${status === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
             onClick={() => {
-              eVIS && dispatch(updateVoiceoverSettings({
-                voiceTrackSettings: {
-                  ...eVIS,
-                  scriptAuthor: OWN_SCRIPT,
-                  scriptAuthorOwnSettings: {
-                    ...eVIS.scriptAuthorOwnSettings,
-                    scriptStatus: UNAVAILABLE_TEXT_STATUS
-                  }
-                },
-                isEdit: true
-              })
-              )
+              handleUpdateField("script.scriptStatus", UNAVAILABLE_TEXT_STATUS)
             }}
           >
             <img src={status === UNAVAILABLE_TEXT_STATUS ? StatusUnavailableBlack : StatusUnavailable} alt="status" />
@@ -106,24 +115,12 @@ const OwnScript = () => {
           className={styles.textarea}
           style={{
             resize: "none",
+            border: isError.text ? "1px solid var(--red-dark)" : "",
           }}
           placeholder={`Paste any details or web page URL' s with background information here...`}
           value={text}
           onChange={(e) => {
-            eVIS && dispatch(updateVoiceoverSettings({
-              voiceTrackSettings: {
-                ...eVIS,
-                scriptAuthor: OWN_SCRIPT,
-                scriptAuthorOwnSettings: {
-                  ...eVIS.scriptAuthorOwnSettings,
-                  text: e.target.value
-                }
-
-
-              },
-              isEdit: true
-            })
-            )
+            handleUpdateField("script.scriptText", e.target.value);
           }}
         ></textarea>
 
@@ -152,6 +149,11 @@ const OwnScript = () => {
                 /450 words
               </div>
             </div>
+            {isError.text && (
+              <div className={styles.box_addressContainer_input_errorText}>
+                Please complete the fields before proceeding
+              </div>
+            )}
             {minutes > 2 && (
               <div className={styles.box_addressContainer_input_errorText}>
                 Your text is over the suggested word limit.
@@ -159,6 +161,12 @@ const OwnScript = () => {
             )}
           </div>}
       </div>
+      <img
+        onClick={(e) => handleExpand(e)}
+        src={Expand}
+        alt="Expand"
+        className={styles.box_expand}
+      />
     </div>
   );
 };

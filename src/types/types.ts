@@ -56,7 +56,7 @@ export type TCalendarType = "time" | "date" | "schedule";
 export type TApproachValue = 'No Approach' | "Candid Interview Approach" | "Scripted Delivery Approach" | "Voiceover Approach";
 
 
-export type TStep = 'new-request/project' | 'new-request/logistics' | 'new-request/script' | 'new-request/interview' | 'new-request/voiceover' | 'new-request/video-edit' | 'new-request/add-ons' | 'new-request/submit' | 'new-request/final';
+export type TStep = 'new-request/project' | 'new-request/logistics' | 'new-request/narration' | 'new-request/video-edit' | 'new-request/add-ons' | 'new-request/submit' | 'new-request/final';
 
 export type TFilterMenu = 'filter start' | 'filter video type' | 'filter request type' | 'filter requested by' | 'filter status';
 

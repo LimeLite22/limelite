@@ -304,7 +304,7 @@ const LogisticInfo = () => {
                             <img src={current?.safetyEquipment === false ? NoNeedBlack : NoNeed} alt="status" />
                             Not Needed</div>
                     </div>
-                    {lIS?.safetyEquipment === true &&
+                    {current?.safetyEquipment === true &&
                         <>
                             <div className={styles.box_title3}>If "required", please describe the safety training and/or PPE requirements for the filming site/location. Please note, all LimeLite Video Creators are required to follow
                                 all applicable federal, state, and local laws, regulations, ordinances, policies, and procedures

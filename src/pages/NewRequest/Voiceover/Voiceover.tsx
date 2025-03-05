@@ -1,46 +1,43 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { ArrowGray, ArrowGray3, ArrowGray4, DetailsGreen } from "assets/images";
-import useIsStepReady from "hooks/useCheckIsStepReady";
-import { useCustomPadding } from "utils/customPadding";
+import { ArrowGray3, ArrowGray4 } from "assets/images";
+
 
 import FormFooter from "../components/FormFooter";
-import NextButton from "../components/NextButton";
-import StepErrorMessage from "../components/StepErrorMessage";
-import StepsNavigation from "../components/StepsNavigation";
 import styles from "../NewRequest.module.scss";
 
-import InterviewScriptBox from "./components/Script/InterviewScriptBox";
 import VoiceTrackBox from "./components/Track/VoiceTrackBox";
+import IsScriptRequired from "../Script/IsScriptRequiredBox";
+import { useSelector } from "react-redux";
+import { selectRequestInfo } from "../../../redux/requests/reducer";
+import { SCRIPTED_APPROACH } from "consts/consts";
 
 
 const Voiceover = () => {
-  const [showBottomMessage, setShowBottomMessage] = useState(false);
-  const customPadding = useCustomPadding();
-  const { isVoiceoverReady } = useIsStepReady();
-
+  const narrationList = useSelector(selectRequestInfo)?.projectInfoSettings.approachList;
   return (
     <div
       className={styles.nR_container}
       style={{
-        paddingBottom: customPadding,
+        paddingBottom: 0,
       }}
     >
-      <Link to="/new-request/start">
-        <div className={styles.nR_backButton}>
-          <img src={ArrowGray3} alt="" /> Back to New Request{" "}
-        </div>
-      </Link>
+      {!narrationList?.includes(SCRIPTED_APPROACH) &&
+        <Link to="/new-request/start">
+          <div className={styles.nR_backButton}>
+            <img src={ArrowGray3} alt="" /> Back to New Request{" "}
+          </div>
+        </Link>}
       <div className={styles.nR_subContainer}>
-        <StepsNavigation />
         <div className={styles.nR_header}>
           <div className={styles.nR_header_text}>
-            <Link to="/new-request/start">
-              <div className={styles.nR_header_text_button}>
-                <img src={ArrowGray4} alt="" />
-              </div>
-            </Link>
+            {!narrationList?.includes(SCRIPTED_APPROACH) &&
+              <Link to="/new-request/start">
+                <div className={styles.nR_header_text_button}>
+                  <img src={ArrowGray4} alt="" />
+                </div>
+              </Link>
+            }
             About Your Voiceover
           </div>
           <div className={styles.nR_header_subText}>
@@ -50,24 +47,7 @@ const Voiceover = () => {
         </div>
         <div className={styles.nR_formContainer}>
           <VoiceTrackBox />
-          <InterviewScriptBox />
-          {!isVoiceoverReady && showBottomMessage && <StepErrorMessage />}
-          <div className={styles.nR_formContainer_buttons}>
-            <Link to="/new-request/interview">
-              <button className={styles.nR_back}>
-                <img src={ArrowGray} alt="" />
-                Go Back
-              </button>
-            </Link>
-            <div className={styles.nR_buttons_container}>
-              <button className={styles.nR_buttons_save}>
-                <img src={DetailsGreen} alt="" />
-              </button>
-              <NextButton isDisabled={!isVoiceoverReady} onClick={() => {
-                !isVoiceoverReady && setShowBottomMessage(true)
-              }} />
-            </div>
-          </div>
+          {!narrationList?.includes(SCRIPTED_APPROACH) && <IsScriptRequired />}
         </div>
       </div>
       <FormFooter />

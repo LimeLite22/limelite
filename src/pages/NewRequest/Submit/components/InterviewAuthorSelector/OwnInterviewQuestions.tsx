@@ -6,7 +6,7 @@ import {
   StatusUnavailable,
   StatusUnavailableBlack,
 } from "assets/images";
-import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
+import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import useWindowWidth from "hooks/useWindowWidth";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "redux/rootReducer";
@@ -14,7 +14,6 @@ import { wordsCalculator } from "utils/wordCalculator";
 
 import {
   updateInterviewInfoSettings,
-  updateScriptInfoSettings,
 } from "../../../../../redux/requests/reducer";
 import styles from "../../../NewRequest.module.scss";
 
@@ -43,7 +42,7 @@ const OwnScript = () => {
           <div
             className={`${styles.box_status} ${status === APPROVED_TEXT_STATUS ? styles.box_status_approved : ""} `}
             onClick={() => {
-              selectedRequest?.scriptSettings && dispatch(updateInterviewInfoSettings({
+              selectedRequest?.interviewSettings && dispatch(updateInterviewInfoSettings({
                 interviewInfoSettings: {
                   ...selectedRequest?.interviewSettings,
                   questionsAuthorOwnSettings: {
@@ -62,7 +61,7 @@ const OwnScript = () => {
           <div
             className={`${styles.box_status} ${status === IN_PROGRESS_TEXT_STATUS ? styles.box_status_approved : ""} `}
             onClick={() => {
-              selectedRequest?.scriptSettings && dispatch(updateInterviewInfoSettings({
+              selectedRequest?.interviewSettings && dispatch(updateInterviewInfoSettings({
                 interviewInfoSettings: {
                   ...selectedRequest?.interviewSettings,
                   questionsAuthorOwnSettings: {
@@ -81,11 +80,13 @@ const OwnScript = () => {
           <div
             className={`${styles.box_status} ${status === UNAVAILABLE_TEXT_STATUS ? styles.box_status_approved : ""} `}
             onClick={() => {
-              selectedRequest?.scriptSettings && dispatch(updateScriptInfoSettings({
-                scriptInfoSettings: {
-                  ...selectedRequest?.scriptSettings,
-                  scriptWriter: OWN_SCRIPT,
-                  scriptStatus: UNAVAILABLE_TEXT_STATUS
+              selectedRequest?.interviewSettings && dispatch(updateInterviewInfoSettings({
+                interviewInfoSettings: {
+                  ...selectedRequest?.interviewSettings,
+                  questionsAuthorOwnSettings: {
+                    ...selectedRequest?.interviewSettings.questionsAuthorOwnSettings,
+                    scriptStatus: IN_PROGRESS_TEXT_STATUS
+                  }
                 },
                 isEdit: true
               })
@@ -106,14 +107,18 @@ const OwnScript = () => {
           placeholder={`Paste any details or web page URL' s with background information here...`}
           value={text}
           onChange={(e) => {
-            selectedRequest?.scriptSettings && dispatch(updateScriptInfoSettings({
-              scriptInfoSettings: {
-                ...selectedRequest?.scriptSettings,
-                scriptWriter: OWN_SCRIPT,
-                ownText: e.target.value
+            selectedRequest?.interviewSettings && dispatch(updateInterviewInfoSettings({
+              interviewInfoSettings: {
+                ...selectedRequest?.interviewSettings,
+                questionsAuthorOwnSettings: {
+                  ...selectedRequest?.interviewSettings.questionsAuthorOwnSettings,
+                  text: e.target.value
+                }
               },
               isEdit: true
             })
+
+
             )
           }}
         ></textarea>

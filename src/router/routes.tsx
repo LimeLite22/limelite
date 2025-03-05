@@ -16,17 +16,15 @@ import {
 import CreateProfile from "pages/CreateProfile/CreateProfile";
 import Login from "pages/Login/Login";
 import AddOns from "pages/NewRequest/AddOns/AddOns";
-import Interview from "pages/NewRequest/Interview/Interview";
 import Logistics from "pages/NewRequest/Logistics/Logistics";
+import Narration from "pages/NewRequest/Narration/Narration";
 import ProjectInfo from "pages/NewRequest/ProjectInfo/ProjectInfo";
-import ScriptedDelivery from "pages/NewRequest/ScriptedDelivery/ScriptedDelivery";
 import Submit from "pages/NewRequest/Submit/Submit";
 import VideoEdit from "pages/NewRequest/VideoEdit/VideoEdit";
-import Voiceover from "pages/NewRequest/Voiceover/Voiceover";
 import PasswordNew from "pages/PasswordNew/PasswordNew";
 import PasswordReset from "pages/PasswordReset/PasswordReset";
 import ProjectsPage from "pages/Projects/Projects";
-import { createBrowserRouter,RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import PrivateRoute from "./PrivateRouter";
 
@@ -74,21 +72,9 @@ const routes = createBrowserRouter([
             ),
           },
           {
-            path: "/new-request/script",
+            path: "new-request/narration",
             element: (
-              <PrivateRoute component={ScriptedDelivery} redirectTo="/auth" />
-            ),
-          },
-          {
-            path: "/new-request/interview",
-            element: (
-              <PrivateRoute component={Interview} redirectTo="/auth" />
-            ),
-          },
-          {
-            path: "new-request/voiceover",
-            element: (
-              <PrivateRoute component={Voiceover} redirectTo="/auth" />
+              <PrivateRoute component={Narration} redirectTo="/auth" />
             ),
           },
           {

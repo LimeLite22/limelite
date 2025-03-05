@@ -22,15 +22,12 @@ const PageContainer = () => {
   const location = useLocation();
   const { pathname } = location;
 
-  // Utility function for path checks
 
   // Route-specific flags
   const isNewRequestSteps = useIsPathIncluded([
     "new-request/project",
     "new-request/logistics",
-    "new-request/script",
-    "new-request/interview",
-    "new-request/voiceover",
+    "new-request/narration",
     "new-request/video-edit",
     "new-request/add-ons",
     "new-request/submit",

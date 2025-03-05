@@ -8,8 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectRequestInfo,
   updateDraftField,
-} from "../../../../../../redux/requests/reducer";
-import styles from "../../../../NewRequest.module.scss";
+} from "../../../../redux/requests/reducer";
+import styles from "../../NewRequest.module.scss";
 
 interface IProps {
   isExpanded: boolean;
@@ -27,11 +27,11 @@ const ProffessionalScript = ({
   isError,
 }: IProps) => {
   const selectedRequest = useSelector(selectRequestInfo);
-  const selection = selectedRequest?.scriptSettings?.scriptWriter;
-  const name = selectedRequest?.scriptSettings?.name;
-  const email = selectedRequest?.scriptSettings?.email;
-  const phone = selectedRequest?.scriptSettings?.phone;
-  const text = selectedRequest?.scriptSettings?.backgroundInfo;
+  const selection = selectedRequest?.script?.scriptWriter;
+  const name = selectedRequest?.script?.name;
+  const email = selectedRequest?.script?.email;
+  const phone = selectedRequest?.script?.phone;
+  const text = selectedRequest?.script?.backgroundInfo;
 
   const dispatch = useDispatch();
   const handleUpdateField = (
@@ -47,11 +47,11 @@ const ProffessionalScript = ({
   };
 
   const handleSelect = () => {
-    handleUpdateField("scriptSettings.scriptWriter", PROFESSIONAL_SCRIPT);
+    handleUpdateField("script.scriptWriter", PROFESSIONAL_SCRIPT);
     setIsExpanded(true);
   };
   const handleExpand = (e: React.MouseEvent) => {
-    handleUpdateField("scriptSettings.scriptWriter", PROFESSIONAL_SCRIPT);
+    handleUpdateField("script.scriptWriter", PROFESSIONAL_SCRIPT);
     setIsExpanded(!isExpanded);
     e.stopPropagation();
     e.preventDefault();
@@ -111,7 +111,7 @@ const ProffessionalScript = ({
           <input
             value={name}
             onChange={(e) => {
-              handleUpdateField("scriptSettings.name", e.target.value);
+              handleUpdateField("script.name", e.target.value);
             }}
             placeholder="Write a full name"
             type="name"
@@ -136,7 +136,7 @@ const ProffessionalScript = ({
                 `}
               value={phone}
               onChange={(e) => {
-                handleUpdateField("scriptSettings.phone", e.target.value);
+                handleUpdateField("script.phone", e.target.value);
               }}
               placeholder="+1 123 456 7890"
               name="phone"
@@ -164,7 +164,7 @@ const ProffessionalScript = ({
             `}
               value={email}
               onChange={(e) => {
-                handleUpdateField("scriptSettings.email", e.target.value);
+                handleUpdateField("script.email", e.target.value);
               }}
               placeholder="example@email.com"
               name="email"
@@ -195,7 +195,7 @@ const ProffessionalScript = ({
             placeholder={`Paste any details or web page URL' s with background information here...`}
             value={text}
             onChange={(e) => {
-              handleUpdateField("scriptSettings.backgroundInfo", e.target.value);
+              handleUpdateField("script.backgroundInfo", e.target.value);
             }}
           ></textarea>
           {isError.text && (

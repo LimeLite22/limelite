@@ -7,21 +7,22 @@ import { testRequest } from "../../../redux/requests/consts";
 import styles from "../ProjectsPage.module.scss";
 const VoiceoverSettings = () => {
     const selectedRequest = testRequest;
-    const current = selectedRequest?.voiceTrackSettings
+    const voiceTrackSettings = selectedRequest?.voiceTrackSettings;
+    const scriptSettings = selectedRequest?.script;
 
     return (
         <div className={styles.infoContainer}>
             <div className={styles.infoContainer_header}>About Your Voiceover
             </div>
-            <div className={styles.infoContainer_text}><p>Track Author:</p> {current?.trackAuthor}</div>
-            {current.trackAuthor === TRACK_AUTHOR_CLIENT &&
+            <div className={styles.infoContainer_text}><p>Track Author:</p> {voiceTrackSettings?.trackAuthor}</div>
+            {voiceTrackSettings.trackAuthor === TRACK_AUTHOR_CLIENT &&
                 <div className={styles.infoContainer_text}>
                     <p>Track:</p>
                     {<div className={styles.box_audioFileSubmit}>
                         <img src={Audio} alt="" />
                         <div>
-                            <div className={styles.box_audioFileSubmit_text}>{current.track !== DEFAULT && current.track?.name}</div>
-                            <div className={styles.box_audioFileSubmit_text}>{current.track !== DEFAULT && current.track?.size && Number(current.track?.size / 1000000).toFixed(2)} mb</div>
+                            <div className={styles.box_audioFileSubmit_text}>{voiceTrackSettings.track !== DEFAULT && voiceTrackSettings.track?.name}</div>
+                            <div className={styles.box_audioFileSubmit_text}>{voiceTrackSettings.track !== DEFAULT && voiceTrackSettings.track?.size && Number(voiceTrackSettings.track?.size / 1000000).toFixed(2)} mb</div>
                         </div>
                     </div>
                     }
@@ -29,33 +30,33 @@ const VoiceoverSettings = () => {
                 </div>}
 
 
-            <div className={styles.infoContainer_text}><p>Script Author:</p> {current?.scriptAuthor}</div>
-            {current.scriptAuthor === PROFESSIONAL_SCRIPT &&
+            <div className={styles.infoContainer_text}><p>Script Author:</p> {scriptSettings.scriptWriter}</div>
+            {scriptSettings.scriptWriter === PROFESSIONAL_SCRIPT &&
                 <div>
                     <div className={styles.infoContainer_text}><p>Subject matter expert:</p>
-                        {current.scriptAuthorProfSettings.subject}
+                        {scriptSettings?.name}
                     </div>
                     <div>
                         <div className={styles.infoContainer_text}><p>Phone:</p>
-                            {current.scriptAuthorProfSettings.phone}
+                            {scriptSettings?.phone}
                         </div>
                         <div className={styles.infoContainer_text}><p>Email:</p>
-                            {current.scriptAuthorProfSettings.email}
+                            {scriptSettings?.email}
                         </div>
                     </div>
 
                 </div>
             }
-            {current.scriptAuthor === OWN_SCRIPT &&
+            {scriptSettings?.scriptWriter === OWN_SCRIPT &&
                 <>
                     <div className={styles.infoContainer_text}><p>Script Status:</p>
-                        {current.scriptAuthorOwnSettings.scriptStatus}
+                        {selectedRequest.script.scriptStatus}
                     </div>
                     <div className={styles.infoContainer_text}><p className={`
                 ${styles.infoContainer_detailsHeader}
                 `}
                     >Script:</p>
-                        <DivRowCount text={current.scriptAuthorOwnSettings.text} />
+                        <DivRowCount text={selectedRequest.script.scriptText} />
                     </div>
                 </>}
 

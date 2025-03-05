@@ -1,25 +1,27 @@
 import { ArrowGray3, ArrowGray4 } from "assets/images";
-import { INTERVIEW_STEP, LOGISTICS_STEP, SCRIPT_STEP, VIDEO_EDIT_STEP, VOICEOVER_STEP } from "consts/consts";
+import { CANDID_APPROACH, LOGISTICS_STEP, SCRIPTED_APPROACH, VIDEO_EDIT_STEP, VOICEOVER_APPROACH } from "consts/consts";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { selectSteps, updateFullEditRequest } from "../../../redux/requests/reducer";
+import { selectRequestInfo, selectSteps, updateFullEditRequest } from "../../../redux/requests/reducer";
 import BackButton from "../components/BackButton";
 import NextButton from "../components/NextButton"
 import StepsNavigation from "../components/StepsNavigation";
 import styles from "../NewRequest.module.scss";
 import AddOnsContainer from "./components/AddOnsContainer";
-import InterviewProffScript from "./components/Interview";
+import Interview from "./components/Interview";
 import LogisticInfo from "./components/Logistic";
 import ProjectInfo from "./components/ProjectInfo";
+import ScriptedDeliveryInfo from "./components/ScriptedDeliveryInfo";
 import ScriptInfo from "./components/ScriptInfo";
+import ScriptSelector from "./components/ScriptSelector/ScriptSelector";
 import VideoEdit from "./components/VideoEdit";
-import VoiceoverProfScript from "./components/VoiceoverOwnScript";
-import VoiceoverOwnScript from "./components/VoiceoverProffScript";
+import Voiceover from "./components/Voiceover";
 
 const Submit = () => {
     const steps = useSelector(selectSteps);
+    const request = useSelector(selectRequestInfo);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(updateFullEditRequest())
@@ -49,10 +51,11 @@ const Submit = () => {
                 </div>
                 <ProjectInfo />
                 {steps.includes(LOGISTICS_STEP) && <LogisticInfo />}
-                {steps.includes(SCRIPT_STEP) && <ScriptInfo />}
-                {steps.includes(INTERVIEW_STEP) && <InterviewProffScript />}
-                {steps.includes(VOICEOVER_STEP) && <VoiceoverOwnScript />}
-                {steps.includes(VOICEOVER_STEP) && <VoiceoverProfScript />}
+                {request?.projectInfoSettings.approachList.includes(SCRIPTED_APPROACH) && <ScriptedDeliveryInfo />}
+                {request?.projectInfoSettings.approachList.includes(VOICEOVER_APPROACH) && <ScriptInfo />}
+                {request?.projectInfoSettings.approachList.includes(CANDID_APPROACH) && <Interview />}
+                {request?.projectInfoSettings.approachList.includes(VOICEOVER_APPROACH) && <Voiceover />}
+
                 {steps.includes(VIDEO_EDIT_STEP) && <VideoEdit />}
                 <AddOnsContainer />
                 <div className={styles.nR_submitContainer_agreement} >

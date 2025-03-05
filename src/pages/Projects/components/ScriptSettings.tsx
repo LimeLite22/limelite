@@ -6,26 +6,26 @@ import { testRequest } from "../../../redux/requests/consts";
 import styles from "../ProjectsPage.module.scss";
 const ScriptSettings = () => {
     const selectedRequest = testRequest;
-    const scriptSettings = { ...selectedRequest?.scriptSettings }
+    const scriptSettings = { ...selectedRequest?.script };
     return (
         <div className={styles.infoContainer}>
             <div className={styles.infoContainer_header}>Scripted Delivery
             </div>
             <div className={styles.infoContainer_text}><p>Script Writer:</p>{scriptSettings?.scriptWriter} </div>
-            {selectedRequest?.scriptSettings.scriptWriter === OWN_SCRIPT &&
+            {selectedRequest?.script.scriptWriter === OWN_SCRIPT &&
                 <>
                     <div className={styles.infoContainer_text}><p>Script Status:</p>
-                        {selectedRequest?.scriptSettings.scriptStatus}
+                        {selectedRequest?.script.scriptStatus}
                     </div>
                     <div className={styles.infoContainer_text}><p className={`
                 ${styles.infoContainer_detailsHeader}
                 `}
                     >Script:</p>
-                        <DivRowCount text={selectedRequest?.scriptSettings.ownText} />
+                        <DivRowCount text={selectedRequest?.script.scriptText} />
                     </div>
                 </>
             }
-            {selectedRequest?.scriptSettings.scriptWriter === PROFESSIONAL_SCRIPT &&
+            {selectedRequest?.script.scriptWriter === PROFESSIONAL_SCRIPT &&
                 <>
                     <div className={styles.infoContainer_text}><p>Subject matter expert :</p>
                         {scriptSettings?.name}
@@ -45,7 +45,7 @@ const ScriptSettings = () => {
                 </>
             }
             <div className={styles.infoContainer_text}><p>Teleprompter:</p>
-                {scriptSettings?.teleprompter ? "Yes" : "No"}
+                {selectedRequest.scriptSettings?.teleprompter ? "Yes" : "No"}
             </div>
             <div className={styles.infoContainer_text}><p>Script delivers:</p>
 

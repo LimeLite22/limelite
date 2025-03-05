@@ -1,7 +1,4 @@
-import { DEFAULT } from 'consts/consts';
 import { RequestStatusType, TApproachValue, TLocation, TOption, TPerson, TProjectTone, TQuestionAuthor, TQuestionLocation, TRush, TScriptWriter, TStep, TTextStatus, TThumbnail, TTimeValue, TTravel, TValue, TVideo, TVideoDuration, TVoiceAuthor } from "types/types";
-
-import { selectUnreadNotificationsNumber } from './../redux/notifications/reducer';
 
 export interface ILocation {
   type: TLocation;
@@ -69,16 +66,18 @@ export interface IInterviewSettings {
     };
   };
 };
+export interface IScriptedDeliverySettings {
+  teleprompter: boolean | 'default';
+  persons: TPerson[];
+}
 export interface IScriptSettings {
   scriptWriter: TScriptWriter;
+  scriptText: string;
   scriptStatus: TTextStatus;
   name: string;
   phone: number | "";
   email: string;
   backgroundInfo: string;
-  ownText: string;
-  teleprompter: boolean | 'default';
-  persons: TPerson[];
 }
 
 export interface ITileClassNameProps {
@@ -118,17 +117,6 @@ export interface ILogisticSettings {
 export interface IVoiceoverSettings {
   trackAuthor: TVoiceAuthor;
   track: File | 'default';
-  scriptAuthor: TScriptWriter;
-  scriptAuthorProfSettings: {
-    subject: string;
-    phone: number | "";
-    email: string;
-    backgroundInfo: string;
-  };
-  scriptAuthorOwnSettings: {
-    scriptStatus: TTextStatus;
-    text: string;
-  };
 }
 export interface IVideoSettings {
   format: TVideo;
@@ -171,10 +159,11 @@ export interface IRequest {
   id: string;
   projectInfoSettings: IProjectInfoSettings,
   logisticSettings: ILogisticSettings;
-  scriptSettings: IScriptSettings;
+  scriptSettings: IScriptedDeliverySettings;
   interviewSettings: IInterviewSettings;
   voiceTrackSettings: IVoiceoverSettings;
   videoSettings: IVideoSettings;
+  script: IScriptSettings
 }
 export interface IRequestState {
   selectedRequest: string;

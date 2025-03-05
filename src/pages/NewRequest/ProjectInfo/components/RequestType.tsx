@@ -25,7 +25,7 @@ const RequestType: FC = () => {
   }
   return (
     <div className={styles.requestType}>
-      <div className={styles.typeDropdown_header}> Type of your request*</div>
+      <div className={styles.dropdownType5_header}> Type of your request*</div>
       <div className={styles.requestTypeContainer}>
         {optionsList.map((option) => {
           return (

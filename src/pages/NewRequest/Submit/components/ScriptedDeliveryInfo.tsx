@@ -1,22 +1,24 @@
 
-import { CloseRed, EditIcon, StatusApproved, StatusApprovedBlack, StatusProgress, StatusProgressBlack, StatusUnavailable, StatusUnavailableBlack, Success2 } from "assets/images";
+import { CheckBox, CheckBoxSelected, CloseRed, EditIcon, StatusApproved, StatusApprovedBlack, StatusProgress, StatusProgressBlack, StatusUnavailable, StatusUnavailableBlack, Success2 } from "assets/images";
 import { APPROVED_TEXT_STATUS, IN_PROGRESS_TEXT_STATUS, OWN_SCRIPT, PROFESSIONAL_SCRIPT, UNAVAILABLE_TEXT_STATUS } from "consts/consts";
 import useWindowWidth from "hooks/useWindowWidth";
-import { IScriptSettings } from "interfaces/interfaces";
+import { IScriptedDeliverySettings, IScriptSettings } from "interfaces/interfaces";
 import DivRowCount from "pages/NewRequest/components/TextArea";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { wordsCalculator } from "utils/wordCalculator";
 
+import ScriptPersons from "./ScriptPersons";
 import { selectRequestInfo, updateScriptInfoSettings } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
-const ScriptInfo = () => {
+const ScriptedDeliveryInfo = () => {
     const selectedRequest = useSelector(selectRequestInfo);
     const dispatch = useDispatch();
     const width = useWindowWidth();
     const [isEdit, setIsEdit] = useState(false);
     const [isReady, setIsReady] = useState(false);
     const [scriptSettings, setScriptSettings] = useState(selectedRequest?.script);
+    const [scriptedDeliverySettings, setScriptedDeliverySettings] = useState(selectedRequest?.scriptSettings);
 
     const readyToSave = () => {
         let ready = true;
@@ -26,7 +28,9 @@ const ScriptInfo = () => {
             || scriptSettings?.name !== selectedRequest?.script?.name
             || scriptSettings?.phone !== selectedRequest?.script?.phone
             || scriptSettings?.email !== selectedRequest?.script?.email
+            || scriptedDeliverySettings?.teleprompter !== selectedRequest?.scriptSettings.teleprompter
             || scriptSettings?.backgroundInfo !== selectedRequest?.script?.backgroundInfo
+            || scriptedDeliverySettings?.persons !== selectedRequest?.scriptSettings.persons
         ) {
 
             if (scriptSettings?.scriptWriter === PROFESSIONAL_SCRIPT) {
@@ -44,6 +48,11 @@ const ScriptInfo = () => {
                 }
 
             }
+            scriptedDeliverySettings?.persons?.forEach((item) => {
+                if (item.name.length === 0 || item.title.length === 0) {
+                    ready = false
+                }
+            })
 
         } else {
             ready = false
@@ -128,7 +137,7 @@ const ScriptInfo = () => {
                             <DivRowCount text={selectedRequest?.script.scriptText} />
                         }
                     </div>
-                    {scriptSettings?.scriptStatus === APPROVED_TEXT_STATUS && isEdit &&
+                    {selectedRequest?.script.scriptStatus === APPROVED_TEXT_STATUS && isEdit &&
                         <div className={styles.textareaContainer}>
                             <div className={styles.textarea_estimate}>
                                 <div>
@@ -203,6 +212,48 @@ const ScriptInfo = () => {
                     </div>
                 </>
             }
+
+
+            <div className={styles.infoContainer_text}><p>Teleprompter:</p>
+                {isEdit ? <div className={styles.infoContainer_telepromptOptions}>
+                    <div
+                        className={styles.teleprompter_option}
+                        onClick={() => scriptedDeliverySettings && setScriptedDeliverySettings({ ...scriptedDeliverySettings, teleprompter: true })}
+                    >
+                        <img
+                            src={scriptedDeliverySettings?.teleprompter === true ? CheckBoxSelected : CheckBox}
+                            alt="locationIcon"
+                        />
+                        Yes
+                    </div>
+                    <div
+                        className={styles.teleprompter_option}
+                        onClick={() => scriptedDeliverySettings && setScriptedDeliverySettings({ ...scriptedDeliverySettings, teleprompter: false })}
+
+                    >
+                        <img
+                            src={scriptedDeliverySettings?.teleprompter === false ? CheckBoxSelected : CheckBox}
+                            alt="locationIcon"
+                        />
+                        No
+                    </div>
+                </div> : scriptedDeliverySettings?.teleprompter ? "Yes" : "No"}
+            </div>
+            <div className={styles.infoContainer_text}><p>Persons:</p>
+
+                {(isEdit && selectedRequest?.scriptSettings?.persons) ?
+                    <ScriptPersons persons={scriptedDeliverySettings?.persons} setPersons={(persons) => scriptedDeliverySettings && setScriptedDeliverySettings({ ...scriptedDeliverySettings, persons: persons })} />
+                    : <div>
+                        {selectedRequest?.scriptSettings?.persons?.map((person, index) => {
+
+                            return <div>
+                                {person.name}({person.title})
+                                {(selectedRequest?.scriptSettings?.persons?.length - 1 === index &&
+                                    selectedRequest?.scriptSettings?.persons.length > 1) ? ',' : ''}</div>
+                        })}
+                    </div>}
+
+            </div>
             {isEdit &&
                 <div className={styles.infoContainer_header_buttons}>
                     <div
@@ -222,4 +273,4 @@ const ScriptInfo = () => {
     )
 }
 
-export default ScriptInfo;
+export default ScriptedDeliveryInfo;
