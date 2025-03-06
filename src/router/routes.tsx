@@ -13,6 +13,7 @@ import {
   WalkThrough,
   Welcome,
 } from "pages";
+import AddOnsPage from "pages/AddOns/AddOns";
 import CreateProfile from "pages/CreateProfile/CreateProfile";
 import Login from "pages/Login/Login";
 import AddOns from "pages/NewRequest/AddOns/AddOns";
@@ -100,6 +101,10 @@ const routes = createBrowserRouter([
             element: (
               <PrivateRoute component={Final} redirectTo="/auth" />
             ),
+          },
+          {
+            path: "/add-ons",
+            element: <AddOnsPage />,
           },
           {
             path: "/welcome",

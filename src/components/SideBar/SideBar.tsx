@@ -28,7 +28,7 @@ import {
   Support,
 } from "../../assets/images";
 
-interface IProps  {
+interface IProps {
   isOpened: boolean;
   setIsOpened: (value: boolean) => void;
 };
@@ -53,6 +53,11 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
       location.pathname.includes("new-request/start")
     ) {
       setSelectedPage(NEW_REQUEST);
+    }
+    if (
+      location.pathname.includes("add-ons")
+    ) {
+      setSelectedPage(ADD_ONS);
     }
   }, [location]);
 
@@ -116,7 +121,7 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
             onClick={handleLinkClick}
           />
         </Link>
-        <Link to="" >
+        <Link to="/add-ons">
           <SideBarNavItem
             selectedPage={selectedPage}
             setSelectedPage={setSelectedPage}

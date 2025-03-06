@@ -179,3 +179,24 @@ export { default as WhatisNew2 } from "./WhatIsNew/Slider2.png";
 export { default as WhatisNew3 } from "./WhatIsNew/Slider3.png";
 export { default as WhatisNew4 } from "./WhatIsNew/Slider4.png";
 export { default as SocialMediaType } from "./WhatIsNew/SocialMediaType.svg";
+
+// add ons icons 
+
+export { default as ActorAddOn } from "./Сommon/ActorAddOn.svg";
+export { default as AdditionalVideosAddOn } from "./Сommon/AdditionalVideosAddOn.svg";
+export { default as AfterHoursShotAddOn } from "./Сommon/AfterHoursShotAddOn.svg";
+export { default as AnimationAddOn } from "./Сommon/AnimationAddOn.svg";
+export { default as CandidPhotographyAddOn } from "./Сommon/CandidPhotographyAddOn.svg";
+export { default as DroneAddOn } from "./Сommon/DroneAddOn.svg";
+export { default as GoAddOn } from "./Сommon/GoAddOn.svg";
+export { default as HDEditionAddOn } from "./Сommon/HDEditingAddOn.svg";
+export { default as HDShootAddOn } from "./Сommon/HDShootAddOn.svg";
+export { default as HomeRentalAddOn } from "./Сommon/HomeRentalAddOn.svg";
+export { default as IdeationSessionAddOn } from "./Сommon/IdeationSessionAddOn.svg";
+export { default as MakeUpAddOn } from "./Сommon/MakeUpAddOn.svg";
+export { default as RawDeliveryAddOn } from "./Сommon/RawDeliveryAddOn.svg";
+export { default as RushEditAddOn } from "./Сommon/RushEditAddOn.svg";
+export { default as ScriptAddOn } from "./Сommon/ScriptAddOn.svg";
+export { default as SecondCameraAddOn } from "./Сommon/SecondCameraAddOn.svg";
+export { default as StudioRentalAddOn } from "./Сommon/StudioRentalAddOn.svg";
+export { default as VoiceoverAddOn } from "./Сommon/VoiceoverAddOn.svg";

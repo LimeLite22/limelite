@@ -1,0 +1,14 @@
+.page {
+    &_list {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: center;
+        &_item {
+            width: calc(33.33% - 16px);
+            max-width: 360px;
+            height: 100px;
+        }
+    }
+}
