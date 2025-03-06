@@ -10,18 +10,28 @@ import { useSelector } from "react-redux";
 import { selectRequestInfo } from "../../../redux/requests/reducer";
 import { CANDID_APPROACH, SCRIPTED_APPROACH, VOICEOVER_APPROACH } from "consts/consts";
 import useIsStepReady from "hooks/useCheckIsStepReady";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StepErrorMessage from "../components/StepErrorMessage";
+import { useNavigate } from "react-router";
 
 
 const Narration = () => {
     const narrationList = useSelector(selectRequestInfo)?.projectInfoSettings.approachList;
     const [showBottomMessage, setShowBottomMessage] = useState(false);
+    const navigate = useNavigate();
     const { isInterviewReady, isScriptReady, isVoiceoverReady, isScriptedDeliveryReady } = useIsStepReady();
     const isStepReady =
         (!narrationList?.includes(CANDID_APPROACH) || isInterviewReady)
         && (!narrationList?.includes(SCRIPTED_APPROACH) || (isScriptedDeliveryReady && isScriptReady))
         && (!narrationList?.includes(VOICEOVER_APPROACH) || isVoiceoverReady);
+
+    useEffect(() => {
+        narrationList?.length === 0 && navigate("/new-request/project");
+    }, [])
+    if (narrationList?.length === 0) {
+        return null
+    }
+
     return (
         <>
             <StepsNavigation />

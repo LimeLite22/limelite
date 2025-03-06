@@ -8,31 +8,32 @@ import { selectRequestInfo, updateStepsList } from '../redux/requests/reducer';
 
 
 export const useConfigureStepsList = () => {
-    const request = useSelector(selectRequestInfo)?.projectInfoSettings;
+    const request = useSelector(selectRequestInfo);
+    const projectInfoSettings = request?.projectInfoSettings;
     const dispatch = useDispatch();
 
     useEffect(() => {
         const uS: TStep[] = []
-        if (request?.option?.value === SHOOT_EDIT || request?.option?.value === OTHER) {
+        if (projectInfoSettings?.option?.value === SHOOT_EDIT || projectInfoSettings?.option?.value === OTHER) {
             uS.push(PROJECT_STEP);
             uS.push(LOGISTICS_STEP);
-            uS.push(NARRATION_STEP);
+            projectInfoSettings.approachList.length !== 0 && uS.push(NARRATION_STEP);
             uS.push(VIDEO_EDIT_STEP);
             uS.push(ADD_ONS_STEP);
             uS.push(SUBMIT_STEP);
             uS.push(FINAL_STEP);
             dispatch(updateStepsList(uS));
         }
-        if (request?.option?.value === SHOOT_ONLY) {
+        if (projectInfoSettings?.option?.value === SHOOT_ONLY) {
             uS.push(PROJECT_STEP);
             uS.push(LOGISTICS_STEP);
-            uS.push(NARRATION_STEP);
+            projectInfoSettings.approachList.length !== 0 && uS.push(NARRATION_STEP);
             uS.push(ADD_ONS_STEP);
             uS.push(SUBMIT_STEP);
             uS.push(FINAL_STEP);
             dispatch(updateStepsList(uS));
         }
-        if (request?.option?.value === EDIT_ONLY) {
+        if (projectInfoSettings?.option?.value === EDIT_ONLY) {
             uS.push(PROJECT_STEP);
             uS.push(VIDEO_EDIT_STEP);
             uS.push(ADD_ONS_STEP);
