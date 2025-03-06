@@ -200,3 +200,7 @@ export { default as ScriptAddOn } from "./Сommon/ScriptAddOn.svg";
 export { default as SecondCameraAddOn } from "./Сommon/SecondCameraAddOn.svg";
 export { default as StudioRentalAddOn } from "./Сommon/StudioRentalAddOn.svg";
 export { default as VoiceoverAddOn } from "./Сommon/VoiceoverAddOn.svg";
+export { default as DroneFoto1 } from "./Сommon/DroneFoto1.png";
+export { default as DroneFoto2 } from "./Сommon/DroneFoto2.png";
+export { default as DroneFoto3 } from "./Сommon/DroneFoto3.png";
+export { default as DroneFoto4 } from "./Сommon/DroneFoto4.png";
