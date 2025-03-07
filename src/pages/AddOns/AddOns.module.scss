@@ -24,6 +24,24 @@
             letter-spacing: 0%;
             color: var(--gray-dark);
             border-radius: 100px;
+            font-family: Inter;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 120%;
+            letter-spacing: 0%;
+            color: var(--gray-dark3);
+            cursor: pointer;
+            user-select: none;
+            white-space: nowrap;
+            &_active {
+                font-family: Inter;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 120%;
+                letter-spacing: 0%;
+                color: var(--gray-black);
+                background-color: var(--gray-light7);
+            }
         }
     }
     &_list {
@@ -32,6 +50,9 @@
         flex-wrap: wrap;
         gap: 16px;
         justify-content: center;
+        @media screen and (max-width: 768px) {
+            gap: 12px;
+        }
         &_item {
             width: calc(33.33% - 10.7px);
             max-width: 360px;
@@ -179,8 +200,10 @@
                 font-family: Poppins;
                 font-size: 18px;
                 font-weight: 500;
-                line-height: 27px;
-                text-align: center;
+                line-height: 100%;
+                height: 34px;
+                margin-top: 30px;
+                text-align: left;
                 font-size: 20px;
                 line-height: 24px;
                 margin-bottom: 12px;
@@ -205,7 +228,6 @@
                 margin-top: 12px;
                 display: flex;
                 justify-content: center;
-                flex: 1;
             }
             @media screen and (max-width: 410px) {
                 font-size: 14px;
@@ -225,10 +247,28 @@
             display: flex;
             justify-content: space-between;
             margin-bottom: 24px;
+            @media screen and (max-width: 768px) {
+                flex-direction: column;
+                gap: 12px;
+            }
         }
         &_foto {
             width: 375px;
             height: 215px;
+            @media screen and (max-width: 768px) {
+                width: 100%;
+                height: auto;
+            }
+        }
+        &_line {
+            width: 80px;
+            height: 5px;
+            background-color: var(--gray-light3);
+            border-radius: 45px;
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
         }
         &_fotos {
             display: flex;
@@ -239,6 +279,9 @@
                 width: 100px;
                 height: 64px;
                 cursor: pointer;
+            }
+            @media screen and (max-width: 768px) {
+                flex-direction: row;
             }
         }
         &_subText {
@@ -292,6 +335,10 @@
                 letter-spacing: 2%;
                 color: var(--black);
                 margin-left: 16px;
+                @media screen and (max-width: 768px) {
+                    flex: 1;
+                    text-align: right;
+                }
             }
         }
     }

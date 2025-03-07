@@ -43,7 +43,32 @@ const AddOnItem = ({ item }: { item: { id: string; img: string; header: string; 
                     ></div>
                     <Sheet.Container className={styles.learnMore_sheet}>
                         <Sheet.Content className={styles.learnMore_sheetContainer}>
-
+                            <div className={styles.learnMore_container_line}></div>
+                            <div className={styles.learnMore_container_header}>
+                                {item.header}
+                            </div>
+                            <div className={styles.learnMore_container_fotoContainer}>
+                                <img className={styles.learnMore_container_foto} src={fotosList[0]} alt="" />
+                                <div className={styles.learnMore_container_fotos}>
+                                    <img src={fotosList[1]} onClick={() => {
+                                        setFotosList([fotosList[1], fotosList[0], fotosList[2], fotosList[3]])
+                                    }} alt="" />
+                                    <img src={fotosList[2]} onClick={() => {
+                                        setFotosList([fotosList[2], fotosList[0], fotosList[1], fotosList[3]])
+                                    }}
+                                        alt="" />
+                                    <img src={fotosList[3]}
+                                        onClick={() => {
+                                            setFotosList([fotosList[3], fotosList[0], fotosList[1], fotosList[2]])
+                                        }}
+                                        alt="" />
+                                </div>
+                            </div>
+                            <div className={styles.learnMore_container_price}>Price:<span>${item.price[0]}</span><div className={styles.learnMore_container_price_each}>/each</div></div>
+                            <div className={styles.learnMore_container_text}>{item.text}</div>
+                            <div className={styles.learnMore_container_subText}>
+                                <img src={Note} alt="locationIcon" /> Add-ons are discounted services that are only available to active monthly subscribers and subject to availability.
+                            </div>
                         </Sheet.Content>
                     </Sheet.Container>
                 </Sheet>
