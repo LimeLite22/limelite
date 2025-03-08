@@ -317,7 +317,9 @@ const InspirationItem = ({ item }: { item: IInspiration }): JSX.Element => {
   }
 
   return (
-    <div onClick={handleOpen}>
+    <div onClick={handleOpen} className={
+      styles.welcomeContainer__content_main_inspiration_cardItem
+    } >
       <div
         className={
           styles.welcomeContainer__content_main_inspiration_cardItem_img
@@ -330,6 +332,13 @@ const InspirationItem = ({ item }: { item: IInspiration }): JSX.Element => {
         className={
           styles.welcomeContainer__content_main_inspiration_cardItem_header
         }
+
+        style={
+          item.header === 'Testimonials/Case Studies' ?
+            {
+              wordBreak: `break-word`,
+              overflowWrap: `break-word`
+            } : {}}
       >
         {item.header}
       </div>
@@ -345,7 +354,7 @@ const InspirationItem = ({ item }: { item: IInspiration }): JSX.Element => {
           styles.welcomeContainer__content_main_inspiration_cardItem_downArrow
         }
       ></div>
-    </div>
+    </div >
   );
 };
 

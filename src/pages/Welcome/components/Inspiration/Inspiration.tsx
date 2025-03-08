@@ -62,9 +62,6 @@ const Inspiration = (): JSX.Element => {
             {inspirationsList.map((item) => (
               <SwiperSlide
                 key={generateUniqueId()}
-                className={
-                  styles.welcomeContainer__content_main_inspiration_cardItem
-                }
               >
                 <InspirationItem item={item} />
               </SwiperSlide>
