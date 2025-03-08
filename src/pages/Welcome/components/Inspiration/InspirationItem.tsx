@@ -3,16 +3,16 @@ import "swiper/css/pagination";
 
 import { Close } from "assets/images";
 import useWindowWidth from "hooks/useWindowWidth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRef } from "react";
 import ReactDOM from "react-dom";
 import type { Swiper as SwiperType } from "swiper";
-import { EffectCoverflow, Navigation, Pagination } from "swiper/modules";
-import { A11y, Keyboard, Mousewheel, Scrollbar } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Sheet } from "react-modal-sheet";
+import { Autoplay } from "swiper/modules";
 
-import { embedCode1, embedCode2, embedCode3 } from "./data";
+import { embedCode1, embedCode2, embedCode3, embedCode4, embedCode5, embedCode6 } from "./data";
 import styles from "../../Welcome.module.scss";
 export interface IInspiration {
   id: string;
@@ -28,12 +28,29 @@ export interface IInspiration {
 
 const InspirationItem = ({ item }: { item: IInspiration }): JSX.Element => {
   const [isOpened, setIsOpened] = useState(false);
-  const swiperRef = useRef<SwiperType>();
   const [activeIndex, setActiveIndex] = useState(1);
+  const [selectedVideo, setSelectedVideo] = useState(embedCode1);
   const width = useWindowWidth();
   const handleOpen = () => {
     setIsOpened(true);
   };
+
+  const swiperRef = useRef<SwiperType>();
+  useEffect(() => {
+    const swiperInstance = swiperRef.current?.swiper;
+    if (swiperInstance) {
+      const handleTransitionStart = () => {
+        swiperInstance.update();
+      };
+
+      swiperInstance.on("slideChangeTransitionStart", handleTransitionStart);
+
+      return () => {
+        swiperInstance.off("slideChangeTransitionStart", handleTransitionStart);
+      };
+    }
+  }, []);
+
   if (isOpened && width > 768) {
     return ReactDOM.createPortal(
       <div
@@ -77,98 +94,69 @@ const InspirationItem = ({ item }: { item: IInspiration }): JSX.Element => {
               </div>
             )
           }
+          <div
+            style={{ width: "100%", height: "auto", maxWidth: "420px", margin: "0 auto" }}
+            dangerouslySetInnerHTML={{ __html: selectedVideo }}
+          />
           <Swiper
-            modules={[
-              Navigation,
-              Pagination,
-              Scrollbar,
-              A11y,
-              Keyboard,
-              Mousewheel,
-              EffectCoverflow,
-            ]}
+            spaceBetween={8}
+            autoplay={{
+              delay: 2000,
+            }}
+            centeredSlides={true}
             onBeforeInit={(swiper: SwiperType) => {
               swiperRef.current = swiper;
             }}
-            allowTouchMove={true}
-            spaceBetween={16}
-            draggable={true}
-            slidesPerView={1}
-            initialSlide={1}
-            navigation
-            className={styles.inspirationPopUpContainer_content_swiper}
-            effect="coverflow"
-            coverflowEffect={{
-              rotate: 10,
-              stretch: 0,
-              depth: 100,
-              modifier: 1,
-              slideShadows: false,
-            }}
+            gap={16}
+            slidesPerView={3}
+            loop={true}
+            className={styles.inspirationPopUpContainer_swiper_container}
+            modules={[Autoplay, Pagination]}
           >
-            <SwiperSlide
-              className={styles.inspirationPopUpContainer_content_swiper_item}
+            <SwiperSlide className={styles.inspirationPopUpContainer_swiper_item}
+              onClick={() => {
+                setSelectedVideo(embedCode1);
+              }}
             >
-              <div
-                style={{ width: "100%", height: "100%" }}
-                dangerouslySetInnerHTML={{ __html: embedCode1 }}
-              />
+              1  foto of video
             </SwiperSlide>
-            <SwiperSlide
-              className={styles.inspirationPopUpContainer_content_swiper_item}
+            <SwiperSlide className={styles.inspirationPopUpContainer_swiper_item}
+              onClick={() => {
+                setSelectedVideo(embedCode2);
+              }}
             >
-              <div
-                style={{ width: "100%", height: "100%" }}
-                dangerouslySetInnerHTML={{ __html: embedCode2 }}
-              />
+              2 foto of video
             </SwiperSlide>
-            <SwiperSlide
-              className={styles.inspirationPopUpContainer_content_swiper_item}
+            <SwiperSlide className={styles.inspirationPopUpContainer_swiper_item}
+              onClick={() => {
+                setSelectedVideo(embedCode3);
+              }}
             >
-              <div
-                style={{ width: "100%", height: "100%" }}
-                dangerouslySetInnerHTML={{ __html: embedCode3 }}
-              />
+              3 foto of video
             </SwiperSlide>
+            <SwiperSlide className={styles.inspirationPopUpContainer_swiper_item}
+              onClick={() => {
+                setSelectedVideo(embedCode4);
+              }}
+            >
+              4 foto of video
+            </SwiperSlide>
+            <SwiperSlide className={styles.inspirationPopUpContainer_swiper_item}
+              onClick={() => {
+                setSelectedVideo(embedCode5);
+              }}
+            >
+              5 foto of video
+            </SwiperSlide>
+            <SwiperSlide className={styles.inspirationPopUpContainer_swiper_item}
+              onClick={() => {
+                setSelectedVideo(embedCode6);
+              }}
+            >
+              6 foto of video
+            </SwiperSlide>
+
           </Swiper>
-          <div className={styles.inspirationPopUpContainer_content_buttons}>
-            <button
-              style={{
-                background: activeIndex === 0 ? "var(--green-dark2)" : "",
-              }}
-              className={
-                styles.inspirationPopUpContainer_content_buttons_button
-              }
-              onClick={() => {
-                setActiveIndex(0);
-                swiperRef.current?.slideTo(0);
-              }}
-            ></button>
-            <button
-              style={{
-                background: activeIndex === 1 ? "var(--green-dark2)" : "",
-              }}
-              className={
-                styles.inspirationPopUpContainer_content_buttons_button
-              }
-              onClick={() => {
-                setActiveIndex(1);
-                swiperRef.current?.slideTo(1);
-              }}
-            ></button>
-            <button
-              style={{
-                background: activeIndex === 2 ? "var(--green-dark2)" : "",
-              }}
-              className={
-                styles.inspirationPopUpContainer_content_buttons_button
-              }
-              onClick={() => {
-                setActiveIndex(2);
-                swiperRef.current?.slideTo(2);
-              }}
-            ></button>
-          </div>
         </div>
       </div>,
       document.body,
@@ -199,124 +187,69 @@ const InspirationItem = ({ item }: { item: IInspiration }): JSX.Element => {
             <div className={styles.inspirationPopUpContainer_content_title}>
               {item.header2}
             </div>
+            <div
+              style={{ width: "100%", height: "auto", maxWidth: "420px", margin: "0 auto" }}
+              dangerouslySetInnerHTML={{ __html: selectedVideo }}
+            />
             <Swiper
-              modules={[
-                Navigation,
-                Pagination,
-                Scrollbar,
-                A11y,
-                Keyboard,
-                Mousewheel,
-                EffectCoverflow,
-              ]}
+              spaceBetween={8}
+              autoplay={{
+                delay: 2000,
+              }}
+              centeredSlides={true}
               onBeforeInit={(swiper: SwiperType) => {
                 swiperRef.current = swiper;
               }}
-              allowTouchMove={true}
-              spaceBetween={16}
-              draggable={true}
-              slidesPerView={1}
-              initialSlide={1}
-              navigation
-              className={styles.inspirationPopUpContainer_content_swiper}
-              effect="coverflow"
-              coverflowEffect={{
-                rotate: 10,
-                stretch: 0,
-                depth: 100,
-                modifier: 1,
-                slideShadows: false,
-              }}
+              gap={16}
+              slidesPerView={3}
+              loop={true}
+              className={styles.inspirationPopUpContainer_swiper_container}
+              modules={[Autoplay, Pagination]}
             >
-              <SwiperSlide
-                className={styles.inspirationPopUpContainer_content_swiper_item}
+              <SwiperSlide className={styles.inspirationPopUpContainer_swiper_item}
+                onClick={() => {
+                  setSelectedVideo(embedCode1);
+                }}
               >
-                <div
-                  style={{ width: "100%", height: "100%" }}
-                  dangerouslySetInnerHTML={{ __html: embedCode1 }}
-                />
+                1  foto of video
               </SwiperSlide>
-              <SwiperSlide
-                className={styles.inspirationPopUpContainer_content_swiper_item}
+              <SwiperSlide className={styles.inspirationPopUpContainer_swiper_item}
+                onClick={() => {
+                  setSelectedVideo(embedCode2);
+                }}
               >
-                <div
-                  style={{ width: "100%", height: "100%" }}
-                  dangerouslySetInnerHTML={{ __html: embedCode2 }}
-                />
+                2 foto of video
               </SwiperSlide>
-              <SwiperSlide
-                className={styles.inspirationPopUpContainer_content_swiper_item}
+              <SwiperSlide className={styles.inspirationPopUpContainer_swiper_item}
+                onClick={() => {
+                  setSelectedVideo(embedCode3);
+                }}
               >
-                <div
-                  style={{ width: "100%", height: "100%" }}
-                  dangerouslySetInnerHTML={{ __html: embedCode3 }}
-                />
+                3 foto of video
               </SwiperSlide>
+              <SwiperSlide className={styles.inspirationPopUpContainer_swiper_item}
+                onClick={() => {
+                  setSelectedVideo(embedCode4);
+                }}
+              >
+                4 foto of video
+              </SwiperSlide>
+              <SwiperSlide className={styles.inspirationPopUpContainer_swiper_item}
+                onClick={() => {
+                  setSelectedVideo(embedCode5);
+                }}
+              >
+                5 foto of video
+              </SwiperSlide>
+              <SwiperSlide className={styles.inspirationPopUpContainer_swiper_item}
+                onClick={() => {
+                  setSelectedVideo(embedCode6);
+                }}
+              >
+                6 foto of video
+              </SwiperSlide>
+
             </Swiper>
-            <div className={styles.inspirationPopUpContainer_content_buttons}>
-              <div
-                className={
-                  styles.inspirationPopUpContainer_content_buttons_buttonContainer
-                }
-                onClick={() => {
-                  setActiveIndex(0);
-                  swiperRef.current?.slideTo(0);
-                }}
-              >
-                <button
-                  style={{
-                    background: activeIndex === 0 ? "var(--green-dark2)" : "",
-                  }}
-                  className={
-                    styles.inspirationPopUpContainer_content_buttons_button
-                  }
-                ></button>
-              </div>
-              <div
-                className={
-                  styles.inspirationPopUpContainer_content_buttons_buttonContainer
-                }
-                onClick={() => {
-                  setActiveIndex(1);
-                  swiperRef.current?.slideTo(1);
-                }}
-              >
-                <button
-                  style={{
-                    background: activeIndex === 1 ? "var(--green-dark2)" : "",
-                  }}
-                  className={
-                    styles.inspirationPopUpContainer_content_buttons_button
-                  }
-                  onClick={() => {
-                    setActiveIndex(1);
-                    swiperRef.current?.slideTo(1);
-                  }}
-                ></button>
-              </div>
-              <div
-                className={
-                  styles.inspirationPopUpContainer_content_buttons_buttonContainer
-                }
-                onClick={() => {
-                  setActiveIndex(2);
-                  swiperRef.current?.slideTo(2);
-                }}
-              >
-                <button
-                  style={{
-                    background: activeIndex === 2 ? "var(--green-dark2)" : "",
-                  }}
-                  className={
-                    styles.inspirationPopUpContainer_content_buttons_button
-                  }
-                  onClick={() => {
-                    setActiveIndex(2);
-                    swiperRef.current?.slideTo(2);
-                  }}
-                ></button>
-              </div>
-            </div>
             <div className={styles.inspirationPopUpContainer_content_text}>
               {item.text2}
             </div>
