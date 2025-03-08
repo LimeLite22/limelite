@@ -5,7 +5,7 @@ import { Sheet } from "react-modal-sheet";
 import useWindowWidth from "hooks/useWindowWidth";
 import { Close, DroneFoto1, DroneFoto2, DroneFoto3, DroneFoto4, Note } from "assets/images";
 
-const AddOnItem = ({ item }: { item: { id: string; img: string; header: string; text: string; price: number[]; } }) => {
+const AddOnItem = ({ item }: { item: { id: string; img: string; header: string; text: string; price: string; } }) => {
     const [isOpened, setIsOpened] = useState(false);
     const width = useWindowWidth();
     const [fotosList, setFotosList] = useState([
@@ -19,7 +19,7 @@ const AddOnItem = ({ item }: { item: { id: string; img: string; header: string; 
                 <div className={styles.page_list_item_header}>{item.header}</div>
                 <div className={styles.page_list_item_text}>{item.text}</div>
                 <div className={styles.page_list_item_container}>
-                    <div><span>${item.price[0]}</span>/each</div>
+                    <div className={styles.credit}>{item.price}</div>
                     <div className={styles.page_list_item_button} onClick={() => setIsOpened(true)} >See details</div>
                 </div>
             </div>
@@ -64,7 +64,7 @@ const AddOnItem = ({ item }: { item: { id: string; img: string; header: string; 
                                         alt="" />
                                 </div>
                             </div>
-                            <div className={styles.learnMore_container_price}>Price:<span>${item.price[0]}</span><div className={styles.learnMore_container_price_each}>/each</div></div>
+                            <div className={styles.learnMore_container_price}>Price:  <div className={styles.credit}>{item.price}</div><div className={styles.learnMore_container_price_each}>/each</div></div>
                             <div className={styles.learnMore_container_text}>{item.text}</div>
                             <div className={styles.learnMore_container_subText}>
                                 <img src={Note} alt="locationIcon" /> Add-ons are discounted services that are only available to active monthly subscribers and subject to availability.
@@ -109,7 +109,7 @@ const AddOnItem = ({ item }: { item: { id: string; img: string; header: string; 
                                         alt="" />
                                 </div>
                             </div>
-                            <div className={styles.learnMore_container_price}>Price:<span>${item.price[0]}</span><div className={styles.learnMore_container_price_each}>/each</div></div>
+                            <div className={styles.learnMore_container_price}>Price:  <div className={styles.credit}>{item.price}</div></div>
                             <div className={styles.learnMore_container_text}>{item.text}</div>
                             <div className={styles.learnMore_container_subText}>
                                 <img src={Note} alt="locationIcon" /> Add-ons are discounted services that are only available to active monthly subscribers and subject to availability.
