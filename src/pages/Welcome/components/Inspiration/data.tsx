@@ -269,22 +269,6 @@ export const inspirationsList: IInspiration[] = [
   },
   {
     id: generateUniqueId(),
-    img: SocialMedia,
-    header: 'Television Commercials',
-    text: 'Drive sales and awareness on TV',
-    header2: 'Cast a Wider Net and Reel in Your Audience with TV Commercials',
-    text2: `
-    Create a television commercial to showcase your brand, engage viewers, and deliver impactful messages 
-    to a wider audience. Traditional television commercials can cost tens of thousands of dollars to produce, 
-    making it challenging for many businesses to access this medium. However, LimeLite allows subscribers to 
-    create quality content at a fraction of the price. With strategic storytelling and compelling visuals, 
-    television commercials can effectively communicate value propositions, increase brand awareness, and 
-    significantly enhance reach without breaking the bank.
-    `,
-    text3: `Unlock the power of your LimeLite subscription—click here to create your first telvision commercial.`,
-  },
-  {
-    id: generateUniqueId(),
     img: TelevisionCommercials,
     header: 'Television Commercials',
     text: 'Drive sales and awareness on TV',
