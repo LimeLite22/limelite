@@ -1523,6 +1523,22 @@
         text-align: center;
       }
     }
+    &_title2 {
+      color: var(--gray-dark);
+
+      font-family: "Poppins";
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 120%;
+      margin-bottom: 16px;
+      @media screen and (max-width: 768px) {
+        color: var(--black);
+        font-size: 12px;
+        margin-bottom: 12px;
+        font-family: Poppins;
+        line-height: 21.6px;
+      }
+    }
     &_text {
       color: var(--gray-dark);
       font-family: Inter;
@@ -1543,13 +1559,12 @@
       width: 336px;
       height: 200px;
       overflow: visible !important;
-      margin-top: 48px;
+      margin-top: 36px;
       @media screen and (max-width: 768px) {
         margin-top: 0px;
         width: 308px;
         height: 166px;
         margin-bottom: 0px;
-        // border:1px solid red;
       }
       &_item {
         width: 336px;
@@ -1564,7 +1579,6 @@
           border-radius: 6px;
           overflow: hidden;
           width: 290px;
-          // border:1px solid blue;
           margin-top: 0px;
         }
       }

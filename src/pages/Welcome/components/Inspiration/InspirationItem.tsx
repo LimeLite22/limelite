@@ -64,6 +64,19 @@ const InspirationItem = ({ item }: { item: IInspiration }): JSX.Element => {
           <div className={styles.inspirationPopUpContainer_content_text}>
             {item.text3}
           </div>
+          {item.title1 && (
+            <div className={styles.inspirationPopUpContainer_content_title2}>
+              {item.title1}
+            </div>
+          )
+          }
+          {
+            item.title2 && (
+              <div className={styles.inspirationPopUpContainer_content_title2}>
+                {item.title2}
+              </div>
+            )
+          }
           <Swiper
             modules={[
               Navigation,
@@ -310,6 +323,19 @@ const InspirationItem = ({ item }: { item: IInspiration }): JSX.Element => {
             <div className={styles.inspirationPopUpContainer_content_text}>
               {item.text3}
             </div>
+            {item.title1 && (
+              <div className={styles.inspirationPopUpContainer_content_title2}>
+                {item.title1}
+              </div>
+            )
+            }
+            {
+              item.title2 && (
+                <div className={styles.inspirationPopUpContainer_content_title2}>
+                  {item.title2}
+                </div>
+              )
+            }
           </Sheet.Content>
         </Sheet.Container>
       </Sheet>
