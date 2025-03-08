@@ -1484,7 +1484,7 @@
     }
     &_item {
       width: 242px;
-      height: 100px;
+      height: 80px;
       border-radius: 5px;
       display: flex;
       align-items: center;
@@ -1502,7 +1502,7 @@
       }
     }
     &_container {
-      max-height: 130px;
+      max-height: 80px;
       margin-top: 25px;
       border-radius: 6px;
       max-width: 100% !important;
@@ -1510,7 +1510,7 @@
       @media screen and (max-width: 768px) {
         max-height: 170px;
         margin-top: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         border-radius: 6px;
       }
     }
