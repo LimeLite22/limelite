@@ -14,9 +14,10 @@ import {
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { generateUniqueId } from "utils/generateId";
 
-import { data } from "./data";
+import { inspirationsList } from "./data";
 import InspirationItem from "./InspirationItem";
 import styles from "../../Welcome.module.scss";
+
 
 const Inspiration = (): JSX.Element => {
   const [position, setPosition] = useState(0);
@@ -38,73 +39,48 @@ const Inspiration = (): JSX.Element => {
       <div
         className={styles.welcomeContainer__content_main_inspiration_cardsList}
       >
-        <Swiper
-          modules={[
-            Navigation,
-            Pagination,
-            Scrollbar,
-            A11y,
-            Keyboard,
-            Mousewheel,
-          ]}
-          allowTouchMove={windowWidth > 768 ? false : true}
-          spaceBetween={16}
-          draggable={false}
-          scrollbar={{ draggable: false }}
-          slidesPerView={windowWidth > 1440 ? 9 : 7}
-          className={
-            styles.welcomeContainer__content_main_inspiration_cardsList_swiper
-          }
-        >
-          <ChangeSlide position={position} />
-          <SwiperSlide
-            key={generateUniqueId()}
+        {windowWidth > 768 ?
+          <Swiper
+            modules={[
+              Navigation,
+              Pagination,
+              Scrollbar,
+              A11y,
+              Keyboard,
+              Mousewheel,
+            ]}
+            allowTouchMove={windowWidth > 768 ? false : true}
+            spaceBetween={16}
+            draggable={false}
+            scrollbar={{ draggable: false }}
+            slidesPerView={windowWidth > 1440 ? 9 : 7}
             className={
-              styles.welcomeContainer__content_main_inspiration_cardItem
+              styles.welcomeContainer__content_main_inspiration_cardsList_swiper
             }
           >
-            {" "}
-            <InspirationItem />
-          </SwiperSlide>
-          {data.map((item) => (
-            <SwiperSlide
-              key={generateUniqueId()}
-              className={
-                styles.welcomeContainer__content_main_inspiration_cardItem
-              }
-            >
-              <div
+            <ChangeSlide position={position} />
+            {inspirationsList.map((item) => (
+              <SwiperSlide
+                key={generateUniqueId()}
                 className={
-                  styles.welcomeContainer__content_main_inspiration_cardItem_img
+                  styles.welcomeContainer__content_main_inspiration_cardItem
                 }
               >
-                <img src={item.img} alt={"CompanyOverviewIcon"} />
-              </div>{" "}
-              <div
-                className={
-                  styles.welcomeContainer__content_main_inspiration_cardItem_header
-                }
-              >
-                {item.header}
-              </div>
-              <div
-                className={
-                  styles.welcomeContainer__content_main_inspiration_cardItem_text
-                }
-              >
-                {item.text}
-              </div>
-              <div
-                className={
-                  styles.welcomeContainer__content_main_inspiration_cardItem_downArrow
-                }
-              ></div>
-            </SwiperSlide>
-          ))}
-          {Array.from({ length: 5 }).map(() => (
-            <SwiperSlide key={generateUniqueId()}></SwiperSlide>
-          ))}
-        </Swiper>
+                <InspirationItem item={item} />
+              </SwiperSlide>
+            ))}
+            {Array.from({ length: 5 }).map(() => (
+              <SwiperSlide key={generateUniqueId()}></SwiperSlide>
+            ))}
+          </Swiper> :
+          <>
+            {
+              inspirationsList.map((item) => (
+                <InspirationItem item={item} />
+              ))
+            }
+          </>
+        }
       </div>
       <div
         className={
@@ -121,7 +97,7 @@ const Inspiration = (): JSX.Element => {
         ></button>
         <button
           onClick={() => {
-            position < data.length - 3 && setPosition(position + 3);
+            position < inspirationsList.length - 3 && setPosition(position + 3);
           }}
           className={
             styles.welcomeContainer__content_main_inspiration_cardsList_bullets_forward
