@@ -1,7 +1,7 @@
 import "swiper/css";
 import "swiper/css/pagination";
 
-import { DEFAULT, OWN_ADDRESS } from "consts/consts";
+import { DEFAULT, HOME_RENTAL, OWN_ADDRESS, STUDIO_RENTAL } from "consts/consts";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -57,6 +57,34 @@ const Location = () => {
       setIsAddressExpanded(false);
     }
   };
+  useEffect(() => {
+    if (
+      type === OWN_ADDRESS &&
+      (street?.trim() === "" ||
+        city?.trim() === "" ||
+        state?.trim() === "" ||
+        company?.trim() === "" ||
+        zip?.trim() === "" ||
+        healthCareStatus === DEFAULT ||
+        (healthCareStatus === true && healthCareText?.length === 0)
+      )
+    ) {
+      setIsError(true);
+      setIsHomeExpanded(false);
+      setIsStudioExpanded(false);
+      setIsAddressExpanded(true);
+    }
+    if (type === STUDIO_RENTAL) {
+      setIsHomeExpanded(false);
+      setIsStudioExpanded(true);
+      setIsAddressExpanded(false);
+    }
+    if (type === HOME_RENTAL) {
+      setIsHomeExpanded(true);
+      setIsStudioExpanded(false);
+      setIsAddressExpanded(false);
+    }
+  }, [type])
   useEffect(() => {
     if (
       type !== OWN_ADDRESS ||

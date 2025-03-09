@@ -55,28 +55,26 @@ const ProjectInfo = () => {
             shoot
           </div>
         </div>
-        <div className={styles.nR_content}>
-          <div className={styles.nR_formContainer}>
-            <RequestType />
-            <ProjectNameBox />
-            <TargetAudienceBox />
-            <ProjectType />
-            <ProjectTone />
-            <ProjectNarrationBox />
-            <ShotListBox />
-            {!isProjectInfoReady && showBottomMessage && (
-              <StepErrorMessage />
-            )}
-            <div className={styles.nR_formContainer_buttons}>
-              <BackButton />
-              <div className={styles.nR_buttons_container}>
-                <button className={styles.nR_buttons_save}>
-                  <img src={DetailsGreen} alt="" />
-                </button>
-                <NextButton isDisabled={!isProjectInfoReady} onClick={() => {
-                  !isProjectInfoReady && setShowBottomMessage(true);
-                }} />
-              </div>
+        <div className={styles.nR_formContainer}>
+          <RequestType />
+          <ProjectNameBox />
+          <TargetAudienceBox />
+          <ProjectType />
+          <ProjectTone />
+          <ProjectNarrationBox />
+          <ShotListBox />
+          {!isProjectInfoReady && showBottomMessage && (
+            <StepErrorMessage />
+          )}
+          <div className={styles.nR_formContainer_buttons}>
+            <BackButton />
+            <div className={styles.nR_buttons_container}>
+              <button className={styles.nR_buttons_save}>
+                <img src={DetailsGreen} alt="" />
+              </button>
+              <NextButton isDisabled={!isProjectInfoReady} onClick={() => {
+                !isProjectInfoReady && setShowBottomMessage(true);
+              }} />
             </div>
           </div>
         </div>

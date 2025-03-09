@@ -101,6 +101,36 @@ const QuestionsAuthorBox = () => {
     virtualEmail,
     virtualPhone,
   ]);
+  useEffect(() => {
+    if (
+      type === QUESTIONS_ON_LOCATION &&
+      (locationName?.trim() === "" ||
+        locationEmail?.trim() === "" ||
+        locationPhone === "")
+    ) {
+      setIsError(true);
+      setIsLocationQuestionExpanded(true);
+      setIsVirtualQuestionsExpanded(false);
+      setIsVirtulalInterviewExpanded(false);
+    }
+    if (
+      type === QUESTIONS_VIRTUALLY &&
+      (virtualName?.trim() === "" ||
+        virtualEmail?.trim() === "" ||
+        virtualPhone === "")
+    ) {
+      setIsError(true);
+      setIsLocationQuestionExpanded(false);
+      setIsVirtualQuestionsExpanded(true);
+      setIsVirtulalInterviewExpanded(false);
+    }
+    if (type === VIRTUAL_INTERVIEW) {
+      setIsError(true);
+      setIsLocationQuestionExpanded(false);
+      setIsVirtualQuestionsExpanded(false);
+      setIsVirtulalInterviewExpanded(true);
+    }
+  }, [type])
 
   return (
     <div ref={containerRef} tabIndex={-1} onBlur={handleBlur}>

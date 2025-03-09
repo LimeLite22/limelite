@@ -93,8 +93,13 @@ const InterviewQuestionsBox = () => {
 
   useEffect(() => {
     if (selection === DEFAULT) return;
-    if (selection === QUESTIONS_AUTHOR_CLIENT) setIsOwnExpanded(true);
+
+    if (selection === QUESTIONS_AUTHOR_CLIENT) {
+      setIsProffessionalExpanded(false)
+      setIsOwnExpanded(true)
+    }
     if (selection === QUESTIONS_AUTHOR_PROFESSIONAL) {
+      setIsOwnExpanded(false);
       setIsProffessionalExpanded(true);
       setIsError({
         subject: false,

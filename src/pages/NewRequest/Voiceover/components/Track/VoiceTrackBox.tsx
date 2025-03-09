@@ -53,12 +53,17 @@ const VoiceTrackBox = () => {
 
   useEffect(() => {
     if (selection === DEFAULT) return;
-    if (selection === TRACK_AUTHOR_CLIENT) setIsOwnExpanded(true);
-    if (selection === TRACK_AUTHOR_PROFESSIONAL)
+    if (selection === TRACK_AUTHOR_CLIENT) {
+      setIsProffessionalExpanded(false);
+      setIsOwnExpanded(true);
+    }
+    if (selection === TRACK_AUTHOR_PROFESSIONAL) {
+      setIsOwnExpanded(false);
       setIsProffessionalExpanded(true);
-    setIsError({
-      track: false,
-    });
+      setIsError({
+        track: false,
+      });
+    }
   }, [selection]);
   useEffect(() => {
     if (selection === TRACK_AUTHOR_CLIENT) {

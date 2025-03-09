@@ -92,16 +92,22 @@ const IsScriptRequired = () => {
 
   useEffect(() => {
     if (selection === DEFAULT) return;
-    if (selection === OWN_SCRIPT) setIsOwnExpanded(true);
-    if (selection === PROFESSIONAL_SCRIPT) setIsProffessionalExpanded(true);
-    setIsError({
-      name: false,
-      phone: false,
-      email: false,
-      ownScript: false,
-      ownScriptStatus: false,
-      proffessionalScript: false,
-    });
+    if (selection === OWN_SCRIPT) {
+      setIsOwnExpanded(true);
+      setIsProffessionalExpanded(false);
+    }
+    if (selection === PROFESSIONAL_SCRIPT) {
+      setIsOwnExpanded(false);
+      setIsProffessionalExpanded(true);
+      setIsError({
+        name: false,
+        phone: false,
+        email: false,
+        ownScript: false,
+        ownScriptStatus: false,
+        proffessionalScript: false,
+      });
+    }
   }, [selection]);
   useEffect(() => {
     if (selection === OWN_SCRIPT) {
