@@ -1245,6 +1245,10 @@
       align-items: center;
       margin-bottom: 36px;
       text-decoration: none;
+      width: 655px;
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
       a {
         text-decoration: none;
       }
