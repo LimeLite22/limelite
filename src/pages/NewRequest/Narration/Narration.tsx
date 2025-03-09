@@ -33,7 +33,7 @@ const Narration = () => {
     }
 
     return (
-        <>
+        <div className={styles.nR_container}>
             <StepsNavigation />
             {narrationList?.includes(SCRIPTED_APPROACH) && <ScriptedDelivery />}
             {narrationList?.includes(CANDID_APPROACH) && <Interview />}
@@ -41,7 +41,7 @@ const Narration = () => {
             {!isStepReady && showBottomMessage && (
                 <StepErrorMessage />
             )}
-            <div className={styles.nR_formContainer_buttons} style={{ marginBottom: '160px', marginTop: '48px' }}>
+            <div className={styles.nR_formContainer_buttons} style={{ marginTop: '48px' }}>
                 <BackButton />
                 <div className={styles.nR_buttons_container}>
                     <button className={styles.nR_buttons_save}>
@@ -52,7 +52,7 @@ const Narration = () => {
                     }} />
                 </div>
             </div>
-        </>
+        </div >
     )
 }
 

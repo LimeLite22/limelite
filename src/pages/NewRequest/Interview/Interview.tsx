@@ -16,7 +16,6 @@ const Interview = () => {
   const narrationList = useSelector(selectRequestInfo)?.projectInfoSettings.approachList;
   return (
     <div
-      className={styles.nR_container}
       style={{
         paddingBottom: 0,
       }}
