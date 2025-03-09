@@ -169,10 +169,12 @@ const LogisticInfo = () => {
                         <p>Protective equipment</p>
                         {current.safetyEquipment === true ? 'Required' : 'Not Required'}
                     </div>
-                    <div className={styles.infoContainer_text} >
-                        <p>Protective equipment description</p>
-                        {current.safetyEquipmentDescription}
-                    </div>
+                    {current.safetyEquipment === true &&
+                        <div className={styles.infoContainer_text} >
+                            <p>Protective equipment description</p>
+                            {current.safetyEquipmentDescription}
+                        </div>
+                    }
 
                 </>
             }
