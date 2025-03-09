@@ -3376,6 +3376,16 @@
         margin: 0 auto;
       }
       &_img {
+        height: 130px;
+        border-radius: 5px;
+        @media screen and (max-width: 768px) {
+          max-width: 319px;
+          width: 319px;
+          height: 170px;
+          max-height: 170px;
+        }
+      }
+      &_img2 {
         width: 30% !important;
         height: 130px;
         border-radius: 5px;

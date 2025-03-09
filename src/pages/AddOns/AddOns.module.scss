@@ -282,6 +282,11 @@
             }
             @media screen and (max-width: 768px) {
                 flex-direction: row;
+                img {
+                    width: 30%;
+                    height: auto;
+                    cursor: pointer;
+                }
             }
         }
         &_subText {
