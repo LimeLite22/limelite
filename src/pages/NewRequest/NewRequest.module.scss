@@ -91,7 +91,7 @@
       @media screen and (max-width: 768px) {
         align-items: flex-start;
         justify-content: space-between;
-        gap: 4px;
+        gap: 12px;
       }
     }
     &_checkbox {
@@ -5407,6 +5407,7 @@
   gap: 8px;
   @media screen and (max-width: 768px) {
     gap: 12px;
+    justify-content: space-between;
   }
   &_item {
     width: calc(50% - 8px);
@@ -5435,8 +5436,8 @@
     cursor: pointer;
 
     @media screen and (max-width: 768px) {
-      width: calc(50% - 12px);
-      min-width: calc(50% - 12px);
+      width: calc(50% - 6px);
+      min-width: calc(50% - 6px);
       height: 42px;
     }
   }
