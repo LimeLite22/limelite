@@ -9,11 +9,7 @@ import Teleprompter from "./components/Teleprompter";
 const ScriptedDelivery = () => {
 
   return (
-    <div
-      style={{
-        paddingBottom: 0,
-      }}
-    >
+    <>
       <Link to="/new-request/start">
         <div className={styles.nR_backButton}>
           <img src={ArrowGray3} alt="" /> Back to New Request{" "}
@@ -41,7 +37,7 @@ const ScriptedDelivery = () => {
         </div>
       </div>
       <FormFooter />
-    </div>
+    </>
   );
 };
 

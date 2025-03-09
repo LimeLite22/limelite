@@ -16,11 +16,7 @@ import { SCRIPTED_APPROACH } from "consts/consts";
 const Voiceover = () => {
   const narrationList = useSelector(selectRequestInfo)?.projectInfoSettings.approachList;
   return (
-    <div
-      style={{
-        paddingBottom: 0,
-      }}
-    >
+    <>
       {!narrationList?.includes(SCRIPTED_APPROACH) &&
         <Link to="/new-request/start">
           <div className={styles.nR_backButton}>
@@ -50,7 +46,7 @@ const Voiceover = () => {
         </div>
       </div>
       <FormFooter />
-    </div>
+    </>
   );
 };
 

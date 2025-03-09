@@ -15,11 +15,7 @@ import { selectRequestInfo } from "../../../redux/requests/reducer";
 const Interview = () => {
   const narrationList = useSelector(selectRequestInfo)?.projectInfoSettings.approachList;
   return (
-    <div
-      style={{
-        paddingBottom: 0,
-      }}
-    >
+    <>
       {!narrationList?.includes(SCRIPTED_APPROACH) &&
         <Link to="/new-request/start">
           <div className={styles.nR_backButton}>
@@ -49,7 +45,7 @@ const Interview = () => {
         </div>
       </div>
       <FormFooter />
-    </div>
+    </>
   );
 };
 
