@@ -95,7 +95,7 @@ const InspirationItem = ({ item }: { item: IInspiration }): JSX.Element => {
             )
           }
           <div
-            style={{ width: "100%", height: "auto", maxWidth: "420px", margin: "0 auto" }}
+            style={{ width: "100%", height: "auto", maxWidth: "480px", paddingTop: "20px", margin: "0 auto" }}
             dangerouslySetInnerHTML={{ __html: selectedVideo }}
           />
           <div className={styles.inspirationPopUpContainer_swiper}>
@@ -167,8 +167,27 @@ const InspirationItem = ({ item }: { item: IInspiration }): JSX.Element => {
               <div className={styles.inspirationPopUpContainer_content_title}>
                 {item.header2}
               </div>
+              <div className={styles.inspirationPopUpContainer_content_text}>
+                {item.text2}
+              </div>
+              <div className={styles.inspirationPopUpContainer_content_text}>
+                {item.text3}
+              </div>
+              {item.title1 && (
+                <div className={styles.inspirationPopUpContainer_content_title2}>
+                  {item.title1}
+                </div>
+              )
+              }
+              {
+                item.title2 && (
+                  <div className={styles.inspirationPopUpContainer_content_title2}>
+                    {item.title2}
+                  </div>
+                )
+              }
               <div
-                style={{ width: "100%", height: "auto", maxWidth: "420px", margin: "0 auto" }}
+                style={{ width: "100%", height: "auto", maxWidth: "480px", paddingTop: "20px", margin: "0 auto" }}
                 dangerouslySetInnerHTML={{ __html: selectedVideo }}
               />
               <div className={styles.inspirationPopUpContainer_swiper}>
@@ -209,25 +228,6 @@ const InspirationItem = ({ item }: { item: IInspiration }): JSX.Element => {
                 </div>
 
               </div>
-              <div className={styles.inspirationPopUpContainer_content_text}>
-                {item.text2}
-              </div>
-              <div className={styles.inspirationPopUpContainer_content_text}>
-                {item.text3}
-              </div>
-              {item.title1 && (
-                <div className={styles.inspirationPopUpContainer_content_title2}>
-                  {item.title1}
-                </div>
-              )
-              }
-              {
-                item.title2 && (
-                  <div className={styles.inspirationPopUpContainer_content_title2}>
-                    {item.title2}
-                  </div>
-                )
-              }
             </Sheet.Scroller>
 
           </Sheet.Content>
