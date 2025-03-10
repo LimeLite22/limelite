@@ -1,14 +1,13 @@
 import { DEFAULT, OWN_ADDRESS, YES } from "consts/consts";
 import { format } from "date-fns";
-import { useState } from "react";
+import { ILogisticSettings } from "interfaces/interfaces";
 
-import { testRequest } from "../../../redux/requests/consts";
 import styles from "../ProjectsPage.module.scss";
-const LogisticSettings = () => {
-    const lIS = testRequest.logisticSettings;
-    const [current] = useState(lIS);
+interface IProps {
+    settings: ILogisticSettings
+}
+const LogisticSettings = ({ settings }: IProps) => {
 
-    const preferredDate = lIS?.preferredDate;
     const calculateEndTime = (
         hour: number | undefined,
         period: string | undefined,
@@ -25,46 +24,46 @@ const LogisticSettings = () => {
         return { hour: adjustedHour, period: adjustedPeriod };
     };
     const endTime =
-        preferredDate?.time !== DEFAULT &&
-        calculateEndTime(preferredDate?.time?.hour, preferredDate?.time?.type);
+        settings.preferredDate?.time !== DEFAULT &&
+        calculateEndTime(settings.preferredDate?.time?.hour, settings.preferredDate?.time?.type);
 
 
     return (
         <div className={styles.infoContainer}>
             <div className={styles.infoContainer_header}>Logistic
             </div>
-            <div className={styles.infoContainer_text}><p>Travel for shoot</p>{lIS.travel.selection}  </div>
-            <div className={styles.infoContainer_text}><p>Shoot location</p>{lIS.location.type} </div>
-            {lIS.travel.selection === YES &&
+            <div className={styles.infoContainer_text}><p>Travel for shoot</p>{settings.travel.selection}  </div>
+            <div className={styles.infoContainer_text}><p>Shoot location</p>{settings.location.type} </div>
+            {settings.travel.selection === YES &&
                 <div className={styles.infoContainer_text}>
-                    <p>Zone</p> {lIS?.travel.zoneCode?.name}</div>
+                    <p>Zone</p> {settings.travel.zoneCode?.name}</div>
 
             }
-            {lIS.location.type === OWN_ADDRESS &&
+            {settings.location.type === OWN_ADDRESS &&
                 <>
                     <div className={styles.infoContainer_text}>
                         <p>Address:</p>
-                        {current.location.company}{" "}
-                        {current.location.street}{" "}
-                        {current.location.city}{" "}
-                        {current.location.zip}
+                        {settings.location.company}{" "}
+                        {settings.location.street}{" "}
+                        {settings.location.city}{" "}
+                        {settings.location.zip}
                     </div>
                     <div className={styles.infoContainer_text} >
                         <p>Protective equipment</p>
-                        {current.safetyEquipment === true ? 'Required' : 'Not Required'}
+                        {settings.safetyEquipment === true ? 'Required' : 'Not Required'}
                     </div>
                 </>
             }
             <div className={styles.infoContainer_text}><p>Preferred date:</p>
                 <div style={{ display: "flex" }}>
-                    {preferredDate?.date !== DEFAULT
-                        ? format(preferredDate?.date as Date, "E, dd MMM, yyyy")
+                    {settings?.preferredDate?.date !== DEFAULT
+                        ? format(settings?.preferredDate?.date as Date, "E, dd MMM, yyyy")
                         : "Mon, November 22, 2024"}
                     {' '}
-                    {preferredDate?.time !== DEFAULT && endTime ? (
+                    {settings?.preferredDate?.time !== DEFAULT && endTime ? (
                         <>
                             <span style={{ marginLeft: "12px", marginRight: "6px" }}>{" "}from{" "}</span>
-                            <div className={styles.infoContainer_text_time}> {preferredDate?.time.hour}:00</div>
+                            <div className={styles.infoContainer_text_time}> {settings?.preferredDate?.time.hour}:00</div>
                             <span style={{ marginLeft: "6px", marginRight: "6px" }}>{" "}to{" "}</span>
                             <div className={styles.infoContainer_text_time}>    {endTime.hour}:00 {endTime.period} </div>
 

@@ -11,7 +11,7 @@ const VoiceoverSettings = () => {
     const scriptSettings = selectedRequest?.script;
 
     return (
-        <div className={styles.infoContainer}>
+        <>
             <div className={styles.infoContainer_header}>About Your Voiceover
             </div>
             <div className={styles.infoContainer_text}><p>Track Author:</p> {voiceTrackSettings?.trackAuthor}</div>
@@ -60,7 +60,7 @@ const VoiceoverSettings = () => {
                     </div>
                 </>}
 
-        </div>
+        </>
     )
 
 }

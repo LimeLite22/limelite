@@ -1,5 +1,6 @@
+import { ThumbnailPurple } from 'assets/images';
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { DEFAULT, HOME_RENTAL, NO } from "consts/consts";
+import { DEFAULT, HOME_RENTAL, NO, REQUESTED_REQUEST_STATUS } from "consts/consts";
 import { IAdditionalVideoFormat, IInterviewSettings, IRequestState, IScriptedDeliverySettings, IScriptSettings } from "interfaces/interfaces";
 import set from "lodash/set";
 import { IRootState } from "redux/rootReducer";
@@ -28,6 +29,26 @@ const requestReducer = createSlice({
       const id = generateUniqueId();
       state.drafts.unshift({
         id: id,
+        overviewInfoSettings: {
+          status: REQUESTED_REQUEST_STATUS,
+          reviewLink: 'https://f.io/ltTc9gLk',
+          downloadLink: 'https://f.io/J9NcL36S',
+          requester: {
+            id: generateUniqueId(),
+            name: 'Bob',
+            lastName: 'Smith',
+            email: `bob${id}@gmail.com`,
+            foto: ThumbnailPurple
+          },
+          contributors: [],
+          projectStartImage: ThumbnailPurple,
+          credits: 2,
+          requestDate: new Date(),
+          shootDate: new Date(),
+          editDate: new Date(),
+          completeDate: new Date(),
+          completnessPercent: 30
+        },
         projectInfoSettings: {
           option: action.payload,
           name: `Request ${state.drafts.length + 1}`,

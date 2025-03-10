@@ -8,7 +8,7 @@ const ScriptSettings = () => {
     const selectedRequest = testRequest;
     const scriptSettings = { ...selectedRequest?.script };
     return (
-        <div className={styles.infoContainer}>
+        <>
             <div className={styles.infoContainer_header}>Scripted Delivery
             </div>
             <div className={styles.infoContainer_text}><p>Script Writer:</p>{scriptSettings?.scriptWriter} </div>
@@ -59,7 +59,7 @@ const ScriptSettings = () => {
                     })}
                 </div>}
             </div>
-        </div >
+        </>
     )
 }
 

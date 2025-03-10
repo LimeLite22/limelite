@@ -137,7 +137,7 @@ export interface IVideoSettings {
 interface IPerson {
   id: string,
   name: string,
-  lasName: string,
+  lastName: string,
   email: string,
   foto: string
 }
@@ -157,6 +157,7 @@ export interface IOverviewInfoSettings {
 }
 export interface IRequest {
   id: string;
+  overviewInfoSettings: IOverviewInfoSettings;
   projectInfoSettings: IProjectInfoSettings,
   logisticSettings: ILogisticSettings;
   scriptSettings: IScriptedDeliverySettings;

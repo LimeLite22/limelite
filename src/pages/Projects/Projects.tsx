@@ -1,7 +1,9 @@
 import { Search, User1Foto, User2Foto, User3Foto, User4Foto } from "assets/images";
-import { CANCELED_REQUEST_STATUS, COMPLETE_REQUEST_STATUS, DEFAULT, IN_EDITING_REQUEST_STATUS, ON_HOLD_REQUEST_STATUS, optionsList, projectTypes, REQUESTED_REQUEST_STATUS, SCHEDULED_REQUEST_STATUS } from "consts/consts";
+import { DEFAULT } from "consts/consts";
 import useWindowWidth from "hooks/useWindowWidth";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { selectDrafts } from "../../redux/requests/reducer";
 import { TRange } from "types/types";
 import { isDateInRange } from "utils/dateRange";
 import { generateUniqueId } from "utils/generateId";
@@ -32,101 +34,6 @@ export const TestUsers = [
     },
 
 ]
-const projects = [
-    {
-        id: generateUniqueId(),
-        user: TestUsers[0],
-        name: "Crafting Visual Stories: Behind the lens",
-        type: projectTypes[0],
-        option: optionsList[0],
-        status: COMPLETE_REQUEST_STATUS,
-        date: new Date(2025, 0, 25),
-
-    },
-    {
-        id: generateUniqueId(),
-        user: TestUsers[1],
-        name: "Forwarding Behind the lens",
-        type: projectTypes[1],
-        option: optionsList[1],
-        status: IN_EDITING_REQUEST_STATUS,
-        date: new Date(2024, 6, 15),
-
-    },
-    {
-        id: generateUniqueId(),
-        user: TestUsers[2],
-        name: "Growing Visual Stories: Behind the lens",
-        type: projectTypes[0],
-        option: optionsList[2],
-        status: SCHEDULED_REQUEST_STATUS,
-        date: new Date(2025, 0, 12),
-
-    },
-    {
-        id: generateUniqueId(),
-        user: TestUsers[3],
-        name: "Healing Real Stories: Behind the lens",
-        type: projectTypes[2],
-        option: optionsList[3],
-        status: REQUESTED_REQUEST_STATUS,
-        date: new Date(2025, 0, 15),
-
-    },
-    {
-        id: generateUniqueId(),
-        user: TestUsers[0],
-        name: "HQ: Behind the lens",
-        type: projectTypes[3],
-        option: optionsList[0],
-        status: ON_HOLD_REQUEST_STATUS,
-        date: new Date(2024, 9, 0),
-
-    },
-    {
-        id: generateUniqueId(),
-        user: TestUsers[0],
-        name: "XYZ: Behind the lens",
-        type: projectTypes[4],
-        option: optionsList[1],
-        status: CANCELED_REQUEST_STATUS,
-        date: new Date(2024, 4, 22),
-
-    },
-    {
-        id: generateUniqueId(),
-        user: TestUsers[1],
-        name: "Crafting Visual Stories: Behind the lens",
-        type: projectTypes[5],
-        option: optionsList[0],
-        status: CANCELED_REQUEST_STATUS,
-        date: new Date(2024, 4, 22),
-
-    }
-    ,
-    {
-        id: generateUniqueId(),
-        user: TestUsers[2],
-        name: "Crafting Visual Stories: Behind the lens",
-        type: projectTypes[6],
-        option: optionsList[2],
-        status: CANCELED_REQUEST_STATUS,
-        date: new Date(2024, 4, 22),
-
-    }
-    ,
-    {
-        id: generateUniqueId(),
-        user: TestUsers[3],
-        name: "Crafting Visual Stories: Behind the lens",
-        type: projectTypes[7],
-        option: optionsList[3],
-        status: CANCELED_REQUEST_STATUS,
-        date: new Date(2024, 4, 22),
-
-    }
-
-]
 const ProjectsPage = () => {
 
     const [searchQuery, setSearchQuery] = useState("");
@@ -135,29 +42,26 @@ const ProjectsPage = () => {
     const [users, setUsers] = useState<string[]>([]);
     const [statuses, setStatuses] = useState<string[]>([]);
     const [dateRange, setDateRange] = useState<TRange>(DEFAULT);
+    const projects = useSelector(selectDrafts);
 
     const windowWidth = useWindowWidth();
+    console.log('videoTypes', videoTypes)
 
 
     const filteredProjects = projects.filter((project) => {
-        const {
-            type: { header: projectType },
-            option: { value: projectOption },
-            user: { name: userName },
-            status: projectStatus,
-            name,
-            date: projectDate,
-        } = project;
 
-        const matchesVideoType = videoTypes.length === 0 || videoTypes.includes(projectType);
-        const matchesRequestType = requestTypes.length === 0 || requestTypes.includes(projectOption);
-        const matchesUser = users.length === 0 || users.includes(userName);
-        const matchesStatus = statuses.length === 0 || statuses.includes(projectStatus);
+        const matchesVideoType = videoTypes.length === 0 || videoTypes.includes(project.projectInfoSettings.type.header);
+        const matchesRequestType = requestTypes.length === 0 || requestTypes.includes(project.projectInfoSettings.option?.value!);
+        const matchesUser = users.length === 0 || users.includes(project.overviewInfoSettings.requester.name);
+        const matchesStatus = statuses.length === 0 || statuses.includes(project.overviewInfoSettings.status);
         const matchesSearch = searchQuery.length === 0 ||
-            [name, userName, projectType, projectStatus].some((field) =>
+            [project.overviewInfoSettings.requester.name,
+            project.overviewInfoSettings.requester.lastName,
+            project.projectInfoSettings.type.header,
+            project.overviewInfoSettings.status].some((field) =>
                 field.toLowerCase().includes(searchQuery.toLowerCase())
             );
-        const matchesDate = dateRange === DEFAULT || isDateInRange(projectDate, dateRange);
+        const matchesDate = dateRange === DEFAULT || isDateInRange(project.overviewInfoSettings.requestDate, dateRange);
 
         return matchesVideoType && matchesRequestType && matchesUser && matchesStatus && matchesSearch && matchesDate;
     });

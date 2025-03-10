@@ -1251,6 +1251,9 @@
     margin-bottom: 12px;
     height: 360px;
     overflow: scroll;
+    @media screen and (max-width: 990px) {
+        height: unset;
+    }
     @media screen and (max-width: 768px) {
         border: none;
         padding: 0px;
@@ -2107,6 +2110,7 @@
         padding: 0px 16px 0px 16px;
         @media screen and (max-width: 768px) {
             overflow-y: scroll !important;
+            padding: 0px 16px 16px 16px;
         }
         @media screen and (max-width: 375px) {
             padding: 0px 12px 0px 12px;

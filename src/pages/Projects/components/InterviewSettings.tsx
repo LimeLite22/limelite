@@ -11,7 +11,7 @@ const InterviewSettings = () => {
     const ownSettings = { ...interviewSettings?.questionsAuthorOwnSettings };
 
     return (
-        <div className={styles.infoContainer}>
+        <>
             <div className={styles.infoContainer_header}>About Your Interview(s)
             </div>
             <div className={styles.infoContainer_text}>
@@ -91,7 +91,7 @@ const InterviewSettings = () => {
 
 
 
-        </div >
+        </>
     )
 }
 

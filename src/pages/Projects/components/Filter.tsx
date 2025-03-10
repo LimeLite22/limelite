@@ -104,7 +104,11 @@ const ProjectFilter = ({ videoTypes, requestTypes, users, statuses, setVideoType
         }
     }
     const toggleSelectStatus = (status: string) => {
-
+        if (statuses.includes(status)) {
+            (setStatuses(statuses.filter((id) => id !== status)));
+        } else {
+            setStatuses([...statuses, status]);
+        }
     }
     const isRRV = filterMenu === FILTER_REQUESTED_BY || filterMenu === FILTER_VIDEO_TYPE || filterMenu === FILTER_REQUEST_TYPE
 

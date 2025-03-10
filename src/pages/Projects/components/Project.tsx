@@ -2,6 +2,7 @@ import { DetailsProject, DownloadProject, Settings, ShareProject, SwiperFoto1 } 
 import copy from "copy-to-clipboard";
 import { format } from "date-fns";
 import useWindowWidth from "hooks/useWindowWidth";
+import { IRequest } from "interfaces/interfaces";
 import { useState } from "react";
 import { statusColor } from "utils/statusColors";
 import { truncateString } from "utils/truncateString";
@@ -10,7 +11,7 @@ import styles from "../ProjectsPage.module.scss";
 import ProjectOverView from "./ProjectOverview";
 
 interface IProps {
-    project: any;
+    project: IRequest;
     index: number;
     searchQuery: string;
 }
@@ -86,22 +87,22 @@ const Project = ({ project, index, searchQuery }: IProps) => {
                     <div className={styles.project_start_item} >
                         <div className={styles.project_start_item_header}
                             dangerouslySetInnerHTML={{
-                                __html: highlightText(project.name, searchQuery, 20),
+                                __html: highlightText(project.projectInfoSettings.name, searchQuery, 20),
                             }}
                         ></div>
                         <div className={styles.project_start_item_option}>
-                            <img src={project.type.img} alt='' />  {truncateString(project.type.header, (windowWidth > 990 && windowWidth < 1250) ? 8 : 40)}
+                            <img src={project.projectInfoSettings.type.img} alt='' />  {truncateString(project.projectInfoSettings.type.header, (windowWidth > 990 && windowWidth < 1250) ? 8 : 40)}
                             {windowWidth > 990 &&
-                                <>/ <img src={project.option.img} alt='' />
+                                <>/ <img src={project.projectInfoSettings.type.img} alt='' />
                                     <div dangerouslySetInnerHTML={{
-                                        __html: highlightText(project.option.value, searchQuery, 15),
+                                        __html: highlightText(project.projectInfoSettings.option?.value || '', searchQuery, 15),
                                     }}></div>
                                 </>}
 
                             <div className={`${styles.project_info_item} ${styles.mobOnly}`} >
                                 <div className={`${styles.project_credit}`} >
-                                    {project.option?.credits !== 'TBD' ? project.option?.credits : ''}{" "}
-                                    {project.option?.credits === 'TBD' ? 'TBD' : project.option?.credits > 1 ? "Credits" : "Credit"}
+                                    {project.projectInfoSettings.option?.credits !== 'TBD' ? project.projectInfoSettings.option?.credits : ''}{" "}
+                                    {project.projectInfoSettings.option?.credits === 'TBD' ? 'TBD' : project?.projectInfoSettings?.option?.credits! > 1 ? "Credits" : "Credit"}
                                 </div>
                             </div>
 
@@ -134,22 +135,23 @@ const Project = ({ project, index, searchQuery }: IProps) => {
                 </div>
                 <div className={styles.project_info}>
                     <div className={styles.project_info_request}>
-                        <img src={project.user.img} alt="" /> <div dangerouslySetInnerHTML={{
-                            __html: highlightText(project.user.name, searchQuery, 12),
+                        <img src={project.overviewInfoSettings.requester.foto} alt="" /> <div dangerouslySetInnerHTML={{
+                            __html: highlightText(
+                                String(`${project.overviewInfoSettings.requester.name} ${project.overviewInfoSettings.requester.lastName}`), searchQuery, 12),
                         }}
                         ></div>
                     </div>
                     <div className={`${styles.project_info_item}`} style={{ justifyContent: 'center' }}>
                         <div className={`${styles.project_credit}`} >
-                            {project.option?.credits !== 'TBD' ? project.option?.credits : ''}{" "}
-                            {project.option?.credits === 'TBD' ? 'TBD' : project.option?.credits > 1 ? "Credits" : "Credit"}
+                            {project.projectInfoSettings.option?.credits !== 'TBD' ? project.projectInfoSettings.option?.credits : ''}{" "}
+                            {project.projectInfoSettings.option?.credits === 'TBD' ? 'TBD' : project?.projectInfoSettings?.option?.credits! > 1 ? "Credits" : "Credit"}
                         </div>
                     </div>
-                    <div className={`${styles.project_info_item}  ${styles.project_info_date}`}>{format(project.date, "dd/MM/yyyy")}</div>
+                    <div className={`${styles.project_info_item}  ${styles.project_info_date}`}>{format(project.overviewInfoSettings.requestDate, "dd/MM/yyyy")}</div>
                     <div className={`${styles.project_info_item} ${styles.project_info_statusContainer} `}>
-                        <div className={styles.project_info_status} style={{ backgroundColor: statusColor(project.status) }} ></div>
+                        <div className={styles.project_info_status} style={{ backgroundColor: statusColor(project.overviewInfoSettings.status) }} ></div>
                         <div dangerouslySetInnerHTML={{
-                            __html: highlightText(project.status, searchQuery, 15),
+                            __html: highlightText(project.overviewInfoSettings.status, searchQuery, 15),
                         }}
                         ></div></div>
                     <div className={styles.project_info_settings}
@@ -179,6 +181,7 @@ const Project = ({ project, index, searchQuery }: IProps) => {
             </div>
             <div id={`${index}divider`} className={styles.projectsPage_projects_divider}></div>
             {isOverviewOpen && <ProjectOverView
+                project={project}
                 close={() => setIsOverviewOpen(false)}
                 isCopied={isCopied}
                 isCopied2={isCopied2}

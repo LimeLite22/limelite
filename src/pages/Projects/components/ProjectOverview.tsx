@@ -1,5 +1,7 @@
 import { CloseCalendar, QuestionIcon, ThumbnailPurple } from "assets/images";
+import { formatDate } from "date-fns";
 import useWindowWidth from "hooks/useWindowWidth";
+import { IRequest } from "interfaces/interfaces";
 import { useState } from "react";
 import ReactDOM from "react-dom";
 import { Sheet } from "react-modal-sheet";
@@ -13,6 +15,7 @@ import ScriptSettings from "./ScriptSettings";
 import VideoEditSettings from "./VideoEditSettings";
 import VoiceoverSettings from "./VoiceoverSettings";
 interface IProps {
+    project: IRequest,
     close: () => void,
     isCopied: boolean,
     isCopied2: boolean,
@@ -23,7 +26,7 @@ interface IProps {
 }
 
 
-const ProjectOverView = ({ close, handleCopy, handleCopy2, isCopied, isCopied2, showCopied, showCopied2 }: IProps) => {
+const ProjectOverView = ({ project, close, handleCopy, handleCopy2, isCopied, isCopied2, showCopied, showCopied2 }: IProps) => {
     const width = useWindowWidth();
     const [selectedStep, setSelectedStep] = useState(0);
     const content = <>
@@ -42,7 +45,7 @@ const ProjectOverView = ({ close, handleCopy, handleCopy2, isCopied, isCopied2, 
                 <div className={styles.overview_info_content_item} >
                     <div className={styles.overview_info_content_item_header} >Request type:
                     </div>
-                    Shoot + Edit
+                    {project.projectInfoSettings.type.header}
                 </div>
                 <div className={styles.overview_info_content_item}>
                     <div className={styles.overview_info_content_item_header}>Credit usage:</div>
@@ -50,23 +53,23 @@ const ProjectOverView = ({ close, handleCopy, handleCopy2, isCopied, isCopied2, 
                 </div>
                 <div className={styles.overview_info_content_item}>
                     <div className={styles.overview_info_content_item_header}>Status:</div>
-                    Complete
+                    {project.overviewInfoSettings.status}
                 </div>
                 <div className={styles.overview_info_content_item}>
                     <div className={styles.overview_info_content_item_header}>Requested by:</div>
-                    Clay Gerhold
+                    {project.overviewInfoSettings.requester.name} {project.overviewInfoSettings.requester.lastName}
                 </div>
                 <div className={styles.overview_info_content_item}>
                     <div className={styles.overview_info_content_item_header}>Review link:</div>
                     <p onClick={handleCopy} style={{ cursor: "pointer", color: !isCopied ? 'var(--blue)' : 'var(--purple)' }}>
-                        https://f.io/ltTc9gLk
+                        {project.overviewInfoSettings.reviewLink}
                     </p>
                     {showCopied && <p className={styles.overview_info_content_item_copy}>Copied!</p>}
                 </div>
                 <div className={styles.overview_info_content_item}>
                     <div className={styles.overview_info_content_item_header}>Download link:</div>
                     <p onClick={handleCopy2} style={{ cursor: "pointer", color: !isCopied2 ? 'var(--blue)' : 'var(--purple)' }}>
-                        https://f.io/J9NcL36S
+                        {project.overviewInfoSettings.downloadLink}
                     </p>
                     {showCopied2 && <p className={styles.overview_info_content_item_copy}>Copied!</p>}
                 </div>
@@ -85,18 +88,12 @@ const ProjectOverView = ({ close, handleCopy, handleCopy2, isCopied, isCopied2, 
             >Logistics</div>
             <div className={`${styles.overview_stepsList_item} ${selectedStep === 3 ? styles.overview_stepsList_item_selected : ''}`}
                 onClick={() => setSelectedStep(3)}
-            >Script</div>
+            >Narration</div>
             <div className={`${styles.overview_stepsList_item} ${selectedStep === 4 ? styles.overview_stepsList_item_selected : ''}`}
                 onClick={() => setSelectedStep(4)}
-            >Interview</div>
+            >Video Edit</div>
             <div className={`${styles.overview_stepsList_item} ${selectedStep === 5 ? styles.overview_stepsList_item_selected : ''}`}
                 onClick={() => setSelectedStep(5)}
-            >Voiceover</div>
-            <div className={`${styles.overview_stepsList_item} ${selectedStep === 6 ? styles.overview_stepsList_item_selected : ''}`}
-                onClick={() => setSelectedStep(6)}
-            >Video Edit</div>
-            <div className={`${styles.overview_stepsList_item} ${selectedStep === 7 ? styles.overview_stepsList_item_selected : ''}`}
-                onClick={() => setSelectedStep(7)}
             >Other Add-ons</div>
         </div>
         {selectedStep === 0 &&
@@ -104,34 +101,42 @@ const ProjectOverView = ({ close, handleCopy, handleCopy2, isCopied, isCopied2, 
                 <div className={styles.overview_general_timeline}>
                     <div className={styles.infoContainer_header}>Project timeline
                     </div>
-                    <div className={styles.overview_general_text} ><p>Request Date:</p>28 Dec 2024, 16:40 </div>
+                    <div className={styles.overview_general_text} ><p>Request Date:</p>
+                        {formatDate(project.overviewInfoSettings.requestDate, "dd MMM yyyy, HH:mm")}</div>
 
-                    <div className={`${styles.overview_general_text} ${styles.overview_general_text_smallMargin}`}><p>Shoot Date:</p>30 Dec 2024, 15:30
+                    <div className={`${styles.overview_general_text} ${styles.overview_general_text_smallMargin}`}><p>Shoot Date:</p>
+                        {formatDate(project.overviewInfoSettings.requestDate, "dd MMM yyyy, HH:mm")}
                     </div>
-                    <div className={`${styles.overview_general_text} ${styles.overview_general_text_smallMargin}`}><p>Start time:</p>15:30</div>
-                    <div className={styles.overview_general_text}><p>End time:</p>18:30</div>
-                    <div className={styles.overview_general_text}><p>Editing Complete</p>6 Jan 2025, 16:40
+                    <div className={`${styles.overview_general_text} ${styles.overview_general_text_smallMargin}`}><p>Start time:</p>
+                        {formatDate(project.overviewInfoSettings.requestDate, "HH:mm")}</div>
+                    <div className={styles.overview_general_text}><p>End time:</p>{formatDate(project.overviewInfoSettings.requestDate, "HH:mm")}</div>
+                    <div className={styles.overview_general_text}><p>Editing Complete</p>{formatDate(project.overviewInfoSettings.requestDate, "HH:mm")}
                     </div>
-                    <div className={styles.overview_general_text}><p>Approved Date:</p>10 Jan 2025, 11:15
+                    <div className={styles.overview_general_text}><p>Approved Date:</p>{formatDate(project.overviewInfoSettings.requestDate, "dd MMM yyyy, HH:mm")}
                     </div>
                 </div>
                 <div>
                     <div className={styles.infoContainer_header}>Project Notes
                         <img src={QuestionIcon} alt="" />
                     </div>
-                    <div className={styles.infoContainer_notes} >Cursus tortor eu interdum cras. Nunc non ornare
-                        dui consectetur pretium. Risus eu sed diam et sed odio in. Arcu diam varius egestas eu odio
-                        dictum.</div>
+                    <div className={styles.infoContainer_notes} >{
+                        project.projectInfoSettings.details
+                    }</div>
                 </div>
 
             </div>}
-        {selectedStep === 1 && <ProjectSettings />}
-        {selectedStep === 2 && <LogisticSettings />}
-        {selectedStep === 3 && <ScriptSettings />}
-        {selectedStep === 4 && <InterviewSettings />}
-        {selectedStep === 5 && <VoiceoverSettings />}
-        {selectedStep === 6 && <VideoEditSettings />}
-        {selectedStep === 7 && <AddOnsSettings />}
+        {selectedStep === 1 && <ProjectSettings settings={project.projectInfoSettings} />}
+        {selectedStep === 2 && <LogisticSettings settings={project.logisticSettings} />}
+        {selectedStep === 3 && <>
+            <div className={styles.infoContainer}>
+                <ScriptSettings />
+                <InterviewSettings />
+                <VoiceoverSettings />
+            </div>
+        </>
+        }
+        {selectedStep === 4 && <VideoEditSettings />}
+        {selectedStep === 5 && <AddOnsSettings />}
     </>
 
     return (
