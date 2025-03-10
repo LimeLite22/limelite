@@ -1,9 +1,9 @@
 import { ThumbnailPurple, User1Foto, User2Foto, User3Foto, User4Foto } from "assets/images";
-import { BASIC_THUMBNAIL, CANCELED_REQUEST_STATUS, COMPLETE_REQUEST_STATUS, DEFAULT, LESS_1_30, ON_HOLD_REQUEST_STATUS, optionsList, projectTones, projectTypes, REQUESTED_REQUEST_STATUS, VIDEO_SQUARE } from "consts/consts"
+import { BASIC_THUMBNAIL, CANCELED_REQUEST_STATUS, CANDID_APPROACH, COMPLETE_REQUEST_STATUS, DEFAULT, LESS_1_30, ON_HOLD_REQUEST_STATUS, optionsList, projectTones, projectTypes, REQUESTED_REQUEST_STATUS, VIDEO_SQUARE } from "consts/consts"
 import { IRequest } from "interfaces/interfaces";
 import { generateUniqueId } from "utils/generateId";
 
-import { NO, OWN_ADDRESS, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTIONS_VIRTUALLY, TRACK_AUTHOR_PROFESSIONAL, YES, zonesList } from './../../consts/consts';
+import { NO, OWN_ADDRESS, QUESTIONS_AUTHOR_PROFESSIONAL, QUESTIONS_VIRTUALLY, TRACK_AUTHOR_PROFESSIONAL, YES, zonesList, SCRIPTED_APPROACH, VOICEOVER_APPROACH } from './../../consts/consts';
 
 export const requestsInitialState: IRequest[] = [
     {
@@ -34,7 +34,7 @@ export const requestsInitialState: IRequest[] = [
             targetAudience: "happy clients",
             type: projectTypes[0],
             projectTone: projectTones[0],
-            approachList: [],
+            approachList: [CANDID_APPROACH],
             details:
                 `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. 
           Integer vel metus ut libero fermentum gravida. Aenean sit amet sapien nec purus 
@@ -169,8 +169,8 @@ export const requestsInitialState: IRequest[] = [
             targetAudience: "",
             type: projectTypes[1],
             projectTone: projectTones[0],
-            approachList: [],
-            details: '',
+            approachList: [CANDID_APPROACH, SCRIPTED_APPROACH],
+            details: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Integer vel metus ut libero fermentum gravida. Aenean sit amet sapien nec purus cursus faucibus at vel elit',
         },
         logisticSettings: {
             travel: {
@@ -300,8 +300,8 @@ export const requestsInitialState: IRequest[] = [
             targetAudience: "",
             type: projectTypes[3],
             projectTone: projectTones[3],
-            approachList: [],
-            details: '',
+            approachList: [VOICEOVER_APPROACH, SCRIPTED_APPROACH],
+            details: ' Scripted approach and voiceover approach',
         },
         logisticSettings: {
             travel: {

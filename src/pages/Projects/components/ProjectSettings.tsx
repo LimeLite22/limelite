@@ -20,8 +20,10 @@ const ProjectSettings = ({ settings }: IProps) => {
                 `
                         }
                     >
-                        {settings?.option?.credits !== 'TBD' ? settings?.option?.credits : ''}{" "}
-                        {settings?.option?.credits === 'TBD' ? 'TBD' : settings?.option?.credits > 1 ? "Credits" : "Credit"}
+                        <div className={styles.project_credit}>
+                            {settings?.option?.credits !== 'TBD' ? settings?.option?.credits : ''}{" "}
+                            {settings?.option?.credits === 'TBD' ? 'TBD' : settings?.option?.credits > 1 ? "Credits" : "Credit"}
+                        </div>
                     </div>
                 )}</span></div>
             <div className={styles.infoContainer_text}><p>Requested by:</p>

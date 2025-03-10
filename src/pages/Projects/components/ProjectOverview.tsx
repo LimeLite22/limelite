@@ -1,4 +1,5 @@
 import { CloseCalendar, QuestionIcon, ThumbnailPurple } from "assets/images";
+import { CANDID_APPROACH, EDIT_ONLY, OTHER, SCRIPTED_APPROACH, SHOOT_EDIT, VOICEOVER_APPROACH } from "consts/consts";
 import { formatDate } from "date-fns";
 import useWindowWidth from "hooks/useWindowWidth";
 import { IRequest } from "interfaces/interfaces";
@@ -83,15 +84,24 @@ const ProjectOverView = ({ project, close, handleCopy, handleCopy2, isCopied, is
             <div className={`${styles.overview_stepsList_item} ${selectedStep === 1 ? styles.overview_stepsList_item_selected : ''}`}
                 onClick={() => setSelectedStep(1)}
             >Project </div>
-            <div className={`${styles.overview_stepsList_item} ${selectedStep === 2 ? styles.overview_stepsList_item_selected : ''}`}
-                onClick={() => setSelectedStep(2)}
-            >Logistics</div>
-            <div className={`${styles.overview_stepsList_item} ${selectedStep === 3 ? styles.overview_stepsList_item_selected : ''}`}
-                onClick={() => setSelectedStep(3)}
-            >Narration</div>
-            <div className={`${styles.overview_stepsList_item} ${selectedStep === 4 ? styles.overview_stepsList_item_selected : ''}`}
-                onClick={() => setSelectedStep(4)}
-            >Video Edit</div>
+            {(project.projectInfoSettings.option?.value === SHOOT_EDIT || project.projectInfoSettings.option?.value === OTHER) &&
+                <div className={`${styles.overview_stepsList_item} ${selectedStep === 2 ? styles.overview_stepsList_item_selected : ''}`}
+                    onClick={() => setSelectedStep(2)}
+                >Logistics</div>}
+            {(project.projectInfoSettings.approachList.includes(CANDID_APPROACH)
+                || project.projectInfoSettings.approachList.includes(VOICEOVER_APPROACH)
+                || project.projectInfoSettings.approachList.includes(SCRIPTED_APPROACH)
+            )
+                && project.projectInfoSettings.option?.value !== EDIT_ONLY &&
+                <div className={`${styles.overview_stepsList_item} ${selectedStep === 3 ? styles.overview_stepsList_item_selected : ''}`}
+                    onClick={() => setSelectedStep(3)}
+                >Narration
+                </div>
+            }
+            {project.projectInfoSettings.option?.value !== EDIT_ONLY &&
+                <div className={`${styles.overview_stepsList_item} ${selectedStep === 4 ? styles.overview_stepsList_item_selected : ''}`}
+                    onClick={() => setSelectedStep(4)}
+                >Video Edit</div>}
             <div className={`${styles.overview_stepsList_item} ${selectedStep === 5 ? styles.overview_stepsList_item_selected : ''}`}
                 onClick={() => setSelectedStep(5)}
             >Other Add-ons</div>
@@ -129,9 +139,9 @@ const ProjectOverView = ({ project, close, handleCopy, handleCopy2, isCopied, is
         {selectedStep === 2 && <LogisticSettings settings={project.logisticSettings} />}
         {selectedStep === 3 && <>
             <div className={styles.infoContainer}>
-                <ScriptSettings />
-                <InterviewSettings />
-                <VoiceoverSettings />
+                {project.projectInfoSettings.approachList.includes(SCRIPTED_APPROACH) && <ScriptSettings />}
+                {project.projectInfoSettings.approachList.includes(CANDID_APPROACH) && <InterviewSettings />}
+                {project.projectInfoSettings.approachList.includes(VOICEOVER_APPROACH) && <VoiceoverSettings />}
             </div>
         </>
         }
