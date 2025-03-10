@@ -1470,7 +1470,9 @@
     display: flex;
     align-items: center;
     gap: 16px;
+    margin-top: 20px;
     @media screen and (max-width: 768px) {
+      margin-top: 15px;
       margin-bottom: 20px;
       gap: 8px;
     }
@@ -1921,6 +1923,14 @@
     height: min-content !important;
     pointer-events: auto !important;
   }
+  &_sheetInspiration {
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+    pointer-events: auto !important;
+  }
+
   &_closeArea {
     height: 50%;
     width: 100%;

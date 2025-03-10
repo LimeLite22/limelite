@@ -7,8 +7,6 @@ import { useEffect, useState } from "react";
 import { useRef } from "react";
 import ReactDOM from "react-dom";
 import type { Swiper as SwiperType } from "swiper";
-import { Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Sheet } from "react-modal-sheet";
 import { Autoplay } from "swiper/modules";
 
@@ -28,28 +26,12 @@ export interface IInspiration {
 
 const InspirationItem2 = ({ item }: { item: IInspiration }): JSX.Element => {
   const [isOpened, setIsOpened] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(1);
   const [selectedVideo, setSelectedVideo] = useState(embedCode1);
   const width = useWindowWidth();
   const handleOpen = () => {
     setIsOpened(true);
   };
 
-  const swiperRef = useRef<SwiperType>();
-  useEffect(() => {
-    const swiperInstance = swiperRef.current?.swiper;
-    if (swiperInstance) {
-      const handleTransitionStart = () => {
-        swiperInstance.update();
-      };
-
-      swiperInstance.on("slideChangeTransitionStart", handleTransitionStart);
-
-      return () => {
-        swiperInstance.off("slideChangeTransitionStart", handleTransitionStart);
-      };
-    }
-  }, []);
 
   if (isOpened && width > 768) {
     return ReactDOM.createPortal(
@@ -97,7 +79,7 @@ const InspirationItem2 = ({ item }: { item: IInspiration }): JSX.Element => {
 
 
           <div
-            style={{ width: "100%", height: "auto", maxWidth: "420px", margin: "0 auto", marginBottom: "20px" }}
+            style={{ width: "100%", height: "auto", maxWidth: "420px", margin: "0 auto" }}
             dangerouslySetInnerHTML={{ __html: selectedVideo }}
           />
           <div className={styles.inspirationPopUpContainer_swiper}>
@@ -129,14 +111,6 @@ const InspirationItem2 = ({ item }: { item: IInspiration }): JSX.Element => {
             >
               4  foto
             </div>
-            <div className={styles.inspirationPopUpContainer_swiper_item}
-              onClick={() => {
-                setSelectedVideo(embedCode5);
-              }}
-            >
-              5  foto
-            </div>
-
           </div>
         </div>
       </div>,
@@ -169,7 +143,7 @@ const InspirationItem2 = ({ item }: { item: IInspiration }): JSX.Element => {
               {item.header2}
             </div>
             <div
-              style={{ width: "100%", height: "auto", maxWidth: "420px", margin: "0 auto", marginBottom: "20px" }}
+              style={{ width: "100%", height: "auto", maxWidth: "420px", margin: "0 auto" }}
               dangerouslySetInnerHTML={{ __html: selectedVideo }}
             />
             <div className={styles.inspirationPopUpContainer_swiper}>
@@ -201,14 +175,6 @@ const InspirationItem2 = ({ item }: { item: IInspiration }): JSX.Element => {
               >
                 4  foto
               </div>
-              <div className={styles.inspirationPopUpContainer_swiper_item}
-                onClick={() => {
-                  setSelectedVideo(embedCode5);
-                }}
-              >
-                5  foto
-              </div>
-
             </div>
 
             <div className={styles.inspirationPopUpContainer_content_text}>

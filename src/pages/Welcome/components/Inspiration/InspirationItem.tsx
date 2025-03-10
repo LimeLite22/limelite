@@ -98,65 +98,44 @@ const InspirationItem = ({ item }: { item: IInspiration }): JSX.Element => {
             style={{ width: "100%", height: "auto", maxWidth: "420px", margin: "0 auto" }}
             dangerouslySetInnerHTML={{ __html: selectedVideo }}
           />
-          <Swiper
-            spaceBetween={8}
-            autoplay={{
-              delay: 2000,
-            }}
-            centeredSlides={true}
-            onBeforeInit={(swiper: SwiperType) => {
-              swiperRef.current = swiper;
-            }}
-            gap={16}
-            slidesPerView={3}
-            loop={true}
-            className={styles.inspirationPopUpContainer_swiper_container}
-            modules={[Autoplay, Pagination]}
-          >
-            <SwiperSlide className={styles.inspirationPopUpContainer_swiper_item}
+          <div className={styles.inspirationPopUpContainer_swiper}>
+            <div className={styles.inspirationPopUpContainer_swiper_item}
               onClick={() => {
                 setSelectedVideo(embedCode1);
               }}
             >
-              1  foto of video
-            </SwiperSlide>
-            <SwiperSlide className={styles.inspirationPopUpContainer_swiper_item}
+              1  foto
+            </div>
+            <div className={styles.inspirationPopUpContainer_swiper_item}
               onClick={() => {
                 setSelectedVideo(embedCode2);
               }}
             >
-              2 foto of video
-            </SwiperSlide>
-            <SwiperSlide className={styles.inspirationPopUpContainer_swiper_item}
+              2  foto
+            </div>
+            <div className={styles.inspirationPopUpContainer_swiper_item}
               onClick={() => {
                 setSelectedVideo(embedCode3);
               }}
             >
-              3 foto of video
-            </SwiperSlide>
-            <SwiperSlide className={styles.inspirationPopUpContainer_swiper_item}
+              3  foto
+            </div>
+            <div className={styles.inspirationPopUpContainer_swiper_item}
               onClick={() => {
                 setSelectedVideo(embedCode4);
               }}
             >
-              4 foto of video
-            </SwiperSlide>
-            <SwiperSlide className={styles.inspirationPopUpContainer_swiper_item}
+              4  foto
+            </div>
+            <div className={styles.inspirationPopUpContainer_swiper_item}
               onClick={() => {
                 setSelectedVideo(embedCode5);
               }}
             >
-              5 foto of video
-            </SwiperSlide>
-            <SwiperSlide className={styles.inspirationPopUpContainer_swiper_item}
-              onClick={() => {
-                setSelectedVideo(embedCode6);
-              }}
-            >
-              6 foto of video
-            </SwiperSlide>
+              5  foto
+            </div>
 
-          </Swiper>
+          </div>
         </div>
       </div>,
       document.body,
@@ -181,94 +160,76 @@ const InspirationItem = ({ item }: { item: IInspiration }): JSX.Element => {
           className={styles.learnMore_closeArea}
           onClick={() => setIsOpened(false)}
         ></div>
-        <Sheet.Container className={styles.learnMore_sheet}>
+        <Sheet.Container className={styles.learnMore_sheetInspiration}>
           <Sheet.Content className={styles.learnMore_sheetContainer}>
             <div className={styles.learnMore_container_line}></div>
-            <div className={styles.inspirationPopUpContainer_content_title}>
-              {item.header2}
-            </div>
-            <div
-              style={{ width: "100%", height: "auto", maxWidth: "420px", margin: "0 auto" }}
-              dangerouslySetInnerHTML={{ __html: selectedVideo }}
-            />
-            <Swiper
-              spaceBetween={8}
-              autoplay={{
-                delay: 2000,
-              }}
-              centeredSlides={true}
-              onBeforeInit={(swiper: SwiperType) => {
-                swiperRef.current = swiper;
-              }}
-              gap={16}
-              slidesPerView={3}
-              loop={true}
-              className={styles.inspirationPopUpContainer_swiper_container}
-              modules={[Autoplay, Pagination]}
-            >
-              <SwiperSlide className={styles.inspirationPopUpContainer_swiper_item}
-                onClick={() => {
-                  setSelectedVideo(embedCode1);
-                }}
-              >
-                1  foto of video
-              </SwiperSlide>
-              <SwiperSlide className={styles.inspirationPopUpContainer_swiper_item}
-                onClick={() => {
-                  setSelectedVideo(embedCode2);
-                }}
-              >
-                2 foto of video
-              </SwiperSlide>
-              <SwiperSlide className={styles.inspirationPopUpContainer_swiper_item}
-                onClick={() => {
-                  setSelectedVideo(embedCode3);
-                }}
-              >
-                3 foto of video
-              </SwiperSlide>
-              <SwiperSlide className={styles.inspirationPopUpContainer_swiper_item}
-                onClick={() => {
-                  setSelectedVideo(embedCode4);
-                }}
-              >
-                4 foto of video
-              </SwiperSlide>
-              <SwiperSlide className={styles.inspirationPopUpContainer_swiper_item}
-                onClick={() => {
-                  setSelectedVideo(embedCode5);
-                }}
-              >
-                5 foto of video
-              </SwiperSlide>
-              <SwiperSlide className={styles.inspirationPopUpContainer_swiper_item}
-                onClick={() => {
-                  setSelectedVideo(embedCode6);
-                }}
-              >
-                6 foto of video
-              </SwiperSlide>
-
-            </Swiper>
-            <div className={styles.inspirationPopUpContainer_content_text}>
-              {item.text2}
-            </div>
-            <div className={styles.inspirationPopUpContainer_content_text}>
-              {item.text3}
-            </div>
-            {item.title1 && (
-              <div className={styles.inspirationPopUpContainer_content_title2}>
-                {item.title1}
+            <Sheet.Scroller draggableAt="both">
+              <div className={styles.inspirationPopUpContainer_content_title}>
+                {item.header2}
               </div>
-            )
-            }
-            {
-              item.title2 && (
+              <div
+                style={{ width: "100%", height: "auto", maxWidth: "420px", margin: "0 auto" }}
+                dangerouslySetInnerHTML={{ __html: selectedVideo }}
+              />
+              <div className={styles.inspirationPopUpContainer_swiper}>
+                <div className={styles.inspirationPopUpContainer_swiper_item}
+                  onClick={() => {
+                    setSelectedVideo(embedCode1);
+                  }}
+                >
+                  1  foto
+                </div>
+                <div className={styles.inspirationPopUpContainer_swiper_item}
+                  onClick={() => {
+                    setSelectedVideo(embedCode2);
+                  }}
+                >
+                  2  foto
+                </div>
+                <div className={styles.inspirationPopUpContainer_swiper_item}
+                  onClick={() => {
+                    setSelectedVideo(embedCode3);
+                  }}
+                >
+                  3  foto
+                </div>
+                <div className={styles.inspirationPopUpContainer_swiper_item}
+                  onClick={() => {
+                    setSelectedVideo(embedCode4);
+                  }}
+                >
+                  4  foto
+                </div>
+                <div className={styles.inspirationPopUpContainer_swiper_item}
+                  onClick={() => {
+                    setSelectedVideo(embedCode5);
+                  }}
+                >
+                  5  foto
+                </div>
+
+              </div>
+              <div className={styles.inspirationPopUpContainer_content_text}>
+                {item.text2}
+              </div>
+              <div className={styles.inspirationPopUpContainer_content_text}>
+                {item.text3}
+              </div>
+              {item.title1 && (
                 <div className={styles.inspirationPopUpContainer_content_title2}>
-                  {item.title2}
+                  {item.title1}
                 </div>
               )
-            }
+              }
+              {
+                item.title2 && (
+                  <div className={styles.inspirationPopUpContainer_content_title2}>
+                    {item.title2}
+                  </div>
+                )
+              }
+            </Sheet.Scroller>
+
           </Sheet.Content>
         </Sheet.Container>
       </Sheet>
