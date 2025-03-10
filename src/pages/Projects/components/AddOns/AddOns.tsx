@@ -10,7 +10,7 @@ const AddOnsSettings = () => {
     >
 
       <div className={styles.infoContainer_header} >
-        About Your Video Edit
+        Other Add-ons
       </div>
       {
         type !== undefined && type?.addOns.map((item, index) => {
