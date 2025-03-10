@@ -990,6 +990,9 @@
             max-height: 207px;
             min-height: 207px;
           }
+          @media screen and (max-width: 768px) {
+            min-height: unset;
+          }
           &_swiper {
             width: 2396px;
 
