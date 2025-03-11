@@ -25,7 +25,6 @@ export interface IInspiration {
 
 const InspirationItem = ({ item }: { item: IInspiration }): JSX.Element => {
   const [isOpened, setIsOpened] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(1);
   const [selectedVideo, setSelectedVideo] = useState(embedCode1);
   const width = useWindowWidth();
   const handleOpen = () => {
@@ -101,28 +100,47 @@ const InspirationItem = ({ item }: { item: IInspiration }): JSX.Element => {
                 setSelectedVideo(embedCode1);
               }}
             >
-              1  foto
+              <div className={styles.inspirationPopUpContainer_swiper_item_shadow}></div>
+              <div
+                style={{ width: "100%", height: "auto", maxWidth: "480px", margin: "0 auto" }}
+                dangerouslySetInnerHTML={{ __html: embedCode1 }}
+              />
             </div>
+
             <div className={styles.inspirationPopUpContainer_swiper_item}
               onClick={() => {
                 setSelectedVideo(embedCode2);
               }}
             >
-              2  foto
+              <div className={styles.inspirationPopUpContainer_swiper_item_shadow}></div>
+              <div
+                style={{ width: "100%", height: "auto", maxWidth: "480px", margin: "0 auto" }}
+                dangerouslySetInnerHTML={{ __html: embedCode2 }}
+              />
             </div>
             <div className={styles.inspirationPopUpContainer_swiper_item}
               onClick={() => {
                 setSelectedVideo(embedCode3);
               }}
             >
-              3  foto
+              <div className={styles.inspirationPopUpContainer_swiper_item_shadow}></div>
+              <div
+                style={{ width: "100%", height: "auto", maxWidth: "480px", margin: "0 auto" }}
+                dangerouslySetInnerHTML={{ __html: embedCode3 }}
+              />
             </div>
             <div className={styles.inspirationPopUpContainer_swiper_item}
-              onClick={() => {
+              onClick={(e) => {
                 setSelectedVideo(embedCode4);
+                e.stopPropagation();
+
               }}
             >
-              4  foto
+              <div className={styles.inspirationPopUpContainer_swiper_item_shadow}></div>
+              <div
+                style={{ width: "100%", height: "auto", maxWidth: "480px", margin: "0 auto", userSelect: "none" }}
+                dangerouslySetInnerHTML={{ __html: embedCode4 }}
+              />
             </div>
           </div>
         </div>
@@ -185,28 +203,47 @@ const InspirationItem = ({ item }: { item: IInspiration }): JSX.Element => {
                     setSelectedVideo(embedCode1);
                   }}
                 >
-                  1  foto
+                  <div className={styles.inspirationPopUpContainer_swiper_item_shadow}></div>
+                  <div
+                    style={{ width: "100%", height: "auto", maxWidth: "480px", margin: "0 auto" }}
+                    dangerouslySetInnerHTML={{ __html: embedCode1 }}
+                  />
                 </div>
+
                 <div className={styles.inspirationPopUpContainer_swiper_item}
                   onClick={() => {
                     setSelectedVideo(embedCode2);
                   }}
                 >
-                  2  foto
+                  <div className={styles.inspirationPopUpContainer_swiper_item_shadow}></div>
+                  <div
+                    style={{ width: "100%", height: "auto", maxWidth: "480px", margin: "0 auto" }}
+                    dangerouslySetInnerHTML={{ __html: embedCode2 }}
+                  />
                 </div>
                 <div className={styles.inspirationPopUpContainer_swiper_item}
                   onClick={() => {
                     setSelectedVideo(embedCode3);
                   }}
                 >
-                  3  foto
+                  <div className={styles.inspirationPopUpContainer_swiper_item_shadow}></div>
+                  <div
+                    style={{ width: "100%", height: "auto", maxWidth: "480px", margin: "0 auto" }}
+                    dangerouslySetInnerHTML={{ __html: embedCode3 }}
+                  />
                 </div>
                 <div className={styles.inspirationPopUpContainer_swiper_item}
-                  onClick={() => {
+                  onClick={(e) => {
                     setSelectedVideo(embedCode4);
+                    e.stopPropagation();
+
                   }}
                 >
-                  4  foto
+                  <div className={styles.inspirationPopUpContainer_swiper_item_shadow}></div>
+                  <div
+                    style={{ width: "100%", height: "auto", maxWidth: "480px", margin: "0 auto", userSelect: "none" }}
+                    dangerouslySetInnerHTML={{ __html: embedCode4 }}
+                  />
                 </div>
               </div>
             </Sheet.Scroller>

@@ -4,6 +4,7 @@ import AddOnBox from "./components/AddOnBox";
 
 const AddOnsSettings = () => {
   const type = testRequest?.projectInfoSettings?.type;
+  const addOns = type?.addOns.filter((item, index) => index !== 0 && item.isSelected);
 
   return (
     <div className={styles.infoContainer}
@@ -13,8 +14,8 @@ const AddOnsSettings = () => {
         Other Add-ons
       </div>
       {
-        type !== undefined && type?.addOns.map((item, index) => {
-          if (index !== 0 && item.isSelected) return <AddOnBox key={index} item={item} />
+        addOns.map((item, index) => {
+          return <AddOnBox key={index} item={item} index={index} />
         })
 
       }

@@ -4,28 +4,13 @@ import styles from "../../../ProjectsPage.module.scss";
 
 interface IProps {
   item: IAddOnsValue
+  index: number
 }
 
-const AddOnBox = ({ item }: IProps) => {
-
-
+const AddOnBox = ({ item, index }: IProps) => {
   return (
-    <div
-      className={`
-        ${styles.box}F
-       ${styles.box_expanded}
-        `}
-      tabIndex={0}
-    >
-      <div className={styles.box_header}>
-        <span className={styles.box_title}>
-          {item.header}
-          <div className={styles.box_title_addOn}>Add-on</div>
-        </span>
-        <div className={styles.box_title2}>
-          {item.subHeader}
-        </div>
-      </div>
+    <div className={styles.infoContainer_text}><p>{`Add-on ${index + 1}`}</p>
+      {item.header}
     </div>
   );
 };
