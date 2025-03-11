@@ -80,7 +80,7 @@ const ProjectOverView = ({ project, close, handleCopy, handleCopy2, isCopied, is
         <div className={styles.overview_stepsList}>
             <div className={`${styles.overview_stepsList_item} ${selectedStep === 0 ? styles.overview_stepsList_item_selected : ''}`}
                 onClick={() => setSelectedStep(0)}
-            >Overview</div>
+            >Details</div>
             <div className={`${styles.overview_stepsList_item} ${selectedStep === 1 ? styles.overview_stepsList_item_selected : ''}`}
                 onClick={() => setSelectedStep(1)}
             >Project </div>
@@ -107,22 +107,28 @@ const ProjectOverView = ({ project, close, handleCopy, handleCopy2, isCopied, is
             >Other Add-ons</div>
         </div>
         {selectedStep === 0 &&
-            <div className={styles.overview_general} >
+            <div className={styles.infoContainer}>
                 <div className={styles.overview_general_timeline}>
-                    <div className={styles.infoContainer_header}>Project timeline
+                    <div className={styles.infoContainer_header}>Project details:
                     </div>
+                    <div className={styles.overview_general_text} ><p>Job #:</p>
+                        200006</div>
                     <div className={styles.overview_general_text} ><p>Request Date:</p>
-                        {formatDate(project.overviewInfoSettings.requestDate, "dd MMM yyyy, HH:mm")}</div>
+                        {formatDate(project.overviewInfoSettings.requestDate, "dd MMM yyyy, hh:mm aa").replace(/AM|PM/, (match) => match.toLowerCase())}</div>
 
-                    <div className={`${styles.overview_general_text} ${styles.overview_general_text_smallMargin}`}><p>Shoot Date:</p>
-                        {formatDate(project.overviewInfoSettings.requestDate, "dd MMM yyyy, HH:mm")}
+                    <div className={`${styles.overview_general_text}`}><p>Shoot Date:</p>
+                        {formatDate(project.overviewInfoSettings.requestDate, "dd MMM yyyy, hh:mm aa").replace(/AM|PM/, (match) => match.toLowerCase())}
                     </div>
-                    <div className={`${styles.overview_general_text} ${styles.overview_general_text_smallMargin}`}><p>Start time:</p>
-                        {formatDate(project.overviewInfoSettings.requestDate, "HH:mm")}</div>
-                    <div className={styles.overview_general_text}><p>End time:</p>{formatDate(project.overviewInfoSettings.requestDate, "HH:mm")}</div>
-                    <div className={styles.overview_general_text}><p>Editing Complete</p>{formatDate(project.overviewInfoSettings.requestDate, "HH:mm")}
+                    <div className={`${styles.overview_general_text}`}><p>Start time:</p>
+                        {formatDate(project.overviewInfoSettings.requestDate, "HH:mm aa")}</div>
+                    <div className={styles.overview_general_text}><p>End time:</p>{formatDate(project.overviewInfoSettings.requestDate, "HH:mm aa").replace(/AM|PM/, (match) => match.toLowerCase())}</div>
+                    <div className={styles.overview_general_text}><p>Editing Complete</p>{formatDate(project.overviewInfoSettings.requestDate, "HH:mm aa").replace(/AM|PM/, (match) => match.toLowerCase())}
                     </div>
-                    <div className={styles.overview_general_text}><p>Approved Date:</p>{formatDate(project.overviewInfoSettings.requestDate, "dd MMM yyyy, HH:mm")}
+                    <div className={styles.overview_general_text}><p>Approved Date:</p>{formatDate(project.overviewInfoSettings.requestDate, "dd MMM yyyy, HH:mm aa").replace(/AM|PM/, (match) => match.toLowerCase())}
+                    </div>
+                    <div className={styles.overview_general_text}><p>Video creator:</p>Abby Spears
+                    </div>
+                    <div className={styles.overview_general_text}><p>Video editor:</p>Joey Chandler
                     </div>
                 </div>
                 <div>
