@@ -295,7 +295,7 @@ export const requestsInitialState: IRequest[] = [
             completnessPercent: 30
         },
         projectInfoSettings: {
-            option: optionsList[3],
+            option: optionsList[2],
             name: "Star Wars",
             targetAudience: "",
             type: projectTypes[3],
@@ -426,7 +426,7 @@ export const requestsInitialState: IRequest[] = [
             completnessPercent: 30
         },
         projectInfoSettings: {
-            option: optionsList[4],
+            option: optionsList[3],
             name: "Growing Visual Stories: Behind the lens",
             targetAudience: "",
             type: projectTypes[4],

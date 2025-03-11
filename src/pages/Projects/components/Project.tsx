@@ -93,7 +93,7 @@ const Project = ({ project, index, searchQuery }: IProps) => {
                         <div className={styles.project_start_item_option}>
                             <img src={project.projectInfoSettings.type.img} alt='' />  {truncateString(project.projectInfoSettings.type.header, (windowWidth > 990 && windowWidth < 1250) ? 8 : 40)}
                             {windowWidth > 990 &&
-                                <>/ <img src={project.projectInfoSettings.type.img} alt='' />
+                                <>/ <img src={project.projectInfoSettings.option?.img} alt='' />
                                     <div dangerouslySetInnerHTML={{
                                         __html: highlightText(project.projectInfoSettings.option?.value || '', searchQuery, 15),
                                     }}></div>
