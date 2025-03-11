@@ -17,7 +17,7 @@ import { generateUniqueId } from "utils/generateId";
 import { inspirationsList } from "./data";
 import InspirationItem from "./InspirationItem";
 import styles from "../../Welcome.module.scss";
-import InspirationItem2 from "./InspirationItem2";
+// import InspirationItem2 from "./InspirationItem2";
 
 
 const Inspiration = (): JSX.Element => {
@@ -60,11 +60,11 @@ const Inspiration = (): JSX.Element => {
             }
           >
             <ChangeSlide position={position} />
-            <SwiperSlide
+            {/* <SwiperSlide
               key={generateUniqueId()}
             >
-              {/* <InspirationItem2 item={inspirationsList[0]} /> */}
-            </SwiperSlide>
+               <InspirationItem2 item={inspirationsList[0]} /> 
+            </SwiperSlide> */}
             {inspirationsList.map((item) => (
               <SwiperSlide
                 key={generateUniqueId()}

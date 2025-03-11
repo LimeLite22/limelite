@@ -6,7 +6,9 @@ import {
 } from "assets/images";
 import useWindowWidth from "hooks/useWindowWidth";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { selectDrafts } from "../../../redux/requests/reducer";
 import {
   A11y,
   Keyboard,
@@ -18,14 +20,14 @@ import {
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 
 import styles from "../Welcome.module.scss";
+import { truncateString } from "utils/truncateString";
 
 const Projects = () => {
   const [position, setPosition] = useState(0);
-  const text = "Maecenas egestas est eget cras sed morbi est";
   const width = useWindowWidth();
   const requestWidth = width - 32;
-  const isTablet = width < 1024;
   const navigate = useNavigate();
+  const projects = useSelector(selectDrafts);
 
   const ChangeSlide = ({ position }: { position: number }) => {
     const swiper = useSwiper();
@@ -72,197 +74,74 @@ const Projects = () => {
             }
           >
             <ChangeSlide position={position} />
-            <SwiperSlide
-              className={
-                styles.welcomeContainer__content_main_projects_content_projectItem
-              }
-            >
-              <div
-                className={
-                  styles.welcomeContainer__content_main_projects_content_projectItem_header
-                }
-              >
-                Aerial Perspectives
-                <div
+            {projects?.map((item, index) => {
+              return (
+                <SwiperSlide
                   className={
-                    styles.welcomeContainer__content_main_projects_content_projectItem_header_status
+                    styles.welcomeContainer__content_main_projects_content_projectItem
                   }
                 >
-                  {" "}
                   <div
                     className={
-                      styles.welcomeContainer__content_main_projects_content_projectItem_header_status_scheduled
+                      styles.welcomeContainer__content_main_projects_content_projectItem_header
                     }
                   >
-                    {" "}
+                    {truncateString(item.projectInfoSettings.name, 30)}
+                    <div
+                      className={
+                        styles.welcomeContainer__content_main_projects_content_projectItem_header_status
+                      }
+                    >
+                      {" "}
+                      <div
+                        className={
+                          styles.welcomeContainer__content_main_projects_content_projectItem_header_status_scheduled
+                        }
+                      >
+                        {" "}
+                      </div>
+                      {item.overviewInfoSettings.status}
+                      <img src={SettingsMenu} alt="" />
+                    </div>
                   </div>
-                  Scheduled
-                  <img src={SettingsMenu} alt="" />
-                </div>
-              </div>
-              <div
-                className={
-                  styles.welcomeContainer__content_main_projects_content_projectItem_type
-                }
-              >
-                Testimonial Video
-              </div>
-              <div
-                className={
-                  styles.welcomeContainer__content_main_projects_content_projectItem_subText
-                }
-              >
-                Shoot+Edit{" "}
-                <div
-                  className={
-                    styles.welcomeContainer__content_main_projects_content_projectItem_dot
-                  }
-                ></div>
-                Shoot: 11/12/2024
-              </div>
-              <div
-                className={
-                  styles.welcomeContainer__content_main_projects_content_projectItem_credit
-                }
-              >
-                1 Credit
-              </div>
-              <img
-                className={
-                  styles.welcomeContainer__content_main_projects_content_projectItem_userIcon
-                }
-                src={User1Foto}
-                alt={"Account"}
-              />
-            </SwiperSlide>
-            <SwiperSlide
-              className={
-                styles.welcomeContainer__content_main_projects_content_projectItem
-              }
-            >
-              <div
-                className={
-                  styles.welcomeContainer__content_main_projects_content_projectItem_header
-                }
-              >
-                {text.length > 30 && isTablet
-                  ? text.substring(0, 30) + "..."
-                  : text}
-                <div
-                  className={
-                    styles.welcomeContainer__content_main_projects_content_projectItem_header_status
-                  }
-                >
-                  {" "}
                   <div
                     className={
-                      styles.welcomeContainer__content_main_projects_content_projectItem_header_status_pending
+                      styles.welcomeContainer__content_main_projects_content_projectItem_type
                     }
                   >
-                    {" "}
+                    {item.projectInfoSettings.type.header}
                   </div>
-                  In Editing
-                  <img src={SettingsMenu} alt="" />
-                </div>
-              </div>
-              <div
-                className={
-                  styles.welcomeContainer__content_main_projects_content_projectItem_type
-                }
-              >
-                Testimonial Video
-              </div>
-              <div
-                className={
-                  styles.welcomeContainer__content_main_projects_content_projectItem_subText
-                }
-              >
-                Shoot+Edit{" "}
-                <div
-                  className={
-                    styles.welcomeContainer__content_main_projects_content_projectItem_dot
-                  }
-                ></div>
-                Shoot: 11/12/2024
-              </div>
-              <div
-                className={
-                  styles.welcomeContainer__content_main_projects_content_projectItem_credit
-                }
-              >
-                1 Credit
-              </div>
-              <img
-                className={
-                  styles.welcomeContainer__content_main_projects_content_projectItem_userIcon
-                }
-                src={User1Foto}
-                alt={"Account"}
-              />
-            </SwiperSlide>
-            <SwiperSlide
-              className={
-                styles.welcomeContainer__content_main_projects_content_projectItem
-              }
-            >
-              <div
-                className={
-                  styles.welcomeContainer__content_main_projects_content_projectItem_header
-                }
-              >
-                Aerial Perspectives
-                <div
-                  className={
-                    styles.welcomeContainer__content_main_projects_content_projectItem_header_status
-                  }
-                >
-                  {" "}
                   <div
                     className={
-                      styles.welcomeContainer__content_main_projects_content_projectItem_header_status_pending
+                      styles.welcomeContainer__content_main_projects_content_projectItem_subText
                     }
                   >
-                    {" "}
+                    {item.projectInfoSettings.option?.value}
+                    <div
+                      className={
+                        styles.welcomeContainer__content_main_projects_content_projectItem_dot
+                      }
+                    ></div>
+                    Shoot: 11/12/2025
                   </div>
-                  In Editing
-                  <img src={SettingsMenu} alt="" />
-                </div>
-              </div>
-              <div
-                className={
-                  styles.welcomeContainer__content_main_projects_content_projectItem_type
-                }
-              >
-                Testimonial Video
-              </div>
-              <div
-                className={
-                  styles.welcomeContainer__content_main_projects_content_projectItem_subText
-                }
-              >
-                Shoot+Edit{" "}
-                <div
-                  className={
-                    styles.welcomeContainer__content_main_projects_content_projectItem_dot
-                  }
-                ></div>
-                Shoot: 11/12/2024
-              </div>
-              <div
-                className={
-                  styles.welcomeContainer__content_main_projects_content_projectItem_credit
-                }
-              >
-                2 Credits
-              </div>
-              <img
-                className={
-                  styles.welcomeContainer__content_main_projects_content_projectItem_userIcon
-                }
-                src={User1Foto}
-                alt={"Account"}
-              />
-            </SwiperSlide>
+                  <div
+                    className={
+                      styles.welcomeContainer__content_main_projects_content_projectItem_credit
+                    }
+                  >
+                    1 Credit
+                  </div>
+                  <img
+                    className={
+                      styles.welcomeContainer__content_main_projects_content_projectItem_userIcon
+                    }
+                    src={User1Foto}
+                    alt={"Account"}
+                  />
+                </SwiperSlide>
+              )
+            })
+            }
             <SwiperSlide
               className={
                 styles.welcomeContainer__content_main_projects_content_newRequest
@@ -271,10 +150,10 @@ const Projects = () => {
                 width > 768
                   ? {}
                   : {
-                      minWidth: `${requestWidth}px`,
-                      width: `${requestWidth}px`,
-                      maxWidth: `${requestWidth}px`,
-                    }
+                    minWidth: `${requestWidth}px`,
+                    width: `${requestWidth}px`,
+                    maxWidth: `${requestWidth}px`,
+                  }
               }
               onClick={() => {
                 navigate("/new-request/start");
@@ -283,21 +162,12 @@ const Projects = () => {
               <img src={NewRequestIcon} alt={"NewRequestIcon"} />
               New Request
             </SwiperSlide>
-            <SwiperSlide
-              className={
-                styles.welcomeContainer__content_main_projects_content_projectSpaceItem
-              }
-            ></SwiperSlide>
-            <SwiperSlide
-              className={
-                styles.welcomeContainer__content_main_projects_content_projectSpaceItem
-              }
-            ></SwiperSlide>
-            <SwiperSlide
-              className={
-                styles.welcomeContainer__content_main_projects_content_projectSpaceItem
-              }
-            ></SwiperSlide>
+            <SwiperSlide>
+            </SwiperSlide>
+            <SwiperSlide>
+            </SwiperSlide>
+            <SwiperSlide>
+            </SwiperSlide>
           </Swiper>
         </div>
       </div>
@@ -313,7 +183,7 @@ const Projects = () => {
           onClick={() => position > 0 && setPosition(position - 1)}
         ></button>
         <button
-          onClick={() => position < 3 && setPosition(position + 1)}
+          onClick={() => position < 6 && setPosition(position + 1)}
           className={
             styles.welcomeContainer__content_main_projects_content_projectsList_bullets_forward
           }
