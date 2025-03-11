@@ -22,6 +22,7 @@ const BottomMenu = ({ isOpened }: IProps) => {
     if (pathname.includes("learn")) return LEARN;
     if (pathname.includes("welcome")) return HOME;
     if (pathname.includes("notifications")) return NOTIFICATIONS;
+    if (pathname.includes("projects")) return PROJECTS;
     return HOME; // Default fallback
   };
 
