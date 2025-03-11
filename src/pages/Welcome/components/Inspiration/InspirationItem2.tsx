@@ -3,14 +3,11 @@ import "swiper/css/pagination";
 
 import { Close } from "assets/images";
 import useWindowWidth from "hooks/useWindowWidth";
-import { useEffect, useState } from "react";
-import { useRef } from "react";
+import { useState } from "react";
 import ReactDOM from "react-dom";
-import type { Swiper as SwiperType } from "swiper";
 import { Sheet } from "react-modal-sheet";
-import { Autoplay } from "swiper/modules";
 
-import { embedCode1, embedCode2, embedCode3, embedCode4, embedCode5, embedCode6 } from "./data";
+import { embedCode1, embedCode2, embedCode3, embedCode4 } from "./data";
 import styles from "../../Welcome.module.scss";
 export interface IInspiration {
   id: string;

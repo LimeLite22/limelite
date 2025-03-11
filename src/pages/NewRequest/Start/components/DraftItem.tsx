@@ -1,4 +1,4 @@
-import { Copy, Delete, SettingsMenu, User1Foto } from "assets/images";
+import { Copy, Delete, SettingsMenu } from "assets/images";
 import { DEFAULT } from "consts/consts";
 import { format } from "date-fns";
 import { IRequest } from "interfaces/interfaces";
@@ -14,10 +14,6 @@ interface IProps {
 const DraftItem = ({ draft }: IProps) => {
   const dispatch = useDispatch();
   const [isSettingsMenuOpened, setIsSettingsMenuOpened] = useState(false);
-  // const handleRightClick = (event: React.MouseEvent<HTMLDivElement>) => {
-  //   event.preventDefault();
-  //   setIsSettingsMenuOpened(true);
-  // };
 
   return (
     <>
@@ -102,13 +98,13 @@ const DraftItem = ({ draft }: IProps) => {
           <div
             className={styles.nR_content_projects_content_projectItem_dot}
           ></div>{" "}
-          <div>10% </div>
+          <div>{draft.overviewInfoSettings.completnessPercent}% </div>
         </div>
         <div
           className={styles.nR_content_projects_content_projectItem_progressBar}
         >
           <div
-            style={{ width: "10%" }}
+            style={{ width: `${draft.overviewInfoSettings.completnessPercent}%` }}
             className={
               styles.nR_content_projects_content_projectItem_progressBar_bar
             }
@@ -117,7 +113,7 @@ const DraftItem = ({ draft }: IProps) => {
         <div></div>
         <img
           className={styles.nR_content_projects_content_projectItem_userIcon}
-          src={User1Foto}
+          src={draft.overviewInfoSettings.requester.foto}
           alt={"Account"}
         />
       </div>

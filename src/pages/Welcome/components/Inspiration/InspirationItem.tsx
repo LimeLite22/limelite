@@ -7,12 +7,9 @@ import { useEffect, useState } from "react";
 import { useRef } from "react";
 import ReactDOM from "react-dom";
 import type { Swiper as SwiperType } from "swiper";
-import { Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Sheet } from "react-modal-sheet";
-import { Autoplay } from "swiper/modules";
 
-import { embedCode1, embedCode2, embedCode3, embedCode4, embedCode5, embedCode6 } from "./data";
+import { embedCode1, embedCode2, embedCode3, embedCode4 } from "./data";
 import styles from "../../Welcome.module.scss";
 export interface IInspiration {
   id: string;
@@ -127,14 +124,6 @@ const InspirationItem = ({ item }: { item: IInspiration }): JSX.Element => {
             >
               4  foto
             </div>
-            <div className={styles.inspirationPopUpContainer_swiper_item}
-              onClick={() => {
-                setSelectedVideo(embedCode5);
-              }}
-            >
-              5  foto
-            </div>
-
           </div>
         </div>
       </div>,
@@ -219,14 +208,6 @@ const InspirationItem = ({ item }: { item: IInspiration }): JSX.Element => {
                 >
                   4  foto
                 </div>
-                <div className={styles.inspirationPopUpContainer_swiper_item}
-                  onClick={() => {
-                    setSelectedVideo(embedCode5);
-                  }}
-                >
-                  5  foto
-                </div>
-
               </div>
             </Sheet.Scroller>
 

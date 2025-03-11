@@ -63,7 +63,7 @@ const Inspiration = (): JSX.Element => {
             <SwiperSlide
               key={generateUniqueId()}
             >
-              <InspirationItem2 item={inspirationsList[0]} />
+              {/* <InspirationItem2 item={inspirationsList[0]} /> */}
             </SwiperSlide>
             {inspirationsList.map((item) => (
               <SwiperSlide
@@ -78,7 +78,7 @@ const Inspiration = (): JSX.Element => {
           </Swiper> :
           <>
 
-            <InspirationItem2 item={inspirationsList[0]} />
+            {/* <InspirationItem2 item={inspirationsList[0]} /> */}
 
             {
               inspirationsList.map((item) => (
