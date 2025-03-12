@@ -8,7 +8,7 @@ import { statusColor } from "utils/statusColors";
 import { truncateString } from "utils/truncateString";
 
 import styles from "../ProjectsPage.module.scss";
-import ProjectOverView from "./ProjectOverview";
+import ProjectOverView from "../../components/ProjectOverview";
 
 interface IProps {
     project: IRequest;

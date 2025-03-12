@@ -1,5 +1,5 @@
-import { testRequest } from "../../../../redux/requests/consts";
-import styles from "../../ProjectsPage.module.scss";
+import { testRequest } from "../../../redux/requests/consts";
+import styles from "../ProjectOverview.module.scss";
 import AddOnBox from "./components/AddOnBox";
 
 const AddOnsSettings = () => {

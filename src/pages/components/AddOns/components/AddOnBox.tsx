@@ -1,6 +1,6 @@
 import { IAddOnsValue } from "interfaces/interfaces";
 
-import styles from "../../../ProjectsPage.module.scss";
+import styles from "../../ProjectOverview.module.scss";
 
 interface IProps {
   item: IAddOnsValue

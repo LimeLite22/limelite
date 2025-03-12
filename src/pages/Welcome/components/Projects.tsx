@@ -21,6 +21,7 @@ import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 
 import styles from "../Welcome.module.scss";
 import { truncateString } from "utils/truncateString";
+import Project from "./Project";
 
 const Projects = () => {
   const [position, setPosition] = useState(0);
@@ -76,68 +77,8 @@ const Projects = () => {
             <ChangeSlide position={position} />
             {projects?.map((item, index) => {
               return (
-                <SwiperSlide
-                  className={
-                    styles.welcomeContainer__content_main_projects_content_projectItem
-                  }
-                >
-                  <div
-                    className={
-                      styles.welcomeContainer__content_main_projects_content_projectItem_header
-                    }
-                  >
-                    {truncateString(item.projectInfoSettings.name, 30)}
-                    <div
-                      className={
-                        styles.welcomeContainer__content_main_projects_content_projectItem_header_status
-                      }
-                    >
-                      {" "}
-                      <div
-                        className={
-                          styles.welcomeContainer__content_main_projects_content_projectItem_header_status_scheduled
-                        }
-                      >
-                        {" "}
-                      </div>
-                      {item.overviewInfoSettings.status}
-                      <img src={SettingsMenu} alt="" />
-                    </div>
-                  </div>
-                  <div
-                    className={
-                      styles.welcomeContainer__content_main_projects_content_projectItem_type
-                    }
-                  >
-                    {item.projectInfoSettings.type.header}
-                  </div>
-                  <div
-                    className={
-                      styles.welcomeContainer__content_main_projects_content_projectItem_subText
-                    }
-                  >
-                    {item.projectInfoSettings.option?.value}
-                    <div
-                      className={
-                        styles.welcomeContainer__content_main_projects_content_projectItem_dot
-                      }
-                    ></div>
-                    Shoot: 11/12/2025
-                  </div>
-                  <div
-                    className={
-                      styles.welcomeContainer__content_main_projects_content_projectItem_credit
-                    }
-                  >
-                    1 Credit
-                  </div>
-                  <img
-                    className={
-                      styles.welcomeContainer__content_main_projects_content_projectItem_userIcon
-                    }
-                    src={User1Foto}
-                    alt={"Account"}
-                  />
+                <SwiperSlide>
+                  <Project key={index} project={item} />
                 </SwiperSlide>
               )
             })

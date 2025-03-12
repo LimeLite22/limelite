@@ -2,7 +2,7 @@
 import { User1Foto } from "assets/images";
 import { IProjectInfoSettings } from "interfaces/interfaces";
 import DivRowCount from "pages/NewRequest/components/TextArea";
-import styles from "../ProjectsPage.module.scss";
+import styles from "./ProjectOverview.module.scss";
 interface IProps {
     settings: IProjectInfoSettings
 }

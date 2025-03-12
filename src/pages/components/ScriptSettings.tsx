@@ -2,8 +2,8 @@
 import { OWN_SCRIPT, PROFESSIONAL_SCRIPT } from "consts/consts";
 import DivRowCount from "pages/NewRequest/components/TextArea";
 
-import { testRequest } from "../../../redux/requests/consts";
-import styles from "../ProjectsPage.module.scss";
+import { testRequest } from "../../redux/requests/consts";
+import styles from "./ProjectOverview.module.scss";
 const ScriptSettings = () => {
     const selectedRequest = testRequest;
     const scriptSettings = { ...selectedRequest?.script };

@@ -7,7 +7,7 @@ import { useState } from "react";
 import ReactDOM from "react-dom";
 import { Sheet } from "react-modal-sheet";
 
-import styles from "../ProjectsPage.module.scss";
+import styles from "./ProjectOverview.module.scss";
 import AddOnsSettings from "./AddOns/AddOns";
 import InterviewSettings from "./InterviewSettings";
 import LogisticSettings from "./LogisticSettings";
@@ -31,7 +31,11 @@ const ProjectOverView = ({ project, close, handleCopy, handleCopy2, isCopied, is
     const width = useWindowWidth();
     const [selectedStep, setSelectedStep] = useState(0);
     const content = <>
-        <div className={styles.overview_header}>
+        <div className={styles.overview_header} onClick={
+            (e) => {
+                e.stopPropagation();
+            }
+        }>
             Why They Chose Us: Honest feedback from our clients
         </div>
         <div className={styles.overview_info}>
@@ -159,7 +163,10 @@ const ProjectOverView = ({ project, close, handleCopy, handleCopy2, isCopied, is
         <>
             {width > 768 &&
                 ReactDOM.createPortal(
-                    <div className={styles.overview}>
+                    <div className={styles.overview} onClick={
+                        (e) => {
+                            e.stopPropagation();
+                        }}>
                         <div className={styles.overview_container}>
                             <div className={styles.overview_container_closeButton}>
                                 <img

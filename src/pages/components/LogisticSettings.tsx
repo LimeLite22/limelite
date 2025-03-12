@@ -2,7 +2,7 @@ import { DEFAULT, OWN_ADDRESS, YES } from "consts/consts";
 import { format } from "date-fns";
 import { ILogisticSettings } from "interfaces/interfaces";
 
-import styles from "../ProjectsPage.module.scss";
+import styles from "./ProjectOverview.module.scss";
 interface IProps {
     settings: ILogisticSettings
 }

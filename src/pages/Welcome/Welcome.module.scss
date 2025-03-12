@@ -317,6 +317,7 @@
               height: 100%;
               margin-left: 0 !important;
               position: relative;
+              overflow: visible !important;
               @media screen and (max-width: 1440px) {
                 width: 1488px;
               }
@@ -1967,6 +1968,48 @@
       width: 100%;
       padding-bottom: 16px;
       overflow: scroll;
+    }
+  }
+}
+
+.project {
+  &_info {
+    &_settingsContainer {
+      position: absolute;
+      top: 10px;
+      right: 50px;
+      width: 235px;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      background-color: var(--white);
+      box-shadow: 0px 4px 8px 0px rgba(55, 55, 61, 0.05);
+      border: 1px solid #f5f6f5;
+      border-radius: 8px;
+      padding: 12px 8px;
+      z-index: 10;
+      &_item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19.2px;
+        text-align: left;
+
+        color: var(--gray-dark3);
+        border-radius: 4px;
+        padding: 2px 8px;
+        img {
+          width: 24px;
+          height: 24px;
+        }
+        &:hover {
+          background-color: var(--gray-light7);
+        }
+      }
     }
   }
 }
