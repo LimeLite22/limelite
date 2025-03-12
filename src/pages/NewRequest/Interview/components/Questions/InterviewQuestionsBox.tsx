@@ -14,7 +14,7 @@ import OwnQuestions from "./components/OwnQuestions";
 import ProffessionalQuestions from "./components/ProfessionalQuestions";
 
 const InterviewQuestionsBox = () => {
-  const selectedRequest = useSelector(selectRequestInfo);
+  const interviewSettings = useSelector(selectRequestInfo)?.interviewSettings;
   const [isError, setIsError] = useState({
     subject: false,
     phone: false,
@@ -23,9 +23,9 @@ const InterviewQuestionsBox = () => {
     status: false,
     proffessionalScript: false,
   });
-  const selection = selectedRequest?.interviewSettings.questionsAuthor;
-  const profSettings = selectedRequest?.interviewSettings.questionsAuthorProfSettings;
-  const ownSettings = selectedRequest?.interviewSettings.questionsAuthorOwnSettings;
+  const selection = interviewSettings?.questionsAuthor;
+  const profSettings = interviewSettings?.questionsAuthorProfSettings;
+  const ownSettings = interviewSettings?.questionsAuthorOwnSettings;
   const subject = profSettings?.subject;
   const phone = profSettings?.phone;
   const email = profSettings?.email;
@@ -138,7 +138,7 @@ const InterviewQuestionsBox = () => {
   }, [subject, phone, email, ownText, proffessionalText, ownTextStatus]);
 
   return (
-    <div ref={containerRef} tabIndex={-1} onBlur={handleBlur}>
+    <div ref={containerRef} tabIndex={-1} onBlur={handleBlur} >
       <div className={styles.box_question_header_text}>
         Who will write the interview questions?*
       </div>

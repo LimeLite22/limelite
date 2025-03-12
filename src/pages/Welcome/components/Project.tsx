@@ -1,10 +1,9 @@
 import { IRequest } from "interfaces/interfaces";
 import { useEffect, useRef, useState } from "react";
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { truncateString } from "utils/truncateString";
 import styles from "../Welcome.module.scss";
 import copy from "copy-to-clipboard"
-import { DetailsProject, DownloadProject, Settings, SettingsMenu, ShareProject, User1Foto } from "assets/images";
+import { DetailsProject, DownloadProject, Settings, ShareProject, User1Foto } from "assets/images";
 import ProjectOverView from "pages/components/ProjectOverview";
 import { statusColor } from "utils/statusColors";
 

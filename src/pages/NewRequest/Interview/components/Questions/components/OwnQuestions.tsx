@@ -29,9 +29,9 @@ interface IProps {
   };
 }
 const OwnQuestions = ({ isExpanded, setIsExpanded, isError }: IProps) => {
-  const selectedRequest = useSelector(selectRequestInfo);
-  const selection = selectedRequest?.interviewSettings.questionsAuthor;
-  const ownSettings = selectedRequest?.interviewSettings.questionsAuthorOwnSettings;
+  const interviewSettings = useSelector(selectRequestInfo)?.interviewSettings;
+  const selection = interviewSettings?.questionsAuthor;
+  const ownSettings = interviewSettings?.questionsAuthorOwnSettings;
   const text = ownSettings?.text;
   const status = ownSettings?.scriptStatus;
   const dispatch = useDispatch();

@@ -59,6 +59,11 @@ const SideBar = ({ isOpened, setIsOpened }: IProps) => {
     ) {
       setSelectedPage(ADD_ONS);
     }
+    if (
+      location.pathname.includes("projects")
+    ) {
+      setSelectedPage(PROJECTS);
+    }
   }, [location]);
 
   const handleLinkClick = () => {
