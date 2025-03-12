@@ -120,7 +120,7 @@ const ProjectOverView = ({ project, close, handleCopy, handleCopy2, isCopied, is
                         {formatDate(project.overviewInfoSettings.requestDate, "dd MMM yyyy, hh:mm aa").replace(/AM|PM/, (match) => match.toLowerCase())}
                     </div>
                     <div className={`${styles.overview_general_text}`}><p>Start time:</p>
-                        {formatDate(project.overviewInfoSettings.requestDate, "HH:mm aa")}</div>
+                        {formatDate(project.overviewInfoSettings.requestDate, "HH:mm aa").replace(/AM|PM/, (match) => match.toLowerCase())}</div>
                     <div className={styles.overview_general_text}><p>End time:</p>{formatDate(project.overviewInfoSettings.requestDate, "HH:mm aa").replace(/AM|PM/, (match) => match.toLowerCase())}</div>
                     <div className={styles.overview_general_text}><p>Editing Complete</p>{formatDate(project.overviewInfoSettings.requestDate, "HH:mm aa").replace(/AM|PM/, (match) => match.toLowerCase())}
                     </div>
