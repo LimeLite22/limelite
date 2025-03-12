@@ -1,8 +1,6 @@
 import {
   NewRequestIcon,
   QuestionIcon,
-  SettingsMenu,
-  User1Foto,
 } from "assets/images";
 import useWindowWidth from "hooks/useWindowWidth";
 import { useEffect, useState } from "react";
@@ -20,8 +18,8 @@ import {
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 
 import styles from "../Welcome.module.scss";
-import { truncateString } from "utils/truncateString";
 import Project from "./Project";
+import { COMPLETE_REQUEST_STATUS, IN_EDITING_REQUEST_STATUS, ON_HOLD_REQUEST_STATUS, REQUESTED_REQUEST_STATUS, SCHEDULED_REQUEST_STATUS } from "consts/consts";
 
 const Projects = () => {
   const [position, setPosition] = useState(0);
@@ -75,7 +73,18 @@ const Projects = () => {
             }
           >
             <ChangeSlide position={position} />
-            {projects?.map((item, index) => {
+            {projects?.filter((item) => {
+              if (item.overviewInfoSettings.status === REQUESTED_REQUEST_STATUS ||
+                item.overviewInfoSettings.status === IN_EDITING_REQUEST_STATUS ||
+                item.overviewInfoSettings.status === SCHEDULED_REQUEST_STATUS ||
+                item.overviewInfoSettings.status === ON_HOLD_REQUEST_STATUS ||
+                item.overviewInfoSettings.status === COMPLETE_REQUEST_STATUS
+              ) {
+                return true
+              } else {
+                return false
+              }
+            }).map((item, index) => {
               return (
                 <SwiperSlide>
                   <Project key={index} project={item} />

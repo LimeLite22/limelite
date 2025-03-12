@@ -6,6 +6,7 @@ import styles from "../Welcome.module.scss";
 import copy from "copy-to-clipboard"
 import { DetailsProject, DownloadProject, Settings, SettingsMenu, ShareProject, User1Foto } from "assets/images";
 import ProjectOverView from "pages/components/ProjectOverview";
+import { statusColor } from "utils/statusColors";
 
 interface IProps {
     project: IRequest,
@@ -67,7 +68,6 @@ const Project = ({ project: item }: IProps) => {
                 styles.welcomeContainer__content_main_projects_content_projectItem
             }
             onClick={() => {
-                console.log('rf');
                 setIsOverviewOpen(true);
             }}
 
@@ -85,6 +85,7 @@ const Project = ({ project: item }: IProps) => {
                 >
                     {" "}
                     <div
+                        style={{ background: statusColor(item.overviewInfoSettings.status) }}
                         className={
                             styles.welcomeContainer__content_main_projects_content_projectItem_header_status_scheduled
                         }
@@ -96,7 +97,6 @@ const Project = ({ project: item }: IProps) => {
                         onClick={(e) => {
                             e.stopPropagation();
                             e.preventDefault();
-                            console.log('1111343')
                             setIsSettingsOpen(true)
                         }}>
                         <img src={Settings} alt="" />

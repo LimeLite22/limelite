@@ -518,6 +518,17 @@
                 justify-content: flex-end;
             }
         }
+        &_creditContainer {
+            min-width: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0px;
+        }
+        &_mobileContainer {
+            display: flex;
+            width: 100%;
+        }
         &_date {
             @media screen and (max-width: 1250px) {
                 display: none;
@@ -533,6 +544,9 @@
             justify-content: center;
             cursor: pointer;
             position: relative;
+            @media screen and (max-width: 768px) {
+                flex: 0.1;
+            }
         }
         &_settingsContainer {
             position: absolute;

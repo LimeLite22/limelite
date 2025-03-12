@@ -90,23 +90,24 @@ const Project = ({ project, index, searchQuery }: IProps) => {
                                 __html: highlightText(project.projectInfoSettings.name, searchQuery, 20),
                             }}
                         ></div>
-                        <div className={styles.project_start_item_option}>
-                            <img src={project.projectInfoSettings.type.img} alt='' />  {truncateString(project.projectInfoSettings.type.header, (windowWidth > 990 && windowWidth < 1250) ? 8 : 40)}
-                            {windowWidth > 990 &&
-                                <>/ <img src={project.projectInfoSettings.option?.img} alt='' />
-                                    <div dangerouslySetInnerHTML={{
-                                        __html: highlightText(project.projectInfoSettings.option?.value || '', searchQuery, 15),
-                                    }}></div>
-                                </>}
-
-                            <div className={`${styles.project_info_item} ${styles.mobOnly}`} >
+                        <div className={styles.project_info_mobileContainer}>
+                            <div className={styles.project_start_item_option}>
+                                <img src={project.projectInfoSettings.type.img} alt='' />  {truncateString(project.projectInfoSettings.type.header, (windowWidth > 990 && windowWidth < 1250) ? 8 : 40)}
+                                {windowWidth > 990 &&
+                                    <>/ <img src={project.projectInfoSettings.option?.img} alt='' />
+                                        <div dangerouslySetInnerHTML={{
+                                            __html: highlightText(project.projectInfoSettings.option?.value || '', searchQuery, 15),
+                                        }}></div>
+                                    </>}
+                            </div>
+                            <div className={`${styles.project_info_item} ${styles.project_info_creditContainer} ${styles.mobOnly}`} >
                                 <div className={`${styles.project_credit}`} >
                                     {project.projectInfoSettings.option?.credits !== 'TBD' ? project.projectInfoSettings.option?.credits : ''}{" "}
                                     {project.projectInfoSettings.option?.credits === 'TBD' ? 'TBD' : project?.projectInfoSettings?.option?.credits! > 1 ? "Credits" : "Credit"}
                                 </div>
                             </div>
-
                         </div>
+
 
                     </div>
                     <div className={`${styles.project_info_settings} ${styles.mobOnly} `}
