@@ -1,16 +1,11 @@
-import { DEFAULT, VIDEO_SQUARE, VIDEO_STANDARD, VIDEO_VERTICAL } from "consts/consts";
+import { DEFAULT } from "consts/consts";
 import { IVideoSettings } from "interfaces/interfaces";
+import { getFormatNumber } from "utils/getFormatNubmers";
 
 import { testRequest } from "../../redux/requests/consts";
 import styles from "./ProjectOverview.module.scss";
 const VideoEditSettings = () => {
     const videoSettings: IVideoSettings = testRequest.videoSettings;
-
-    const formatNumber =
-        videoSettings?.format === VIDEO_STANDARD
-            ? '16:9' : videoSettings?.format === VIDEO_SQUARE
-                ? '1:1' : videoSettings?.format === VIDEO_VERTICAL
-                    ? "4:5" : "9:16"
 
 
     return (
@@ -20,7 +15,7 @@ const VideoEditSettings = () => {
             <div className={styles.infoContainer_text}>
                 <p>Video format:</p>
                 <div>
-                    {videoSettings?.format} ({formatNumber})
+                    {videoSettings?.format} ({getFormatNumber(videoSettings?.format)})
                 </div>
 
             </div>

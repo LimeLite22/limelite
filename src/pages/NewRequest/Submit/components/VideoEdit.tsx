@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import { FileDrop } from "react-file-drop";
 import { useDispatch, useSelector } from "react-redux";
 import { generateUniqueId } from "utils/generateId";
+import { getFormatNumber } from "utils/getFormatNubmers";
 
 import { selectRequestInfo, updateVideoEditSettings } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
@@ -19,12 +20,6 @@ const VideoEdit = () => {
     const [isEdit, setIsEdit] = useState(false);
     const [isReady, setIsReady] = useState(false);
     const [current, setCurrent] = useState(videoSettings);
-    console.log('current', current)
-    const formatNumber =
-        videoSettings?.format === VIDEO_STANDARD
-            ? '16:9' : videoSettings?.format === VIDEO_SQUARE
-                ? '1:1' : videoSettings?.format === VIDEO_VERTICAL
-                    ? "4:5" : "9:16"
 
 
     const readyToSave = () => {
@@ -140,7 +135,7 @@ const VideoEdit = () => {
                             Vertical <div className={styles.box_videoType_dot}></div> 4:5
                         </div>
                     </div> : <div>
-                        {videoSettings?.format} ({formatNumber})
+                        {videoSettings?.format} ({getFormatNumber(videoSettings?.format)})
                     </div>
 
                 }

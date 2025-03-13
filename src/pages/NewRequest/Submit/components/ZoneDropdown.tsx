@@ -12,12 +12,12 @@ interface IProps {
   onChange: (zone: { name: string; value: number }) => void;
 }
 const ZoneDropdown: FC<IProps> = ({ onChange }) => {
-  const lIS = useSelector(selectRequestInfo)?.logisticSettings;
-  const [current, setCurrent] = useState(lIS?.travel.zoneCode);
+  const logisticSettings = useSelector(selectRequestInfo)?.logisticSettings;
+  const [current, setCurrent] = useState(logisticSettings?.travel.zoneCode);
   const [isOpened, setOpened] = useState(false);
   useEffect(() => {
-    setCurrent(lIS?.travel.zoneCode);
-  }, [lIS])
+    setCurrent(logisticSettings?.travel.zoneCode);
+  }, [logisticSettings])
   return (
     <div className={`${styles.dropdownType4}`}>
       <div

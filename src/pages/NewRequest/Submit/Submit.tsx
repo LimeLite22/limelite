@@ -15,7 +15,6 @@ import LogisticInfo from "./components/Logistic";
 import ProjectInfo from "./components/ProjectInfo";
 import ScriptedDeliveryInfo from "./components/ScriptedDeliveryInfo";
 import ScriptInfo from "./components/ScriptInfo";
-import ScriptSelector from "./components/ScriptSelector/ScriptSelector";
 import VideoEdit from "./components/VideoEdit";
 import Voiceover from "./components/Voiceover";
 

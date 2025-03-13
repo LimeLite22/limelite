@@ -1,4 +1,3 @@
-
 import { Audio, CloseRed, Delete, Download, EditIcon, Success2 } from "assets/images";
 import { DEFAULT, TRACK_AUTHOR_CLIENT } from "consts/consts";
 import { useEffect, useRef, useState } from "react";
@@ -7,23 +6,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectRequestInfo, updateVoiceoverSettings } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 const Voiceover = () => {
-    const selectedRequest = useSelector(selectRequestInfo);
+    const voiceTrackSettings = useSelector(selectRequestInfo)?.voiceTrackSettings!;
     const dispatch = useDispatch();
     const [isEdit, setIsEdit] = useState(false);
     const [isReady, setIsReady] = useState(false);
-    const [current, setCurrent] = useState(selectedRequest!.voiceTrackSettings);
+    const [current, setCurrent] = useState(voiceTrackSettings);
     const [error, setError] = useState<string | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const readyToSave = () => {
         let ready = true;
         if (
-            current.trackAuthor !== selectedRequest?.voiceTrackSettings.trackAuthor ||
-            current.trackAuthor === TRACK_AUTHOR_CLIENT && current.track === DEFAULT
+            current?.trackAuthor !== voiceTrackSettings?.trackAuthor ||
+            (current?.trackAuthor === TRACK_AUTHOR_CLIENT && current.track === DEFAULT)
         ) {
             ready = false
         } else {
-            if (current.track !== selectedRequest?.voiceTrackSettings.track) {
+            if (current?.track !== voiceTrackSettings?.track) {
                 ready = true
             } else {
                 ready = false
@@ -38,7 +37,7 @@ const Voiceover = () => {
     }
     const handleDecline = () => {
         setIsEdit(false);
-        setCurrent(selectedRequest!.voiceTrackSettings);
+        setCurrent(voiceTrackSettings);
     }
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const uploadedFile = event.target.files?.[0];
@@ -72,10 +71,10 @@ const Voiceover = () => {
     }
     useEffect(() => {
         readyToSave();
-    }, [current, selectedRequest?.voiceTrackSettings])
+    }, [current, voiceTrackSettings])
     useEffect(() => {
-        setCurrent(selectedRequest!.voiceTrackSettings)
-    }, [selectedRequest?.voiceTrackSettings])
+        setCurrent(voiceTrackSettings)
+    }, [voiceTrackSettings])
 
 
     return (

@@ -30,10 +30,10 @@ interface IProps {
   };
 }
 const OwnScript = ({ isExpanded, setIsExpanded, isError }: IProps) => {
-  const selectedRequest = useSelector(selectRequestInfo);
-  const selection = selectedRequest?.script?.scriptWriter;
-  const text = selectedRequest?.script?.scriptText;
-  const status = selectedRequest?.script?.scriptStatus;
+  const scriptSettings = useSelector(selectRequestInfo)?.script;
+  const selection = scriptSettings?.scriptWriter;
+  const text = scriptSettings?.scriptText;
+  const status = scriptSettings?.scriptStatus;
   const dispatch = useDispatch();
   const width = useWindowWidth();
   const handleUpdateField = (

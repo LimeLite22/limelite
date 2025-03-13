@@ -18,13 +18,17 @@ const IsScriptRequired = () => {
     ownScriptStatus: false,
     proffessionalScript: false,
   });
-  const selection = selectedRequest?.script.scriptWriter;
-  const name = selectedRequest?.script?.name;
-  const phone = selectedRequest?.script?.phone;
-  const email = selectedRequest?.script?.email;
-  const ownText = selectedRequest?.script?.scriptText;
-  const ownTextStatus = selectedRequest?.script?.scriptStatus;
-  const proffessionalText = selectedRequest?.script?.backgroundInfo;
+  const { script } = selectedRequest ?? {};
+  const {
+    scriptWriter,
+    name,
+    phone,
+    email,
+    scriptText,
+    scriptStatus,
+    backgroundInfo
+  } = script ?? {};
+
   const [isOwnExpanded, setIsOwnExpanded] = useState(false);
   const [isProffessionalExpanded, setIsProffessionalExpanded] = useState(false);
 
@@ -38,15 +42,15 @@ const IsScriptRequired = () => {
     ) {
       return;
     }
-    if (selection === OWN_SCRIPT) {
-      if (ownTextStatus !== APPROVED_TEXT_STATUS || (!ownText || ownText.length === 0)) {
+    if (scriptWriter === OWN_SCRIPT) {
+      if (scriptStatus !== APPROVED_TEXT_STATUS || (!scriptText || scriptText.length === 0)) {
         setIsOwnExpanded(true);
         const errors = {
           name: false,
           phone: false,
           email: false,
-          ownScript: ownTextStatus === APPROVED_TEXT_STATUS ? (!ownText || ownText.length === 0) : false,
-          ownScriptStatus: ownTextStatus === DEFAULT,
+          ownScript: scriptStatus === APPROVED_TEXT_STATUS ? (!scriptText || scriptText.length === 0) : false,
+          ownScriptStatus: scriptStatus === DEFAULT,
           proffessionalScript: false,
         };
         setIsError(errors);
@@ -57,12 +61,12 @@ const IsScriptRequired = () => {
     }
     const phoneRegex = /^\+?1?\s?(\d{3}|\(\d{3}\))[-.\s]?\d{3}[-.\s]?\d{4}$/;
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (selection === PROFESSIONAL_SCRIPT) {
+    if (scriptWriter === PROFESSIONAL_SCRIPT) {
       if (
         !emailRegex.test(String(email)) ||
         email?.length === 0 ||
-        !proffessionalText ||
-        proffessionalText.length === 0 ||
+        !backgroundInfo ||
+        backgroundInfo.length === 0 ||
         !name ||
         name.length === 0 ||
         phone === "" ||
@@ -80,7 +84,7 @@ const IsScriptRequired = () => {
           ownScript: false,
           ownScriptStatus: false,
           proffessionalScript:
-            !proffessionalText || proffessionalText.length === 0,
+            !backgroundInfo || backgroundInfo.length === 0,
         };
         setIsError(errors);
       } else {
@@ -91,12 +95,12 @@ const IsScriptRequired = () => {
   };
 
   useEffect(() => {
-    if (selection === DEFAULT) return;
-    if (selection === OWN_SCRIPT) {
+    if (scriptWriter === DEFAULT) return;
+    if (scriptWriter === OWN_SCRIPT) {
       setIsOwnExpanded(true);
       setIsProffessionalExpanded(false);
     }
-    if (selection === PROFESSIONAL_SCRIPT) {
+    if (scriptWriter === PROFESSIONAL_SCRIPT) {
       setIsOwnExpanded(false);
       setIsProffessionalExpanded(true);
       setIsError({
@@ -108,20 +112,20 @@ const IsScriptRequired = () => {
         proffessionalScript: false,
       });
     }
-  }, [selection]);
+  }, [scriptWriter]);
   useEffect(() => {
-    if (selection === OWN_SCRIPT) {
+    if (scriptWriter === OWN_SCRIPT) {
       const errors = {
         name: false,
         phone: false,
         email: false,
-        ownScript: ownTextStatus === APPROVED_TEXT_STATUS ? (!ownText || ownText.length === 0) : false,
-        ownScriptStatus: ownTextStatus === DEFAULT,
+        ownScript: scriptStatus === APPROVED_TEXT_STATUS ? (!scriptText || scriptText.length === 0) : false,
+        ownScriptStatus: scriptStatus === DEFAULT,
         proffessionalScript: false,
       };
       setIsError(errors);
     }
-    if (selection === PROFESSIONAL_SCRIPT) {
+    if (scriptWriter === PROFESSIONAL_SCRIPT) {
       const errors = {
         name: false,
         phone: false,
@@ -132,7 +136,7 @@ const IsScriptRequired = () => {
       };
       setIsError(errors);
     }
-  }, [name, phone, email, ownText, proffessionalText, ownTextStatus]);
+  }, [name, phone, email, scriptText, backgroundInfo, scriptStatus]);
 
   return (
     <div ref={containerRef} tabIndex={-1} onBlur={handleBlur}>

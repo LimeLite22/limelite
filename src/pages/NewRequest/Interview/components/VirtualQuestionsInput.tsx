@@ -17,14 +17,11 @@ const VirtualQuestionsInput = ({
   setIsExpanded,
   isError,
 }: IAddressProps) => {
-  const selectedRequest = useSelector(selectRequestInfo);
-  const type = selectedRequest?.interviewSettings.questionSettings.type;
-  const name =
-    selectedRequest?.interviewSettings.questionSettings.virtualSettings.name;
-  const phone =
-    selectedRequest?.interviewSettings.questionSettings.virtualSettings.phone;
-  const email =
-    selectedRequest?.interviewSettings.questionSettings.virtualSettings.email;
+  const interviewSettings = useSelector(selectRequestInfo)?.interviewSettings.questionSettings
+  const type = interviewSettings?.type;
+  const name = interviewSettings?.virtualSettings.name;
+  const phone = interviewSettings?.virtualSettings.phone;
+  const email = interviewSettings?.virtualSettings.email;
 
   const containerRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();

@@ -26,12 +26,12 @@ const ProffessionalScript = ({
   setIsExpanded,
   isError,
 }: IProps) => {
-  const selectedRequest = useSelector(selectRequestInfo);
-  const selection = selectedRequest?.script?.scriptWriter;
-  const name = selectedRequest?.script?.name;
-  const email = selectedRequest?.script?.email;
-  const phone = selectedRequest?.script?.phone;
-  const text = selectedRequest?.script?.backgroundInfo;
+  const scriptSettings = useSelector(selectRequestInfo)?.script;
+  const selection = scriptSettings?.scriptWriter;
+  const name = scriptSettings?.name;
+  const email = scriptSettings?.email;
+  const phone = scriptSettings?.phone;
+  const text = scriptSettings?.backgroundInfo;
 
   const dispatch = useDispatch();
   const handleUpdateField = (

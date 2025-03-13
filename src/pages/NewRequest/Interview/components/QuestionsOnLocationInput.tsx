@@ -16,14 +16,11 @@ const QuestionsOnLocationInput = ({
   setIsExpanded,
   isError,
 }: IAddressProps) => {
-  const selectedRequest = useSelector(selectRequestInfo);
-  const type = selectedRequest?.interviewSettings.questionSettings.type;
-  const name =
-    selectedRequest?.interviewSettings.questionSettings.locationSettings.name;
-  const phone =
-    selectedRequest?.interviewSettings.questionSettings.locationSettings.phone;
-  const email =
-    selectedRequest?.interviewSettings.questionSettings.locationSettings.email;
+  const interviewSettings = useSelector(selectRequestInfo)?.interviewSettings.questionSettings;
+  const type = interviewSettings?.type;
+  const name = interviewSettings?.locationSettings.name;
+  const phone = interviewSettings?.locationSettings.phone;
+  const email = interviewSettings?.locationSettings.email;
 
   const containerRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();

@@ -11,22 +11,22 @@ import { wordsCalculator } from "utils/wordCalculator";
 import { selectRequestInfo, updateScriptInfoSettings } from "../../../../redux/requests/reducer";
 import styles from "../../NewRequest.module.scss";
 const ScriptInfo = () => {
-    const selectedRequest = useSelector(selectRequestInfo);
+    const requestSriptSettings = useSelector(selectRequestInfo)?.script;
     const dispatch = useDispatch();
     const width = useWindowWidth();
     const [isEdit, setIsEdit] = useState(false);
     const [isReady, setIsReady] = useState(false);
-    const [scriptSettings, setScriptSettings] = useState(selectedRequest?.script);
+    const [scriptSettings, setScriptSettings] = useState(requestSriptSettings);
 
     const readyToSave = () => {
         let ready = true;
         if (
-            scriptSettings?.scriptText !== selectedRequest?.script.scriptText
-            || scriptSettings?.scriptStatus !== selectedRequest?.script.scriptStatus
-            || scriptSettings?.name !== selectedRequest?.script?.name
-            || scriptSettings?.phone !== selectedRequest?.script?.phone
-            || scriptSettings?.email !== selectedRequest?.script?.email
-            || scriptSettings?.backgroundInfo !== selectedRequest?.script?.backgroundInfo
+            scriptSettings?.scriptText !== requestSriptSettings?.scriptText
+            || scriptSettings?.scriptStatus !== requestSriptSettings?.scriptStatus
+            || scriptSettings?.name !== requestSriptSettings?.name
+            || scriptSettings?.phone !== requestSriptSettings?.phone
+            || scriptSettings?.email !== requestSriptSettings?.email
+            || scriptSettings?.backgroundInfo !== requestSriptSettings?.backgroundInfo
         ) {
 
             if (scriptSettings?.scriptWriter === PROFESSIONAL_SCRIPT) {
@@ -73,8 +73,8 @@ const ScriptInfo = () => {
     }, [scriptSettings])
     useEffect(() => {
         setScriptSettings(scriptSettings);
-    }, [selectedRequest])
-    const { minutes, seconds, words } = wordsCalculator(selectedRequest?.script.scriptText || '');
+    }, [requestSriptSettings])
+    const { minutes, seconds, words } = wordsCalculator(requestSriptSettings?.scriptText || '');
     return (
         <div className={styles.infoContainer}>
             <div className={styles.infoContainer_header}>Scripted Delivery
@@ -83,7 +83,7 @@ const ScriptInfo = () => {
                         <img src={EditIcon} alt='' />
                         Edit</div> : <div className={styles.infoContainer_header_editMode}>edit mode</div>}
             </div>
-            {selectedRequest?.script.scriptWriter === OWN_SCRIPT &&
+            {requestSriptSettings?.scriptWriter === OWN_SCRIPT &&
                 <>
                     <div className={styles.infoContainer_text}><p>Script Status:</p>
                         {isEdit ?
@@ -115,7 +115,7 @@ const ScriptInfo = () => {
                                     <img src={scriptSettings?.scriptStatus === UNAVAILABLE_TEXT_STATUS ? StatusUnavailableBlack : StatusUnavailable} alt="status" />
                                     {width > 768 ? 'Unavailable' : scriptSettings?.scriptStatus === UNAVAILABLE_TEXT_STATUS ? 'Unavailable' : ''}
                                 </div>
-                            </div> : selectedRequest?.script.scriptStatus}
+                            </div> : requestSriptSettings?.scriptStatus}
                     </div>
                     <div className={styles.infoContainer_text}><p className={`
                 ${styles.infoContainer_detailsHeader}
@@ -125,7 +125,7 @@ const ScriptInfo = () => {
                             <textarea className={styles.infoContainer_textarea}
                                 onChange={(e) => scriptSettings && setScriptSettings({ ...scriptSettings, scriptText: e.target.value })}
                                 value={scriptSettings?.scriptText} /> :
-                            <DivRowCount text={selectedRequest?.script.scriptText} />
+                            <DivRowCount text={requestSriptSettings?.scriptText} />
                         }
                     </div>
                     {scriptSettings?.scriptStatus === APPROVED_TEXT_STATUS && isEdit &&
@@ -163,7 +163,7 @@ const ScriptInfo = () => {
             }
 
 
-            {selectedRequest?.script.scriptWriter === PROFESSIONAL_SCRIPT &&
+            {requestSriptSettings?.scriptWriter === PROFESSIONAL_SCRIPT &&
                 <>
                     <div className={styles.infoContainer_text}><p>Subject matter expert :</p>
                         {isEdit ?

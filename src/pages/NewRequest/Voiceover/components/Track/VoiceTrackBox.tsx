@@ -13,12 +13,12 @@ import OwnTrack from "./components/OwnTrack";
 import ProffessionalTrack from "./components/ProfessionalTrack";
 
 const VoiceTrackBox = () => {
-  const selectedRequest = useSelector(selectRequestInfo);
+  const voiceTrackSettings = useSelector(selectRequestInfo)?.voiceTrackSettings;
   const [isError, setIsError] = useState({
     track: false,
   });
-  const selection = selectedRequest?.voiceTrackSettings.trackAuthor;
-  const track = selectedRequest?.voiceTrackSettings.track;
+  const selection = voiceTrackSettings?.trackAuthor;
+  const track = voiceTrackSettings?.track;
   const [isOwnExpanded, setIsOwnExpanded] = useState(false);
   const [isProffessionalExpanded, setIsProffessionalExpanded] = useState(false);
 
